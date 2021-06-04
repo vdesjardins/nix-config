@@ -1,0 +1,5 @@
+#!/bin/bash
+# Run a test container on Kubernetes
+function kube-inspect() {
+	kubectl run --rm -i -t vince-d --image=gcr.io/google-containers/toolbox --restart=Never --labels 'app=vince-d' $argv --command /bin/bash
+}

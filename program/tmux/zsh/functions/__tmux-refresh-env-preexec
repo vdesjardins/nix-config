@@ -1,0 +1,15 @@
+#!/bin/bash
+# Refresh SSH_AUTH_SOCK and DISPLAY variables
+function __tmux-refresh-env-preexec() {
+	if [[ ! -z $TMUX ]]; then
+		local sshauth=$(tmux show-environment | grep "^SSH_AUTH_SOCK")
+		if [[ "$sshauth" != "" ]]; then
+			export SSH_AUTH_SOCK=$(echo "$sshauth" | awk -F'=' '{ print $2; }')
+		fi
+
+		local display=$(tmux show-environment | grep "^DISPLAY")
+		if [[ "$display" != "" ]]; then
+			export DISPLAY=$(echo "$display" | awk -F'=' '{ print $2; }')
+		fi
+	fi
+}

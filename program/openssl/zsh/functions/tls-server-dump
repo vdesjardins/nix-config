@@ -1,0 +1,13 @@
+#!/bin/bash
+# Dump remote server TLS certificate info
+function tls-server-dump() {
+	local host=$1
+	local port=$2
+	local server_name=$3
+
+	if [[ "${server_name}" == "" ]]; then
+		server_name=${host}
+	fi
+
+	true | openssl s_client -showcerts -connect $host:$port -servername $server_name | openssl x509 -noout -text
+}

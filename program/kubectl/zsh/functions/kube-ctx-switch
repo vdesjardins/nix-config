@@ -1,0 +1,42 @@
+#!/bin/bash
+# Create a new Tmux session with dedicated kube config
+function kube-ctx-switch() {
+        local cluster=$1
+
+        local KUBECONFIG=""
+
+        if [[ $cluster == "" ]]; then
+                cluster=$(kubectl config get-contexts | tail -n +2 | awk '{ print $2; }' | fzf --height 50% $argv --border)
+        fi
+
+        if [[ $cluster == "" ]]; then
+                echo "no cluster provided."
+                return 1
+        fi
+
+        local session_name="shell-$cluster"
+
+        tmux list-session | cut -d':' -f1 | grep $session_name &>/dev/null
+        if [[ $status == 0 ]]; then
+                tmux switch-client -t $session_name
+                return
+        fi
+
+        local dir=~/.config/my-kubeconfig/
+        mkdir -p $dir
+        local kubeconfig="$dir/$cluster-config"
+        local startup_script="$dir/startup-script.sh"
+        cp ~/.kube/config $kubeconfig
+
+        printf "\
+#!/usr/bin/env zsh
+export KUBECONFIG=$kubeconfig
+kubectl config use-context $cluster
+zsh" >$startup_script
+
+        chmod +x $startup_script
+
+        tmux new-session -d -s $session_name $startup_script
+        tmux setenv -t $session_name KUBECONFIG $kubeconfig
+        tmux switch-client -t $session_name
+}
