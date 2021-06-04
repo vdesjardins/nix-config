@@ -1,0 +1,15 @@
+priority -50
+
+snippet errf "Error format and return"
+if err != nil {
+	return fmt.Errorf("$1: %s", err.Error())
+}
+$2
+endsnippet
+
+snippet err2f "Error format and return 2 values"
+if err != nil {
+	return nil, fmt.Errorf("$1: %s", err.Error())
+}
+$2
+endsnippet

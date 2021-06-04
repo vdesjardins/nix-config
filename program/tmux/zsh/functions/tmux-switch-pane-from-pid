@@ -1,0 +1,13 @@
+#!/bin/bash
+# switch to the tmux pane using `PID`
+function tmux-switch-pane-from-pid() {
+    local proc_pid=$1
+	local pid_tty=$(ps -o tty= -p $proc_pid)
+	local session_values=$(tmux list-panes -a -F '#{session_name}:#{window_index}:#{pane_index}:#{pane_tty}' | grep $pid_tty)
+
+	local session=$(echo $session_values | cut -d: -f1)
+	local window_index=$(echo $session_values | cut -d: -f2)
+	local pane_index=$(echo $session_values | cut -d: -f3)
+
+	tmux switch -t $session:$window_index.$pane_index
+}

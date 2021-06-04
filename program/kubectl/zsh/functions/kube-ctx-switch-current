@@ -1,0 +1,16 @@
+#!/bin/bash
+# Switch kube config context
+function kube-ctx-switch-current() {
+    local cluster=$1
+
+	if [[ $cluster == "" ]]; then
+		cluster=$(kubectl config get-contexts | tail -n +2 | awk '{ print $2; }' | fzf --height 50% $argv --border)
+	fi
+
+	if [[ $cluster == "" ]]; then
+		echo "no cluster provided." 2>&1
+		return 1
+	fi
+
+	kubectl config use-context $cluster
+}

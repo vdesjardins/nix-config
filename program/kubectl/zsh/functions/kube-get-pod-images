@@ -1,0 +1,10 @@
+#!/bin/bash
+# Show images used by pods
+function kube-get-pod-images() {
+    local pod=$1
+	if [[ $pod == "" ]]; then
+		kubectl get pods -ojson | jq '.items[] | . as $parent | .spec.containers[] | [$parent.metadata.name, .image] | @tsv' -Mr
+	else
+		kubectl get pods $pod -ojson | jq '.spec.containers[].image' -Mr
+	fi
+}

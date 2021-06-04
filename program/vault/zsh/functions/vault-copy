@@ -1,0 +1,17 @@
+#!/bin/bash
+# copy secret content from a path src to dst";
+function vault-copy() {
+  local src=$1
+  local dst=$2
+
+  if [[ "${src}" == "" ]]; then
+	echo "error src not set" 1>&2
+	return 1
+  fi
+  if [[ "${dst}" == "" ]]; then
+	echo "error dst not set" 1>&2
+	return 1
+  fi
+
+  vault kv get -field=data -format=json "$src" | vault kv put "$dst" -
+}

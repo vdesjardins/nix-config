@@ -1,0 +1,14 @@
+#!/bin/bash
+# switch to the tmux pane using `file`
+function tmux-switch-pane-from-file() {
+    local filepath=$1
+	local fname=$(realpath $filepath)
+
+	local proc_pid=$(lsof -t $fname 2>/dev/null)
+	if [[ $proc_pid == "" ]]; then
+		echo "error lsof cannot find file $fname" 1>&2
+		return 1
+	fi
+
+	tmux-switch-pane-from-pid $proc_pid
+}

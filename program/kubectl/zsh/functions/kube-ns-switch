@@ -1,0 +1,21 @@
+#!/bin/bash
+# Switch default namespace for current kube context
+function kube-ns-switch() {
+    local ns=$1
+
+	if [[ $ns == "" ]]; then
+		ns=$(kubectl get namespaces | tail -n +2 | awk '{ print $1; }' | fzf --height 50% $argv --border)
+	fi
+
+	if [[ $ns == "" ]]; then
+		echo "no namespace provided." >&2
+		return 1
+	fi
+
+	local COLOR='\033[0;34m'
+	local NC='\033[0m'
+	local current_context=$(kubectl config current-context)
+
+	printf "Switching Default Namespace to $COLOR$ns$NC\n"
+	kubectl config set-context $current_context --namespace=$ns
+}
