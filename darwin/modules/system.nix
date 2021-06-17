@@ -1,27 +1,4 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ ../shared.nix ];
-
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  #environment.systemPackages = [ pkgs.vim ];
-
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.zsh.enable = true; # default shell on catalina
-  # programs.fish.enable = true;
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
-
   system.defaults = {
     finder = {
       AppleShowAllExtensions = true;
@@ -38,12 +15,15 @@
       # how fast is the dock showing animation
       autohide-time-modifier = "1.0";
       tilesize = 50;
-      static-only = false;
+      static-only = true;
       showhidden = false;
       show-recents = false;
       show-process-indicators = true;
       orientation = "bottom";
       mru-spaces = false;
+      launchanim = false;
+      mineffect = "scale";
+      minimize-to-application = true;
     };
 
     NSGlobalDomain = {
@@ -55,7 +35,7 @@
       # delay before repeating keystrokes
       InitialKeyRepeat = 10;
       # delay between repeated keystrokes upon holding a key
-      KeyRepeat = 2;
+      KeyRepeat = 1;
       AppleShowAllExtensions = true;
       AppleShowScrollBars = "Automatic";
     };
@@ -65,16 +45,5 @@
     enableKeyMapping = true;
     remapCapsLockToControl = true;
     swapLeftCommandAndLeftAlt = true;
-  };
-
-  fonts = {
-    enableFontDir = true;
-    fonts = with pkgs;
-      [ (nerdfonts.override { fonts = [ "FiraCode" "VictorMono" ]; }) ];
-  };
-
-  homebrew = {
-    enable = true;
-    casks = [ "karabiner-elements" ];
   };
 }
