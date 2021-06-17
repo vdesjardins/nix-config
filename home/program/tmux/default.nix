@@ -6,23 +6,6 @@ mkMerge [
   {
     programs.tmux = { enable = true; };
 
-    nixpkgs.overlays = [
-      (
-        self: super: {
-          tmux = super.tmux.overrideDerivation (
-            attrs: {
-              src = pkgs.fetchFromGitHub {
-                owner = "tmux";
-                repo = "tmux";
-                rev = "be568ea3b21b88763d2cc274bdec3a476136de2f";
-                sha256 = "0jn7dmqx8gbf3jpf88d8yj5isjplwvcs26z3hdwwywikaq7gp1h5";
-              };
-            }
-          );
-        }
-      )
-    ];
-
     programs.zsh.shellAliases = { t = "tmux attach -d"; };
 
     xdg.configFile."tmux/tmux.conf".text = pkgs.callPackage ./tmux.nix {};

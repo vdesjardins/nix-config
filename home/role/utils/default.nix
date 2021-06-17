@@ -18,15 +18,14 @@
     ../../program/any-nix-shell
     ../../program/ls
     # ../../program/comma
-    ../../program/efm-langserver
   ];
 
   home.packages = with pkgs;
     [
       act
-      bandwhich
+      #bandwhich
       coreutils
-      bottom
+      #bottom
       cachix
       ctags
       curl
@@ -39,7 +38,7 @@
       htop
       hexyl
       hyperfine
-      iotop
+      #iotop
       jq
       lazygit
       lsof
