@@ -5,10 +5,10 @@ SHELL = /bin/bash
 flake-update:
 	nix flake lock --update-input
 
-.PHONY: vinced
-## vinced: build and activate vinced system
-vinced:
-	nix build ./#vinced && ./result/activate
+.PHONY: vincent_desjardins
+## vincent_desjardins: build and activate vincent_desjardins system
+vincent_desjardins:
+	nix build ./#vincent_desjardins && ./result/activate
 
 .PHONY: work-mac
 ## work-mac: build and activate work-mac system
