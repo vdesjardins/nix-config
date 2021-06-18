@@ -80,8 +80,15 @@
           } // vde-neovim.overlays;
       in
         {
-          homeConfigurations.vincent_desjardins = home-manager.lib.homeManagerConfiguration
-            (import ./home/users/vincent_desjardins.nix inputs);
+          homeConfigurations.vincent_desjardins =
+            home-manager.lib.homeManagerConfiguration {
+              system = "x86_64-linux";
+              stateVersion = "21.05";
+              username = "vincent_desjardins";
+              homeDirectory = "/home/vincent_desjardins";
+              extraModules = [ inputs.vde-neovim.hmModule ];
+              configuration = import ./home/users/vincent_desjardins.nix { inherit pkgs; };
+            };
           vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
 
           darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
