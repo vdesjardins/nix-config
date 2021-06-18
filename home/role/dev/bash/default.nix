@@ -1,16 +1,9 @@
 { config, lib, pkgs, ... }:
 {
+  programs.neovim.enableBash = true;
+
   home.packages = with pkgs; [
     bash
     bats
-    shellcheck
-    shfmt
-    nodePackages.bash-language-server
   ];
-
-  programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
-      bats
-    ];
-  };
 }

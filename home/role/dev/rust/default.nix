@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }: {
-  home.packages = with pkgs;
-    [ rustup rust-analyzer crate2nix ];
+  home.packages = with pkgs; [ crate2nix ];
 
-  programs.neovim = {
-    plugins = with pkgs.vimPlugins; [ coc-rust-analyzer rust-vim ];
-  };
+  programs.neovim.enableRust = true;
 }
