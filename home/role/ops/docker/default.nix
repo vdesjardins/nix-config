@@ -3,13 +3,7 @@
     buildkit
     dive
     nodePackages.dockerfile-language-server-nodejs
-    hadolint
   ];
 
-  programs.neovim = {
-    plugins = with pkgs.vimPlugins;
-      [
-        # Dockerfile-vim
-      ];
-  };
+  programs.neovim.enableDocker = true;
 }
