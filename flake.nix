@@ -16,7 +16,7 @@
     # Others
     utils.url = "github:numtide/flake-utils";
     vde-neovim.url = "github:vdesjardins/neovim";
-    vde-neovim.inputs.nixpkgs.follows = "nixpkgs";
+    vde-neovim.inputs.nixpkgs.follows = "unstable";
     tmux.url = "github:tmux/tmux";
     tmux.flake = false;
   };
