@@ -10,11 +10,6 @@ mkMerge [
 
     xdg.configFile."tmux/tmux.conf".text = pkgs.callPackage ./tmux.nix {};
     xdg.configFile."tmux/tmux-theme.conf".source = ./tmux-theme.conf;
-
-    programs.neovim.plugins = with pkgs.vimPlugins; [
-      vim-tmux-focus-events
-      vim-tmux-clipboard
-    ];
   }
 
   (
