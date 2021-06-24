@@ -1,6 +1,8 @@
-# Notes
+# My Nix Dotfiles Config
 
-## Linux
+![Build Nix envs](https://github.com/vdesjardins/nix-dotfiles/workflows/Build%20Nix%20envs/badge.svg)
+
+## Linux/Home-Manager
 
 NSCD must be installed on the OS to be able to use server NSS components. You need this for example on GCP when using OS Login.
 
