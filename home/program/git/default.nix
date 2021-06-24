@@ -29,7 +29,7 @@
 
     ignores = [ ".DS_Store" ];
 
-    includes = [{ path = "~/.gitconfig.local"; }];
+    includes = [ { path = "~/.gitconfig.local"; } ];
 
     extraConfig = {
       help = { autocorrect = 20; };
@@ -141,6 +141,8 @@
       tls =
         "for-each-ref --format='%(refname:short) %(taggerdate) %(subject)' refs/tags";
       sli = "stash list --format='%gd (%cr): %gs'";
+
+      change-commits = ''!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter "if [[ \"$`echo $VAR`\" = '$OLD' ]]; then export $VAR='$NEW'; fi" \$@; }; f'';
     };
   };
 
