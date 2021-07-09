@@ -49,9 +49,12 @@ jobs:
           nix-env --set-flag priority 1 cachix
           # Build and switch to bootstrap config
           make darwin-bootstrap
+          dscl . list /Users | grep -v "^_"
           # Build and switch to full config
           export HOME_MANAGER_BACKUP_EXT=".bkp"
-          make work-mac
+          make work-mac || true
+          dscl . list /Users | grep -v "^_"
+          exit 1
       - name: If scheduled, push commit with updated inputs
         if: ${{ github.event_name == 'schedule' && success() }}
         run: |

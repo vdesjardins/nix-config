@@ -1,4 +1,8 @@
 { config, lib, pkgs, ... }:
 {
-  programs.neovim.enableLua = true;
+  home.packages = with pkgs; [
+    sumneko-lua-language-server
+    lua5_3
+    lua-format
+  ];
 }

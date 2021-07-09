@@ -7,6 +7,7 @@
   ];
 
   home.packages = with pkgs; [
+    buildpack
     kind
     kubernetes-helm
     kubetail

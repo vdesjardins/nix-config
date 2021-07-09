@@ -1,4 +1,8 @@
 { config, lib, pkgs, ... }:
 {
-  programs.neovim.enableJson = true;
+  home.packages = with pkgs; [
+    nodePackages.vscode-json-languageserver-bin
+    nodePackages.fixjson
+    jq
+  ];
 }
