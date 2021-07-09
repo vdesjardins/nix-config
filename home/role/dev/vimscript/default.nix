@@ -1,3 +1,5 @@
 { config, lib, pkgs, ... }: {
-  programs.neovim.enableVim = true;
+  home.packages = with pkgs; [
+      vim-vint
+  ];
 }

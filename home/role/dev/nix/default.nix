@@ -1,4 +1,7 @@
 { config, lib, pkgs, ... }:
 {
-  programs.neovim.enableLua = true;
+  home.packages = with pkgs; [
+    rnix-lsp
+    nixfmt
+  ];
 }

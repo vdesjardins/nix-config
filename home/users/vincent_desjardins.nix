@@ -16,6 +16,7 @@
     ../role/dev/json
     ../role/dev/cpp
     ../role/dev/rust
+    ../role/dev/make
     ../role/dev/terraform
     ../role/dev/vimscript
     ../role/dev/nix

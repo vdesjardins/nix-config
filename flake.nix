@@ -15,10 +15,15 @@
 
     # Others
     utils.url = "github:numtide/flake-utils";
-    vde-neovim.url = "github:vdesjardins/neovim";
-    vde-neovim.inputs.nixpkgs.follows = "unstable";
     tmux.url = "github:tmux/tmux";
     tmux.flake = false;
+    efm-langserver.url = "github:mattn/efm-langserver";
+    efm-langserver.flake = false;
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    # lua-format.url = "github.com:Koihik/LuaFormatter";
+    # lua-format.flake = false;
+    # TODO: does not work yet
+    # lua-format.submodules = true;
   };
 
   outputs =
@@ -28,7 +33,7 @@
     , nur
     , home-manager
     , darwin
-    , vde-neovim
+    , neovim-nightly
     , ...
     }@inputs:
       let
@@ -77,24 +82,24 @@
                 config = { allowUnfree = true; };
               };
             };
-          } // vde-neovim.overlays;
+            neovim-nightly = neovim-nightly.overlay;
+          };
       in
         {
+          darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
+            inputs = inputs;
+            modules = [ ./modules/darwin/bootstrap.nix ];
+          };
+
           homeConfigurations.vincent_desjardins =
             home-manager.lib.homeManagerConfiguration {
               system = "x86_64-linux";
               stateVersion = "21.05";
               username = "vincent_desjardins";
               homeDirectory = "/home/vincent_desjardins";
-              extraModules = [ inputs.vde-neovim.hmModule ];
               configuration = import ./home/users/vincent_desjardins.nix { inherit pkgs; };
             };
           vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
-
-          darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
-            inputs = inputs;
-            modules = [ ./modules/darwin/bootstrap.nix ];
-          };
 
           darwinConfigurations.work-mac = darwin.lib.darwinSystem {
             inherit inputs;

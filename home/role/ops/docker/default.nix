@@ -3,7 +3,6 @@
     buildkit
     dive
     nodePackages.dockerfile-language-server-nodejs
+    hadolint
   ];
-
-  programs.neovim.enableDocker = true;
 }

@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }: {
-  programs.neovim.enableYaml = true;
+  home.packages = with pkgs; [
+    nodePackages.yaml-language-server
+    yamllint
+  ];
+
   imports = [
     ../../../program/yamllint
   ];

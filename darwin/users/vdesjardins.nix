@@ -8,6 +8,4 @@
     createHome = true;
     shell = pkgs.zsh;
   };
-
-  nix.trustedUsers = [ "vdesjardins" ];
 }

@@ -21,6 +21,7 @@ inputs: {
         ../role/dev/bash
         ../role/dev/golang
         ../role/dev/rust
+        ../role/dev/make
         ../role/ops/docker
         ../role/ops/gcloud
         ../role/ops/k8s

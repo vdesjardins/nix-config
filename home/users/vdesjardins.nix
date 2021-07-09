@@ -12,10 +12,8 @@
     };
 
     imports = [
-      inputs.vde-neovim.hmModule
-
       ./default.nix
-     
+
       ../role/utils
       ../role/dev/nix
       ../role/dev/yaml
