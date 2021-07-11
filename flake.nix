@@ -104,8 +104,9 @@
           darwinConfigurations.work-mac = darwin.lib.darwinSystem {
             inherit inputs;
             modules = [
-              ./darwin/modules/default.nix
-              ./darwin/systems/C02XX09DJHD2.nix
+              ./modules/darwin/default.nix
+              ./modules/darwin/systems/C02XX09DJHD2.nix
+              { users.knownUsers = [ "vdesjardins" ]; }
               home-manager.darwinModule
               { nixpkgs = pkgs; }
               ./home/users/vdesjardins.nix

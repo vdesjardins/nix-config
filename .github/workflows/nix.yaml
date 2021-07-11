@@ -52,9 +52,7 @@ jobs:
           dscl . list /Users | grep -v "^_"
           # Build and switch to full config
           export HOME_MANAGER_BACKUP_EXT=".bkp"
-          make work-mac || true
-          dscl . list /Users | grep -v "^_"
-          exit 1
+          make work-mac
       - name: If scheduled, push commit with updated inputs
         if: ${{ github.event_name == 'schedule' && success() }}
         run: |

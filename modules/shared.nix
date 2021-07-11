@@ -1,5 +1,5 @@
 # This file contains configuration that is shared across all hosts.
-{ pkgs, lib, options, ... }: {
+{ pkgs, inputs, lib, options, ... }: {
   nix = {
     binaryCaches = [
       "https://cache.nixos.org/"
@@ -16,6 +16,7 @@
     };
 
     package = pkgs.nixFlakes;
+    registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = "experimental-features = nix-command flakes";
   };
 
@@ -26,17 +27,8 @@
     };
   };
 
-  fonts = (
-    lib.mkMerge [
-      # NOTE: Remove this condition when `nix-darwin` aligns with NixOS
-      (
-        if (builtins.hasAttr "fontDir" options.fonts) then {
-          fontDir.enable = true;
-        } else {
-          enableFontDir = true;
-        }
-      )
-      { fonts = with pkgs; [ hack-font ]; }
-    ]
-  );
+  fonts.enableFontDir = true;
+  fonts.fonts = [
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "VictorMono" ]; })
+  ];
 }
