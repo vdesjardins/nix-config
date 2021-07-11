@@ -27,7 +27,7 @@
   set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
   # color!
-  set-option -g default-terminal "tmux-256color"
+  set-option -g default-terminal "${if pkgs.stdenv.isDarwin then "screen-256color" else "tmux-256color"}"
   set-option -sa terminal-overrides ',*256col*:RGB'
 
   # quick view of processes
