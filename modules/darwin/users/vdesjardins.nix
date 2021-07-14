@@ -7,6 +7,6 @@
     isHidden = false;
     home = "/Users/vdesjardins";
     createHome = true;
-    shell = pkgs.zsh;
+    shell = "${pkgs.zsh}/bin/zsh";
   };
 }
