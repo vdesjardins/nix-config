@@ -1,14 +1,13 @@
-
-{config, lib, pkgs, inputs, ...}: {
+{ config, lib, pkgs, inputs, ... }: {
   home-manager.useGlobalPkgs = true;
   home-manager.users.vdesjardins = { pkgs, ... }: {
     home.sessionVariables = {
-	NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = 1;
+      NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = 1;
     };
 
     home.sessionVariables = {
-	VAULT_USERNAME = "inf10906";
-	VAULT_ADDR = "https://vault.gcp.internal";
+      VAULT_USERNAME = "inf10906";
+      VAULT_ADDR = "https://vault.gcp.internal";
     };
 
     imports = [
@@ -26,5 +25,5 @@
       ../program/ssh
       ../program/gcloud
     ];
-   };
-  }
+  };
+}
