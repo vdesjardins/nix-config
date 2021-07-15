@@ -38,6 +38,12 @@
       KeyRepeat = 1;
       AppleShowAllExtensions = true;
       AppleShowScrollBars = "Automatic";
+      # tap to click
+      "com.apple.mouse.tapBehavior" = 1;
+    };
+
+    trackpad = {
+      Clicking = true;
     };
   };
 
