@@ -34,6 +34,7 @@
     , home-manager
     , darwin
     , neovim-nightly
+    , utils
     , ...
     }@inputs:
       let
@@ -41,11 +42,7 @@
         inherit (nixpkgs) lib;
         inherit (lib) removeSuffix;
 
-        supportedSystems = nixpkgs.lib.platforms.unix;
-        forAllSystems = f:
-          nixpkgs.lib.genAttrs supportedSystems (system: f system);
-
-        pkgs = {
+        pkgsConfig = {
           overlays = (attrValues overlays);
           config = {
             allowUnfree = true;
@@ -97,7 +94,9 @@
               stateVersion = "21.05";
               username = "vincent_desjardins";
               homeDirectory = "/home/vincent_desjardins";
-              configuration = import ./home/users/vincent_desjardins.nix { inherit pkgs; };
+              configuration = import ./home/users/vincent_desjardins.nix {
+                inherit pkgsConfig;
+              };
             };
           vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
 
@@ -108,12 +107,20 @@
               ./modules/darwin/systems/C02XX09DJHD2.nix
               { users.knownUsers = [ "vdesjardins" ]; }
               home-manager.darwinModule
-              { nixpkgs = pkgs; }
+              { nixpkgs = pkgsConfig; }
               ./home/users/vdesjardins.nix
             ];
           };
           work-mac = self.darwinConfigurations.work-mac.system;
 
           overlays = overlays;
-        };
+        } // utils.lib.eachDefaultSystem (
+          system: {
+            legacyPackages = import nixpkgs {
+              inherit system; inherit
+              (pkgsConfig) config overlays
+              ;
+            };
+          }
+        );
 }
