@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, ... }: {
   home.file.".dircolors".source = builtins.fetchurl {
     name = "dircolors";
     url =
@@ -7,8 +7,8 @@
   };
 
   programs.zsh.initExtra = ''
-    source <(dircolors ${
-      config.home.homeDirectory + "/" + config.home.file.".dircolors".target
+      source <(dircolors ${
+    config.home.homeDirectory + "/" + config.home.file.".dircolors".target
     })
   '';
 }
