@@ -1,6 +1,6 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ ... }: {
   home-manager.useGlobalPkgs = true;
-  home-manager.users.vdesjardins = { pkgs, ... }: {
+  home-manager.users.vdesjardins = { ... }: {
     home.sessionVariables = {
       NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = 1;
     };

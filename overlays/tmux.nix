@@ -1,6 +1,6 @@
-inputs: self: super: {
+inputs: _self: super: {
   tmux = super.tmux.overrideDerivation (
-    attrs: {
+    _attrs: {
       src = inputs.tmux;
       patches = [ ];
     }

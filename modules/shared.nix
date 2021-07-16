@@ -1,5 +1,5 @@
 # This file contains configuration that is shared across all hosts.
-{ pkgs, inputs, lib, options, ... }: {
+{ pkgs, inputs, ... }: {
   nix = {
     binaryCaches = [
       "https://cache.nixos.org/"

@@ -1,14 +1,12 @@
-inputs: {
+_inputs: {
   system = "x86_64-linux";
   username = "vince";
   homeDirectory = "/home/vince";
 
   xdg.enable = true;
 
-  extraModules = [ inputs.vde-neovim.hmModule ];
-
   configuration =
-    { pkgs, ... }: {
+    { ... }: {
 
       imports = [
         ./default.nix
@@ -27,4 +25,5 @@ inputs: {
         ../role/ops/k8s
         ../role/ops/bpf
       ];
-    }
+    };
+}

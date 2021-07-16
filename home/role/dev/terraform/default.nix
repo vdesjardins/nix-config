@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [ ../../../program/terraform ];
 
   home.packages = with pkgs; [

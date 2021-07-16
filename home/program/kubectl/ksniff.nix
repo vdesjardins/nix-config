@@ -1,5 +1,6 @@
-{ config, lib, pkgs, ... }:
-let static-tcpdump = pkgs.callPackage ./static-tcpdump.nix { };
+{ pkgs, ... }:
+let
+  static-tcpdump = pkgs.callPackage ./static-tcpdump.nix { };
 in
 pkgs.buildGoModule rec {
   name = "ksniff";

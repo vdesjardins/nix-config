@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [ any-nix-shell ];
 
   programs.zsh.initExtra = ''

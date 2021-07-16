@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ../../program/neovim
     ../../program/bash

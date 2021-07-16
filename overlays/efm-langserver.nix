@@ -1,4 +1,4 @@
-inputs: self: super: {
+inputs: _self: super: {
   efm-langserver = super.pkgs.buildGoModule rec {
     name = "efm-langserver";
 

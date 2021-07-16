@@ -1,4 +1,4 @@
-inputs: self: super: {
+_inputs: _self: super: {
   lua-format = super.pkgs.stdenv.mkDerivation {
     name = "lua-format";
 
