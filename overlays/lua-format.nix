@@ -11,6 +11,6 @@ inputs: self: super: {
     };
 
     buildInputs = with super.pkgs; [ unzip ];
-    nativeBuildInputs = with super.pkgs; [ cmake ];
+    nativeBuildInputs = with super.pkgs; [ cmake clang_9 ];
   };
 }
