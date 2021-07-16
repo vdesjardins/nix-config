@@ -6,7 +6,8 @@ let
   kubectl-trace = pkgs.callPackage ./kubectl-trace.nix { };
   ksniff = pkgs.callPackage ./ksniff.nix { };
 
-in with lib;
+in
+with lib;
 
 mkMerge [
   (mkIf config.programs.zsh.enable {
@@ -73,7 +74,7 @@ mkMerge [
 
         # certs
         kube-get-certs = ''
-          kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"	"}{.status.notAfter}{"
+          kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{"
           "}' | sort'';
       };
     };
