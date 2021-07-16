@@ -95,7 +95,7 @@
               username = "vincent_desjardins";
               homeDirectory = "/home/vincent_desjardins";
               configuration = import ./home/users/vincent_desjardins.nix {
-                inherit pkgsConfig;
+                pkgs = pkgsConfig;
               };
             };
           vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
