@@ -29,7 +29,7 @@
 
     ignores = [ ".DS_Store" ];
 
-    includes = [ { path = "~/.gitconfig.local"; } ];
+    includes = [{ path = "~/.gitconfig.local"; }];
 
     extraConfig = {
       help = { autocorrect = 20; };

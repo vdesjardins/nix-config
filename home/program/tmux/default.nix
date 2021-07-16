@@ -8,7 +8,7 @@ mkMerge [
 
     programs.zsh.shellAliases = { t = "tmux attach -d"; };
 
-    xdg.configFile."tmux/tmux.conf".text = pkgs.callPackage ./tmux.nix {};
+    xdg.configFile."tmux/tmux.conf".text = pkgs.callPackage ./tmux.nix { };
     xdg.configFile."tmux/tmux-theme.conf".source = ./tmux-theme.conf;
   }
 

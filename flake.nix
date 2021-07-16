@@ -1,5 +1,5 @@
 {
-  description = "VinceD dotfiles flake";
+  description = "VinceD's dotfiles flake";
 
   inputs = {
     # Packages
@@ -50,37 +50,40 @@
           };
         };
 
-        overlays = let
-          overlayFiles = listToAttrs (
-            map (
-              name: {
-                name = removeSuffix ".nix" name;
-                value = import (./overlays + "/${name}") inputs;
-              }
-            ) (attrNames (readDir ./overlays))
-          );
-        in
-          overlayFiles // {
-            nur = final: prev: {
-              nur = import inputs.nur {
-                nurpkgs = final.unstable;
-                pkgs = final.unstable;
+        overlays =
+          let
+            overlayFiles = listToAttrs (
+              map
+                (
+                  name: {
+                    name = removeSuffix ".nix" name;
+                    value = import (./overlays + "/${name}") inputs;
+                  }
+                )
+                (attrNames (readDir ./overlays))
+            );
+          in
+            overlayFiles // {
+              nur = final: prev: {
+                nur = import inputs.nur {
+                  nurpkgs = final.unstable;
+                  pkgs = final.unstable;
+                };
               };
-            };
-            unstable = final: prev: {
-              unstable = import inputs.unstable {
-                system = final.system;
-                config = { allowUnfree = true; };
+              unstable = final: prev: {
+                unstable = import inputs.unstable {
+                  system = final.system;
+                  config = { allowUnfree = true; };
+                };
               };
-            };
-            master = final: prev: {
-              master = import inputs.master {
-                system = final.system;
-                config = { allowUnfree = true; };
+              master = final: prev: {
+                master = import inputs.master {
+                  system = final.system;
+                  config = { allowUnfree = true; };
+                };
               };
+              neovim-nightly = neovim-nightly.overlay;
             };
-            neovim-nightly = neovim-nightly.overlay;
-          };
       in
         {
           darwinConfigurations.bootstrap = darwin.lib.darwinSystem {

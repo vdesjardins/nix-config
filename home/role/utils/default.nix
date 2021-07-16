@@ -50,5 +50,5 @@
       topgrade
       tree
       wrk
-    ] ++ (if !stdenv.isDarwin then [ pueue sysstat wget ] else []);
+    ] ++ (if !stdenv.isDarwin then [ pueue sysstat wget ] else [ ]);
 }

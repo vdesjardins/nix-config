@@ -27,4 +27,4 @@ inputs: {
         ../role/ops/k8s
         ../role/ops/bpf
       ];
-}
+    }
