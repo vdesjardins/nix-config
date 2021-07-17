@@ -110,5 +110,5 @@ jobs:
       - name: Run luacheck
         run: |
           nix build .#lua53Packages.luacheck
-          ./result/bin/luacheck --config ".luacheckrc" ./**/*.lua
+          ./result/bin/luacheck .
         shell: bash
