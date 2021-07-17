@@ -2,8 +2,6 @@
 
 let
   kubectl-trace = pkgs.callPackage ./kubectl-trace.nix {};
-  ksniff = pkgs.callPackage ./ksniff.nix {};
-
 in
   with lib;
 
@@ -14,7 +12,7 @@ in
           kubectl
           kubectl-trace
           kubectl-view-utilization
-          ksniff
+          kubectl-sniff
           gawk
           fzf
           jq
