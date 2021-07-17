@@ -85,6 +85,22 @@
         "type": "github"
       }
     },
+    "kubectl-view-utilization": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1599700423,
+        "narHash": "sha256-4mqc4DAcxBkU0ZsMNypSQXgKxOGLQ8KBgiaU3lPAkpU=",
+        "owner": "etopeter",
+        "repo": "kubectl-view-utilization",
+        "rev": "ec114ef3bf9609e8dff9b952fa10c6a75b94f570",
+        "type": "github"
+      },
+      "original": {
+        "owner": "etopeter",
+        "repo": "kubectl-view-utilization",
+        "type": "github"
+      }
+    },
     "master": {
       "locked": {
         "lastModified": 1625834670,
@@ -210,6 +226,7 @@
         "darwin": "darwin",
         "efm-langserver": "efm-langserver",
         "home-manager": "home-manager",
+        "kubectl-view-utilization": "kubectl-view-utilization",
         "master": "master",
         "neovim-nightly": "neovim-nightly",
         "nixpkgs": "nixpkgs_3",
