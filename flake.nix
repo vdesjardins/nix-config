@@ -22,6 +22,8 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
     kubectl-view-utilization.flake = false;
+    kubectl-sniff.url = "github:/eldadru/ksniff";
+    kubectl-sniff.flake = false;
     # lua-format.url = "github.com:Koihik/LuaFormatter";
     # lua-format.flake = false;
     # TODO: does not work yet

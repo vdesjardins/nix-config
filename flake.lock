@@ -85,6 +85,22 @@
         "type": "github"
       }
     },
+    "kubectl-sniff": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1624658085,
+        "narHash": "sha256-TyE8lY6+32VIlYtkeYmYV3qGq9ir4J+z0dvCMdrTLNI=",
+        "owner": "eldadru",
+        "repo": "ksniff",
+        "rev": "b882817770a6f309a826ce00ba95d28f84014ad1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eldadru",
+        "repo": "ksniff",
+        "type": "github"
+      }
+    },
     "kubectl-view-utilization": {
       "flake": false,
       "locked": {
@@ -226,6 +242,7 @@
         "darwin": "darwin",
         "efm-langserver": "efm-langserver",
         "home-manager": "home-manager",
+        "kubectl-sniff": "kubectl-sniff",
         "kubectl-view-utilization": "kubectl-view-utilization",
         "master": "master",
         "neovim-nightly": "neovim-nightly",
