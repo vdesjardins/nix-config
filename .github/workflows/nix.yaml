@@ -49,7 +49,6 @@ jobs:
           nix-env --set-flag priority 1 cachix
           # Build and switch to bootstrap config
           make darwin-bootstrap
-          dscl . list /Users | grep -v "^_"
           # Build and switch to full config
           export HOME_MANAGER_BACKUP_EXT=".bkp"
           make work-mac
@@ -97,98 +96,3 @@ jobs:
           export HOME_MANAGER_BACKUP_EXT=".bkp"
           make vincent_desjardins
 
-  format-nix:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: cachix/install-nix-action@v13
-        with:
-          install_url: https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install
-          install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            substituters = https://cache.nixos.org/
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-      - uses: cachix/cachix-action@v10
-        with:
-          name: vdesjardins
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Run nixpkgs-fmt check
-        run: |
-          nix build .#nixpkgs-fmt
-          ./result/bin/nixpkgs-fmt --check ./**/*.nix
-        shell: bash
-  lint-nix:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: cachix/install-nix-action@v13
-        with:
-          install_url: https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install
-          install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            substituters = https://cache.nixos.org/
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-      - uses: cachix/cachix-action@v10
-        with:
-          name: vdesjardins
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Run nix-linter check
-        env:
-          LC_ALL: en_US.UTF-8
-        run: |
-          nix build .#nix-linter
-          ./result/bin/nix-linter ./**/*.nix
-        shell: bash
-
-  format-lua:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: cachix/install-nix-action@v13
-        with:
-          install_url: https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install
-          install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            substituters = https://cache.nixos.org/
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-      - uses: cachix/cachix-action@v10
-        with:
-          name: vdesjardins
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Run lua-format
-        run: |
-          nix build .#lua-format
-          find . -type f -name "*.lua" -exec ./result/bin/lua-format -i --config=".lua-format" {} +
-        shell: bash
-      - name: Check for changed files - fails if there is a git diff
-        run: git diff --quiet
-        shell: bash
-
-  lint-lua:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: cachix/install-nix-action@v13
-        with:
-          install_url: https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install
-          install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            substituters = https://cache.nixos.org/
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-      - uses: cachix/cachix-action@v10
-        with:
-          name: vdesjardins
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Run luacheck
-        run: |
-          nix build .#lua53Packages.luacheck
-          ./result/bin/luacheck --config ".luacheckrc" ./**/*.lua
-        shell: bash
