@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 
 let
-  kubectl-view-utilization =
-    pkgs.callPackage ./kubectl-view-utilization.nix {};
   kubectl-trace = pkgs.callPackage ./kubectl-trace.nix {};
   ksniff = pkgs.callPackage ./ksniff.nix {};
 
