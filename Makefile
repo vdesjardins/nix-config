@@ -16,6 +16,15 @@ work-mac:
 	@nix build .#work-mac
 	@./result/sw/bin/darwin-rebuild switch --flake .#work-mac
 
+.PHONY: hm-install
+## hm-install: install nix for home-manager
+hm-install:
+	@sh <(curl -L https://nixos.org/nix/install) --daemon
+	@PATH=$PATH:/nix/var/nix/profiles/default/bin nix-env -iA nixpkgs.nixFlakes
+	@echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf"
+	@cachix use vdesjardins
+	@echo "TODO: need to source /nix/var/nix/profiles/default/etc/profile.d/nix.sh"
+
 .PHONY: darwin-bootstrap
 ## darwin-bootstrap: bootstrap darmin nix with default configuration
 darwin-bootstrap:
