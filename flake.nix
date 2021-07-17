@@ -24,6 +24,8 @@
     kubectl-view-utilization.flake = false;
     kubectl-sniff.url = "github:/eldadru/ksniff";
     kubectl-sniff.flake = false;
+    kubectl-trace.url = "github:/iovisor/kubectl-trace/v0.1.2";
+    kubectl-trace.flake = false;
     # lua-format.url = "github.com:Koihik/LuaFormatter";
     # lua-format.flake = false;
     # TODO: does not work yet

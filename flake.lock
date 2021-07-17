@@ -101,6 +101,23 @@
         "type": "github"
       }
     },
+    "kubectl-trace": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1626198653,
+        "narHash": "sha256-K2Z5wmixLaOIej3EN5Wy8yx2iRqOX21UKoRNp0ibpFw=",
+        "owner": "iovisor",
+        "repo": "kubectl-trace",
+        "rev": "fd68b1c1bf614a7213c9834673eb8813c809b036",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iovisor",
+        "ref": "v0.1.2",
+        "repo": "kubectl-trace",
+        "type": "github"
+      }
+    },
     "kubectl-view-utilization": {
       "flake": false,
       "locked": {
@@ -243,6 +260,7 @@
         "efm-langserver": "efm-langserver",
         "home-manager": "home-manager",
         "kubectl-sniff": "kubectl-sniff",
+        "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",
         "master": "master",
         "neovim-nightly": "neovim-nightly",
