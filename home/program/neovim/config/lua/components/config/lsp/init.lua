@@ -30,7 +30,7 @@ vim.lsp.protocol.CompletionItemKind = {
   "   (TypeParameter)",
 }
 
-local function documentHighlight(client, bufnr)
+local function documentHighlight(client, _bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[

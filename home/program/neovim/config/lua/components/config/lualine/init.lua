@@ -18,7 +18,7 @@ end
 
 require("lualine").setup {
   options = {
-    theme = Options.colorscheme,
+    theme = _G.Options.colorscheme,
     section_separators = { "", "" },
     component_separators = { "", "" },
     icons_enabled = true,
