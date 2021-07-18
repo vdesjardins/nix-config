@@ -101,6 +101,22 @@
         "type": "github"
       }
     },
+    "kubectl-aliases": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1592853901,
+        "narHash": "sha256-1s0uRySD8GPs4hU37g9JeXmV99hHK64beiuG4R8ia8w=",
+        "owner": "ahmetb",
+        "repo": "kubectl-aliases",
+        "rev": "9f8948e7c3ca7b4c4c6cdc1461094bce08da758c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ahmetb",
+        "repo": "kubectl-aliases",
+        "type": "github"
+      }
+    },
     "kubectl-sniff": {
       "flake": false,
       "locked": {
@@ -276,6 +292,7 @@
         "darwin": "darwin",
         "efm-langserver": "efm-langserver",
         "home-manager": "home-manager",
+        "kubectl-aliases": "kubectl-aliases",
         "kubectl-sniff": "kubectl-sniff",
         "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",
