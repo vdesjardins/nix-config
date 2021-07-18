@@ -83,12 +83,8 @@ mkMerge [
       xdg.configFile."zsh/functions/kube-get-pod-images".source =
         ./zsh/functions/kube-get-pod-images;
 
-      xdg.configFile."zsh/conf.d/kubectl_aliases".source = builtins.fetchurl {
-        name = "kubectl_aliases_zsh";
-        url =
-          "https://raw.githubusercontent.com/ahmetb/kubectl-aliases/9f8948e7c3ca7b4c4c6cdc1461094bce08da758c/.kubectl_aliases";
-        sha256 = "17y05cphzln89i59yaaacbbnn6n62w9f95yd5imi5n0jzxjni1ps";
-      };
+      xdg.configFile."zsh/conf.d/kubectl_aliases".source =
+        "${pkgs.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
     }
   )
 ]
