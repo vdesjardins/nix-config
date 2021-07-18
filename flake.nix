@@ -15,6 +15,8 @@
 
     # Others
     utils.url = "github:numtide/flake-utils";
+    comma.url = "github:Shopify/comma";
+    comma.flake = false;
     tmux.url = "github:tmux/tmux";
     tmux.flake = false;
     efm-langserver.url = "github:mattn/efm-langserver";
@@ -87,6 +89,9 @@
                 };
               };
               neovim-nightly = neovim-nightly.overlay;
+              comma = final: _prev: {
+                comma = import inputs.comma { inherit (final) pkgs; };
+              };
             };
       in
         {
