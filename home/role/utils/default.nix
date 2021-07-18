@@ -17,7 +17,6 @@
     ../../program/direnv
     ../../program/any-nix-shell
     ../../program/ls
-    # ../../program/comma
   ];
 
   home.packages = with pkgs;
@@ -27,6 +26,7 @@
       coreutils
       #bottom
       cachix
+      comma
       ctags
       curl
       fd
