@@ -21,34 +21,46 @@
 
   home.packages = with pkgs;
     [
-      act
-      #bandwhich
+      act # github actions testing
+      bandwhich # network utilization by process
       coreutils
-      #bottom
+      bottom # top with graphs
+      browsh # terminal browser
       cachix
+      cloc # source code line counter
       comma
       ctags
       curl
-      fd
+      du-dust # fancy du
+      fd # fast file search
       findutils
-      glow
+      glow # renders markdown on command line
       gnumake
       gnused
       grpcurl
-      htop
+      htop # fancy top
       hexyl
       hyperfine
-      #iotop
+      iotop
       jq
       lazygit
+      lorri # nix-shell replacement
       lsof
       ps
       ripgrep
       rsync
       openssh
-      tokei
-      topgrade
+      tealdeer # faster tldr
+      tokei # displays code statistics
+      topgrade # keep system up to date
       tree
-      wrk
-    ] ++ (if !stdenv.isDarwin then [ pueue sysstat wget ] else [ ]);
+      wrk # http benchmarking tool
+    ] ++ lib.optionals stdenv.isLinux [
+      pueue # task management tool
+      sysstat
+      thefuck # fix commands
+      wget
+    ] ++ lib.optionals stdenv.isDarwin [
+      m-cli # controls apps from command line
+    ];
 }
