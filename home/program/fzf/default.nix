@@ -21,10 +21,5 @@ with lib;
   };
 
   xdg.configFile."zsh/fzf-colors.zsh".source = mkIf config.programs.zsh.enable
-    (builtins.fetchurl {
-      name = "base16-snazzy-zsh";
-      url =
-        "https://raw.githubusercontent.com/fnune/base16-fzf/006613dd52bf354d4b161c6d60479951b3e0c96e/bash/base16-snazzy.config";
-      sha256 = "1x79dd1yspqj776mgs7krs10v6xr3wf72r6a5w5x6xsnrqwdrwf8";
-    });
+    "${pkgs.base16-fzf}/share/base16-fzf/bash/base16-snazzy.config";
 }

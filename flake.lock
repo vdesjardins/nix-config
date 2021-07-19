@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "base16-fzf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1626638469,
+        "narHash": "sha256-yfJ7IEfGiP3THNIOyrqhl5mneWczHasjsQS3UN3BT+8=",
+        "owner": "fnune",
+        "repo": "base16-fzf",
+        "rev": "a316af58c3d296d1b154c86d8e160337db56871b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fnune",
+        "repo": "base16-fzf",
+        "type": "github"
+      }
+    },
     "comma": {
       "flake": false,
       "locked": {
@@ -304,6 +320,7 @@
     },
     "root": {
       "inputs": {
+        "base16-fzf": "base16-fzf",
         "comma": "comma",
         "darwin": "darwin",
         "efm-langserver": "efm-langserver",
