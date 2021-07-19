@@ -22,6 +22,8 @@
     efm-langserver.url = "github:mattn/efm-langserver";
     efm-langserver.flake = false;
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    lscolors.url = "github:/trapd00r/LS_COLORS";
+    lscolors.flake = false;
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
     kubectl-view-utilization.flake = false;
     kubectl-sniff.url = "github:/eldadru/ksniff";
