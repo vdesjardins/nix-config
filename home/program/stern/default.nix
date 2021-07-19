@@ -1,7 +1,7 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ stern ];
+  home.packages = with pkgs; [ unstable.stern ];
 
   programs.zsh.initExtra = ''
-    source <(${pkgs.stern}/bin/stern --completion zsh) 2>/dev/null
+    source <(${pkgs.stern}/bin/stern --completion zsh)
   '';
 }
