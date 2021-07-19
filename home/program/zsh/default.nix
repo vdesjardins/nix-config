@@ -52,6 +52,7 @@
     ];
 
     initExtraBeforeCompInit = ''
+      autoload bashcompinit && bashcompinit
       source ${config.home.homeDirectory}/.nix-profile/etc/profile.d/nix.sh
 
       fpath=( ${config.xdg.configHome}/zsh/functions "''${fpath[@]}" )
