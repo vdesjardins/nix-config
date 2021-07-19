@@ -11,4 +11,8 @@ with lib;
 
   xdg.configFile."zsh/functions/vault-copy".source =
     mkIf config.programs.zsh.enable ./zsh/functions/vault-copy;
+
+  programs.zsh.initExtra = ''
+    source $profile/share/bash-completion/completions/vault.bash
+  '';
 }
