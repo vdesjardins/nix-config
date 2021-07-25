@@ -13,6 +13,6 @@ with lib;
     mkIf config.programs.zsh.enable ./zsh/functions/vault-copy;
 
   programs.zsh.initExtra = ''
-    source $profile/share/bash-completion/completions/vault.bash
+    source ${pkgs.vault}/share/bash-completion/completions/vault.bash
   '';
 }
