@@ -34,6 +34,7 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup Cachix
         uses: cachix/cachix-action@v10
         with:
@@ -44,6 +45,7 @@ jobs:
         if: ${{ github.event_name == 'schedule' && success() }}
         run: |
           nix flake update
+
       - name: Build and switch to nix-darwin env
         run: |
           # Create /run directory
@@ -56,14 +58,6 @@ jobs:
           # Build and switch to full config
           export HOME_MANAGER_BACKUP_EXT=".bkp"
           make work-mac
-      - name: If scheduled, push commit with updated inputs
-        if: ${{ github.event_name == 'schedule' && success() }}
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "build: update flake inputs"
-          git push
 
   build-linux-env:
     name: Build/cache Linux Nix env
@@ -86,11 +80,17 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             substituters = https://cache.nixos.org/
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+
       - name: Setup Cachix
         uses: cachix/cachix-action@v10
         with:
           name: vdesjardins
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: If scheduled, update inputs
+        if: ${{ github.event_name == 'schedule' && success() }}
+        run: |
+          nix flake update
 
       - name: Build and switch to home-manager env
         run: |
@@ -100,3 +100,11 @@ jobs:
           export HOME_MANAGER_BACKUP_EXT=".bkp"
           make vincent_desjardins
 
+      - name: If scheduled, push commit with updated inputs
+        if: ${{ github.event_name == 'schedule' && success() }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "build: update flake inputs"
+          git push
