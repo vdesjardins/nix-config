@@ -35,7 +35,7 @@
       ripgrep
 
       # lint/format
-      efm-langserver
+      unstable.efm-langserver
     ];
 
   xdg.configFile."nvim/lua".source = config/lua;

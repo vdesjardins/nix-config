@@ -50,22 +50,6 @@
         "type": "github"
       }
     },
-    "efm-langserver": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1626964043,
-        "narHash": "sha256-X2z49KmJiKh1QtcDBZcqNiMhq5deVamS47w6gyVq7Oo=",
-        "owner": "mattn",
-        "repo": "efm-langserver",
-        "rev": "bd7191e73e6404c8a714779d1ba7f455e4ab4079",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mattn",
-        "repo": "efm-langserver",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -323,7 +307,6 @@
         "base16-fzf": "base16-fzf",
         "comma": "comma",
         "darwin": "darwin",
-        "efm-langserver": "efm-langserver",
         "home-manager": "home-manager",
         "kubectl-aliases": "kubectl-aliases",
         "kubectl-sniff": "kubectl-sniff",

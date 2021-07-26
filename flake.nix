@@ -19,8 +19,6 @@
     comma.flake = false;
     tmux.url = "github:tmux/tmux";
     tmux.flake = false;
-    efm-langserver.url = "github:mattn/efm-langserver";
-    efm-langserver.flake = false;
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     lscolors.url = "github:/trapd00r/LS_COLORS";
     lscolors.flake = false;
