@@ -29,7 +29,6 @@
     ../role/ops/gcloud
     ../role/ops/aws
     ../role/ops/k8s
-    ../role/ops/bpf
     ../role/ops/networking
   ];
 }
