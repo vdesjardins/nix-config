@@ -76,6 +76,7 @@ return require("packer").startup(function(use)
   use "christoomey/vim-tmux-navigator"
   use "mhinz/vim-startify"
   use "moll/vim-bbye" -- close buffer
+  use "AckslD/nvim-neoclip.lua" -- Clipboard manager
 
   -- text
   use "ntpeters/vim-better-whitespace"
