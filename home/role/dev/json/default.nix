@@ -4,5 +4,6 @@
     nodePackages.vscode-json-languageserver-bin
     nodePackages.fixjson
     jq
+    gron
   ];
 }
