@@ -50,6 +50,8 @@ mkMerge [
             "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,CONTAINERS:..containers[*].name'";
           kgimg =
             "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,IMAGES:.spec.containers[*].image'";
+          kgpsa =
+            "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,SA:.spec.serviceAccountName'";
           kgpoall-problems =
             "kubectl get pods --all-namespaces | grep -v -P '(Running|Completed)'";
 
