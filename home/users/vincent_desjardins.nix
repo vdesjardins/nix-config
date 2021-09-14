@@ -25,7 +25,7 @@
     ../role/dev/golang
     ../role/dev/rust
     ../role/dev/debugging
-    ../role/ops/docker
+    ../role/ops/container
     ../role/ops/gcloud
     ../role/ops/aws
     ../role/ops/k8s

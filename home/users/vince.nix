@@ -20,7 +20,7 @@ _inputs: {
         ../role/dev/golang
         ../role/dev/rust
         ../role/dev/make
-        ../role/ops/docker
+        ../role/ops/container
         ../role/ops/gcloud
         ../role/ops/k8s
         ../role/ops/bpf

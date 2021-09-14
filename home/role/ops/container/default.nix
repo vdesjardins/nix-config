@@ -4,5 +4,6 @@
     dive
     nodePackages.dockerfile-language-server-nodejs
     hadolint
+    podman
   ];
 }
