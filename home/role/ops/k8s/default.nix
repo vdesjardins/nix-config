@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     buildpack
     kind
+    kubectx
     kubernetes-helm
     kubetail
     kubeval
