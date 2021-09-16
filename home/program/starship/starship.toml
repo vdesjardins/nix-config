@@ -4,16 +4,18 @@ style = "bold blue"
 disabled = false
 
 [kubernetes.context_aliases]
-"gke_labo-gke-237917_northamerica-northeast1_labo1" = "labo1"
-"gke_devl-gke-230115_northamerica-northeast1_dev1" = "dev1"
-"gke_infra-gke-251418_northamerica-northeast1_infra1" = "infra1"
-"gke_prod-gke-230115_northamerica-northeast1_prod1" = "prod1"
+"gke_.*_(?P<cluster>[\\w-]+)" = "GKE:$cluster"
+"arn:.*:cluster/(?P<cluster>[\\w-]+)" = "EKS:$cluster"
 
 [terraform]
 format = "via [$symbol$version]($style) "
 
 [gcloud]
 disabled = true
+
+[status]
+disabled = false
+map_symbol = true
 
 [line_break]
 disabled = false
