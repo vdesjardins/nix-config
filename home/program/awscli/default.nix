@@ -10,6 +10,9 @@ mkMerge [
         initExtra = ''
           complete -C ${pkgs.awscli2}/bin/aws_completer aws
         '';
+        envExtra = ''
+          export AWS_PAGER=""
+        '';
       };
 
       xdg.configFile."zsh/functions/aws_profile".source =
