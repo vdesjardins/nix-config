@@ -37,7 +37,15 @@ darwin-install:
 	@sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon
 	@PATH=$PATH:/nix/var/nix/profiles/default/bin nix-env -iA nixpkgs.nixFlakes
 	@sudo sh -c "echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf"
+	@echo 'run\tprivate/var/run' | sudo tee -a /etc/synthetic.conf
+	@/System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -B
+	@/System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
 	@echo "TODO: need to source /nix/var/nix/profiles/default/etc/profile.d/nix.sh"
+
+.PHONY: darwin-install-brew
+## darwin-install-brew: install brew
+darwin-install-brew:
+	@/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 .PHONY: help
 ## help: Prints this help message
