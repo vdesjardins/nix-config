@@ -120,11 +120,11 @@
             inherit inputs;
             modules = [
               ./modules/darwin/default.nix
-              ./modules/darwin/systems/C02XX09DJHD2.nix
-              { users.knownUsers = [ "vdesjardins" ]; }
+              ./modules/darwin/systems/C02G32U9MD6T.nix
+              { users.knownUsers = [ "inf10906" ]; }
               home-manager.darwinModule
               { nixpkgs = pkgsConfig; }
-              ./home/users/vdesjardins.nix
+              ./home/users/inf10906.nix
             ];
           };
           work-mac = self.darwinConfigurations.work-mac.system;

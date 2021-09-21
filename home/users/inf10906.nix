@@ -1,6 +1,6 @@
 { ... }: {
   home-manager.useGlobalPkgs = true;
-  home-manager.users.vdesjardins = { ... }: {
+  home-manager.users.inf10906 = { ... }: {
     home.sessionVariables = {
       NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = 1;
     };
