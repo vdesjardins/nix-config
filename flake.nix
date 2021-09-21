@@ -100,6 +100,7 @@
       in
         {
           darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
+            system = "x86_64-darwin";
             inherit inputs;
             modules = [ ./modules/darwin/bootstrap.nix ];
           };
@@ -117,6 +118,7 @@
           vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
 
           darwinConfigurations.work-mac = darwin.lib.darwinSystem {
+            system = "x86_64-darwin";
             inherit inputs;
             modules = [
               ./modules/darwin/default.nix
