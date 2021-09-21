@@ -1,6 +1,6 @@
 {
   homebrew = {
     enable = true;
-    casks = [ "karabiner-elements" ];
+    casks = [ "karabiner-elements" "raycast" ];
   };
 }
