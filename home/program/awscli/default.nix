@@ -3,6 +3,7 @@ with lib;
 mkMerge [
   {
     home.packages = with pkgs; [ aws-iam-authenticator awscli2 ];
+    home.file.".aws/cli/alias".source = ./alias;
   }
   (
     mkIf config.programs.zsh.enable {
