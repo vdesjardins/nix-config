@@ -2,7 +2,7 @@
   imports = [ ../../../program/terraform ];
 
   home.packages = with pkgs; [
-    terraform_0_15
+    unstable.terraform
     terraform-ls
     tflint
     terraform-compliance
