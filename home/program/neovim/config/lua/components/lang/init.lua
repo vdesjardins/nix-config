@@ -25,7 +25,7 @@ function _G.LangFormatBuffer()
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
     if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-      vim.lsp.buf.formatting_sync(nil, 1000)
+      vim.lsp.buf.formatting_sync(nil, 1500)
       return
     end
   end
