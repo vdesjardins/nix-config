@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     buildpack
     kind
+    unstable.kubeconform
     kubectx
     kubernetes-helm
     kubetail
