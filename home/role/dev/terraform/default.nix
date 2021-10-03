@@ -3,12 +3,12 @@
 
   home.packages = with pkgs; [
     unstable.terraform
-    terraform-ls
-    tflint
+    unstable.terraform-ls
+    unstable.tflint
     terraform-compliance
     terraform-docs
     terraform-landscape
     terraformer
-    tfsec
+    unstable.tfsec
   ];
 }
