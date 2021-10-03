@@ -7,6 +7,7 @@
     unstable.url = "nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     nur.url = "github:nix-community/NUR";
+    rust-overlay.url = "github:/oxalica/rust-overlay";
 
     # System
     darwin.url = "github:LnL7/nix-darwin";
@@ -24,6 +25,8 @@
     lscolors.flake = false;
     base16-fzf.url = "github:/fnune/base16-fzf";
     base16-fzf.flake = false;
+    aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
+    aws-find-profile.flake = false;
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
     kubectl-view-utilization.flake = false;
     kubectl-sniff.url = "github:/eldadru/ksniff";
@@ -44,6 +47,7 @@
     , home-manager
     , darwin
     , neovim-nightly
+    , rust-overlay
     , utils
     , ...
     }@inputs:
@@ -73,7 +77,7 @@
                 (attrNames (readDir ./overlays))
             );
           in
-            overlayFiles // {
+            {
               nur = final: _prev: {
                 nur = import inputs.nur {
                   nurpkgs = final.unstable;
@@ -96,7 +100,8 @@
               comma = final: _prev: {
                 comma = import inputs.comma { inherit (final) pkgs; };
               };
-            };
+              rust-overlay = rust-overlay.overlay;
+            } // overlayFiles;
       in
         {
           darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
