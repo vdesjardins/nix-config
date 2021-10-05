@@ -13,7 +13,7 @@ _G.LspLanguages.yaml = require("components.lang.yaml")
 _G.LspLanguages.cpp = require("components.lang.cpp")
 
 for _, cfg in pairs(_G.LspLanguages) do
-  require"lspconfig"[cfg.lsp_name()].setup(cfg.lsp_setup())
+  require("lspconfig")[cfg.lsp_name()].setup(cfg.lsp_setup())
 end
 
 vim.cmd("autocmd BufWritePre * lua _G.LangFormatBuffer()")

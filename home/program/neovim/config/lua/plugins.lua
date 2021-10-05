@@ -24,6 +24,7 @@ return require("packer").startup(function(use)
 
   -- Debugging
   use "mfussenegger/nvim-dap"
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
   -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
@@ -96,6 +97,9 @@ return require("packer").startup(function(use)
 
   -- Rust
   use "simrat39/rust-tools.nvim"
+
+  -- lua
+  use "folke/lua-dev.nvim"
 
   -- Markdown
   use {

@@ -51,6 +51,11 @@ wk.register({
       l = { "<cmd>LspTroubleToggle loclist<cr>", "trouble-loclist" },
       r = { "<cmd>LspTroubleToggle lsp_references<cr>", "trouble-references" },
     },
+    e = {
+      name = "code-lens",
+      r = { "<Cmd>lua vim.lsp.codelens.refresh()<CR>", "refresh" },
+      a = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "run" },
+    },
   },
 }, { prefix = "<leader>" })
 
