@@ -132,6 +132,22 @@
         "type": "github"
       }
     },
+    "kube-no-trouble": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1630079324,
+        "narHash": "sha256-2qfObPzmJh2TjWcAzTY9MZBi6Sz74jonATeLuwCy4iY=",
+        "owner": "doitintl",
+        "repo": "kube-no-trouble",
+        "rev": "430d1ad484526a8054c6e299c94ae31c90c287b2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "doitintl",
+        "repo": "kube-no-trouble",
+        "type": "github"
+      }
+    },
     "kubectl-aliases": {
       "flake": false,
       "locked": {
@@ -355,6 +371,7 @@
         "comma": "comma",
         "darwin": "darwin",
         "home-manager": "home-manager",
+        "kube-no-trouble": "kube-no-trouble",
         "kubectl-aliases": "kubectl-aliases",
         "kubectl-sniff": "kubectl-sniff",
         "kubectl-trace": "kubectl-trace",

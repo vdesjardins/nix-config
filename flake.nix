@@ -35,6 +35,8 @@
     kubectl-trace.flake = false;
     kubectl-aliases.url = "github:/ahmetb/kubectl-aliases";
     kubectl-aliases.flake = false;
+    kube-no-trouble.url = "github:/doitintl/kube-no-trouble";
+    kube-no-trouble.flake = false;
     # lua-format.url = "github.com:Koihik/LuaFormatter";
     # lua-format.flake = false;
     # TODO: does not work yet
@@ -51,99 +53,99 @@
     , utils
     , ...
     }@inputs:
-      let
-        inherit (builtins) listToAttrs attrValues attrNames readDir;
-        inherit (nixpkgs) lib;
-        inherit (lib) removeSuffix;
+    let
+      inherit (builtins) listToAttrs attrValues attrNames readDir;
+      inherit (nixpkgs) lib;
+      inherit (lib) removeSuffix;
 
-        pkgsConfig = {
-          overlays = (attrValues overlays);
-          config = {
-            allowUnfree = true;
-            allowUnsupportedSystem = true;
+      pkgsConfig = {
+        overlays = (attrValues overlays);
+        config = {
+          allowUnfree = true;
+          allowUnsupportedSystem = true;
+        };
+      };
+
+      overlays =
+        let
+          overlayFiles = listToAttrs (
+            map
+              (
+                name: {
+                  name = removeSuffix ".nix" name;
+                  value = import (./overlays + "/${name}") inputs;
+                }
+              )
+              (attrNames (readDir ./overlays))
+          );
+        in
+        {
+          nur = final: _prev: {
+            nur = import inputs.nur {
+              nurpkgs = final.unstable;
+              pkgs = final.unstable;
+            };
+          };
+          unstable = final: _prev: {
+            unstable = import inputs.unstable {
+              system = final.system;
+              config = { allowUnfree = true; };
+            };
+          };
+          master = final: _prev: {
+            master = import inputs.master {
+              system = final.system;
+              config = { allowUnfree = true; };
+            };
+          };
+          neovim-nightly = neovim-nightly.overlay;
+          comma = final: _prev: {
+            comma = import inputs.comma { inherit (final) pkgs; };
+          };
+          rust-overlay = rust-overlay.overlay;
+        } // overlayFiles;
+    in
+    {
+      darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        inherit inputs;
+        modules = [ ./modules/darwin/bootstrap.nix ];
+      };
+
+      homeConfigurations.vincent_desjardins =
+        home-manager.lib.homeManagerConfiguration {
+          system = "x86_64-linux";
+          stateVersion = "21.05";
+          username = "vincent_desjardins";
+          homeDirectory = "/home/vincent_desjardins";
+          configuration = import ./home/users/vincent_desjardins.nix {
+            pkgs = pkgsConfig;
           };
         };
+      vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
 
-        overlays =
-          let
-            overlayFiles = listToAttrs (
-              map
-                (
-                  name: {
-                    name = removeSuffix ".nix" name;
-                    value = import (./overlays + "/${name}") inputs;
-                  }
-                )
-                (attrNames (readDir ./overlays))
-            );
-          in
-            {
-              nur = final: _prev: {
-                nur = import inputs.nur {
-                  nurpkgs = final.unstable;
-                  pkgs = final.unstable;
-                };
-              };
-              unstable = final: _prev: {
-                unstable = import inputs.unstable {
-                  system = final.system;
-                  config = { allowUnfree = true; };
-                };
-              };
-              master = final: _prev: {
-                master = import inputs.master {
-                  system = final.system;
-                  config = { allowUnfree = true; };
-                };
-              };
-              neovim-nightly = neovim-nightly.overlay;
-              comma = final: _prev: {
-                comma = import inputs.comma { inherit (final) pkgs; };
-              };
-              rust-overlay = rust-overlay.overlay;
-            } // overlayFiles;
-      in
-        {
-          darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
-            system = "x86_64-darwin";
-            inherit inputs;
-            modules = [ ./modules/darwin/bootstrap.nix ];
-          };
+      darwinConfigurations.work-mac = darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        inherit inputs;
+        modules = [
+          ./modules/darwin/default.nix
+          ./modules/darwin/systems/C02G32U9MD6T.nix
+          { users.knownUsers = [ "inf10906" ]; }
+          home-manager.darwinModule
+          { nixpkgs = pkgsConfig; }
+          ./home/users/inf10906.nix
+        ];
+      };
+      work-mac = self.darwinConfigurations.work-mac.system;
 
-          homeConfigurations.vincent_desjardins =
-            home-manager.lib.homeManagerConfiguration {
-              system = "x86_64-linux";
-              stateVersion = "21.05";
-              username = "vincent_desjardins";
-              homeDirectory = "/home/vincent_desjardins";
-              configuration = import ./home/users/vincent_desjardins.nix {
-                pkgs = pkgsConfig;
-              };
-            };
-          vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
-
-          darwinConfigurations.work-mac = darwin.lib.darwinSystem {
-            system = "x86_64-darwin";
-            inherit inputs;
-            modules = [
-              ./modules/darwin/default.nix
-              ./modules/darwin/systems/C02G32U9MD6T.nix
-              { users.knownUsers = [ "inf10906" ]; }
-              home-manager.darwinModule
-              { nixpkgs = pkgsConfig; }
-              ./home/users/inf10906.nix
-            ];
-          };
-          work-mac = self.darwinConfigurations.work-mac.system;
-
-          inherit overlays;
-        } // utils.lib.eachDefaultSystem (
-          system: {
-            legacyPackages = import nixpkgs {
-              inherit system; inherit
-              (pkgsConfig) config overlays
-              ;
-            };
-          }
-        );
+      inherit overlays;
+    } // utils.lib.eachDefaultSystem (
+      system: {
+        legacyPackages = import nixpkgs {
+          inherit system; inherit
+          (pkgsConfig) config overlays
+          ;
+        };
+      }
+    );
 }
