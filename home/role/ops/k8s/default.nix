@@ -11,6 +11,7 @@
     kind
     unstable.kubeconform
     kubectx
+    kubent
     kubernetes-helm
     kubetail
     kubeval
