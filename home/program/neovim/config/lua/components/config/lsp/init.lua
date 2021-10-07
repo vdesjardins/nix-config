@@ -56,4 +56,25 @@ function lsp_config.tsserver_on_attach(client, bufnr)
   client.resolved_capabilities.document_formatting = false
 end
 
+vim.fn.sign_define("DiagnosticSignError", {
+  text = " ",
+  numhl = "DiagnosticSignError",
+  texthl = "DiagnosticSignError",
+})
+vim.fn.sign_define("DiagnosticSignWarn", {
+  text = " ",
+  numhl = "DiagnosticSignWarn",
+  texthl = "DiagnosticSignWarn",
+})
+vim.fn.sign_define("DiagnosticSignInfo", {
+  text = " ",
+  numhl = "DiagnosticSignInfo",
+  texthl = "DiagnosticSignInfo",
+})
+vim.fn.sign_define("DiagnosticSignHint", {
+  text = " ",
+  numhl = "DiagnosticSignHint",
+  texthl = "DiagnosticSignHint",
+})
+
 return lsp_config
