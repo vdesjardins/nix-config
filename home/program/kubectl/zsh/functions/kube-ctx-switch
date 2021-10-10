@@ -16,12 +16,14 @@ function kube-ctx-switch() {
 
 	# check if context is EKS
 	local aws_context=""
+	local aws_profile=""
 	local aws_account_id=""
 	aws_account_id=$(echo "$context" | awk -F':' '{ print $5; }')
 	local ret=$?
 	if [[ $ret == 0 ]]; then
 		if command -v aws-config-parser &>/dev/null; then
-			aws_context="export AWS_PROFILE=$(aws-config-parser --id "$aws_account_id")"
+			aws_profile="$(aws-config-parser --id "$aws_account_id")"
+			aws_context="export AWS_PROFILE=$aws_profile"
 		fi
 		context_alias=$(echo "$context" | awk -F'/' '{ print $2; }')
 	fi
@@ -52,5 +54,6 @@ zsh" "$aws_context" "$kubeconfig" "$context" >"$startup_script"
 
 	tmux new-session -d -s "$session_name" "$startup_script"
 	tmux setenv -t "$session_name" KUBECONFIG "$kubeconfig"
+	tmux setenv -t "$session_name" AWS_PROFILE "$aws_profile"
 	tmux switch-client -t "$session_name"
 }
