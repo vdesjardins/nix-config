@@ -4,14 +4,16 @@
   programs.gh = {
     enable = true;
 
-    gitProtocol = "ssh";
+    settings = {
+      git_protocol = "ssh";
 
-    aliases = {
-      co = "pr checkout";
-      c = "pr create -f";
-      m = "pr merge -r -d";
-      s = "pr status";
-      ch = "pr checks";
+      aliases = {
+        co = "pr checkout";
+        c = "pr create -f";
+        m = "pr merge -r -d";
+        s = "pr status";
+        ch = "pr checks";
+      };
     };
   };
 
