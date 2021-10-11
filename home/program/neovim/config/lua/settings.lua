@@ -39,8 +39,7 @@ set shiftwidth=4
 set smartindent
 set softtabstop=4
 set tabstop=4
-set textwidth=80
-set colorcolumn=+1
+set colorcolumn=81
 
 augroup myfiletypes_group
   " Clear old autocmds in group
