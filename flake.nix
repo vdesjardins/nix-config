@@ -37,9 +37,10 @@
     kubectl-aliases.flake = false;
     kube-no-trouble.url = "github:/doitintl/kube-no-trouble";
     kube-no-trouble.flake = false;
-    # lua-format.url = "github.com:Koihik/LuaFormatter";
+    # TODO: does not work yet, submodule fetching should be supported after 2.4
+    # is released
+    # lua-format.url = "github:/Koihik/LuaFormatter";
     # lua-format.flake = false;
-    # TODO: does not work yet
     # lua-format.submodules = true;
   };
 
