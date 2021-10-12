@@ -57,7 +57,9 @@ jobs:
           make darwin-bootstrap
           # Build and switch to full config
           export HOME_MANAGER_BACKUP_EXT=".bkp"
-          make work-mac
+          make work-mac || true
+          run 'nix log /nix/store/kmby1sxg1jjqf57frkp9kl19g4463flh-adv_cmds-119.drv'
+          exit 1
 
   build-linux-env:
     name: Build/cache Linux Nix env
