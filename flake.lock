@@ -3,11 +3,11 @@
     "aws-find-profile": {
       "flake": false,
       "locked": {
-        "lastModified": 1633200488,
-        "narHash": "sha256-4Eu3PaWxR70BXzCOxi6G79zLrjmGJEZQm4Vew11xt4I=",
+        "lastModified": 1633908628,
+        "narHash": "sha256-jXreahuMwC1NG75qyMhd4bbY6J6IaVS6YKhKoWnVab4=",
         "owner": "vdesjardins",
         "repo": "aws-find-profile",
-        "rev": "9f1ef33fed726c4e5180e9aa5940e6a4aa51df9b",
+        "rev": "90050f05f35e7a6050ae96e50e60bd864fce7c1f",
         "type": "github"
       },
       "original": {

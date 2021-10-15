@@ -22,7 +22,7 @@ function kube-ctx-switch() {
 	local ret=$?
 	if [[ $ret == 0 ]]; then
 		if command -v aws-config-parser &>/dev/null; then
-			aws_profile="$(aws-config-parser --id "$aws_account_id")"
+			aws_profile="$(aws-config-parser --id "$aws_account_id" | grep "name" | awk '{ print $2; }')"
 			aws_context="export AWS_PROFILE=$aws_profile"
 		fi
 		context_alias=$(echo "$context" | awk -F'/' '{ print $2; }')
