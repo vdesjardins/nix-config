@@ -1,12 +1,7 @@
 inputs: _self: super:
 let
-  rust-pkgs = import inputs.nixpkgs {
-    system = super.system;
-    overlays = [ inputs.rust-overlay.overlay ];
-  };
   rustPlatform = super.makeRustPlatform {
-    cargo = rust-pkgs.rust-bin.stable.latest.default;
-    rustc = rust-pkgs.rust-bin.stable.latest.default;
+    inherit (inputs.fenix.packages.${super.system}.minimal) cargo rustc;
   };
 in
 {

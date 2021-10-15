@@ -7,7 +7,7 @@
     unstable.url = "nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     nur.url = "github:nix-community/NUR";
-    rust-overlay.url = "github:/oxalica/rust-overlay";
+    fenix.url = "github:/nix-community/fenix";
 
     # System
     darwin.url = "github:LnL7/nix-darwin";
@@ -50,7 +50,7 @@
     , home-manager
     , darwin
     , neovim-nightly
-    , rust-overlay
+    , fenix
     , utils
     , ...
     }@inputs:
@@ -103,7 +103,7 @@
           comma = final: _prev: {
             comma = import inputs.comma { inherit (final) pkgs; };
           };
-          rust-overlay = rust-overlay.overlay;
+          fenix = fenix.overlay;
         } // overlayFiles;
     in
     {
