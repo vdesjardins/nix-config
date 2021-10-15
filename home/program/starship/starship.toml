@@ -19,3 +19,8 @@ map_symbol = true
 
 [line_break]
 disabled = false
+
+[env_var.HTTPS_PROXY]
+variable = "https_proxy"
+format = "🔌 [$env_value]($style)"
+style = "red"
