@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ eksctl ssm-session-manager-plugin aws-find-profile ];
+  home.packages = with pkgs; [
+    awslogs
+    aws-find-profile
+    eksctl
+    ssm-session-manager-plugin
+  ];
   imports = [
     ../../../program/awscli
   ];
