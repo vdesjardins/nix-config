@@ -27,6 +27,8 @@
     base16-fzf.flake = false;
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
     aws-find-profile.flake = false;
+    aws-sso-util.url = "github:/vdesjardins/aws-sso-util";
+    aws-sso-util.flake = false;
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
     kubectl-view-utilization.flake = false;
     kubectl-sniff.url = "github:/eldadru/ksniff";

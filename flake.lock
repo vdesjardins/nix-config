@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "aws-sso-util": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1634498896,
+        "narHash": "sha256-J6UDaoSi5vNFMRbFBso6M1Oyx5dav8K2sKk2YSScS8Y=",
+        "owner": "vdesjardins",
+        "repo": "aws-sso-util",
+        "rev": "f83aea27ba9a0a2da97dbef0c46725decf4918d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vdesjardins",
+        "repo": "aws-sso-util",
+        "type": "github"
+      }
+    },
     "base16-fzf": {
       "flake": false,
       "locked": {
@@ -372,6 +388,7 @@
     "root": {
       "inputs": {
         "aws-find-profile": "aws-find-profile",
+        "aws-sso-util": "aws-sso-util",
         "base16-fzf": "base16-fzf",
         "comma": "comma",
         "darwin": "darwin",
