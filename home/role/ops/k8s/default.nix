@@ -16,8 +16,10 @@
     kubetail
     kubeval
     kube3d
-    kustomize
+    unstable.kustomize
+    unstable.rakkess # RBAC query tool
     skaffold
+    starboard # security tools
     telepresence
     velero
   ];
