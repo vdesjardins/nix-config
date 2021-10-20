@@ -62,5 +62,6 @@
       wget
     ] ++ lib.optionals stdenv.isDarwin [
       m-cli # controls apps from command line
+      xquartz # X.Org Window System
     ];
 }
