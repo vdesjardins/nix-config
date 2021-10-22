@@ -19,13 +19,17 @@ function kube-ctx-switch() {
 	local aws_profile=""
 	local aws_account_id=""
 	aws_account_id=$(echo "$context" | awk -F':' '{ print $5; }')
-	local ret=$?
-	if [[ $ret == 0 ]]; then
+	if [[ $aws_account_id != "" ]]; then
 		if command -v aws-config-parser &>/dev/null; then
 			aws_profile="$(aws-config-parser --id "$aws_account_id" | grep "name" | awk '{ print $2; }')"
 			aws_context="export AWS_PROFILE=$aws_profile"
 		fi
 		context_alias=$(echo "$context" | awk -F'/' '{ print $2; }')
+	fi
+
+	# check if context is GKE
+	if [[ $context == gke_* ]]; then
+		context_alias=$(echo "$context" | awk -F'_' '{ print $4; }')
 	fi
 
 	local session_name="➜ $context_alias"
