@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ open-policy-agent ];
+  home.packages = with pkgs; [ unstable.open-policy-agent ];
 }
