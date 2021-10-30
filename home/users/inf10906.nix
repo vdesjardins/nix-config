@@ -18,8 +18,10 @@
       ../role/dev/yaml
       ../role/dev/json
       ../role/dev/bash
+      ../role/dev/rust
       ../role/security
       ../program/alacritty
+      ../program/wezterm
       ../program/karabiner
       ../service/gpg-agent
       ../program/ssh
