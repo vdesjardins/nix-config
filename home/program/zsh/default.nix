@@ -78,6 +78,8 @@
       }
 
       bindkey \^U backward-kill-line
+
+      export PATH=~/.local/bin:$PATH
     '';
   };
 }
