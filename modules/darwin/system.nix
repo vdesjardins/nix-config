@@ -1,9 +1,20 @@
 {
   system.defaults = {
+    loginwindow = {
+      GuestEnabled = false;
+    };
+
     finder = {
       AppleShowAllExtensions = true;
-      FXEnableExtensionChangeWarning = true;
+      FXEnableExtensionChangeWarning = false;
       _FXShowPosixPathInTitle = true;
+    };
+
+    alf = {
+      globalstate = 1;
+      loggingenabled = 0;
+      stealthenabled = 1;
+      allowdownloadsignedenabled = 1;
     };
 
     # dock settings
@@ -40,6 +51,10 @@
       AppleShowScrollBars = "Automatic";
       # tap to click
       "com.apple.mouse.tapBehavior" = 1;
+
+      AppleMetricUnits = 1;
+      AppleMeasurementUnits = "Centimeters";
+      AppleTemperatureUnit = "Celsius";
     };
 
     trackpad = {
@@ -52,4 +67,15 @@
     remapCapsLockToControl = true;
     swapLeftCommandAndLeftAlt = true;
   };
+
+  # settings not yet supported by nix-darwin
+  system.activationScripts.postActivation.text = ''
+    defaults write com.apple.Finder AppleShowAllFiles -bool YES;
+
+    defaults write NSGlobalDomain AppleLanguages -array "en-CA" "fr-CA"
+    defaults write NSGlobalDomain AppleLocale -string "en_CA";
+
+    defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>29</integer><key>KeyboardLayout Name</key><string>Canadian</string></dict>'
+    defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>80</integer><key>KeyboardLayout Name</key><string>Canadian - CSA</string></dict>'
+  '';
 }
