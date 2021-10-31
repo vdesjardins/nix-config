@@ -115,6 +115,7 @@
       mt = "mergetool";
       who = "shortlog -s --";
       r = "rebase";
+      rs = "restore --staged";
       remove = "!sh -c 'git ls-files --deleted -z | xargs -0 git rm'";
       whois = ''
         !sh -c 'git log -i -1 --pretty="format:%an <%ae>
