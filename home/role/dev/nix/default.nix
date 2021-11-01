@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../../../program/nix-index
+  ];
+
   home.packages = with pkgs; [
     rnix-lsp
     nixpkgs-fmt

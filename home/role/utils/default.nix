@@ -28,7 +28,6 @@
       browsh # terminal browser
       cachix
       cloc # source code line counter
-      comma
       ctags
       curl
       du-dust # fancy du
