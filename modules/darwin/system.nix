@@ -77,5 +77,8 @@
 
     defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>29</integer><key>KeyboardLayout Name</key><string>Canadian</string></dict>'
     defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>80</integer><key>KeyboardLayout Name</key><string>Canadian - CSA</string></dict>'
+
+    defaults write com.apple.HIToolbox AppleGlobalTextInputProperties '{"TextInputGlobalPropertyPerContextInput" = 1; }'
+    defaults write com.apple.TextInputMenu visible 1
   '';
 }
