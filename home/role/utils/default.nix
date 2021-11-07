@@ -51,9 +51,7 @@
       openssh
       tealdeer # faster tldr
       tokei # displays code statistics
-      topgrade # keep system up to date
       tree
-      wrk # http benchmarking tool
     ] ++ lib.optionals stdenv.isLinux [
       pueue # task management tool
       sysstat
@@ -61,6 +59,5 @@
       wget
     ] ++ lib.optionals stdenv.isDarwin [
       m-cli # controls apps from command line
-      xquartz # X.Org Window System
     ];
 }

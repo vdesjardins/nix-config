@@ -16,6 +16,12 @@ work-mac:
 	@nix build .#work-mac
 	@./result/sw/bin/darwin-rebuild switch --flake .#work-mac
 
+.PHONY: dev-mac
+## dev-mac: build and activate dev-mac system
+dev-mac:
+	@nix build .#dev-mac
+	@./result/sw/bin/darwin-rebuild switch --flake .#dev-mac
+
 .PHONY: hm-install
 ## hm-install: install nix for home-manager
 hm-install:
@@ -34,12 +40,9 @@ darwin-bootstrap:
 .PHONY: darwin-install
 ## darwin-install: install nix darwin
 darwin-install:
-	@sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon
+	@sh <(curl -L https://nixos.org/nix/install) --daemon
 	@PATH=$PATH:/nix/var/nix/profiles/default/bin nix-env -iA nixpkgs.nixFlakes
-	@sudo sh -c "echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf"
-	@echo 'run\tprivate/var/run' | sudo tee -a /etc/synthetic.conf
-	@/System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -B
-	@/System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
+	@sudo sh -c "echo 'experimental-features = nix-command flakes ca-derivations ca-references' >> /etc/nix/nix.conf"
 	@echo "TODO: need to source /nix/var/nix/profiles/default/etc/profile.d/nix.sh"
 
 .PHONY: darwin-install-brew

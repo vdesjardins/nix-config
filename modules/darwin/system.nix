@@ -69,14 +69,13 @@
   };
 
   # settings not yet supported by nix-darwin
-  system.activationScripts.postActivation.text = ''
-    defaults write com.apple.Finder AppleShowAllFiles -bool YES;
+  system.activationScripts.postUserActivation.text = ''
+    defaults write com.apple.Finder AppleShowAllFiles -bool YES
 
     defaults write NSGlobalDomain AppleLanguages -array "en-CA" "fr-CA"
-    defaults write NSGlobalDomain AppleLocale -string "en_CA";
+    defaults write NSGlobalDomain AppleLocale -string "en_CA"
 
-    defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>29</integer><key>KeyboardLayout Name</key><string>Canadian</string></dict>'
-    defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>80</integer><key>KeyboardLayout Name</key><string>Canadian - CSA</string></dict>'
+    defaults write com.apple.HIToolbox AppleEnabledInputSources -array '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>29</integer><key>KeyboardLayout Name</key><string>Canadian</string></dict>' '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>80</integer><key>KeyboardLayout Name</key><string>Canadian - CSA</string></dict>'
 
     defaults write com.apple.HIToolbox AppleGlobalTextInputProperties '{"TextInputGlobalPropertyPerContextInput" = 1; }'
     defaults write com.apple.TextInputMenu visible 1

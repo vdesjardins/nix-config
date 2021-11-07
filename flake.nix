@@ -3,7 +3,8 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     unstable.url = "nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     nur.url = "github:nix-community/NUR";
@@ -109,8 +110,14 @@
         } // overlayFiles;
     in
     {
-      darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
+      darwinConfigurations.bootstrap-x86 = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
+        inherit inputs;
+        modules = [ ./modules/darwin/bootstrap.nix ];
+      };
+
+      darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
         inherit inputs;
         modules = [ ./modules/darwin/bootstrap.nix ];
       };
@@ -140,6 +147,20 @@
         ];
       };
       work-mac = self.darwinConfigurations.work-mac.system;
+
+      darwinConfigurations.dev-mac = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        inherit inputs;
+        modules = [
+          ./modules/darwin/default.nix
+          ./modules/darwin/systems/dev-mac.nix
+          { users.knownUsers = [ "vince" ]; }
+          home-manager.darwinModule
+          { nixpkgs = pkgsConfig; }
+          ./home/users/vince.nix
+        ];
+      };
+      dev-mac = self.darwinConfigurations.dev-mac.system;
 
       inherit overlays;
     } // utils.lib.eachDefaultSystem (

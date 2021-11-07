@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../../../program/nix-index
-  ];
+  # TODO: not working on aarch64
+  # imports = [
+  #   ../../../program/nix-index
+  # ];
 
   home.packages = with pkgs; [
     rnix-lsp
