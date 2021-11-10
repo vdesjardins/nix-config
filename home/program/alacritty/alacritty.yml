@@ -51,7 +51,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Fullscreen
+  startup_mode: Maximized
 
 scrolling:
   # maximum number of lines in the scrollback buffer. Specifying '0' will
