@@ -11,5 +11,7 @@
     nix-linter
     nix-tree
     nix-prefetch
+  ] ++ lib.optionals stdenv.isLinux [
+    cntr
   ];
 }
