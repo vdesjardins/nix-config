@@ -21,7 +21,7 @@
     package = pkgs.nixFlakes;
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
-      experimental-features = nix-command flakes ca-derivations ca-references
+      experimental-features = nix-command flakes
     '';
   };
 
