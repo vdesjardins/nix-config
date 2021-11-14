@@ -138,7 +138,7 @@
         system = "x86_64-darwin";
         inherit inputs;
         modules = [
-          ./modules/darwin/default.nix
+          (import ./modules/darwin/default.nix { device_name = "work-mac"; })
           ./modules/darwin/systems/C02G32U9MD6T.nix
           { users.knownUsers = [ "inf10906" ]; }
           home-manager.darwinModule
@@ -152,7 +152,7 @@
         system = "aarch64-darwin";
         inherit inputs;
         modules = [
-          ./modules/darwin/default.nix
+          (import ./modules/darwin/default.nix { device_name = "dev-mac"; })
           ./modules/darwin/systems/dev-mac.nix
           { users.knownUsers = [ "vince" ]; }
           home-manager.darwinModule

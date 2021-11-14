@@ -1,3 +1,4 @@
+{ device_name ? "spotifyd" }:
 {
   imports = [
     ../shared.nix
@@ -6,6 +7,7 @@
     ./system.nix
     ./homebrew.nix
     ./programs/gnupg.nix
+    (import ./services/spotifyd { inherit device_name; })
   ];
 
   programs = {
