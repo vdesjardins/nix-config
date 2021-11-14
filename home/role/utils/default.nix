@@ -48,6 +48,7 @@
       ps
       ripgrep
       rsync
+      spotify-tui
       openssh
       tealdeer # faster tldr
       tokei # displays code statistics
