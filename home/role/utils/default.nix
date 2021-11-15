@@ -28,6 +28,7 @@
       browsh # terminal browser
       cachix
       cloc # source code line counter
+      cmake
       ctags
       curl
       du-dust # fancy du
