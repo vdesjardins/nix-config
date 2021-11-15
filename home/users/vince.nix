@@ -14,8 +14,8 @@
       ../role/dev/json
       ../role/dev/bash
       ../role/dev/rust
-      ../role/security
-      # TODO: not compiling on aarch64
+      # ../role/security
+      # TODO: not compiling on latest
       #../program/wezterm
       ../program/alacritty
       ../program/karabiner
