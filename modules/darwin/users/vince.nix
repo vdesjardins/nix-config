@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   users.users.vince = {
     uid = 501;

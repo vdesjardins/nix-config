@@ -1,13 +1,12 @@
 { darwin, home-manager, inputs, pkgsConfig }:
 let
-  username = "vince";
-  hostname = "dev-mac";
+  username = "inf10906";
+  hostname = "C02G32U9MD6T";
 in darwin.lib.darwinSystem {
-  system = "aarch64-darwin";
+  system = "x86_64-darwin";
   inherit inputs;
   modules = [
     ../shared
-    (import ../services/spotifyd { device_name = hostname; })
     {
       networking.hostName = hostname;
 

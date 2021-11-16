@@ -122,44 +122,22 @@
         modules = [ ./modules/darwin/bootstrap.nix ];
       };
 
-      homeConfigurations.vincent_desjardins =
-        home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          stateVersion = "21.05";
-          username = "vincent_desjardins";
-          homeDirectory = "/home/vincent_desjardins";
-          configuration = import ./home/users/vincent_desjardins.nix {
-            pkgs = pkgsConfig;
-          };
+      homeConfigurations.vincent_desjardins = import ./home/config/vincent_desjardins.nix
+        {
+          inherit home-manager pkgsConfig;
         };
       vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
 
-      darwinConfigurations.work-mac = darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        inherit inputs;
-        modules = [
-          (import ./modules/darwin/default.nix { device_name = "work-mac"; })
-          ./modules/darwin/systems/C02G32U9MD6T.nix
-          { users.knownUsers = [ "inf10906" ]; }
-          home-manager.darwinModule
-          { nixpkgs = pkgsConfig; }
-          ./home/users/inf10906.nix
-        ];
-      };
+      darwinConfigurations.work-mac = import ./modules/darwin/systems/work-mac.nix
+        {
+          inherit darwin home-manager inputs pkgsConfig;
+        };
       work-mac = self.darwinConfigurations.work-mac.system;
 
-      darwinConfigurations.dev-mac = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        inherit inputs;
-        modules = [
-          (import ./modules/darwin/default.nix { device_name = "dev-mac"; })
-          ./modules/darwin/systems/dev-mac.nix
-          { users.knownUsers = [ "vince" ]; }
-          home-manager.darwinModule
-          { nixpkgs = pkgsConfig; }
-          ./home/users/vince.nix
-        ];
-      };
+      darwinConfigurations.dev-mac = import ./modules/darwin/systems/dev-mac.nix
+        {
+          inherit darwin home-manager inputs pkgsConfig;
+        };
       dev-mac = self.darwinConfigurations.dev-mac.system;
 
       inherit overlays;
