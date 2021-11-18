@@ -91,9 +91,7 @@ return require("packer").startup(function(use)
   use "honza/vim-snippets"
 
   -- colorscheme
-  use "folke/tokyonight.nvim"
-  -- use 'Th3Whit3Wolf/one-nvim'
-  -- use 'chriskempson/base16-vim'
+  use "projekt0n/github-nvim-theme"
 
   -- Rust
   use "simrat39/rust-tools.nvim"
