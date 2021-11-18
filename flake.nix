@@ -110,13 +110,13 @@
         } // overlayFiles;
     in
     {
-      darwinConfigurations.bootstrap-x86 = darwin.lib.darwinSystem {
+      darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         inherit inputs;
         modules = [ ./modules/darwin/bootstrap.nix ];
       };
 
-      darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
+      darwinConfigurations.bootstrap-aarch = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         inherit inputs;
         modules = [ ./modules/darwin/bootstrap.nix ];
