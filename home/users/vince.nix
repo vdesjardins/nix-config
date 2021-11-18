@@ -16,7 +16,7 @@
       ../role/dev/rust
       # ../role/security
       # TODO: not compiling on latest
-      #../program/wezterm
+      ../program/wezterm
       ../program/alacritty
       ../program/karabiner
       ../service/gpg-agent
