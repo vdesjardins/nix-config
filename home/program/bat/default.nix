@@ -9,7 +9,6 @@ with lib;
     enable = true;
 
     config = {
-      theme = "Sublime Snazzy";
       paging = "never";
     };
   };
