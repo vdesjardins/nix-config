@@ -2,7 +2,8 @@
 let
   username = "vince";
   hostname = "dev-mac";
-in darwin.lib.darwinSystem {
+in
+darwin.lib.darwinSystem {
   system = "aarch64-darwin";
   inherit inputs;
   modules = [
@@ -12,12 +13,12 @@ in darwin.lib.darwinSystem {
       networking.hostName = hostname;
 
       imports = [
-        (./. + "/../users/${username}.nix")
+        ../users/${username}.nix
       ];
     }
     { users.knownUsers = [ username ]; }
     home-manager.darwinModule
     { nixpkgs = pkgsConfig; }
-    (./. + "/../../../home/users/${username}.nix")
+    ../../../home/users/${username}.nix
   ];
 }
