@@ -14,6 +14,7 @@
       ../role/dev/json
       ../role/dev/bash
       ../role/dev/rust
+      ../role/ops/k8s
       # ../role/security
       # TODO: not compiling on latest
       ../program/wezterm

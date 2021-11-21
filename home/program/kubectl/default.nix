@@ -6,9 +6,6 @@ mkMerge [
     mkIf config.programs.zsh.enable {
       home.packages = with pkgs; [
         kubectl
-        kubectl-trace
-        kubectl-view-utilization
-        kubectl-sniff
         gawk
         fzf
         jq
@@ -71,6 +68,16 @@ mkMerge [
           kube-get-certs = ''
             kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{"
             "}' | sort'';
+
+          # events
+          kgesw = ''
+            kubectl get events –field-selector type=Warning
+          '';
+
+          # nodes
+          kgno = ''
+            kubectl get nodes -o wide –label-columns topology.kubernetes.io/zone
+          '';
         };
       };
 

@@ -152,6 +152,23 @@
         "type": "github"
       }
     },
+    "kube-lineage": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636984279,
+        "narHash": "sha256-LHseVOfpkOWHhsvWMAYE2UsuIO5GZROotCXPYWw7ZOc=",
+        "owner": "tohjustin",
+        "repo": "kube-lineage",
+        "rev": "d74bfc7e3afa83ff4486da3f3701e3d8b40a1334",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tohjustin",
+        "ref": "v0.4.2",
+        "repo": "kube-lineage",
+        "type": "github"
+      }
+    },
     "kube-no-trouble": {
       "flake": false,
       "locked": {
@@ -181,6 +198,23 @@
       "original": {
         "owner": "ahmetb",
         "repo": "kubectl-aliases",
+        "type": "github"
+      }
+    },
+    "kubectl-blame": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1637169024,
+        "narHash": "sha256-Ex6LNGPDInXhKHDF6ikI92Q9vVN8IcUQwo+RpEucCwI=",
+        "owner": "knight42",
+        "repo": "kubectl-blame",
+        "rev": "ee5b16728f8f63463733ea275bbee92a414e0671",
+        "type": "github"
+      },
+      "original": {
+        "owner": "knight42",
+        "ref": "v0.0.8",
+        "repo": "kubectl-blame",
         "type": "github"
       }
     },
@@ -395,8 +429,10 @@
         "darwin": "darwin",
         "fenix": "fenix",
         "home-manager": "home-manager",
+        "kube-lineage": "kube-lineage",
         "kube-no-trouble": "kube-no-trouble",
         "kubectl-aliases": "kubectl-aliases",
+        "kubectl-blame": "kubectl-blame",
         "kubectl-sniff": "kubectl-sniff",
         "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",

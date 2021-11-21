@@ -8,8 +8,14 @@
 
   home.packages = with pkgs; [
     buildpack
+    kail
     kind
+    kube-capacity
+    kube-lineage
+    kubectl-blame
     unstable.kubeconform
+    kubectl-trace
+    kubectl-view-utilization
     kubectx
     kubent
     kubernetes-helm
@@ -20,7 +26,9 @@
     unstable.rakkess # RBAC query tool
     skaffold
     starboard # security tools
-    telepresence
     velero
+  ] ++ lib.optionals stdenv.isLinux [
+    telepresence
+    kubectl-sniff
   ];
 }
