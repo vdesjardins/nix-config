@@ -3,14 +3,7 @@
   programs.neovim = {
     enable = true;
 
-    package = pkgs.neovim-nightly.overrideAttrs (
-      oldAttrs: rec {
-        nativeBuildInputs = oldAttrs.buildInputs ++ (
-          with pkgs;
-          [ gettext pkgconfig unzip cmake tree-sitter ]
-        );
-      }
-    );
+    package = pkgs.unstable.neovim-unwrapped;
 
     viAlias = true;
     vimAlias = true;
@@ -33,6 +26,8 @@
       fzf
       bat
       ripgrep
+
+      tree-sitter
 
       # lint/format
       unstable.efm-langserver
