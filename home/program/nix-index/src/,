@@ -21,4 +21,4 @@ if [[ -z ${attr} ]]; then
 	exit 1
 fi
 
-nix run "nixpkgs#${attr%%.*}" -- "${cmd}" "$@"
+nix shell "nixpkgs#${attr%%.*}" --command "${cmd}" "$@"
