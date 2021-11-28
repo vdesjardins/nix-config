@@ -405,21 +405,6 @@
         "type": "github"
       }
     },
-    "nur": {
-      "locked": {
-        "lastModified": 1637290353,
-        "narHash": "sha256-qptDBYoOlQLrpOpau7HuBAJwktIbqeKOsFqwMUZ0MNY=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "f60b86c155ccdc85d137041a603e7ec55f970701",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "aws-find-profile": "aws-find-profile",
@@ -440,7 +425,6 @@
         "master": "master",
         "neovim-nightly": "neovim-nightly",
         "nixpkgs": "nixpkgs_4",
-        "nur": "nur",
         "tmux": "tmux",
         "unstable": "unstable",
         "utils": "utils"

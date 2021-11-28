@@ -7,7 +7,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/master";
     unstable.url = "nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
-    nur.url = "github:nix-community/NUR";
     fenix.url = "github:/nix-community/fenix";
 
     # System
@@ -89,12 +88,6 @@
           );
         in
         {
-          nur = final: _prev: {
-            nur = import inputs.nur {
-              nurpkgs = final.unstable;
-              pkgs = final.unstable;
-            };
-          };
           unstable = final: _prev: {
             unstable = import inputs.unstable {
               system = final.system;
