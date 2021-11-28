@@ -109,6 +109,9 @@ return require("packer").startup(function(use)
   -- Terraform
   use "hashivim/vim-terraform"
 
+  -- CUE
+  use "jjo/vim-cue"
+
   -- Nix
   use "LnL7/vim-nix"
 end)
