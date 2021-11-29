@@ -1,3 +1,3 @@
 local wezterm = require "wezterm";
-return
-  { font = wezterm.font("FiraCode Nerd Font"), color_scheme = "GitHub Dark" }
+return { font = wezterm.font("FiraCode Nerd Font"),
+         color_scheme = "GitHub Dark" }
