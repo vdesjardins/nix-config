@@ -2,7 +2,7 @@ _inputs: _self: super: {
   luaformatter = super.luaformatter.override {
     stdenv = super.pkgs.llvmPackages_11.stdenv;
   };
-  libargs = super.libargs.overrideAttrs (old: rec {
+  libargs = super.libargs.overrideAttrs (_old: rec {
     version = "6.2.7";
     src = super.pkgs.fetchFromGitHub {
       owner = "Taywee";
