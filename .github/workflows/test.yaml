@@ -83,7 +83,7 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: Run lua-format
         run: |
-          nix build .#lua-format
+          nix build .#luaformatter
           find . -type f -name "*.lua" -exec ./result/bin/lua-format -i --config=".lua-format" {} +
         shell: bash
       - name: Fails if files modified
