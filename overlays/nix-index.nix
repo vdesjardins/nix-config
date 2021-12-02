@@ -12,5 +12,7 @@ _inputs: _self: super: {
         inherit src;
         outputHash = "sha256-4WESXHFoYCGmTeo4bp9Sgn4Iyp/0LrpOQb/R96ETS7A=";
       });
+
+      doCheck = false;
     });
 }
