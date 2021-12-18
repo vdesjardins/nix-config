@@ -11,7 +11,10 @@
       ../role/dev/json
       ../role/dev/bash
       ../role/dev/rust
+      ../role/dev/golang
       ../role/ops/k8s
+      ../role/ops/networking
+      ../role/ops/container
       ../program/wezterm
       ../program/alacritty
       ../program/karabiner
