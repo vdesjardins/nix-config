@@ -54,6 +54,7 @@
       tealdeer # faster tldr
       tokei # displays code statistics
       tree
+      perlPackages.vidir # edit files in EDITOR
     ] ++ lib.optionals stdenv.isLinux [
       pueue # task management tool
       sysstat
