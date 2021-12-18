@@ -1,6 +1,12 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [ gitAndTools.gh ];
 
+
+  # TODO: a ~/.config/gh/hosts.yml file need to be created with credentials
+  # ex.:
+  # github.com:
+  #   user: vdesjardins
+  #   oauth_token: <REDACTED>
   programs.gh = {
     enable = true;
 
