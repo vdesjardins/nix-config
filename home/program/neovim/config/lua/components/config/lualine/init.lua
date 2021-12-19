@@ -38,7 +38,7 @@ require("lualine").setup {
       { "diff" },
       {
         "diagnostics",
-        sources = { "nvim_lsp" },
+        sources = { "nvim_diagnostic" },
         symbols = { error = " ", warn = " ", info = " " },
       },
       {
