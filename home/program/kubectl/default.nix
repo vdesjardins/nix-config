@@ -65,19 +65,13 @@ mkMerge [
           ktn = "kc top nodes";
 
           # certs
-          kube-get-certs = ''
-            kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{"
-            "}' | sort'';
+          kube-get-certs = ''kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{" "}' | sort'';
 
           # events
-          kgesw = ''
-            kubectl get events –field-selector type=Warning
-          '';
+          kgesw = "kubectl get events --field-selector type=Warning";
 
           # nodes
-          kgno = ''
-            kubectl get nodes -o wide –label-columns topology.kubernetes.io/zone
-          '';
+          kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
         };
       };
 
