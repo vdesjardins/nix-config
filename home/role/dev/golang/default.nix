@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    go
+    go_1_17
     gocode
     gopls
     unstable.gokart
