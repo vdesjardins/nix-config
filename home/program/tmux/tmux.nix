@@ -9,7 +9,7 @@
 
   # force a reload of the config file
   unbind-key r
-  bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+  bind-key -N "Reload config file" r source-file ~/.config/tmux/tmux.conf \; display-message "~/.tmux.conf reloaded"
 
   # key binding
   set-window-option -g mode-keys vi
@@ -31,8 +31,8 @@
   set-option -sa terminal-overrides ',*256col*:RGB'
 
   # quick view of processes
-  bind '~' split-window "exec htop"
-  bind 'K' command-prompt -p "Man:" "split-window 'man %%'"
+  bind -N "Exec htop" '~' split-window "exec htop"
+  bind -N "Man page" 'K' command-prompt -p "Man:" "split-window 'man %%'"
 
   # All kind of nice options
   set-option -g   bell-action any
@@ -64,7 +64,7 @@
   set-option -g   message-style fg=colour16,bg=colour221,bold
 
   # Window
-  bind-key b last-window
+  bind-key -N "Last Window" b last-window
 
   # Window options
   set-window-option -g clock-mode-colour blue
@@ -105,15 +105,15 @@
   bind-key -T copy-mode-vi 'C-\' select-pane -l
 
   # clear screen and history
-  bind BSpace "send-keys -R C-l \; clear-history"
+  bind-key -N "Clear screen and history" BSpace "send-keys -R C-l \; clear-history"
 
   # use "v" and "s" to do vertical/horizontal splits, like vim
-  bind-key c new-window -c '#{pane_current_path}'
-  bind-key s split-window -v -c '#{pane_current_path}'
-  bind-key v split-window -h -c '#{pane_current_path}'
+  bind-key -N "New window" c new-window -c '#{pane_current_path}'
+  bind-key -N "Split window vertically" s split-window -v -c '#{pane_current_path}'
+  bind-key -N "Split window horizontally" v split-window -h -c '#{pane_current_path}'
 
   # use vim resize keys with submode.
-  bind-key Z switch-client -T RESIZE
+  bind-key -N "Pane resize with vim keys" Z switch-client -T RESIZE
 
   bind-key -T RESIZE k resize-pane -U \; switch-client -T RESIZE
   bind-key -T RESIZE j resize-pane -D \; switch-client -T RESIZE
@@ -126,18 +126,18 @@
   bind-key -T RESIZE L resize-pane -R 5 \; switch-client -T RESIZE
 
   # join a pane to the current window.
-  bind-key J command-prompt -p "Window to join to this one:" "join-pane -s %%"
+  bind-key "Join a pane to current window" J command-prompt -p "Window to join to this one:" "join-pane -s %%"
 
   # session
-  bind-key S choose-session
-  bind-key u command-prompt -p "Name your new session:" "new-session -s %%"
+  bind-key -N "Choose session" S choose-session
+  bind-key -N "Create and name new session" u command-prompt -p "Name your new session:" "new-session -s %%"
 
   # be able to copy/paste `
   bind-key -n F11 set -g prefix `
   bind-key -n F12 set -g prefix C-o
 
   # save history buffer to file
-  bind-key P command-prompt -p 'save history to filename:' -I '~/tmux.history' 'capture-pane -S -100000; save-buffer %1 ; delete-buffer'
+  bind-key -N "Save history buffer to file" P command-prompt -p 'save history to filename:' -I '~/tmux.history' 'capture-pane -S -100000; save-buffer %1 ; delete-buffer'
 
   # mouse
   set-option -g mouse off
@@ -147,12 +147,12 @@
 
   # toggle mouse
   unbind m
-  bind-key m \
+  bind-key -N "Mouse ON" m \
     set-option -g mouse on \;\
     display 'Mouse: ON'
 
   unbind M
-  bind-key M \
+  bind-key -N "Mouse OFF" M \
     set-option -g mouse off \;\
     display 'Mouse: OFF'
 
