@@ -34,10 +34,12 @@
       du-dust # fancy du
       fd # fast file search
       findutils
+      # unstable.fq # jq for binary formats
       glow # renders markdown on command line
       gnumake
       gnused
       grpcurl
+      htmlq # Like jq, but for HTML
       htop # fancy top
       hexyl
       hyperfine
@@ -56,6 +58,7 @@
       tree
       perlPackages.vidir # edit files in EDITOR
     ] ++ lib.optionals stdenv.isLinux [
+      unstable.btop # monitor resources
       pueue # task management tool
       sysstat
       thefuck # fix commands
