@@ -126,7 +126,7 @@
   bind-key -T RESIZE L resize-pane -R 5 \; switch-client -T RESIZE
 
   # join a pane to the current window.
-  bind-key "Join a pane to current window" J command-prompt -p "Window to join to this one:" "join-pane -s %%"
+  bind-key -N "Join a pane to current window" J command-prompt -p "Window to join to this one:" "join-pane -s %%"
 
   # session
   bind-key -N "Choose session" S choose-session
