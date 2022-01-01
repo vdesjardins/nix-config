@@ -12,6 +12,7 @@
       ../role/dev/bash
       ../role/dev/rust
       ../role/dev/golang
+      ../role/ops/aws
       ../role/ops/k8s
       ../role/ops/networking
       ../role/ops/container
