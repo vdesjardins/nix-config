@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    nodePackages.vscode-json-languageserver-bin
+    vscode-langservers-extracted
     nodePackages.fixjson
+    jiq
     jq
     gron
   ];

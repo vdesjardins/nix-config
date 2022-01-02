@@ -8,6 +8,7 @@
       ../role/dev/nix
       ../role/dev/lua
       ../role/dev/yaml
+      ../role/dev/js
       ../role/dev/json
       ../role/dev/bash
       ../role/dev/rust

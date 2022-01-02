@@ -60,7 +60,7 @@
     , ...
     }@inputs:
     let
-      inherit (builtins) listToAttrs attrValues attrNames readDir;
+      inherit (builtins) listToAttrs attrValues attrNames readDir filter match;
       inherit (nixpkgs) lib;
       inherit (lib) removeSuffix;
 
@@ -83,7 +83,9 @@
                   value = import (./overlays + "/${name}") inputs;
                 }
               )
-              (attrNames (readDir ./overlays))
+              (filter (name: match "^.+\.nix$" name != null)
+                (attrNames (readDir ./overlays))
+              )
           );
         in
         {
