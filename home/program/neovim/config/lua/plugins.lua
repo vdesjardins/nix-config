@@ -18,7 +18,7 @@ return require("packer").startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig"
   use "hrsh7th/nvim-compe"
-  use "rinx/lspsaga.nvim"
+  use "tami5/lspsaga.nvim"
   use "onsails/lspkind-nvim"
   use "kosayoda/nvim-lightbulb"
 
