@@ -5,7 +5,6 @@ _inputs: _self: super: {
         UserNotifications
       ]);
     meta = with super.libs; {
-      platforms = super.platforms.unix;
       broken = false;
     };
   });

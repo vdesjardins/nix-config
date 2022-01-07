@@ -73,40 +73,41 @@
         };
       };
 
-      overlays =
-        let
-          overlayFiles = listToAttrs (
-            map
-              (
-                name: {
-                  name = removeSuffix ".nix" name;
-                  value = import (./overlays + "/${name}") inputs;
-                }
-              )
-              (filter (name: match "^.+\.nix$" name != null)
-                (attrNames (readDir ./overlays))
-              )
-          );
-        in
-        {
-          unstable = final: _prev: {
-            unstable = import inputs.unstable {
-              system = final.system;
-              config = { allowUnfree = true; };
-            };
+      mkOverlays = dir:
+        listToAttrs (
+          map
+            (
+              name: {
+                name = removeSuffix ".nix" name;
+                value = import (dir + "/${name}") inputs;
+              }
+            )
+            (filter (name: match "^.+\.nix$" name != null)
+              (attrNames (readDir dir))
+            )
+        );
+
+      overlays = {
+        unstable = final: prev: {
+          unstable = import inputs.unstable {
+            system = final.system;
+            config.allowUnfree = true;
+            overlays = (attrValues (mkOverlays ./overlays/unstable));
           };
-          master = final: _prev: {
-            master = import inputs.master {
-              system = final.system;
-              config = { allowUnfree = true; };
-            };
+        };
+        master = final: _prev: {
+          master = import inputs.master {
+            system = final.system;
+            config.allowUnfree = true;
+            overlays = (attrValues (mkOverlays ./overlays/master));
           };
-          neovim-nightly = neovim-nightly.overlay;
-          comma = final: _prev: {
-            comma = import inputs.comma { inherit (final) pkgs; };
-          };
-          fenix = fenix.overlay;
-        } // overlayFiles;
+        };
+        neovim-nightly = neovim-nightly.overlay;
+        comma = final: _prev: {
+          comma = import inputs.comma { inherit (final) pkgs; };
+        };
+        fenix = fenix.overlay;
+      } // (mkOverlays ./overlays);
     in
     {
       darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
