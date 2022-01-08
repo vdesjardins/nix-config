@@ -1,9 +1,22 @@
-{ config, lib, pkgs, ... }: {
-  home.packages = with pkgs; [ unstable.wezterm ];
-  xdg.configFile."wezterm/wezterm.lua".source = ./wezterm.lua;
-  # home-manager do not yet symlink to ~/Applications
+{ config, lib, pkgs, ... }:
+let
+  wezterm_text = builtins.readFile ./wezterm.lua;
+  wezterm_config = builtins.replaceStrings [ "@homeDirectory@" ] [ config.home.homeDirectory ] wezterm_text;
+  pkg_wezterm = pkgs.unstable.wezterm;
+in
+{
+  home.packages = [ pkg_wezterm ];
+  xdg.configFile."wezterm/wezterm.lua".text = wezterm_config;
+
+  programs.zsh = {
+    initExtra = ''
+      source ${pkg_wezterm}/etc/profile.d/wezterm.sh
+    '';
+  };
+
+  # home-manager does not yet symlink to ~/Applications
   # https://github.com/nix-community/home-manager/issues/1341
   home.file."Applications/WezTerm.app".source =
     lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-      "${pkgs.unstable.wezterm}/Applications/WezTerm.app";
+      "${pkg_wezterm}/Applications/WezTerm.app";
 }
