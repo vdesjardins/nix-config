@@ -38,6 +38,7 @@
       glow # renders markdown on command line
       gnumake
       gnused
+      graphviz
       grpcurl
       htmlq # Like jq, but for HTML
       htop # fancy top
