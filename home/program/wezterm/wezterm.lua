@@ -77,9 +77,8 @@ wezterm.on("update-right-status", function(window, pane)
   if cwd_uri then
     cwd_uri = cwd_uri:sub(8);
     local slash = cwd_uri:find("/")
-    local hostname = ""
     if slash then
-      hostname = cwd_uri:sub(1, slash - 1)
+      local hostname = cwd_uri:sub(1, slash - 1)
       -- Remove the domain name portion of the hostname
       local dot = hostname:find("[.]")
       if dot then hostname = hostname:sub(1, dot - 1) end
@@ -99,10 +98,8 @@ wezterm.on("update-right-status", function(window, pane)
     table.insert(cells, string.format("⚡ %.0f%%", b.state_of_charge * 100))
   end
 
-  -- The powerline < symbol
-  local LEFT_ARROW = utf8.char(0xe0b3);
   -- The filled in variant of the < symbol
-  local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+  local SOLID_LEFT_ARROW = _G.utf8.char(0xe0b2)
 
   -- Color palette for the backgrounds of each cell
   local colors = { "#3c1361", "#52307c", "#663a82", "#7c5295", "#b491c8" };
@@ -116,7 +113,7 @@ wezterm.on("update-right-status", function(window, pane)
   local num_cells = 0;
 
   -- Translate a cell into elements
-  function push(text, is_last)
+  function _G.push(text)
     local cell_no = num_cells + 1
     table.insert(elements, { Foreground = { Color = colors[cell_no] } })
     table.insert(elements, { Text = SOLID_LEFT_ARROW })
@@ -128,7 +125,7 @@ wezterm.on("update-right-status", function(window, pane)
 
   while #cells > 0 do
     local cell = table.remove(cells, 1)
-    push(cell, #cells == 0)
+    _G.push(cell)
   end
 
   window:set_right_status(wezterm.format(elements));
