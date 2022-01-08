@@ -67,21 +67,21 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-    family: "VictorMono Nerd Font Mono"
+    family: "JetBrainsMono Nerd Font Mono"
     style: Regular
 
   # The bold font face
   bold:
-    family: "VictorMono Nerd Font Mono"
+    family: "JetBrainsMono Nerd Font Mono"
     style: Bold
 
   # The italic font face
   italic:
-    family: "VictorMono Nerd Font Mono"
+    family: "JetBrainsMono Nerd Font Mono"
     style: Italic
 
   bold_italic:
-    family: "VictorMono Nerd Font Mono"
+    family: "JetBrainsMono Nerd Font Mono"
     style: Bold Italic
 
   # Point size of the font

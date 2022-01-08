@@ -31,6 +31,6 @@
 
   fonts.enableFontDir = true;
   fonts.fonts = [
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "VictorMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 }

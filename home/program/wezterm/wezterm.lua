@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = {
   check_for_updates = false,
-  font = wezterm.font("FiraCode Nerd Font"),
+  font = wezterm.font("JetBrainsMono Nerd Font"),
   color_scheme = "GitHub Dark",
   tab_bar_at_bottom = true,
   inactive_pane_hsb = { hue = 1.0, saturation = 0.5, brightness = 1.0 },
