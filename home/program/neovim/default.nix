@@ -21,16 +21,13 @@
     [
       python3
       python3Packages.pynvim
+      tree-sitter
 
       # tools
       fzf
       bat
       ripgrep
-
-      tree-sitter
-
-      # lint/format
-      unstable.efm-langserver
+      vale # syntax-aware linter for prose
     ];
 
   xdg.configFile."nvim/lua".source = config/lua;

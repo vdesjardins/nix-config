@@ -21,6 +21,7 @@ return require("packer").startup(function(use)
   use "tami5/lspsaga.nvim"
   use "onsails/lspkind-nvim"
   use "kosayoda/nvim-lightbulb"
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- Debugging
   use "mfussenegger/nvim-dap"
