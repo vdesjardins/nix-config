@@ -32,6 +32,7 @@
       ctags
       curl
       du-dust # fancy du
+      duf # df alternative
       fd # fast file search
       findutils
       # unstable.fq # jq for binary formats
