@@ -55,6 +55,7 @@ local config = {
         { key = "&", mods = "LEADER|SHIFT", action=wezterm.action{CloseCurrentTab={confirm=true}}},
 
         -- utils
+        { key = "`", mods = "LEADER",       action=wezterm.action{SendString="`"}},
         { key = "~", mods = "LEADER|SHIFT", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain", args={"@homeDirectory@/.nix-profile/bin/htop"}}}},
         { key = "r", mods = "LEADER",       action="ReloadConfiguration"},
         { key = "l", mods = "CTRL",         action=wezterm.action{ClearScrollback="ScrollbackAndViewport"}},
