@@ -59,7 +59,8 @@ local config = {
         { key = "~", mods = "LEADER|SHIFT", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain", args={"@homeDirectory@/.nix-profile/bin/htop"}}}},
         { key = "r", mods = "LEADER",       action="ReloadConfiguration"},
         { key = "l", mods = "CTRL",         action=wezterm.action{ClearScrollback="ScrollbackAndViewport"}},
-        { key = "[", mods = "LEADER",       action=wezterm.action({ EmitEvent = "open_in_vim" }) },
+        { key = "[", mods = "LEADER",       action="ActivateCopyMode" },
+        { key = "E", mods = "LEADER",       action=wezterm.action({ EmitEvent = "open_in_vim" }) },
 
         -- selection
         { key = "S", mods = "LEADER|SHIFT", action="QuickSelect"},
