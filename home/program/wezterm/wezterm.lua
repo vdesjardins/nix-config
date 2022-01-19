@@ -134,20 +134,13 @@ wezterm.on("update-right-status", function(window, pane)
 end);
 
 wezterm.on("open_in_vim", function(window, pane)
-  local file = io.open("/tmp/wezterm_buf", "w")
+  local filename = os.tmpname() .. "_hist"
+  local file = io.open(filename, "w")
   file:write(pane:get_logical_lines_as_text(3000))
   file:close()
 
   window:perform_action(wezterm.action({
-    SplitVertical = {
-      domain = "CurrentPaneDomain",
-      args = {
-        "@homeDirectory@/.nix-profile/bin/nvim",
-        "/tmp/wezterm_buf",
-        "-c",
-        "call cursor(3000,0)",
-      },
-    },
+    SendString = "nvim " .. filename .. " -c 'call cursor(3000,0)'\n",
   }), pane)
 end)
 
