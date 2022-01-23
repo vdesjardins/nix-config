@@ -19,8 +19,8 @@ end
 require("lualine").setup {
   options = {
     theme = "github",
-    section_separators = { "", "" },
-    component_separators = { "", "" },
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
     icons_enabled = true,
   },
   extensions = { "fzf" },
@@ -61,4 +61,3 @@ require("lualine").setup {
     lualine_z = {},
   },
 }
-
