@@ -97,7 +97,7 @@ wezterm.on("update-right-status", function(window, pane)
 
   -- An entry for each battery (typically 0 or 1 battery)
   for _, b in ipairs(wezterm.battery_info()) do
-    table.insert(cells, string.format("⚡ %.0f%%", b.state_of_charge * 100))
+    table.insert(cells, string.format("🔋%.0f%% ", b.state_of_charge * 100))
   end
 
   -- The filled in variant of the < symbol
