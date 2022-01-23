@@ -3,6 +3,7 @@
   nixpkgs = pkgs;
 
   home.sessionVariables = {
+    EDITOR = "vi";
     VAULT_USERNAME = "inf10906";
     VAULT_ADDR = "https://vault.gcp.internal";
   };

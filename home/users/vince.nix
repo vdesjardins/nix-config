@@ -1,6 +1,9 @@
 { ... }: {
   home-manager.useGlobalPkgs = true;
   home-manager.users.vince = { ... }: {
+    home.sessionVariables = {
+      EDITOR = "vi";
+    };
     imports = [
       ./default.nix
 

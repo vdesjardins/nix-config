@@ -2,6 +2,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users.inf10906 = { ... }: {
     home.sessionVariables = {
+      EDITOR = "vi";
       NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = 1;
     };
 
