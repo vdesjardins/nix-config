@@ -101,7 +101,7 @@ wezterm.on("update-right-status", function(window, pane)
   end
 
   -- The filled in variant of the < symbol
-  local SOLID_LEFT_ARROW = _G.utf8.char(0xe0b2)
+  local SOLID_LEFT_ARROW = ""
 
   -- Color palette for the backgrounds of each cell
   local colors = { "#3c1361", "#52307c", "#663a82", "#7c5295", "#b491c8" };
