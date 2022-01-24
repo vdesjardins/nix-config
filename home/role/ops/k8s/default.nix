@@ -14,11 +14,13 @@
     kube-lineage
     kubectl-blame
     unstable.kubeconform
+    unstable.kubectl-example
     kubectl-trace
     kubectl-view-utilization
     kubectx
     kubent
     kubernetes-helm
+    kubespy
     kubetail
     kubeval
     kube3d
