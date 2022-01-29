@@ -1,21 +1,15 @@
-_G.LspLanguages = {}
-_G.LspLanguages.lua = require("components.lang.lua")
-_G.LspLanguages.sh = require("components.lang.bash")
-_G.LspLanguages.nix = require("components.lang.nix")
-_G.LspLanguages.terraform = require("components.lang.terraform")
-_G.LspLanguages.tflint = require("components.lang.tflint")
-_G.LspLanguages.docker = require("components.lang.docker")
-_G.LspLanguages.rust = require("components.lang.rust")
-_G.LspLanguages.golang = require("components.lang.golang")
-_G.LspLanguages.json = require("components.lang.json")
-_G.LspLanguages.yaml = require("components.lang.yaml")
-_G.LspLanguages.cpp = require("components.lang.cpp")
-
+require("components.lang.lua")
+require("components.lang.nix")
+require("components.lang.terraform")
+require("components.lang.tflint")
+require("components.lang.docker")
+require("components.lang.rust")
+require("components.lang.golang")
+require("components.lang.json")
+require("components.lang.yaml")
+require("components.lang.cpp")
+require("components.lang.bash")
 require("components.lang.null-ls")
-
-for _, cfg in pairs(_G.LspLanguages) do
-  require("lspconfig")[cfg.lsp_name()].setup(cfg.lsp_setup())
-end
 
 vim.cmd("autocmd BufWritePre * lua _G.LangFormatBuffer()")
 
