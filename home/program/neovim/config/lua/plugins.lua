@@ -26,6 +26,11 @@ return require("packer").startup(function(use)
   -- Debugging
   use "mfussenegger/nvim-dap"
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use {
+    "nvim-telescope/telescope-dap.nvim",
+    requires = { "mfussenegger/nvim-dap" },
+  }
+  use { "leoluz/nvim-dap-go", requires = { "mfussenegger/nvim-dap" } }
 
   -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
