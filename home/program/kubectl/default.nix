@@ -5,6 +5,7 @@ mkMerge [
   (
     mkIf config.programs.zsh.enable {
       home.packages = with pkgs; [
+        unstable.dyff
         kubectl
         gawk
         fzf
@@ -15,6 +16,8 @@ mkMerge [
       programs.zsh = {
         initExtra = ''
           source ${config.xdg.configHome}/zsh/conf.d/kubectl_aliases
+
+          KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code"
         '';
 
         oh-my-zsh.plugins = [ "kubectl" ];
