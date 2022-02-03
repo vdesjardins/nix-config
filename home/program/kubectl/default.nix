@@ -54,6 +54,10 @@ mkMerge [
             "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,SA:.spec.serviceAccountName'";
           kgpoall-problems =
             "kubectl get pods --all-namespaces | grep -v -P '(Running|Completed)'";
+          krmpo-evicted = "kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains(\"Evicted\")) | \"kubectl delete pods \\(.metadata.name) -n \\(.metadata.namespace)\"' | xargs -n 1 bash -c";
+
+          # deployment
+          krrd = "kubectl rollout restart deployment";
 
           # context and ns switching
           kns = "kube-ns-switch";
