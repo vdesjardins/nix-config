@@ -28,6 +28,7 @@
     unstable.rakkess # RBAC query tool
     skaffold
     starboard # security tools
+    unstable.tilt
     velero
   ] ++ lib.optionals stdenv.isLinux [
     telepresence
