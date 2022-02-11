@@ -13,10 +13,6 @@ wk.register({
       "<cmd>lua require('lspsaga.codeaction').code_action()<CR>",
       "code-action",
     },
-    R = {
-      ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>",
-      "range-code-action",
-    },
     h = { "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "hover" },
     f = { "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", "finder" },
     s = {
@@ -58,6 +54,16 @@ wk.register({
     },
   },
 }, { prefix = "<leader>" })
+
+wk.register({
+  l = {
+    name = "lsp",
+    a = {
+      ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>",
+      "range-code-action",
+    },
+  },
+}, { mode = "v", prefix = "<leader>" })
 
 -- jump
 vim.cmd("nnoremap <silent> <C-p> :Lspsaga diagnostic_jump_prev<CR>")
