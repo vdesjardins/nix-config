@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ crate2nix unstable.rust-analyzer unstable.rustup ];
+  home.packages = with pkgs; [ crate2nix fenix.rust-analyzer unstable.rustup ];
 }
