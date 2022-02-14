@@ -51,7 +51,7 @@
         colorMoved = "default";
 
         dyff = {
-          command = "dyff_between() { ${pkgs.dyff}/bin/dyff --color on between --omit-header \"$2\" \"$5\"; }; dyff_between";
+          command = "dyff_between() { ${pkgs.dyff}/bin/dyff --color on between \"$2\" \"$5\"; }; dyff_between";
         };
       };
 
