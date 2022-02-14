@@ -17,11 +17,19 @@ return require("packer").startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig"
-  use "hrsh7th/nvim-compe"
   use "tami5/lspsaga.nvim"
   use "onsails/lspkind-nvim"
   use "kosayoda/nvim-lightbulb"
   use "jose-elias-alvarez/null-ls.nvim"
+  use "ray-x/lsp_signature.nvim"
+
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-cmdline"
+  use "hrsh7th/nvim-cmp"
+  use "quangnguyen30192/cmp-nvim-ultisnips"
+  use "ray-x/cmp-treesitter"
 
   -- Debugging
   use "mfussenegger/nvim-dap"
@@ -101,6 +109,11 @@ return require("packer").startup(function(use)
 
   -- Rust
   use "simrat39/rust-tools.nvim"
+  use {
+    "saecki/crates.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function() require("crates").setup() end,
+  }
 
   -- lua
   use "folke/lua-dev.nvim"
@@ -111,6 +124,7 @@ return require("packer").startup(function(use)
     run = "cd app && yarn install",
     cmd = "MarkdownPreview",
   }
+  use "ellisonleao/glow.nvim"
 
   -- Terraform
   use "hashivim/vim-terraform"

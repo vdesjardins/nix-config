@@ -1,3 +1,6 @@
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp
+                                                                   .protocol
+                                                                   .make_client_capabilities())
 local null_ls = require "null-ls"
 -- register any number of sources simultaneously
 local sources = {
@@ -11,4 +14,4 @@ local sources = {
   null_ls.builtins.diagnostics.cppcheck,
 }
 
-null_ls.setup({ sources = sources })
+null_ls.setup({ sources = sources, capabilities = capabilities })
