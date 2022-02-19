@@ -9,6 +9,7 @@
     rnix-lsp
     nixpkgs-fmt
     nix-linter
+    statix
     nix-tree
     nix-prefetch
   ] ++ lib.optionals stdenv.isLinux [
