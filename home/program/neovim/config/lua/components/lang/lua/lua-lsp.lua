@@ -18,14 +18,6 @@ end
 -- add runtime
 add("$VIMRUNTIME")
 
--- add your config
-add("~/.config/nvim")
-
--- add plugins
--- if you're not using packer, then you might need to change the paths below
-add("~/.local/share/nvim/site/pack/packer/opt/*")
-add("~/.local/share/nvim/site/pack/packer/start/*")
-
 return {
   -- delete root from workspace to make sure we don't trigger duplicate warnings
   on_new_config = function(config, root)
