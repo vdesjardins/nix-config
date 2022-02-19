@@ -13,12 +13,12 @@ darwin.lib.darwinSystem {
       networking.hostName = hostname;
 
       imports = [
-        ../users/"${username}".nix
-      ];
-    }
-    { users.knownUsers = [ username ]; }
-    home-manager.darwinModule
-    { nixpkgs = pkgsConfig; }
-    ../../../home/users/"${username}".nix
-  ];
-}
+        ../users/${username}.nix
+        ];
+        }
+        { users.knownUsers = [ username ]; }
+        home-manager.darwinModule
+        { nixpkgs = pkgsConfig; }
+        ../../../home/users/${username}.nix
+        ];
+        }
