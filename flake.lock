@@ -286,8 +286,8 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1645205203,
-        "narHash": "sha256-39qQW2liEiKuIU/UmQjYveEFM3PHit1aOu94QYE5KxU=",
+        "lastModified": 1645298640,
+        "narHash": "sha256-g1FxQQlZ6p9c52klXm3OCNQhZJ8zu9yOvsXFTPlbgrg=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "50914902f3df6759d0e05c9287ab774aa6255192",
