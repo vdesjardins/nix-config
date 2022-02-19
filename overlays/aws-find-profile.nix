@@ -1,7 +1,7 @@
 inputs: _self: super:
 let
   rustPlatform = super.makeRustPlatform {
-    inherit (inputs.fenix.packages.${super.system}.minimal) cargo rustc;
+    inherit (inputs.fenix.packages."${super.system}".minimal) cargo rustc;
   };
 in
 {

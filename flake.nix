@@ -243,7 +243,7 @@
         );
 
       overlays = {
-        unstable = final: prev: {
+        unstable = final: _prev: {
           unstable = import inputs.unstable {
             system = final.system;
             config.allowUnfree = true;

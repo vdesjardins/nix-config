@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  comma = (pkgs.stdenv.mkDerivation {
+  comma = pkgs.stdenv.mkDerivation {
     name = "comma";
     version = "1.0.0";
 
@@ -30,7 +30,7 @@ let
       cp update-nix-index $out/bin
       cp , $out/bin
     '';
-  });
+  };
 in
 {
   programs.nix-index = {

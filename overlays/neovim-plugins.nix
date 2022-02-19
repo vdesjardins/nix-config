@@ -1,4 +1,4 @@
-inputs: self: super:
+inputs: _self: super:
 let
   inherit (builtins) getAttr listToAttrs attrNames filter match map;
   inherit (super.pkgs.lib) removePrefix;
@@ -7,8 +7,8 @@ let
   plugins = map (name: removePrefix "neovim-plugin-" name)
     (filter (name: match "^neovim-plugin-.+$" name != null) (attrNames inputs));
 
-  buildPlugin = name: buildVimPluginFrom2Nix {
-    pname = name;
+  buildPlugin = pname: buildVimPluginFrom2Nix {
+    inherit pname;
     version = "main";
     src = getAttr "neovim-plugin-${name}" inputs;
   };

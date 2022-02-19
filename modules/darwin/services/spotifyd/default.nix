@@ -3,11 +3,12 @@
   services.spotifyd = {
     enable = true;
     settings = {
+      inherit device_name;
+
       username = "vdesjardins";
 
       use_keyring = true;
 
-      device_name = device_name;
       device_type = "computer";
 
       no_audio_cache = false;
