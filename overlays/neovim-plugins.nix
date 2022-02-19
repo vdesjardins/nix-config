@@ -17,4 +17,3 @@ in
   neovimPlugins = listToAttrs
     (map (name: { inherit name; value = buildPlugin name; }) plugins);
 }
-
