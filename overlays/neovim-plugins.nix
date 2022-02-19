@@ -10,7 +10,7 @@ let
   buildPlugin = pname: buildVimPluginFrom2Nix {
     inherit pname;
     version = "main";
-    src = getAttr "neovim-plugin-${name}" inputs;
+    src = getAttr "neovim-plugin-${pname}" inputs;
   };
 in
 {
