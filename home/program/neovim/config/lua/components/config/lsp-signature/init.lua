@@ -1,2 +1,2 @@
-cfg = {}
-require"lsp_signature".setup(cfg)
+_G.cfg = {}
+require"lsp_signature".setup(_G.cfg)
