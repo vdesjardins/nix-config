@@ -1,0 +1,8 @@
+#/bin/bash
+
+export KUBECONFIG="~/.kube/config"
+
+for profile in $(aws configure list-profiles | grep AWSAdministratorAccess); do
+	echo "profile -> $profile"
+	aws eks list-clusters --profile "$profile" | jq '.clusters[]' -Mr | xargs -n1 aws eks update-kubeconfig --profile "$profile" --name 2>/dev/null
+done
