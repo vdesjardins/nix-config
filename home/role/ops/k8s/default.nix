@@ -8,6 +8,8 @@
 
   home.packages = with pkgs; [
     buildpack
+    unstable.fluxcd
+    helm-docs
     kail
     kind
     kube-capacity
@@ -25,10 +27,12 @@
     kubeval
     kube3d
     unstable.kustomize
+    unstable.popeye
     unstable.rakkess # RBAC query tool
     skaffold
     starboard # security tools
     unstable.tilt
+    trivy
     velero
   ] ++ lib.optionals stdenv.isLinux [
     telepresence
