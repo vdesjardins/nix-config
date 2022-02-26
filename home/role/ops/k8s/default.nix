@@ -27,7 +27,6 @@
     kubeval
     kube3d
     unstable.kustomize
-    unstable.popeye
     unstable.rakkess # RBAC query tool
     skaffold
     starboard # security tools
@@ -35,6 +34,7 @@
     trivy
     velero
   ] ++ lib.optionals stdenv.isLinux [
+    unstable.popeye # unable to build on darwin
     telepresence
     kubectl-sniff
   ];
