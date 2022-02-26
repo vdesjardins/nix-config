@@ -4,6 +4,7 @@
     bash
     bats
     shellcheck
+    shellharden
     shfmt
     nodePackages.bash-language-server
   ];
