@@ -4,7 +4,7 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp
 local null_ls = require "null-ls"
 -- register any number of sources simultaneously
 local sources = {
-  null_ls.builtins.formatting.lua_format,
+  null_ls.builtins.formatting.stylua,
   null_ls.builtins.formatting.shfmt,
   null_ls.builtins.diagnostics.vale,
   null_ls.builtins.diagnostics.vint,
