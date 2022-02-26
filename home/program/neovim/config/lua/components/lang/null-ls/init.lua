@@ -13,6 +13,8 @@ local sources = {
   null_ls.builtins.diagnostics.yamllint,
   null_ls.builtins.diagnostics.hadolint,
   null_ls.builtins.diagnostics.cppcheck,
+  null_ls.builtins.diagnostics.statix,
+  null_ls.builtins.code_actions.statix,
 }
 
 null_ls.setup({ sources = sources, capabilities = capabilities })
