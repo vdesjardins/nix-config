@@ -20,6 +20,7 @@
     kubectl-trace
     kubectl-view-utilization
     kubectx
+    kubelogin-oidc
     kubent
     kubernetes-helm
     kubespy
