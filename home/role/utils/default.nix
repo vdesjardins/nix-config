@@ -48,7 +48,6 @@
       iotop
       jq
       lazygit
-      lorri # nix-shell replacement
       lsof
       ps
       ripgrep
