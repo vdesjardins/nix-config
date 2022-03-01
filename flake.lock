@@ -19,11 +19,11 @@
     "aws-sso-util": {
       "flake": false,
       "locked": {
-        "lastModified": 1640296770,
-        "narHash": "sha256-ewUtRUjG0zyz6LWvxg8hvyDbHgzDhUDhbU7C7TWhUeQ=",
+        "lastModified": 1646103368,
+        "narHash": "sha256-mHAYP4Zsch1tZmMZfF9owUqiC3A/RP+i6tYmkMUhA5E=",
         "owner": "vdesjardins",
         "repo": "aws-sso-util",
-        "rev": "487bcc8fffe64aa89fc0bc0b9c6c74a3dcaa2312",
+        "rev": "bf092a21674e8286c4445df7f4aae8ad061444ca",
         "type": "github"
       },
       "original": {
@@ -286,11 +286,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1646100338,
-        "narHash": "sha256-/UJwOsrGzEqZ5Ka0i/e+Ijl6tDCuO4T3XVSb0mxu6IY=",
+        "lastModified": 1646102951,
+        "narHash": "sha256-Px5dUM2+SujfwFt2D7WXCgWJoC6Ar7Vu+AiIfBlKmb4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f7e0314364f99c43c599040a37fb811938d9176a",
+        "rev": "5360d1571f808bb36a11673f70059fa616c91c21",
         "type": "github"
       },
       "original": {
@@ -699,11 +699,11 @@
     "neovim-plugin-nvim-cmp": {
       "flake": false,
       "locked": {
-        "lastModified": 1644924861,
-        "narHash": "sha256-ywxeL1l1BuKn+DSz+NJYImdZJBaRWb3iuNLqHdfLKiQ=",
+        "lastModified": 1646101449,
+        "narHash": "sha256-X5fUhq8kF82j69dR2uykMEs6BgXxC4KWj48pH3DoeJk=",
         "owner": "hrsh7th",
         "repo": "nvim-cmp",
-        "rev": "13d64460cba64950aff41e230cc801225bd9a3e2",
+        "rev": "45e93cdf57ae52ffe6ff4d4b0d5fa09cc9fecd88",
         "type": "github"
       },
       "original": {
