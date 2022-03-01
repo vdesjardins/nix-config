@@ -7,6 +7,7 @@ local sources = {
   null_ls.builtins.formatting.stylua,
   null_ls.builtins.formatting.shfmt,
   null_ls.builtins.formatting.shellharden,
+  null_ls.builtins.diagnostics.shellcheck,
   null_ls.builtins.diagnostics.vale,
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.diagnostics.markdownlint,
@@ -15,6 +16,7 @@ local sources = {
   null_ls.builtins.diagnostics.cppcheck,
   null_ls.builtins.diagnostics.statix,
   null_ls.builtins.code_actions.statix,
+  null_ls.builtins.code_actions.shellcheck,
 }
 
 null_ls.setup({ sources = sources, capabilities = capabilities })
