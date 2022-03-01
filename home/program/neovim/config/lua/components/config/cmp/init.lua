@@ -38,8 +38,8 @@ cmp.setup({
     -- { name = 'luasnip' }, -- For luasnip users.
     { name = "ultisnips" }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
-    { name = "treesitter" }, -- For ultisnips users.
-    { name = "crates" }, -- For ultisnips users.
+    { name = "treesitter" },
+    { name = "crates" },
   }, { { name = "buffer" } }),
 })
 
