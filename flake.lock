@@ -840,6 +840,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-nvim-treesitter-textobjects": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645909335,
+        "narHash": "sha256-bSxY0DGRK2h76/S9puanqVeuOT69Hdcpsfy1FwzMr6U=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
+        "rev": "4a3363d5e4d68ac9e040a90cecca0afd290be12c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
+        "type": "github"
+      }
+    },
     "neovim-plugin-nvim-ts-autotag": {
       "flake": false,
       "locked": {
@@ -1416,6 +1432,7 @@
         "neovim-plugin-nvim-neoclip-lua": "neovim-plugin-nvim-neoclip-lua",
         "neovim-plugin-nvim-tree-lua": "neovim-plugin-nvim-tree-lua",
         "neovim-plugin-nvim-treesitter": "neovim-plugin-nvim-treesitter",
+        "neovim-plugin-nvim-treesitter-textobjects": "neovim-plugin-nvim-treesitter-textobjects",
         "neovim-plugin-nvim-ts-autotag": "neovim-plugin-nvim-ts-autotag",
         "neovim-plugin-nvim-ts-context-commentstring": "neovim-plugin-nvim-ts-context-commentstring",
         "neovim-plugin-nvim-ts-rainbow": "neovim-plugin-nvim-ts-rainbow",

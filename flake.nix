@@ -90,6 +90,8 @@
     ## Treesitter
     neovim-plugin-nvim-treesitter.url = "github:nvim-treesitter/nvim-treesitter";
     neovim-plugin-nvim-treesitter.flake = false;
+    neovim-plugin-nvim-treesitter-textobjects.url = "github:nvim-treesitter/nvim-treesitter-textobjects";
+    neovim-plugin-nvim-treesitter-textobjects.flake = false;
     neovim-plugin-nvim-ts-rainbow.url = "github:p00f/nvim-ts-rainbow";
     neovim-plugin-nvim-ts-rainbow.flake = false;
     neovim-plugin-indent-blankline-nvim.url = "github:lukas-reineke/indent-blankline.nvim";
