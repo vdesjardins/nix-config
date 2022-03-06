@@ -9,15 +9,18 @@ darwin.lib.darwinSystem {
   modules = [
     ../shared
     {
+      homebrew.casks = [ "karabiner-elements" "raycast" "Rectangle" ];
+    }
+    {
       networking.hostName = hostname;
 
       imports = [
-        ../users/${username}.nix
+        (../users + "/${username}.nix")
       ];
     }
     { users.knownUsers = [ username ]; }
     home-manager.darwinModule
     { nixpkgs = pkgsConfig; }
-    ../../../home/users/${username}.nix
+    (../../../home/users+ "/${username}.nix")
   ];
 }

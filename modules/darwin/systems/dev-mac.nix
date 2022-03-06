@@ -8,17 +8,20 @@ darwin.lib.darwinSystem {
   inherit inputs;
   modules = [
     ../shared
+    {
+      homebrew.casks = [ "karabiner-elements" "raycast" "google-chrome" "Rectangle" "docker" "utm" ];
+    }
     (import ../services/spotifyd { device_name = hostname; })
     {
       networking.hostName = hostname;
 
       imports = [
-        ../users/${username}.nix
-        ];
-        }
-        { users.knownUsers = [ username ]; }
-        home-manager.darwinModule
-        { nixpkgs = pkgsConfig; }
-        ../../../home/users/${username}.nix
-        ];
-        }
+        (../users + "/${username}.nix")
+      ];
+    }
+    { users.knownUsers = [ username ]; }
+    home-manager.darwinModule
+    { nixpkgs = pkgsConfig; }
+    (../../../home/users + "/${username}.nix")
+  ];
+}
