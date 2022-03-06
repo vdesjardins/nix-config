@@ -286,11 +286,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1646523963,
-        "narHash": "sha256-ixFwYnaOycrzs0iN9RvyRMEGCkQ9Pj58x6V/qc2khy8=",
+        "lastModified": 1646534242,
+        "narHash": "sha256-tXNEOFwoGugv3ARLIaL+Dwj8ZD67PT907cWnvScx46I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a173e92ee458878651356b9bcfb1e2b5145f76af",
+        "rev": "b358735cd6c907d5b4a624c67e6b02701750d0bb",
         "type": "github"
       },
       "original": {
@@ -635,11 +635,11 @@
     "neovim-plugin-lualine-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1646487668,
-        "narHash": "sha256-//YxhMoqsGuUe7REo2np0I1n5ng7Mi7bvDr/SqWiVco=",
+        "lastModified": 1646532679,
+        "narHash": "sha256-7XIx0ElpCX0e8R2xPp3K7r6jaIRWTnd55PgWFkh2mMI=",
         "owner": "hoob3rt",
         "repo": "lualine.nvim",
-        "rev": "a1304ea8b6c8d4695ead615662c0a977df17cf50",
+        "rev": "d2e0ac595b8e315b454f4384edb2eba7807a8401",
         "type": "github"
       },
       "original": {
@@ -683,11 +683,11 @@
     "neovim-plugin-nvim-bqf": {
       "flake": false,
       "locked": {
-        "lastModified": 1646049684,
-        "narHash": "sha256-OFTt/NMZCR70e067YmbKb7DQInNCLczIXxJMz2JWqyU=",
+        "lastModified": 1646531562,
+        "narHash": "sha256-3BGOCpyX0KN3XgxTuGjIubZ8TWke5KKfF/Qr7h3jy5A=",
         "owner": "kevinhwang91",
         "repo": "nvim-bqf",
-        "rev": "bbe21d08c9f8372aa399ea8c3051763ab777f176",
+        "rev": "dcb8a8762d9c93ddf7dc8f06009299c0bf11a14c",
         "type": "github"
       },
       "original": {
