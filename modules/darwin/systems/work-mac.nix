@@ -21,6 +21,6 @@ darwin.lib.darwinSystem {
     { users.knownUsers = [ username ]; }
     home-manager.darwinModule
     { nixpkgs = pkgsConfig; }
-    (../../../home/users+ "/${username}.nix")
+    (../../../home/users + "/${username}.nix")
   ];
 }
