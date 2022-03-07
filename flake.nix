@@ -42,6 +42,8 @@
     kube-lineage.flake = false;
     kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.8";
     kubectl-blame.flake = false;
+    kubernetes.url = "github:/kubernetes/kubernetes";
+    kubernetes.flake = false;
     # TODO: does not work yet, submodule fetching should be supported after 2.4
     # is released
     # lua-format.url = "github:/Koihik/LuaFormatter";

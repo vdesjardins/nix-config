@@ -6,7 +6,7 @@ mkMerge [
     mkIf config.programs.zsh.enable {
       home.packages = with pkgs; [
         unstable.dyff
-        kubectl
+        unstable.kubectl
         gawk
         fzf
         jq
