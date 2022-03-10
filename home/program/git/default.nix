@@ -62,7 +62,11 @@
 
       pull = { rebase = true; };
 
-      branch = { autosetuprebase = "always"; };
+      fetch = { prune = true; };
+
+      branch = {
+        autosetuprebase = "always";
+      };
 
       rebase = {
         rebase = true;
