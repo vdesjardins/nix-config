@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function gcp-list-ip() {
+	projects=$(gcloud projects list --format 'table[no-heading](projectId)')
+	for p in "${projects[@]}"; do
+		if gcloud services list --project "$p" | grep compute.googleapis.com >/dev/null 2>&1; then
+			result=$(gcloud compute addresses list --project "$p" 2>&1)
+			if [[ $result != "Listed 0 items." ]]; then
+				echo "***** $p *****"
+				echo "$result"
+			fi
+		fi
+	done
+}

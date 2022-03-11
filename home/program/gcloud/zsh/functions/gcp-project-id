@@ -1,0 +1,6 @@
+#!/bin/bash
+
+function gcp-project-id() {
+	local project=${1:?project name madatory}
+	gcloud projects list | grep "$project" | awk '{ print $1; }'
+}
