@@ -16,8 +16,8 @@ mkMerge [
         '';
       };
 
-      xdg.configFile."zsh/functions/aws_profile".source =
-        ./zsh/functions/aws_profile;
+      xdg.configFile."zsh/functions/aws-profile".source =
+        ./zsh/functions/aws-profile;
     }
   )
 ]
