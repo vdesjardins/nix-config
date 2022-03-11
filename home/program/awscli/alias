@@ -2,7 +2,18 @@
 
 whoami = sts get-caller-identity
 
-il = ec2 describe-instances \
+li = ec2 describe-instances \
+      --output table \
+      --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PrivateDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
+
+lit = ec2 describe-instances \
+      --output text \
+      --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PrivateDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
+
+lip = ec2 describe-instances \
       --output table \
       --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PublicDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
 
+lipt = ec2 describe-instances \
+      --output table \
+      --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PublicDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
