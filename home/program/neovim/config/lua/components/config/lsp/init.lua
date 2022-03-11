@@ -1,39 +1,39 @@
-vim.cmd(
-  "command! -nargs=0 LspVirtualTextToggle lua require(\"lsp/virtual_text\").toggle()")
+vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
-  "   (Text) ",
-  "   (Method)",
-  "   (Function)",
-  "   (Constructor)",
-  " ﴲ  (Field)",
-  "[] (Variable)",
-  "   (Class)",
-  " ﰮ  (Interface)",
-  "   (Module)",
-  " 襁 (Property)",
-  "   (Unit)",
-  "   (Value)",
-  " 練 (Enum)",
-  "   (Keyword)",
-  " ﬌  (Snippet)",
-  "   (Color)",
-  "   (File)",
-  "   (Reference)",
-  "   (Folder)",
-  "   (EnumMember)",
-  " ﲀ  (Constant)",
-  " ﳤ  (Struct)",
-  "   (Event)",
-  "   (Operator)",
-  "   (TypeParameter)",
+	"   (Text) ",
+	"   (Method)",
+	"   (Function)",
+	"   (Constructor)",
+	" ﴲ  (Field)",
+	"[] (Variable)",
+	"   (Class)",
+	" ﰮ  (Interface)",
+	"   (Module)",
+	" 襁 (Property)",
+	"   (Unit)",
+	"   (Value)",
+	" 練 (Enum)",
+	"   (Keyword)",
+	" ﬌  (Snippet)",
+	"   (Color)",
+	"   (File)",
+	"   (Reference)",
+	"   (Folder)",
+	"   (EnumMember)",
+	" ﲀ  (Constant)",
+	" ﳤ  (Struct)",
+	"   (Event)",
+	"   (Operator)",
+	"   (TypeParameter)",
 }
 
 local function documentHighlight(client, _bufnr)
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec([[
+	-- Set autocommands conditional on server_capabilities
+	if client.resolved_capabilities.document_highlight then
+		vim.api.nvim_exec(
+			[[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
@@ -42,39 +42,41 @@ local function documentHighlight(client, _bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]], false)
-  end
+    ]],
+			false
+		)
+	end
 end
 local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
-  documentHighlight(client, bufnr)
+	documentHighlight(client, bufnr)
 end
 
 function lsp_config.tsserver_on_attach(client, bufnr)
-  lsp_config.common_on_attach(client, bufnr)
-  client.resolved_capabilities.document_formatting = false
+	lsp_config.common_on_attach(client, bufnr)
+	client.resolved_capabilities.document_formatting = false
 end
 
 vim.fn.sign_define("DiagnosticSignError", {
-  text = " ",
-  numhl = "DiagnosticSignError",
-  texthl = "DiagnosticSignError",
+	text = " ",
+	numhl = "DiagnosticSignError",
+	texthl = "DiagnosticSignError",
 })
 vim.fn.sign_define("DiagnosticSignWarn", {
-  text = " ",
-  numhl = "DiagnosticSignWarn",
-  texthl = "DiagnosticSignWarn",
+	text = " ",
+	numhl = "DiagnosticSignWarn",
+	texthl = "DiagnosticSignWarn",
 })
 vim.fn.sign_define("DiagnosticSignInfo", {
-  text = " ",
-  numhl = "DiagnosticSignInfo",
-  texthl = "DiagnosticSignInfo",
+	text = " ",
+	numhl = "DiagnosticSignInfo",
+	texthl = "DiagnosticSignInfo",
 })
 vim.fn.sign_define("DiagnosticSignHint", {
-  text = " ",
-  numhl = "DiagnosticSignHint",
-  texthl = "DiagnosticSignHint",
+	text = " ",
+	numhl = "DiagnosticSignHint",
+	texthl = "DiagnosticSignHint",
 })
 
 return lsp_config

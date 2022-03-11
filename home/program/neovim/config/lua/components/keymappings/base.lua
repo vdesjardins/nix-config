@@ -1,5 +1,4 @@
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>",
-                        { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 
 -- better window movement
@@ -11,10 +10,8 @@ vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
 -- resize with arrows
 vim.api.nvim_set_keymap("n", "<C-Up>", "resize -2<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-Down>", "resize +2<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-Left>", "vertical resize -2<CR>",
-                        { silent = true })
-vim.api.nvim_set_keymap("n", "<C-Right>", "vertical resize +2<CR>",
-                        { silent = true })
+vim.api.nvim_set_keymap("n", "<C-Left>", "vertical resize -2<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-Right>", "vertical resize +2<CR>", { silent = true })
 
 -- Switch quicky for pasting text in a SSH session.
 vim.o.pastetoggle = "<F2>"

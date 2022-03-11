@@ -1,5 +1,5 @@
 -- TODO: we cannot store lua functions in vimscript variables. Leave it full vimscript for now
-vim.cmd [[
+vim.cmd([[
 " returns all modified files of the current git repo
 " `2>/dev/null` makes the command fail quietly, so that when we are not
 " in a git repo, the list will be empty
@@ -15,4 +15,4 @@ function! StartifyGitUntracked()
 endfunction
 
 let g:startify_lists = [ { 'type': 'files',     'header': ['   MRU'] }, { 'type': 'dir',       'header': ['   MRU '. getcwd()] }, { 'type': 'sessions',  'header': ['   Sessions'] }, { 'type': 'bookmarks', 'header': ['   Bookmarks'] }, { 'type': function('StartifyGitModified'),  'header': ['   git modified'] }, { 'type': function('StartifyGitUntracked'), 'header': ['   git untracked'] }, { 'type': 'commands',  'header': ['   Commands'] }, ]
-]]
+]])

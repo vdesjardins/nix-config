@@ -32,7 +32,7 @@ vim.wo.listchars = "tab:▸ ,eol:¬"
 
 -- Those commands must be executed using `vim.cmd` due to:
 --     https://github.com/neovim/neovim/issues/12978
-vim.cmd [[
+vim.cmd([[
 set autoindent
 set expandtab
 set shiftwidth=4
@@ -59,7 +59,7 @@ augroup myfiletypes_group
   autocmd FileType jproperties set ai sw=2 sts=2 et
   autocmd FileType xml set ai sw=4 sts=4 et
 augroup END
-]]
+]])
 
 -- show extra whitespaces
-vim.cmd [[ highlight ExtraWhitespace ctermbg=167 guibg=#fb4934 ]]
+vim.cmd([[ highlight ExtraWhitespace ctermbg=167 guibg=#fb4934 ]])
