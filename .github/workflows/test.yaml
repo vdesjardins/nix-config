@@ -81,10 +81,10 @@ jobs:
         with:
           name: vdesjardins
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Run lua-format
+      - name: Run stylua
         run: |
-          nix build .#luaformatter
-          find . -type f -name "*.lua" -exec ./result/bin/lua-format -i --config=".lua-format" {} +
+          nix build .#stylua
+          find . -type f -name "*.lua" -exec ./result/bin/stylua {} +
         shell: bash
       - name: Fails if files modified
         run: git diff --quiet
