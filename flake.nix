@@ -44,11 +44,6 @@
     kubectl-blame.flake = false;
     kubernetes.url = "github:/kubernetes/kubernetes";
     kubernetes.flake = false;
-    # TODO: does not work yet, submodule fetching should be supported after 2.4
-    # is released
-    # lua-format.url = "github:/Koihik/LuaFormatter";
-    # lua-format.flake = false;
-    # lua-format.submodules = true;
 
     ## LSP
     neovim-plugin-nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
