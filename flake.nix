@@ -120,6 +120,8 @@
 
     neovim-plugin-telescope-nvim.url = "github:nvim-telescope/telescope.nvim";
     neovim-plugin-telescope-nvim.flake = false;
+    neovim-plugin-telescope-ui-select.url = "github:nvim-telescope/telescope-ui-select.nvim";
+    neovim-plugin-telescope-ui-select.flake = false;
 
     ## Misc
     neovim-plugin-which-key-nvim.url = "github:folke/which-key.nvim";

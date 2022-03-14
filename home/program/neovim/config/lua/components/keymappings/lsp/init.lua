@@ -10,7 +10,7 @@ wk.register({
 			r = { "<cmd>lua vim.lsp.buf.references()<cr>", "references" },
 		},
 		a = {
-			"<cmd>lua require('lspsaga.codeaction').code_action()<CR>",
+			"<cmd>lua vim.lsp.buf.code_action()<CR>",
 			"code-action",
 		},
 		h = { "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "hover" },
@@ -59,7 +59,7 @@ wk.register({
 	l = {
 		name = "lsp",
 		a = {
-			":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>",
+			":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
 			"range-code-action",
 		},
 	},

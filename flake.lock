@@ -1032,6 +1032,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-telescope-ui-select": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646451539,
+        "narHash": "sha256-6N8PeTEixYCYZe+b5P8K1gqCqddmDfg9Rt9jUyCV97w=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-ui-select.nvim",
+        "rev": "eadc72ef0962c605662fe43cf3e2eca8357ed0ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-ui-select.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-trouble-nvim": {
       "flake": false,
       "locked": {
@@ -1460,6 +1476,7 @@
         "neovim-plugin-rust-tools": "neovim-plugin-rust-tools",
         "neovim-plugin-telescope-dap": "neovim-plugin-telescope-dap",
         "neovim-plugin-telescope-nvim": "neovim-plugin-telescope-nvim",
+        "neovim-plugin-telescope-ui-select": "neovim-plugin-telescope-ui-select",
         "neovim-plugin-trouble-nvim": "neovim-plugin-trouble-nvim",
         "neovim-plugin-ultisnips": "neovim-plugin-ultisnips",
         "neovim-plugin-vim-bbye": "neovim-plugin-vim-bbye",
