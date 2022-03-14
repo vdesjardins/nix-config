@@ -653,13 +653,13 @@
       "locked": {
         "lastModified": 1646668162,
         "narHash": "sha256-F7R5V70ta/9s9qn+QkZtk5AFb/PfKtuOqPHP/Y6/WHI=",
-        "owner": "hoob3rt",
+        "owner": "nvim-lualine",
         "repo": "lualine.nvim",
         "rev": "88a44ade818f9ee7ba730aa4096250e22b243808",
         "type": "github"
       },
       "original": {
-        "owner": "hoob3rt",
+        "owner": "nvim-lualine",
         "repo": "lualine.nvim",
         "type": "github"
       }

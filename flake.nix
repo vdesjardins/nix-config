@@ -101,7 +101,7 @@
     neovim-plugin-nvim-ts-autotag.flake = false;
 
     ## status line
-    neovim-plugin-lualine-nvim.url = "github:hoob3rt/lualine.nvim";
+    neovim-plugin-lualine-nvim.url = "github:nvim-lualine/lualine.nvim";
     neovim-plugin-lualine-nvim.flake = false;
 
     ## git
