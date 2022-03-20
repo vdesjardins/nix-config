@@ -2,7 +2,7 @@
 let
   wezterm_text = builtins.readFile ./wezterm.lua;
   wezterm_config = builtins.replaceStrings [ "@homeDirectory@" ] [ config.home.homeDirectory ] wezterm_text;
-  pkg_wezterm = pkgs.unstable.wezterm;
+  pkg_wezterm = pkgs.master.wezterm;
 in
 {
   home.packages = [ pkg_wezterm ];
