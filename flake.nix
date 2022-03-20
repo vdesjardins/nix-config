@@ -4,7 +4,7 @@
   inputs = {
     # Packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
-    unstable.url = "nixpkgs/nixos-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     fenix.url = "github:/nix-community/fenix";
 
