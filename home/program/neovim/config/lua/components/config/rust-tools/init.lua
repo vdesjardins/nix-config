@@ -1,10 +1,15 @@
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 require("rust-tools").setup({
-	tools = {
-		autoSetHints = true,
-		runnables = { use_telescope = true },
-		inlay_hints = { show_parameter_hints = true },
-		hover_actions = { auto_focus = true },
+	server = {
+		cmd = { "rust-analyzer" },
+		on_attach = require("components.config.lsp").common_on_attach,
+		capabilities = capabilities,
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = {
+					command = "clippy",
+				},
+			},
+		},
 	},
-
-	server = { flags = { debounce_text_changes = 150 } },
 })

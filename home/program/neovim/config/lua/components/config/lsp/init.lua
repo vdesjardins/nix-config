@@ -79,4 +79,43 @@ vim.fn.sign_define("DiagnosticSignHint", {
 	texthl = "DiagnosticSignHint",
 })
 
+-- keybindings
+local wk = require("which-key")
+wk.register({
+	l = {
+		name = "lsp",
+		g = {
+			name = "goto",
+			d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go-to-definition" },
+			D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go-to-declaration" },
+			i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go-to-implementation" },
+			r = { "<cmd>lua vim.lsp.buf.references()<cr>", "references" },
+		},
+		a = {
+			"<cmd>lua vim.lsp.buf.code_action()<CR>",
+			"code-action",
+		},
+		e = {
+			name = "code-lens",
+			r = { "<Cmd>lua vim.lsp.codelens.refresh()<CR>", "refresh" },
+			a = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "run" },
+		},
+	},
+}, { prefix = "<leader>" })
+
+wk.register({
+	l = {
+		name = "lsp",
+		a = {
+			":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
+			"range-code-action",
+		},
+	},
+}, { mode = "v", prefix = "<leader>" })
+
+vim.cmd("nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>")
+vim.cmd("nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>")
+vim.cmd("nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>")
+vim.cmd("nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>")
+
 return lsp_config
