@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     delve
-    go_1_17
+    unstable.go_1_18
     gocode
     gopls
     unstable.gokart
