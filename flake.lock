@@ -568,6 +568,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-leap-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648212674,
+        "narHash": "sha256-wNyPj0B+BUMr8WQ5y45jWXOaLF94/dmmbIImrMBbsvk=",
+        "owner": "ggandor",
+        "repo": "leap.nvim",
+        "rev": "6f741487768a162ce9e38d843c04093d8d2a1b44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ggandor",
+        "repo": "leap.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-lsp-rooter-nvim": {
       "flake": false,
       "locked": {
@@ -1447,6 +1463,7 @@
         "neovim-plugin-gitsigns-nvim": "neovim-plugin-gitsigns-nvim",
         "neovim-plugin-glow-nvim": "neovim-plugin-glow-nvim",
         "neovim-plugin-indent-blankline-nvim": "neovim-plugin-indent-blankline-nvim",
+        "neovim-plugin-leap-nvim": "neovim-plugin-leap-nvim",
         "neovim-plugin-lsp-rooter-nvim": "neovim-plugin-lsp-rooter-nvim",
         "neovim-plugin-lsp-signature-nvim": "neovim-plugin-lsp-signature-nvim",
         "neovim-plugin-lspkind-nvim": "neovim-plugin-lspkind-nvim",

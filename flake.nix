@@ -164,6 +164,8 @@
     neovim-plugin-vim-grepper.flake = false;
     neovim-plugin-vim-surround.url = "github:tpope/vim-surround";
     neovim-plugin-vim-surround.flake = false;
+    neovim-plugin-leap-nvim.url = "github:ggandor/leap.nvim";
+    neovim-plugin-leap-nvim.flake = false;
 
     ## Snippets
     neovim-plugin-ultisnips.url = "github:SirVer/ultisnips";
