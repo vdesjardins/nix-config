@@ -21,7 +21,7 @@ let
       });
   };
 
-  pkgNeovim = pkgs.wrapNeovim pkgs.unstable.neovim-unwrapped
+  pkgNeovim = pkgs.wrapNeovim pkgs.neovim-nightly
     {
       viAlias = true;
       vimAlias = true;
