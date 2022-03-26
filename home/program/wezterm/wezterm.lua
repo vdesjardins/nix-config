@@ -17,7 +17,6 @@ local config = {
 		},
 	},
 
-	-- LuaFormatter off
 	keys = {
 		-- panes
 		{ key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
@@ -70,12 +69,11 @@ local config = {
 		{ key = "r", mods = "LEADER", action = "ReloadConfiguration" },
 		{ key = "l", mods = "CTRL", action = wezterm.action({ ClearScrollback = "ScrollbackAndViewport" }) },
 		{ key = "[", mods = "LEADER", action = "ActivateCopyMode" },
-		{ key = "E", mods = "LEADER", action = wezterm.action({ EmitEvent = "open_in_vim" }) },
+		{ key = "E", mods = "LEADER", action = wezterm.action({ EmitEvent = "open-in-vim" }) },
 
 		-- selection
 		{ key = "S", mods = "LEADER|SHIFT", action = "QuickSelect" },
 	},
-	-- LuaFormatter on
 }
 
 wezterm.on("update-right-status", function(window, pane)
@@ -145,7 +143,7 @@ wezterm.on("update-right-status", function(window, pane)
 	window:set_right_status(wezterm.format(elements))
 end)
 
-wezterm.on("open_in_vim", function(window, pane)
+wezterm.on("open-in-vim", function(window, pane)
 	local filename = os.tmpname() .. "_hist"
 	local file = io.open(filename, "w")
 	file:write(pane:get_logical_lines_as_text(3000))
@@ -157,6 +155,25 @@ wezterm.on("open_in_vim", function(window, pane)
 		}),
 		pane
 	)
+end)
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	if tab.is_active then
+		return {
+			{ Text = " " .. tab.active_pane.title .. " " },
+		}
+	end
+
+	for _, pane in ipairs(tab.panes) do
+		if pane.has_unseen_output then
+			return {
+				{ Background = { Color = "orange" } },
+				{ Text = " " .. tab.active_pane.title .. " " },
+			}
+		end
+	end
+
+	return tab.active_pane.title
 end)
 
 return config
