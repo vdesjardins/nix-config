@@ -1,7 +1,5 @@
 { pkgs, ... }:
 let
-  inherit (pkgs.lib) attrsets;
-
   nvimConfig = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-config";
     src = ./config;
@@ -57,7 +55,4 @@ in
       ripgrep
       vale # syntax-aware linter for prose
     ];
-
-  xdg.configFile."nvim/lua".source = config/lua;
-  xdg.configFile."nvim/init.lua".source = config/init.lua;
 }
