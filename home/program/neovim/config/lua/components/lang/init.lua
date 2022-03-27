@@ -9,6 +9,7 @@ require("components.lang.yaml")
 require("components.lang.cpp")
 require("components.lang.bash")
 require("components.lang.null-ls")
+require("components.lang.rust")
 
 vim.cmd("autocmd BufWritePre * lua _G.LangFormatBuffer()")
 
