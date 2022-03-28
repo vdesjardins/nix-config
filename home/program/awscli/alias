@@ -2,18 +2,27 @@
 
 whoami = sts get-caller-identity
 
+# list ec2 instances
 li = ec2 describe-instances \
       --output table \
       --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PrivateDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
 
+# list ec2 instances - text output
 lit = ec2 describe-instances \
       --output text \
       --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PrivateDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
 
+# list public ec2 instances
 lip = ec2 describe-instances \
       --output table \
       --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PublicDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
 
+# list public ec2 instances - text output
 lipt = ec2 describe-instances \
-      --output table \
+      --output text \
       --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PublicDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`,State: State.Name}'
+
+# max ENI and IP
+maxeni = ec2 describe-instance-types \
+      --output table \
+      --query "InstanceTypes[].{Type: InstanceType, MaxENI: NetworkInfo.MaximumNetworkInterfaces, IPv4addr: NetworkInfo.Ipv4AddressesPerInterface}"
