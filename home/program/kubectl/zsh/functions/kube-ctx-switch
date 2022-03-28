@@ -1,64 +1,66 @@
 #!/bin/bash
 # Create a new Tmux session with dedicated kube config
 function kube-ctx-switch() {
-	local context=$1
-	export KUBECONFIG=~/.kube/config
+	(
+		local context=$1
+		export KUBECONFIG=~/.kube/config
 
-	if [[ $context == "" ]]; then
-		context=$(kubectl config get-contexts | tail -n +2 | awk '{ print $2; }' | fzf-tmux -p 50%,20% --border)
-	fi
-
-	if [[ $context == "" ]]; then
-		echo "no context provided."
-		return 1
-	fi
-
-	context_alias="$context"
-
-	# check if context is EKS
-	local aws_context=""
-	local aws_profile=""
-	local aws_account_id=""
-	aws_account_id=$(echo "$context" | awk -F':' '{ print $5; }')
-	if [[ $aws_account_id != "" ]]; then
-		if command -v aws-config-parser &>/dev/null; then
-			aws_profile="$(aws-config-parser --id $aws_account_id | fzf-tmux -p 50%,20% --border)"
-			aws_context="export AWS_PROFILE=$aws_profile"
+		if [[ $context == "" ]]; then
+			context=$(kubectl config get-contexts | tail -n +2 | awk '{ print $2; }' | fzf-tmux -p 50%,20% --border)
 		fi
-		context_alias=$(echo "$context" | awk -F'/' '{ print $2; }')
-	fi
 
-	# check if context is GKE
-	if [[ $context == gke_* ]]; then
-		context_alias=$(echo "$context" | awk -F'_' '{ print $4; }')
-	fi
+		if [[ $context == "" ]]; then
+			echo "no context provided."
+			return 1
+		fi
 
-	local session_name="➜ $context_alias"
+		context_alias="$context"
 
-	tmux list-session | cut -d':' -f1 | grep "$session_name" &>/dev/null
-	local list_status=$?
-	if [[ $list_status == 0 ]]; then
-		tmux switch-client -t "$session_name"
-		return
-	fi
+		# check if context is EKS
+		local aws_context=""
+		local aws_profile=""
+		local aws_account_id=""
+		aws_account_id=$(echo "$context" | awk -F':' '{ print $5; }')
+		if [[ $aws_account_id != "" ]]; then
+			if command -v aws-config-parser &>/dev/null; then
+				aws_profile="$(aws-config-parser --id "$aws_account_id" | fzf-tmux -p 50%,20% --border)"
+				aws_context="export AWS_PROFILE=$aws_profile"
+			fi
+			context_alias=$(echo "$context" | awk -F'/' '{ print $2; }')
+		fi
 
-	local dir=~/.config/my-kubeconfig
-	mkdir -p $dir
-	local kubeconfig="$dir/$context_alias-config"
-	local startup_script="$dir/$context_alias-startup-script.sh"
-	cp ~/.kube/config "$kubeconfig"
+		# check if context is GKE
+		if [[ $context == gke_* ]]; then
+			context_alias=$(echo "$context" | awk -F'_' '{ print $4; }')
+		fi
 
-	printf "\
+		local session_name="➜ $context_alias"
+
+		tmux list-session | cut -d':' -f1 | grep "$session_name" &>/dev/null
+		local list_status=$?
+		if [[ $list_status == 0 ]]; then
+			tmux switch-client -t "$session_name"
+			return
+		fi
+
+		local dir=~/.config/my-kubeconfig
+		mkdir -p "$dir"
+		local kubeconfig="$dir/$context_alias-config"
+		local startup_script="$dir/$context_alias-startup-script.sh"
+		cp ~/.kube/config "$kubeconfig"
+
+		printf "\
 #!/usr/bin/env zsh
 %s
 export KUBECONFIG=%s
 kubectl config use-context %s
 zsh" "$aws_context" "$kubeconfig" "$context" >"$startup_script"
 
-	chmod +x "$startup_script"
+		chmod +x "$startup_script"
 
-	tmux new-session -d -s "$session_name" "$startup_script"
-	tmux setenv -t "$session_name" KUBECONFIG "$kubeconfig"
-	tmux setenv -t "$session_name" AWS_PROFILE "$aws_profile"
-	tmux switch-client -t "$session_name"
+		tmux new-session -d -s "$session_name" "$startup_script"
+		tmux setenv -t "$session_name" KUBECONFIG "$kubeconfig"
+		tmux setenv -t "$session_name" AWS_PROFILE "$aws_profile"
+		tmux switch-client -t "$session_name"
+	)
 }
