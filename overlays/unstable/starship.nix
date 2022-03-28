@@ -11,21 +11,19 @@ in
 {
   starship = rustPlatform.buildRustPackage rec {
     pname = "starship";
-    version = "1.4.2";
+    version = "1.5.4";
 
     src = fetchFromGitHub {
       owner = "starship";
       repo = pname;
       rev = "v${version}";
-      sha256 = "sha256-eCttQQ6pL8qkA1+O5p0ufsQo5vcypOEYxq+fNhyrdCo=";
+      sha256 = "sha256-nLzqfSRmA+D310MDvX+g8nNsoaiSixG+j+g87CPzYMs=";
     };
 
     nativeBuildInputs = [ installShellFiles ] ++ lib.optionals stdenv.isLinux [ pkg-config ];
 
     buildInputs = lib.optionals stdenv.isLinux [ openssl ]
       ++ lib.optionals stdenv.isDarwin [ libiconv Security Foundation ];
-
-    buildFeatures = lib.optional (!stdenv.isDarwin) "notify-rust";
 
     postInstall = ''
       for shell in bash fish zsh; do
@@ -34,7 +32,7 @@ in
       done
     '';
 
-    cargoSha256 = "sha256-QO1zch9b74lFmlgIbktTrxgtRh5lZ6+c9niy81SZK0Q=";
+    cargoSha256 = "sha256-FXzAvO11NIr6dxF2OeV5XJWHG2kgZiASuBnoC6mSps8=";
 
     preCheck = ''
       HOME=$TMPDIR
@@ -44,7 +42,7 @@ in
       inherit (nixosTests) starship;
     };
 
-    NIX_CFLAGS_COMPILE = [
+    NIX_CFLAGS_COMPILE = lib.optional stdenv.isDarwin [
       # disable modules, otherwise we get redeclaration errors
       "-fno-modules"
     ];
