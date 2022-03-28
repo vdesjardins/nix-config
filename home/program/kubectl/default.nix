@@ -56,6 +56,7 @@ mkMerge [
             "kubectl get pods --all-namespaces | grep -v -P '(Running|Completed)'";
           krmpo-evicted = "kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains(\"Evicted\")) | \"kubectl delete pods \\(.metadata.name) -n \\(.metadata.namespace)\"' | xargs -n 1 bash -c";
 
+          kgpons = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeSelector'";
           # deployment
           krrd = "kubectl rollout restart deployment";
 
