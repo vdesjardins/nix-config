@@ -504,22 +504,6 @@
         "type": "github"
       }
     },
-    "neovim-plugin-github-nvim-theme": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1648031776,
-        "narHash": "sha256-8N7y2Swhgy1N9nVmuh3KJq0666zUEt5TIeU4SmYYn50=",
-        "owner": "projekt0n",
-        "repo": "github-nvim-theme",
-        "rev": "61b7bb601554ed45a0ce0be8c909373c837b042e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "projekt0n",
-        "repo": "github-nvim-theme",
-        "type": "github"
-      }
-    },
     "neovim-plugin-gitsigns-nvim": {
       "flake": false,
       "locked": {
@@ -1064,6 +1048,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-tokyo-night": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1640940199,
+        "narHash": "sha256-EUiuGaX//mqv8v+UWfOQwxvV6UaQq1ZjdlqOpQAE7+c=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "8223c970677e4d88c9b6b6d81bda23daf11062bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-trouble-nvim": {
       "flake": false,
       "locked": {
@@ -1459,7 +1459,6 @@
         "neovim-plugin-cmp-treesitter": "neovim-plugin-cmp-treesitter",
         "neovim-plugin-crates": "neovim-plugin-crates",
         "neovim-plugin-git-blame-nvim": "neovim-plugin-git-blame-nvim",
-        "neovim-plugin-github-nvim-theme": "neovim-plugin-github-nvim-theme",
         "neovim-plugin-gitsigns-nvim": "neovim-plugin-gitsigns-nvim",
         "neovim-plugin-glow-nvim": "neovim-plugin-glow-nvim",
         "neovim-plugin-indent-blankline-nvim": "neovim-plugin-indent-blankline-nvim",
@@ -1494,6 +1493,7 @@
         "neovim-plugin-telescope-dap": "neovim-plugin-telescope-dap",
         "neovim-plugin-telescope-nvim": "neovim-plugin-telescope-nvim",
         "neovim-plugin-telescope-ui-select": "neovim-plugin-telescope-ui-select",
+        "neovim-plugin-tokyo-night": "neovim-plugin-tokyo-night",
         "neovim-plugin-trouble-nvim": "neovim-plugin-trouble-nvim",
         "neovim-plugin-ultisnips": "neovim-plugin-ultisnips",
         "neovim-plugin-vim-bbye": "neovim-plugin-vim-bbye",

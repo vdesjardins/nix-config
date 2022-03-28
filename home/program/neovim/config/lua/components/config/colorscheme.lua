@@ -1,1 +1,1 @@
-require("github-theme").setup()
+vim.cmd([[colorscheme tokyonight]])
