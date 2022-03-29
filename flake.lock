@@ -271,15 +271,16 @@
     "kubernetes": {
       "flake": false,
       "locked": {
-        "lastModified": 1648471174,
-        "narHash": "sha256-uM/9GqeMPNAIMqPmrsHOTjMy3n5MOlQjJVeedQE/t1w=",
+        "lastModified": 1647936104,
+        "narHash": "sha256-jHUnvEVXANRvQ9oBHmxUVmR+S8c5TaX+rGg0U8mSOkU=",
         "owner": "kubernetes",
         "repo": "kubernetes",
-        "rev": "6c67869ff2f797efeb9a59a594c2413a876ea8e0",
+        "rev": "0b8a665d508a861713398d0480e4789802c70607",
         "type": "github"
       },
       "original": {
         "owner": "kubernetes",
+        "ref": "v1.24.0-alpha.4",
         "repo": "kubernetes",
         "type": "github"
       }
