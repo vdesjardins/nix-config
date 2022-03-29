@@ -9,6 +9,7 @@ with lib;
     enable = true;
 
     config = {
+      theme = "Nord";
       paging = "never";
     };
   };
