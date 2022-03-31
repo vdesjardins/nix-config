@@ -1,0 +1,12 @@
+#!/bin/bash
+function tls-decode-bundle() {
+	local input="$1"
+
+	if ! [ -t 0 ]; then
+		input=/dev/stdin
+	elif [[ "$input" == "" ]]; then
+		echo 2>&1 "error: must read from stdin or give a file as parameter"
+	fi
+
+	openssl crl2pkcs7 -nocrl -certfile "$input" | openssl pkcs7 -print_certs -noout -text
+}
