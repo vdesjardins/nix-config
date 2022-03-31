@@ -5,9 +5,9 @@ function tls-server-dump() {
 	local port=$2
 	local server_name=$3
 
-	if [[ "${server_name}" == "" ]]; then
-		server_name=${host}
+	if [[ "$server_name" == "" ]]; then
+		server_name=$host
 	fi
 
-	true | openssl s_client -showcerts -connect $host:$port -servername $server_name | openssl x509 -noout -text
+	true | openssl s_client -showcerts -connect "$host:$port" -servername "$server_name" | openssl x509 -noout -text
 }
