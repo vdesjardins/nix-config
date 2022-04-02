@@ -4,6 +4,7 @@ home-manager.lib.homeManagerConfiguration {
   stateVersion = "21.05";
   username = "vincent_desjardins";
   homeDirectory = "/home/vincent_desjardins";
+  extraModules = [ ../modules ];
   configuration = import ../users/vincent_desjardins.nix {
     pkgs = pkgsConfig;
   };
