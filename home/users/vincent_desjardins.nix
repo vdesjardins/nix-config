@@ -2,13 +2,13 @@
 {
   nixpkgs = pkgs;
 
+  home-manager.sharedModules = [ ../modules ];
+
   home.sessionVariables = {
     EDITOR = "vi";
     VAULT_USERNAME = "inf10906";
     VAULT_ADDR = "https://vault.gcp.internal";
   };
-
-  extraModules = [ ../modules ];
 
   xdg.enable = true;
 
