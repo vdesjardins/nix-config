@@ -2,8 +2,6 @@
 {
   nixpkgs = pkgs;
 
-  home-manager.sharedModules = [ ../modules ];
-
   home.sessionVariables = {
     EDITOR = "vi";
     VAULT_USERNAME = "inf10906";
