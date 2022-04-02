@@ -268,6 +268,8 @@
       } // (mkOverlays ./overlays);
     in
     {
+      homeManagerModules = import ./home/modules {};
+
       darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         inherit inputs;

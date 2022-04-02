@@ -1,9 +1,12 @@
 { pkgs, ... }: {
+  programs.myNeovim.lang.docker = true;
+
   home.packages = with pkgs; [
     buildkit
     dive
-    nodePackages.dockerfile-language-server-nodejs
-    hadolint
     podman
+    skopeo
+  ] ++ lib.optionals stdenv.isLinux [
+    cntr # container debugging tool
   ];
 }

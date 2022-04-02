@@ -8,6 +8,8 @@
     VAULT_ADDR = "https://vault.gcp.internal";
   };
 
+  extraModules = [ ../modules ];
+
   xdg.enable = true;
 
   imports = [
@@ -23,7 +25,7 @@
     ../role/dev/nix
     ../role/dev/bash
     ../role/dev/lua
-    ../role/dev/golang
+    ../role/dev/go
     ../role/dev/rust
     ../role/dev/debugging
     ../role/ops/container

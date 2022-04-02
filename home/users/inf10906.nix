@@ -1,5 +1,8 @@
 { ... }: {
   home-manager.useGlobalPkgs = true;
+
+  home-manager.sharedModules = [ ../modules ];
+
   home-manager.users.inf10906 = { ... }: {
     home.sessionVariables = {
       EDITOR = "vi";

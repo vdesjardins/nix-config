@@ -1,3 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ crate2nix fenix.rust-analyzer unstable.rustup ];
+  programs.myNeovim.lang.rust = true;
+
+  home.packages = with pkgs; [ crate2nix unstable.rustup ];
 }

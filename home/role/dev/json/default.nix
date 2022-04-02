@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
+  programs.myNeovim.lang.json = true;
+
   home.packages = with pkgs; [
-    vscode-langservers-extracted
     nodePackages.fixjson
     jiq
     jq

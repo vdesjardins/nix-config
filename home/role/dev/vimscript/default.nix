@@ -1,5 +1,3 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    vim-vint
-  ];
+  programs.myNeovim.lang.viml = true;
 }

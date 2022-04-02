@@ -1,9 +1,13 @@
-{ ... }: {
+{ config, pkgs, ... }: {
   home-manager.useGlobalPkgs = true;
+
+  home-manager.sharedModules = [ ../modules ];
+
   home-manager.users.vince = { ... }: {
     home.sessionVariables = {
       EDITOR = "vi";
     };
+
     imports = [
       ./default.nix
 
@@ -15,7 +19,8 @@
       ../role/dev/json
       ../role/dev/bash
       ../role/dev/rust
-      ../role/dev/golang
+      ../role/dev/go
+      ../role/dev/debugging
       ../role/ops/aws
       ../role/ops/k8s
       ../role/ops/networking
