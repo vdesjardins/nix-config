@@ -16,3 +16,11 @@ endfunction
 
 let g:startify_lists = [ { 'type': 'files',     'header': ['   MRU'] }, { 'type': 'dir',       'header': ['   MRU '. getcwd()] }, { 'type': 'sessions',  'header': ['   Sessions'] }, { 'type': 'bookmarks', 'header': ['   Bookmarks'] }, { 'type': function('StartifyGitModified'),  'header': ['   git modified'] }, { 'type': function('StartifyGitUntracked'), 'header': ['   git untracked'] }, { 'type': 'commands',  'header': ['   Commands'] }, ]
 ]])
+
+local wk = require("which-key")
+wk.register({
+	b = {
+		name = "buffer",
+		h = { "<cmd>Startify<cr>", "home-buffer" },
+	},
+}, { prefix = "<leader>" })

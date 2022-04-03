@@ -9,6 +9,5 @@ wk.register({
 		n = { "<cmd>bnext<cr>", "next-buffer" },
 		p = { "<cmd>bprev<cr>", "previous-buffer" },
 		s = { "<cmd>Telescope buffers<cr>", "find-buffer" },
-		h = { "<cmd>Startify<cr>", "home-buffer" },
 	},
 }, { prefix = "<leader>" })
