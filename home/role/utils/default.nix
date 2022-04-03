@@ -49,6 +49,7 @@
       jq
       lazygit
       lsof
+      oha # HTTP load generator inspired by rakyll/hey with tui animation
       ps
       ripgrep
       rsync
