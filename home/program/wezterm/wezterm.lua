@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 
 -- tokyo night - night
-function colors()
+local function color_defs()
 	return {
 		foreground = "#c0caf5",
 		background = "#1a1b26",
@@ -19,7 +19,7 @@ end
 local config = {
 	check_for_updates = false,
 	font = wezterm.font("JetBrainsMono Nerd Font"),
-	colors = colors(),
+	colors = color_defs(),
 	tab_bar_at_bottom = true,
 	inactive_pane_hsb = { hue = 1.0, saturation = 0.5, brightness = 1.0 },
 	exit_behavior = "Close",
@@ -141,7 +141,7 @@ wezterm.on("update-right-status", function(window, pane)
 	local num_cells = 0
 
 	-- Translate a cell into elements
-	function _G.push(text)
+	local function push(text)
 		local cell_no = num_cells + 1
 		table.insert(elements, { Foreground = { Color = colors[cell_no] } })
 		table.insert(elements, { Text = SOLID_LEFT_ARROW })
@@ -153,7 +153,7 @@ wezterm.on("update-right-status", function(window, pane)
 
 	while #cells > 0 do
 		local cell = table.remove(cells, 1)
-		_G.push(cell)
+		push(cell)
 	end
 
 	window:set_right_status(wezterm.format(elements))
@@ -173,7 +173,7 @@ wezterm.on("open-in-vim", function(window, pane)
 	)
 end)
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, _max_width)
 	if tab.is_active then
 		return {
 			{ Text = " " .. tab.active_pane.title .. " " },
