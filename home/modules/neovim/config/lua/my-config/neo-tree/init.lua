@@ -9,3 +9,10 @@ wk.register({
 		t = { "<cmd>Neotree toggle<cr>", "toggle-tree" },
 	},
 }, { prefix = "<leader>" })
+
+wk.register({
+	b = {
+		name = "buffer",
+		t = { "<cmd>Neotree buffers toggle<cr>", "toggle-tree" },
+	},
+}, { prefix = "<leader>" })
