@@ -115,8 +115,8 @@
     neovim-plugin-vim-rhubarb.flake = false;
 
     ## Tree
-    neovim-plugin-nvim-tree-lua.url = "github:kyazdani42/nvim-tree.lua";
-    neovim-plugin-nvim-tree-lua.flake = false;
+    neovim-plugin-nvim-neo-tree.url = "github:nvim-neo-tree/neo-tree.nvim";
+    neovim-plugin-nvim-neo-tree.flake = false;
 
     neovim-plugin-telescope-nvim.url = "github:nvim-telescope/telescope.nvim";
     neovim-plugin-telescope-nvim.flake = false;
@@ -152,6 +152,8 @@
     neovim-plugin-popup.flake = false;
     neovim-plugin-nvim-web-devicons.url = "github:kyazdani42/nvim-web-devicons";
     neovim-plugin-nvim-web-devicons.flake = false;
+    neovim-plugin-nui.url = "github:MunifTanjim/nui.nvim";
+    neovim-plugin-nui.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";
@@ -268,7 +270,7 @@
       } // (mkOverlays ./overlays);
     in
     {
-      homeManagerModules = import ./home/modules {};
+      homeManagerModules = import ./home/modules { };
 
       darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
