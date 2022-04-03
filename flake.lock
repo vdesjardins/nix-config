@@ -681,6 +681,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-nui": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646758184,
+        "narHash": "sha256-BAyA2/UkRGYEvhPqxgRn42aGFoiCQhXOYUj+JKeLIiM=",
+        "owner": "MunifTanjim",
+        "repo": "nui.nvim",
+        "rev": "513ff9bbdde7da53e209232d4328e734ea2bd96a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MunifTanjim",
+        "repo": "nui.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-null-ls": {
       "flake": false,
       "locked": {
@@ -809,6 +825,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-nvim-neo-tree": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648997392,
+        "narHash": "sha256-HUVzfpnn4M0SMGPwkC9RGslUwnydsVMhJp7ttC8+igE=",
+        "owner": "nvim-neo-tree",
+        "repo": "neo-tree.nvim",
+        "rev": "32c20173cecf311412132512dd4915c07e3ab38f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neo-tree",
+        "repo": "neo-tree.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-nvim-neoclip-lua": {
       "flake": false,
       "locked": {
@@ -822,22 +854,6 @@
       "original": {
         "owner": "AckslD",
         "repo": "nvim-neoclip.lua",
-        "type": "github"
-      }
-    },
-    "neovim-plugin-nvim-tree-lua": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1648453054,
-        "narHash": "sha256-2sDH+BZjemlAyvfN7ouEZZ28wFxarnSR+KF7FXKYmpw=",
-        "owner": "kyazdani42",
-        "repo": "nvim-tree.lua",
-        "rev": "5eef6185b130fcc7b76c4420824c596e4e1fbdef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kyazdani42",
-        "repo": "nvim-tree.lua",
         "type": "github"
       }
     },
@@ -1471,6 +1487,7 @@
         "neovim-plugin-lua-dev": "neovim-plugin-lua-dev",
         "neovim-plugin-lualine-nvim": "neovim-plugin-lualine-nvim",
         "neovim-plugin-markdown-preview": "neovim-plugin-markdown-preview",
+        "neovim-plugin-nui": "neovim-plugin-nui",
         "neovim-plugin-null-ls": "neovim-plugin-null-ls",
         "neovim-plugin-nvim-bqf": "neovim-plugin-nvim-bqf",
         "neovim-plugin-nvim-cmp": "neovim-plugin-nvim-cmp",
@@ -1479,8 +1496,8 @@
         "neovim-plugin-nvim-dap-ui": "neovim-plugin-nvim-dap-ui",
         "neovim-plugin-nvim-lightbulb": "neovim-plugin-nvim-lightbulb",
         "neovim-plugin-nvim-lspconfig": "neovim-plugin-nvim-lspconfig",
+        "neovim-plugin-nvim-neo-tree": "neovim-plugin-nvim-neo-tree",
         "neovim-plugin-nvim-neoclip-lua": "neovim-plugin-nvim-neoclip-lua",
-        "neovim-plugin-nvim-tree-lua": "neovim-plugin-nvim-tree-lua",
         "neovim-plugin-nvim-treesitter": "neovim-plugin-nvim-treesitter",
         "neovim-plugin-nvim-treesitter-textobjects": "neovim-plugin-nvim-treesitter-textobjects",
         "neovim-plugin-nvim-ts-autotag": "neovim-plugin-nvim-ts-autotag",
