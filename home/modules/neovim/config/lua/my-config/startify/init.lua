@@ -19,8 +19,8 @@ let g:startify_lists = [ { 'type': 'files',     'header': ['   MRU'] }, { 'type'
 
 local wk = require("which-key")
 wk.register({
-	b = {
-		name = "buffer",
-		h = { "<cmd>Startify<cr>", "home-buffer" },
-	},
+    b = {
+        name = "buffer",
+        h = { "<cmd>Startify<cr>", "home-buffer" },
+    },
 }, { prefix = "<leader>" })

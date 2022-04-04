@@ -2,38 +2,38 @@ vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
-	"   (Text) ",
-	"   (Method)",
-	"   (Function)",
-	"   (Constructor)",
-	" ﴲ  (Field)",
-	"[] (Variable)",
-	"   (Class)",
-	" ﰮ  (Interface)",
-	"   (Module)",
-	" 襁 (Property)",
-	"   (Unit)",
-	"   (Value)",
-	" 練 (Enum)",
-	"   (Keyword)",
-	" ﬌  (Snippet)",
-	"   (Color)",
-	"   (File)",
-	"   (Reference)",
-	"   (Folder)",
-	"   (EnumMember)",
-	" ﲀ  (Constant)",
-	" ﳤ  (Struct)",
-	"   (Event)",
-	"   (Operator)",
-	"   (TypeParameter)",
+    "   (Text) ",
+    "   (Method)",
+    "   (Function)",
+    "   (Constructor)",
+    " ﴲ  (Field)",
+    "[] (Variable)",
+    "   (Class)",
+    " ﰮ  (Interface)",
+    "   (Module)",
+    " 襁 (Property)",
+    "   (Unit)",
+    "   (Value)",
+    " 練 (Enum)",
+    "   (Keyword)",
+    " ﬌  (Snippet)",
+    "   (Color)",
+    "   (File)",
+    "   (Reference)",
+    "   (Folder)",
+    "   (EnumMember)",
+    " ﲀ  (Constant)",
+    " ﳤ  (Struct)",
+    "   (Event)",
+    "   (Operator)",
+    "   (TypeParameter)",
 }
 
 local function documentHighlight(client, _bufnr)
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec(
+            [[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
@@ -43,74 +43,74 @@ local function documentHighlight(client, _bufnr)
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]],
-			false
-		)
-	end
+            false
+        )
+    end
 end
 local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
-	documentHighlight(client, bufnr)
+    documentHighlight(client, bufnr)
 end
 
 function lsp_config.tsserver_on_attach(client, bufnr)
-	lsp_config.common_on_attach(client, bufnr)
-	client.resolved_capabilities.document_formatting = false
+    lsp_config.common_on_attach(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
 end
 
 vim.fn.sign_define("DiagnosticSignError", {
-	text = " ",
-	numhl = "DiagnosticSignError",
-	texthl = "DiagnosticSignError",
+    text = " ",
+    numhl = "DiagnosticSignError",
+    texthl = "DiagnosticSignError",
 })
 vim.fn.sign_define("DiagnosticSignWarn", {
-	text = " ",
-	numhl = "DiagnosticSignWarn",
-	texthl = "DiagnosticSignWarn",
+    text = " ",
+    numhl = "DiagnosticSignWarn",
+    texthl = "DiagnosticSignWarn",
 })
 vim.fn.sign_define("DiagnosticSignInfo", {
-	text = " ",
-	numhl = "DiagnosticSignInfo",
-	texthl = "DiagnosticSignInfo",
+    text = " ",
+    numhl = "DiagnosticSignInfo",
+    texthl = "DiagnosticSignInfo",
 })
 vim.fn.sign_define("DiagnosticSignHint", {
-	text = " ",
-	numhl = "DiagnosticSignHint",
-	texthl = "DiagnosticSignHint",
+    text = " ",
+    numhl = "DiagnosticSignHint",
+    texthl = "DiagnosticSignHint",
 })
 
 -- keybindings
 local wk = require("which-key")
 wk.register({
-	l = {
-		name = "lsp",
-		g = {
-			name = "goto",
-			d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go-to-definition" },
-			D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go-to-declaration" },
-			i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go-to-implementation" },
-			r = { "<cmd>lua vim.lsp.buf.references()<cr>", "references" },
-		},
-		a = {
-			"<cmd>lua vim.lsp.buf.code_action()<CR>",
-			"code-action",
-		},
-		e = {
-			name = "code-lens",
-			r = { "<Cmd>lua vim.lsp.codelens.refresh()<CR>", "refresh" },
-			a = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "run" },
-		},
-	},
+    l = {
+        name = "lsp",
+        g = {
+            name = "goto",
+            d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go-to-definition" },
+            D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go-to-declaration" },
+            i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go-to-implementation" },
+            r = { "<cmd>lua vim.lsp.buf.references()<cr>", "references" },
+        },
+        a = {
+            "<cmd>lua vim.lsp.buf.code_action()<CR>",
+            "code-action",
+        },
+        e = {
+            name = "code-lens",
+            r = { "<Cmd>lua vim.lsp.codelens.refresh()<CR>", "refresh" },
+            a = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "run" },
+        },
+    },
 }, { prefix = "<leader>" })
 
 wk.register({
-	l = {
-		name = "lsp",
-		a = {
-			":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
-			"range-code-action",
-		},
-	},
+    l = {
+        name = "lsp",
+        a = {
+            ":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
+            "range-code-action",
+        },
+    },
 }, { mode = "v", prefix = "<leader>" })
 
 vim.cmd("nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>")
