@@ -84,10 +84,7 @@ jobs:
       - name: Run stylua
         run: |
           nix build .#stylua
-          find . -type f -name "*.lua" -exec ./result/bin/stylua {} +
-        shell: bash
-      - name: Fails if files modified
-        run: git diff --quiet
+          ./result/bin/stylua -c .
         shell: bash
 
   lint-lua:
