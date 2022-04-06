@@ -1,8 +1,15 @@
-#/bin/bash
+#!/bin/bash
+function kube-updateconfig-aws() {
+	(
+		export KUBECONFIG="$HOME/.kube/config"
 
-export KUBECONFIG="~/.kube/config"
+		while read -r profile; do
+			while read -r cluster; do
+				echo "profile -> $profile -> $cluster"
+				alias="EKS:$cluster"
 
-for profile in $(aws configure list-profiles | grep AWSAdministratorAccess); do
-	echo "profile -> $profile"
-	aws eks list-clusters --profile "$profile" | jq '.clusters[]' -Mr | xargs -n1 aws eks update-kubeconfig --profile "$profile" --name 2>/dev/null
-done
+				aws eks update-kubeconfig --profile "$profile" --name "$cluster" --alias "$alias" 2>/dev/null
+			done < <(aws eks list-clusters --profile "$profile" | jq '.clusters[]' -Mr)
+		done < <(aws configure list-profiles | grep AWSAdministratorAccess)
+	)
+}
