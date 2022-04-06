@@ -2,39 +2,45 @@
 # Create a new Tmux session with dedicated kube config
 function kube-ctx-switch() {
 	(
-		local context=$1
+		local context_name=$1
 		export KUBECONFIG=~/.kube/config
 
-		if [[ $context == "" ]]; then
-			context=$(kubectl config get-contexts | tail -n +2 | awk '{ print $2; }' | fzf-tmux -p 50%,20% --border)
+		kubectl config get-contexts --no-headers -o name
+		if [[ $context_name == "" ]]; then
+			context_name=$(kubectl config get-contexts --no-headers -o name | fzf-tmux -p 50%,20% --border)
 		fi
 
-		if [[ $context == "" ]]; then
+		if [[ $context_name == "" ]]; then
 			echo "no context provided."
 			return 1
 		fi
 
-		context_alias="$context"
+		cluster=$(kubectl config view -ojson | jq ".contexts[] | select(.name == \"$context_name\") | .context.cluster" -Mr)
 
 		# check if context is EKS
 		local aws_context=""
 		local aws_profile=""
 		local aws_account_id=""
-		aws_account_id=$(echo "$context" | awk -F':' '{ print $5; }')
+		aws_account_id=$(echo "$cluster" | awk -F':' '{ print $5; }')
 		if [[ $aws_account_id != "" ]]; then
 			if command -v aws-config-parser &>/dev/null; then
 				aws_profile="$(aws-config-parser --id "$aws_account_id" | fzf-tmux -p 50%,20% --border)"
 				aws_context="export AWS_PROFILE=$aws_profile"
 			fi
-			context_alias=$(echo "$context" | awk -F'/' '{ print $2; }')
+			if [[ "$context_name" == "$cluster" ]]; then
+				context_name=$(echo "$context_name" | awk -F'/' '{ print $2; }')
+			fi
 		fi
 
 		# check if context is GKE
-		if [[ $context == gke_* ]]; then
-			context_alias=$(echo "$context" | awk -F'_' '{ print $4; }')
+		if [[ $context_name == gke_* ]]; then
+			context_name=$(echo "$context_name" | awk -F'_' '{ print $4; }')
 		fi
 
-		local session_name="➜ $context_alias"
+		local context_file
+		context_file=$(echo "$context_name" | tr ':' '_')
+		local session_name
+		session_name="➜ "$context_file
 
 		tmux list-session | cut -d':' -f1 | grep "$session_name" &>/dev/null
 		local list_status=$?
@@ -45,16 +51,17 @@ function kube-ctx-switch() {
 
 		local dir=~/.config/my-kubeconfig
 		mkdir -p "$dir"
-		local kubeconfig="$dir/$context_alias-config"
-		local startup_script="$dir/$context_alias-startup-script.sh"
+		local kubeconfig=$dir/$context_file-config
+		local startup_script=$dir/$context_file-startup-script.sh
 		cp ~/.kube/config "$kubeconfig"
 
 		printf "\
+set -x
 #!/usr/bin/env zsh
 %s
-export KUBECONFIG=%s
-kubectl config use-context %s
-zsh" "$aws_context" "$kubeconfig" "$context" >"$startup_script"
+export KUBECONFIG=\"%s\"
+kubectl config use-context \"%s\"
+zsh" "$aws_context" "$kubeconfig" "$context_name" >"$startup_script"
 
 		chmod +x "$startup_script"
 
