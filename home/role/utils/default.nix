@@ -32,6 +32,7 @@
       coreutils
       ctags
       curl
+      dasel
       du-dust # fancy du
       duf # df alternative
       fd # fast file search
