@@ -17,18 +17,18 @@
     imports = [
       ./default.nix
 
-      ../role/utils
-      ../role/dev/nix
-      ../role/dev/yaml
-      ../role/dev/json
-      ../role/dev/bash
-      ../role/dev/rust
       ../program/alacritty
-      # ../program/wezterm
-      ../program/karabiner
-      ../service/gpg-agent
-      ../program/ssh
       ../program/gcloud
+      ../program/karabiner
+      ../program/ssh
+      ../program/wezterm
+      ../role/dev/bash
+      ../role/dev/json
+      ../role/dev/nix
+      ../role/dev/rust
+      ../role/dev/yaml
+      ../role/utils
+      ../service/gpg-agent
     ];
   };
 }

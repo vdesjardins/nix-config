@@ -11,25 +11,26 @@
   xdg.enable = true;
 
   imports = [
-    ../role/utils
     ../program/vault
-    ../role/dev/yaml
-    ../role/dev/json
+    ../role/dev/bash
     ../role/dev/cpp
-    ../role/dev/rust
+    ../role/dev/cue
+    ../role/dev/debugging
+    ../role/dev/go
+    ../role/dev/json
+    ../role/dev/lua
     ../role/dev/make
+    ../role/dev/nix
+    ../role/dev/rust
+    ../role/dev/rust
     ../role/dev/terraform
     ../role/dev/vimscript
-    ../role/dev/nix
-    ../role/dev/bash
-    ../role/dev/lua
-    ../role/dev/go
-    ../role/dev/rust
-    ../role/dev/debugging
+    ../role/dev/yaml
+    ../role/ops/aws
     ../role/ops/container
     ../role/ops/gcloud
-    ../role/ops/aws
     ../role/ops/k8s
     ../role/ops/networking
+    ../role/utils
   ];
 }

@@ -31,6 +31,13 @@ in
           enable lua language support
         '';
       };
+      cue = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable cue language support
+        '';
+      };
       nix = mkOption {
         type = types.bool;
         default = false;
