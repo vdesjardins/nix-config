@@ -6,6 +6,7 @@
     dive
     podman
     skopeo
+    unstable.colima
   ] ++ lib.optionals stdenv.isLinux [
     cntr # container debugging tool
   ];
