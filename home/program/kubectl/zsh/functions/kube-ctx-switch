@@ -5,7 +5,6 @@ function kube-ctx-switch() {
 		local context_name=$1
 		export KUBECONFIG=~/.kube/config
 
-		kubectl config get-contexts --no-headers -o name
 		if [[ $context_name == "" ]]; then
 			context_name=$(kubectl config get-contexts --no-headers -o name | fzf-tmux -p 50%,20% --border)
 		fi
