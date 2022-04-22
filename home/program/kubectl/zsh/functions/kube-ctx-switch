@@ -55,7 +55,6 @@ function kube-ctx-switch() {
 		cp ~/.kube/config "$kubeconfig"
 
 		printf "\
-set -x
 #!/usr/bin/env zsh
 %s
 export KUBECONFIG=\"%s\"
