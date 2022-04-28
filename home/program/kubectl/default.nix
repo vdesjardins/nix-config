@@ -59,6 +59,8 @@ mkMerge [
           kgpons = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeSelector'";
           # deployment
           krrd = "kubectl rollout restart deployment";
+          kgdimg =
+            "kubectl get deployment -o=custom-columns='NAMESPACE:.metadata.namespace,DEPLOYMENT:.metadata.name,IMAGES:.spec.template.spec.containers[*].image,INIT_IMAGES:.spec.template.spec.initContainers[*].image'";
 
           # context and ns switching
           kns = "kube-ns-switch";
