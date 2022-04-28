@@ -1,5 +1,5 @@
 [kubernetes]
-symbol = "⛵ "
+symbol = "⛵"
 style = "bold blue"
 disabled = false
 
@@ -22,5 +22,8 @@ disabled = false
 
 [env_var.HTTPS_PROXY]
 variable = "https_proxy"
-format = "🔌 [$env_value]($style) "
+format = "🔌[$env_value]($style) "
 style = "red"
+
+[hostname]
+format = "🐡[$hostname]($style) in "
