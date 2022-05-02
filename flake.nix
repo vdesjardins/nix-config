@@ -42,8 +42,6 @@
     kube-lineage.flake = false;
     kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.8";
     kubectl-blame.flake = false;
-    kubernetes.url = "github:/kubernetes/kubernetes/v1.24.0-alpha.4";
-    kubernetes.flake = false;
 
     ## LSP
     neovim-plugin-nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
