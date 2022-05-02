@@ -10,6 +10,7 @@
     buildpack
     helm-docs
     kail
+    ketall # get all rersources
     kind
     kube-capacity
     kube-lineage

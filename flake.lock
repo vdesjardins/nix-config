@@ -153,6 +153,22 @@
         "type": "github"
       }
     },
+    "ketall": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1635763418,
+        "narHash": "sha256-MGON+KYFa6g1IEQ+jPV9q5/D4C9466gFk4E+llD70GE=",
+        "owner": "corneliusweig",
+        "repo": "ketall",
+        "rev": "c42698bda8bc2a483a638c009fec9fa62f45e9f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "corneliusweig",
+        "repo": "ketall",
+        "type": "github"
+      }
+    },
     "kube-lineage": {
       "flake": false,
       "locked": {
@@ -265,23 +281,6 @@
       "original": {
         "owner": "etopeter",
         "repo": "kubectl-view-utilization",
-        "type": "github"
-      }
-    },
-    "kubernetes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1647936104,
-        "narHash": "sha256-jHUnvEVXANRvQ9oBHmxUVmR+S8c5TaX+rGg0U8mSOkU=",
-        "owner": "kubernetes",
-        "repo": "kubernetes",
-        "rev": "0b8a665d508a861713398d0480e4789802c70607",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kubernetes",
-        "ref": "v1.24.0-alpha.4",
-        "repo": "kubernetes",
         "type": "github"
       }
     },
@@ -1456,6 +1455,7 @@
         "darwin": "darwin",
         "fenix": "fenix",
         "home-manager": "home-manager",
+        "ketall": "ketall",
         "kube-lineage": "kube-lineage",
         "kube-no-trouble": "kube-no-trouble",
         "kubectl-aliases": "kubectl-aliases",
@@ -1463,7 +1463,6 @@
         "kubectl-sniff": "kubectl-sniff",
         "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",
-        "kubernetes": "kubernetes",
         "lscolors": "lscolors",
         "master": "master",
         "neovim-nightly": "neovim-nightly",
