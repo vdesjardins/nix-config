@@ -9,5 +9,6 @@
     unstable.colima
   ] ++ lib.optionals stdenv.isLinux [
     cntr # container debugging tool
+    unstable.nerdctl # docker compatible containerd cli
   ];
 }

@@ -8,6 +8,6 @@
     ssm-session-manager-plugin
   ];
   imports = [
-    ../../../program/awscli
+    ../../../programs/awscli
   ];
 }

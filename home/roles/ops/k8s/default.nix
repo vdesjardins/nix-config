@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   imports = [
-    ../../../program/k9s
-    ../../../program/kubectl
-    ../../../program/istioctl
-    ../../../program/stern
+    ../../../programs/k9s
+    ../../../programs/kubectl
+    ../../../programs/istioctl
+    ../../../programs/stern
   ];
 
   home.packages = with pkgs; [
@@ -16,7 +16,7 @@
     kube-lineage
     kube3d
     kubectl-blame
-    kubectl-trace
+    # kubectl-trace
     kubectl-view-utilization
     kubectx
     kubelogin

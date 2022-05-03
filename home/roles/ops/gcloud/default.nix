@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    ../../../program/gcloud
+    ../../../programs/gcloud
   ];
 }

@@ -1,22 +1,22 @@
 { pkgs, ... }: {
   imports = [
-    ../../program/neovim
-    ../../program/bash
-    ../../program/zsh
-    ../../program/starship
-    ../../program/git
-    ../../program/tmux
-    ../../program/gh
-    ../../program/zoxide
-    ../../program/fzf
-    ../../program/just
-    ../../program/openssl
-    ../../program/bat
-    ../../program/exa
-    ../../program/broot
-    ../../program/direnv
-    ../../program/any-nix-shell
-    ../../program/ls
+    ../../programs/neovim
+    ../../programs/bash
+    ../../programs/zsh
+    ../../programs/starship
+    ../../programs/git
+    ../../programs/tmux
+    ../../programs/gh
+    ../../programs/zoxide
+    ../../programs/fzf
+    ../../programs/just
+    ../../programs/openssl
+    ../../programs/bat
+    ../../programs/exa
+    ../../programs/broot
+    ../../programs/direnv
+    ../../programs/any-nix-shell
+    ../../programs/ls
   ];
 
   home.packages = with pkgs;

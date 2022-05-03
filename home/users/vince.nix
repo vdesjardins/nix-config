@@ -11,26 +11,26 @@
     imports = [
       ./default.nix
 
-      ../program/alacritty
-      ../program/karabiner
-      ../program/ssh
-      ../program/wezterm
-      ../role/dev/bash
-      ../role/dev/cue
-      ../role/dev/debugging
-      ../role/dev/go
-      ../role/dev/js
-      ../role/dev/json
-      ../role/dev/lua
-      ../role/dev/nix
-      ../role/dev/rust
-      ../role/dev/yaml
-      ../role/ops/aws
-      ../role/ops/container
-      ../role/ops/k8s
-      ../role/ops/networking
-      ../role/utils
-      ../service/gpg-agent
+      ../programs/alacritty
+      ../programs/karabiner
+      ../programs/ssh
+      ../programs/wezterm
+      ../roles/dev/bash
+      ../roles/dev/cue
+      ../roles/dev/debugging
+      ../roles/dev/go
+      ../roles/dev/js
+      ../roles/dev/json
+      ../roles/dev/lua
+      ../roles/dev/nix
+      ../roles/dev/rust
+      ../roles/dev/yaml
+      ../roles/ops/aws
+      ../roles/ops/container
+      ../roles/ops/k8s
+      ../roles/ops/networking
+      ../roles/utils
+      ../services/gpg-agent
     ];
   };
 }

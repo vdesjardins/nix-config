@@ -7,6 +7,6 @@
   ];
 
   imports = [
-    ../../../program/yamllint
+    ../../../programs/yamllint
   ];
 }

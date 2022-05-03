@@ -1,15 +1,16 @@
 { pkgs, ... }: {
-  imports = [ ../../../program/terraform ];
+  imports = [ ../../../programs/terraform ];
 
   programs.myNeovim.lang.terraform = true;
 
   home.packages = with pkgs; [
-    unstable.terraform
-    unstable.tflint
     terraform-compliance
     terraform-docs
     terraform-landscape
     terraformer
+    unstable.infracost
+    unstable.terraform
+    unstable.tflint
     unstable.tfsec
   ];
 }

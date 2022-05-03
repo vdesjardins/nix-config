@@ -2,7 +2,7 @@
 {
   # TODO: not working on aarch64
   imports = [
-    ../../../program/nix-index
+    ../../../programs/nix-index
   ];
 
   programs.myNeovim.lang.nix = true;

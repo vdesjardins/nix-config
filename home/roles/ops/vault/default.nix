@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    ../../../program/vault
+    ../../../programs/vault
   ];
 }
