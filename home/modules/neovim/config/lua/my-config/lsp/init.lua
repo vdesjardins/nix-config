@@ -31,7 +31,7 @@ vim.lsp.protocol.CompletionItemKind = {
 
 local function documentHighlight(client, _bufnr)
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_exec(
             [[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
@@ -51,11 +51,6 @@ local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
-end
-
-function lsp_config.tsserver_on_attach(client, bufnr)
-    lsp_config.common_on_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
 end
 
 vim.fn.sign_define("DiagnosticSignError", {
