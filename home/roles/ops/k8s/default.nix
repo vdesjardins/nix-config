@@ -31,6 +31,7 @@
     unstable.fluxcd
     unstable.kubeconform
     unstable.kubectl-example
+    unstable.kubectl-who-can
     unstable.kustomize
     unstable.rakkess # RBAC query tool
     unstable.tilt

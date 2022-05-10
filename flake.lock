@@ -284,6 +284,23 @@
         "type": "github"
       }
     },
+    "kubectl-who-can": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644859421,
+        "narHash": "sha256-nyUDzNxlizSr3P3dh9Cz/9CaMfmjeE9qSJkCLo4lBqw=",
+        "owner": "aquasecurity",
+        "repo": "kubectl-who-can",
+        "rev": "f5b0b3f6c5d141250873526dc7fd46cae63664f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aquasecurity",
+        "ref": "v0.4.0",
+        "repo": "kubectl-who-can",
+        "type": "github"
+      }
+    },
     "lscolors": {
       "flake": false,
       "locked": {
@@ -1463,6 +1480,7 @@
         "kubectl-sniff": "kubectl-sniff",
         "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",
+        "kubectl-who-can": "kubectl-who-can",
         "lscolors": "lscolors",
         "master": "master",
         "neovim-nightly": "neovim-nightly",

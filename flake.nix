@@ -34,6 +34,8 @@
     kubectl-sniff.flake = false;
     kubectl-trace.url = "github:/iovisor/kubectl-trace/v0.1.2";
     kubectl-trace.flake = false;
+    kubectl-who-can.url = "github:aquasecurity/kubectl-who-can/v0.4.0";
+    kubectl-who-can.flake = false;
     kubectl-aliases.url = "github:/ahmetb/kubectl-aliases";
     kubectl-aliases.flake = false;
     kube-no-trouble.url = "github:/doitintl/kube-no-trouble";
