@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   users.users.inf10906 = {
     uid = 502;

@@ -1,36 +1,31 @@
-{ config, pkgs, ... }: {
-  home-manager.useGlobalPkgs = true;
+{ pkgs, xsession ? false }: { lib, ... }: {
+  nixpkgs = pkgs;
 
-  home-manager.sharedModules = [ ../modules ];
+  imports = [
+    ./common.nix
 
-  home-manager.users.vince = { ... }: {
-    home.sessionVariables = {
-      EDITOR = "vi";
-    };
-
-    imports = [
-      ./default.nix
-
-      ../programs/alacritty
-      ../programs/karabiner
-      ../programs/ssh
-      ../programs/wezterm
-      ../roles/dev/bash
-      ../roles/dev/cue
-      ../roles/dev/debugging
-      ../roles/dev/go
-      ../roles/dev/js
-      ../roles/dev/json
-      ../roles/dev/lua
-      ../roles/dev/nix
-      ../roles/dev/rust
-      ../roles/dev/yaml
-      ../roles/ops/aws
-      ../roles/ops/container
-      ../roles/ops/k8s
-      ../roles/ops/networking
-      ../roles/utils
-      ../services/gpg-agent
-    ];
-  };
+    ../programs/alacritty
+    ../programs/karabiner
+    ../programs/ssh
+    ../programs/wezterm
+    ../roles/dev/bash
+    ../roles/dev/cue
+    ../roles/dev/debugging
+    ../roles/dev/go
+    ../roles/dev/js
+    ../roles/dev/json
+    ../roles/dev/lua
+    ../roles/dev/nix
+    ../roles/dev/rust
+    ../roles/dev/yaml
+    ../roles/ops/aws
+    ../roles/ops/container
+    ../roles/ops/k8s
+    ../roles/ops/networking
+    ../roles/ops/virtualization
+    ../roles/utils
+    ../services/gpg-agent
+  ] ++ lib.optionals xsession [
+    ../services/window-manager
+  ];
 }

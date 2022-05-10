@@ -1,4 +1,4 @@
-{ darwin, home-manager, inputs, pkgsConfig }:
+{ darwin, inputs, pkgsConfig }:
 let
   username = "vince";
   hostname = "dev-mac";
@@ -9,7 +9,15 @@ darwin.lib.darwinSystem {
   modules = [
     ../shared
     {
-      homebrew.casks = [ "karabiner-elements" "raycast" "google-chrome" "Rectangle" "docker" "utm" ];
+      homebrew.casks = [
+        "karabiner-elements"
+        "raycast"
+        "google-chrome"
+        "Rectangle"
+        "docker"
+        "homebrew/cask-versions/vmware-fusion-tech-preview"
+        "middleclick"
+      ];
     }
     (import ../services/spotifyd { device_name = hostname; })
     {
@@ -20,8 +28,6 @@ darwin.lib.darwinSystem {
       ];
     }
     { users.knownUsers = [ username ]; }
-    home-manager.darwinModule
     { nixpkgs = pkgsConfig; }
-    (../../../home/users + "/${username}.nix")
   ];
 }

@@ -1,5 +1,5 @@
 # This file contains configuration that is shared across all hosts.
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   nix = {
     binaryCaches = [
       "https://cache.nixos.org/"
@@ -16,12 +16,12 @@
     };
 
     package = pkgs.nixFlakes;
-    registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-derivations = true
       keep-outputs = true
     '';
+
   };
 
   programs = {
@@ -31,7 +31,8 @@
     };
   };
 
-  fonts.enableFontDir = true;
+  time.timeZone = "America/New_York";
+
   fonts.fonts = [
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];

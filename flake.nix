@@ -14,6 +14,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Others
+    nix.url = "github:nixos/nix/2.8.0";
     utils.url = "github:numtide/flake-utils";
     comma.url = "github:Shopify/comma";
     comma.flake = false;
@@ -32,7 +33,7 @@
     kubectl-view-utilization.flake = false;
     kubectl-sniff.url = "github:/eldadru/ksniff";
     kubectl-sniff.flake = false;
-    kubectl-trace.url = "github:/iovisor/kubectl-trace/v0.1.2";
+    kubectl-trace.url = "github:/iovisor/kubectl-trace";
     kubectl-trace.flake = false;
     kubectl-who-can.url = "github:aquasecurity/kubectl-who-can/v0.4.0";
     kubectl-who-can.flake = false;
@@ -46,7 +47,12 @@
     kubectl-blame.flake = false;
     ketall.url = "github:corneliusweig/ketall";
     ketall.flake = false;
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "unstable";
+    };
 
+    # Neovim
     ## LSP
     neovim-plugin-nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
     neovim-plugin-nvim-lspconfig.flake = false;
@@ -216,15 +222,21 @@
     , nixpkgs
     , home-manager
     , darwin
+    , master
     , neovim-nightly
+    , nixos-generators
     , fenix
     , utils
+    , unstable
+    , nix
     , ...
     }@inputs:
     let
       inherit (builtins) listToAttrs attrValues attrNames readDir filter match;
       inherit (nixpkgs) lib;
       inherit (lib) removeSuffix;
+
+      linux64BitSystems = [ "x86_64-linux" "aarch64-linux" ];
 
       pkgsConfig = {
         overlays = (attrValues overlays);
@@ -275,34 +287,78 @@
       homeManagerModules = import ./home/modules { };
 
       darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
+        system = utils.lib.system.x86_64-darwin;
         inherit inputs;
         modules = [ ./modules/darwin/bootstrap.nix ];
       };
 
       darwinConfigurations.bootstrap-aarch = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
+        system = utils.lib.system.aarch64-darwin;
         inherit inputs;
         modules = [ ./modules/darwin/bootstrap.nix ];
       };
 
-      homeConfigurations.vincent_desjardins = import ./home/config/vincent_desjardins.nix
-        {
-          inherit home-manager pkgsConfig;
-        };
-      vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
-
-      darwinConfigurations.work-mac = import ./modules/darwin/systems/work-mac.nix
-        {
-          inherit darwin home-manager inputs pkgsConfig;
-        };
+      darwinConfigurations.work-mac = import ./modules/darwin/systems/work-mac.nix {
+        inherit darwin inputs pkgsConfig;
+      };
       work-mac = self.darwinConfigurations.work-mac.system;
 
-      darwinConfigurations.dev-mac = import ./modules/darwin/systems/dev-mac.nix
-        {
-          inherit darwin home-manager inputs pkgsConfig;
-        };
+      darwinConfigurations.dev-mac = import ./modules/darwin/systems/dev-mac.nix {
+        inherit darwin inputs pkgsConfig;
+      };
       dev-mac = self.darwinConfigurations.dev-mac.system;
+
+      nixosConfigurations.dev-vm = import ./modules/linux/systems/dev-vm.nix {
+        inherit pkgsConfig;
+        pkgs = nixpkgs;
+      };
+      dev-vm = self.nixosConfigurations.dev-vm.config.system.build.toplevel;
+
+      homeConfigurations.vincent_desjardins = import ./home/config/vincent_desjardins.nix {
+        inherit home-manager pkgsConfig;
+      };
+      vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
+
+      homeConfigurations.inf10906 = import ./home/config/inf10906.nix {
+        inherit home-manager pkgsConfig;
+      };
+      inf10906 = self.homeConfigurations.inf10906.activationPackage;
+
+      homeConfigurations.vince = import ./home/config/vince.nix {
+        inherit home-manager pkgsConfig;
+      };
+      vince = self.homeConfigurations.vince.activationPackage;
+
+      homeConfigurations.vince-mac = import ./home/config/vince-mac.nix {
+        inherit home-manager pkgsConfig;
+      };
+      vince-mac = self.homeConfigurations.vince-mac.activationPackage;
+
+      os-images.vmware.dev-vm = import ./modules/linux/vm-images/dev-vm.nix {
+        inherit pkgsConfig nixos-generators;
+        pkgs = unstable;
+      };
+
+      packages = listToAttrs
+        (builtins.map
+          (system: {
+            name = system;
+            value = {
+              "dockerImage/vm-builder" = import ./modules/linux/containers/vm-builder.nix {
+                inherit nixpkgs nix;
+                system = system;
+                crossSystem = system;
+              };
+            };
+          })
+          linux64BitSystems) //
+      {
+        aarch64-darwin."dockerImage/vm-builder" = import ./modules/linux/containers/vm-builder.nix {
+          inherit nixpkgs nix;
+          system = utils.lib.system.aarch64-darwin;
+          crossSystem = utils.lib.system.aarch64-linux;
+        };
+      };
 
       inherit overlays;
     } // utils.lib.eachDefaultSystem (
