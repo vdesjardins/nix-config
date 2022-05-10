@@ -1,4 +1,6 @@
 {
+  fonts.fontDir.enable = true;
+
   system.defaults = {
     loginwindow = {
       GuestEnabled = false;

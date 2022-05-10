@@ -53,7 +53,7 @@
     ];
 
     initExtraBeforeCompInit = ''
-      source ${config.home.homeDirectory}/.nix-profile/etc/profile.d/nix.sh
+      source ${config.home.homeDirectory}/.nix-profile/etc/profile.d/nix.sh 2>/dev/null
 
       fpath=( ${config.xdg.configHome}/zsh/functions "''${fpath[@]}" )
       autoload -Uz $fpath[1]/*

@@ -63,6 +63,7 @@
     ] ++ lib.optionals stdenv.isLinux [
       unstable.btop # monitor resources
       pueue # task management tool
+      screenfetch # fetch system/theme information
       sysstat
       thefuck # fix commands
       wget

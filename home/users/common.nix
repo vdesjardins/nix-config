@@ -1,4 +1,8 @@
 {
+  home.sessionVariables = {
+    EDITOR = "vi";
+  };
+
   programs.home-manager.enable = true;
   xdg.enable = true;
 

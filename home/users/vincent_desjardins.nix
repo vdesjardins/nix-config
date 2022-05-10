@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   nixpkgs = pkgs;
 
   home.sessionVariables = {
-    EDITOR = "vi";
     VAULT_USERNAME = "inf10906";
     VAULT_ADDR = "https://vault.gcp.internal";
   };
@@ -11,6 +9,8 @@
   xdg.enable = true;
 
   imports = [
+    ./common.nix
+
     ../programs/vault
     ../roles/dev/bash
     ../roles/dev/cpp

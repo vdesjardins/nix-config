@@ -1,4 +1,4 @@
-{ darwin, home-manager, inputs, pkgsConfig }:
+{ darwin, inputs, pkgsConfig }:
 let
   username = "inf10906";
   hostname = "C02G32U9MD6T";
@@ -19,8 +19,6 @@ darwin.lib.darwinSystem {
       ];
     }
     { users.knownUsers = [ username ]; }
-    home-manager.darwinModule
     { nixpkgs = pkgsConfig; }
-    (../../../home/users + "/${username}.nix")
   ];
 }
