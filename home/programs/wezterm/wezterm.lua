@@ -159,9 +159,252 @@ local config = {
         },
         { key = "[", mods = "LEADER", action = "ActivateCopyMode" },
         { key = "E", mods = "LEADER", action = wezterm.action({ EmitEvent = "open-in-vim" }) },
+        {
+            key = "]",
+            mods = "LEADER",
+            action = wezterm.action({ PasteFrom = "PrimarySelection" }),
+        },
 
         -- selection
         { key = "S", mods = "LEADER|SHIFT", action = "QuickSelect" },
+    },
+
+    key_tables = {
+        copy_mode = {
+            { key = "c", mods = "CTRL", action = wezterm.action({ CopyMode = "Close" }) },
+            { key = "g", mods = "CTRL", action = wezterm.action({ CopyMode = "Close" }) },
+            { key = "q", mods = "NONE", action = wezterm.action({ CopyMode = "Close" }) },
+            { key = "Escape", mods = "NONE", action = wezterm.action({ CopyMode = "Close" }) },
+
+            { key = "h", mods = "NONE", action = wezterm.action({ CopyMode = "MoveLeft" }) },
+            { key = "j", mods = "NONE", action = wezterm.action({ CopyMode = "MoveDown" }) },
+            { key = "k", mods = "NONE", action = wezterm.action({ CopyMode = "MoveUp" }) },
+            { key = "l", mods = "NONE", action = wezterm.action({ CopyMode = "MoveRight" }) },
+
+            {
+                key = "LeftArrow",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveLeft" }),
+            },
+            {
+                key = "DownArrow",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveDown" }),
+            },
+            { key = "UpArrow", mods = "NONE", action = wezterm.action({ CopyMode = "MoveUp" }) },
+            {
+                key = "RightArrow",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveRight" }),
+            },
+
+            {
+                key = "RightArrow",
+                mods = "ALT",
+                action = wezterm.action({
+                    CopyMode = "MoveForwardWord",
+                }),
+            },
+            { key = "f", mods = "ALT", action = wezterm.action({ CopyMode = "MoveForwardWord" }) },
+            {
+                key = "Tab",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveForwardWord" }),
+            },
+            {
+                key = "w",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveForwardWord" }),
+            },
+
+            {
+                key = "LeftArrow",
+                mods = "ALT",
+                action = wezterm.action({
+                    CopyMode = "MoveBackwardWord",
+                }),
+            },
+            {
+                key = "b",
+                mods = "ALT",
+                action = wezterm.action({ CopyMode = "MoveBackwardWord" }),
+            },
+            {
+                key = "Tab",
+                mods = "SHIFT",
+                action = wezterm.action({ CopyMode = "MoveBackwardWord" }),
+            },
+            {
+                key = "b",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveBackwardWord" }),
+            },
+
+            {
+                key = "0",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveToStartOfLine" }),
+            },
+            {
+                key = "Enter",
+                mods = "NONE",
+                action = wezterm.action({
+                    CopyMode = "MoveToStartOfNextLine",
+                }),
+            },
+            {
+                key = "$",
+                mods = "NONE",
+                action = wezterm.action({
+                    CopyMode = "MoveToEndOfLineContent",
+                }),
+            },
+            {
+                key = "$",
+                mods = "SHIFT",
+                action = wezterm.action({
+                    CopyMode = "MoveToEndOfLineContent",
+                }),
+            },
+
+            {
+                key = "m",
+                mods = "ALT",
+                action = wezterm.action({
+                    CopyMode = "MoveToStartOfLineContent",
+                }),
+            },
+            {
+                key = "^",
+                mods = "NONE",
+                action = wezterm.action({
+                    CopyMode = "MoveToStartOfLineContent",
+                }),
+            },
+            {
+                key = "^",
+                mods = "SHIFT",
+                action = wezterm.action({
+                    CopyMode = "MoveToStartOfLineContent",
+                }),
+            },
+
+            {
+                key = " ",
+                mods = "NONE",
+                action = wezterm.action({
+                    CopyMode = "ToggleSelectionByCell",
+                }),
+            },
+            {
+                key = "v",
+                mods = "NONE",
+                action = wezterm.action({
+                    CopyMode = "ToggleSelectionByCell",
+                }),
+            },
+            {
+                key = "v",
+                mods = "CTRL",
+                action = wezterm.action({
+                    CopyMode = { SetSelectionMode = "Block" },
+                }),
+            },
+            {
+                key = "y",
+                mods = "NONE",
+                action = wezterm.action({
+                    Multiple = {
+                        wezterm.action({ CopyTo = "ClipboardAndPrimarySelection" }),
+                        wezterm.action({ CopyMode = "Close" }),
+                    },
+                }),
+            },
+            {
+                key = "G",
+                mods = "NONE",
+                action = wezterm.action({
+                    CopyMode = "MoveToScrollbackBottom",
+                }),
+            },
+            {
+                key = "G",
+                mods = "SHIFT",
+                action = wezterm.action({
+                    CopyMode = "MoveToScrollbackBottom",
+                }),
+            },
+            {
+                key = "g",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveToScrollbackTop" }),
+            },
+
+            {
+                key = "H",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveToViewportTop" }),
+            },
+            {
+                key = "H",
+                mods = "SHIFT",
+                action = wezterm.action({ CopyMode = "MoveToViewportTop" }),
+            },
+            {
+                key = "M",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveToViewportMiddle" }),
+            },
+            {
+                key = "M",
+                mods = "SHIFT",
+                action = wezterm.action({
+                    CopyMode = "MoveToViewportMiddle",
+                }),
+            },
+            {
+                key = "L",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "MoveToViewportBottom" }),
+            },
+            {
+                key = "L",
+                mods = "SHIFT",
+                action = wezterm.action({
+                    CopyMode = "MoveToViewportBottom",
+                }),
+            },
+
+            { key = "PageUp", mods = "NONE", action = wezterm.action({ CopyMode = "PageUp" }) },
+            {
+                key = "PageDown",
+                mods = "NONE",
+                action = wezterm.action({ CopyMode = "PageDown" }),
+            },
+
+            { key = "b", mods = "CTRL", action = wezterm.action({ CopyMode = "PageUp" }) },
+            { key = "f", mods = "CTRL", action = wezterm.action({ CopyMode = "PageDown" }) },
+            -- Enter search mode to edit the pattern.
+            -- When the search pattern is an empty string the existing pattern is preserved
+            {
+                key = "?",
+                mods = "NONE",
+                action = wezterm.action({
+                    Search = {
+                        CaseSensitiveString = "",
+                    },
+                }),
+            },
+            -- navigate any search mode results
+            { key = "N", mods = "NONE", action = wezterm.action({ CopyMode = "NextMatch" }) },
+            { key = "n", mods = "SHIFT", action = wezterm.action({ CopyMode = "PriorMatch" }) },
+        },
+        search_mode = {
+            { key = "Escape", mods = "NONE", action = wezterm.action({ CopyMode = "Close" }) },
+            -- Go back to copy mode when pressing enter, so that we can use unmodified keys like "n"
+            -- to navigate search results without conflicting with typing into the search area.
+            { key = "Enter", mods = "NONE", action = "ActivateCopyMode" },
+        },
     },
 }
 
