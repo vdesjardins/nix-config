@@ -4,6 +4,8 @@ with lib;
 
 mkMerge [
   (mkIf pkgs.hostPlatform.isLinux {
+    home.packages = with pkgs; [ gnupg pinentry_gtk2 ];
+
     services.gpg-agent = {
       enable = true;
 
