@@ -36,6 +36,7 @@
       du-dust # fancy du
       duf # df alternative
       fd # fast file search
+      file
       findutils
       glow # renders markdown on command line
       gnumake
@@ -62,6 +63,7 @@
       tree
     ] ++ lib.optionals stdenv.isLinux [
       unstable.btop # monitor resources
+      lshw # list hardware
       pueue # task management tool
       screenfetch # fetch system/theme information
       sysstat
