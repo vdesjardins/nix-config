@@ -21,7 +21,9 @@
 
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  services.picom = { enable = true; };
+  services.picom = {
+    enable = true;
+  };
 
   services.xserver = {
     enable = true;
@@ -57,6 +59,16 @@
       i3 = {
         enable = true;
         package = pkgs.i3-gaps;
+      };
+    };
+
+    libinput = {
+      enable = true;
+      mouse = {
+        naturalScrolling = true;
+      };
+      touchpad = {
+        naturalScrolling = true;
       };
     };
   };
