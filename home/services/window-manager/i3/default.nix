@@ -5,7 +5,7 @@ let
   font = "JetBrainsMono Nerd Font Mono";
 
   locker = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
-  terminal = "${pkgs.unstable.wezterm}/bin/wezterm";
+  terminal = "wezterm";
 
   modeGaps = "Gaps: (o) outer, (i) inner";
   modeGapInner = "Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)";
@@ -23,6 +23,40 @@ let
   ws10 = "10";
 in
 {
+  home.packages = [
+    (pkgs.writeScriptBin
+      "i3cheatsheet"
+      ''
+        #!${pkgs.runtimeShell}
+
+        ${pkgs.gnugrep}/bin/grep -E "^bindsym" ~/.config/i3/config | ${pkgs.gawk}/bin/awk '{$1=""; print $0}' | ${pkgs.gnused}/bin/sed 's/^ *//g' | ${pkgs.gnugrep}/bin/grep -vE "^XF86" | ${pkgs.unixtools.column}/bin/column | ${pkgs.coreutils}/bin/pr -2 -w 160 -t | ${pkgs.less}/bin/less
+      '')
+    (pkgs.writeScriptBin
+      "i3cheatsheet-win"
+      ''
+        #!${pkgs.runtimeShell}
+
+        ${pkgs.xterm}/bin/xterm -T 'i3 Shortcuts' i3cheatsheet
+      '')
+    (pkgs.writeScriptBin
+      "i3-warp-mouse"
+      ''
+        #!${pkgs.runtimeShell}
+
+        XDT="${pkgs.xdotool}/bin/xdotool"
+
+        WINDOW=$("$XDT" getwindowfocus)
+
+        # this brings in variables WIDTH and HEIGHT
+        eval $("$XDT" getwindowgeometry --shell "$WINDOW")
+
+        TX=$(expr "$WIDTH" / 2)
+        TY=$(expr "$HEIGHT" / 2)
+
+        "$XDT" mousemove -window "$WINDOW" "$TX" "$TY"
+      '')
+  ];
+
   xsession = {
     enable = true;
 
@@ -41,6 +75,11 @@ in
         workspaceAutoBackAndForth = true;
 
         menu = "rofi -show drun";
+
+        focus = {
+          followMouse = true;
+          mouseWarping = true;
+        };
 
         bars = [{
           colors = {
@@ -76,16 +115,16 @@ in
 
         keybindings = lib.mkOptionDefault {
           # Focus
-          "${mod}+h" = "focus left";
-          "${mod}+j" = "focus down";
-          "${mod}+k" = "focus up";
-          "${mod}+l" = "focus right";
+          "${mod}+h" = "focus left, exec i3-warp-mouse";
+          "${mod}+j" = "focus down, exec i3-warp-mouse";
+          "${mod}+k" = "focus up, exec i3-warp-mouse";
+          "${mod}+l" = "focus right, exec i3-warp-mouse";
 
           # Move
-          "${mod}+Shift+h" = "move left";
-          "${mod}+Shift+j" = "move down";
-          "${mod}+Shift+k" = "move up";
-          "${mod}+Shift+l" = "move right";
+          "${mod}+Shift+h" = "move left, exec i3-warp-mouse";
+          "${mod}+Shift+j" = "move down, exec i3-warp-mouse";
+          "${mod}+Shift+k" = "move up, exec i3-warp-mouse";
+          "${mod}+Shift+l" = "move right, exec i3-warp-mouse";
 
           # Move to workspace
           "${mod}+1" = "workspace ${ws1}";
@@ -127,6 +166,12 @@ in
           "${mod}+Control+j" = "move workspace to output left";
           "${mod}+Control+semicolon" = "move workspace to output right";
 
+          # fullscreen
+          "${mod}+f" = "fullscreen, exec i3-warp-mouse";
+
+          # start a terminal
+          "${mod}+Return" = "exec ${terminal}, exec i3-warp-mouse";
+
           # lock screen
           "${mod}+Shift+x" = "exec --no-startup-id ${locker}";
 
@@ -156,8 +201,8 @@ in
           "XF86AudioPrev" = "exec playerctl previous";
 
           # Screenshots
-          "Print" = "exec --no-startup-id flameshot gui";
-          "Shift+Print" = "exec --no-startup-id flameshot full --clipboard --path ~/Pictures/Flameshot/";
+          "${mod}+p" = "exec --no-startup-id flameshot gui";
+          "${mod}+Shift+p" = "exec --no-startup-id flameshot full --clipboard --path ~/Pictures/Flameshot/";
 
           # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps.
           # Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
@@ -171,7 +216,7 @@ in
           "${mod}+Shift+c" = "exec rofi -show combi";
 
           # Launch Browser
-          "${mod}+b" = "exec firefox";
+          "${mod}+b" = "exec firefox, exec i3-warp-mouse";
 
           # rename current workspace
           "${mod}+comma" = "exec i3-input -F 'rename workspace to \"%s \"' -P 'New name for this workspace: '";
@@ -182,6 +227,9 @@ in
 
           # Enable/disable logging
           "${mod}+x" = "shmlog toggle";
+
+          # quick shortcut help
+          "${mod}+Shift+question" = "exec --no-startup-id i3cheatsheet-win";
         };
 
         modes = lib.mkOptionDefault {
@@ -226,6 +274,14 @@ in
           }
         ];
       };
+
+      extraConfig = ''
+        # quick shortcut help
+        for_window [title=" i3 Shortcuts "] floating enable, move absolute position center, resize grow left 318, resize grow right 318, resize grow down 115, resize grow up 115
+        # warp mouse to window
+        for_window [class=.*] exec i3-warp-mouse
+      '';
+
     };
   };
 }
