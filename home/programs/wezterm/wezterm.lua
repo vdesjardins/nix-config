@@ -51,6 +51,8 @@ local config = {
         },
     },
 
+    pane_focus_follows_mouse = true,
+
     keys = {
         -- panes
         { key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
