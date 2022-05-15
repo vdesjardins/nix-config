@@ -9,7 +9,13 @@ darwin.lib.darwinSystem {
   modules = [
     ../shared
     {
-      homebrew.casks = [ "karabiner-elements" "raycast" "Rectangle" ];
+      homebrew.casks = [
+        "karabiner-elements"
+        "raycast"
+        "Rectangle"
+        "flameshot"
+        "middleclick"
+      ];
     }
     {
       networking.hostName = hostname;

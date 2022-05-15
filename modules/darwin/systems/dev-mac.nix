@@ -17,6 +17,7 @@ darwin.lib.darwinSystem {
         "docker"
         "homebrew/cask-versions/vmware-fusion-tech-preview"
         "middleclick"
+        "flameshot"
       ];
     }
     (import ../services/spotifyd { device_name = hostname; })
