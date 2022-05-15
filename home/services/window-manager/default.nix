@@ -14,8 +14,12 @@
     slock
     xsel
     xclip
+    xorg.xmodmap
+    xorg.xev
+    glxinfo
     # TODO: should move those elsewhere maybe
     flameshot
+    chromium
 
     (makeDesktopItem {
       name = "reboot";
@@ -61,4 +65,15 @@
     "*color14" = "#b2b7c0";
     "*color15" = "#d9d6ca";
   };
+
+  services.picom = {
+    enable = true;
+    blur = true;
+    shadow = true;
+    activeOpacity = "0.8";
+    inactiveDim = "0.2";
+    inactiveOpacity = "0.8";
+    menuOpacity = "0.8";
+  };
+
 }
