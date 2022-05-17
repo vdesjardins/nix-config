@@ -23,6 +23,11 @@ hm/vince:
 hm/vince-mac:
 	nix build ./#vince-mac && ./result/activate
 
+.PHONY: hm/inf10906
+## hm/inf10906: build and activate inf10906 system
+hm/inf10906:
+	nix build ./#inf10906 && ./result/activate
+
 .PHONY: config/work-mac
 ## config/work-mac: build and activate work-mac system
 config/work-mac:
