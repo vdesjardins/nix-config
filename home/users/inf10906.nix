@@ -1,4 +1,6 @@
 { pkgs, ... }: {
+  nixpkgs = pkgs;
+
   home.sessionVariables = {
     VAULT_USERNAME = "inf10906";
     VAULT_ADDR = "https://vault.gcp.internal";
@@ -11,7 +13,7 @@
     ../programs/gcloud
     ../programs/karabiner
     ../programs/ssh
-    ../programs/wezterm
+    # ../programs/wezterm
     ../roles/dev/bash
     ../roles/dev/json
     ../roles/dev/nix
