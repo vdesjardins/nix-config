@@ -19,7 +19,6 @@
     glxinfo
     # TODO: should move those elsewhere maybe
     flameshot
-    chromium
 
     (makeDesktopItem {
       name = "reboot";
@@ -35,7 +34,7 @@
     })
   ];
 
-  programs.firefox = {
+  programs.chromium = {
     enable = true;
   };
 

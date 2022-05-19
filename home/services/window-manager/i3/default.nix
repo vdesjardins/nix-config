@@ -216,7 +216,7 @@ in
           "${mod}+Shift+c" = "exec rofi -show combi";
 
           # Launch Browser
-          "${mod}+b" = "exec firefox, exec i3-warp-mouse";
+          "${mod}+b" = "exec chromium, exec i3-warp-mouse";
 
           # rename current workspace
           "${mod}+comma" = "exec i3-input -F 'rename workspace to \"%s \"' -P 'New name for this workspace: '";
