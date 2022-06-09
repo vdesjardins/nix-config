@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     buildkit
     dive
+    grype # vulnerability scanner
     podman
     skopeo
     unstable.colima
