@@ -38,7 +38,7 @@
       fd # fast file search
       file
       findutils
-      glances # glances an eye on your system
+      # glances # glances an eye on your system
       glow # renders markdown on command line
       gnumake
       gnused
@@ -48,7 +48,6 @@
       htmlq # Like jq, but for HTML
       htop # fancy top
       hyperfine
-      iotop
       jq
       lazygit
       lsof
@@ -64,6 +63,7 @@
       tree
     ] ++ lib.optionals stdenv.isLinux [
       unstable.btop # monitor resources
+      iotop
       lshw # list hardware
       pueue # task management tool
       screenfetch # fetch system/theme information

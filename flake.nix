@@ -3,14 +3,14 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     fenix.url = "github:/nix-community/fenix";
 
     # System
     darwin.url = "github:LnL7/nix-darwin";
-    home-manager.url = "github:nix-community/home-manager/release-21.11";
+    home-manager.url = "github:nix-community/home-manager/release-22.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Others
@@ -239,7 +239,7 @@
       linux64BitSystems = [ "x86_64-linux" "aarch64-linux" ];
 
       pkgsConfig = {
-        overlays = (attrValues overlays);
+        overlays = attrValues overlays;
         config = {
           allowUnfree = true;
           allowUnsupportedSystem = true;
@@ -264,16 +264,16 @@
       overlays = {
         unstable = final: _prev: {
           unstable = import inputs.unstable {
-            system = final.system;
+            inherit (final) system;
             config.allowUnfree = true;
-            overlays = (attrValues (mkOverlays ./overlays/unstable));
+            overlays = attrValues (mkOverlays ./overlays/unstable);
           };
         };
         master = final: _prev: {
           master = import inputs.master {
-            system = final.system;
+            inherit (final) system;
             config.allowUnfree = true;
-            overlays = (attrValues (mkOverlays ./overlays/master));
+            overlays = attrValues (mkOverlays ./overlays/master);
           };
         };
         neovim-nightly = neovim-nightly.overlay;
@@ -346,7 +346,7 @@
             value = {
               "dockerImage/vm-builder" = import ./modules/linux/containers/vm-builder.nix {
                 inherit nixpkgs nix;
-                system = system;
+                inherit system;
                 crossSystem = system;
               };
             };

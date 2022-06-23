@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   packages = with pkgs; [
-    vscode-langservers-extracted
+    nodePackages.vscode-langservers-extracted
   ];
 }
 

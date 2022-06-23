@@ -15,9 +15,9 @@
       options = "--delete-older-than 7d";
     };
 
-    package = pkgs.nixFlakes;
+    package = pkgs.unstable.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes ca-derivations
       keep-derivations = true
       keep-outputs = true
     '';

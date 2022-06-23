@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     tcpdump
-    tshark
+    wireshark-cli
     termshark
     dnspeep
     mtr # network diagnostic tool
