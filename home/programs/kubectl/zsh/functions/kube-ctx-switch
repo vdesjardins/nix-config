@@ -32,12 +32,13 @@ function kube-ctx-switch() {
 		fi
 
 		# check if context is GKE
+		local context_name_short=$context_name
 		if [[ $context_name == gke_* ]]; then
-			context_name=$(echo "$context_name" | awk -F'_' '{ print $4; }')
+			context_name_short=$(echo "$context_name" | awk -F'_' '{ printf "%s-%s", $3, $4; }')
 		fi
 
 		local context_file
-		context_file=$(echo "$context_name" | tr ':' '_')
+		context_file=$(echo "$context_name_short" | tr ':' '_')
 		local session_name
 		session_name="➜ "$context_file
 
