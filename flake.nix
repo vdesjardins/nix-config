@@ -10,7 +10,7 @@
 
     # System
     darwin.url = "github:LnL7/nix-darwin";
-    home-manager.url = "github:nix-community/home-manager/release-22.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Others
@@ -243,6 +243,7 @@
         config = {
           allowUnfree = true;
           allowUnsupportedSystem = true;
+          allowBroken = true;
           # contentAddressedByDefault = true;
         };
       };
@@ -315,22 +316,38 @@
       dev-vm = self.nixosConfigurations.dev-vm.config.system.build.toplevel;
 
       homeConfigurations.vincent_desjardins = import ./home/config/vincent_desjardins.nix {
-        inherit home-manager pkgsConfig;
+        inherit home-manager;
+        pkgs = import nixpkgs {
+          system = utils.lib.system.x86_64-linux;
+          inherit (pkgsConfig) config overlays;
+        };
       };
       vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
 
       homeConfigurations.inf10906 = import ./home/config/inf10906.nix {
-        inherit home-manager pkgsConfig;
+        inherit home-manager;
+        pkgs = import nixpkgs {
+          system = utils.lib.system.x86_64-darwin;
+          inherit (pkgsConfig) config overlays;
+        };
       };
       inf10906 = self.homeConfigurations.inf10906.activationPackage;
 
       homeConfigurations.vince = import ./home/config/vince.nix {
-        inherit home-manager pkgsConfig;
+        inherit home-manager;
+        pkgs = import nixpkgs {
+          system = utils.lib.system.aarch64-linux;
+          inherit (pkgsConfig) config overlays;
+        };
       };
       vince = self.homeConfigurations.vince.activationPackage;
 
       homeConfigurations.vince-mac = import ./home/config/vince-mac.nix {
-        inherit home-manager pkgsConfig;
+        inherit home-manager;
+        pkgs = import nixpkgs {
+          system = utils.lib.system.aarch64-darwin;
+          inherit (pkgsConfig) config overlays;
+        };
       };
       vince-mac = self.homeConfigurations.vince-mac.activationPackage;
 
@@ -364,9 +381,8 @@
     } // utils.lib.eachDefaultSystem (
       system: {
         legacyPackages = import nixpkgs {
-          inherit system; inherit
-          (pkgsConfig) config overlays
-          ;
+          inherit system;
+          inherit (pkgsConfig) config overlays;
         };
       }
     );

@@ -1,12 +1,15 @@
-{ home-manager, pkgsConfig }:
+{ home-manager, pkgs }:
 home-manager.lib.homeManagerConfiguration {
-  system = "aarch64-linux";
-  stateVersion = "21.05";
-  username = "vince";
-  homeDirectory = "/home/vince";
-  extraModules = [ ../modules ];
-  configuration = import ../users/vince.nix {
-    pkgs = pkgsConfig;
-    xsession = true;
-  };
+  inherit pkgs;
+  modules = [
+    ../modules
+    (import ../users/vince.nix { xsession = true; })
+    {
+      home = {
+        username = "vince";
+        homeDirectory = "/home/vince";
+        stateVersion = "21.05";
+      };
+    }
+  ];
 }

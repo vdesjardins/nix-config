@@ -1,6 +1,4 @@
-{ pkgs, xsession ? false }: { lib, ... }: {
-  nixpkgs = pkgs;
-
+{ xsession ? false }: { lib, ... }: {
   imports = [
     ./common.nix
 

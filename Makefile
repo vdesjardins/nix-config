@@ -21,8 +21,6 @@ hm/vince:
 .PHONY: hm/vince-mac
 ## hm/vince-mac: build and activate vince system
 hm/vince-mac:
-	export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1
-	export NIXPKGS_ALLOW_UNFREE=1
 	export NIXPKGS_ALLOW_BROKEN=1
 	nix build ./#vince-mac --impure && ./result/activate
 

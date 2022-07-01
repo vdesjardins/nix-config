@@ -1,12 +1,15 @@
-{ home-manager, pkgsConfig }:
-home-manager.lib.homeManagerConfiguration
-{
-  system = "x86_64-darwin";
-  stateVersion = "21.05";
-  username = "inf10906";
-  homeDirectory = "/Users/inf10906";
-  extraModules = [ ../modules ];
-  configuration = import ../users/inf10906.nix {
-    pkgs = pkgsConfig;
-  };
+{ home-manager, pkgs }:
+home-manager.lib.homeManagerConfiguration {
+  inherit pkgs;
+  modules = [
+    ../modules
+    ../users/inf10906.nix
+    {
+      home = {
+        username = "inf10906";
+        homeDirectory = "/Users/inf10906";
+        stateVersion = "21.05";
+      };
+    }
+  ];
 }

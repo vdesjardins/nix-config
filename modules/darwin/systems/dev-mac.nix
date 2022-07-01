@@ -18,6 +18,8 @@ darwin.lib.darwinSystem {
         "homebrew/cask-versions/vmware-fusion-tech-preview"
         "middleclick"
         "flameshot"
+        "hammerspoon"
+        "google-drive"
       ];
     }
     (import ../services/spotifyd { device_name = hostname; })

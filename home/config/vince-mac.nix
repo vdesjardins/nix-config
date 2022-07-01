@@ -1,11 +1,15 @@
-{ home-manager, pkgsConfig }:
+{ home-manager, pkgs }:
 home-manager.lib.homeManagerConfiguration {
-  system = "aarch64-darwin";
-  stateVersion = "21.05";
-  username = "vince";
-  homeDirectory = "/Users/vince";
-  extraModules = [ ../modules ];
-  configuration = import ../users/vince.nix {
-    pkgs = pkgsConfig;
-  };
+  inherit pkgs;
+  modules = [
+    ../modules
+    (import ../users/vince.nix { })
+    {
+      home = {
+        username = "vince";
+        homeDirectory = "/Users/vince";
+        stateVersion = "21.05";
+      };
+    }
+  ];
 }

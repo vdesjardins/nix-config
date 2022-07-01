@@ -1,11 +1,15 @@
-{ home-manager, pkgsConfig }:
+{ home-manager, pkgs }:
 home-manager.lib.homeManagerConfiguration {
-  system = "x86_64-linux";
-  stateVersion = "21.05";
-  username = "vincent_desjardins";
-  homeDirectory = "/home/vincent_desjardins";
-  extraModules = [ ../modules ];
-  configuration = import ../users/vincent_desjardins.nix {
-    pkgs = pkgsConfig;
-  };
+  inherit pkgs;
+  modules = [
+    ../modules
+    ../users/vincent_desjardins.nix
+    {
+      home = {
+        username = "vincent_desjardins";
+        homeDirectory = "/home/vincent_desjardins";
+        stateVersion = "21.05";
+      };
+    }
+  ];
 }
