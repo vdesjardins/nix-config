@@ -25,10 +25,18 @@
     lscolors.flake = false;
     base16-fzf.url = "github:/fnune/base16-fzf";
     base16-fzf.flake = false;
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
+    # aws
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
     aws-find-profile.flake = false;
     aws-sso-util.url = "github:/vdesjardins/aws-sso-util";
     aws-sso-util.flake = false;
+
+    # Kubebernetes
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
     kubectl-view-utilization.flake = false;
     kubectl-sniff.url = "github:/eldadru/ksniff";
@@ -47,10 +55,6 @@
     kubectl-blame.flake = false;
     ketall.url = "github:corneliusweig/ketall";
     ketall.flake = false;
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "unstable";
-    };
 
     # Neovim
     ## LSP
