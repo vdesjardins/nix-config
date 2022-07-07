@@ -4,6 +4,6 @@ inputs: _self: super: {
 
     src = inputs.kube-lineage;
 
-    vendorSha256 = "sha256-Gjrb/O/aGu+4TB8kmQTz6ptjVA8XO5W+X+WFuICEQKA=";
+    vendorSha256 = "sha256-2Fjj7MotjF6XetYauEfFXvtfbvw7ZPL+1yRPILYFWoc=";
   };
 }
