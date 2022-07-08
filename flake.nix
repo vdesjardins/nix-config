@@ -29,6 +29,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "unstable";
     };
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     # aws
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
@@ -233,6 +234,7 @@
     , utils
     , unstable
     , nix
+    , pre-commit-hooks
     , ...
     }@inputs:
     let
@@ -387,6 +389,18 @@
         legacyPackages = import nixpkgs {
           inherit system;
           inherit (pkgsConfig) config overlays;
+        };
+        checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixpkgs-fmt.enable = true;
+              statix.enable = true;
+            };
+          };
+        };
+        devShell = nixpkgs.legacyPackages.${system}.mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
       }
     );

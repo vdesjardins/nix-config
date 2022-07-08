@@ -4,7 +4,7 @@ let
   inherit (super.pkgs.lib) removePrefix;
   inherit (super.vimUtils) buildVimPluginFrom2Nix;
 
-  plugins = map (name: removePrefix "neovim-plugin-" name)
+  plugins = map (removePrefix "neovim-plugin-")
     (filter (name: match "^neovim-plugin-.+$" name != null) (attrNames inputs));
 
   buildPlugin = pname: buildVimPluginFrom2Nix {

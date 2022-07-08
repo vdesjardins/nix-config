@@ -1,4 +1,4 @@
-{ ... }: {
+{ _ }: {
   programs.zsh.shellAliases = {
     tf = "terraform";
     tfa = "terraform apply";

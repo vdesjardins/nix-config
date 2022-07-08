@@ -126,7 +126,7 @@ in
             });
         };
 
-        activeLanguages = filter (name: (getAttr name cfg.lang) == true)
+        activeLanguages = filter (name: (getAttr name cfg.lang))
           (attrNames cfg.lang);
 
         generateLuaRequires = concatStringsSep "\n"
@@ -134,9 +134,8 @@ in
             (
               name: "require(\"my-lang.${name}\")"
             )
-            (
-              activeLanguages
-            ));
+            activeLanguages
+          );
 
         generatePackages = concatLists
           (map
@@ -148,13 +147,13 @@ in
             ));
 
         generateTreeSitterGrammars =
-          (map
+          map
             (
               name: (getAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars)
             )
-            (filter (name: (hasAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars)) (
+            (filter (name: (hasAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars))
               activeLanguages
-            )));
+            );
 
         pkgNeovim = pkgs.wrapNeovim cfg.package
           {
