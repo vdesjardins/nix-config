@@ -15,6 +15,8 @@
     signing.key = "04C423B8C964B58C";
     signing.signByDefault = true;
 
+    package = pkgs.unstable.git;
+
     delta = {
       enable = true;
       options = {
@@ -59,6 +61,7 @@
       push = {
         default = "current";
         followTags = true;
+        autoSetupRemote = true;
       };
 
       pull = { rebase = true; };
