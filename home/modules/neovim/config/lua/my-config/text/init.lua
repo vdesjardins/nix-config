@@ -3,7 +3,7 @@ wk.register({
     x = {
         name = "text",
         d = { "<cmd>StripWhiteSpace<CR>", "delete-trailing-whitespaces" },
-        f = { "<cmd>lua vim.lsp.buf.formatting_sync(nil, 200)<cr>", "format" },
+        f = { "<cmd>lua vim.lsp.buf.formatting_seq_sync(nil, 200)<cr>", "format" },
     },
 }, { prefix = "<leader>" })
 
