@@ -396,6 +396,7 @@
             hooks = {
               nixpkgs-fmt.enable = true;
               statix.enable = true;
+              stylua.enable = true;
             };
           };
         };
