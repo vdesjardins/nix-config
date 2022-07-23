@@ -695,6 +695,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-lua-dev-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1652372541,
+        "narHash": "sha256-/Lo8MKaaOOH2F3j+LL2wOeiqr/50i7oGP2E/8NiIl28=",
+        "owner": "folke",
+        "repo": "lua-dev.nvim",
+        "rev": "f5c31936fe06fcbeb59b98f69f74f9c2f91abaec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "lua-dev.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-lualine-nvim": {
       "flake": false,
       "locked": {
@@ -1652,6 +1668,7 @@
         "neovim-plugin-lspkind-nvim": "neovim-plugin-lspkind-nvim",
         "neovim-plugin-lspsaga-nvim": "neovim-plugin-lspsaga-nvim",
         "neovim-plugin-lua-dev": "neovim-plugin-lua-dev",
+        "neovim-plugin-lua-dev-nvim": "neovim-plugin-lua-dev-nvim",
         "neovim-plugin-lualine-nvim": "neovim-plugin-lualine-nvim",
         "neovim-plugin-markdown-preview": "neovim-plugin-markdown-preview",
         "neovim-plugin-nui": "neovim-plugin-nui",
