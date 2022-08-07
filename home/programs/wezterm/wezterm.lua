@@ -207,7 +207,11 @@ local config = {
                     CopyMode = "MoveForwardWord",
                 }),
             },
-            { key = "f", mods = "ALT", action = wezterm.action({ CopyMode = "MoveForwardWord" }) },
+            {
+                key = "f",
+                mods = "ALT",
+                action = wezterm.action({ CopyMode = "MoveForwardWord" }),
+            },
             {
                 key = "Tab",
                 mods = "NONE",
