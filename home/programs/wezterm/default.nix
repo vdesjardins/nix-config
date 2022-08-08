@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  wezterm_text = builtins.readFile ./wezterm.lua;
-  wezterm_config = builtins.replaceStrings [ "@homeDirectory@" ] [ config.home.homeDirectory ] wezterm_text;
+  wezterm_config = import ./wezterm-tmux.nix { inherit (config.home) homeDirectory; };
   pkg_wezterm = pkgs.master.wezterm;
 in
 lib.mkMerge [
