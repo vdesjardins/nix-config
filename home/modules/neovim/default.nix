@@ -31,6 +31,13 @@ in
           enable lua language support
         '';
       };
+      python = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable python language support
+        '';
+      };
       cue = mkOption {
         type = types.bool;
         default = false;

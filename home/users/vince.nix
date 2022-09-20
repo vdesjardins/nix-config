@@ -14,6 +14,7 @@
     ../roles/dev/json
     ../roles/dev/lua
     ../roles/dev/nix
+    ../roles/dev/python
     ../roles/dev/rust
     ../roles/dev/yaml
     ../roles/ops/aws
