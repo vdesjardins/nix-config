@@ -108,6 +108,13 @@ in
           enable vimscript language support
         '';
       };
+      query = mkOption {
+        type = types.bool;
+        default = true;
+        description = ''
+          enable query parser support
+        '';
+      };
     };
   };
 
