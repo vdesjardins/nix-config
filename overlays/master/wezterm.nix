@@ -5,15 +5,15 @@ _inputs: _self: super: {
     src = super.fetchFromGitHub {
       owner = "wez";
       repo = "wezterm";
-      rev = "64921bf8a187a9505743a26b3bc5e2007abae1f5";
+      rev = "20220905-102802-7d4b8249";
       fetchSubmodules = true;
-      sha256 = "sha256-WgGLmagi7PMOFO45q7xIB1LHac+2DA01WXSUkhTHcvM=";
+      sha256 = "sha256-Xvi0bluLM4F3BFefIPhkhTF3dmRvP8u+qV70Rz4CGKI=";
     };
 
     cargoDeps = drv.cargoDeps.overrideAttrs (super.lib.const {
       name = "${name}-vendor.tar.gz";
       inherit src;
-      outputHash = "sha256-Ic/ap/QlH7HhO39QaLHk9zohp49PBmWKpBNxxSIYWO4=";
+      outputHash = "sha256-LPZRuYCamEeSg9nUcQs0FShosF5sssqA0lPKEKQ1z/A=";
     });
 
     buildInputs = drv.buildInputs ++
