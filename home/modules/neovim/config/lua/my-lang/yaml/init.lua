@@ -5,6 +5,19 @@ require("lspconfig").yamlls.setup({
     cmd = { "yaml-language-server", "--stdio" },
     on_attach = require("my-config.lsp").common_on_attach,
     capabilities = capabilities,
+    settings = {
+        yaml = {
+            schemaStore = {
+                enable = true,
+                url = "https://www.schemastore.org/api/json/catalog.json",
+            },
+            schemas = {},
+            schemaDownload = {
+                enable = true,
+            },
+            validate = true,
+        },
+    },
 })
 
 local null_ls = require("null-ls")
