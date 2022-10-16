@@ -21,6 +21,7 @@
     tmux.url = "github:tmux/tmux";
     tmux.flake = false;
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
     lscolors.url = "github:/trapd00r/LS_COLORS";
     lscolors.flake = false;
     base16-fzf.url = "github:/fnune/base16-fzf";
