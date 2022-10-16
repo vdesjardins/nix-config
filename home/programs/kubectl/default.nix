@@ -82,6 +82,7 @@ mkMerge [
 
           # nodes
           kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
+          kgnot = "kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints";
         };
       };
 
