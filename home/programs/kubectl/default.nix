@@ -11,6 +11,7 @@ mkMerge [
         fzf
         jq
         bat
+        gnugrep
       ];
 
       programs.zsh = {
@@ -78,7 +79,7 @@ mkMerge [
           kube-get-certs = ''kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{" "}' | sort'';
 
           # events
-          kgesw = "kubectl get events --field-selector type=Warning";
+          kgesw = "kubectl get events --field-selector type=Warning --sort-by='.lastTimestamp'";
 
           # nodes
           kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
