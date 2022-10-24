@@ -5,6 +5,7 @@
     gitAndTools.delta
     gitAndTools.git-filter-repo
     git-revise
+    pre-commit
     unstable.gitui
   ];
 
