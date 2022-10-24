@@ -165,5 +165,8 @@
     };
   };
 
-  programs.zsh.shellAliases = { g = "git"; };
+  programs.zsh.shellAliases = {
+    g = "git";
+    gr = "cd $(git rev-parse --show-toplevel)";
+  };
 }
