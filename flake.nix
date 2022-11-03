@@ -245,7 +245,10 @@
       inherit (nixpkgs) lib;
       inherit (lib) removeSuffix;
 
-      linux64BitSystems = [ "x86_64-linux" "aarch64-linux" ];
+      linux64BitSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
       pkgsConfig = {
         overlays = attrValues overlays;
@@ -409,3 +412,4 @@
       }
     );
 }
+
