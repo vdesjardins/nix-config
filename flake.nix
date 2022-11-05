@@ -138,8 +138,8 @@
     neovim-plugin-telescope-ui-select.flake = false;
 
     ## Misc
-    neovim-plugin-lua-dev-nvim.url = "github:folke/lua-dev.nvim";
-    neovim-plugin-lua-dev-nvim.flake = false;
+    neovim-plugin-neodev-nvim.url = "github:folke/neodev.nvim";
+    neovim-plugin-neodev-nvim.flake = false;
     neovim-plugin-which-key-nvim.url = "github:folke/which-key.nvim";
     neovim-plugin-which-key-nvim.flake = false;
     neovim-plugin-trouble-nvim.url = "github:folke/lsp-trouble.nvim";
