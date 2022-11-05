@@ -11,6 +11,24 @@ wk.register({
             '<cmd>lua require("dap").toggle_breakpoint()<cr>',
             "toggle breakpoint",
         },
+        B = {
+            '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>',
+            "set breakpoint with condition",
+        },
+        l = {
+            name = "logging",
+            p = {
+                '<cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>',
+                "log point message",
+            },
+        },
+        d = {
+            name = "debugging",
+            r = {
+                '<cmd>lua require("dap").repl.open()<cr>',
+                "repl",
+            },
+        },
         r = { '<cmd>lua require("dap").continue()<cr>', "continue" },
         n = { '<cmd>lua require("dap").step_over()<cr>', "step over" },
         s = { '<cmd>lua require("dap").step_into()<cr>', "step into" },
