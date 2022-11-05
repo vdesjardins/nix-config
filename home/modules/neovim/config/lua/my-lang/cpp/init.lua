@@ -1,6 +1,5 @@
-local capabilities = require("cmp_nvim_lsp").update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities =
+    require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 require("lspconfig").clangd.setup({
     cmd = { "clangd" },
     on_attach = require("my-config.lsp").common_on_attach,
