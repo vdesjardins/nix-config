@@ -24,9 +24,9 @@
       # auto show and hide dock
       autohide = true;
       # remove delay for showing dock
-      autohide-delay = "0.0";
+      autohide-delay = 0.0;
       # how fast is the dock showing animation
-      autohide-time-modifier = "1.0";
+      autohide-time-modifier = 1.0;
       tilesize = 50;
       static-only = true;
       showhidden = false;
@@ -42,7 +42,7 @@
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
       "com.apple.sound.beep.feedback" = 0;
-      "com.apple.sound.beep.volume" = "0.000";
+      "com.apple.sound.beep.volume" = 0.000;
       # allow key repeat
       ApplePressAndHoldEnabled = false;
       # delay before repeating keystrokes
