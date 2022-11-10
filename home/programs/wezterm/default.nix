@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   wezterm_config = import ./wezterm-tmux.nix { inherit (config.home) homeDirectory; };
-  pkg_wezterm = pkgs.master.wezterm;
+  pkg_wezterm = pkgs.unstable.wezterm;
 in
 lib.mkMerge [
   {
