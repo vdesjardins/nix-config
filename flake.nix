@@ -32,6 +32,8 @@
       inputs.nixpkgs.follows = "unstable";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    hammerspoon-controlescape.url = "github:/jasonrudolph/ControlEscape.spoon";
+    hammerspoon-controlescape.flake = false;
 
     # aws
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";

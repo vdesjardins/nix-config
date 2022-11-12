@@ -10,7 +10,6 @@ darwin.lib.darwinSystem {
     ../shared
     {
       homebrew.casks = [
-        "karabiner-elements"
         "raycast"
         "google-chrome"
         "Rectangle"
