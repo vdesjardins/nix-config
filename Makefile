@@ -24,6 +24,12 @@ hm/vince-mac:
 	export NIXPKGS_ALLOW_BROKEN=1
 	nix build ./#vince-mac --impure && ./result/activate
 
+.PHONY: hm/bt-mac
+## hm/bt-mac: build and activate vince system
+hm/bt-mac:
+	export NIXPKGS_ALLOW_BROKEN=1
+	nix build ./#hm-bt-mac --impure && ./result/activate
+
 .PHONY: hm/inf10906
 ## hm/inf10906: build and activate inf10906 system
 hm/inf10906:
@@ -40,6 +46,12 @@ config/work-mac:
 config/dev-mac:
 	nix build .#dev-mac
 	./result/sw/bin/darwin-rebuild switch --flake .#dev-mac
+
+.PHONY: config/bt-mac
+## config/bt-mac: build and activate bt-mac system
+config/bt-mac:
+	nix build .#bt-mac
+	./result/sw/bin/darwin-rebuild switch --flake .#bt-mac
 
 .PHONY: config/dev-vm
 ## config/dev-vm: build and activate dev-vm system
