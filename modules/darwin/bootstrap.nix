@@ -2,11 +2,11 @@
 {
   imports = [ ../shared.nix ];
 
-  nix = { trustedUsers = [ "@admin" ]; };
+  nix.settings = { trusted-users = [ "@admin" ]; };
 
   services = { nix-daemon.enable = true; };
 
-  users.nix.configureBuildUsers = true;
+  nix.configureBuildUsers = true;
 
   system.stateVersion = 4;
 }
