@@ -203,7 +203,7 @@ in
         home.packages = with pkgs;
           [
             pkgNeovim
-            python3
+            unstable.python311
             python3Packages.pynvim
             pkgs.unstable.tree-sitter
             (pkgs.unstable.tree-sitter.withPlugins (_: generateTreeSitterGrammars))
