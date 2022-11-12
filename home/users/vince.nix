@@ -3,7 +3,7 @@
     ./common.nix
 
     ../programs/alacritty
-    ../programs/karabiner
+    ../programs/hammerspoon
     ../programs/ssh
     ../programs/wezterm
     ../roles/dev/bash
