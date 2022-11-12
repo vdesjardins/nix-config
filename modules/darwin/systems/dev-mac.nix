@@ -12,6 +12,7 @@ darwin.lib.darwinSystem {
       homebrew.casks = [
         "raycast"
         "google-chrome"
+        "firefox"
         "Rectangle"
         "docker"
         "homebrew/cask-versions/vmware-fusion-tech-preview"
