@@ -2,9 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    git-revise
     gitAndTools.delta
     gitAndTools.git-filter-repo
-    git-revise
     pre-commit
     unstable.gitui
   ];
@@ -17,6 +17,10 @@
     signing.signByDefault = true;
 
     package = pkgs.unstable.git;
+
+    lfs = {
+      enable = true;
+    };
 
     delta = {
       enable = true;
