@@ -305,13 +305,19 @@
       darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
         system = utils.lib.system.x86_64-darwin;
         inherit inputs;
-        modules = [ ./modules/darwin/bootstrap.nix ];
+        modules = [
+          { nixpkgs = pkgsConfig; }
+          ./modules/darwin/bootstrap.nix
+        ];
       };
 
       darwinConfigurations.bootstrap-aarch = darwin.lib.darwinSystem {
         system = utils.lib.system.aarch64-darwin;
         inherit inputs;
-        modules = [ ./modules/darwin/bootstrap.nix ];
+        modules = [
+          { nixpkgs = pkgsConfig; }
+          ./modules/darwin/bootstrap.nix
+        ];
       };
 
       darwinConfigurations.work-mac = import ./modules/darwin/systems/work-mac.nix {
