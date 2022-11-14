@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     buildpack
     helm-docs
+    helmfile
     kail
     ketall # get all rersources
     kind
