@@ -173,6 +173,8 @@
     neovim-plugin-nvim-web-devicons.flake = false;
     neovim-plugin-nui.url = "github:MunifTanjim/nui.nvim";
     neovim-plugin-nui.flake = false;
+    neovim-plugin-editorconfig.url = "github:gpanders/editorconfig.nvim";
+    neovim-plugin-editorconfig.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";

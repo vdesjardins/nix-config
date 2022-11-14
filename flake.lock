@@ -555,6 +555,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-editorconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668172959,
+        "narHash": "sha256-MoRcOZo7A+LdKf4NWzLh6QNnnS9faolhaYu9HommOYM=",
+        "owner": "gpanders",
+        "repo": "editorconfig.nvim",
+        "rev": "91db270a7f458866102f420b457d17a59b48e83e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gpanders",
+        "repo": "editorconfig.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-git-blame-nvim": {
       "flake": false,
       "locked": {
@@ -1649,6 +1665,7 @@
         "neovim-plugin-cmp-path": "neovim-plugin-cmp-path",
         "neovim-plugin-cmp-treesitter": "neovim-plugin-cmp-treesitter",
         "neovim-plugin-crates": "neovim-plugin-crates",
+        "neovim-plugin-editorconfig": "neovim-plugin-editorconfig",
         "neovim-plugin-git-blame-nvim": "neovim-plugin-git-blame-nvim",
         "neovim-plugin-gitsigns-nvim": "neovim-plugin-gitsigns-nvim",
         "neovim-plugin-glow-nvim": "neovim-plugin-glow-nvim",
