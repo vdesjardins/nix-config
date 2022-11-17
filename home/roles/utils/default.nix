@@ -61,6 +61,7 @@
       tealdeer # faster tldr
       tokei # displays code statistics
       tree
+      yubikey-manager
     ] ++ lib.optionals stdenv.isLinux [
       unstable.btop # monitor resources
       iotop
