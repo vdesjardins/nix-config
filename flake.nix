@@ -304,7 +304,7 @@
     {
       homeManagerModules = import ./home/modules { };
 
-      darwinConfigurations.bootstrap = darwin.lib.darwinSystem {
+      darwinConfigurations.bootstrap-x86_64 = darwin.lib.darwinSystem {
         system = utils.lib.system.x86_64-darwin;
         inherit inputs;
         modules = [

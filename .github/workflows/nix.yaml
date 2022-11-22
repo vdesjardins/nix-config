@@ -54,7 +54,7 @@ jobs:
           # Prevent conflict between Cachix installed by workflow and the one installed in the config
           nix-env --set-flag priority 1 cachix
           # Build and switch to bootstrap config
-          make darwin/bootstrap
+          make darwin/bootstrap-x86_64
           # Build and switch to full config
           export HOME_MANAGER_BACKUP_EXT=".bkp"
           make config/work-mac
