@@ -42,7 +42,7 @@
       glow # renders markdown on command line
       gnumake
       gnused
-      graphviz
+      # graphviz
       grpcurl
       hexyl
       htmlq # Like jq, but for HTML

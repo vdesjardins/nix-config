@@ -298,7 +298,7 @@
         comma = final: _prev: {
           comma = import inputs.comma { inherit (final) pkgs; };
         };
-        fenix = fenix.overlay;
+        fenix = fenix.overlays.default;
       } // (mkOverlays ./overlays);
     in
     {
