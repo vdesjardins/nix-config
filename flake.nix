@@ -426,8 +426,11 @@
             src = ./.;
             hooks = {
               nixpkgs-fmt.enable = true;
+              # deadnix.enable = true;
               statix.enable = true;
               stylua.enable = true;
+              shellcheck.enable = true;
+              shfmt.enable = true;
             };
           };
         };
