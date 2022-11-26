@@ -38,7 +38,7 @@
       fd # fast file search
       file
       findutils
-      # glances # glances an eye on your system
+      glances # glances an eye on your system
       glow # renders markdown on command line
       gnumake
       gnused
@@ -62,6 +62,7 @@
       tokei # displays code statistics
       tree
       yubikey-manager
+      unstable.procs # replacement for ps
     ] ++ lib.optionals stdenv.isLinux [
       unstable.btop # monitor resources
       iotop
