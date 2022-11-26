@@ -8,6 +8,9 @@ in
   aws-find-profile = rustPlatform.buildRustPackage {
     name = "aws-find-profile";
 
+    buildInputs = with super.pkgs; [
+      libiconv
+    ];
 
     src = inputs.aws-find-profile;
 

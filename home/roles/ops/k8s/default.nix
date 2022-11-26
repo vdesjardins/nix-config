@@ -10,7 +10,7 @@
     buildpack
     helm-docs
     helmfile
-    kail
+    # kail
     ketall # get all rersources
     kind
     kube-capacity
