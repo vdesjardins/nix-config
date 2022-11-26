@@ -21,7 +21,7 @@
 
   home.packages = with pkgs;
     [
-      # unstable.fq # jq for binary formats
+      unstable.fq # jq for binary formats
       act # github actions testing
       bandwhich # network utilization by process
       bottom # top with graphs
