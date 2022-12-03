@@ -70,7 +70,7 @@
       zstyle ':completion:*:manuals.*' insert-sections   true
       zstyle ':completion:*:man:*'     menu yes select
 
-      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
       function take() {
         mkdir -p $1
