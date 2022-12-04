@@ -5,6 +5,7 @@
     ../../programs/zsh
     ../../programs/starship
     ../../programs/git
+    ../../programs/sapling
     ../../programs/tmux
     ../../programs/gh
     ../../programs/zoxide
