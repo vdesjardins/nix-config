@@ -32,22 +32,13 @@
 
     plugins = [
       {
-        name = "fzf-tab";
-        src = pkgs.fetchFromGitHub {
-          owner = "Aloxaf";
-          repo = "fzf-tab";
-          rev = "51e6755bb32add73469a06274f5b3a0d665ce1df";
-          sha256 = "05k2pjr4zd34id6d1jhfd7rq011717i6axf0j5ya0wz13sw5qj6w";
-        };
-      }
-      {
         name = "enhancd";
         file = "init.sh";
         src = pkgs.fetchFromGitHub {
           owner = "b4b4r07";
           repo = "enhancd";
-          rev = "aec0e0c1c0b1376e87da74b8940fda5657269948";
-          sha256 = "13n2c2kj25g8aqvlkb5j4vzcz5a4a22yc8v6ary651lpqgckx7cg";
+          rev = "c6967f7f70f18991a5f9148996afffc0d3ae76e4";
+          sha256 = "sha256-p7ZG4NC9UWa55tPxYAaFocc0waIaTt+WO6MNearbO0U=";
         };
       }
     ];
@@ -60,16 +51,6 @@
     '';
 
     initExtra = ''
-      zstyle ':completion:*:descriptions' format '[%d]'
-
-      # popup menu - requires tmux 3.2+
-      zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
-      # complete manual by their section
-      zstyle ':completion:*:manuals'   separate-sections true
-      zstyle ':completion:*:manuals.*' insert-sections   true
-      zstyle ':completion:*:man:*'     menu yes select
-
       source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
       function take() {
