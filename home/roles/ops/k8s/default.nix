@@ -17,7 +17,10 @@
     kube-lineage
     kube3d
     kubectl-blame
+    kubectl-images
+    kubectl-node-shell
     # kubectl-trace
+    kubectl-tree
     kubectl-view-utilization
     kubectx
     kubelogin
