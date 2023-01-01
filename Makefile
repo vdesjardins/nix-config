@@ -107,6 +107,17 @@ build/dev-vm:
 	vm_builder_image="nix-builder:latest"
 	docker run -it --rm -v $$out_path:/output:rw $$vm_builder_image /bin/create-vm 'github:vdesjardins/nix-config/feat-linux-vm#os-images.vmware.dev-vm'
 
+.PHONY: builder/start
+## builder/start: start a darwin builder vm https://nixos.org/manual/nixpkgs/stable/#sec-darwin-builder
+# To exit, Ctrl-a + c to open qemu prompt and type quit
+builder/start:
+	nix run 'nixpkgs#darwin.builder'
+
+.PHONY: builder/dev-vm
+## builder/dev-vm: build vmware vm directly using a darwin builder
+builder/dev-vm:
+	nix build ".#os-images.vmware.dev-vm"
+
 .PHONY: help
 ## help: Prints this help message
 help:
