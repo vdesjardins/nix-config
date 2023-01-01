@@ -2,6 +2,7 @@
 let
   username = "vince";
   hostname = "dev-mac";
+  crossSystems = [ "aarch64-linux" ];
 in
 darwin.lib.darwinSystem {
   system = "aarch64-darwin";
