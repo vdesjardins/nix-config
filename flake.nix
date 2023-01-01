@@ -26,7 +26,7 @@
     base16-fzf.flake = false;
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     hammerspoon-controlescape.url = "github:/jasonrudolph/ControlEscape.spoon";
@@ -387,7 +387,7 @@
 
       os-images.vmware.dev-vm = import ./modules/linux/vm-images/dev-vm.nix {
         inherit pkgsConfig nixos-generators;
-        pkgs = unstable;
+        pkgs = nixpkgs;
       };
 
       packages = listToAttrs
