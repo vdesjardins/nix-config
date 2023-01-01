@@ -34,6 +34,7 @@
         "allow_other"
         "auto_unmount"
         "defaults"
+        "nofail"
       ];
     };
   }
