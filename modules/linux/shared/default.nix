@@ -84,6 +84,7 @@
     killall
     xclip
     git
+    neovim
 
     gtkmm3
 
