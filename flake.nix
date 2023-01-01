@@ -15,7 +15,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Others
-    nix.url = "github:nixos/nix/2.8.0";
     utils.url = "github:numtide/flake-utils";
     comma.url = "github:Shopify/comma";
     comma.flake = false;
