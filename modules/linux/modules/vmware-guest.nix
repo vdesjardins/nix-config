@@ -1,4 +1,3 @@
-# from https://github.com/JonnyWalker81/nixos-config/blob/b0a96b26f992dfa3c1d3563f4dc6c6c1342651dc/modules/vmware-guest.nix
 { config, lib, pkgs, ... }:
 
 with lib;
@@ -6,6 +5,7 @@ with lib;
 let
   cfg = config.virtualisation.vmware.guest;
   open-vm-tools = if cfg.headless then pkgs.open-vm-tools-headless else pkgs.open-vm-tools;
+  inherit (pkgs.xorg) xf86inputvmmouse;
 in
 {
   imports = [
@@ -27,7 +27,8 @@ in
       message = "VMWare guest is not currently supported on ${pkgs.stdenv.hostPlatform.system}";
     }];
 
-    #boot.initrd.kernelModules = [ "vmw_pvscsi" ];
+    boot.initrd.availableKernelModules = [ "mptspi" ];
+    # boot.initrd.kernelModules = [ "vmw_pvscsi" ];
 
     environment.systemPackages = [ open-vm-tools ];
 
@@ -35,6 +36,8 @@ in
       {
         description = "VMWare Guest Service";
         wantedBy = [ "multi-user.target" ];
+        after = [ "display-manager.service" ];
+        unitConfig.ConditionVirtualization = "vmware";
         serviceConfig.ExecStart = "${open-vm-tools}/bin/vmtoolsd";
       };
 
@@ -43,8 +46,7 @@ in
       {
         description = "VMware vmblock fuse mount";
         documentation = [ "https://github.com/vmware/open-vm-tools/blob/master/open-vm-tools/vmblock-fuse/design.txt" ];
-        before = [ "vmware.service" ];
-        wants = [ "vmware.service" ];
+        unitConfig.ConditionVirtualization = "vmware";
         what = "${open-vm-tools}/bin/vmware-vmblock-fuse";
         where = "/run/vmblock-fuse";
         type = "fuse";
@@ -64,9 +66,8 @@ in
     environment.etc.vmware-tools.source = "${open-vm-tools}/etc/vmware-tools/*";
 
     services.xserver = mkIf (!cfg.headless) {
-      # TODO: these don't compile yet
-      #videoDrivers = mkOverride 50 [ "vmware" ];
-      #modules = [ pkgs.xorg.xf86inputvmmouse ];
+      # TODO: does not build on aarch64
+      # modules = [ xf86inputvmmouse ];
 
       config = ''
         Section "InputClass"
