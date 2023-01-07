@@ -115,6 +115,13 @@ in
           enable query parser support
         '';
       };
+      zig = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable zig language support
+        '';
+      };
     };
   };
 
