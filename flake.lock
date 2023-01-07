@@ -186,6 +186,23 @@
         "type": "github"
       }
     },
+    "granted": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671167839,
+        "narHash": "sha256-if9iLgA7u3TkLuRfnFLOOFPYAYljtKa2jkQuGQvdVhQ=",
+        "owner": "common-fate",
+        "repo": "granted",
+        "rev": "367e6ec73941bdeb69bdb99ffeaef3763a479c82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "common-fate",
+        "ref": "v0.5.2",
+        "repo": "granted",
+        "type": "github"
+      }
+    },
     "hammerspoon-controlescape": {
       "flake": false,
       "locked": {
@@ -1702,6 +1719,7 @@
         "comma": "comma",
         "darwin": "darwin",
         "fenix": "fenix",
+        "granted": "granted",
         "hammerspoon-controlescape": "hammerspoon-controlescape",
         "home-manager": "home-manager",
         "ketall": "ketall",
