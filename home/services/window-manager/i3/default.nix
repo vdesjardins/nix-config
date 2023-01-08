@@ -57,6 +57,14 @@ in
       '')
   ];
 
+  gtk = {
+    enable = true;
+    font = {
+      name = "JetBrainsMono Nerd Font Mono";
+      size = 10;
+    };
+  };
+
   xsession = {
     enable = true;
 

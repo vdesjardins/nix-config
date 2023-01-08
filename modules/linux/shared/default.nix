@@ -96,6 +96,8 @@
     '')
   ];
 
+  programs.dconf.enable = true;
+
   environment.sessionVariables = {
     TERM = "xterm-256color";
   };
