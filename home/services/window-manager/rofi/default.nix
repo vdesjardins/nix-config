@@ -38,7 +38,7 @@ in
       padding = "8";
       parse-hosts = true;
       parse-known-hosts = true;
-      scroll-method = "1";
+      scroll-method = 1;
       show-icons = true;
       sort = true;
       terminal = "${terminal}";
@@ -53,7 +53,7 @@ in
       desktopName = "Rofi: Calculator";
       icon = "calc";
       exec = "rofi -show calc";
-      categories = "Development";
+      categories = [ "Development" ];
     })
     (makeDesktopItem {
       name = "Rofi-files";
