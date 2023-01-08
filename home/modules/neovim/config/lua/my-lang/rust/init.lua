@@ -10,8 +10,6 @@ require("rust-tools").setup({
                 checkOnSave = {
                     command = "clippy",
                 },
-                -- bug: https://github.com/simrat39/rust-tools.nvim/issues/300
-                inlayHints = { locationLinks = false },
             },
         },
     },
