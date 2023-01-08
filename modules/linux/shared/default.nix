@@ -46,13 +46,10 @@
       defaultSession = "none+i3";
       lightdm.enable = true;
 
-      # AARCH64: For now, on Apple Silicon, we must manually set the
-      # display resolution. This is a known issue with VMware Fusion.
       sessionCommands = ''
         ${pkgs.xorg.xset}/bin/xset r rate 200 40
-      '' + (if currentSystem == "aarch64-linux" then ''
-        ${pkgs.xorg.xrandr}/bin/xrandr -s '2880x1800'
-      '' else "");
+        xrandr-mbp
+      '';
     };
 
     windowManager = {
@@ -86,17 +83,20 @@
     git
     neovim
 
+    (writeShellScriptBin "xrandr-auto" ''
+      xrandr --output Virtual-1 --auto
+    '')
+
     gtkmm3
 
     # VMware on M1 doesn't support automatic resizing yet
     (writeShellScriptBin "xrandr-mbp" ''
       xrandr -s 3840x2160
+      xrandr --dpi 120
     '')
   ];
 
   environment.sessionVariables = {
-    GDK_SCALE = "2";
-    WINIT_HIDPI_FACTOR = "1";
     TERM = "xterm-256color";
   };
 
