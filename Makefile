@@ -56,8 +56,7 @@ config/bt-mac:
 .PHONY: config/dev-vm
 ## config/dev-vm: build and activate dev-vm system
 config/dev-vm:
-	nix build --experimental-features $(EXPERIMENTAL_FEATURES) .#dev-vm
-	sudo ./result/bin/switch-to-configuration switch
+	sudo nixos-rebuild switch --flake .#dev-vm
 
 .PHONY: hm/install
 ## hm/install: install nix for home-manager
