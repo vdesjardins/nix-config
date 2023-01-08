@@ -38,6 +38,9 @@
     enable = true;
   };
 
+  programs.firefox = {
+    enable = true;
+  };
   programs.feh = {
     enable = true;
   };
@@ -67,12 +70,12 @@
 
   services.picom = {
     enable = true;
-    blur = true;
+    #blur = true;
     shadow = true;
-    activeOpacity = "0.8";
-    inactiveDim = "0.2";
-    inactiveOpacity = "0.8";
-    menuOpacity = "0.8";
+    activeOpacity = 0.8;
+    #inactiveDim = 0.2;
+    inactiveOpacity = 0.8;
+    menuOpacity = 0.8;
   };
 
 }
