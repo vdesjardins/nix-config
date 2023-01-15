@@ -1,4 +1,10 @@
-{ config, pkgs, lib, currentSystem, ... }:
+{ config
+, pkgs
+, lib
+, currentSystem
+, naturalMouseScrolling
+, ...
+}:
 {
   hardware.video.hidpi.enable = true;
   hardware.opengl = { enable = true; };
@@ -28,7 +34,7 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    dpi = 120;
+    dpi = 220;
 
     autoRepeatDelay = 150;
     autoRepeatInterval = 25;
@@ -62,10 +68,10 @@
     libinput = {
       enable = true;
       mouse = {
-        naturalScrolling = true;
+        naturalScrolling = naturalMouseScrolling;
       };
       touchpad = {
-        naturalScrolling = true;
+        naturalScrolling = naturalMouseScrolling;
       };
     };
   };
