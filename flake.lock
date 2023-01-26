@@ -257,6 +257,23 @@
         "type": "github"
       }
     },
+    "kube-capacity": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1674192259,
+        "narHash": "sha256-lNpUOA6O9sOBugYp9fDklKo6U2E0nKz1ORr3qO2tibg=",
+        "owner": "robscott",
+        "repo": "kube-capacity",
+        "rev": "5a1e09ec9f5dd477e2e9ae1e010f4717d9f20dd2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "robscott",
+        "ref": "v0.7.3",
+        "repo": "kube-capacity",
+        "type": "github"
+      }
+    },
     "kube-lineage": {
       "flake": false,
       "locked": {
@@ -1723,6 +1740,7 @@
         "hammerspoon-controlescape": "hammerspoon-controlescape",
         "home-manager": "home-manager",
         "ketall": "ketall",
+        "kube-capacity": "kube-capacity",
         "kube-lineage": "kube-lineage",
         "kube-no-trouble": "kube-no-trouble",
         "kubectl-aliases": "kubectl-aliases",

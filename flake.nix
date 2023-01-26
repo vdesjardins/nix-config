@@ -55,6 +55,8 @@
     kube-no-trouble.flake = false;
     kube-lineage.url = "github:/tohjustin/kube-lineage/v0.4.2";
     kube-lineage.flake = false;
+    kube-capacity.url = "github:/robscott/kube-capacity/v0.7.3";
+    kube-capacity.flake = false;
     kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.8";
     kubectl-blame.flake = false;
     ketall.url = "github:corneliusweig/ketall";
