@@ -1,4 +1,8 @@
-{ ... }: {
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
+    unstable.terraform
+  ];
+
   programs.zsh.shellAliases = {
     tf = "terraform";
     tfa = "terraform apply";

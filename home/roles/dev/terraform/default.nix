@@ -9,7 +9,6 @@
     terraform-landscape
     terraformer
     unstable.infracost
-    unstable.terraform
     unstable.terragrunt
     unstable.tflint
     unstable.tfsec
