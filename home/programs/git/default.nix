@@ -41,11 +41,6 @@
 
     includes = [{ path = "~/.gitconfig.local"; }];
 
-    attributes = [
-      "*.yaml diff=dyff"
-      "*.yml diff=dyff"
-    ];
-
     extraConfig = {
       help = { autocorrect = 20; };
 
