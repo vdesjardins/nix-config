@@ -18,7 +18,7 @@ with lib;
 
     tmux = {
       enableShellIntegration = true;
-      shellIntegrationOptions = [ "-p 40%" ];
+      shellIntegrationOptions = [ "-u 40%" ];
     };
 
     enableZshIntegration = true;
