@@ -52,6 +52,7 @@
       jq
       lazygit
       lsof
+      neofetch
       oha # HTTP load generator inspired by rakyll/hey with tui animation
       openssh
       perlPackages.vidir # edit files in EDITOR
