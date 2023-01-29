@@ -27,5 +27,6 @@
     ../services/gpg-agent
   ] ++ lib.optionals xsession [
     ../services/window-manager
+    ../programs/firefox
   ];
 }
