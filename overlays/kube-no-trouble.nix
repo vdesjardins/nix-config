@@ -4,6 +4,6 @@ inputs: _self: super: {
 
     src = inputs.kube-no-trouble;
 
-    vendorSha256 = "sha256-XXf6CPPHVvCTZA4Ve5/wmlgXQ/gZZUW0W/jXA0bJgLA=";
+    vendorSha256 = "sha256-ZtvCFe1CkHxu+RLPHvhf3s9fK+5KlYGpNGst4G3G4BM=";
   };
 }

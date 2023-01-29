@@ -6,10 +6,10 @@
     #aws-sso-util
     aws-vault
     eksctl
-    granted
     ssm-session-manager-plugin
   ];
   imports = [
     ../../../programs/awscli
+    ../../../programs/granted
   ];
 }

@@ -37,7 +37,7 @@
     aws-find-profile.flake = false;
     aws-sso-util.url = "github:/vdesjardins/aws-sso-util";
     aws-sso-util.flake = false;
-    granted.url = "github:/common-fate/granted/v0.5.2";
+    granted.url = "github:/common-fate/granted/v0.7.1";
     granted.flake = false;
 
     # Kubebernetes

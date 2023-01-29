@@ -10,7 +10,7 @@ _inputs: _self: super: {
 
       cargoDeps = drv.cargoDeps.overrideAttrs (super.lib.const {
         inherit src;
-        outputHash = "sha256-2Yhnacsx8EWsfZfcfKhV687cblyFDmsfdqGZoK6Lulo=";
+        outputHash = "sha256-DFX54whoGZHm3heWTOaaPwkznFoeq8hd40zvTpr+wUQ=";
       });
 
       doCheck = false;
