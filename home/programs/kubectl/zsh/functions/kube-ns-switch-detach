@@ -1,6 +1,6 @@
 #!/bin/bash
 # Switch default namespace for current kube context
-function kube-ns-switch() {
+function kube-ns-switch-detach() {
 	local ns=$1
 
 	if [[ $ns == "" ]]; then
@@ -11,6 +11,15 @@ function kube-ns-switch() {
 		echo "no namespace provided." >&2
 		return 1
 	fi
+
+	local new_ctx_file=""
+	new_ctx_file=$(mktemp)
+	if [[ "$KUBECONFIG" != "" ]]; then
+		cp "$KUBECONFIG" "$new_ctx_file"
+	else
+		cp ~/.kube/config "$new_ctx_file"
+	fi
+	export KUBECONFIG=$new_ctx_file
 
 	local COLOR='\033[0;34m'
 	local NC='\033[0m'

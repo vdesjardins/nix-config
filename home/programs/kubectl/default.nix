@@ -65,7 +65,9 @@ mkMerge [
 
           # context and ns switching
           kns = "kube-ns-switch";
+          knsd = "kube-ns-switch-detach";
           kctx = "kube-ctx-switch";
+          kctxc = "kube-ctx-switch-current";
 
           # edit
           ke = "kubectl edit";
@@ -95,6 +97,8 @@ mkMerge [
         ./zsh/functions/kube-ctx-switch-current;
       xdg.configFile."zsh/functions/kube-ns-switch".source =
         ./zsh/functions/kube-ns-switch;
+      xdg.configFile."zsh/functions/kube-ns-switch-detach".source =
+        ./zsh/functions/kube-ns-switch-detach;
       xdg.configFile."zsh/functions/kube-get-pod-images".source =
         ./zsh/functions/kube-get-pod-images;
       xdg.configFile."zsh/functions/kube-updateconfig-aws".source =
