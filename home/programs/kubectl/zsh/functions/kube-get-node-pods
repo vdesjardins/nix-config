@@ -1,0 +1,6 @@
+#!/bin/bash
+# Get pods and owners from a node name
+function kube-get-node-pods() {
+    local pod=$1
+    kubectl get pods -A --field-selector=spec.nodeName=$pod -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,OWNER:.metadata.ownerReferences[].kind'
+}
