@@ -35,8 +35,6 @@
     # aws
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
     aws-find-profile.flake = false;
-    aws-sso-util.url = "github:/vdesjardins/aws-sso-util";
-    aws-sso-util.flake = false;
     granted.url = "github:/common-fate/granted/v0.7.1";
     granted.flake = false;
 
