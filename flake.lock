@@ -68,6 +68,23 @@
         "type": "github"
       }
     },
+    "eks-node-viewer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675876393,
+        "narHash": "sha256-PqZVVfq/cUtkmpruJfxphCeQWMXKEmE2AgulgUX9310=",
+        "owner": "awslabs",
+        "repo": "eks-node-viewer",
+        "rev": "32fe9f5c44db7244a2be47dbf91c38c64bf41d67",
+        "type": "github"
+      },
+      "original": {
+        "owner": "awslabs",
+        "ref": "v0.1.0",
+        "repo": "eks-node-viewer",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -1734,6 +1751,7 @@
         "base16-fzf": "base16-fzf",
         "comma": "comma",
         "darwin": "darwin",
+        "eks-node-viewer": "eks-node-viewer",
         "fenix": "fenix",
         "granted": "granted",
         "hammerspoon-controlescape": "hammerspoon-controlescape",

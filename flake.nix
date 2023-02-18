@@ -37,6 +37,8 @@
     aws-find-profile.flake = false;
     granted.url = "github:/common-fate/granted/v0.7.1";
     granted.flake = false;
+    eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.1.0";
+    eks-node-viewer.flake = false;
 
     # Kubebernetes
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";

@@ -5,6 +5,7 @@
     aws-find-profile
     aws-vault
     awslogs
+    eks-node-viewer
     eksctl
     ssm-session-manager-plugin
   ];
