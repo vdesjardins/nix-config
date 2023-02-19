@@ -4,7 +4,7 @@ inputs: _self: super: {
 
     src = inputs.granted;
 
-    vendorSha256 = "sha256-pvsq05FMh5PuiWC8vbSmXxQuwXvLTAru4VDFPjfCAuU=";
+    vendorSha256 = "sha256-EQE/ryHOBEd1EjCtriNMjyDT39DDFwxL2TzrCyJzPfI=";
 
     postInstall = ''
       mkdir -p $out/share/granted

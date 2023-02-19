@@ -35,7 +35,7 @@
     # aws
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
     aws-find-profile.flake = false;
-    granted.url = "github:/common-fate/granted/v0.7.1";
+    granted.url = "github:/common-fate/granted/v0.8.1";
     granted.flake = false;
     eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.1.0";
     eks-node-viewer.flake = false;
@@ -53,11 +53,11 @@
     kubectl-aliases.flake = false;
     kube-no-trouble.url = "github:/doitintl/kube-no-trouble";
     kube-no-trouble.flake = false;
-    kube-lineage.url = "github:/tohjustin/kube-lineage/v0.4.2";
+    kube-lineage.url = "github:/tohjustin/kube-lineage/v0.5.0";
     kube-lineage.flake = false;
-    kube-capacity.url = "github:/robscott/kube-capacity/v0.7.3";
+    kube-capacity.url = "github:/robscott/kube-capacity/v0.7.4";
     kube-capacity.flake = false;
-    kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.8";
+    kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.10";
     kubectl-blame.flake = false;
     ketall.url = "github:corneliusweig/ketall";
     ketall.flake = false;
