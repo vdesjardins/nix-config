@@ -61,6 +61,8 @@
     kubectl-blame.flake = false;
     ketall.url = "github:corneliusweig/ketall";
     ketall.flake = false;
+    helm-dashboard.url = "github:komodorio/helm-dashboard/v1.1.0";
+    helm-dashboard.flake = false;
 
     # Neovim
     ## LSP

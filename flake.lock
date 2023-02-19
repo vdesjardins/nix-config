@@ -220,6 +220,23 @@
         "type": "github"
       }
     },
+    "helm-dashboard": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676479528,
+        "narHash": "sha256-H5mRRlhVnOJCjWsz97Yxn7nkzLAxYEVWSrNAG6ypJXA=",
+        "owner": "komodorio",
+        "repo": "helm-dashboard",
+        "rev": "f49f52efe4919d1b19717b1ef6e3c2325c2c3037",
+        "type": "github"
+      },
+      "original": {
+        "owner": "komodorio",
+        "ref": "v1.1.0",
+        "repo": "helm-dashboard",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1755,6 +1772,7 @@
         "fenix": "fenix",
         "granted": "granted",
         "hammerspoon-controlescape": "hammerspoon-controlescape",
+        "helm-dashboard": "helm-dashboard",
         "home-manager": "home-manager",
         "ketall": "ketall",
         "kube-capacity": "kube-capacity",

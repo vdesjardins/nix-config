@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     buildpack
+    helm-dashboard
     helm-docs
     helmfile
     # kail
