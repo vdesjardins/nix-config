@@ -10,7 +10,7 @@ require("neodev").setup({
     debug = true,
 })
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
             formatter = { enable = false },
