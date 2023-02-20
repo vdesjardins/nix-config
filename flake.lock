@@ -1858,6 +1858,7 @@
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_3",
         "pre-commit-hooks": "pre-commit-hooks",
+        "tree-sitter-go-template": "tree-sitter-go-template",
         "unstable": "unstable",
         "utils": "utils_2"
       }
@@ -1876,6 +1877,22 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "tree-sitter-go-template": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653658911,
+        "narHash": "sha256-YlpF65qY6JIAUstPTt/nHMI3oY88G4tPvK7nHQC5U1U=",
+        "owner": "ngalaiko",
+        "repo": "tree-sitter-go-template",
+        "rev": "45acf03891557b80a45ac1897e2cca2e8b9cf0ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ngalaiko",
+        "repo": "tree-sitter-go-template",
         "type": "github"
       }
     },

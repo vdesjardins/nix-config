@@ -40,7 +40,7 @@
     eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.1.0";
     eks-node-viewer.flake = false;
 
-    # Kubebernetes
+    # Kubernetes
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
     kubectl-view-utilization.flake = false;
     kubectl-sniff.url = "github:/eldadru/ksniff";
@@ -63,6 +63,8 @@
     ketall.flake = false;
     helm-dashboard.url = "github:komodorio/helm-dashboard/v1.1.0";
     helm-dashboard.flake = false;
+    tree-sitter-go-template.url = "github:ngalaiko/tree-sitter-go-template";
+    tree-sitter-go-template.flake = false;
 
     # Neovim
     ## LSP

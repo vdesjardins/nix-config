@@ -16,6 +16,7 @@
     ../roles/dev/nix
     ../roles/dev/python
     ../roles/dev/rust
+    ../roles/dev/go-template
     ../roles/dev/zig
     ../roles/dev/yaml
     ../roles/ops/aws

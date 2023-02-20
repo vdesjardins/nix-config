@@ -122,6 +122,13 @@ in
           enable zig language support
         '';
       };
+      gotmpl = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable go-template language support
+        '';
+      };
     };
   };
 
