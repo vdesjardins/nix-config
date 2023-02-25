@@ -105,6 +105,8 @@ mkMerge [
         ./zsh/functions/kube-updateconfig-aws;
       xdg.configFile."zsh/functions/kube-get-node-pods".source =
         ./zsh/functions/kube-get-node-pods;
+      xdg.configFile."zsh/functions/kube-node-connect".source =
+        ./zsh/functions/kube-node-connect;
 
       xdg.configFile."zsh/conf.d/kubectl_aliases".source =
         "${pkgs.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";

@@ -1,0 +1,44 @@
+#!/bin/bash
+function kube-node-connect() {
+	local providerID=""
+	local provider=""
+
+	local node="$1"
+	if [[ "$node" == "" ]]; then
+		echo 1>&2 "error kubernetes node name missing"
+		return 1
+	fi
+
+	if ! providerID=$(kubectl get node -o jsonpath="{.spec.providerID}" "$node"); then
+		echo 1>&2 "error cannot fetch providerID from kubernetes node"
+		return 1
+	fi
+	provider=$(echo "$providerID" | awk -F: '{ print $1; }')
+
+	case "$provider" in
+	aws)
+		local region=""
+		local host=""
+
+		region=$(echo "$providerID" | awk -F/ '{ print $4; }')
+		host=$(echo "$providerID" | awk -F/ '{ print $5; }')
+
+		aws ssm start-session --region "$region" --target "$host"
+		;;
+	gce)
+		local project_id=""
+		local zone=""
+		local host=""
+
+		project_id=$(echo "$providerID" | awk -F/ '{ print $3;}')
+		zone=$(echo "$providerID" | awk -F/ '{ print $4; }')
+		host=$(echo "$providerID" | awk -F/ '{ print $5; }')
+
+		gcloud compute ssh --project="$project_id" --zone="$zone" "$host"
+		;;
+	*)
+		echo 1>&2 "error unknown providerID"
+		return 1
+		;;
+	esac
+}
