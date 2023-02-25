@@ -1,4 +1,3 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.myNeovim.lang.gotmpl = true;
 }

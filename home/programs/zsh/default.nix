@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     zsh-autosuggestions
     zsh-completions
@@ -27,7 +29,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "globalias" ];
+      plugins = ["globalias"];
     };
 
     plugins = [

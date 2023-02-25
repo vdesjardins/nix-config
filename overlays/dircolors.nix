@@ -4,7 +4,7 @@ inputs: _self: super: {
 
     src = inputs.lscolors;
 
-    phases = [ "unpackPhase" "installPhase" ];
+    phases = ["unpackPhase" "installPhase"];
 
     installPhase = ''
       mkdir -p $out/share/lscolors

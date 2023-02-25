@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.myNeovim.lang.json = true;
 
   home.packages = with pkgs; [

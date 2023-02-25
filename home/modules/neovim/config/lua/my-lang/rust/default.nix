@@ -1,4 +1,3 @@
-{ pkgs, ... }:
-{
-  packages = with pkgs; [ fenix.rust-analyzer ];
+{pkgs, ...}: {
+  packages = with pkgs; [fenix.rust-analyzer];
 }

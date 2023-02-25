@@ -1,9 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
 {
-  home.packages = with pkgs; [ vault ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; {
+  home.packages = with pkgs; [vault];
 
   programs.zsh.shellAliases = {
     vlad = "vault login -method=ldap -path=ad username=$VAULT_USERNAME";

@@ -5,9 +5,9 @@ _inputs: _self: super: {
       postInstall = ''
         mv $out/bin/tcpdump $out/bin/static-tcpdump
       '';
-      makeFlags = [ "CFLAGS=-static" ];
-      configureFlags = oldAttrs.configureFlags ++ [ "--without-crypto" ];
-      buildInputs = oldAttrs.buildInputs ++ [ super.glibc super.glibc.static ];
+      makeFlags = ["CFLAGS=-static"];
+      configureFlags = oldAttrs.configureFlags ++ ["--without-crypto"];
+      buildInputs = oldAttrs.buildInputs ++ [super.glibc super.glibc.static];
     }
   );
 }

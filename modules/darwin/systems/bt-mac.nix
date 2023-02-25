@@ -1,34 +1,37 @@
-{ darwin, inputs, pkgsConfig }:
-let
+{
+  darwin,
+  inputs,
+  pkgsConfig,
+}: let
   username = "vincentdesjardins";
   hostname = "vincentdesjardins";
 in
-darwin.lib.darwinSystem {
-  system = "aarch64-darwin";
-  inherit inputs;
-  modules = [
-    ../shared
-    {
-      homebrew.casks = [
-        "raycast"
-        "google-chrome"
-        "firefox"
-        "Rectangle"
-        "docker"
-        "middleclick"
-        "flameshot"
-        "hammerspoon"
-        "google-drive"
-      ];
-    }
-    {
-      networking.hostName = hostname;
+  darwin.lib.darwinSystem {
+    system = "aarch64-darwin";
+    inherit inputs;
+    modules = [
+      ../shared
+      {
+        homebrew.casks = [
+          "raycast"
+          "google-chrome"
+          "firefox"
+          "Rectangle"
+          "docker"
+          "middleclick"
+          "flameshot"
+          "hammerspoon"
+          "google-drive"
+        ];
+      }
+      {
+        networking.hostName = hostname;
 
-      imports = [
-        (../users + "/${username}.nix")
-      ];
-    }
-    { users.knownUsers = [ username ]; }
-    { nixpkgs = pkgsConfig; }
-  ];
-}
+        imports = [
+          (../users + "/${username}.nix")
+        ];
+      }
+      {users.knownUsers = [username];}
+      {nixpkgs = pkgsConfig;}
+    ];
+  }

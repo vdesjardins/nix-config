@@ -1,11 +1,12 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-
-let
-  cfg = config.programs.myNeovim;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.programs.myNeovim;
+in {
   options.programs.myNeovim = {
     enable = mkEnableOption "My own neovim module";
 
@@ -139,7 +140,8 @@ in
     };
   };
 
-  config = mkIf cfg.enable
+  config =
+    mkIf cfg.enable
     (
       let
         nvimConfig = pkgs.vimUtils.buildVimPlugin {
@@ -147,60 +149,73 @@ in
           src = ./config;
         };
 
-        plugins = pkgs.neovimPlugins // {
-          nvim-treesitter = pkgs.neovimPlugins.nvim-treesitter.overrideAttrs
-            (_: {
-              postPatch =
-                let
+        plugins =
+          pkgs.neovimPlugins
+          // {
+            nvim-treesitter =
+              pkgs.neovimPlugins.nvim-treesitter.overrideAttrs
+              (_: {
+                postPatch = let
                   grammars = pkgs.unstable.tree-sitter.withPlugins (_: generateTreeSitterGrammars);
-                in
-                ''
+                in ''
                   rm -r parser
                   ln -s ${grammars} parser
                 '';
-            });
-        };
+              });
+          };
 
         treeSitterMapping = {
           terraform = "hcl";
           docker = "dockerfile";
         };
 
-        activeLanguages = filter (name: (getAttr name cfg.lang))
+        activeLanguages =
+          filter (name: (getAttr name cfg.lang))
           (attrNames cfg.lang);
 
-        treeSitterLanguages = map (name: if (hasAttr name treeSitterMapping) then getAttr name treeSitterMapping else name) activeLanguages;
+        treeSitterLanguages = map (name:
+          if (hasAttr name treeSitterMapping)
+          then getAttr name treeSitterMapping
+          else name)
+        activeLanguages;
 
-        generateLuaRequires = concatStringsSep "\n"
+        generateLuaRequires =
+          concatStringsSep "\n"
           (map
             (
               name: "require(\"my-lang.${name}\")"
             )
-            (filter
+            (
+              filter
               (name: builtins.pathExists (./config/lua/my-lang + "/${name}"))
               activeLanguages
             ));
 
-        generatePackages = concatLists
+        generatePackages =
+          concatLists
           (map
             (
-              name: (pkgs.callPackage (./config/lua/my-lang + "/${name}") { }).packages
+              name: (pkgs.callPackage (./config/lua/my-lang + "/${name}") {}).packages
             )
-            ((filter
-              (name: builtins.pathExists (./config/lua/my-lang + "/${name}"))
-              activeLanguages
-            ) ++ [ "null-ls" ]));
+            ((
+                filter
+                (name: builtins.pathExists (./config/lua/my-lang + "/${name}"))
+                activeLanguages
+              )
+              ++ ["null-ls"]));
 
         generateTreeSitterGrammars =
           map
-            (
-              name: (getAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars)
-            )
-            (filter (name: (hasAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars))
-              treeSitterLanguages
-            );
+          (
+            name: (getAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars)
+          )
+          (
+            filter (name: (hasAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars))
+            treeSitterLanguages
+          );
 
-        pkgNeovim = pkgs.wrapNeovim cfg.package
+        pkgNeovim =
+          pkgs.wrapNeovim cfg.package
           {
             viAlias = true;
             vimAlias = true;
@@ -225,12 +240,11 @@ in
               '';
 
               packages.myVimPackage = {
-                start = (builtins.attrValues plugins) ++ [ nvimConfig ];
+                start = (builtins.attrValues plugins) ++ [nvimConfig];
               };
             };
           };
-      in
-      {
+      in {
         home.packages = with pkgs;
           [
             pkgNeovim
@@ -244,8 +258,8 @@ in
             bat
             ripgrep
             curl
-          ] ++ generatePackages;
+          ]
+          ++ generatePackages;
       }
     );
 }
-

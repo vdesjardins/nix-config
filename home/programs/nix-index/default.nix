@@ -1,14 +1,13 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   comma = pkgs.stdenv.mkDerivation {
     name = "comma";
     version = "1.0.0";
 
-    buildInputs = with pkgs; [ coreutils nix-index wget ];
+    buildInputs = with pkgs; [coreutils nix-index wget];
 
     src = ./src;
 
-    phases = [ "unpackPhase" "installPhase" "fixupPhase" "postFixupPhase" ];
+    phases = ["unpackPhase" "installPhase" "fixupPhase" "postFixupPhase"];
 
     postFixupPhase = ''
       substituteInPlace $out/bin/update-nix-index \
@@ -31,8 +30,7 @@ let
       cp , $out/bin
     '';
   };
-in
-{
+in {
   programs.nix-index = {
     enable = true;
     enableBashIntegration = true;

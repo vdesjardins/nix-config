@@ -279,56 +279,57 @@
     neovim-plugin-vim-nix.flake = false;
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , darwin
-    , master
-    , neovim-nightly
-    , nixos-generators
-    , fenix
-    , utils
-    , unstable
-    , nix
-    , pre-commit-hooks
-    , ...
-    }@inputs:
-    let
-      inherit (builtins) listToAttrs attrValues attrNames readDir filter match;
-      inherit (nixpkgs) lib;
-      inherit (lib) removeSuffix;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    darwin,
+    master,
+    neovim-nightly,
+    nixos-generators,
+    fenix,
+    utils,
+    unstable,
+    nix,
+    pre-commit-hooks,
+    ...
+  } @ inputs: let
+    inherit (builtins) listToAttrs attrValues attrNames readDir filter match;
+    inherit (nixpkgs) lib;
+    inherit (lib) removeSuffix;
 
-      linux64BitSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
+    linux64BitSystems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
 
-      pkgsConfig = {
-        overlays = attrValues overlays;
-        config = {
-          allowUnfree = true;
-          allowUnsupportedSystem = true;
-          allowBroken = true;
-          # contentAddressedByDefault = true;
-        };
+    pkgsConfig = {
+      overlays = attrValues overlays;
+      config = {
+        allowUnfree = true;
+        allowUnsupportedSystem = true;
+        allowBroken = true;
+        # contentAddressedByDefault = true;
       };
+    };
 
-      mkOverlays = dir:
-        listToAttrs (
-          map
-            (
-              name: {
-                name = removeSuffix ".nix" name;
-                value = import (dir + "/${name}") inputs;
-              }
-            )
-            (filter (name: match "^.+\.nix$" name != null)
-              (attrNames (readDir dir))
-            )
-        );
+    mkOverlays = dir:
+      listToAttrs (
+        map
+        (
+          name: {
+            name = removeSuffix ".nix" name;
+            value = import (dir + "/${name}") inputs;
+          }
+        )
+        (
+          filter (name: match "^.+\.nix$" name != null)
+          (attrNames (readDir dir))
+        )
+      );
 
-      overlays = {
+    overlays =
+      {
         unstable = final: _prev: {
           unstable = import inputs.unstable {
             inherit (final) system;
@@ -345,19 +346,20 @@
         };
         neovim-nightly = neovim-nightly.overlay;
         comma = final: _prev: {
-          comma = import inputs.comma { inherit (final) pkgs; };
+          comma = import inputs.comma {inherit (final) pkgs;};
         };
         fenix = fenix.overlays.default;
-      } // (mkOverlays ./overlays);
-    in
+      }
+      // (mkOverlays ./overlays);
+  in
     {
-      homeManagerModules = import ./home/modules { };
+      homeManagerModules = import ./home/modules {};
 
       darwinConfigurations.bootstrap-x86_64 = darwin.lib.darwinSystem {
         system = utils.lib.system.x86_64-darwin;
         inherit inputs;
         modules = [
-          { nixpkgs = pkgsConfig; }
+          {nixpkgs = pkgsConfig;}
           ./modules/darwin/bootstrap.nix
         ];
       };
@@ -366,7 +368,7 @@
         system = utils.lib.system.aarch64-darwin;
         inherit inputs;
         modules = [
-          { nixpkgs = pkgsConfig; }
+          {nixpkgs = pkgsConfig;}
           ./modules/darwin/bootstrap.nix
         ];
       };
@@ -442,7 +444,8 @@
         pkgs = nixpkgs;
       };
 
-      packages = listToAttrs
+      packages =
+        listToAttrs
         (builtins.map
           (system: {
             name = system;
@@ -454,17 +457,18 @@
               };
             };
           })
-          linux64BitSystems) //
-      {
-        aarch64-darwin."dockerImage/vm-builder" = import ./modules/linux/containers/vm-builder.nix {
-          inherit nixpkgs nix;
-          system = utils.lib.system.aarch64-darwin;
-          crossSystem = utils.lib.system.aarch64-linux;
+          linux64BitSystems)
+        // {
+          aarch64-darwin."dockerImage/vm-builder" = import ./modules/linux/containers/vm-builder.nix {
+            inherit nixpkgs nix;
+            system = utils.lib.system.aarch64-darwin;
+            crossSystem = utils.lib.system.aarch64-linux;
+          };
         };
-      };
 
       inherit overlays;
-    } // utils.lib.eachDefaultSystem (
+    }
+    // utils.lib.eachDefaultSystem (
       system: {
         legacyPackages = import nixpkgs {
           inherit system;
@@ -474,7 +478,7 @@
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
-              nixpkgs-fmt.enable = true;
+              alejandra.enable = true;
               # deadnix.enable = true;
               statix.enable = true;
               stylua.enable = true;
@@ -487,7 +491,8 @@
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
       }
-    ) // {
+    )
+    // {
       unstable = utils.lib.eachDefaultSystem (
         system: {
           legacyPackages = import unstable {

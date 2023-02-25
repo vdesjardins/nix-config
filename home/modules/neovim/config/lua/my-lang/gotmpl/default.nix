@@ -1,4 +1,3 @@
-{ pkgs, ... }:
-{
-  packages = [ ];
+{pkgs, ...}: {
+  packages = [];
 }

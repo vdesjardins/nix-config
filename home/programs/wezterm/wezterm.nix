@@ -1,5 +1,8 @@
-{ key_leader ? "`", mods_leader ? "", homeDirectory }:
-''
+{
+  key_leader ? "`",
+  mods_leader ? "",
+  homeDirectory,
+}: ''
   local wezterm = require("wezterm")
 
   -- tokyo night - night

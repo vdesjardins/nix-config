@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ../../shared.nix
     ./nix.nix

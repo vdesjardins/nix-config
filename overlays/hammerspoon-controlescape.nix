@@ -4,7 +4,7 @@ inputs: _self: super: {
 
     src = inputs.hammerspoon-controlescape;
 
-    phases = [ "unpackPhase" "installPhase" ];
+    phases = ["unpackPhase" "installPhase"];
 
     installPhase = ''
       mkdir -p $out/share/hammerspoon/controlescape

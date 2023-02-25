@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.myNeovim.lang.go = true;
 
   home.packages = with pkgs; [

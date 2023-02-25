@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ istioctl ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [istioctl];
 
   programs.zsh.shellAliases = {
     i = "istioctl";

@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  terminal = "${pkgs.unstable.wezterm}/bin/wezterm";
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  terminal = "${pkgs.unstable.wezterm}/bin/wezterm";
+in {
   programs.rofi = {
     enable = true;
     font = "pango:JetBrainsMono Nerd Font Mono 10";
@@ -53,7 +56,7 @@ in
       desktopName = "Rofi: Calculator";
       icon = "calc";
       exec = "rofi -show calc";
-      categories = [ "Development" ];
+      categories = ["Development"];
     })
     (makeDesktopItem {
       name = "Rofi-files";

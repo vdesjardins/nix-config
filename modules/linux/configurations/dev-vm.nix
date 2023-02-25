@@ -1,6 +1,9 @@
-{ pkgsConfig, username ? "vince", hostname ? "dev-vm" }:
-[
-  { nixpkgs = pkgsConfig; }
+{
+  pkgsConfig,
+  username ? "vince",
+  hostname ? "dev-vm",
+}: [
+  {nixpkgs = pkgsConfig;}
 
   ../../shared.nix
   ../hardware/vm-aarch64.nix
@@ -13,7 +16,7 @@
     ];
 
     # disable default module and because we need a custom one for aarch64
-    disabledModules = [ "virtualisation/vmware-guest.nix" ];
+    disabledModules = ["virtualisation/vmware-guest.nix"];
 
     networking.hostName = hostname;
     networking.interfaces.ens160.useDHCP = true;

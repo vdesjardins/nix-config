@@ -1,24 +1,26 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
 {
-  home.packages = with pkgs; [ fd bat ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; {
+  home.packages = with pkgs; [fd bat];
 
   programs.fzf = {
     enable = true;
 
     defaultCommand = "fd --type f";
-    defaultOptions = [ "--height 40%" "--border" ];
+    defaultOptions = ["--height 40%" "--border"];
     fileWidgetCommand = "fd --type f";
-    fileWidgetOptions = [ "--preview 'bat --color=always {}'" ];
+    fileWidgetOptions = ["--preview 'bat --color=always {}'"];
     changeDirWidgetCommand = "fd --type d";
-    changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
-    historyWidgetOptions = [ "--sort" "--exact" ];
+    changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
+    historyWidgetOptions = ["--sort" "--exact"];
 
     tmux = {
       enableShellIntegration = true;
-      shellIntegrationOptions = [ "-u 40%" ];
+      shellIntegrationOptions = ["-u 40%"];
     };
 
     enableZshIntegration = true;
@@ -63,6 +65,7 @@ with lib;
     '';
   };
 
-  xdg.configFile."zsh/fzf-colors.zsh".source = mkIf config.programs.zsh.enable
+  xdg.configFile."zsh/fzf-colors.zsh".source =
+    mkIf config.programs.zsh.enable
     "${pkgs.base16-fzf}/share/base16-fzf/bash/base16-snazzy.config";
 }

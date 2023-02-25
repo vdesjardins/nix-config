@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.myNeovim.lang.viml = true;
 }

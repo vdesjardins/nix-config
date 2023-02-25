@@ -1,9 +1,10 @@
-{ lib, pkgs, ... }:
-
-with lib;
-
 {
-  home.packages = with pkgs; [ unixtools.col ];
+  lib,
+  pkgs,
+  ...
+}:
+with lib; {
+  home.packages = with pkgs; [unixtools.col];
 
   programs.bat = {
     enable = true;
@@ -15,7 +16,7 @@ with lib;
   };
 
   programs.zsh = {
-    shellAliases = { cat = "bat"; };
+    shellAliases = {cat = "bat";};
     shellGlobalAliases = {
       BJ = "|& bat -ljson";
       BY = "|& bat -lyaml";

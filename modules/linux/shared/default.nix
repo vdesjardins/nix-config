@@ -1,13 +1,13 @@
-{ config
-, pkgs
-, lib
-, currentSystem
-, naturalMouseScrolling
-, ...
-}:
 {
+  config,
+  pkgs,
+  lib,
+  currentSystem,
+  naturalMouseScrolling,
+  ...
+}: {
   hardware.video.hidpi.enable = true;
-  hardware.opengl = { enable = true; };
+  hardware.opengl = {enable = true;};
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -16,12 +16,14 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  security.pam.loginLimits = [{
-    domain = "*";
-    type = "soft";
-    item = "nofile";
-    value = "4096";
-  }];
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "4096";
+    }
+  ];
 
   virtualisation.docker.enable = true;
 

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.ssh = {
     enable = true;
 
@@ -45,7 +44,7 @@
         hostname = "vince-dev";
         user = "vince";
         forwardAgent = true;
-        dynamicForwards = [{ port = 5000; }];
+        dynamicForwards = [{port = 5000;}];
       };
     };
   };

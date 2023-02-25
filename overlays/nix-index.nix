@@ -1,5 +1,6 @@
 _inputs: _self: super: {
-  nix-index-unwrapped = super.nix-index-unwrapped.overrideAttrs
+  nix-index-unwrapped =
+    super.nix-index-unwrapped.overrideAttrs
     (drv: rec {
       src = super.pkgs.fetchFromGitHub {
         owner = "bennofs";

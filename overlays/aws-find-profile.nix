@@ -1,10 +1,8 @@
-inputs: _self: super:
-let
+inputs: _self: super: let
   rustPlatform = super.makeRustPlatform {
     inherit (inputs.fenix.packages."${super.system}".minimal) cargo rustc;
   };
-in
-{
+in {
   aws-find-profile = rustPlatform.buildRustPackage {
     name = "aws-find-profile";
 
@@ -20,7 +18,7 @@ in
       description = "A small tool to retreive the AWS config profile name from an account ID";
       homepage = "https://github.com/vdesjardins/aws-find-profile";
       license = licenses.asl20;
-      maintainers = [ maintainers.vdesjardins ];
+      maintainers = [maintainers.vdesjardins];
     };
   };
 }

@@ -1,15 +1,21 @@
-inputs: _self: super:
-let
-  languages = map
+inputs: _self: super: let
+  languages =
+    map
     (
       super.lib.removePrefix "tree-sitter-grammars-"
     )
-    (super.lib.filter (name: builtins.match "^tree-sitter-grammars-.*$" name != null)
+    (
+      super.lib.filter (name: builtins.match "^tree-sitter-grammars-.*$" name != null)
       (super.lib.attrNames inputs)
     );
 
   # From: https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/parsing/tree-sitter/default.nix
-  makePkg = { lang, generate ? false, location ? "" }: super.stdenv.mkDerivation
+  makePkg = {
+    lang,
+    generate ? false,
+    location ? "",
+  }:
+    super.stdenv.mkDerivation
     {
       name = "tree-sitter-${lang}";
 
@@ -17,10 +23,10 @@ let
 
       # nativeBuildInputs = super.lib.optionals generate [ super.pkgs.nodejs super.pkgs.tree-sitter ];
 
-      CFLAGS = [ "-Isrc" "-O2" ];
-      CXXFLAGS = [ "-Isrc" "-O2" ];
+      CFLAGS = ["-Isrc" "-O2"];
+      CXXFLAGS = ["-Isrc" "-O2"];
 
-      stripDebugList = [ "parser" ];
+      stripDebugList = ["parser"];
 
       # configurePhase = super.lib.optionalString generate ''
       #   tree-sitter generate
@@ -53,11 +59,14 @@ let
         runHook postInstall
       '';
     };
-
-in
-{
+in {
   # tree-sitter-grammars = super.tree-sitter-grammars //
   #   { tree-sitter-gotmpl = makePkg { lang = "gotmpl"; }; };
-  tree-sitter-grammars = super.tree-sitter-grammars //
-    super.lib.listToAttrs (map (l: { name = "tree-sitter-${l}"; value = makePkg { lang = l; }; }) languages);
+  tree-sitter-grammars =
+    super.tree-sitter-grammars
+    // super.lib.listToAttrs (map (l: {
+        name = "tree-sitter-${l}";
+        value = makePkg {lang = l;};
+      })
+      languages);
 }

@@ -4,7 +4,7 @@ inputs: _self: super: {
 
     src = inputs.kubectl-aliases;
 
-    phases = [ "unpackPhase" "installPhase" ];
+    phases = ["unpackPhase" "installPhase"];
 
     installPhase = ''
       mkdir -p $out/share/kubectl-aliases

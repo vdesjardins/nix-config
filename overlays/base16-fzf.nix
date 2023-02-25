@@ -4,7 +4,7 @@ inputs: _self: super: {
 
     src = inputs.base16-fzf;
 
-    phases = [ "unpackPhase" "installPhase" ];
+    phases = ["unpackPhase" "installPhase"];
 
     installPhase = ''
       mkdir -p $out/share/base16-fzf

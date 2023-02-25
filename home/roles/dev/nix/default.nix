@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # TODO: not working on aarch64
   imports = [
     ../../../programs/nix-index

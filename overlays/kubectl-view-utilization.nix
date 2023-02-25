@@ -2,11 +2,11 @@ inputs: _self: super: {
   kubectl-view-utilization = super.stdenv.mkDerivation {
     name = "kubectl-view-utilization";
 
-    buildInputs = with super; [ bash gawk ];
+    buildInputs = with super; [bash gawk];
 
     src = inputs.kubectl-view-utilization;
 
-    phases = [ "unpackPhase" "installPhase" "fixupPhase" "postFixupPhase" ];
+    phases = ["unpackPhase" "installPhase" "fixupPhase" "postFixupPhase"];
 
     postFixupPhase = ''
       substituteInPlace $out/bin/kubectl-view-utilization \

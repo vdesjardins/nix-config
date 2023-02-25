@@ -1,10 +1,13 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./i3
     ./rofi
     ./i3status-rust
   ];
-
 
   home.packages = with pkgs; [
     wmctrl
@@ -70,5 +73,4 @@
     inactiveOpacity = 0.8;
     menuOpacity = 0.8;
   };
-
 }

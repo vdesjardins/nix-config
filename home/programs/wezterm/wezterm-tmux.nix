@@ -1,5 +1,4 @@
-{ homeDirectory }:
-''
+{homeDirectory}: ''
   local wezterm = require("wezterm")
 
   wezterm.add_to_config_reload_watch_list(wezterm.config_dir)

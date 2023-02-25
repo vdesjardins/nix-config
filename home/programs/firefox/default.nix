@@ -1,8 +1,9 @@
-{ lib, pkgs, ... }:
-
-with lib;
-
 {
+  lib,
+  pkgs,
+  ...
+}:
+with lib; {
   programs.firefox = {
     enable = true;
 

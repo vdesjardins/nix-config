@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  imports = [ ../../../programs/terraform ];
+{pkgs, ...}: {
+  imports = [../../../programs/terraform];
 
   programs.myNeovim.lang.terraform = true;
 

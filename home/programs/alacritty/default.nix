@@ -1,6 +1,11 @@
-{ lib, pkgs, ... }: lib.mkMerge [
+{
+  lib,
+  pkgs,
+  ...
+}:
+lib.mkMerge [
   {
-    programs.alacritty = { enable = true; };
+    programs.alacritty = {enable = true;};
 
     xdg.configFile."alacritty/alacritty.yml".source = ./alacritty.yml;
   }
@@ -8,7 +13,6 @@
     {
       # home-manager do not yet symlink to ~/Applications
       # https://github.com/nix-community/home-manager/issues/1341
-      home.file."Applications/Alacritty.app".source =
-        "${pkgs.alacritty}/Applications/Alacritty.app";
+      home.file."Applications/Alacritty.app".source = "${pkgs.alacritty}/Applications/Alacritty.app";
     })
 ]

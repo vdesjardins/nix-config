@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   users.users.inf10906 = {
     uid = 502;
     description = "Vincent Desjardins";

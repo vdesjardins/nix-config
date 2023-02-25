@@ -1,4 +1,3 @@
-{ pkgs, ... }: {
-  packages = with pkgs; [ clang-tools ];
+{pkgs, ...}: {
+  packages = with pkgs; [clang-tools];
 }
-

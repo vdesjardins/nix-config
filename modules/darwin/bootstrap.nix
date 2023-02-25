@@ -1,10 +1,9 @@
-{ ... }:
-{
-  imports = [ ../shared.nix ];
+{...}: {
+  imports = [../shared.nix];
 
-  nix.settings = { trusted-users = [ "@admin" ]; };
+  nix.settings = {trusted-users = ["@admin"];};
 
-  services = { nix-daemon.enable = true; };
+  services = {nix-daemon.enable = true;};
 
   nix.configureBuildUsers = true;
 

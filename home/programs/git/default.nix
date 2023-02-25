@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     git-revise
     gitAndTools.delta
@@ -37,12 +35,12 @@
       };
     };
 
-    ignores = [ ".DS_Store" ];
+    ignores = [".DS_Store"];
 
-    includes = [{ path = "~/.gitconfig.local"; }];
+    includes = [{path = "~/.gitconfig.local";}];
 
     extraConfig = {
-      help = { autocorrect = 20; };
+      help = {autocorrect = 20;};
 
       merge = {
         conflictstyle = "diff3";
@@ -66,9 +64,9 @@
         autoSetupRemote = true;
       };
 
-      pull = { rebase = true; };
+      pull = {rebase = true;};
 
-      fetch = { prune = true; };
+      fetch = {prune = true;};
 
       branch = {
         autosetuprebase = "always";
@@ -79,11 +77,11 @@
         autoStash = true;
       };
 
-      github = { user = "vdesjardins"; };
+      github = {user = "vdesjardins";};
 
-      tag = { gpgSign = true; };
+      tag = {gpgSign = true;};
 
-      init = { defaultBranch = "main"; };
+      init = {defaultBranch = "main";};
 
       color = {
         diff = {
@@ -142,24 +140,19 @@
       whatis = "show -s --pretty='tformat:%h (%s, %ad)' --date=short";
       intercommit = ''
         !sh -c 'git show "$1" > .git/commit1 && git show "$2" > .git/commit2 && interdiff .git/commit[12] | less -FRS' -'';
-      edit-unmerged =
-        "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`";
-      add-unmerged =
-        "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`";
+      edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`";
+      add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`";
       graphviz = ''
         !f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' "$@" | sed 's/[0-9a-f][0-9a-f]*/"&"/g' ; echo '}'; }; f'';
       alias = ''
         !sh -c '[ $# = 2 ] && git config --global alias."$1" "$2" && exit 0 || echo "usage: git alias <new alias> <original command>" >&2 && exit 1' -'';
-      aliases =
-        "!git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'";
-      lg =
-        "log --graph --pretty=format:'%Cred%h%Creset %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
+      aliases = "!git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'";
+      lg = "log --graph --pretty=format:'%Cred%h%Creset %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
       sl = ''log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short'';
       t = "tag -s";
       tl = "tag";
       ta = "tag -s -a";
-      tls =
-        "for-each-ref --format='%(refname:short) %(taggerdate) %(subject)' refs/tags";
+      tls = "for-each-ref --format='%(refname:short) %(taggerdate) %(subject)' refs/tags";
       sli = "stash list --format='%gd (%cr): %gs'";
 
       change-commits = ''!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter "if [[ \"$`echo $VAR`\" = '$OLD' ]]; then export $VAR='$NEW'; fi" \$@; }; f'';

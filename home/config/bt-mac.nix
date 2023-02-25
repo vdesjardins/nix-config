@@ -1,9 +1,12 @@
-{ home-manager, pkgs }:
+{
+  home-manager,
+  pkgs,
+}:
 home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
   modules = [
     ../modules
-    (import ../users/vincentdesjardins.nix { })
+    (import ../users/vincentdesjardins.nix {})
     {
       home = {
         username = "vincentdesjardins";

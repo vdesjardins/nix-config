@@ -1,4 +1,3 @@
-{ pkgs, ... }:
-{
-  packages = with pkgs; [ vim-vint ];
+{pkgs, ...}: {
+  packages = with pkgs; [vim-vint];
 }

@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   mod = "Mod4";
 
   font = "JetBrainsMono Nerd Font Mono";
@@ -21,8 +25,7 @@ let
   ws8 = "8";
   ws9 = "9";
   ws10 = "10";
-in
-{
+in {
   home.packages = [
     (pkgs.writeScriptBin
       "i3cheatsheet"
@@ -89,26 +92,28 @@ in
           mouseWarping = true;
         };
 
-        bars = [{
-          colors = {
-            background = "#1c1c22";
-            focusedWorkspace = {
-              border = "#7592af";
-              background = "#2e3440";
-              text = "#ffffff";
+        bars = [
+          {
+            colors = {
+              background = "#1c1c22";
+              focusedWorkspace = {
+                border = "#7592af";
+                background = "#2e3440";
+                text = "#ffffff";
+              };
             };
-          };
 
-          fonts = {
-            names = [ "JetBrainsMono Nerd Font Mono" ];
-            size = 12.0;
-          };
+            fonts = {
+              names = ["JetBrainsMono Nerd Font Mono"];
+              size = 12.0;
+            };
 
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
-        }];
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
+          }
+        ];
 
         fonts = {
-          names = [ "JetBrainsMono Nerd Font Mono" ];
+          names = ["JetBrainsMono Nerd Font Mono"];
           size = 10.0;
         };
 
@@ -289,7 +294,6 @@ in
         # warp mouse to window
         for_window [class=.*] exec i3-warp-mouse
       '';
-
     };
   };
 }

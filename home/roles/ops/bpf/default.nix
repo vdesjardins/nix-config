@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ bpftool linuxPackages.bpftrace ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [bpftool linuxPackages.bpftrace];
 }

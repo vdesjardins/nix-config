@@ -1,5 +1,4 @@
-{ device_name, ... }:
-{
+{device_name, ...}: {
   services.spotifyd = {
     enable = true;
     settings = {

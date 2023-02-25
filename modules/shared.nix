@@ -1,5 +1,5 @@
 # This file contains configuration that is shared across all hosts.
-{ pkgs, ... }: {
+{pkgs, ...}: {
   nix = {
     settings = {
       substituters = [
@@ -23,7 +23,6 @@
       keep-derivations = true
       keep-outputs = true
     '';
-
   };
 
   programs = {
@@ -36,6 +35,6 @@
   time.timeZone = "America/New_York";
 
   fonts.fonts = [
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ../../programs/neovim
     ../../programs/bash
@@ -65,7 +65,8 @@
       tree
       yubikey-manager
       unstable.procs # replacement for ps
-    ] ++ lib.optionals stdenv.isLinux [
+    ]
+    ++ lib.optionals stdenv.isLinux [
       unstable.btop # monitor resources
       iotop
       lshw # list hardware
@@ -74,7 +75,8 @@
       sysstat
       thefuck # fix commands
       wget
-    ] ++ lib.optionals stdenv.isDarwin [
+    ]
+    ++ lib.optionals stdenv.isDarwin [
       m-cli # controls apps from command line
     ];
 }
