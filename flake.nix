@@ -395,7 +395,7 @@
       dev-vm = self.nixosConfigurations.dev-vm.config.system.build.toplevel;
 
       homeConfigurations.vincent_desjardins = import ./home/config/vincent_desjardins.nix {
-        inherit home-manager;
+        inherit home-manager nix-index-database;
         pkgs = import nixpkgs {
           system = utils.lib.system.x86_64-linux;
           inherit (pkgsConfig) config overlays;
@@ -404,7 +404,7 @@
       vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
 
       homeConfigurations.inf10906 = import ./home/config/inf10906.nix {
-        inherit home-manager;
+        inherit home-manager nix-index-database;
         pkgs = import nixpkgs {
           system = utils.lib.system.x86_64-darwin;
           inherit (pkgsConfig) config overlays;
@@ -422,7 +422,7 @@
       vince = self.homeConfigurations.vince.activationPackage;
 
       homeConfigurations.vince-mac = import ./home/config/vince-mac.nix {
-        inherit home-manager;
+        inherit home-manager nix-index-database;
         pkgs = import nixpkgs {
           system = utils.lib.system.aarch64-darwin;
           inherit (pkgsConfig) config overlays;
@@ -431,7 +431,7 @@
       vince-mac = self.homeConfigurations.vince-mac.activationPackage;
 
       homeConfigurations.bt-mac = import ./home/config/bt-mac.nix {
-        inherit home-manager;
+        inherit home-manager nix-index-database;
         pkgs = import nixpkgs {
           system = utils.lib.system.aarch64-darwin;
           inherit (pkgsConfig) config overlays;
