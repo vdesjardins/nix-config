@@ -1,0 +1,6 @@
+snippet whrl "read line from file"
+while read -r ${1:line}; do
+  ${3: echo "$line"}
+done < ${2:file}
+$4
+endsnippet
