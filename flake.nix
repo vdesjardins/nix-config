@@ -16,8 +16,8 @@
 
     # Others
     utils.url = "github:numtide/flake-utils";
-    comma.url = "github:Shopify/comma";
-    comma.flake = false;
+    comma.url = "github:nix-community/comma";
+    nix-index-database.url = "github:Mic92/nix-index-database";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
     lscolors.url = "github:/trapd00r/LS_COLORS";
@@ -281,6 +281,7 @@
 
   outputs = {
     self,
+    comma,
     nixpkgs,
     home-manager,
     darwin,
@@ -292,6 +293,7 @@
     unstable,
     nix,
     pre-commit-hooks,
+    nix-index-database,
     ...
   } @ inputs: let
     inherit (builtins) listToAttrs attrValues attrNames readDir filter match;
@@ -345,12 +347,10 @@
           };
         };
         neovim-nightly = neovim-nightly.overlay;
-        comma = final: _prev: {
-          comma = import inputs.comma {inherit (final) pkgs;};
-        };
         fenix = fenix.overlays.default;
       }
-      // (mkOverlays ./overlays);
+      // (mkOverlays ./overlays)
+      // comma.overlays;
   in
     {
       homeManagerModules = import ./home/modules {};
@@ -413,7 +413,7 @@
       inf10906 = self.homeConfigurations.inf10906.activationPackage;
 
       homeConfigurations.vince = import ./home/config/vince.nix {
-        inherit home-manager;
+        inherit home-manager nix-index-database;
         pkgs = import nixpkgs {
           system = utils.lib.system.aarch64-linux;
           inherit (pkgsConfig) config overlays;

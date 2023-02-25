@@ -1,6 +1,7 @@
 {
   home-manager,
   pkgs,
+  nix-index-database,
 }:
 home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
@@ -14,5 +15,6 @@ home-manager.lib.homeManagerConfiguration {
         stateVersion = "21.05";
       };
     }
+    nix-index-database.hmModules.nix-index
   ];
 }
