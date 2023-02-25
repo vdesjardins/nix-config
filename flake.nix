@@ -63,8 +63,50 @@
     ketall.flake = false;
     helm-dashboard.url = "github:komodorio/helm-dashboard/v1.1.0";
     helm-dashboard.flake = false;
-    tree-sitter-go-template.url = "github:ngalaiko/tree-sitter-go-template";
-    tree-sitter-go-template.flake = false;
+
+    # tree-sitter grammars
+    tree-sitter-grammars-bash.url = "github:tree-sitter/tree-sitter-bash";
+    tree-sitter-grammars-bash.flake = false;
+    tree-sitter-grammars-cpp.url = "github:tree-sitter/tree-sitter-cpp";
+    tree-sitter-grammars-cpp.flake = false;
+    tree-sitter-grammars-cue.url = "github:eonpatapon/tree-sitter-cue";
+    tree-sitter-grammars-cue.flake = false;
+    tree-sitter-grammars-dockerfile.url = "github:camdencheek/tree-sitter-dockerfile";
+    tree-sitter-grammars-dockerfile.flake = false;
+    tree-sitter-grammars-gotmpl.url = "github:ngalaiko/tree-sitter-go-template";
+    tree-sitter-grammars-gotmpl.flake = false;
+    tree-sitter-grammars-go.url = "github:tree-sitter/tree-sitter-go";
+    tree-sitter-grammars-go.flake = false;
+    tree-sitter-grammars-gomod.url = "github:camdencheek/tree-sitter-go-mod";
+    tree-sitter-grammars-gomod.flake = false;
+    tree-sitter-grammars-hcl.url = "github:MichaHoffmann/tree-sitter-hcl";
+    tree-sitter-grammars-hcl.flake = false;
+    tree-sitter-grammars-javascript.url = "github:tree-sitter/tree-sitter-javascript";
+    tree-sitter-grammars-javascript.flake = false;
+    tree-sitter-grammars-json.url = "github:tree-sitter/tree-sitter-json";
+    tree-sitter-grammars-json.flake = false;
+    tree-sitter-grammars-lua.url = "github:MunifTanjim/tree-sitter-lua";
+    tree-sitter-grammars-lua.flake = false;
+    tree-sitter-grammars-make.url = "github:alemuller/tree-sitter-make";
+    tree-sitter-grammars-make.flake = false;
+    tree-sitter-grammars-markdown.url = "github:MDeiml/tree-sitter-markdown";
+    tree-sitter-grammars-markdown.flake = false;
+    tree-sitter-grammars-nix.url = "github:cstrahan/tree-sitter-nix";
+    tree-sitter-grammars-nix.flake = false;
+    tree-sitter-grammars-python.url = "github:tree-sitter/tree-sitter-python";
+    tree-sitter-grammars-python.flake = false;
+    tree-sitter-grammars-query.url = "github:nvim-treesitter/tree-sitter-query";
+    tree-sitter-grammars-query.flake = false;
+    tree-sitter-grammars-rust.url = "github:tree-sitter/tree-sitter-rust";
+    tree-sitter-grammars-rust.flake = false;
+    tree-sitter-grammars-sql.url = "github:derekstride/tree-sitter-sql";
+    tree-sitter-grammars-sql.flake = false;
+    tree-sitter-grammars-toml.url = "github:tree-sitter/tree-sitter-toml";
+    tree-sitter-grammars-toml.flake = false;
+    tree-sitter-grammars-yaml.url = "github:ikatyang/tree-sitter-yaml";
+    tree-sitter-grammars-yaml.flake = false;
+    tree-sitter-grammars-zig.url = "github:maxxnino/tree-sitter-zig";
+    tree-sitter-grammars-zig.flake = false;
 
     # Neovim
     ## LSP
@@ -445,6 +487,15 @@
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
       }
-    );
+    ) // {
+      unstable = utils.lib.eachDefaultSystem (
+        system: {
+          legacyPackages = import unstable {
+            inherit system;
+            inherit (pkgsConfig) config;
+            overlays = attrValues (mkOverlays ./overlays/unstable);
+          };
+        }
+      );
+    };
 }
-

@@ -17,6 +17,8 @@
     ../roles/dev/python
     ../roles/dev/rust
     ../roles/dev/go-template
+    ../roles/dev/terraform
+    ../roles/dev/make
     ../roles/dev/zig
     ../roles/dev/yaml
     ../roles/ops/aws

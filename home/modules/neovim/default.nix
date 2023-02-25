@@ -129,6 +129,13 @@ in
           enable go-template language support
         '';
       };
+      make = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable make language support
+        '';
+      };
     };
   };
 
@@ -154,25 +161,35 @@ in
             });
         };
 
+        treeSitterMapping = {
+          terraform = "hcl";
+          docker = "dockerfile";
+        };
+
         activeLanguages = filter (name: (getAttr name cfg.lang))
           (attrNames cfg.lang);
+
+        treeSitterLanguages = map (name: if (hasAttr name treeSitterMapping) then getAttr name treeSitterMapping else name) activeLanguages;
 
         generateLuaRequires = concatStringsSep "\n"
           (map
             (
               name: "require(\"my-lang.${name}\")"
             )
-            activeLanguages
-          );
+            (filter
+              (name: builtins.pathExists (./config/lua/my-lang + "/${name}"))
+              activeLanguages
+            ));
 
         generatePackages = concatLists
           (map
             (
               name: (pkgs.callPackage (./config/lua/my-lang + "/${name}") { }).packages
             )
-            (
-              activeLanguages ++ [ "null-ls" ]
-            ));
+            ((filter
+              (name: builtins.pathExists (./config/lua/my-lang + "/${name}"))
+              activeLanguages
+            ) ++ [ "null-ls" ]));
 
         generateTreeSitterGrammars =
           map
@@ -180,7 +197,7 @@ in
               name: (getAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars)
             )
             (filter (name: (hasAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars))
-              activeLanguages
+              treeSitterLanguages
             );
 
         pkgNeovim = pkgs.wrapNeovim cfg.package
