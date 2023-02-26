@@ -16,7 +16,6 @@
       ketall # get all rersources
       kind
       kube-capacity
-      kube-capacity
       kube-lineage
       kube3d
       kubectl-blame
@@ -28,7 +27,14 @@
       kubectx
       kubelogin
       kubent
-      kubernetes-helm
+      (wrapHelm
+        kubernetes-helm
+        {
+          plugins = [
+            kubernetes-helmPlugins.helm-diff
+            kubernetes-helmPlugins.helm-git
+          ];
+        })
       kubespy
       kubetail
       kubeval
@@ -39,6 +45,7 @@
       unstable.kubeconform
       unstable.kubectl-example
       unstable.kubectl-who-can
+      unstable.kubeshark
       unstable.kustomize
       unstable.rakkess # RBAC query tool
       unstable.tilt
