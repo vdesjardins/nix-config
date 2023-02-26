@@ -1,22 +1,30 @@
-{
-  home.sessionVariables = {
-    VAULT_USERNAME = "inf10906";
-    VAULT_ADDR = "https://vault.gcp.internal";
-  };
-
+{...}: {lib, ...}: {
   imports = [
     ./common.nix
 
-    ../programs/alacritty
-    ../programs/gcloud
-    ../programs/karabiner
+    ../programs/hammerspoon
     ../programs/ssh
-    # ../programs/wezterm
+    ../programs/wezterm
     ../roles/dev/bash
+    ../roles/dev/cue
+    ../roles/dev/debugging
+    ../roles/dev/go
+    ../roles/dev/js
     ../roles/dev/json
+    ../roles/dev/lua
     ../roles/dev/nix
+    ../roles/dev/python
     ../roles/dev/rust
+    ../roles/dev/go-template
+    ../roles/dev/terraform
+    ../roles/dev/make
+    ../roles/dev/zig
     ../roles/dev/yaml
+    ../roles/ops/aws
+    ../roles/ops/container
+    ../roles/ops/k8s
+    ../roles/ops/networking
+    ../roles/ops/virtualization
     ../roles/utils
     ../services/gpg-agent
   ];

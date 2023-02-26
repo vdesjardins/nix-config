@@ -4,7 +4,7 @@
   pkgsConfig,
 }: let
   username = "inf10906";
-  hostname = "C02G32U9MD6T";
+  hostname = "C02ZNNXRMD6M";
 in
   darwin.lib.darwinSystem {
     system = "x86_64-darwin";
@@ -13,11 +13,14 @@ in
       ../shared
       {
         homebrew.casks = [
-          "karabiner-elements"
           "raycast"
+          "google-chrome"
+          "firefox"
           "Rectangle"
-          "flameshot"
           "middleclick"
+          "flameshot"
+          "hammerspoon"
+          "google-drive"
         ];
       }
       {
