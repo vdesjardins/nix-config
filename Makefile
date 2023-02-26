@@ -2,7 +2,7 @@
 SHELL = bash
 .ONESHELL:
 
-EXPERIMENTAL_FEATURES = "nix-command flakes ca-derivations"
+EXPERIMENTAL_FEATURES = nix-command flakes ca-derivations
 
 .PHONY: flake-update
 flake-update:
@@ -38,19 +38,19 @@ hm/inf10906:
 .PHONY: config/work-mac
 ## config/work-mac: build and activate work-mac system
 config/work-mac:
-	nix build --experimental-features $(EXPERIMENTAL_FEATURES) .#work-mac
+	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#work-mac
 	./result/sw/bin/darwin-rebuild switch --flake .#work-mac
 
 .PHONY: config/dev-mac
 ## config/dev-mac: build and activate dev-mac system
 config/dev-mac:
-	nix build --experimental-features $(EXPERIMENTAL_FEATURES) .#dev-mac
+	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#dev-mac
 	./result/sw/bin/darwin-rebuild switch --flake .#dev-mac
 
 .PHONY: config/bt-mac
 ## config/bt-mac: build and activate bt-mac system
 config/bt-mac:
-	nix build --experimental-features $(EXPERIMENTAL_FEATURES) .#bt-mac
+	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#bt-mac
 	./result/sw/bin/darwin-rebuild switch --flake .#bt-mac
 
 .PHONY: config/dev-vm
@@ -69,13 +69,13 @@ hm/install:
 .PHONY: darwin/bootstrap-x86_64
 ## darwin/bootstrap-x86_64: bootstrap darmin nix with default configuration
 darwin/bootstrap-x86_64:
-	nix build --experimental-features $(EXPERIMENTAL_FEATURES) .#darwinConfigurations.bootstrap-x86_64.system
+	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#darwinConfigurations.bootstrap-x86_64.system
 	./result/sw/bin/darwin-rebuild switch --flake .#bootstrap-x86_64
 
 .PHONY: darwin/bootstrap-aarch
 ## darwin/bootstrap-aarch: bootstrap darmin nix with default configuration
 darwin/bootstrap-aarch:
-	nix build --experimental-features $(EXPERIMENTAL_FEATURES) .#darwinConfigurations.bootstrap-aarch.system
+	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#darwinConfigurations.bootstrap-aarch.system
 	./result/sw/bin/darwin-rebuild switch --flake .#bootstrap-aarch
 
 .PHONY: darwin/install
@@ -83,7 +83,7 @@ darwin/bootstrap-aarch:
 darwin/install:
 	sh <(curl -L https://nixos.org/nix/install) --daemon
 	PATH=$$PATH:/nix/var/nix/profiles/default/bin nix-env -iA nixpkgs.nixFlakes
-	sudo sh -c "echo 'experimental-features = $(EXPERIMENTAL_FEATURES)' >> /etc/nix/nix.conf"
+	sudo sh -c "echo 'experimental-features = \"$(EXPERIMENTAL_FEATURES)\"' >> /etc/nix/nix.conf"
 	echo "TODO: need to source /nix/var/nix/profiles/default/etc/profile.d/nix.sh"
 
 .PHONY: darwin-install-brew
