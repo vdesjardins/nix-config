@@ -24,6 +24,7 @@ in
           "flameshot"
           "hammerspoon"
           "google-drive"
+          "stats"
         ];
       }
       (import ../services/spotifyd {device_name = hostname;})

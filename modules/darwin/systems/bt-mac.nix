@@ -22,6 +22,7 @@ in
           "flameshot"
           "hammerspoon"
           "google-drive"
+          "stats"
         ];
       }
       {
