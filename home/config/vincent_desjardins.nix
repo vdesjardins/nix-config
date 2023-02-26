@@ -7,7 +7,7 @@ home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
   modules = [
     ../modules
-    ../users/vincent_desjardins.nix
+    (import ../users/vincent_desjardins.nix {})
     {
       home = {
         username = "vincent_desjardins";
