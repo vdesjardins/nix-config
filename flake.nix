@@ -91,6 +91,8 @@
     tree-sitter-grammars-make.flake = false;
     tree-sitter-grammars-markdown.url = "github:MDeiml/tree-sitter-markdown";
     tree-sitter-grammars-markdown.flake = false;
+    tree-sitter-grammars-markdown-inline.url = "github:MDeiml/tree-sitter-markdown";
+    tree-sitter-grammars-markdown-inline.flake = false;
     tree-sitter-grammars-nix.url = "github:cstrahan/tree-sitter-nix";
     tree-sitter-grammars-nix.flake = false;
     tree-sitter-grammars-python.url = "github:tree-sitter/tree-sitter-python";
@@ -262,7 +264,6 @@
     ## Markdown
     neovim-plugin-markdown-preview.url = "github:iamcco/markdown-preview.nvim";
     neovim-plugin-markdown-preview.flake = false;
-
     neovim-plugin-glow-nvim.url = "github:ellisonleao/glow.nvim";
     neovim-plugin-glow-nvim.flake = false;
 

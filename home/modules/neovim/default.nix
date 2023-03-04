@@ -137,6 +137,13 @@ in {
           enable make language support
         '';
       };
+      markdown = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable markdown language support
+        '';
+      };
     };
   };
 
@@ -165,19 +172,21 @@ in {
           };
 
         treeSitterMapping = {
-          terraform = "hcl";
-          docker = "dockerfile";
+          terraform = ["hcl"];
+          docker = ["dockerfile"];
+          markdown = ["markdown" "markdown-inline"];
         };
 
         activeLanguages =
           filter (name: (getAttr name cfg.lang))
           (attrNames cfg.lang);
 
-        treeSitterLanguages = map (name:
-          if (hasAttr name treeSitterMapping)
-          then getAttr name treeSitterMapping
-          else name)
-        activeLanguages;
+        treeSitterLanguages = flatten (map
+          (name:
+            if (hasAttr name treeSitterMapping)
+            then getAttr name treeSitterMapping
+            else name)
+          activeLanguages);
 
         generateLuaRequires =
           concatStringsSep "\n"

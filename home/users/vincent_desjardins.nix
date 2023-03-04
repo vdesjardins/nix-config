@@ -18,6 +18,7 @@
     ../roles/dev/json
     ../roles/dev/lua
     ../roles/dev/make
+    ../roles/dev/markdown
     ../roles/dev/nix
     ../roles/dev/rust
     ../roles/dev/rust

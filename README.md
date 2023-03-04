@@ -14,7 +14,7 @@ make darwin/install
 
 Source nix in the current shell:
 
-```
+```bash
 source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
 ```
 
@@ -42,11 +42,12 @@ TODO
 
 ## Linux/Home-Manager
 
-NSCD must be installed on the OS to be able to use server NSS components. You need this for example on GCP when using OS Login.
+NSCD must be installed on the OS to be able to use server NSS components. You
+need this for example on GCP when using OS Login.
 
 [Reference](https://github.com/NixOS/nixpkgs/issues/36297)
 
-```
+```bash
 apt install nscd
 systemctl enable nscd
 systemctl start nscd

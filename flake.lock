@@ -1965,6 +1965,7 @@
         "tree-sitter-grammars-lua": "tree-sitter-grammars-lua",
         "tree-sitter-grammars-make": "tree-sitter-grammars-make",
         "tree-sitter-grammars-markdown": "tree-sitter-grammars-markdown",
+        "tree-sitter-grammars-markdown-inline": "tree-sitter-grammars-markdown-inline",
         "tree-sitter-grammars-nix": "tree-sitter-grammars-nix",
         "tree-sitter-grammars-python": "tree-sitter-grammars-python",
         "tree-sitter-grammars-query": "tree-sitter-grammars-query",
@@ -2189,11 +2190,27 @@
     "tree-sitter-grammars-markdown": {
       "flake": false,
       "locked": {
-        "lastModified": 1675502104,
-        "narHash": "sha256-KsE9oYzD+vVqgR35JdL0NmPfNGJqpC12sEsZVIs7NX0=",
+        "lastModified": 1677791034,
+        "narHash": "sha256-pTdAk9uhbRXBQJ7L3PUIxv+lGWkqknHIS6KqhD98uIk=",
         "owner": "MDeiml",
         "repo": "tree-sitter-markdown",
-        "rev": "7e7aa9a25ca9729db9fe22912f8f47bdb403a979",
+        "rev": "10b9b5ad8742456b383908868b14709d73ff81f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MDeiml",
+        "repo": "tree-sitter-markdown",
+        "type": "github"
+      }
+    },
+    "tree-sitter-grammars-markdown-inline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677791034,
+        "narHash": "sha256-pTdAk9uhbRXBQJ7L3PUIxv+lGWkqknHIS6KqhD98uIk=",
+        "owner": "MDeiml",
+        "repo": "tree-sitter-markdown",
+        "rev": "10b9b5ad8742456b383908868b14709d73ff81f4",
         "type": "github"
       },
       "original": {

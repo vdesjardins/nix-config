@@ -1,19 +1,37 @@
 inputs: _self: super: let
   languages =
-    map
+    super.lib.listToAttrs
     (
-      super.lib.removePrefix "tree-sitter-grammars-"
+      map
+      (
+        l: {
+          name = l;
+          value = {
+            lang = super.lib.removePrefix "tree-sitter-grammars-" l;
+          };
+        }
+      )
+      (
+        super.lib.filter (name: builtins.match "^tree-sitter-grammars-.*$" name != null)
+        (super.lib.attrNames inputs)
+      )
     )
-    (
-      super.lib.filter (name: builtins.match "^tree-sitter-grammars-.*$" name != null)
-      (super.lib.attrNames inputs)
-    );
+    // {
+      markdown = {
+        lang = "markdown";
+        location = "./tree-sitter-markdown";
+      };
+      markdown-inline = {
+        lang = "markdown-inline";
+        location = "./tree-sitter-markdown-inline";
+      };
+    };
 
   # From: https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/parsing/tree-sitter/default.nix
   makePkg = {
     lang,
     generate ? false,
-    location ? "",
+    location ? null,
   }:
     super.stdenv.mkDerivation
     {
@@ -28,11 +46,13 @@ inputs: _self: super: let
 
       stripDebugList = ["parser"];
 
-      # configurePhase = super.lib.optionalString generate ''
-      #   tree-sitter generate
-      # '' + super.lib.optionalString (location != null) ''
-      #   cd ${location}
-      # '';
+      configurePhase =
+        super.lib.optionalString generate ''
+          tree-sitter generate
+        ''
+        + super.lib.optionalString (location != null) ''
+          cd ${location}
+        '';
 
       # When both scanner.{c,cc} exist, we should not link both since they may be the same but in
       # different languages. Just randomly prefer C++ if that happens.
@@ -60,13 +80,12 @@ inputs: _self: super: let
       '';
     };
 in {
-  # tree-sitter-grammars = super.tree-sitter-grammars //
-  #   { tree-sitter-gotmpl = makePkg { lang = "gotmpl"; }; };
   tree-sitter-grammars =
     super.tree-sitter-grammars
-    // super.lib.listToAttrs (map (l: {
-        name = "tree-sitter-${l}";
-        value = makePkg {lang = l;};
+    // super.lib.listToAttrs (map
+      (l: {
+        name = "tree-sitter-${l.lang}";
+        value = makePkg l;
       })
-      languages);
+      (super.lib.attrValues languages));
 }

@@ -9,17 +9,18 @@
     ../roles/dev/cue
     ../roles/dev/debugging
     ../roles/dev/go
+    ../roles/dev/go-template
     ../roles/dev/js
     ../roles/dev/json
     ../roles/dev/lua
+    ../roles/dev/make
+    ../roles/dev/markdown
     ../roles/dev/nix
     ../roles/dev/python
     ../roles/dev/rust
-    ../roles/dev/go-template
     ../roles/dev/terraform
-    ../roles/dev/make
-    ../roles/dev/zig
     ../roles/dev/yaml
+    ../roles/dev/zig
     ../roles/ops/aws
     ../roles/ops/container
     ../roles/ops/k8s
