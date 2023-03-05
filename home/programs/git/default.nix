@@ -164,7 +164,7 @@
     gr = "cd $(git rev-parse --show-toplevel)";
   };
 
-  shellGlobalAliases = {
+  programs.zsh.shellGlobalAliases = {
     GR = "$(git rev-parse --show-toplevel)";
   };
 }
