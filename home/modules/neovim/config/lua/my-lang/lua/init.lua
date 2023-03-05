@@ -16,6 +16,7 @@ require("lspconfig").lua_ls.setup({
             formatter = { enable = false },
         },
     },
+    on_attach = require("my-config.lsp").common_on_attach_no_formatting,
 })
 
 local null_ls = require("null-ls")

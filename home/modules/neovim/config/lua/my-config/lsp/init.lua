@@ -47,10 +47,21 @@ local function documentHighlight(client, _bufnr)
         )
     end
 end
+
+local function noDocumentFormatting(client, _bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+end
+
 local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
+end
+
+function lsp_config.common_on_attach_no_formatting(client, bufnr)
+    documentHighlight(client, bufnr)
+    noDocumentFormatting(client, bufnr)
 end
 
 vim.fn.sign_define("DiagnosticSignError", {
