@@ -29,11 +29,6 @@ with lib;
     (mkIf pkgs.hostPlatform.isDarwin {
       home.packages = with pkgs; [gnupg pinentry_mac];
 
-      # ref: https://github.com/NixOS/nixpkgs/issues/155629
-      home.file.".gnupg/scdaemon.conf".text = ''
-        disable-ccid
-      '';
-
       home.file.".gnupg/gpg-agent.conf".text = ''
         default-cache-ttl 30
         max-cache-ttl 120

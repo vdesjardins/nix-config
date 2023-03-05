@@ -10,6 +10,7 @@
     ./common.nix
 
     ../programs/vault
+    ../programs/gpg
     ../roles/dev/bash
     ../roles/dev/cpp
     ../roles/dev/cue

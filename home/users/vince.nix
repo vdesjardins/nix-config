@@ -7,6 +7,7 @@
       ../programs/hammerspoon
       ../programs/ssh
       ../programs/wezterm
+      ../programs/gpg
       ../roles/dev/bash
       ../roles/dev/cue
       ../roles/dev/debugging
