@@ -163,4 +163,8 @@
     g = "git";
     gr = "cd $(git rev-parse --show-toplevel)";
   };
+
+  shellGlobalAliases = {
+    GR = "$(git rev-parse --show-toplevel)";
+  };
 }
