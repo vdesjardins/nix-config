@@ -3,9 +3,12 @@
     enable = true;
 
     # ref: https://github.com/NixOS/nixpkgs/issues/155629
-    scdaemonSettings = pkgs.lib.optionals pkgs.hostPlatform.isDarwin {
-      disable-ccid = true;
-    };
+    scdaemonSettings =
+      if pkgs.hostPlatform.isDarwin
+      then {
+        disable-ccid = true;
+      }
+      else {};
 
     publicKeys = [
       {
