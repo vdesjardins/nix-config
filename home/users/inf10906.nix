@@ -20,9 +20,10 @@
     ../roles/dev/python
     ../roles/dev/rust
     ../roles/dev/terraform
+    ../roles/dev/make
     ../roles/dev/yaml
-    ../roles/dev/zig
     ../roles/ops/aws
+    ../roles/ops/gcloud
     ../roles/ops/container
     ../roles/ops/k8s
     ../roles/ops/networking
