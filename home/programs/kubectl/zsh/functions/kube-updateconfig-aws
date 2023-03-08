@@ -1,5 +1,6 @@
 #!/bin/bash
 function kube-updateconfig-aws() {
+	local user="$1"
 	(
 		export KUBECONFIG="$HOME/.kube/config"
 
@@ -9,6 +10,9 @@ function kube-updateconfig-aws() {
 				alias="EKS:$cluster"
 
 				aws eks update-kubeconfig --profile "$profile" --name "$cluster" --alias "$alias" 2>/dev/null
+				if [[ "$user" != "" ]]; then
+					kubectl config set-context "$alias" --user="$user"
+				fi
 			done < <(aws eks list-clusters --profile "$profile" | jq '.clusters[]' -Mr)
 		done < <(aws configure list-profiles | grep AWSAdministratorAccess)
 	)
