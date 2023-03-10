@@ -407,7 +407,7 @@
       homeConfigurations.inf10906 = import ./home/config/inf10906.nix {
         inherit home-manager nix-index-database;
         pkgs = import nixpkgs {
-          system = utils.lib.system.x86_64-darwin;
+          system = utils.lib.system.aarch64-darwin;
           inherit (pkgsConfig) config overlays;
         };
       };

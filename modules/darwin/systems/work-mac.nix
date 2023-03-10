@@ -4,10 +4,10 @@
   pkgsConfig,
 }: let
   username = "inf10906";
-  hostname = "C02ZNNXRMD6M";
+  hostname = "V07P6L7R6H";
 in
   darwin.lib.darwinSystem {
-    system = "x86_64-darwin";
+    system = "aarch64-darwin";
     inherit inputs;
     modules = [
       ../shared
