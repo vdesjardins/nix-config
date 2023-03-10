@@ -4,7 +4,7 @@ function kube-ns-switch-detach() {
 	local ns=$1
 
 	if [[ $ns == "" ]]; then
-		ns=$(kubectl get namespaces | tail -n +2 | awk '{ print $1; }' | fzf --height 50% --border)
+		ns=$(kubectl get namespaces | tail -n +2 | awk '{ print $1; }' | fzf)
 	fi
 
 	if [[ $ns == "" ]]; then

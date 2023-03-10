@@ -1,4 +1,4 @@
 function aws-profile {
   unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
-  export AWS_PROFILE=$(aws configure list-profiles | ftb-tmux-popup)
+  export AWS_PROFILE=$(aws configure list-profiles | fzf)
 }

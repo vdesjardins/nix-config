@@ -55,9 +55,6 @@ with lib; {
       # switch group using `,` and `.`
       zstyle ':fzf-tab:*' switch-group ',' '.'
 
-      # popup menu - requires tmux 3.2+
-      # zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
       # complete manual by their section
       zstyle ':completion:*:manuals'   separate-sections true
       zstyle ':completion:*:manuals.*' insert-sections   true

@@ -4,7 +4,7 @@ function kube-ctx-switch-current() {
 	local context=$1
 
 	if [[ $context == "" ]]; then
-		context=$(kubectl config get-contexts --no-headers -o name | fzf-tmux -p 50%,20% --border)
+		context=$(kubectl config get-contexts --no-headers -o name | fzf)
 	fi
 
 	if [[ $context == "" ]]; then
