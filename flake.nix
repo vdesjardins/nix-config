@@ -51,6 +51,8 @@
     kubectl-who-can.flake = false;
     kubectl-aliases.url = "github:/ahmetb/kubectl-aliases";
     kubectl-aliases.flake = false;
+    kubectl-rbac-tool.url = "github:/alcideio/rbac-tool";
+    kubectl-rbac-tool.flake = false;
     kube-no-trouble.url = "github:/doitintl/kube-no-trouble";
     kube-no-trouble.flake = false;
     kube-lineage.url = "github:/tohjustin/kube-lineage/v0.5.0";

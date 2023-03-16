@@ -21,6 +21,7 @@
       kubectl-blame
       kubectl-images
       kubectl-node-shell
+      kubectl-rbac-tool
       # kubectl-trace
       kubectl-tree
       kubectl-view-utilization

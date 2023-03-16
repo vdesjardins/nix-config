@@ -379,6 +379,22 @@
         "type": "github"
       }
     },
+    "kubectl-rbac-tool": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675254200,
+        "narHash": "sha256-AC9JkRAwh5BtzrzXlJiI86q7DYcPaMVu3bDBlMDn1pk=",
+        "owner": "alcideio",
+        "repo": "rbac-tool",
+        "rev": "e69a24f4d2873686a7d74e7182cf8aac87b48f9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alcideio",
+        "repo": "rbac-tool",
+        "type": "github"
+      }
+    },
     "kubectl-sniff": {
       "flake": false,
       "locked": {
@@ -1873,6 +1889,7 @@
         "kube-no-trouble": "kube-no-trouble",
         "kubectl-aliases": "kubectl-aliases",
         "kubectl-blame": "kubectl-blame",
+        "kubectl-rbac-tool": "kubectl-rbac-tool",
         "kubectl-sniff": "kubectl-sniff",
         "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",
