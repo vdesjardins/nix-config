@@ -49,12 +49,12 @@
       unstable.kubeshark
       unstable.kustomize
       unstable.rakkess # RBAC query tool
+      unstable.telepresence2
       unstable.tilt
       velero
     ]
     ++ lib.optionals stdenv.isLinux [
       unstable.popeye # unable to build on darwin
-      telepresence
       kubectl-sniff
     ];
 }
