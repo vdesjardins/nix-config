@@ -26,7 +26,6 @@
       kubectl-tree
       kubectl-view-utilization
       kubectx
-      kubelogin
       kubent
       (wrapHelm
         kubernetes-helm
@@ -46,6 +45,7 @@
       unstable.kubeconform
       unstable.kubectl-example
       unstable.kubectl-who-can
+      unstable.kubelogin
       unstable.kubeshark
       unstable.kustomize
       unstable.rakkess # RBAC query tool
