@@ -82,6 +82,9 @@ with lib;
             # nodes
             kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
             kgnot = "kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints";
+
+            # all objects
+            kgaobj = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
           };
         };
 
