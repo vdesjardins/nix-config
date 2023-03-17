@@ -2,6 +2,7 @@
   imports = [
     ./common.nix
 
+    ../programs/vault
     ../programs/hammerspoon
     ../programs/ssh
     ../programs/wezterm
