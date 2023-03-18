@@ -608,6 +608,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-chatgpt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1678801636,
+        "narHash": "sha256-wvO4lNMb+1AxyzwQ7InfG3QeRcoz4Mhc7JYpdWU38+s=",
+        "owner": "jackMort",
+        "repo": "ChatGPT.nvim",
+        "rev": "3008b38171b3137448fe33c5edc1bba2641bfcad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jackMort",
+        "repo": "ChatGPT.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-cmp-buffer": {
       "flake": false,
       "locked": {
@@ -1915,6 +1931,7 @@
         "master": "master",
         "neovim-nightly": "neovim-nightly",
         "neovim-plugin-auto-pairs": "neovim-plugin-auto-pairs",
+        "neovim-plugin-chatgpt": "neovim-plugin-chatgpt",
         "neovim-plugin-cmp-buffer": "neovim-plugin-cmp-buffer",
         "neovim-plugin-cmp-cmdline": "neovim-plugin-cmp-cmdline",
         "neovim-plugin-cmp-nvim-lsp": "neovim-plugin-cmp-nvim-lsp",

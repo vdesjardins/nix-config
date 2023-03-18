@@ -230,6 +230,8 @@
     neovim-plugin-nui.flake = false;
     neovim-plugin-editorconfig.url = "github:gpanders/editorconfig.nvim";
     neovim-plugin-editorconfig.flake = false;
+    neovim-plugin-chatgpt.url = "github:jackMort/ChatGPT.nvim";
+    neovim-plugin-chatgpt.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";
