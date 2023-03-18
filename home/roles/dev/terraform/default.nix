@@ -4,6 +4,7 @@
   programs.myNeovim.lang.terraform = true;
 
   home.packages = with pkgs; [
+    inframap
     terraform-compliance
     terraform-docs
     terraform-landscape
