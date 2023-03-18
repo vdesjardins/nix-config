@@ -6,6 +6,8 @@
       gdb
       gdbgui
       lldb
+      mitmproxy
+      mitmproxy2swagger
       xxd
     ]
     ++ lib.optionals stdenv.isLinux [
