@@ -22,6 +22,7 @@
       kubectl-images
       kubectl-node-shell
       kubectl-rbac-tool
+      kubectl-tap
       # kubectl-trace
       kubectl-tree
       kubectl-view-utilization

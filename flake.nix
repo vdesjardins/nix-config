@@ -53,6 +53,8 @@
     kubectl-aliases.flake = false;
     kubectl-rbac-tool.url = "github:/alcideio/rbac-tool";
     kubectl-rbac-tool.flake = false;
+    kubectl-tap.url = "github:/soluble-ai/kubetap";
+    kubectl-tap.flake = false;
     kube-no-trouble.url = "github:/doitintl/kube-no-trouble";
     kube-no-trouble.flake = false;
     kube-lineage.url = "github:/tohjustin/kube-lineage/v0.5.0";

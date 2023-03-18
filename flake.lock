@@ -411,6 +411,22 @@
         "type": "github"
       }
     },
+    "kubectl-tap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1610725908,
+        "narHash": "sha256-oUlnsrFVX/91IaUkGOhLaKh2uwFdycUXfq4Oj40yYUw=",
+        "owner": "soluble-ai",
+        "repo": "kubetap",
+        "rev": "ebf9a56c94e16b3c249f71bb0bb77c8d8d6d52c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soluble-ai",
+        "repo": "kubetap",
+        "type": "github"
+      }
+    },
     "kubectl-trace": {
       "flake": false,
       "locked": {
@@ -1891,6 +1907,7 @@
         "kubectl-blame": "kubectl-blame",
         "kubectl-rbac-tool": "kubectl-rbac-tool",
         "kubectl-sniff": "kubectl-sniff",
+        "kubectl-tap": "kubectl-tap",
         "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",
         "kubectl-who-can": "kubectl-who-can",
