@@ -595,16 +595,16 @@
     "neovim-plugin-auto-pairs": {
       "flake": false,
       "locked": {
-        "lastModified": 1551258699,
-        "narHash": "sha256-zyLwbGp0y5XuLCbA7A3NL9EHh5jf9K7X7XerykoJrsM=",
-        "owner": "jiangmiao",
-        "repo": "auto-pairs",
-        "rev": "39f06b873a8449af8ff6a3eee716d3da14d63a76",
+        "lastModified": 1678188177,
+        "narHash": "sha256-ZVa5f5Evil6d60mWAca9txZyqOcKE6ZGygCggVOAKR8=",
+        "owner": "windwp",
+        "repo": "nvim-autopairs",
+        "rev": "e755f366721bc9e189ddecd39554559045ac0a18",
         "type": "github"
       },
       "original": {
-        "owner": "jiangmiao",
-        "repo": "auto-pairs",
+        "owner": "windwp",
+        "repo": "nvim-autopairs",
         "type": "github"
       }
     },

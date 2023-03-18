@@ -236,7 +236,7 @@
     neovim-plugin-vim-better-whitespace.flake = false;
     neovim-plugin-vim-endwise.url = "github:tpope/vim-endwise";
     neovim-plugin-vim-endwise.flake = false;
-    neovim-plugin-auto-pairs.url = "github:jiangmiao/auto-pairs";
+    neovim-plugin-auto-pairs.url = "github:windwp/nvim-autopairs";
     neovim-plugin-auto-pairs.flake = false;
     neovim-plugin-vim-grepper.url = "github:mhinz/vim-grepper";
     neovim-plugin-vim-grepper.flake = false;
