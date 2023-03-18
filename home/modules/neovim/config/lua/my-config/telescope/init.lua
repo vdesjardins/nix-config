@@ -30,6 +30,7 @@ wk.register({
         s = { "<cmd>Telescope live_grep<cr>", "search-in-project" },
         m = { "<cmd>Telescope marks<cr>", "bookmarks" },
         h = { "<cmd>Telescope help_tags<cr>", "help" },
+        t = { "<cmd>Telescope<cr>", "telescope" },
     },
 }, { prefix = "<leader>" })
 
