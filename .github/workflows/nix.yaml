@@ -51,6 +51,8 @@ jobs:
 
       - name: Build and switch to home-manager env
         run: |
+          sudo mkdir /home/vincent_desjardins
+          sudo chown $USER /home/vincent_desjardins
           # Prevent conflict between Cachix installed by workflow and the one installed in the config
           nix-env --set-flag priority 1 cachix
           # Build and switch to home-manager env
