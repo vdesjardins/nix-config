@@ -274,6 +274,8 @@
     neovim-plugin-markdown-preview.flake = false;
     neovim-plugin-glow-nvim.url = "github:ellisonleao/glow.nvim";
     neovim-plugin-glow-nvim.flake = false;
+    neovim-plugin-vim-markdown-toc.url = "github:mzlogin/vim-markdown-toc";
+    neovim-plugin-vim-markdown-toc.flake = false;
 
     ## Terraform
     neovim-plugin-vim-terraform.url = "github:hashivim/vim-terraform";

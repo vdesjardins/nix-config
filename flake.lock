@@ -1568,6 +1568,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-vim-markdown-toc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661751948,
+        "narHash": "sha256-m+8RrHY/vnhWz0KpEHahWX1mGDobjN2LfG+9A95gBqA=",
+        "owner": "mzlogin",
+        "repo": "vim-markdown-toc",
+        "rev": "7ec05df27b4922830ace2246de36ac7e53bea1db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mzlogin",
+        "repo": "vim-markdown-toc",
+        "type": "github"
+      }
+    },
     "neovim-plugin-vim-nix": {
       "flake": false,
       "locked": {
@@ -2023,6 +2039,7 @@
         "neovim-plugin-vim-endwise": "neovim-plugin-vim-endwise",
         "neovim-plugin-vim-fugitive": "neovim-plugin-vim-fugitive",
         "neovim-plugin-vim-grepper": "neovim-plugin-vim-grepper",
+        "neovim-plugin-vim-markdown-toc": "neovim-plugin-vim-markdown-toc",
         "neovim-plugin-vim-nix": "neovim-plugin-vim-nix",
         "neovim-plugin-vim-rhubarb": "neovim-plugin-vim-rhubarb",
         "neovim-plugin-vim-rsi": "neovim-plugin-vim-rsi",
