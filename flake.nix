@@ -31,6 +31,8 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     hammerspoon-controlescape.url = "github:/jasonrudolph/ControlEscape.spoon";
     hammerspoon-controlescape.flake = false;
+    hammerspoon-spoons.url = "github:/Hammerspoon/Spoons";
+    hammerspoon-spoons.flake = false;
 
     # aws
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";

@@ -257,6 +257,22 @@
         "type": "github"
       }
     },
+    "hammerspoon-spoons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679137840,
+        "narHash": "sha256-9vGh68P/s1ejXeiSmULjy/lzxh/DWVoOP6aKTtTRqn8=",
+        "owner": "Hammerspoon",
+        "repo": "Spoons",
+        "rev": "87164226c988b7a830c70eae63ff1491d0838037",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Hammerspoon",
+        "repo": "Spoons",
+        "type": "github"
+      }
+    },
     "helm-dashboard": {
       "flake": false,
       "locked": {
@@ -1930,6 +1946,7 @@
         "fenix": "fenix",
         "granted": "granted",
         "hammerspoon-controlescape": "hammerspoon-controlescape",
+        "hammerspoon-spoons": "hammerspoon-spoons",
         "helm-dashboard": "helm-dashboard",
         "home-manager": "home-manager",
         "ketall": "ketall",
