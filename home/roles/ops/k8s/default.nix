@@ -39,6 +39,7 @@
       kubespy
       kubetail
       kubeval
+      minikube
       skaffold
       starboard # security tools
       trivy
