@@ -800,6 +800,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-gitignore": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680653909,
+        "narHash": "sha256-H6IXZTskIAOmp3U57NIT4Of45xXqrX/6VRm1s28S89Y=",
+        "owner": "wintermute-cell",
+        "repo": "gitignore.nvim",
+        "rev": "b61e4a50b78f9a3702a4ed168ab6c9ceba5f6299",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wintermute-cell",
+        "repo": "gitignore.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-gitsigns-nvim": {
       "flake": false,
       "locked": {
@@ -2007,6 +2023,7 @@
         "neovim-plugin-crates": "neovim-plugin-crates",
         "neovim-plugin-editorconfig": "neovim-plugin-editorconfig",
         "neovim-plugin-git-blame-nvim": "neovim-plugin-git-blame-nvim",
+        "neovim-plugin-gitignore": "neovim-plugin-gitignore",
         "neovim-plugin-gitsigns-nvim": "neovim-plugin-gitsigns-nvim",
         "neovim-plugin-glow-nvim": "neovim-plugin-glow-nvim",
         "neovim-plugin-harpoon": "neovim-plugin-harpoon",
