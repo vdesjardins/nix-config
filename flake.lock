@@ -832,6 +832,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-harpoon": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677121208,
+        "narHash": "sha256-cy0PvYHd7eMtDBxcQa8PfYHjLn8gu8j7hRC4Q4D+2tA=",
+        "owner": "ThePrimeagen",
+        "repo": "harpoon",
+        "rev": "f7040fd0c44e7a4010369136547de5604b9c22a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ThePrimeagen",
+        "repo": "harpoon",
+        "type": "github"
+      }
+    },
     "neovim-plugin-indent-blankline-nvim": {
       "flake": false,
       "locked": {
@@ -1993,6 +2009,7 @@
         "neovim-plugin-git-blame-nvim": "neovim-plugin-git-blame-nvim",
         "neovim-plugin-gitsigns-nvim": "neovim-plugin-gitsigns-nvim",
         "neovim-plugin-glow-nvim": "neovim-plugin-glow-nvim",
+        "neovim-plugin-harpoon": "neovim-plugin-harpoon",
         "neovim-plugin-indent-blankline-nvim": "neovim-plugin-indent-blankline-nvim",
         "neovim-plugin-leap-nvim": "neovim-plugin-leap-nvim",
         "neovim-plugin-lsp-rooter-nvim": "neovim-plugin-lsp-rooter-nvim",
