@@ -18,4 +18,15 @@ wk.register({
             r = { "<cmd>LspTroubleToggle lsp_references<cr>", "trouble-references" },
         },
     },
+    r = {
+        name = "trouble",
+        n = { "<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>", "next" },
+        p = {
+            "<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<cr>",
+            "previous",
+        },
+        f = { "<cmd>lua require('trouble').first({skip_groups = true, jump = true})<cr>", "first" },
+        l = { "<cmd>lua require('trouble').last({skip_groups = true, jump = true})<cr>", "last" },
+        t = { "<cmd>TroubleToggle<cr>", "toggle" },
+    },
 }, { prefix = "<leader>" })
