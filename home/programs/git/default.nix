@@ -6,6 +6,7 @@
     git-absorb
     git-revise
     pre-commit
+    tig
     unstable.gitui
   ];
 
