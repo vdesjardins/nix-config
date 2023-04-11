@@ -50,6 +50,7 @@
       htop # fancy top
       hyperfine
       jq
+      jrnl
       lazygit
       lsof
       neofetch
@@ -63,8 +64,9 @@
       tealdeer # faster tldr
       tokei # displays code statistics
       tree
-      yubikey-manager
+      ultralist
       unstable.procs # replacement for ps
+      yubikey-manager
     ]
     ++ lib.optionals stdenv.isLinux [
       unstable.btop # monitor resources
