@@ -10,7 +10,9 @@ require("lspconfig").yamlls.setup({
                 enable = true,
                 url = "https://www.schemastore.org/api/json/catalog.json",
             },
-            schemas = {},
+            schemas = {
+                Kubernetes = "*.yaml",
+            },
             schemaDownload = {
                 enable = true,
             },
