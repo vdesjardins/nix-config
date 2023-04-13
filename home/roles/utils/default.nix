@@ -49,6 +49,7 @@
       htmlq # Like jq, but for HTML
       htop # fancy top
       hyperfine
+      jp # jmespath
       jq
       jrnl
       lazygit
