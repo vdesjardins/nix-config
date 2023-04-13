@@ -51,7 +51,7 @@ with lib;
             kgc = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,CONTAINERS:.spec.containers[*].name,INIT:.spec.initContainers[*].name,EPHEMERAL:.spec.ephemeralContainers[*].name'";
             kgimg = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,IMAGES:.spec.containers[*].image,INIT_IMAGES:.spec.template.spec.initContainers[*].image'";
             kgpsa = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,SA:.spec.serviceAccountName'";
-            kgpoall-problems = "kubectl get pods --all-namespaces | grep -v -P '(Running|Completed)'";
+            kgppending = "kubectl get pods --field-selector=status.phase=Pending";
             krmpo-evicted = "kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains(\"Evicted\")) | \"kubectl delete pods \\(.metadata.name) -n \\(.metadata.namespace)\"' | xargs -n 1 bash -c";
 
             kgpons = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeSelector'";
@@ -85,6 +85,11 @@ with lib;
 
             # all objects
             kgaobj = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
+
+            # config
+            kc = "kubectl config";
+            kcgu = "kubectl config get-users";
+            kcgcl = "kubectl config get-clusters";
           };
         };
 
