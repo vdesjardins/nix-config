@@ -29,7 +29,7 @@
       kubectx
       kubent
       (wrapHelm
-        kubernetes-helm
+        unstable.kubernetes-helm
         {
           plugins = [
             kubernetes-helmPlugins.helm-diff
