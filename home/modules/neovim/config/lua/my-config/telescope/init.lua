@@ -17,6 +17,9 @@ telescope.setup({
         ["ui-select"] = {
             require("telescope.themes").get_dropdown({}),
         },
+        frecency = {
+            show_scores = true,
+        },
     },
 })
 
@@ -31,6 +34,10 @@ wk.register({
         m = { "<cmd>Telescope marks<cr>", "bookmarks" },
         h = { "<cmd>Telescope help_tags<cr>", "help" },
         t = { "<cmd>Telescope<cr>", "telescope" },
+        r = {
+            "<cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<cr>",
+            "frecency",
+        },
     },
 }, { prefix = "<leader>" })
 

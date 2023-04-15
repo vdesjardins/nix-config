@@ -1374,6 +1374,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-sqlite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679148885,
+        "narHash": "sha256-BbHU0+RHbnovCXHtDCUhfFW682Xa3gj/JdK6Kc5PzNA=",
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "rev": "376e4735c48e07dade3e6ff5f09a654a04f5d4ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "type": "github"
+      }
+    },
     "neovim-plugin-telescope-dap": {
       "flake": false,
       "locked": {
@@ -1387,6 +1403,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope-dap.nvim",
+        "type": "github"
+      }
+    },
+    "neovim-plugin-telescope-frecency": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681179412,
+        "narHash": "sha256-bQcL5iJ9i5bzeSdU/57BwX928lgxFJVQmsQVpeZ2xpI=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-frecency.nvim",
+        "rev": "0a4a521471141ae3c94ff0ebcffcaff3c3aad147",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-frecency.nvim",
         "type": "github"
       }
     },
@@ -2073,7 +2105,9 @@
         "neovim-plugin-playground": "neovim-plugin-playground",
         "neovim-plugin-popup": "neovim-plugin-popup",
         "neovim-plugin-rust-tools": "neovim-plugin-rust-tools",
+        "neovim-plugin-sqlite": "neovim-plugin-sqlite",
         "neovim-plugin-telescope-dap": "neovim-plugin-telescope-dap",
+        "neovim-plugin-telescope-frecency": "neovim-plugin-telescope-frecency",
         "neovim-plugin-telescope-nvim": "neovim-plugin-telescope-nvim",
         "neovim-plugin-telescope-ui-select": "neovim-plugin-telescope-ui-select",
         "neovim-plugin-tokyo-night": "neovim-plugin-tokyo-night",
