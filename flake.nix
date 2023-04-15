@@ -19,7 +19,6 @@
     comma.url = "github:nix-community/comma";
     nix-index-database.url = "github:Mic92/nix-index-database";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
     lscolors.url = "github:/trapd00r/LS_COLORS";
     lscolors.flake = false;
     base16-fzf.url = "github:/tinted-theming/base16-fzf";
