@@ -12,5 +12,7 @@ wk.register({
         w = { "<cmd>Gwrite<cr>", "fugitive-write" },
         p = { "<cmd>Git push<cr>", "fugitive-push" },
         P = { "<cmd>Git pull<cr>", "fugitive-pull" },
+        f = { "<cmd>diffget //2<cr>", "diff-get-left" },
+        j = { "<cmd>diffget //3<cr>", "diff-get-right" },
     },
 }, { prefix = "<leader>" })
