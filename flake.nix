@@ -242,6 +242,8 @@
     neovim-plugin-gitignore.flake = false;
     neovim-plugin-sqlite.url = "github:kkharji/sqlite.lua";
     neovim-plugin-sqlite.flake = false;
+    neovim-plugin-undotree.url = "github:mbbill/undotree";
+    neovim-plugin-undotree.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";

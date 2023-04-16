@@ -1502,6 +1502,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-undotree": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677343895,
+        "narHash": "sha256-VrU0usn0akKUtZarvWxL1kD7RgCVBEuZBSQHF5myd40=",
+        "owner": "mbbill",
+        "repo": "undotree",
+        "rev": "485f01efde4e22cb1ce547b9e8c9238f36566f21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mbbill",
+        "repo": "undotree",
+        "type": "github"
+      }
+    },
     "neovim-plugin-vim-bbye": {
       "flake": false,
       "locked": {
@@ -2113,6 +2129,7 @@
         "neovim-plugin-tokyo-night": "neovim-plugin-tokyo-night",
         "neovim-plugin-trouble-nvim": "neovim-plugin-trouble-nvim",
         "neovim-plugin-ultisnips": "neovim-plugin-ultisnips",
+        "neovim-plugin-undotree": "neovim-plugin-undotree",
         "neovim-plugin-vim-bbye": "neovim-plugin-vim-bbye",
         "neovim-plugin-vim-better-whitespace": "neovim-plugin-vim-better-whitespace",
         "neovim-plugin-vim-bookmarks": "neovim-plugin-vim-bookmarks",
