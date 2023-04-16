@@ -1598,6 +1598,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-vim-diffview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681231146,
+        "narHash": "sha256-rtJafQUurQP4sVoKZlC8nrl8OwfY7jKI/RyfNfY8Fik=",
+        "owner": "sindrets",
+        "repo": "diffview.nvim",
+        "rev": "63720aa5a70ce4aa386be407d0e612cd9e63861a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sindrets",
+        "repo": "diffview.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-vim-endwise": {
       "flake": false,
       "locked": {
@@ -2135,6 +2151,7 @@
         "neovim-plugin-vim-bookmarks": "neovim-plugin-vim-bookmarks",
         "neovim-plugin-vim-commentary": "neovim-plugin-vim-commentary",
         "neovim-plugin-vim-cue": "neovim-plugin-vim-cue",
+        "neovim-plugin-vim-diffview": "neovim-plugin-vim-diffview",
         "neovim-plugin-vim-endwise": "neovim-plugin-vim-endwise",
         "neovim-plugin-vim-fugitive": "neovim-plugin-vim-fugitive",
         "neovim-plugin-vim-grepper": "neovim-plugin-vim-grepper",

@@ -186,6 +186,8 @@
     neovim-plugin-vim-fugitive.flake = false;
     neovim-plugin-vim-rhubarb.url = "github:tpope/vim-rhubarb";
     neovim-plugin-vim-rhubarb.flake = false;
+    neovim-plugin-vim-diffview.url = "github:sindrets/diffview.nvim";
+    neovim-plugin-vim-diffview.flake = false;
 
     ## Tree
     neovim-plugin-nvim-neo-tree.url = "github:nvim-neo-tree/neo-tree.nvim";
