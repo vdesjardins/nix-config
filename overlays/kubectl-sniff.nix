@@ -14,7 +14,7 @@ inputs: self: super: {
 
     postInstall = ''
       mv $out/bin/cmd $out/bin/kubectl-sniff
-      ln -s ${self.static-tcpdump}/sbin/static-tcpdump $out/bin/static-tcpdump
+      ln -s ${self.static-tcpdump}/bin/static-tcpdump $out/bin/static-tcpdump
     '';
   };
 }
