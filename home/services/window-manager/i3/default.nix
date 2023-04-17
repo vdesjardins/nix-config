@@ -26,27 +26,27 @@
   ws9 = "9";
   ws10 = "10";
 in {
-  home.packages = [
-    (pkgs.writeScriptBin
+  home.packages = with pkgs; [
+    (writeScriptBin
       "i3cheatsheet"
       ''
-        #!${pkgs.runtimeShell}
+        #!${runtimeShell}
 
-        ${pkgs.gnugrep}/bin/grep -E "^bindsym" ~/.config/i3/config | ${pkgs.gawk}/bin/awk '{$1=""; print $0}' | ${pkgs.gnused}/bin/sed 's/^ *//g' | ${pkgs.gnugrep}/bin/grep -vE "^XF86" | ${pkgs.unixtools.column}/bin/column | ${pkgs.coreutils}/bin/pr -2 -w 160 -t | ${pkgs.less}/bin/less
+        ${gnugrep}/bin/grep -E "^bindsym" ~/.config/i3/config | ${gawk}/bin/awk '{$1=""; print $0}' | ${gnused}/bin/sed 's/^ *//g' | ${gnugrep}/bin/grep -vE "^XF86" | ${unixtools.column}/bin/column | ${coreutils}/bin/pr -2 -w 160 -t | ${less}/bin/less
       '')
-    (pkgs.writeScriptBin
+    (writeScriptBin
       "i3cheatsheet-win"
       ''
-        #!${pkgs.runtimeShell}
+        #!${runtimeShell}
 
-        ${pkgs.xterm}/bin/xterm -T 'i3 Shortcuts' i3cheatsheet
+        ${xterm}/bin/xterm -T 'i3 Shortcuts' i3cheatsheet
       '')
-    (pkgs.writeScriptBin
+    (writeScriptBin
       "i3-warp-mouse"
       ''
-        #!${pkgs.runtimeShell}
+        #!${runtimeShell}
 
-        XDT="${pkgs.xdotool}/bin/xdotool"
+        XDT="${xdotool}/bin/xdotool"
 
         WINDOW=$("$XDT" getwindowfocus)
 
