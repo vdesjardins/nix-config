@@ -27,6 +27,7 @@
   ws10 = "10";
 in {
   home.packages = with pkgs; [
+    autotiling
     (writeScriptBin
       "i3cheatsheet"
       ''
@@ -284,6 +285,11 @@ in {
           }
           {
             command = "wezterm";
+          }
+          {
+            command = "autotiling";
+            notification = false;
+            always = true;
           }
         ];
       };
