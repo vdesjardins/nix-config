@@ -376,8 +376,6 @@
       // comma.overlays;
   in
     {
-      homeManagerModules = import ./home/modules {};
-
       darwinConfigurations.bootstrap-x86_64 = darwin.lib.darwinSystem {
         system = utils.lib.system.x86_64-darwin;
         inherit inputs;
