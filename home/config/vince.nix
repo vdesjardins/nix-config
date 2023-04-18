@@ -7,7 +7,7 @@ home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
   modules = [
     ../modules
-    (import ../users/vince.nix {xsession = true;})
+    (import ../users/vince.nix {wm = "i3";})
     {
       home = {
         username = "vince";

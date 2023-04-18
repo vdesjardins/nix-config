@@ -1,4 +1,4 @@
-{xsession ? false}: {lib, ...}: {
+{wm ? null}: {lib, ...}: {
   imports =
     [
       ./common.nix
@@ -32,7 +32,7 @@
       ../roles/utils
       ../services/gpg-agent
     ]
-    ++ lib.optionals xsession [
+    ++ lib.optionals (wm == "i3") [
       ../services/window-manager
       ../programs/firefox
     ];
