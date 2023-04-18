@@ -14,6 +14,9 @@ require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
             formatter = { enable = false },
+            diagnostics = {
+                globals = { "vim" },
+            },
         },
     },
     on_attach = require("my-config.lsp").common_on_attach_no_formatting,
