@@ -5,6 +5,17 @@ require("neo-tree").setup({
             hide_dotfiles = false,
             hide_gitignored = false,
         },
+        window = {
+            mappings = {
+                T = "terminal",
+            },
+        },
+        commands = {
+            terminal = function(state)
+                local node = state.tree:get_node()
+                OpenTmuxTerminalPane(node.path)
+            end,
+        },
     },
 })
 
