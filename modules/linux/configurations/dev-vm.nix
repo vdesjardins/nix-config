@@ -8,6 +8,7 @@
   ../../shared.nix
   ../hardware/vm-aarch64.nix
   ../shared
+  ../shared/xorg.nix
   ../shared/vm-kernel.nix
   {
     imports = [
