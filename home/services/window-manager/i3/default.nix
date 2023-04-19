@@ -119,7 +119,7 @@ in {
         };
 
         gaps = {
-          inner = 4;
+          inner = 5;
           smartBorders = "on";
           smartGaps = true;
           outer = 4;
