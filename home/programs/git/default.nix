@@ -76,6 +76,7 @@
       rebase = {
         rebase = true;
         autoStash = true;
+        updateRefs = true;
       };
 
       github = {user = "vdesjardins";};
