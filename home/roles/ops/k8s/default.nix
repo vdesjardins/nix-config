@@ -50,6 +50,7 @@
       unstable.kubelogin
       unstable.kubeshark
       unstable.kustomize
+      unstable.oras
       unstable.rakkess # RBAC query tool
       unstable.telepresence2
       unstable.tilt
