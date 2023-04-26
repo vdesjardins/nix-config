@@ -14,8 +14,6 @@
     enable = true;
     userEmail = "vdesjardins@gmail.com";
     userName = "Vincent Desjardins";
-    signing.key = "04C423B8C964B58C";
-    signing.signByDefault = true;
 
     package = pkgs.unstable.git;
 
@@ -80,8 +78,6 @@
       };
 
       github = {user = "vdesjardins";};
-
-      tag = {gpgSign = true;};
 
       init = {defaultBranch = "main";};
 
