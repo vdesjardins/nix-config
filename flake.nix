@@ -66,6 +66,8 @@
     kubectl-blame.flake = false;
     ketall.url = "github:corneliusweig/ketall";
     ketall.flake = false;
+    kubectl-hns.url = "github:/kubernetes-sigs/hierarchical-namespaces/v1.0.0";
+    kubectl-hns.flake = false;
     helm-dashboard.url = "github:komodorio/helm-dashboard/v1.1.0";
     helm-dashboard.flake = false;
 

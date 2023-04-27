@@ -411,6 +411,23 @@
         "type": "github"
       }
     },
+    "kubectl-hns": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648761305,
+        "narHash": "sha256-OEncaNkl46QDnptcmeMvIXHQSrepgWMPKZvll0EcOJQ=",
+        "owner": "kubernetes-sigs",
+        "repo": "hierarchical-namespaces",
+        "rev": "e3b4dc13d42cc774de948d1e49d8de0267ed11db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kubernetes-sigs",
+        "ref": "v1.0.0",
+        "repo": "hierarchical-namespaces",
+        "type": "github"
+      }
+    },
     "kubectl-rbac-tool": {
       "flake": false,
       "locked": {
@@ -2097,6 +2114,7 @@
         "kube-no-trouble": "kube-no-trouble",
         "kubectl-aliases": "kubectl-aliases",
         "kubectl-blame": "kubectl-blame",
+        "kubectl-hns": "kubectl-hns",
         "kubectl-rbac-tool": "kubectl-rbac-tool",
         "kubectl-sniff": "kubectl-sniff",
         "kubectl-tap": "kubectl-tap",

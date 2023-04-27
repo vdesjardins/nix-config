@@ -19,6 +19,7 @@
       kube-lineage
       kube3d
       kubectl-blame
+      kubectl-hns
       kubectl-images
       kubectl-node-shell
       kubectl-rbac-tool
