@@ -67,6 +67,7 @@
       tree
       ultralist
       unstable.procs # replacement for ps
+      yq
       yubikey-manager
     ]
     ++ lib.optionals stdenv.isLinux [
