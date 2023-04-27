@@ -14,7 +14,8 @@
 
       aliases = {
         co = "pr checkout";
-        c = "pr create -f";
+        c = "pr create";
+        cf = "pr create -f";
         m = "pr merge -r -d";
         s = "pr status";
         ch = "pr checks";
