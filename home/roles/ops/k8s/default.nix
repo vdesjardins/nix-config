@@ -25,7 +25,6 @@
       kubectl-tap
       # kubectl-trace
       kubectl-tree
-      kubectl-view-utilization
       kubectx
       kubent
       (wrapHelm
@@ -47,6 +46,7 @@
       unstable.kubeconform
       unstable.kubectl-example
       unstable.kubectl-who-can
+      unstable.kubectl-view-allocations
       unstable.kubelogin
       unstable.kubeshark
       unstable.kustomize
