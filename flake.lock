@@ -1774,6 +1774,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-vim-table-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1666260542,
+        "narHash": "sha256-upjy6O1v7Sev5KwPvlia/bvAKDdH0a7eauQTOCCa+F8=",
+        "owner": "dhruvasagar",
+        "repo": "vim-table-mode",
+        "rev": "9555a3e6e5bcf285ec181b7fc983eea90500feb4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dhruvasagar",
+        "repo": "vim-table-mode",
+        "type": "github"
+      }
+    },
     "neovim-plugin-vim-terraform": {
       "flake": false,
       "locked": {
@@ -2162,6 +2178,7 @@
         "neovim-plugin-vim-snippets": "neovim-plugin-vim-snippets",
         "neovim-plugin-vim-startify": "neovim-plugin-vim-startify",
         "neovim-plugin-vim-surround": "neovim-plugin-vim-surround",
+        "neovim-plugin-vim-table-mode": "neovim-plugin-vim-table-mode",
         "neovim-plugin-vim-terraform": "neovim-plugin-vim-terraform",
         "neovim-plugin-vim-tmux-navigator": "neovim-plugin-vim-tmux-navigator",
         "neovim-plugin-which-key-nvim": "neovim-plugin-which-key-nvim",
