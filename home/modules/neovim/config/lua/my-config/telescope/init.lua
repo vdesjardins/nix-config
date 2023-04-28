@@ -7,10 +7,14 @@ telescope.setup({
     defaults = {
         mappings = {
             i = {
+                ["<c-h>"] = "which_key",
                 ["<c-t>"] = trouble.open_with_trouble,
-                ["<C-h>"] = "which_key",
+                ["<c-d>"] = require("telescope.actions").delete_buffer,
             },
-            n = { ["<c-t>"] = trouble.open_with_trouble },
+            n = {
+                ["<c-t>"] = trouble.open_with_trouble,
+                ["<c-d>"] = require("telescope.actions").delete_buffer,
+            },
         },
     },
     extensions = {
