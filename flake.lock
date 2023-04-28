@@ -639,6 +639,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-abolish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681095952,
+        "narHash": "sha256-Izzv5wTzIFay7kihhq+SzlCylGn4jE0lQZuNoGqMMXc=",
+        "owner": "tpope",
+        "repo": "vim-abolish",
+        "rev": "cb3dcb220262777082f63972298d57ef9e9455ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-abolish",
+        "type": "github"
+      }
+    },
     "neovim-plugin-auto-pairs": {
       "flake": false,
       "locked": {
@@ -2124,6 +2140,7 @@
         "lscolors": "lscolors",
         "master": "master",
         "neovim-nightly": "neovim-nightly",
+        "neovim-plugin-abolish": "neovim-plugin-abolish",
         "neovim-plugin-auto-pairs": "neovim-plugin-auto-pairs",
         "neovim-plugin-chatgpt": "neovim-plugin-chatgpt",
         "neovim-plugin-cmp-buffer": "neovim-plugin-cmp-buffer",
