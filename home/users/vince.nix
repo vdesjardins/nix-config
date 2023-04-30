@@ -30,7 +30,7 @@
       ../roles/ops/networking
       ../roles/ops/virtualization
       ../roles/utils
-      ../services/gpg-agent
+      ../services/yubikey-agent
     ]
     ++ lib.optionals (wm == "i3") [
       ../services/window-manager
