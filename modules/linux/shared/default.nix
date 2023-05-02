@@ -70,6 +70,9 @@
     passwordAuthentication = true;
     permitRootLogin = "no";
   };
+
+  services.pcscd.enable = true;
+
   networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default

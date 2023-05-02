@@ -9,44 +9,38 @@ in
   with lib;
     mkMerge [
       {
-        home.packages = with pkgs; [yubikey-agent pinentry_gtk2];
-
         home.sessionVariables = {
           SSH_AUTH_SOCK = agentSockPath;
         };
       }
 
       (mkIf pkgs.hostPlatform.isLinux {
+        home.packages = with pkgs; [yubikey-agent pinentry-gtk2];
+
         systemd.user.services.yubikey-agent = {
           Unit.Description = "Seamless ssh-agent for YubiKeys";
           Unit.Documentation = "https://filippo.io/yubikey-agent";
 
           Service = {
-            IpAddressDeny = "any";
+            IPAddressDeny = "any";
             RestrictAddressFamilies = "AF_UNIX";
-            RestrictNamespaces = true;
-            RestrictRealtime = true;
-            RestrictSUIDSGID = true;
-            LockPersonality = true;
+            RestrictNamespaces = "yes";
+            RestrictRealtime = "yes";
+            RestrictSUIDSGID = "yes";
+            LockPersonality = "yes";
             SystemCallFilter = "@system-service @privileged @resources";
             SystemCallErrorNumber = "EPERM";
             SystemCallArchitectures = "native";
-            NoNewPrivileges = true;
+            NoNewPrivileges = "yes";
             KeyringMode = "private";
             UMask = 0177;
-            RuntimeDirectory = "yubikey-agent";
+            RuntimeDirectory = ".config/yubikey-agent";
+            RuntimeDirectoryMode = 0700;
+            Environment = "PATH=/home/vince/.nix-profile/bin";
 
-            ExecReload = escapceShellArgs [
-              "${pkgs.kill}/bin/kill"
-              "-HUP"
-              "$MAINPID"
-            ];
+            ExecReload = ["${pkgs.util-linux}/bin/kill -HUP $MAINPID"];
 
-            ExecStart = escapeShellArgs [
-              "${pkgs.yubikey-agent}/bin/yubikey-agent"
-              "-l"
-              agentSockPath
-            ];
+            ExecStart = ["${pkgs.yubikey-agent}/bin/yubikey-agent -l ${agentSockPath}"];
           };
 
           Install.WantedBy = ["default.target"];
@@ -54,6 +48,8 @@ in
       })
 
       (mkIf pkgs.hostPlatform.isDarwin {
+        home.packages = with pkgs; [yubikey-agent pinentry_mac];
+
         launchd.agents.yubikey-agent = {
           enable = true;
           config = {
