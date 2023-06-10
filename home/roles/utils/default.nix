@@ -7,6 +7,7 @@
     ../../programs/git
     ../../programs/sapling
     ../../programs/tmux
+    ../../programs/zellij
     ../../programs/gh
     ../../programs/zoxide
     ../../programs/fzf

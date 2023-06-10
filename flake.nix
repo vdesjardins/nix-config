@@ -3,7 +3,7 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     fenix.url = "github:/nix-community/fenix";
@@ -11,14 +11,14 @@
     # System
     darwin.url = "github:LnL7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Others
     utils.url = "github:numtide/flake-utils";
     comma.url = "github:nix-community/comma";
     nix-index-database.url = "github:Mic92/nix-index-database";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay/d4ac0e115563dc894323947e2fd679f25bfa788a";
     lscolors.url = "github:/trapd00r/LS_COLORS";
     lscolors.flake = false;
     base16-fzf.url = "github:/tinted-theming/base16-fzf";
@@ -36,7 +36,7 @@
     # aws
     aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
     aws-find-profile.flake = false;
-    granted.url = "github:/common-fate/granted/v0.8.1";
+    granted.url = "github:/common-fate/granted/v0.13.2";
     granted.flake = false;
     eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.1.0";
     eks-node-viewer.flake = false;

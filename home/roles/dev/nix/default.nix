@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [
     nixpkgs-fmt
-    nix-linter
+    # nix-linter
     nix-tree
     nix-prefetch
   ];
