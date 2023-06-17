@@ -6,7 +6,6 @@
   naturalMouseScrolling,
   ...
 }: {
-  hardware.video.hidpi.enable = true;
   hardware.opengl = {enable = true;};
 
   boot.loader.systemd-boot.enable = true;
@@ -67,8 +66,10 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    passwordAuthentication = true;
-    permitRootLogin = "no";
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "no";
+    };
   };
 
   services.pcscd.enable = true;
