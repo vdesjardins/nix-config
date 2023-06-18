@@ -44,8 +44,6 @@
     # Kubernetes
     kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
     kubectl-view-utilization.flake = false;
-    kubectl-sniff.url = "github:/eldadru/ksniff";
-    kubectl-sniff.flake = false;
     kubectl-trace.url = "github:/iovisor/kubectl-trace";
     kubectl-trace.flake = false;
     kubectl-who-can.url = "github:aquasecurity/kubectl-who-can/v0.4.0";

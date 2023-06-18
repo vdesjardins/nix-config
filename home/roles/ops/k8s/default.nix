@@ -61,6 +61,5 @@
     ]
     ++ lib.optionals stdenv.isLinux [
       unstable.popeye # unable to build on darwin
-      kubectl-sniff
     ];
 }

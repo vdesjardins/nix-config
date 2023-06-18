@@ -446,22 +446,6 @@
         "type": "github"
       }
     },
-    "kubectl-sniff": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1659729231,
-        "narHash": "sha256-rYc6m/l7j0qNQzjKEiQCCS3ghc6yEYTo4AJKpHNKxlE=",
-        "owner": "eldadru",
-        "repo": "ksniff",
-        "rev": "b0b737c110504e93047e6660e89fb1851187dc75",
-        "type": "github"
-      },
-      "original": {
-        "owner": "eldadru",
-        "repo": "ksniff",
-        "type": "github"
-      }
-    },
     "kubectl-tap": {
       "flake": false,
       "locked": {
@@ -2135,7 +2119,6 @@
         "kubectl-blame": "kubectl-blame",
         "kubectl-hns": "kubectl-hns",
         "kubectl-rbac-tool": "kubectl-rbac-tool",
-        "kubectl-sniff": "kubectl-sniff",
         "kubectl-tap": "kubectl-tap",
         "kubectl-trace": "kubectl-trace",
         "kubectl-view-utilization": "kubectl-view-utilization",

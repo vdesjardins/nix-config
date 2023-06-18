@@ -49,6 +49,7 @@
       hexyl
       htmlq # Like jq, but for HTML
       htop # fancy top
+      httpie
       hyperfine
       jp # jmespath
       jq
@@ -76,6 +77,7 @@
       iotop
       lshw # list hardware
       pueue # task management tool
+      psmisc
       screenfetch # fetch system/theme information
       sysstat
       thefuck # fix commands
