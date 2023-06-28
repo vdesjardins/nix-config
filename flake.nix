@@ -69,6 +69,9 @@
     helm-dashboard.url = "github:komodorio/helm-dashboard/v1.1.0";
     helm-dashboard.flake = false;
 
+    # languages
+    rust-overlay.url = "github:oxalica/rust-overlay";
+
     # tree-sitter grammars
     tree-sitter-grammars-bash.url = "github:tree-sitter/tree-sitter-bash";
     tree-sitter-grammars-bash.flake = false;
@@ -208,6 +211,8 @@
     neovim-plugin-which-key-nvim.flake = false;
     neovim-plugin-trouble-nvim.url = "github:folke/lsp-trouble.nvim";
     neovim-plugin-trouble-nvim.flake = false;
+    neovim-plugin-flash-nvim.url = "github:folke/flash.nvim";
+    neovim-plugin-flash-nvim.flake = false;
     neovim-plugin-nvim-bqf.url = "github:kevinhwang91/nvim-bqf"; # preview in quickfix
     neovim-plugin-nvim-bqf.flake = false;
     neovim-plugin-lsp-rooter-nvim.url = "github:ahmedkhalf/lsp-rooter.nvim";
@@ -258,8 +263,6 @@
     neovim-plugin-vim-grepper.flake = false;
     neovim-plugin-vim-surround.url = "github:tpope/vim-surround";
     neovim-plugin-vim-surround.flake = false;
-    neovim-plugin-leap-nvim.url = "github:ggandor/leap.nvim";
-    neovim-plugin-leap-nvim.flake = false;
     neovim-plugin-abolish.url = "github:tpope/vim-abolish";
     neovim-plugin-abolish.flake = false;
 
@@ -316,6 +319,7 @@
     neovim-nightly,
     nixos-generators,
     fenix,
+    rust-overlay,
     utils,
     unstable,
     nix,
@@ -375,6 +379,7 @@
         };
         neovim-nightly = neovim-nightly.overlay;
         fenix = fenix.overlays.default;
+        rust-overlay = rust-overlay.overlays.default;
       }
       // (mkOverlays ./overlays)
       // comma.overlays;

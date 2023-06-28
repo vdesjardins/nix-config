@@ -1,0 +1,4 @@
+layout {
+    pane command="k9s" close_on_exit=true
+    pane
+}

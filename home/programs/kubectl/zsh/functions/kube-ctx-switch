@@ -64,9 +64,17 @@ zsh" "$aws_context" "$kubeconfig" "$context_name" >"$startup_script"
 
 		chmod +x "$startup_script"
 
-		tmux new-session -d -s "$session_name" "$startup_script"
-		tmux setenv -t "$session_name" KUBECONFIG "$kubeconfig"
-		tmux setenv -t "$session_name" AWS_PROFILE "$aws_profile"
-		tmux switch-client -t "$session_name"
+		if [[ "$TMUX" != "" ]]; then
+			tmux new-session -d -s "$session_name" "$startup_script"
+			tmux setenv -t "$session_name" KUBECONFIG "$kubeconfig"
+			tmux setenv -t "$session_name" AWS_PROFILE "$aws_profile"
+			tmux switch-client -t "$session_name"
+		elif [[ "$ZELLIJ" != "" ]]; then
+			zellij ac new-tab -n "$session_name"
+			zellij r --close-on-exit -- "$startup_script"
+		else
+			echo 1>&2 "unknown shell multiplexer"
+			exit 1
+		fi
 	)
 }

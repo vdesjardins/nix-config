@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  packages = with pkgs; [fenix.rust-analyzer];
+  packages = with pkgs; [rust-bin.stable.latest.rust-analyzer];
 }
