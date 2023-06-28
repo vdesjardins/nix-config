@@ -68,6 +68,8 @@
     kubectl-hns.flake = false;
     helm-dashboard.url = "github:komodorio/helm-dashboard/v1.1.0";
     helm-dashboard.flake = false;
+    helm-gcs.url = "github:hayorov/helm-gcs/0.4.3";
+    helm-gcs.flake = false;
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";

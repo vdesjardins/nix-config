@@ -34,6 +34,7 @@
           plugins = [
             kubernetes-helmPlugins.helm-diff
             kubernetes-helmPlugins.helm-git
+            kubernetes-helmPlugins.helm-gcs
           ];
         })
       kubespy

@@ -311,6 +311,23 @@
         "type": "github"
       }
     },
+    "helm-gcs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1684052844,
+        "narHash": "sha256-AV0eiQ2GR+l8wVCoDL2kE9kgy1UJQpVr3xMMsUuCLoE=",
+        "owner": "hayorov",
+        "repo": "helm-gcs",
+        "rev": "1f8c6b930392c2185cff31c7a585351720b3d818",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hayorov",
+        "ref": "0.4.3",
+        "repo": "helm-gcs",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -2144,6 +2161,7 @@
         "hammerspoon-controlescape": "hammerspoon-controlescape",
         "hammerspoon-spoons": "hammerspoon-spoons",
         "helm-dashboard": "helm-dashboard",
+        "helm-gcs": "helm-gcs",
         "home-manager": "home-manager",
         "ketall": "ketall",
         "kube-capacity": "kube-capacity",
