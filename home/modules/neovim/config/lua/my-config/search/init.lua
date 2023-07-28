@@ -3,6 +3,6 @@ wk.register({
     s = {
         name = "search",
         h = { "<cmd>nohlsearch<cr>", "clear-highlight" },
-        c = { "<cmd>Telescope commands<cr>", "commands" },
+        c = { "<cmd>Telescope commands theme=dropdown<cr>", "commands" },
     },
 }, { prefix = "<leader>" })

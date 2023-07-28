@@ -8,7 +8,7 @@ wk.register({
         l = { "<cmd>blast<cr>", "last-buffer" },
         n = { "<cmd>bnext<cr>", "next-buffer" },
         p = { "<cmd>bprev<cr>", "previous-buffer" },
-        s = { "<cmd>Telescope buffers<cr>", "find-buffer" },
-        r = { "<cmd>Telescope treesitter<cr>", "find-treesitter" },
+        s = { "<cmd>Telescope buffers theme=dropdown<cr>", "find-buffer" },
+        r = { "<cmd>Telescope treesitter theme=dropdown<cr>", "find-treesitter" },
     },
 }, { prefix = "<leader>" })

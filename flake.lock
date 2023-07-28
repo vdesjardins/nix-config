@@ -1461,6 +1461,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-telescope-file-browser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688241399,
+        "narHash": "sha256-lLqX/8adu6TCehay+iVu5gVzo13RucoeuxhwszjM/Kk=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "rev": "e03ff55962417b69c85ef41424079bb0580546ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-telescope-frecency": {
       "flake": false,
       "locked": {
@@ -2228,6 +2244,7 @@
         "neovim-plugin-rust-tools": "neovim-plugin-rust-tools",
         "neovim-plugin-sqlite": "neovim-plugin-sqlite",
         "neovim-plugin-telescope-dap": "neovim-plugin-telescope-dap",
+        "neovim-plugin-telescope-file-browser": "neovim-plugin-telescope-file-browser",
         "neovim-plugin-telescope-frecency": "neovim-plugin-telescope-frecency",
         "neovim-plugin-telescope-nvim": "neovim-plugin-telescope-nvim",
         "neovim-plugin-telescope-ui-select": "neovim-plugin-telescope-ui-select",

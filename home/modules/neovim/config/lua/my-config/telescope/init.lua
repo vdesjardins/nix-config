@@ -28,19 +28,27 @@ telescope.setup({
 })
 
 telescope.load_extension("ui-select")
+telescope.load_extension("file_browser")
 
 local wk = require("which-key")
 wk.register({
     p = {
         name = "projects",
-        f = { "<cmd>Telescope find_files<cr>", "find-file-in-project" },
-        s = { "<cmd>Telescope live_grep<cr>", "search-in-project" },
-        m = { "<cmd>Telescope marks<cr>", "bookmarks" },
-        h = { "<cmd>Telescope help_tags<cr>", "help" },
-        t = { "<cmd>Telescope<cr>", "telescope" },
+        f = { "<cmd>Telescope find_files theme=dropdown<cr>", "find-file-in-project" },
+        s = { "<cmd>Telescope live_grep theme=dropdown<cr>", "search-in-project" },
+        m = { "<cmd>Telescope marks theme=dropdown<cr>", "bookmarks" },
+        h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "help" },
+        b = { "<cmd>Telescope file_browser theme=dropdown<cr>", "file-browser" },
+        t = { "<cmd>Telescope theme=dropdown<cr>", "telescope" },
         r = {
             "<cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<cr>",
             "frecency",
+        },
+    },
+    b = {
+        b = {
+            "<cmd>Telescope file_browser theme=dropdown path=%:p:h select_buffer=true<CR>",
+            "file-browser",
         },
     },
 }, { prefix = "<leader>" })

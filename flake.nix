@@ -205,6 +205,8 @@
     neovim-plugin-telescope-ui-select.flake = false;
     neovim-plugin-telescope-frecency.url = "github:nvim-telescope/telescope-frecency.nvim";
     neovim-plugin-telescope-frecency.flake = false;
+    neovim-plugin-telescope-file-browser.url = "github:nvim-telescope/telescope-file-browser.nvim";
+    neovim-plugin-telescope-file-browser.flake = false;
 
     ## Misc
     neovim-plugin-neodev-nvim.url = "github:folke/neodev.nvim";
