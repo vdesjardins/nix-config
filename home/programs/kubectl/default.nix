@@ -55,6 +55,10 @@ with lib;
             krmpo-evicted = "kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains(\"Evicted\")) | \"kubectl delete pods \\(.metadata.name) -n \\(.metadata.namespace)\"' | xargs -n 1 bash -c";
 
             kgpons = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeSelector'";
+            kgpot = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.tolerations'";
+            kgpoon = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,OWNER:.metadata.ownerReferences[*].kind,NODE:.spec
+.nodeName' | rg -vi 'daemonset|node'";
+
             # deployment
             krrd = "kubectl rollout restart deployment";
             kgdimg = "kubectl get deployment -o=custom-columns='NAMESPACE:.metadata.namespace,DEPLOYMENT:.metadata.name,IMAGES:.spec.template.spec.containers[*].image,INIT_IMAGES:.spec.template.spec.initContainers[*].image'";
@@ -82,6 +86,7 @@ with lib;
             # nodes
             kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
             kgnot = "kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints";
+            kgno-gke = "kubectl get nodes -o=\"custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\.kubernetes\\.io/instance-type,SPOT:.metadata.labels.cloud\\.google\\.com/gke-spot,PREEMP:.metadata.labels.cloud\\.google\\.com/gke-preemptible\"";
 
             # all objects
             kgaobj = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
