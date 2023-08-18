@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [unstable.open-policy-agent];
+  home.packages = with pkgs; [unstable.noseyparker];
 }

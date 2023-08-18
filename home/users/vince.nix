@@ -29,6 +29,7 @@
       ../roles/ops/k8s
       ../roles/ops/networking
       ../roles/ops/virtualization
+      ../roles/security
       ../roles/utils
       ../services/yubikey-agent
     ]
