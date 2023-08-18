@@ -51,6 +51,8 @@
         renameLimit = 3000;
         algorithm = "patience";
         colorMoved = "default";
+        context = 5;
+        renames = "copy";
 
         dyff = {
           command = "dyff_between() { ${pkgs.dyff}/bin/dyff --color on between \"$2\" \"$5\"; }; dyff_between";
