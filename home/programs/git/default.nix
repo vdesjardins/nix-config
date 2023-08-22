@@ -1,10 +1,11 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    commitizen
+    git-absorb
+    git-revise
     git-revise
     gitAndTools.delta
     gitAndTools.git-filter-repo
-    git-absorb
-    git-revise
     pre-commit
     tig
     unstable.gitui

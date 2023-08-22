@@ -518,6 +518,7 @@
               stylua.enable = true;
               shellcheck.enable = true;
               shfmt.enable = true;
+              commitizen.enable = true;
             };
           };
         };
