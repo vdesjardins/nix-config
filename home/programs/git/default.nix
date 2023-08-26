@@ -78,6 +78,7 @@
         rebase = true;
         autoStash = true;
         updateRefs = true;
+        autoSquash = true;
       };
 
       github = {user = "vdesjardins";};
@@ -112,8 +113,8 @@
       c = "commit";
       ca = "commit --amend";
       cm = "commit -m";
-      co = "checkout";
-      cob = "checkout -b";
+      cf = "commit --fixup";
+      re = "restore";
       sw = "switch";
       swc = "switch -c";
       ps = "push";
@@ -122,7 +123,7 @@
       br = "branch";
       bra = "branch -a";
       brd = "branch -d";
-      brD = "branch -D";
+      brdf = "branch -D";
       bi = "bisect";
       a = "add";
       d = "diff";
@@ -133,6 +134,7 @@
       mt = "mergetool";
       who = "shortlog -s --";
       r = "rebase";
+      ri = "rebase -i";
       rs = "restore --staged";
       remove = "!sh -c 'git ls-files --deleted -z | xargs -0 git rm'";
       whois = ''
