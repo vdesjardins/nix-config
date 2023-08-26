@@ -4,6 +4,6 @@ inputs: _self: super: {
 
     src = inputs.kubectl-rbac-tool;
 
-    vendorSha256 = "sha256-A4ToyhRqA26A/rHT5dPYXLktOFH+o5kajXQxmxZL+tM=";
+    vendorSha256 = "sha256-ICyDzKbp6qYu5Ib5nsoP3cCL/9J/7KrS6cTpDmwoh3E=";
   };
 }
