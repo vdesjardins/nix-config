@@ -14,7 +14,7 @@
     ../../programs/just
     ../../programs/openssl
     ../../programs/bat
-    ../../programs/exa
+    ../../programs/lsd
     ../../programs/broot
     ../../programs/direnv
     ../../programs/any-nix-shell
