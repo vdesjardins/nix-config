@@ -11,5 +11,6 @@
     # nix-linter
     nix-tree
     nix-prefetch
+    nix-output-monitor
   ];
 }
