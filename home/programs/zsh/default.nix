@@ -82,6 +82,8 @@
       if [[ -f ~/.zshrc.local ]]; then
         source ~/.zshrc.local
       fi
+
+      GLOBALIAS_FILTER_VALUES=(ls)
     '';
   };
 }
