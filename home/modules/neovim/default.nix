@@ -81,6 +81,13 @@ in {
           enable json language support
         '';
       };
+      jq = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable jq language support
+        '';
+      };
       yaml = mkOption {
         type = types.bool;
         default = false;

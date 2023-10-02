@@ -74,6 +74,10 @@
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    # jq
+    jq-lsp.url = "github:wader/jq-lsp";
+    jq-lsp.flake = false;
+
     # tree-sitter grammars
     tree-sitter-grammars-bash.url = "github:tree-sitter/tree-sitter-bash";
     tree-sitter-grammars-bash.flake = false;
@@ -95,6 +99,8 @@
     tree-sitter-grammars-javascript.flake = false;
     tree-sitter-grammars-json.url = "github:tree-sitter/tree-sitter-json";
     tree-sitter-grammars-json.flake = false;
+    tree-sitter-grammars-jq.url = "github:flurie/tree-sitter-jq";
+    tree-sitter-grammars-jq.flake = false;
     tree-sitter-grammars-lua.url = "github:MunifTanjim/tree-sitter-lua";
     tree-sitter-grammars-lua.flake = false;
     tree-sitter-grammars-make.url = "github:alemuller/tree-sitter-make";

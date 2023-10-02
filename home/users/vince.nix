@@ -15,6 +15,7 @@
       ../roles/dev/go-template
       ../roles/dev/js
       ../roles/dev/json
+      ../roles/dev/jq
       ../roles/dev/lua
       ../roles/dev/make
       ../roles/dev/markdown

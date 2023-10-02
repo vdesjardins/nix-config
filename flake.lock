@@ -349,6 +349,22 @@
         "type": "github"
       }
     },
+    "jq-lsp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694183546,
+        "narHash": "sha256-ItLKRSbGZ8UqFEHCoh96KwhSpuKZ3l+2ZXnBkHEZL0M=",
+        "owner": "wader",
+        "repo": "jq-lsp",
+        "rev": "85edf1adbe5e6c91b37c67b6a4bf85eda1e49f2f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wader",
+        "repo": "jq-lsp",
+        "type": "github"
+      }
+    },
     "ketall": {
       "flake": false,
       "locked": {
@@ -2179,6 +2195,7 @@
         "helm-dashboard": "helm-dashboard",
         "helm-gcs": "helm-gcs",
         "home-manager": "home-manager",
+        "jq-lsp": "jq-lsp",
         "ketall": "ketall",
         "kube-capacity": "kube-capacity",
         "kube-lineage": "kube-lineage",
@@ -2287,6 +2304,7 @@
         "tree-sitter-grammars-gotmpl": "tree-sitter-grammars-gotmpl",
         "tree-sitter-grammars-hcl": "tree-sitter-grammars-hcl",
         "tree-sitter-grammars-javascript": "tree-sitter-grammars-javascript",
+        "tree-sitter-grammars-jq": "tree-sitter-grammars-jq",
         "tree-sitter-grammars-json": "tree-sitter-grammars-json",
         "tree-sitter-grammars-lua": "tree-sitter-grammars-lua",
         "tree-sitter-grammars-make": "tree-sitter-grammars-make",
@@ -2541,6 +2559,22 @@
       "original": {
         "owner": "tree-sitter",
         "repo": "tree-sitter-javascript",
+        "type": "github"
+      }
+    },
+    "tree-sitter-grammars-jq": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663644500,
+        "narHash": "sha256-pek2Vg1osMYAdx6DfVdZhuIDb26op3i2cfvMrf5v3xY=",
+        "owner": "flurie",
+        "repo": "tree-sitter-jq",
+        "rev": "13990f530e8e6709b7978503da9bc8701d366791",
+        "type": "github"
+      },
+      "original": {
+        "owner": "flurie",
+        "repo": "tree-sitter-jq",
         "type": "github"
       }
     },
