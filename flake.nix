@@ -18,7 +18,7 @@
     utils.url = "github:numtide/flake-utils";
     comma.url = "github:nix-community/comma";
     nix-index-database.url = "github:Mic92/nix-index-database";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay/d4ac0e115563dc894323947e2fd679f25bfa788a";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     lscolors.url = "github:/trapd00r/LS_COLORS";
     lscolors.flake = false;
     base16-fzf.url = "github:/tinted-theming/base16-fzf";
