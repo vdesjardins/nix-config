@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     amazon-ecr-credential-helper
-    aws-find-profile
     aws-vault
     awslogs
     eks-node-viewer

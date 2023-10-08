@@ -22,10 +22,13 @@ function kube-ctx-switch() {
 		local aws_account_id=""
 		aws_account_id=$(echo "$cluster" | awk -F':' '{ print $5; }')
 		if [[ $aws_account_id != "" ]]; then
-			if command -v aws-config-parser &>/dev/null; then
-				aws_profile="$(aws-config-parser --id "$aws_account_id" | fzf)"
-				aws_context="export AWS_PROFILE=$aws_profile"
-			fi
+			aws_profile=$(
+				jc --ini <~/.aws/config |
+					jq 'to_entries | .[] | select(.value.sso_account_id == "'"$aws_account_id"'") | .key | split("\\s+"; "")[1]' -Mr |
+					fzf
+			)
+			aws_context="export AWS_PROFILE=$aws_profile"
+
 			if [[ "$context_name" == "$cluster" ]]; then
 				context_name=$(echo "$context_name" | awk -F'/' '{ print $2; }')
 			fi

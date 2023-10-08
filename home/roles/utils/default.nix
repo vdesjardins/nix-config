@@ -51,6 +51,7 @@
       htop # fancy top
       httpie
       hyperfine
+      jc # json conversion
       jp # jmespath
       jq
       jrnl

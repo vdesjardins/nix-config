@@ -6,7 +6,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
-    fenix.url = "github:/nix-community/fenix";
 
     # System
     darwin.url = "github:LnL7/nix-darwin";
@@ -34,8 +33,6 @@
     hammerspoon-spoons.flake = false;
 
     # aws
-    aws-find-profile.url = "github:/vdesjardins/aws-find-profile";
-    aws-find-profile.flake = false;
     granted.url = "github:/common-fate/granted/v0.13.2";
     granted.flake = false;
     eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.1.0";
@@ -328,7 +325,6 @@
     master,
     neovim-nightly,
     nixos-generators,
-    fenix,
     rust-overlay,
     utils,
     unstable,
@@ -388,7 +384,6 @@
           };
         };
         neovim-nightly = neovim-nightly.overlay;
-        fenix = fenix.overlays.default;
         rust-overlay = rust-overlay.overlays.default;
       }
       // (mkOverlays ./overlays)
