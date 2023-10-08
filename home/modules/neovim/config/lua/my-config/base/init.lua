@@ -13,9 +13,6 @@ vim.api.nvim_set_keymap("n", "<C-Down>", "resize +2<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-Left>", "vertical resize -2<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-Right>", "vertical resize +2<CR>", { silent = true })
 
--- Switch quicky for pasting text in a SSH session.
-vim.o.pastetoggle = "<F2>"
-
 -- Disable arrow keys
 vim.api.nvim_set_keymap("n", "<up>", "<nop>", {})
 vim.api.nvim_set_keymap("n", "<down>", "<nop>", {})
