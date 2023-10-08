@@ -24,7 +24,7 @@
       ../roles/dev/rust
       ../roles/dev/terraform
       ../roles/dev/yaml
-      # ../roles/dev/zig
+      ../roles/dev/zig
       ../roles/ops/aws
       ../roles/ops/container
       ../roles/ops/k8s
