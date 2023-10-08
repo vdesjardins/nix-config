@@ -56,6 +56,7 @@
       jrnl
       lazygit
       lsof
+      minisign
       neofetch
       oha # HTTP load generator inspired by rakyll/hey with tui animation
       openssh
