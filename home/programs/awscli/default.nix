@@ -15,6 +15,11 @@ with lib;
         programs.zsh = {
           initExtra = ''
             complete -C ${pkgs.awscli2}/bin/aws_completer aws
+
+            function aws-find-profiles() {
+              aws_account_id=$1
+              jc --ini <~/.aws/config | jq 'to_entries | .[] | select(.value.sso_account_id == "'"$aws_account_id"'") | .key | split("\\s+"; "")[1]' -Mr
+            }
           '';
           envExtra = ''
             export AWS_PAGER=""
