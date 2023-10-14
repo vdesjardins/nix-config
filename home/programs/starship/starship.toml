@@ -22,6 +22,9 @@ format = "via [$symbol$version]($style) "
 [gcloud]
 disabled = true
 
+[zig]
+symbol = " "
+
 [status]
 disabled = false
 map_symbol = true
