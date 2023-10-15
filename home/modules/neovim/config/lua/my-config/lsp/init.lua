@@ -106,6 +106,7 @@ wk.register({
             r = { "<Cmd>lua vim.lsp.codelens.refresh()<CR>", "refresh" },
             a = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "run" },
         },
+        r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
     },
 }, { prefix = "<leader>" })
 
