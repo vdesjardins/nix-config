@@ -127,8 +127,6 @@
     ## LSP
     neovim-plugin-nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
     neovim-plugin-nvim-lspconfig.flake = false;
-    neovim-plugin-lspsaga-nvim.url = "github:tami5/lspsaga.nvim";
-    neovim-plugin-lspsaga-nvim.flake = false;
     neovim-plugin-lspkind-nvim.url = "github:onsails/lspkind-nvim";
     neovim-plugin-lspkind-nvim.flake = false;
     neovim-plugin-nvim-lightbulb.url = "github:kosayoda/nvim-lightbulb";

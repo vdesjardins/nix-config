@@ -124,4 +124,8 @@ vim.cmd("nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>")
 vim.cmd("nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>")
 vim.cmd("nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>")
 
+-- jump
+vim.cmd("nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_prev({})<CR>")
+vim.cmd("nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_next({})<CR>")
+
 return lsp_config
