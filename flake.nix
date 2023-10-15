@@ -270,6 +270,8 @@
     neovim-plugin-vim-surround.flake = false;
     neovim-plugin-abolish.url = "github:tpope/vim-abolish";
     neovim-plugin-abolish.flake = false;
+    neovim-plugin-dressing.url = "github:stevearc/dressing.nvim";
+    neovim-plugin-dressing.flake = false;
 
     ## Snippets
     neovim-plugin-ultisnips.url = "github:SirVer/ultisnips";

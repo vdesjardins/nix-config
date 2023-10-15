@@ -925,6 +925,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-dressing": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696994813,
+        "narHash": "sha256-Tib3SZ88e15svL89me3tlTbUc8UcNY1jwLcr49FpRqc=",
+        "owner": "stevearc",
+        "repo": "dressing.nvim",
+        "rev": "1f2d1206a03bd3add8aedf6251e4534611de577f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "dressing.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-editorconfig": {
       "flake": false,
       "locked": {
