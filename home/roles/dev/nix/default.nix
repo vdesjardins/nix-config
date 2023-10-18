@@ -12,5 +12,6 @@
     nix-tree
     nix-prefetch
     nix-output-monitor
+    nvd # package version diff tool
   ];
 }
