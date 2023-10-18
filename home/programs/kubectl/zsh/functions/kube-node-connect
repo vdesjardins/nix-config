@@ -17,12 +17,14 @@ function kube-node-connect() {
 
 	case "$provider" in
 	aws)
+		local zone=""
 		local region=""
 		local host=""
 
-		region=$(echo "$providerID" | awk -F/ '{ print $4; }')
+		zone=$(echo "$providerID" | awk -F/ '{ print $4; }')
 		host=$(echo "$providerID" | awk -F/ '{ print $5; }')
-
+		region=$(aws ec2 describe-availability-zones --output json |
+			jq '.AvailabilityZones[] | select(.ZoneName == "ca-central-1d") | .RegionName' -Mr)
 		aws ssm start-session --region "$region" --target "$host"
 		;;
 	gce)
