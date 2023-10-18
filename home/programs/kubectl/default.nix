@@ -56,8 +56,8 @@ with lib;
 
             kgpons = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeSelector'";
             kgpot = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.tolerations'";
-            kgpoon = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,OWNER:.metadata.ownerReferences[*].kind,NODE:.spec
-.nodeName' | rg -vi 'daemonset|node'";
+            kgpoon = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,OWNER:.metadata.ownerReferences[*].kind,NODE:.spec.nodeName' | rg -vi 'daemonset|node'";
+            kgpo-errors = "kubectl get pods -A | rg -v 'Running|Completed'";
 
             # deployment
             krrd = "kubectl rollout restart deployment";
