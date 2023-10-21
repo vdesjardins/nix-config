@@ -7,12 +7,26 @@
 with lib;
   mkMerge [
     {
-      programs.tmux = {enable = true;};
+      programs.tmux = {
+        enable = true;
+        prefix = "`";
+        baseIndex = 1;
+        clock24 = true;
+        historyLimit = 100000;
+        escapeTime = 0;
+        keyMode = "vi";
+        shell = "${pkgs.zsh}/bin/zsh";
+
+        extraConfig = pkgs.callPackage ./tmux.nix {};
+
+        plugins = with pkgs.tmuxPlugins; [
+          nord
+          tmux-thumbs
+          tmux-fzf
+        ];
+      };
 
       programs.zsh.shellAliases = {t = "tmux attach -d";};
-
-      xdg.configFile."tmux/tmux.conf".text = pkgs.callPackage ./tmux.nix {};
-      xdg.configFile."tmux/tmux-theme.conf".source = ./tmux-theme.conf;
     }
 
     (

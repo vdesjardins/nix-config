@@ -1,18 +1,9 @@
 {pkgs, ...}: ''
-  # default shell
-  set-option -g default-shell ${pkgs.zsh}/bin/zsh
-
-  # remap prefix to backtick
-  set-option -g prefix `
-  unbind C-b
-  bind ` send-prefix
+  # extra
 
   # force a reload of the config file
   unbind-key r
   bind-key -N "Reload config file" r source-file ~/.config/tmux/tmux.conf \; display-message "~/.tmux.conf reloaded"
-
-  # key binding
-  set-window-option -g mode-keys vi
 
   # Setup 'v' to begin selection as in Vim
   bind-key -T edit-mode-vi Up send-keys -X history-up
@@ -41,7 +32,6 @@
   # All kind of nice options
   set-option -g   bell-action any
   set-option -g   display-panes-colour red
-  set-option -g   history-limit 100000
   set-option -g   message-style bg=red,fg=white
   set-option -g   pane-active-border-style bg=default,fg=red
   set-option -g   pane-border-style bg=default,fg=cyan
@@ -50,33 +40,18 @@
   set-option -g   visual-bell off
   set-option -g   set-titles on
   set-option -g   set-titles-string ' #I-#W '
-  set-option -g   base-index 1
   set-option -g   display-time 1500
   set-option -g   renumber-windows on
   set-option -g   set-clipboard on
-  set-option -sg  escape-time 0
-
-  # statusbar
-  set-option -g   status-interval 5
-  set-option -g   status-justify left
-  set-option -g   status-left ' #h | #{s/root//:client_key_table}'
-  set-option -g   status-right ' | %Y-%m-%d %H:%M #[default]'
-  set-option -g   status-style fg=white,bg=colour234,default
-  set-option -g   window-status-activity-style bold
-  set-option -g   pane-border-style fg=colour245
-  set-option -g   pane-active-border-style fg=colour39
-  set-option -g   message-style fg=colour16,bg=colour221,bold
 
   # Window
   bind-key -N "Last Window" b last-window
 
   # Window options
   set-window-option -g clock-mode-colour blue
-  set-window-option -g clock-mode-style 24
   set-window-option -g monitor-activity on
   set-window-option -g xterm-keys on
   set-window-option -g automatic-rename on
-  set-window-option -g aggressive-resize off
 
   set-window-option -g window-status-format ' #I-#W '
   set-window-option -g window-status-current-format ' #I-#W '
@@ -96,10 +71,18 @@
   # See: https://github.com/christoomey/vim-tmux-navigator
   is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
       | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-  bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+  bind-key -n 'C-h' if-shell "$is_vim" {
+      send-keys C-h
+    } {
+      select-pane -L
+    }
   bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
   bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-  bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+  bind-key -n 'C-l' if-shell "$is_vim" {
+      send-keys C-l
+    } {
+      select-pane -R
+    }
   bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\'  'select-pane -l'
 
   bind-key -T copy-mode-vi 'C-h' select-pane -L
@@ -143,9 +126,6 @@
   # save history buffer to file
   bind-key -N "Save history buffer to file" P command-prompt -p 'save history to filename:' -I '~/tmux.history' 'capture-pane -S -100000; save-buffer %1 ; delete-buffer'
 
-  # mouse
-  set-option -g mouse off
-
   # focus events
   set-option -g focus-events on
 
@@ -172,7 +152,4 @@
   # Undercurl
   set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
   set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
-  # Theme
-  source-file ~/.config/tmux/tmux-theme.conf
 ''
