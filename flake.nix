@@ -228,8 +228,8 @@
     neovim-plugin-vim-rsi.flake = false;
     neovim-plugin-vim-bookmarks.url = "github:MattesGroeger/vim-bookmarks";
     neovim-plugin-vim-bookmarks.flake = false;
-    neovim-plugin-vim-tmux-navigator.url = "github:christoomey/vim-tmux-navigator";
-    neovim-plugin-vim-tmux-navigator.flake = false;
+    neovim-plugin-vim-tmux-navigation.url = "github:alexghergh/nvim-tmux-navigation";
+    neovim-plugin-vim-tmux-navigation.flake = false;
     neovim-plugin-vim-startify.url = "github:mhinz/vim-startify";
     neovim-plugin-vim-startify.flake = false;
     neovim-plugin-vim-bbye.url = "github:moll/vim-bbye"; # close buffer
