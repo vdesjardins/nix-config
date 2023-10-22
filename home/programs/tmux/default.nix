@@ -21,9 +21,11 @@ with lib;
 
         plugins = with pkgs.tmuxPlugins; [
           nord
-          tmux-thumbs
           tmux-fzf
+          tmux-thumbs
         ];
+
+        tmuxp.enable = true;
       };
 
       programs.zsh.shellAliases = {t = "tmux attach -d";};
