@@ -1181,6 +1181,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-nord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683146605,
+        "narHash": "sha256-P4fbRNeJjXOoAQiWXXHZhm4ejgMD8W7OkdEF4TpEc7g=",
+        "owner": "arcticicestudio",
+        "repo": "nord-vim",
+        "rev": "f13f5dfbb784deddbc1d8195f34dfd9ec73e2295",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arcticicestudio",
+        "repo": "nord-vim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-nui": {
       "flake": false,
       "locked": {
@@ -1626,22 +1642,6 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope-ui-select.nvim",
-        "type": "github"
-      }
-    },
-    "neovim-plugin-tokyo-night": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1697301038,
-        "narHash": "sha256-jbicIfrEIcRKW8VweswyQXAkfakhkHrs/eSL97B344s=",
-        "owner": "folke",
-        "repo": "tokyonight.nvim",
-        "rev": "b3330499038766734389555c23375e61b38011eb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "tokyonight.nvim",
         "type": "github"
       }
     },
@@ -2341,6 +2341,7 @@
         "neovim-plugin-lualine-nvim": "neovim-plugin-lualine-nvim",
         "neovim-plugin-markdown-preview": "neovim-plugin-markdown-preview",
         "neovim-plugin-neodev-nvim": "neovim-plugin-neodev-nvim",
+        "neovim-plugin-nord": "neovim-plugin-nord",
         "neovim-plugin-nui": "neovim-plugin-nui",
         "neovim-plugin-null-ls": "neovim-plugin-null-ls",
         "neovim-plugin-nvim-bqf": "neovim-plugin-nvim-bqf",
@@ -2369,7 +2370,6 @@
         "neovim-plugin-telescope-frecency": "neovim-plugin-telescope-frecency",
         "neovim-plugin-telescope-nvim": "neovim-plugin-telescope-nvim",
         "neovim-plugin-telescope-ui-select": "neovim-plugin-telescope-ui-select",
-        "neovim-plugin-tokyo-night": "neovim-plugin-tokyo-night",
         "neovim-plugin-trouble-nvim": "neovim-plugin-trouble-nvim",
         "neovim-plugin-ultisnips": "neovim-plugin-ultisnips",
         "neovim-plugin-undotree": "neovim-plugin-undotree",
