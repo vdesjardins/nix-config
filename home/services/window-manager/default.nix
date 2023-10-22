@@ -68,9 +68,9 @@
     enable = true;
     #blur = true;
     shadow = true;
-    activeOpacity = 0.95;
+    activeOpacity = 1.0;
     #inactiveDim = 0.2;
-    inactiveOpacity = 0.90;
+    inactiveOpacity = 1.0;
     menuOpacity = 1.0;
   };
 }
