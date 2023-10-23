@@ -9,22 +9,15 @@
         blocks = [
           {
             block = "disk_space";
-            alert = 10;
-            alias = "/";
             info_type = "available";
             interval = 60;
             path = "/";
-            unit = "GB";
-            warning = 20;
+            format = "$icon root: $available.eng(w:2)";
           }
           {
             block = "memory";
-            format_mem = "{mem_used;G}";
-            format_swap = "{swap_used;G}";
-            warning_mem = 90;
-            warning_swap = 90;
-            critical_mem = 95;
-            critical_swap = 95;
+            format = "$icon $mem_total_used_percents.eng(w:2)";
+            format_alt = "$icon_swap $swap_used_percents.eng(w:2)";
           }
           {
             block = "cpu";
@@ -32,7 +25,7 @@
           }
           {
             block = "load";
-            format = "{1m}";
+            format = "$icon $1m";
             interval = 1;
           }
           # {
@@ -41,13 +34,13 @@
           # }
           {
             block = "time";
-            format = "UTC %H";
+            format = "UTC $timestamp.datetime(f:'%H')";
             timezone = "Etc/UTC";
             interval = 1;
           }
           {
             block = "time";
-            format = "%F %R:%S";
+            format = "$icon $timestamp.datetime(f:'%a %d/%m %R')";
             interval = 1;
           }
         ];
