@@ -31,7 +31,7 @@ with lib;
           '';
 
           shellAliases = {
-            aws-creds = "eval $(aws-sso-creds export)";
+            aws-creds = "eval $(aws configure export-credentials --format env)";
           };
         };
 
