@@ -60,7 +60,7 @@
       local SOLID_LEFT_ARROW = ""
 
       -- Color palette for the backgrounds of each cell
-      local colors = { "#3c1361", "#52307c", "#663a82", "#7c5295", "#b491c8" }
+      local colors = { "#3c1361", "#52307c", "#3b4252", "#88c0d0", "#81a1c1" }
 
       -- Foreground color for the text across the fade
       local text_fg = "#c0c0c0"
