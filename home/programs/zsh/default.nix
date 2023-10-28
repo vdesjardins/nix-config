@@ -26,6 +26,8 @@
       # TODO: need 23.11
       # ignoreAllDups = true;
       expireDuplicatesFirst = true;
+      extended = true;
+      share = true;
     };
 
     historySubstringSearch = {
@@ -52,7 +54,7 @@
         name = "enhancd";
         file = "init.sh";
         src = pkgs.fetchFromGitHub {
-          owner = "b4b4r07";
+          owner = "babarot";
           repo = "enhancd";
           rev = "c6967f7f70f18991a5f9148996afffc0d3ae76e4";
           sha256 = "sha256-p7ZG4NC9UWa55tPxYAaFocc0waIaTt+WO6MNearbO0U=";
@@ -69,6 +71,8 @@
 
     initExtra = ''
       source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+      export ENHANCD_FILTER=fzf
 
       function take() {
         mkdir -p $1
