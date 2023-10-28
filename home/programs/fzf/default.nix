@@ -18,11 +18,6 @@ with lib; {
     changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
     historyWidgetOptions = ["--sort" "--exact"];
 
-    tmux = {
-      enableShellIntegration = true;
-      shellIntegrationOptions = ["-u 40%"];
-    };
-
     enableZshIntegration = true;
   };
 
