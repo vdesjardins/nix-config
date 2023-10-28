@@ -423,10 +423,10 @@
       local SOLID_LEFT_ARROW = ""
 
       -- Color palette for the backgrounds of each cell
-      local colors = { "#3c1361", "#52307c", "#3b4252", "#88c0d0", "#81a1c1" }
+      local colors = { "#3b4252", "#88c0d0", "#81a1c1" }
 
       -- Foreground color for the text across the fade
-      local text_fg = "#c0c0c0"
+      local text_colors = { "#d2d6df", "#505e72", "#505e72"}
 
       -- The elements to be formatted
       local elements = {}
@@ -438,7 +438,7 @@
           local cell_no = num_cells + 1
           table.insert(elements, { Foreground = { Color = colors[cell_no] } })
           table.insert(elements, { Text = SOLID_LEFT_ARROW })
-          table.insert(elements, { Foreground = { Color = text_fg } })
+          table.insert(elements, { Foreground = { Color = text_colors[cell_no] } })
           table.insert(elements, { Background = { Color = colors[cell_no] } })
           table.insert(elements, { Text = " " .. text .. " " })
           num_cells = num_cells + 1
