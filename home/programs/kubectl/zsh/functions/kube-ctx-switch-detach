@@ -1,0 +1,49 @@
+#!/bin/bash
+# Switch kube config context
+function kube-ctx-switch-detach() {
+	local context_name=$1
+
+	if [[ $context_name == "" ]]; then
+		context_name=$(kubectl config get-contexts --no-headers -o name --kubeconfig ~/.kube/config | fzf)
+	fi
+
+	if [[ $context_name == "" ]]; then
+		echo "no context provided."
+		return 1
+	fi
+
+	cluster=$(kubectl config view -ojson --kubeconfig ~/.kube/config | jq ".contexts[] | select(.name == \"$context_name\") | .context.cluster" -Mr)
+
+	# check if context is EKS
+	local aws_context=""
+	local aws_profile=""
+	local aws_account_id=""
+	aws_account_id=$(echo "$cluster" | awk -F':' '{ print $5; }')
+	if [[ $aws_account_id != "" ]]; then
+		aws_profile=$(
+			jc --ini <~/.aws/config |
+				jq 'to_entries | .[] | select(.value.sso_account_id == "'"$aws_account_id"'") | .key | split("\\s+"; "")[1]' -Mr |
+				fzf
+		)
+		aws_context="export AWS_PROFILE=$aws_profile"
+
+		if [[ "$context_name" == "$cluster" ]]; then
+			context_name=$(echo "$context_name" | awk -F'/' '{ print $2; }')
+		fi
+	fi
+
+	# check if context is GKE
+	local context_name_short=$context_name
+	if [[ $context_name == gke_* ]]; then
+		context_name_short=$(echo "$context_name" | awk -F'_' '{ printf "%s-%s", $3, $4; }')
+	fi
+
+	local kubeconfig_file
+	kubeconfig_file=$(mktemp -t "$(echo "$context_name_short" | tr ':' '_')"-XXXX)
+	cp ~/.kube/config "$kubeconfig_file"
+
+	eval "$aws_context"
+	export KUBECONFIG="$kubeconfig_file"
+	kubectl config use-context "$context_name"
+}
+#tmux split-window -e test=test zsh
