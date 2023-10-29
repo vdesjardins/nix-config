@@ -46,4 +46,3 @@ function kube-ctx-switch-detach() {
 	export KUBECONFIG="$kubeconfig_file"
 	kubectl config use-context "$context_name"
 }
-#tmux split-window -e test=test zsh

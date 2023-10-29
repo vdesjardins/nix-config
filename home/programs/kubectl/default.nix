@@ -68,6 +68,7 @@ with lib;
             knsd = "kube-ns-switch-detach";
             kctx = "kube-ctx-switch";
             kctxc = "kube-ctx-switch-current";
+            kctxd = "kube-ctx-switch-detach";
 
             # edit
             ke = "kubectl edit";
@@ -104,6 +105,8 @@ with lib;
           ./zsh/functions/kube-ctx-switch;
         xdg.configFile."zsh/functions/kube-ctx-switch-current".source =
           ./zsh/functions/kube-ctx-switch-current;
+        xdg.configFile."zsh/functions/kube-ctx-switch-detach".source =
+          ./zsh/functions/kube-ctx-switch-detach;
         xdg.configFile."zsh/functions/kube-ns-switch".source =
           ./zsh/functions/kube-ns-switch;
         xdg.configFile."zsh/functions/kube-ns-switch-detach".source =
