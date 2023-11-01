@@ -14,19 +14,20 @@ in
       ../shared
       {
         homebrew.casks = [
-          "raycast"
-          "google-chrome"
-          "firefox"
-          "brave-browser"
-          "bitwarden"
           "Rectangle"
+          "bitwarden"
+          "brave-browser"
           "docker"
-          "vmware-fusion"
-          "middleclick"
+          "firefox"
           "flameshot"
-          "hammerspoon"
+          "google-chrome"
           "google-drive"
+          "hammerspoon"
+          "maccy"
+          "middleclick"
+          "raycast"
           "stats"
+          "vmware-fusion"
         ];
       }
       (import ../services/spotifyd {device_name = hostname;})

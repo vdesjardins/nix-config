@@ -13,14 +13,15 @@ in
       ../shared
       {
         homebrew.casks = [
-          "raycast"
-          "google-chrome"
-          "firefox"
           "Rectangle"
-          "middleclick"
+          "firefox"
           "flameshot"
-          "hammerspoon"
+          "google-chrome"
           "google-drive"
+          "hammerspoon"
+          "maccy"
+          "middleclick"
+          "raycast"
           "stats"
         ];
       }
