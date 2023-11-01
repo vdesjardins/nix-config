@@ -420,11 +420,6 @@
       };
       dev-mac = self.darwinConfigurations.dev-mac.system;
 
-      darwinConfigurations.bt-mac = import ./modules/darwin/systems/bt-mac.nix {
-        inherit darwin inputs pkgsConfig;
-      };
-      bt-mac = self.darwinConfigurations.bt-mac.system;
-
       nixosConfigurations.dev-vm = import ./modules/linux/systems/dev-vm.nix {
         inherit pkgsConfig;
         pkgs = nixpkgs;
@@ -466,15 +461,6 @@
         };
       };
       vince-mac = self.homeConfigurations.vince-mac.activationPackage;
-
-      homeConfigurations.bt-mac = import ./home/config/bt-mac.nix {
-        inherit home-manager nix-index-database;
-        pkgs = import nixpkgs {
-          system = utils.lib.system.aarch64-darwin;
-          inherit (pkgsConfig) config overlays;
-        };
-      };
-      hm-bt-mac = self.homeConfigurations.bt-mac.activationPackage;
 
       os-images.vmware.dev-vm = import ./modules/linux/vm-images/dev-vm.nix {
         inherit pkgsConfig nixos-generators;
