@@ -2417,6 +2417,7 @@
         "tree-sitter-grammars-nix": "tree-sitter-grammars-nix",
         "tree-sitter-grammars-python": "tree-sitter-grammars-python",
         "tree-sitter-grammars-query": "tree-sitter-grammars-query",
+        "tree-sitter-grammars-rego": "tree-sitter-grammars-rego",
         "tree-sitter-grammars-rust": "tree-sitter-grammars-rust",
         "tree-sitter-grammars-sql": "tree-sitter-grammars-sql",
         "tree-sitter-grammars-toml": "tree-sitter-grammars-toml",
@@ -2805,6 +2806,22 @@
       "original": {
         "owner": "nvim-treesitter",
         "repo": "tree-sitter-query",
+        "type": "github"
+      }
+    },
+    "tree-sitter-grammars-rego": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668773232,
+        "narHash": "sha256-y3w+gfjXb9N8Vf6ZrafP1j50Ap2KPaNfwo5h06EqHKM=",
+        "owner": "FallenAngel97",
+        "repo": "tree-sitter-rego",
+        "rev": "b2667c975f07b33be3ceb83bea5cfbad88095866",
+        "type": "github"
+      },
+      "original": {
+        "owner": "FallenAngel97",
+        "repo": "tree-sitter-rego",
         "type": "github"
       }
     },

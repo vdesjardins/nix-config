@@ -151,6 +151,13 @@ in {
           enable markdown language support
         '';
       };
+      rego = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable rego language support
+        '';
+      };
     };
   };
 

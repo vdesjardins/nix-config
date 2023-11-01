@@ -122,6 +122,8 @@
     tree-sitter-grammars-yaml.flake = false;
     tree-sitter-grammars-zig.url = "github:maxxnino/tree-sitter-zig";
     tree-sitter-grammars-zig.flake = false;
+    tree-sitter-grammars-rego.url = "github:FallenAngel97/tree-sitter-rego";
+    tree-sitter-grammars-rego.flake = false;
 
     # Neovim
     ## LSP

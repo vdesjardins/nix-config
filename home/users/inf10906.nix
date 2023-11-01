@@ -19,6 +19,7 @@
     ../roles/dev/markdown
     ../roles/dev/nix
     ../roles/dev/python
+    ../roles/dev/rego
     ../roles/dev/rust
     ../roles/dev/terraform
     ../roles/dev/make
