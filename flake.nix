@@ -268,7 +268,7 @@
     neovim-plugin-auto-pairs.flake = false;
     neovim-plugin-vim-grepper.url = "github:mhinz/vim-grepper";
     neovim-plugin-vim-grepper.flake = false;
-    neovim-plugin-vim-surround.url = "github:tpope/vim-surround";
+    neovim-plugin-vim-surround.url = "github:kylechui/nvim-surround";
     neovim-plugin-vim-surround.flake = false;
     neovim-plugin-abolish.url = "github:tpope/vim-abolish";
     neovim-plugin-abolish.flake = false;

@@ -1936,16 +1936,16 @@
     "neovim-plugin-vim-surround": {
       "flake": false,
       "locked": {
-        "lastModified": 1666730476,
-        "narHash": "sha256-DZE5tkmnT+lAvx/RQHaDEgEJXRKsy56KJY919xiH1lE=",
-        "owner": "tpope",
-        "repo": "vim-surround",
-        "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
+        "lastModified": 1698017588,
+        "narHash": "sha256-kyir0UVywfTMfXITSsD8dj2dn4QfaszPDrbldForCJs=",
+        "owner": "kylechui",
+        "repo": "nvim-surround",
+        "rev": "4f0e1f470595af067eca9b872778d83c7f52f134",
         "type": "github"
       },
       "original": {
-        "owner": "tpope",
-        "repo": "vim-surround",
+        "owner": "kylechui",
+        "repo": "nvim-surround",
         "type": "github"
       }
     },
