@@ -18,6 +18,54 @@ on:
     - cron: '0 0 * * 0'   # Every Sunday at midnight UTC
 
 jobs:
+  build-macos-env:
+    name: Build/cache macOS Nix env
+    runs-on: macos-latest-xlarge
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v22
+        with:
+          install_url: https://releases.nixos.org/nix/nix-2.13.3/install
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            substituters = https://cache.nixos.org/
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v12
+        with:
+          name: vdesjardins
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: If scheduled, update inputs
+        if: ${{ github.event_name == 'schedule' && success() }}
+        run: |
+          nix flake update
+
+      - name: Build and switch to home-manager env
+        run: |
+          sudo mkdir /Users/vince
+          sudo chown $USER /Users/vince
+          # Prevent conflict between Cachix installed by workflow and the one installed in the config
+          nix-env --set-flag priority 1 cachix
+          # Build and switch to home-manager env
+          export HOME_MANAGER_BACKUP_EXT=".bkp"
+          make hm/vince-mac
+
+      - name: If scheduled, push commit with updated inputs
+        if: ${{ github.event_name == 'schedule' && success() }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit --no-gpg-sign -m "build: update flake inputs"
+          git push
+
   build-linux-env:
     name: Build/cache Linux Nix env
     runs-on: ubuntu-latest
@@ -60,11 +108,3 @@ jobs:
           export HOME_MANAGER_BACKUP_EXT=".bkp"
           make hm/vince
 
-      - name: If scheduled, push commit with updated inputs
-        if: ${{ github.event_name == 'schedule' && success() }}
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit --no-gpg-sign -m "build: update flake inputs"
-          git push
