@@ -52,13 +52,13 @@ jobs:
 
       - name: Build and switch to home-manager env
         run: |
-          sudo mkdir /home/vincent_desjardins
-          sudo chown $USER /home/vincent_desjardins
+          sudo mkdir /home/vince
+          sudo chown $USER /home/vince
           # Prevent conflict between Cachix installed by workflow and the one installed in the config
           nix-env --set-flag priority 1 cachix
           # Build and switch to home-manager env
           export HOME_MANAGER_BACKUP_EXT=".bkp"
-          make hm/vincent_desjardins
+          make hm/vince
 
       - name: If scheduled, push commit with updated inputs
         if: ${{ github.event_name == 'schedule' && success() }}
