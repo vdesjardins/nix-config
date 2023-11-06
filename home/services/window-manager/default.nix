@@ -7,6 +7,7 @@
     ./i3
     ./rofi
     ./i3status-rust
+    ./libinput-gestures
   ];
 
   home.packages = with pkgs; [
