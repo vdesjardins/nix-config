@@ -19,7 +19,6 @@ require("lspconfig").lua_ls.setup({
             },
         },
     },
-    on_attach = require("my-config.lsp").common_on_attach_no_formatting,
 })
 
 local null_ls = require("null-ls")
