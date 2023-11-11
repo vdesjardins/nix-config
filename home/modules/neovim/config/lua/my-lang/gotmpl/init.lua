@@ -8,9 +8,10 @@ parser_config.gotmpl = {
     used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
 }
 
-vim.cmd(
-    [[autocmd BufNewFile,BufRead * if search('{{.\+}}', 'nw') | setlocal filetype=gotmpl | endif]]
-)
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = { "*.yml", "*.yaml", "*.tpl" },
+    command = [[if search('{{-.\+}}', 'nw') | setlocal filetype=gotmpl | endif]],
+})
 
 local current_file_path = debug.getinfo(1).source:match("@?(.*/)")
 vim.opt.runtimepath:append(current_file_path)
