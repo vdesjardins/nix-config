@@ -38,5 +38,6 @@
 
   fonts.fonts = [
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+    pkgs.unstable.monaspace
   ];
 }

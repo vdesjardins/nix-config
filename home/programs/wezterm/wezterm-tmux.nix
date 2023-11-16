@@ -5,7 +5,7 @@
 
   local config = {
       check_for_updates = false,
-      font = wezterm.font("JetBrainsMono Nerd Font"),
+      font = wezterm.font("Monaspace Krypton"),
       color_scheme = 'nord',
       tab_bar_at_bottom = true,
       inactive_pane_hsb = { hue = 1.0, saturation = 0.5, brightness = 1.0 },
