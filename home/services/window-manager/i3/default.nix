@@ -105,7 +105,7 @@ in {
             };
 
             fonts = {
-              names = ["JetBrainsMono Nerd Font Mono"];
+              names = ["Monaspace Krypton"];
               size = 12.0;
             };
 
