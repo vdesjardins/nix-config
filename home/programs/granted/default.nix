@@ -6,12 +6,6 @@
 }:
 with lib; {
   home.packages = with pkgs; [
-    granted
+    unstable.granted
   ];
-
-  programs.zsh = {
-    initExtra = ''
-      alias assume="source ${pkgs.granted}/share/granted/assume"
-    '';
-  };
 }

@@ -255,23 +255,6 @@
         "type": "github"
       }
     },
-    "granted": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1686183368,
-        "narHash": "sha256-4+euNW/dv8OoWxVwEonI7R7aTLeM8QfG5xQlu5+PduA=",
-        "owner": "common-fate",
-        "repo": "granted",
-        "rev": "e11e7b42402dc7ae363db83ee3520de2dfb835a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "common-fate",
-        "ref": "v0.13.2",
-        "repo": "granted",
-        "type": "github"
-      }
-    },
     "hammerspoon-controlescape": {
       "flake": false,
       "locked": {
@@ -2204,7 +2187,6 @@
         "comma": "comma",
         "darwin": "darwin",
         "eks-node-viewer": "eks-node-viewer",
-        "granted": "granted",
         "hammerspoon-controlescape": "hammerspoon-controlescape",
         "hammerspoon-spoons": "hammerspoon-spoons",
         "helm-dashboard": "helm-dashboard",

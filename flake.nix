@@ -33,8 +33,6 @@
     hammerspoon-spoons.flake = false;
 
     # aws
-    granted.url = "github:/common-fate/granted/v0.13.2";
-    granted.flake = false;
     eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.1.0";
     eks-node-viewer.flake = false;
 
