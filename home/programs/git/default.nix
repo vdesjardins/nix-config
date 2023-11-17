@@ -158,6 +158,8 @@
       tls = "for-each-ref --format='%(refname:short) %(taggerdate) %(subject)' refs/tags";
       sli = "stash list --format='%gd (%cr): %gs'";
 
+      nah = ''!f(){ git reset --hard; git clean -df; if [ -d ".git/rebase-apply" ] || [ -d ".git/rebase-merge" ]; then git rebase --abort; fi; }; f'';
+
       change-commits = ''!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter "if [[ \"$`echo $VAR`\" = '$OLD' ]]; then export $VAR='$NEW'; fi" \$@; }; f'';
     };
   };
