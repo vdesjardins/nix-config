@@ -4,3 +4,10 @@ while read -r ${1:line}; do
 done < ${2:file}
 $4
 endsnippet
+
+snippet nixshebang "nix-shell shebang"
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p ${1:bash}
+#shellcheck shell=bash
+$2
+endsnippet
