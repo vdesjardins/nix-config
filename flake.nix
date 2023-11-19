@@ -208,6 +208,8 @@
     neovim-plugin-telescope-frecency.flake = false;
     neovim-plugin-telescope-file-browser.url = "github:nvim-telescope/telescope-file-browser.nvim";
     neovim-plugin-telescope-file-browser.flake = false;
+    neovim-plugin-easypick.url = "github:axkirillov/easypick.nvim";
+    neovim-plugin-easypick.flake = false;
 
     ## Misc
     neovim-plugin-neodev-nvim.url = "github:folke/neodev.nvim";
@@ -256,7 +258,8 @@
     neovim-plugin-sqlite.flake = false;
     neovim-plugin-undotree.url = "github:mbbill/undotree";
     neovim-plugin-undotree.flake = false;
-
+    neovim-plugin-vim-floatterm.url = "github:voldikss/vim-floaterm";
+    neovim-plugin-vim-floatterm.flake = false;
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";
     neovim-plugin-vim-better-whitespace.flake = false;

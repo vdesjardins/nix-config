@@ -869,6 +869,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-easypick": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1697461282,
+        "narHash": "sha256-VfvOcg7aRmQ5+iVkt38CM3BTuhA6AufGGXwjYW4KnXU=",
+        "owner": "axkirillov",
+        "repo": "easypick.nvim",
+        "rev": "6ea5aef3eceba46a26091e2339c9b51d7e104648",
+        "type": "github"
+      },
+      "original": {
+        "owner": "axkirillov",
+        "repo": "easypick.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-editorconfig": {
       "flake": false,
       "locked": {
@@ -1733,6 +1749,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-vim-floatterm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700403249,
+        "narHash": "sha256-rJXxXu6QpMd6Q3YiTvHlKXVt+8ZPEZ2WMSQPlR4WX5k=",
+        "owner": "voldikss",
+        "repo": "vim-floaterm",
+        "rev": "3f01a623376957437f9376327637491b74719e38",
+        "type": "github"
+      },
+      "original": {
+        "owner": "voldikss",
+        "repo": "vim-floaterm",
+        "type": "github"
+      }
+    },
     "neovim-plugin-vim-fugitive": {
       "flake": false,
       "locked": {
@@ -2219,6 +2251,7 @@
         "neovim-plugin-cmp-treesitter": "neovim-plugin-cmp-treesitter",
         "neovim-plugin-crates": "neovim-plugin-crates",
         "neovim-plugin-dressing": "neovim-plugin-dressing",
+        "neovim-plugin-easypick": "neovim-plugin-easypick",
         "neovim-plugin-editorconfig": "neovim-plugin-editorconfig",
         "neovim-plugin-flash-nvim": "neovim-plugin-flash-nvim",
         "neovim-plugin-git-blame-nvim": "neovim-plugin-git-blame-nvim",
@@ -2273,6 +2306,7 @@
         "neovim-plugin-vim-cue": "neovim-plugin-vim-cue",
         "neovim-plugin-vim-diffview": "neovim-plugin-vim-diffview",
         "neovim-plugin-vim-endwise": "neovim-plugin-vim-endwise",
+        "neovim-plugin-vim-floatterm": "neovim-plugin-vim-floatterm",
         "neovim-plugin-vim-fugitive": "neovim-plugin-vim-fugitive",
         "neovim-plugin-vim-grepper": "neovim-plugin-vim-grepper",
         "neovim-plugin-vim-markdown-toc": "neovim-plugin-vim-markdown-toc",

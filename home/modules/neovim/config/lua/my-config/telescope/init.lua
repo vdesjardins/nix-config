@@ -44,7 +44,7 @@ wk.register({
         name = "projects",
         f = { "<cmd>Telescope find_files theme=dropdown hidden=true<cr>", "find-file-in-project" },
         s = { "<cmd>Telescope live_grep theme=dropdown<cr>", "search-in-project" },
-        m = { "<cmd>Telescope marks theme=dropdown<cr>", "bookmarks" },
+        M = { "<cmd>Telescope marks theme=dropdown<cr>", "bookmarks" },
         h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "help" },
         b = { "<cmd>Telescope file_browser theme=dropdown hidden=true<cr>", "file-browser" },
         t = { "<cmd>Telescope builtin theme=dropdown<cr>", "telescope" },
