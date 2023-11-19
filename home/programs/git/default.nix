@@ -1,14 +1,17 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
+  home.packages = with pkgs.gitAndTools; [
     commitizen
     git-absorb
     git-revise
-    git-revise
-    gitAndTools.delta
-    gitAndTools.git-filter-repo
+    delta
+    git-filter-repo
+    git-extras
+    git-recent
+    gitbatch
+    lab
     pre-commit
     tig
-    unstable.gitui
+    gitui
   ];
 
   programs.git = {

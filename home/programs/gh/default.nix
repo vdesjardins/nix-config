@@ -1,5 +1,7 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [gitAndTools.gh];
+  home.packages = with pkgs.gitAndTools; [
+    gh
+  ];
 
   # TODO: a ~/.config/gh/hosts.yml file need to be created with credentials
   # ex.:
