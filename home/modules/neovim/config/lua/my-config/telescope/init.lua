@@ -47,7 +47,7 @@ wk.register({
         m = { "<cmd>Telescope marks theme=dropdown<cr>", "bookmarks" },
         h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "help" },
         b = { "<cmd>Telescope file_browser theme=dropdown hidden=true<cr>", "file-browser" },
-        t = { "<cmd>Telescope theme=dropdown<cr>", "telescope" },
+        t = { "<cmd>Telescope builtin theme=dropdown<cr>", "telescope" },
         r = {
             "<cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<cr>",
             "frecency",
