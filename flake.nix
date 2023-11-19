@@ -254,8 +254,6 @@
     neovim-plugin-harpoon.flake = false;
     neovim-plugin-gitignore.url = "github:wintermute-cell/gitignore.nvim";
     neovim-plugin-gitignore.flake = false;
-    neovim-plugin-sqlite.url = "github:kkharji/sqlite.lua";
-    neovim-plugin-sqlite.flake = false;
     neovim-plugin-undotree.url = "github:mbbill/undotree";
     neovim-plugin-undotree.flake = false;
     neovim-plugin-vim-floatterm.url = "github:voldikss/vim-floaterm";

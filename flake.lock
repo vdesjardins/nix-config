@@ -1493,22 +1493,6 @@
         "type": "github"
       }
     },
-    "neovim-plugin-sqlite": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1681923697,
-        "narHash": "sha256-XElCJGganIIh4T5K5kKZTbVYwVOXCtLF1fdc95NopDc=",
-        "owner": "kkharji",
-        "repo": "sqlite.lua",
-        "rev": "b7e28c8463254c46a8e61c52d27d6a2040492fc3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kkharji",
-        "repo": "sqlite.lua",
-        "type": "github"
-      }
-    },
     "neovim-plugin-telescope-dap": {
       "flake": false,
       "locked": {
@@ -2290,7 +2274,6 @@
         "neovim-plugin-playground": "neovim-plugin-playground",
         "neovim-plugin-popup": "neovim-plugin-popup",
         "neovim-plugin-rust-tools": "neovim-plugin-rust-tools",
-        "neovim-plugin-sqlite": "neovim-plugin-sqlite",
         "neovim-plugin-telescope-dap": "neovim-plugin-telescope-dap",
         "neovim-plugin-telescope-file-browser": "neovim-plugin-telescope-file-browser",
         "neovim-plugin-telescope-frecency": "neovim-plugin-telescope-frecency",
