@@ -134,6 +134,8 @@ in {
           "${mod}+k" = "focus up, exec i3-warp-mouse";
           "${mod}+l" = "focus right, exec i3-warp-mouse";
 
+          "${mod}+g" = "exec ${pkgs.i3-easyfocus}/bin/i3-easyfocus";
+
           # Move
           "${mod}+Shift+h" = "move left, exec i3-warp-mouse";
           "${mod}+Shift+j" = "move down, exec i3-warp-mouse";
@@ -217,6 +219,9 @@ in {
           # Screenshots
           "${mod}+p" = "exec --no-startup-id flameshot gui";
           "${mod}+Shift+p" = "exec --no-startup-id flameshot full --clipboard --path ~/Pictures/Flameshot/";
+
+          # clipboard
+          "${mod}+Ctrl+h" = ''exec "${pkgs.rofi}/bin/rofi -modi 'clipboard:greenclip print' -show clipboard"'';
 
           # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps.
           # Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
