@@ -1109,6 +1109,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-none-ls": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700226367,
+        "narHash": "sha256-YIFn/ydB4Vi2jI+u2yKm5AiMbdxMuvYwwS1mPftsFTM=",
+        "owner": "nvimtools",
+        "repo": "none-ls.nvim",
+        "rev": "fa9be1679db7bf57d44128a018db43da5488a07f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvimtools",
+        "repo": "none-ls.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-nord": {
       "flake": false,
       "locked": {
@@ -1138,22 +1154,6 @@
       "original": {
         "owner": "MunifTanjim",
         "repo": "nui.nvim",
-        "type": "github"
-      }
-    },
-    "neovim-plugin-null-ls": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1691810493,
-        "narHash": "sha256-cWA0rzkOp/ekVKaFee7iea1lhnqKtWUIU+fW5M950wI=",
-        "owner": "jose-elias-alvarez",
-        "repo": "null-ls.nvim",
-        "rev": "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jose-elias-alvarez",
-        "repo": "null-ls.nvim",
         "type": "github"
       }
     },
@@ -2234,9 +2234,9 @@
         "neovim-plugin-lualine-nvim": "neovim-plugin-lualine-nvim",
         "neovim-plugin-markdown-preview": "neovim-plugin-markdown-preview",
         "neovim-plugin-neodev-nvim": "neovim-plugin-neodev-nvim",
+        "neovim-plugin-none-ls": "neovim-plugin-none-ls",
         "neovim-plugin-nord": "neovim-plugin-nord",
         "neovim-plugin-nui": "neovim-plugin-nui",
-        "neovim-plugin-null-ls": "neovim-plugin-null-ls",
         "neovim-plugin-nvim-bqf": "neovim-plugin-nvim-bqf",
         "neovim-plugin-nvim-cmp": "neovim-plugin-nvim-cmp",
         "neovim-plugin-nvim-dap": "neovim-plugin-nvim-dap",

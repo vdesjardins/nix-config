@@ -131,8 +131,8 @@
     neovim-plugin-lspkind-nvim.flake = false;
     neovim-plugin-nvim-lightbulb.url = "github:kosayoda/nvim-lightbulb";
     neovim-plugin-nvim-lightbulb.flake = false;
-    neovim-plugin-null-ls.url = "github:jose-elias-alvarez/null-ls.nvim";
-    neovim-plugin-null-ls.flake = false;
+    neovim-plugin-none-ls.url = "github:nvimtools/none-ls.nvim";
+    neovim-plugin-none-ls.flake = false;
     neovim-plugin-lsp-signature-nvim.url = "github:ray-x/lsp_signature.nvim";
     neovim-plugin-lsp-signature-nvim.flake = false;
 
