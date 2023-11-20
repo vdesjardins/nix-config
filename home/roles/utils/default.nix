@@ -4,6 +4,7 @@
     ../../programs/bash
     ../../programs/zsh
     ../../programs/starship
+    ../../programs/fd
     ../../programs/git
     ../../programs/sapling
     ../../programs/tmux
@@ -37,7 +38,6 @@
       dasel
       du-dust # fancy du
       duf # df alternative
-      fd # fast file search
       file
       findutils
       glances # glances an eye on your system
