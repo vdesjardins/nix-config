@@ -1,25 +1,26 @@
 {pkgs, ...}: {
   imports = [
-    ../../programs/neovim
+    ../../programs/any-nix-shell
     ../../programs/bash
-    ../../programs/zsh
-    ../../programs/starship
-    ../../programs/fd
-    ../../programs/git
-    ../../programs/sapling
-    ../../programs/tmux
-    ../../programs/zellij
-    ../../programs/gh
-    ../../programs/zoxide
-    ../../programs/fzf
-    ../../programs/just
-    ../../programs/openssl
     ../../programs/bat
-    ../../programs/lsd
     ../../programs/broot
     ../../programs/direnv
-    ../../programs/any-nix-shell
+    ../../programs/fd
+    ../../programs/fzf
+    ../../programs/gh
+    ../../programs/git
+    ../../programs/just
     ../../programs/ls
+    ../../programs/lsd
+    ../../programs/neovim
+    ../../programs/openssl
+    ../../programs/ripgrep
+    ../../programs/sapling
+    ../../programs/starship
+    ../../programs/tmux
+    ../../programs/zellij
+    ../../programs/zoxide
+    ../../programs/zsh
   ];
 
   home.packages = with pkgs;
@@ -63,7 +64,6 @@
       openssh
       perlPackages.vidir # edit files in EDITOR
       ps
-      ripgrep
       rsync
       spotify-tui
       tealdeer # faster tldr
