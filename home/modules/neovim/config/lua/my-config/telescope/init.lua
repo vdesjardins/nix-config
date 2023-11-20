@@ -16,7 +16,6 @@ telescope.setup({
                 ["<c-d>"] = require("telescope.actions").delete_buffer,
             },
         },
-        file_ignore_patterns = { ".git/" },
     },
     extensions = {
         ["ui-select"] = {
