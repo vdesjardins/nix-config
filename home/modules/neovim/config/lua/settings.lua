@@ -60,6 +60,3 @@ augroup myfiletypes_group
   autocmd FileType xml set ai sw=4 sts=4 et
 augroup END
 ]])
-
--- show extra whitespaces
-vim.cmd([[ highlight ExtraWhitespace ctermbg=167 guibg=#fb4934 ]])
