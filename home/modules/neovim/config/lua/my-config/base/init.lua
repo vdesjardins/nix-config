@@ -6,6 +6,11 @@ vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
+vim.api.nvim_set_keymap("t", "<C-h>", "<C-\\><C-n><C-w>h", { silent = true })
+vim.api.nvim_set_keymap("t", "<C-j>", "<C-\\><C-n><C-w>j", { silent = true })
+vim.api.nvim_set_keymap("t", "<C-k>", "<C-\\><C-n><C-w>k", { silent = true })
+vim.api.nvim_set_keymap("t", "<C-l>", "<C-\\><C-n><C-w>l", { silent = true })
+vim.api.nvim_set_keymap("t", "<esc>", "<C-\\><C-n>", { silent = true })
 
 -- resize with arrows
 vim.api.nvim_set_keymap("n", "<C-Up>", "resize -2<CR>", { silent = true })
