@@ -281,8 +281,8 @@
     neovim-plugin-vim-snippets.flake = false;
 
     ## colorscheme
-    neovim-plugin-nord.url = "github:arcticicestudio/nord-vim";
-    neovim-plugin-nord.flake = false;
+    neovim-plugin-tokyo-night.url = "github:folke/tokyonight.nvim";
+    neovim-plugin-tokyo-night.flake = false;
 
     ## Rust
     neovim-plugin-rust-tools.url = "github:simrat39/rust-tools.nvim";
