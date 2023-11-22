@@ -14,6 +14,7 @@ in
       {
         homebrew.casks = [
           "Rectangle"
+          "alt-tab"
           "firefox"
           "flameshot"
           "google-chrome"

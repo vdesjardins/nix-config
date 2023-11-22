@@ -15,6 +15,7 @@ in
       {
         homebrew.casks = [
           "Rectangle"
+          "alt-tab"
           "bitwarden"
           "brave-browser"
           "docker"
