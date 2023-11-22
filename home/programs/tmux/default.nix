@@ -7,6 +7,10 @@
 with lib;
   mkMerge [
     {
+      # required on mac os x to get tmux-256color terminfo (supports italics)
+      home.packages = with pkgs; [ncurses];
+    }
+    {
       programs.tmux = {
         enable = true;
         prefix = "`";
