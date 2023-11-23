@@ -21,7 +21,7 @@
     ../roles/dev/make
     ../roles/dev/markdown
     ../roles/dev/nix
-    ../roles/dev/rust
+    ../roles/dev/regex
     ../roles/dev/rust
     ../roles/dev/terraform
     ../roles/dev/vimscript

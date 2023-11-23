@@ -1125,6 +1125,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-noice": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698229631,
+        "narHash": "sha256-7lgJK5pkMqwIXNeBDsz4B8UAKnkpUvDrHdeG/aSFRzM=",
+        "owner": "folke",
+        "repo": "noice.nvim",
+        "rev": "92433164e2f7118d4122c7674c3834d9511722ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "noice.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-none-ls": {
       "flake": false,
       "locked": {
@@ -1298,6 +1314,22 @@
       "original": {
         "owner": "AckslD",
         "repo": "nvim-neoclip.lua",
+        "type": "github"
+      }
+    },
+    "neovim-plugin-nvim-notify": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1695930572,
+        "narHash": "sha256-1tWvzE4x1lgldg6vAHCQy9XDMcxJ6G9bZPSG1pEn+qg=",
+        "owner": "rcarriga",
+        "repo": "nvim-notify",
+        "rev": "e4a2022f4fec2d5ebc79afa612f96d8b11c627b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rcarriga",
+        "repo": "nvim-notify",
         "type": "github"
       }
     },
@@ -2251,6 +2283,7 @@
         "neovim-plugin-lualine-nvim": "neovim-plugin-lualine-nvim",
         "neovim-plugin-markdown-preview": "neovim-plugin-markdown-preview",
         "neovim-plugin-neodev-nvim": "neovim-plugin-neodev-nvim",
+        "neovim-plugin-noice": "neovim-plugin-noice",
         "neovim-plugin-none-ls": "neovim-plugin-none-ls",
         "neovim-plugin-nui": "neovim-plugin-nui",
         "neovim-plugin-nvim-bqf": "neovim-plugin-nvim-bqf",
@@ -2262,6 +2295,7 @@
         "neovim-plugin-nvim-lspconfig": "neovim-plugin-nvim-lspconfig",
         "neovim-plugin-nvim-neo-tree": "neovim-plugin-nvim-neo-tree",
         "neovim-plugin-nvim-neoclip-lua": "neovim-plugin-nvim-neoclip-lua",
+        "neovim-plugin-nvim-notify": "neovim-plugin-nvim-notify",
         "neovim-plugin-nvim-treesitter": "neovim-plugin-nvim-treesitter",
         "neovim-plugin-nvim-treesitter-context": "neovim-plugin-nvim-treesitter-context",
         "neovim-plugin-nvim-treesitter-textobjects": "neovim-plugin-nvim-treesitter-textobjects",
@@ -2327,6 +2361,7 @@
         "tree-sitter-grammars-nix": "tree-sitter-grammars-nix",
         "tree-sitter-grammars-python": "tree-sitter-grammars-python",
         "tree-sitter-grammars-query": "tree-sitter-grammars-query",
+        "tree-sitter-grammars-regex": "tree-sitter-grammars-regex",
         "tree-sitter-grammars-rego": "tree-sitter-grammars-rego",
         "tree-sitter-grammars-rust": "tree-sitter-grammars-rust",
         "tree-sitter-grammars-sql": "tree-sitter-grammars-sql",
@@ -2716,6 +2751,22 @@
       "original": {
         "owner": "nvim-treesitter",
         "repo": "tree-sitter-query",
+        "type": "github"
+      }
+    },
+    "tree-sitter-grammars-regex": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689803923,
+        "narHash": "sha256-X4iQ60LgiVsF0rtinVysX16d6yFjaSmwwndP2L5cuqw=",
+        "owner": "tree-sitter",
+        "repo": "tree-sitter-regex",
+        "rev": "2354482d7e2e8f8ff33c1ef6c8aa5690410fbc96",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tree-sitter",
+        "repo": "tree-sitter-regex",
         "type": "github"
       }
     },

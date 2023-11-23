@@ -122,6 +122,8 @@
     tree-sitter-grammars-zig.flake = false;
     tree-sitter-grammars-rego.url = "github:FallenAngel97/tree-sitter-rego";
     tree-sitter-grammars-rego.flake = false;
+    tree-sitter-grammars-regex.url = "github:tree-sitter/tree-sitter-regex";
+    tree-sitter-grammars-regex.flake = false;
 
     # Neovim
     ## LSP
@@ -258,6 +260,11 @@
     neovim-plugin-undotree.flake = false;
     neovim-plugin-vim-floatterm.url = "github:voldikss/vim-floaterm";
     neovim-plugin-vim-floatterm.flake = false;
+    neovim-plugin-noice.url = "github:folke/noice.nvim";
+    neovim-plugin-noice.flake = false;
+    neovim-plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
+    neovim-plugin-nvim-notify.flake = false;
+
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";
     neovim-plugin-vim-better-whitespace.flake = false;

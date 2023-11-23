@@ -158,6 +158,13 @@ in {
           enable rego language support
         '';
       };
+      regex = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          enable regex language support
+        '';
+      };
     };
   };
 
