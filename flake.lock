@@ -1285,22 +1285,6 @@
         "type": "github"
       }
     },
-    "neovim-plugin-nvim-neo-tree": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1700051685,
-        "narHash": "sha256-NtL0n//TUg8C1N1sfC5VLWJj6TFnB24rypSNXJ84YZs=",
-        "owner": "nvim-neo-tree",
-        "repo": "neo-tree.nvim",
-        "rev": "f86e871584bd3c5a00b4ff8344305889eb52ebff",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-neo-tree",
-        "repo": "neo-tree.nvim",
-        "type": "github"
-      }
-    },
     "neovim-plugin-nvim-neoclip-lua": {
       "flake": false,
       "locked": {
@@ -2293,7 +2277,6 @@
         "neovim-plugin-nvim-dap-ui": "neovim-plugin-nvim-dap-ui",
         "neovim-plugin-nvim-lightbulb": "neovim-plugin-nvim-lightbulb",
         "neovim-plugin-nvim-lspconfig": "neovim-plugin-nvim-lspconfig",
-        "neovim-plugin-nvim-neo-tree": "neovim-plugin-nvim-neo-tree",
         "neovim-plugin-nvim-neoclip-lua": "neovim-plugin-nvim-neoclip-lua",
         "neovim-plugin-nvim-notify": "neovim-plugin-nvim-notify",
         "neovim-plugin-nvim-treesitter": "neovim-plugin-nvim-treesitter",

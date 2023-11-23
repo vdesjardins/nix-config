@@ -197,10 +197,6 @@
     neovim-plugin-vim-diffview.url = "github:sindrets/diffview.nvim";
     neovim-plugin-vim-diffview.flake = false;
 
-    ## Tree
-    neovim-plugin-nvim-neo-tree.url = "github:nvim-neo-tree/neo-tree.nvim";
-    neovim-plugin-nvim-neo-tree.flake = false;
-
     ## Telescope
     neovim-plugin-telescope-nvim.url = "github:nvim-telescope/telescope.nvim";
     neovim-plugin-telescope-nvim.flake = false;
