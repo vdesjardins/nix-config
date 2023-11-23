@@ -4,6 +4,6 @@ inputs: _self: super: {
 
     src = inputs.ketall;
 
-    vendorSha256 = "sha256-aSgVzygYtQL64rZaJACztDHfz2fzn/an733NdAovy6I=";
+    vendorHash = "sha256-aSgVzygYtQL64rZaJACztDHfz2fzn/an733NdAovy6I=";
   };
 }

@@ -4,7 +4,7 @@ inputs: _self: super: {
 
     src = inputs.jq-lsp;
 
-    vendorSha256 = "sha256-ppQ81uERHBgOr/bm/CoDSWcK+IqHwvcL6RFi0DgoLuw=";
+    vendorHash = "sha256-ppQ81uERHBgOr/bm/CoDSWcK+IqHwvcL6RFi0DgoLuw=";
 
     doCheck = false;
   };

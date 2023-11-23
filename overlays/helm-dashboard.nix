@@ -4,7 +4,7 @@ inputs: _self: super: {
 
     src = inputs.helm-dashboard;
 
-    vendorSha256 = "sha256-upmEF7OzeHBc65mzvEVe9LexgbL6x6jBR8o3VZn13gY=";
+    vendorHash = "sha256-upmEF7OzeHBc65mzvEVe9LexgbL6x6jBR8o3VZn13gY=";
 
     doCheck = false;
   };

@@ -4,6 +4,6 @@ inputs: _self: super: {
 
     src = inputs.kube-capacity;
 
-    vendorSha256 = "sha256-qfSya42wZEmJCC7o8zJQEv0BWrxTuBT2Jzcq/AfI+OE=";
+    vendorHash = "sha256-qfSya42wZEmJCC7o8zJQEv0BWrxTuBT2Jzcq/AfI+OE=";
   };
 }

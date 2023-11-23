@@ -6,6 +6,6 @@ inputs: _self: super: {
 
     doCheck = false;
 
-    vendorSha256 = "sha256-KWLuS29aI3XqqyJAY9DVX+ldFU53vEumpBKUwinhYGQ=";
+    vendorHash = "sha256-KWLuS29aI3XqqyJAY9DVX+ldFU53vEumpBKUwinhYGQ=";
   };
 }

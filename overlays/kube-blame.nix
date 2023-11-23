@@ -4,6 +4,6 @@ inputs: _self: super: {
 
     src = inputs.kubectl-blame;
 
-    vendorSha256 = "sha256-L2kJiQXbe5wdB1ERb+R8MoOjddRMLwCKniCqpeIMxF8=";
+    vendorHash = "sha256-L2kJiQXbe5wdB1ERb+R8MoOjddRMLwCKniCqpeIMxF8=";
   };
 }

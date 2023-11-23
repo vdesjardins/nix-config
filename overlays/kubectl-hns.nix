@@ -18,6 +18,6 @@ inputs: _self: super: {
         --fish <($out/bin/kubectl-hns completion fish)
     '';
 
-    vendorSha256 = null;
+    vendorHash = null;
   };
 }

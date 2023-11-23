@@ -7,7 +7,7 @@ inputs: _self: super: {
 
         src = inputs.helm-gcs;
 
-        vendorSha256 = "sha256-wapS6O3OO65DrQ18MbS2ILBNpNvPqpHi1iuEMgFTVNg=";
+        vendorHash = "sha256-wapS6O3OO65DrQ18MbS2ILBNpNvPqpHi1iuEMgFTVNg=";
 
         doCheck = false; # NOTE: Remove the install and upgrade hooks.
 

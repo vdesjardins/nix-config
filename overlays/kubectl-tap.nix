@@ -4,6 +4,6 @@ inputs: _self: super: {
 
     src = inputs.kubectl-tap;
 
-    vendorSha256 = "sha256-6RbdlBRB3kzNQ986vWwLC+ReHeO5Es/fqzxWysLPYpA=";
+    vendorHash = "sha256-6RbdlBRB3kzNQ986vWwLC+ReHeO5Es/fqzxWysLPYpA=";
   };
 }
