@@ -17,11 +17,17 @@
   # update environment variables
   set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
-  # color!
-  # this doesn't work on mac (backspace not working)
-  # set-option -g default-terminal "tmux-256color"
-  set-option -g default-terminal "xterm-256color"
-  set-option -sa terminal-overrides ",xterm*:Tc"
+  # color and italics
+  ${
+    if pkgs.stdenv.isDarwin
+    then ''
+      set-option -g default-terminal "xterm-256color"
+      set-option -sa terminal-overrides ",xterm*:Tc"
+    ''
+    else ''
+      set-option -g default-terminal "tmux-256color"
+    ''
+  }
 
   # quick view of processes
   bind -N "Exec htop" '~' split-window "exec htop"
