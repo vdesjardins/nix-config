@@ -12,7 +12,7 @@
         weight = "Medium",
         harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' },
       }),
-      color_scheme = 'nord',
+      color_scheme = 'Tokyo Night Moon',
       tab_bar_at_bottom = true,
       inactive_pane_hsb = { hue = 1.0, saturation = 0.5, brightness = 1.0 },
       exit_behavior = "Close",
