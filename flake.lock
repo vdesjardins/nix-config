@@ -1973,6 +1973,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-vim-toggleterm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700671770,
+        "narHash": "sha256-+0f3tbko6hJiXTSRMaNQbqKOSjIpKHPSOv6uKmwvtiI=",
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
+        "rev": "fb0c365534e7ee327b30205beff3f3a708dcba33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-which-key-nvim": {
       "flake": false,
       "locked": {
@@ -2336,6 +2352,7 @@
         "neovim-plugin-vim-table-mode": "neovim-plugin-vim-table-mode",
         "neovim-plugin-vim-terraform": "neovim-plugin-vim-terraform",
         "neovim-plugin-vim-tmux-navigation": "neovim-plugin-vim-tmux-navigation",
+        "neovim-plugin-vim-toggleterm": "neovim-plugin-vim-toggleterm",
         "neovim-plugin-which-key-nvim": "neovim-plugin-which-key-nvim",
         "nix": "nix",
         "nix-index-database": "nix-index-database",

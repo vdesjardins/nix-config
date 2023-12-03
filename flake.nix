@@ -256,6 +256,8 @@
     neovim-plugin-undotree.flake = false;
     neovim-plugin-vim-floatterm.url = "github:voldikss/vim-floaterm";
     neovim-plugin-vim-floatterm.flake = false;
+    neovim-plugin-vim-toggleterm.url = "github:akinsho/toggleterm.nvim";
+    neovim-plugin-vim-toggleterm.flake = false;
     neovim-plugin-noice.url = "github:folke/noice.nvim";
     neovim-plugin-noice.flake = false;
     neovim-plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
