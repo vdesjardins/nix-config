@@ -2,7 +2,6 @@
   home.packages = with pkgs;
     [
       binutils
-      cgdb
       gdb
       gdbgui
       lldb
@@ -11,6 +10,7 @@
       xxd
     ]
     ++ lib.optionals stdenv.isLinux [
+      cgdb
       uftrace # Function graph tracer for C/C++/Rust
       rr-unstable
     ];
