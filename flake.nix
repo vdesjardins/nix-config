@@ -3,14 +3,14 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
 
     # System
     darwin.url = "github:LnL7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Others
@@ -33,7 +33,7 @@
     hammerspoon-spoons.flake = false;
 
     # aws
-    eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.1.0";
+    eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.6.0";
     eks-node-viewer.flake = false;
 
     # Kubernetes
@@ -55,13 +55,13 @@
     kube-lineage.flake = false;
     kube-capacity.url = "github:/robscott/kube-capacity/v0.7.4";
     kube-capacity.flake = false;
-    kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.10";
+    kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.11";
     kubectl-blame.flake = false;
     ketall.url = "github:corneliusweig/ketall";
     ketall.flake = false;
     kubectl-hns.url = "github:/kubernetes-sigs/hierarchical-namespaces/v1.0.0";
     kubectl-hns.flake = false;
-    helm-dashboard.url = "github:komodorio/helm-dashboard/v1.1.0";
+    helm-dashboard.url = "github:komodorio/helm-dashboard/v1.3.3";
     helm-dashboard.flake = false;
     helm-gcs.url = "github:hayorov/helm-gcs/0.4.3";
     helm-gcs.flake = false;

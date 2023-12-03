@@ -14,17 +14,15 @@
     enableCompletion = true;
     enableAutosuggestions = true;
 
-    # TODO: need 23.11
-    # syntaxHighlighting = {
-    #   enable = true;
-    # };
+    syntaxHighlighting = {
+      enable = true;
+    };
 
     history = {
       size = 30000;
       save = 30000;
       ignorePatterns = [];
-      # TODO: need 23.11
-      # ignoreAllDups = true;
+      ignoreAllDups = true;
       expireDuplicatesFirst = true;
       extended = true;
       share = true;

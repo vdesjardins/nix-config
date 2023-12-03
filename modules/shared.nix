@@ -36,7 +36,7 @@
 
   time.timeZone = "America/New_York";
 
-  fonts.fonts = [
+  fonts.packages = [
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
     pkgs.unstable.monaspace
   ];
