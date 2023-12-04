@@ -31,6 +31,8 @@
     hammerspoon-controlescape.flake = false;
     hammerspoon-spoons.url = "github:/Hammerspoon/Spoons";
     hammerspoon-spoons.flake = false;
+    tmux-tokyo-night.url = "github:/fabioluciano/tmux-tokyo-night";
+    tmux-tokyo-night.flake = false;
 
     # aws
     eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.6.0";

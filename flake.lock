@@ -2360,6 +2360,7 @@
         "nixpkgs": "nixpkgs_5",
         "pre-commit-hooks": "pre-commit-hooks",
         "rust-overlay": "rust-overlay",
+        "tmux-tokyo-night": "tmux-tokyo-night",
         "tree-sitter-grammars-bash": "tree-sitter-grammars-bash",
         "tree-sitter-grammars-cpp": "tree-sitter-grammars-cpp",
         "tree-sitter-grammars-cue": "tree-sitter-grammars-cue",
@@ -2480,6 +2481,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tmux-tokyo-night": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1697463064,
+        "narHash": "sha256-tANO0EyXiplXPitLrwfyOEliHUZkCzDJ6nRjEVps180=",
+        "owner": "fabioluciano",
+        "repo": "tmux-tokyo-night",
+        "rev": "156a5a010928ebae45f0d26c3af172e0425fdda8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fabioluciano",
+        "repo": "tmux-tokyo-night",
         "type": "github"
       }
     },

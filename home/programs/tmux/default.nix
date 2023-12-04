@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  stdenv,
   ...
 }:
 with lib;
@@ -24,7 +25,7 @@ with lib;
         extraConfig = pkgs.callPackage ./tmux.nix {};
 
         plugins = with pkgs.tmuxPlugins; [
-          nord
+          tokyo-night
           tmux-fzf
           tmux-thumbs
         ];
