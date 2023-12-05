@@ -32,6 +32,8 @@ with lib;
 
           shellAliases = {
             aws-creds = "eval $(aws configure export-credentials --format env)";
+            ap = "aws-profile";
+            al = "aws sso login --profile login";
           };
         };
 
