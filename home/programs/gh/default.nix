@@ -21,6 +21,7 @@
         m = "pr merge -r -d";
         s = "pr status";
         ch = "pr checks";
+        pw = "pr view --web";
       };
     };
   };
