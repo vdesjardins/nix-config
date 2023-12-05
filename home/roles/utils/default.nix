@@ -9,6 +9,7 @@
     ../../programs/fzf
     ../../programs/gh
     ../../programs/git
+    ../../programs/lazygit
     ../../programs/just
     ../../programs/ls
     ../../programs/lsd
@@ -56,7 +57,6 @@
       jp # jmespath
       jq
       jrnl
-      lazygit
       lsof
       minisign
       neofetch
