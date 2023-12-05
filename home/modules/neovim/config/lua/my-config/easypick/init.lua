@@ -9,7 +9,7 @@ easypick.setup({
         -- list modified files
         {
             name = "modified_files",
-            command = "git ls-files --others --exclude-standard --modified",
+            command = "git diff --name-only --diff-filter=d head; git ls-files --exclude-standard -o",
             previewer = easypick.previewers.file_diff(),
             opts = require("telescope.themes").get_dropdown({}),
         },
