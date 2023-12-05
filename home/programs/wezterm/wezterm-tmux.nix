@@ -6,7 +6,7 @@
   local config = {
       check_for_updates = false,
       font = wezterm.font({
-        family = "Monaspace Krypton",
+        family = "Monaspace Radon",
         weight = "Medium",
         harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' },
       }),

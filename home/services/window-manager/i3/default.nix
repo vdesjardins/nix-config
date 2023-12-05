@@ -105,7 +105,7 @@ in {
             };
 
             fonts = {
-              names = ["Monaspace Krypton"];
+              names = ["Monaspace Radon"];
               size = 12.0;
             };
 
