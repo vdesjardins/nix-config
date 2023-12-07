@@ -15,7 +15,7 @@ with lib; {
     };
   };
 
-  shellAliases = {
+  programs.zsh.shellAliases = {
     lg = "lazygit";
   };
 }
