@@ -22,7 +22,6 @@
     if pkgs.stdenv.isDarwin
     then ''
       set-option -g default-terminal "xterm-256color"
-      set-option -sa terminal-overrides ",xterm*:Tc"
     ''
     else ''
       set-option -g default-terminal "tmux-256color"
