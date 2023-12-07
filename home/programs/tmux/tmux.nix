@@ -141,7 +141,7 @@
     display 'Mouse: OFF'
 
   # copy to system keyboard
-  if-shell 'test "$(uname -s)" = "Darwin"' 'bidd-key y run-shell "tmux show-buffer | pbcopy" \; display-message "Copied tmux buffer to system clipboard"'
+  if-shell 'test "$(uname -s)" = "Darwin"' 'bind-key y run-shell "tmux show-buffer | pbcopy" \; display-message "Copied tmux buffer to system clipboard"'
   if-shell 'test "$(uname -s)" = "Linux"' 'bind-key y run-shell "tmux show-buffer | xclip -sel clip -i" \; display-message "Copied tmux buffer to system clipboard"'
 
   # automatic window renaming
