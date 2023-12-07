@@ -43,9 +43,10 @@ set colorcolumn=81
 
 augroup myfiletypes_group
   " Clear old autocmds in group
+  "TODO: move to my-lang specific config"
   autocmd!
   autocmd FileType ruby,eruby,yaml,ru set ai sw=2 sts=2 et
-  autocmd FileType lua set ai sw=2 sts=2 et
+  autocmd FileType lua set ai sw=4 sts=4 et
   autocmd FileType python set ai sw=4 sts=4 et ts=8
   autocmd FileType sh set noet ci pi sts=0 sw=8 ts=8
   autocmd FileType javascript,json set ai sw=2 sts=2 et
