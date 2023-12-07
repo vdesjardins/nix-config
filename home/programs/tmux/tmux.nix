@@ -155,6 +155,8 @@
 
   set -g status-right-length "100"
   set -g status-left-length "100"
+  # disable right status to get more tab space
+  set -g status-right ""
 
   set -g @theme_variation 'moon'
 ''
