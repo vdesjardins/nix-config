@@ -1000,15 +1000,16 @@
     "neovim-plugin-harpoon": {
       "flake": false,
       "locked": {
-        "lastModified": 1701558082,
-        "narHash": "sha256-man4zWgQQEosvpFwcCjaLfiGiu/OAqGSaxhUnTWX3bo=",
+        "lastModified": 1701871267,
+        "narHash": "sha256-rVzru/A0Z6PwiEUG0dHv8+KiOz9GYeHllrdSzFZSDM8=",
         "owner": "ThePrimeagen",
         "repo": "harpoon",
-        "rev": "581da797f9d66485f841525af596255270c2bcf5",
+        "rev": "07cca27cf14a458c469a759c897124f78d953db0",
         "type": "github"
       },
       "original": {
         "owner": "ThePrimeagen",
+        "ref": "harpoon2",
         "repo": "harpoon",
         "type": "github"
       }

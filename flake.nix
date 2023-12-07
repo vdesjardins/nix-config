@@ -250,7 +250,7 @@
     neovim-plugin-editorconfig.flake = false;
     neovim-plugin-chatgpt.url = "github:jackMort/ChatGPT.nvim";
     neovim-plugin-chatgpt.flake = false;
-    neovim-plugin-harpoon.url = "github:ThePrimeagen/harpoon";
+    neovim-plugin-harpoon.url = "github:ThePrimeagen/harpoon/harpoon2";
     neovim-plugin-harpoon.flake = false;
     neovim-plugin-gitignore.url = "github:wintermute-cell/gitignore.nvim";
     neovim-plugin-gitignore.flake = false;
