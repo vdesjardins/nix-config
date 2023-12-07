@@ -14,4 +14,8 @@ with lib; {
       };
     };
   };
+
+  shellAliases = {
+    lg = "lazygit";
+  };
 }
