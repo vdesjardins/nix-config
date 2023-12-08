@@ -158,5 +158,6 @@
   # disable right status to get more tab space
   set -g status-right ""
 
-  set -g @theme_variation 'moon'
+  # [theme]
+  set -g @theme_variation 'storm'
 ''

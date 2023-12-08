@@ -25,6 +25,7 @@ with lib;
         extraConfig = pkgs.callPackage ./tmux.nix {};
 
         plugins = with pkgs.tmuxPlugins; [
+          # [theme]
           tokyo-night
           tmux-fzf
           tmux-thumbs
