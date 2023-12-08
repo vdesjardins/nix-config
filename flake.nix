@@ -287,7 +287,7 @@
     neovim-plugin-vim-snippets.url = "github:honza/vim-snippets";
     neovim-plugin-vim-snippets.flake = false;
 
-    ## colorscheme
+    ## colorscheme [theme]
     neovim-plugin-tokyo-night.url = "github:folke/tokyonight.nvim";
     neovim-plugin-tokyo-night.flake = false;
 
