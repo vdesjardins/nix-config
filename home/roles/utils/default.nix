@@ -10,6 +10,7 @@
     ../../programs/gh
     ../../programs/git
     ../../programs/lazygit
+    ../../programs/joshuto
     ../../programs/just
     ../../programs/ls
     ../../programs/lsd
@@ -48,7 +49,7 @@
       gnused
       # graphviz
       grpcurl
-      hexyl
+      hexyl # hex viewer
       htmlq # Like jq, but for HTML
       htop # fancy top
       httpie
