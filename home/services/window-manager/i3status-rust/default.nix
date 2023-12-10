@@ -3,10 +3,14 @@
     enable = true;
     bars = {
       default = {
-        theme = "nord-dark";
-        icons = "awesome5";
+        theme = "ctp-mocha";
+        icons = "awesome6";
 
         blocks = [
+          {
+            block = "music";
+            format = " $icon {$combo.str(max_w:25,rot_interval:0.5) $prev $play $next |}";
+          }
           {
             block = "disk_space";
             info_type = "available";
@@ -28,10 +32,10 @@
             format = "$icon $1m";
             interval = 1;
           }
-          # {
-          #   block = "sound";
-          #   step_width = 2;
-          # }
+          {
+            block = "sound";
+            step_width = 2;
+          }
           {
             block = "time";
             format = "UTC $timestamp.datetime(f:'%H')";

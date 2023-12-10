@@ -11,6 +11,7 @@
   ];
 
   home.packages = with pkgs; [
+    alsa-utils
     wmctrl
     arandr
     maim
