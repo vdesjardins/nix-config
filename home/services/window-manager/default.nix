@@ -8,6 +8,7 @@
     ./rofi
     ./i3status-rust
     ./libinput-gestures
+    ./dunst
   ];
 
   home.packages = with pkgs; [
