@@ -24,9 +24,20 @@
         pw = "pr view --web";
       };
     };
-  };
 
-  programs.zsh.initExtraBeforeCompInit = ''
-    source <(gh completion -s zsh)
-  '';
+    extensions = with pkgs; [
+      gh-dash
+      gh-eco
+      gh-markdown-preview
+      # gh-f
+      # gh-get-asset
+      # gh-look
+      # gh-ls
+      # gh-notify
+      # gh-profile
+      # gh-pulls
+      # gh-s
+      # gh-sql
+    ];
+  };
 }
