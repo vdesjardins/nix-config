@@ -33,6 +33,10 @@
             interval = 1;
           }
           {
+            block = "keyboard_layout";
+            interval = 5;
+          }
+          {
             block = "sound";
             step_width = 2;
           }
