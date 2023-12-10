@@ -29,6 +29,7 @@
     [
       unstable.fq # jq for binary formats
       act # github actions testing
+      age # encryption
       bandwhich # network utilization by process
       bottom # top with graphs
       browsh # terminal browser
@@ -63,7 +64,7 @@
       neofetch
       oha # HTTP load generator inspired by rakyll/hey with tui animation
       openssh
-      perlPackages.vidir # edit files in EDITOR
+      passage # passwords management with age
       ps
       rsync
       spotify-tui
