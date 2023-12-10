@@ -37,6 +37,7 @@
     ]
     ++ lib.optionals (wm == "i3") [
       ../services/window-manager
+      ../services/spotifyd
       ../programs/firefox
     ];
 }
