@@ -68,10 +68,11 @@
       ps
       rsync
       spotify-tui
+      taskwarrior
+      taskwarrior-tui
       tealdeer # faster tldr
       tokei # displays code statistics
       tree
-      ultralist
       unstable.procs # replacement for ps
       yq
       yubikey-manager
