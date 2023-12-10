@@ -74,6 +74,7 @@
       tokei # displays code statistics
       tree
       unstable.procs # replacement for ps
+      watson
       yq
       yubikey-manager
     ]
