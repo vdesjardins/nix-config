@@ -30,6 +30,7 @@
       unstable.fq # jq for binary formats
       act # github actions testing
       age # encryption
+      ast-grep # find code by syntax
       bandwhich # network utilization by process
       bottom # top with graphs
       browsh # terminal browser
