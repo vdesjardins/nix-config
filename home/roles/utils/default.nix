@@ -18,7 +18,6 @@
     ../../programs/neovim
     ../../programs/openssl
     ../../programs/ripgrep
-    ../../programs/sapling
     ../../programs/starship
     ../../programs/tmux
     ../../programs/zellij
