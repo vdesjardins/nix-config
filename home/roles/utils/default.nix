@@ -14,6 +14,7 @@
     ../../programs/just
     ../../programs/ls
     ../../programs/lsd
+    ../../programs/ncspot
     ../../programs/neovim
     ../../programs/openssl
     ../../programs/ripgrep
