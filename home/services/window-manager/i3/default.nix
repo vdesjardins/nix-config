@@ -40,7 +40,7 @@ in {
       ''
         #!${runtimeShell}
 
-        ${xterm}/bin/xterm -T 'i3 Shortcuts' i3cheatsheet
+        ${terminal} start --always-new-process --no-auto-connect -- i3cheatsheet
       '')
     (writeScriptBin
       "i3-warp-mouse"
@@ -74,6 +74,7 @@ in {
 
     initExtra = ''
       xset r rate 200 30
+      export TERMINAL="${terminal}"
     '';
 
     windowManager.i3 = {
@@ -289,7 +290,7 @@ in {
             command = "~/.fehbg";
           }
           {
-            command = "wezterm";
+            command = "i3-sensible-terminal";
           }
           {
             command = "autotiling";
