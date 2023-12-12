@@ -44,27 +44,39 @@
     enable = true;
   };
 
-  # https://github.com/unix121/i3wm-themer/blob/master/themes/006.json
+  # [theme]
+  # https://github.com/folke/tokyonight.nvim/blob/main/extras/xresources/tokyonight_storm.Xresources
+  # ! TokyoNight colors for Xresources
   xresources.properties = {
-    "*background" = "#1c1c22";
-    "*foreground" = "#d9d6ca";
-    "*cursorcolor" = "#d9d6ca";
-    "*color0" = "#1c1c22";
-    "*color1" = "#7e6565";
-    "*color2" = "#85aab6";
-    "*color3" = "#90a996";
-    "*color4" = "#3e646f";
-    "*color5" = "#817f98";
-    "*color6" = "#9aa7c0";
-    "*color7" = "#d9d6ca";
-    "*color8" = "#59596c";
-    "*color9" = "#807171";
-    "*color10" = "#3e646f";
-    "*color11" = "#badbc2";
-    "*color12" = "#5c828d";
-    "*color13" = "#9b98b7";
-    "*color14" = "#b2b7c0";
-    "*color15" = "#d9d6ca";
+    "*background" = "#24283b";
+    "*foreground" = "#c0caf5";
+    "*color0" = "#1d202f";
+    "*color1" = "#f7768e";
+    "*color2" = "#9ece6a";
+    "*color3" = "#e0af68";
+    "*color4" = "#7aa2f7";
+    "*color5" = "#bb9af7";
+    "*color6" = "#7dcfff";
+    "*color7" = "#a9b1d6";
+    "*color8" = "#414868";
+    "*color9" = "#f7768e";
+    "*color10" = "#9ece6a";
+    "*color11" = "#e0af68";
+    "*color12" = "#7aa2f7";
+    "*color13" = "#bb9af7";
+    "*color14" = "#7dcfff";
+    "*color15" = "#c0caf5";
+
+    "xterm.termName" = "xterm-256color";
+    "xterm*faceName" = "Monaspace Radon";
+    "xterm*faceSize" = "12";
+    "xterm*loginshell" = true;
+    "xterm*metaSendsEscape" = true;
+    "xterm*scrollBar" = false;
+    "xterm*rightScrollBar" = false;
+    "xterm*scrollTtyOutput" = false;
+    #"xterm*background" = "black";
+    #"xterm*foreground" = "white";
   };
 
   services.picom = {
