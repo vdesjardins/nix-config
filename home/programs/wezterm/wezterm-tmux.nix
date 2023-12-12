@@ -24,6 +24,8 @@
       },
 
       pane_focus_follows_mouse = true,
+
+      hide_tab_bar_if_only_one_tab = true,
   }
 
   wezterm.on("update-right-status", function(window, pane)

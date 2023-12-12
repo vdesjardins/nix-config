@@ -28,6 +28,8 @@
 
       pane_focus_follows_mouse = true,
 
+      hide_tab_bar_if_only_one_tab = true,
+
       keys = {
           -- panes
           { key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
