@@ -39,5 +39,6 @@ with lib; {
 
   home.sessionVariables = {
     MANPAGER = "sh -c 'col -bx | bat --paging=always -l man -p'";
+    MANROFFOPT = "-c";
   };
 }
