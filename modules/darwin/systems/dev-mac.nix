@@ -26,7 +26,6 @@ in
           "hammerspoon"
           "maccy"
           "middleclick"
-          "raycast"
           "stats"
           "vmware-fusion"
         ];

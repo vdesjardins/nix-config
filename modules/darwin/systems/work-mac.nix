@@ -22,7 +22,6 @@ in
           "hammerspoon"
           "maccy"
           "middleclick"
-          "raycast"
           "stats"
         ];
       }
