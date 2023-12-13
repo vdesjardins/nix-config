@@ -62,33 +62,32 @@
       jrnl
       lsof
       minisign
-      neofetch
+      neofetch # fetch system/theme information
       oha # HTTP load generator inspired by rakyll/hey with tui animation
       openssh
       passage # passwords management with age
       ps
+      pueue # task management tool
       rsync
       spotify-tui
       taskwarrior
       taskwarrior-tui
       tealdeer # faster tldr
+      thefuck # fix commands
       tokei # displays code statistics
       tree
+      unstable.btop # monitor resources
       unstable.procs # replacement for ps
       watson
+      wget
       yq
       yubikey-manager
     ]
     ++ lib.optionals stdenv.isLinux [
-      unstable.btop # monitor resources
       iotop
       lshw # list hardware
-      pueue # task management tool
       psmisc
-      screenfetch # fetch system/theme information
       sysstat
-      thefuck # fix commands
-      wget
     ]
     ++ lib.optionals stdenv.isDarwin [
       m-cli # controls apps from command line
