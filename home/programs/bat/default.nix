@@ -34,6 +34,8 @@ with lib; {
       BJ = "|& bat -ljson";
       BY = "|& bat -lyaml";
       BT = "|& bat";
+      "-- -h" = "-h 2>&1 | bat --language=help --paging=auto --style=plain";
+      "-- --help" = "--help 2>&1 | bat --language=help --paging=auto --style=plain";
     };
   };
 
