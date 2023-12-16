@@ -1,21 +1,32 @@
 {
   config,
   pkgs,
+  font ? "Monaspace Radon",
   ...
-}: {
+}: let
+  font = "Monaspace Radon";
+in {
   imports = [
     ./i3
     ./rofi
     ./i3status-rust
     ./libinput-gestures
     ./dunst
+    ./imv
   ];
+
+  xsession.windowManager.i3.custom.font = font;
+  programs.rofi.custom.font = font;
+  services.dunst.custom.font = font;
+  programs.imv.custom.font = font;
 
   home.packages = with pkgs; [
     alsa-utils
     wmctrl
     arandr
     maim
+    pulseaudio
+    playerctl
     scrot
     slock
     xsel
@@ -39,10 +50,6 @@
       exec = "systemctl shutdown";
     })
   ];
-
-  programs.feh = {
-    enable = true;
-  };
 
   # [theme]
   # https://github.com/folke/tokyonight.nvim/blob/main/extras/xresources/tokyonight_storm.Xresources

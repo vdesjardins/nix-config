@@ -36,7 +36,7 @@
       ../services/yubikey-agent
     ]
     ++ lib.optionals (wm == "i3") [
-      ../services/window-manager
+      ../services/window-manager/i3.nix
       ../services/spotifyd
       ../programs/firefox
     ];
