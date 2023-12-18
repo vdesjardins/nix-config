@@ -34,7 +34,7 @@
           }
           {
             block = "keyboard_layout";
-            interval = 5;
+            interval = 2;
           }
           {
             block = "sound";

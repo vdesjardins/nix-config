@@ -36,8 +36,20 @@
       ../services/yubikey-agent
     ]
     ++ lib.optionals (wm == "i3") [
-      ../services/window-manager/i3.nix
       ../services/spotifyd
       ../programs/firefox
+      ../programs/zathura
+
+      ../programs/imv
+      ../programs/i3status-rust
+
+      # i3
+      ../services/window-manager/i3
+      ../programs/rofi
+
+      # Sway
+      ../services/window-manager/sway
+      ../programs/swaylock
+      ../programs/wofi
     ];
 }

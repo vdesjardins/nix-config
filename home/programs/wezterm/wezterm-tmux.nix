@@ -1,16 +1,17 @@
-{homeDirectory}: ''
-  local wezterm = require("wezterm")
-
+{
+  homeDirectory,
+  font,
+}: ''
   wezterm.add_to_config_reload_watch_list(wezterm.config_dir)
 
   local config = {
       check_for_updates = false,
       font = wezterm.font({
-        family = "Monaspace Radon",
+        family = "${font}",
         weight = "Medium",
         harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' },
       }),
-      color_scheme = 'Tokyo Night Moon',
+      color_scheme = 'tokyonight_storm',
       tab_bar_at_bottom = true,
       inactive_pane_hsb = { hue = 1.0, saturation = 0.5, brightness = 1.0 },
       exit_behavior = "Close",

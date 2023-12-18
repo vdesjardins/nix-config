@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  services.window-manager.myI3 = {
+  programs.myWofi = {
     enable = true;
   };
 }

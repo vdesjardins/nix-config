@@ -6,17 +6,19 @@
   naturalMouseScrolling,
   ...
 }: {
-  hardware.opengl = {enable = true;};
+  hardware.opengl.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.useDHCP = false;
 
-  security.sudo.wheelNeedsPassword = false;
+  security = {
+    sudo.wheelNeedsPassword = false;
 
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
 
   security.pam.loginLimits = [
     {
@@ -40,7 +42,6 @@
   environment.systemPackages = with pkgs; [
     gnumake
     killall
-    xclip
     git
     neovim
 

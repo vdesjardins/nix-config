@@ -30,6 +30,7 @@
       unstable.fq # jq for binary formats
       act # github actions testing
       age # encryption
+      age-plugin-yubikey
       ast-grep # find code by syntax
       bandwhich # network utilization by process
       bottom # top with graphs
@@ -72,16 +73,22 @@
       spotify-tui
       taskwarrior
       taskwarrior-tui
+      timewarrior
       tealdeer # faster tldr
       thefuck # fix commands
       tokei # displays code statistics
       tree
       unstable.btop # monitor resources
       unstable.procs # replacement for ps
-      watson
       wget
       yq
       yubikey-manager
+      (pkgs.writeScriptBin "json2nix" ''
+        ${pkgs.python3}/bin/python ${pkgs.fetchurl {
+          url = "https://gist.githubusercontent.com/Scoder12/0538252ed4b82d65e59115075369d34d/raw/e86d1d64d1373a497118beb1259dab149cea951d/json2nix.py";
+          hash = "sha256-ROUIrOrY9Mp1F3m+bVaT+m8ASh2Bgz8VrPyyrQf9UNQ=";
+        }} $@
+      '')
     ]
     ++ lib.optionals stdenv.isLinux [
       iotop
