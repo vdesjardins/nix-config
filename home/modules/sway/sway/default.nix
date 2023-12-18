@@ -280,6 +280,10 @@ in {
           {
             command = "udiskie";
           }
+          {
+            command = "autotiling";
+            always = true;
+          }
         ];
       };
 
