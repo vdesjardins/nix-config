@@ -12,7 +12,7 @@ home-manager.lib.homeManagerConfiguration {
       home = {
         username = "vincent_desjardins";
         homeDirectory = "/home/vincent_desjardins";
-        stateVersion = "21.05";
+        stateVersion = "23.11";
       };
     }
     nix-index-database.hmModules.nix-index

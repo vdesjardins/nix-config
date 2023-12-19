@@ -22,10 +22,19 @@ in {
     # ./swayidle
   ];
 
-  config = {
-    wayland.windowManager.mySway.font = cfg.font;
-    services.mako.font = "${cfg.font} 10";
-    wayland.windowManager.sway.swaynag.settings.custom.font = "${cfg.font} 10";
+  config = lib.mkIf cfg.enable {
+    wayland.windowManager.mySway = {
+      enable = true;
+      inherit (cfg) font;
+    };
+    services.mako = {
+      enable = true;
+      font = "${cfg.font} 10";
+    };
+    wayland.windowManager.sway.swaynag = {
+      enable = true;
+      settings.custom.font = "${cfg.font} 10";
+    };
 
     home.packages = with pkgs; [
       alsa-utils

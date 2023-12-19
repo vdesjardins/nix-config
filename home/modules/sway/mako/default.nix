@@ -4,8 +4,6 @@
   ...
 }: {
   services.mako = {
-    enable = true;
-
     anchor = "bottom-right";
     backgroundColor = "24283b";
     textColor = "c0caf5";

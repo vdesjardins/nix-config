@@ -34,12 +34,13 @@ with lib; let
   cfg = config.xsession.windowManager.myI3;
 in {
   options.xsession.windowManager.myI3 = {
+    enable = mkEnableOption "myI3";
     font = mkOption {
       type = types.str;
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       autotiling
       (writeScriptBin

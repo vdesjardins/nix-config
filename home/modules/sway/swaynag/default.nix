@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   wayland.windowManager.sway.swaynag = {
-    enable = true;
-
     settings = {
       custom = {
         dismiss-button = "Dismiss";

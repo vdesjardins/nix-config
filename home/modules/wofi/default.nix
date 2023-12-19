@@ -16,7 +16,7 @@ in {
   };
 
   config = {
-    programs.wofi = {
+    programs.wofi = lib.mkIf cfg.enable {
       enable = true;
 
       settings = {

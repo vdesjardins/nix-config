@@ -34,12 +34,13 @@ with lib; let
   cfg = config.wayland.windowManager.mySway;
 in {
   options.wayland.windowManager.mySway = {
+    enable = mkEnableOption "mySway";
     font = mkOption {
       type = types.str;
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     wayland.windowManager.sway = {
       enable = true;
 

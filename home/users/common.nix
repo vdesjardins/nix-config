@@ -9,7 +9,7 @@ in {
 
   xdg.enable = true;
 
-  home.stateVersion = "21.05";
+  home.stateVersion = "23.11";
 
   # font
   programs.alacritty.settings.font = {
@@ -19,6 +19,7 @@ in {
     bold_italic.family = font;
   };
 
+  # tools
   programs.zathura.options.font = "${font} 10";
   programs.imv.settings.options.overlay_font = "${font}:12";
 
