@@ -20,6 +20,7 @@
     ../../programs/ripgrep
     ../../programs/starship
     ../../programs/tmux
+    ../../programs/yazi
     ../../programs/zellij
     ../../programs/zoxide
     ../../programs/zsh
@@ -95,6 +96,7 @@
       lshw # list hardware
       psmisc
       sysstat
+      ueberzugpp
     ]
     ++ lib.optionals stdenv.isDarwin [
       m-cli # controls apps from command line

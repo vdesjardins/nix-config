@@ -158,6 +158,11 @@
   # disable right status to get more tab space
   set -g status-right ""
 
+  # to display image from yazi
+  set -g allow-passthrough on
+  set -ga update-environment TERM
+  set -ga update-environment TERM_PROGRAM
+
   # [theme]
   set -g @theme_variation 'storm'
 ''
