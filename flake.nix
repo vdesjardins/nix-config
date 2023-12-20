@@ -278,8 +278,8 @@
     neovim-plugin-vim-grepper.flake = false;
     neovim-plugin-vim-surround.url = "github:kylechui/nvim-surround";
     neovim-plugin-vim-surround.flake = false;
-    neovim-plugin-abolish.url = "github:tpope/vim-abolish";
-    neovim-plugin-abolish.flake = false;
+    neovim-plugin-text-case.url = "github:johmsalas/text-case.nvim";
+    neovim-plugin-text-case.flake = false;
     neovim-plugin-dressing.url = "github:stevearc/dressing.nvim";
     neovim-plugin-dressing.flake = false;
 

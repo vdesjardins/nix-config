@@ -695,22 +695,6 @@
         "type": "github"
       }
     },
-    "neovim-plugin-abolish": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1695997009,
-        "narHash": "sha256-MFXQjLIY1WJ6bGuxRr7WiIcjK9lOlMsFDit0bRmYd/s=",
-        "owner": "tpope",
-        "repo": "vim-abolish",
-        "rev": "dcbfe065297d31823561ba787f51056c147aa682",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tpope",
-        "repo": "vim-abolish",
-        "type": "github"
-      }
-    },
     "neovim-plugin-auto-pairs": {
       "flake": false,
       "locked": {
@@ -1576,6 +1560,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-text-case": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702990002,
+        "narHash": "sha256-2zUCzR8Nop1NPmLZC/cIwpltGZP/seYRkiLtOFrYxrc=",
+        "owner": "johmsalas",
+        "repo": "text-case.nvim",
+        "rev": "ada81738da3f1ed08f5e4ac95fa21213a0221b22",
+        "type": "github"
+      },
+      "original": {
+        "owner": "johmsalas",
+        "repo": "text-case.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-tokyo-night": {
       "flake": false,
       "locked": {
@@ -2229,7 +2229,6 @@
         "lscolors": "lscolors",
         "master": "master",
         "neovim-nightly": "neovim-nightly",
-        "neovim-plugin-abolish": "neovim-plugin-abolish",
         "neovim-plugin-auto-pairs": "neovim-plugin-auto-pairs",
         "neovim-plugin-chatgpt": "neovim-plugin-chatgpt",
         "neovim-plugin-cmp-buffer": "neovim-plugin-cmp-buffer",
@@ -2284,6 +2283,7 @@
         "neovim-plugin-telescope-frecency": "neovim-plugin-telescope-frecency",
         "neovim-plugin-telescope-nvim": "neovim-plugin-telescope-nvim",
         "neovim-plugin-telescope-ui-select": "neovim-plugin-telescope-ui-select",
+        "neovim-plugin-text-case": "neovim-plugin-text-case",
         "neovim-plugin-tokyo-night": "neovim-plugin-tokyo-night",
         "neovim-plugin-trouble-nvim": "neovim-plugin-trouble-nvim",
         "neovim-plugin-ultisnips": "neovim-plugin-ultisnips",
