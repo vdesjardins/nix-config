@@ -1,7 +1,14 @@
 local wk = require("which-key")
+
+local function addFile()
+    local f = vim.api.nvim_buf_get_name(0)
+    vim.cmd("Git add " .. f)
+end
+
 wk.register({
     g = {
         name = "git",
+        a = { addFile, "fugitive-add" },
         b = { "<cmd>Git blame<cr>", "fugitive-blame" },
         c = { "<cmd>Git commit<cr>", "fugitive-commit" },
         d = { "<cmd>Gdiffsplit<cr>", "fugitive-diff" },
