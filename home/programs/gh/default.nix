@@ -22,6 +22,7 @@
         s = "pr status";
         ch = "pr checks -i 2 --watch";
         pw = "pr view --web";
+        pv = "pr view -c";
         pu = "pr view --json url | jq '.url' -Mr | pbcopy";
       };
     };
