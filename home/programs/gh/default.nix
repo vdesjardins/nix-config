@@ -20,12 +20,13 @@
         cf = "pr create -f";
         m = "pr merge -r -d";
         s = "pr status";
-        ch = "pr checks";
+        ch = "pr checks -i 2 --watch";
         pw = "pr view --web";
+        pu = "pr view --json url | jq '.url' -Mr | pbcopy";
       };
     };
 
-    extensions = with pkgs; [
+    extensions = with pkgs.unstable; [
       gh-dash
       gh-eco
       gh-markdown-preview
@@ -39,5 +40,10 @@
       # gh-s
       # gh-sql
     ];
+  };
+
+  # TODO: support linux
+  programs.zsh.shellAliases = {
+    ghpc = "gh pu | jq '.url' -Mr | pbcopy";
   };
 }
