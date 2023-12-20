@@ -5,5 +5,6 @@
     ./wofi
     ./i3
     ./sway
+    ./wezterm
   ];
 }

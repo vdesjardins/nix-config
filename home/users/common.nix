@@ -12,6 +12,7 @@ in {
   home.stateVersion = "23.11";
 
   # font
+  programs.myWezterm.font = font;
   programs.alacritty.settings.font = {
     normal.family = font;
     bold.family = font;
