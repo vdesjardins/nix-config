@@ -71,6 +71,8 @@ lua
         },
     },
 
+    disable_default_key_bindings = true;
+
     pane_focus_follows_mouse = true,
 
     keys = {
@@ -126,6 +128,7 @@ lua
 
       -- utils
       { key = "`", mods = "LEADER", action = act({ SendString = "`" }) },
+      { key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
       {
           key = "~",
           mods = "LEADER|SHIFT",
@@ -137,7 +140,7 @@ lua
           }),
       },
       { key = "r", mods = "LEADER", action = "ReloadConfiguration" },
-      { key = 'R', mods = 'LEADER|SHIFT', action = wezterm.action.ShowLauncher },
+      { key = 'R', mods = 'LEADER|SHIFT', action = act.ShowLauncher },
       {
           key = "Backspace",
           mods = "LEADER",
@@ -153,6 +156,18 @@ lua
 
       -- launch menu
       { key = 'm', mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'FUZZY|LAUNCH_MENU_ITEMS'} },
+
+      -- key maps
+      {
+        key = '?',
+        mods = 'LEADER|SHIFT',
+        action = act({
+          SplitVertical = {
+            domain = "CurrentPaneDomain",
+            args = { "bash", "-c", "wezterm show-keys | less" },
+          },
+        }),
+      },
 
       -- command palette
       { key = 'C', mods = 'LEADER|SHIFT', action = act.ActivateCommandPalette },
