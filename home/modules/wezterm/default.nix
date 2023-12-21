@@ -21,9 +21,13 @@ in {
     font = mkOption {
       type = types.str;
     };
+    useTmux = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     programs.wezterm = {
       enable = true;
 
@@ -31,10 +35,15 @@ in {
 
       enableZshIntegration = true;
 
-      extraConfig = import ./wezterm-tmux.nix {
-        inherit (cfg) font;
-        inherit (config.home) homeDirectory;
-      };
+      extraConfig =
+        import (
+          if cfg.useTmux
+          then ./wezterm-tmue.nix
+          else ./wezterm.nix
+        ) {
+          inherit (cfg) font;
+          inherit (config.home) homeDirectory;
+        };
 
       colorSchemes = builtins.fromTOML (builtins.readFile "${src}/${file}");
     };
