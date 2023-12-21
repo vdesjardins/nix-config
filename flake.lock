@@ -1864,6 +1864,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-vim-smart-splits": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702325396,
+        "narHash": "sha256-ILc3qVrXJmuNrwa/RxKZcVpn1UdfZJuXaJ8aZX7XjiM=",
+        "owner": "mrjones2014",
+        "repo": "smart-splits.nvim",
+        "rev": "f0003bf9c3f11b8b9209264f865b8864453ca926",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrjones2014",
+        "repo": "smart-splits.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-vim-snippets": {
       "flake": false,
       "locked": {
@@ -1941,22 +1957,6 @@
       "original": {
         "owner": "hashivim",
         "repo": "vim-terraform",
-        "type": "github"
-      }
-    },
-    "neovim-plugin-vim-tmux-navigation": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1700471371,
-        "narHash": "sha256-vGFegI/qd5+TRKbwcnetn9QWcMMBF6lATmZrRfpdvn0=",
-        "owner": "alexghergh",
-        "repo": "nvim-tmux-navigation",
-        "rev": "d9efffa413a530bdea3783af4fea86be84940283",
-        "type": "github"
-      },
-      "original": {
-        "owner": "alexghergh",
-        "repo": "nvim-tmux-navigation",
         "type": "github"
       }
     },
@@ -2302,12 +2302,12 @@
         "neovim-plugin-vim-nix": "neovim-plugin-vim-nix",
         "neovim-plugin-vim-rhubarb": "neovim-plugin-vim-rhubarb",
         "neovim-plugin-vim-rsi": "neovim-plugin-vim-rsi",
+        "neovim-plugin-vim-smart-splits": "neovim-plugin-vim-smart-splits",
         "neovim-plugin-vim-snippets": "neovim-plugin-vim-snippets",
         "neovim-plugin-vim-startify": "neovim-plugin-vim-startify",
         "neovim-plugin-vim-surround": "neovim-plugin-vim-surround",
         "neovim-plugin-vim-table-mode": "neovim-plugin-vim-table-mode",
         "neovim-plugin-vim-terraform": "neovim-plugin-vim-terraform",
-        "neovim-plugin-vim-tmux-navigation": "neovim-plugin-vim-tmux-navigation",
         "neovim-plugin-vim-toggleterm": "neovim-plugin-vim-toggleterm",
         "neovim-plugin-which-key-nvim": "neovim-plugin-which-key-nvim",
         "nix": "nix",

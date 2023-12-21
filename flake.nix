@@ -232,8 +232,8 @@
     neovim-plugin-vim-rsi.flake = false;
     neovim-plugin-vim-bookmarks.url = "github:MattesGroeger/vim-bookmarks";
     neovim-plugin-vim-bookmarks.flake = false;
-    neovim-plugin-vim-tmux-navigation.url = "github:alexghergh/nvim-tmux-navigation";
-    neovim-plugin-vim-tmux-navigation.flake = false;
+    neovim-plugin-vim-smart-splits.url = "github:mrjones2014/smart-splits.nvim";
+    neovim-plugin-vim-smart-splits.flake = false;
     neovim-plugin-vim-startify.url = "github:mhinz/vim-startify";
     neovim-plugin-vim-startify.flake = false;
     neovim-plugin-vim-bbye.url = "github:moll/vim-bbye"; # close buffer
