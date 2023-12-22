@@ -1,6 +1,7 @@
 {...}: {lib, ...}: {
   imports = [
     ./common.nix
+    ./mac.nix
 
     ../programs/vault
     ../programs/hammerspoon

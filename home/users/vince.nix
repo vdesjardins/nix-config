@@ -44,12 +44,9 @@
       ../programs/i3status-rust
 
       # i3
-      ../services/window-manager/i3
-      ../programs/rofi
+      ../roles/win/i3
 
       # Sway
-      ../services/window-manager/sway
-      ../programs/swaylock
-      ../programs/wofi
+      # ../roles/win/sway
     ];
 }

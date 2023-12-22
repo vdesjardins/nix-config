@@ -29,6 +29,10 @@ in {
       settings.global.font = cfg.font;
     };
 
+    programs.zsh.shellGlobalAliases = {
+      CL = "|& xclip -r -selection c";
+    };
+
     home.packages = with pkgs; [
       libinput-gestures
       alsa-utils

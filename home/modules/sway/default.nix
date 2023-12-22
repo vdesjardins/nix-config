@@ -27,13 +27,19 @@ in {
       enable = true;
       inherit (cfg) font;
     };
+
     services.mako = {
       enable = true;
       font = "${cfg.font} 10";
     };
+
     wayland.windowManager.sway.swaynag = {
       enable = true;
       settings.custom.font = "${cfg.font} 10";
+    };
+
+    programs.zsh.shellGlobalAliases = {
+      CL = "|& wl-copy";
     };
 
     home.packages = with pkgs; [

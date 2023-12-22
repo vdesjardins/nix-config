@@ -71,8 +71,6 @@ lua
         },
     },
 
-    disable_default_key_bindings = true;
-
     pane_focus_follows_mouse = true,
 
     keys = {
