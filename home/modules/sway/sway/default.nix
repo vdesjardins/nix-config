@@ -48,13 +48,25 @@ in {
         modifier = mod;
 
         input = {
-          "*" = {
+          "type:keyboard" = {
             xkb_layout = "us,ca";
             xkb_variant = "fr";
             xkb_options = "grp:alt_space_toggle,caps:ctrl_modifier";
             xkb_model = "pc104";
             repeat_delay = "200";
             repeat_rate = "35";
+          };
+
+          "type:touchpad" = {
+            accel_profile = "adaptive";
+            click_method = "clickfinger";
+            drag = "enabled";
+            dwt = "enabled";
+            middle_emulation = "enabled";
+            pointer_accel = 0.8;
+            scroll_method = "two_finger";
+            scroll_factor = 1.5;
+            tap = "enabled";
           };
         };
 
@@ -289,8 +301,25 @@ in {
       };
 
       extraConfig = ''
-        # quick shortcut help
-        for_window [title="Sway Shortcuts"] floating enable, move absolute position center, resize grow left 318, resize grow right 318, resize grow down 20, resize grow up 20
+        set {
+          $ii inhibit_idle focus
+          $game inhibit_idle focus; floating enable; border none; fullscreen enable; shadows disable
+          $popup floating enable; border pixel 1; sticky enable; shadows enable
+          $float floating enable; border pixel 1; shadows enable
+          $video inhibit_idle fullscreen; border none; max_render_time off
+          $important inhibit_idle open; floating enable; border pixel 1
+          $max inhibit_idle visible; floating enable; sticky enable; border pixel 1
+          $shortcuts floating enable, resize set 2300 1000, move absolute position center
+          $dialog $float; shadows enable
+        }
+
+        for_window {
+          [app_id="Sway-Shortcuts"] $shortcuts
+          [window_role="pop-up"] $popup
+          [window_role="bubble"] $popup
+          [window_role="dialog"] $dialog
+          [window_type="dialog"] $dialog
+        }
       '';
     };
 
@@ -303,15 +332,15 @@ in {
         ''
           #!${runtimeShell}
 
-          ${gnugrep}/bin/grep -E "^bindsym" ~/.config/sway/config | ${gawk}/bin/awk '{$1=""; print $0}' | ${gnused}/bin/sed 's/^ *//g' | ${gnugrep}/bin/grep -vE "^XF86" | ${unixtools.column}/bin/column -t -l2 | ${coreutils}/bin/pr -2 -w 160 -t | ${less}/bin/less
+          ${gnugrep}/bin/grep -E "^bindsym" ~/.config/sway/config | ${gawk}/bin/awk '{$1=""; print $0}' | ${gnused}/bin/sed 's/^ *//g' | ${gnugrep}/bin/grep -vE "^XF86" | ${unixtools.column}/bin/column -t -l2 | ${coreutils}/bin/pr -2 -w 220 -t | ${less}/bin/less
         '')
       (writeScriptBin
         "swaycheatsheet-win"
         ''
           #!${runtimeShell}
 
-          title="Sway Shortcuts"
-          alacritty -T "$title" -e swaycheatsheet
+          class="Sway-Shortcuts"
+          wezterm start --class="$class" swaycheatsheet
         '')
     ];
   };
