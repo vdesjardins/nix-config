@@ -64,15 +64,21 @@ lua
 
   local config = {
     check_for_updates = false,
+
     font = wezterm.font({
       family = "${font}",
       weight = "Medium",
       harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' },
     }),
+
     color_scheme = 'tokyonight_storm',
+
     tab_bar_at_bottom = true,
+
     inactive_pane_hsb = { hue = 1.0, saturation = 0.9, brightness = 1.0 },
+
     exit_behavior = "Close",
+
     leader = { key = "${key_leader}", mods = "${mods_leader}" },
 
     mouse_bindings = {
