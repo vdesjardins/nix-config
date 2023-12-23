@@ -180,7 +180,7 @@ lua
         action = act({
           SplitVertical = {
             domain = "CurrentPaneDomain",
-            args = { "bash", "-c", "wezterm show-keys | less" },
+            args = { "bash", "-c", "wezterm show-keys | less -I" },
           },
         }),
       },
