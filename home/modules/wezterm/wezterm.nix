@@ -165,6 +165,10 @@ lua
           mods = "LEADER",
           action = act({ PasteFrom = "PrimarySelection" }),
       },
+      -- pane selection mode
+      { key = "0", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActive" } },
+      -- rotate panes
+      { key = "Space", mods = "LEADER", action = act.RotatePanes "Clockwise" },
 
       -- launch menu
       { key = 'm', mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'FUZZY|LAUNCH_MENU_ITEMS'} },
