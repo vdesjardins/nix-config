@@ -8,6 +8,18 @@ lua
 ''
   wezterm.add_to_config_reload_watch_list(wezterm.config_dir)
 
+  local function hyperlinks()
+    hyperlink_rules = wezterm.default_hyperlink_rules()
+
+    -- make username/project paths clickable. this implies paths like the following are for github.
+    table.insert(hyperlink_rules, {
+      regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+      format = 'https://www.github.com/$1/$3',
+    })
+
+    return hyperlink_rules
+  end
+
   local config = {
       check_for_updates = false,
       font = wezterm.font({
@@ -31,6 +43,8 @@ lua
       pane_focus_follows_mouse = true,
 
       hide_tab_bar_if_only_one_tab = true,
+
+      hyperlink_rules = hyperlinks(),
   }
 
 

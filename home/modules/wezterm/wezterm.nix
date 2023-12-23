@@ -10,6 +10,18 @@ lua
 ''
   local act = wezterm.action
 
+  local function hyperlinks()
+    hyperlink_rules = wezterm.default_hyperlink_rules()
+
+    -- make username/project paths clickable. this implies paths like the following are for github.
+    table.insert(hyperlink_rules, {
+      regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+      format = 'https://www.github.com/$1/$3',
+    })
+
+    return hyperlink_rules
+  end
+
   -- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
   local function is_vim(pane)
     -- this is set by the plugin, and unset on ExitPre in Neovim
@@ -72,6 +84,8 @@ lua
     },
 
     pane_focus_follows_mouse = true,
+
+    hyperlink_rules = hyperlinks(),
 
     keys = {
       -- move between split panes
