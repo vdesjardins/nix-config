@@ -5,7 +5,7 @@
     settings = {
       credentials = {
         username_cmd = "echo vdesjardins";
-        password_cmd = "passage spotify";
+        password_cmd = "passage services/spotify";
       };
     };
   };
