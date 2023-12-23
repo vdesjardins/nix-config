@@ -19,6 +19,7 @@ vim.o.timeoutlen = 500 -- to to wait for mapped sequence to complete
 vim.o.errorbells = false -- No sound on errors
 vim.o.visualbell = false
 vim.o.clipboard = "unnamedplus" -- OS and tmux clipboard transparent access
+vim.o.mouse = ""
 
 -- GUI
 -- TODO: find how to remove -T
