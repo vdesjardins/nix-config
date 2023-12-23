@@ -52,15 +52,15 @@ in {
           # title="i3 Cheatsheet"
           # ${xdotool}/bin/xdotool getactivewindow set_window --name "$title"
 
-          ${gnugrep}/bin/grep -E "^bindsym" ~/.config/i3/config | ${gawk}/bin/awk '{$1=""; print $0}' | ${gnused}/bin/sed 's/^ *//g' | ${gnugrep}/bin/grep -vE "^XF86" | ${unixtools.column}/bin/column -t -l2 | ${coreutils}/bin/pr -2 -w 160 -t | ${less}/bin/less
+          ${gnugrep}/bin/grep -E "^bindsym" ~/.config/i3/config | ${gawk}/bin/awk '{$1=""; print $0}' | ${gnused}/bin/sed 's/^ *//g' | ${gnugrep}/bin/grep -vE "^XF86" | ${unixtools.column}/bin/column -t -l2 | ${coreutils}/bin/pr -2 -w 220 -t | ${less}/bin/less
         '')
       (writeScriptBin
         "i3cheatsheet-win"
         ''
           #!${runtimeShell}
 
-          title="i3 Shortcuts"
-          alacritty -T "$title" -e i3cheatsheet
+          class="i3-Shortcuts"
+          wezterm start --class="$class" i3cheatsheet
         '')
       (writeScriptBin
         "i3-warp-mouse"
@@ -326,7 +326,7 @@ in {
 
         extraConfig = ''
           # quick shortcut help
-          for_window [title="i3 Shortcuts"] floating enable, move absolute position center, resize grow left 318, resize grow right 318, resize grow down 20, resize grow up 20
+          for_window [class="i3-Shortcuts"] floating enable, resize set 2300 1000, move absolute position center
           # warp mouse to window
           for_window [class=.*] exec i3-warp-mouse
         '';
