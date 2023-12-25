@@ -14,6 +14,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Others
+    nur.url = "github:nix-community/NUR";
     utils.url = "github:numtide/flake-utils";
     comma.url = "github:nix-community/comma";
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -335,6 +336,7 @@
     master,
     neovim-nightly,
     nixos-generators,
+    nur,
     rust-overlay,
     utils,
     unstable,
@@ -393,6 +395,7 @@
             overlays = attrValues (mkOverlays ./overlays/master);
           };
         };
+        nur = nur.overlay;
         neovim-nightly = neovim-nightly.overlay;
         rust-overlay = rust-overlay.overlays.default;
       }
