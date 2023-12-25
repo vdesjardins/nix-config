@@ -54,6 +54,7 @@ in {
       swayidle
       shotman
       udiskie
+      ydotool
 
       (makeDesktopItem {
         name = "reboot";

@@ -43,6 +43,7 @@ in {
       playerctl
       scrot
       slock
+      xdotool
       xsel
       xclip
       xorg.xmodmap

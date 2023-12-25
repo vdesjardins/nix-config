@@ -42,6 +42,7 @@
 
       ../programs/imv
       ../programs/i3status-rust
+      ../programs/rofi-rbw
 
       # i3
       ../roles/win/i3
