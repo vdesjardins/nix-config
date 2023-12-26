@@ -6,11 +6,15 @@
   programs.firefox = {
     enable = true;
 
-    package = pkgs.firefox.override {
-      nativeMessagingHosts = with pkgs; [
-        tridactyl-native
-      ];
-    };
+    package =
+      if pkgs.stdenv.isDarwin
+      then null # unable to compile on M1. Relying on brew for now
+      else
+        pkgs.firefox.override {
+          nativeMessagingHosts = with pkgs; [
+            tridactyl-native
+          ];
+        };
 
     profiles = {
       default = {

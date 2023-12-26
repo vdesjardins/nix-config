@@ -35,10 +35,10 @@
       ../roles/security
       ../roles/utils
       ../services/yubikey-agent
+      ../programs/firefox
     ]
     ++ lib.optionals (wm == "i3") [
       ../services/spotifyd
-      ../programs/firefox
       ../programs/zathura
 
       ../programs/imv
