@@ -2356,6 +2356,7 @@
         "tree-sitter-grammars-rust": "tree-sitter-grammars-rust",
         "tree-sitter-grammars-sql": "tree-sitter-grammars-sql",
         "tree-sitter-grammars-toml": "tree-sitter-grammars-toml",
+        "tree-sitter-grammars-vim": "tree-sitter-grammars-vim",
         "tree-sitter-grammars-yaml": "tree-sitter-grammars-yaml",
         "tree-sitter-grammars-zig": "tree-sitter-grammars-zig",
         "unstable": "unstable",
@@ -2837,6 +2838,22 @@
       "original": {
         "owner": "tree-sitter",
         "repo": "tree-sitter-toml",
+        "type": "github"
+      }
+    },
+    "tree-sitter-grammars-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696081895,
+        "narHash": "sha256-14lkrGZ5JpbPvb5Pm2UzLodhO1IEz5rBETTU0RZDFc4=",
+        "owner": "neovim",
+        "repo": "tree-sitter-vim",
+        "rev": "32c76f150347c1cd044e90b8e2bc73c00677fa55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "tree-sitter-vim",
         "type": "github"
       }
     },

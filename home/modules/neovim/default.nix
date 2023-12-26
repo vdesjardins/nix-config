@@ -109,7 +109,7 @@ in {
           enable bash language support
         '';
       };
-      viml = mkOption {
+      vim = mkOption {
         type = types.bool;
         default = false;
         description = ''

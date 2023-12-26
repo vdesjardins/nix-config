@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.viml = true;
+  programs.myNeovim.lang.vim = true;
 }

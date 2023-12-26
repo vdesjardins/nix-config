@@ -79,6 +79,8 @@
     jq-lsp.flake = false;
 
     # tree-sitter grammars
+    tree-sitter-grammars-vim.url = "github:neovim/tree-sitter-vim";
+    tree-sitter-grammars-vim.flake = false;
     tree-sitter-grammars-bash.url = "github:tree-sitter/tree-sitter-bash";
     tree-sitter-grammars-bash.flake = false;
     tree-sitter-grammars-cpp.url = "github:tree-sitter/tree-sitter-cpp";

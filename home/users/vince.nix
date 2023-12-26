@@ -24,6 +24,7 @@
       ../roles/dev/regex
       ../roles/dev/rust
       ../roles/dev/terraform
+      ../roles/dev/vimscript
       ../roles/dev/yaml
       ../roles/dev/zig
       ../roles/ops/aws
