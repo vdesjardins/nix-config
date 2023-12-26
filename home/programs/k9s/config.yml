@@ -1,0 +1,6 @@
+k9s:
+  shellPod:
+    image: busybox:1.35.0
+    namespace: kube-system
+    tty: true
+
