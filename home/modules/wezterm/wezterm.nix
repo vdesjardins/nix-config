@@ -1,4 +1,5 @@
 {
+  pkgs,
   key_leader ? "`",
   mods_leader ? "",
   homeDirectory,
@@ -199,7 +200,7 @@ lua
         action = act({
           SplitVertical = {
             domain = "CurrentPaneDomain",
-            args = { "bash", "-c", "wezterm show-keys | less -I" },
+            args = { "bash", "-c", "${pkgs.wezterm}/bin/wezterm show-keys | less -I" },
           },
         }),
       },

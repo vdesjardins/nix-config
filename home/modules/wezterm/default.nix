@@ -41,6 +41,7 @@ in {
           then ./wezterm-tmue.nix
           else ./wezterm.nix
         ) {
+          inherit pkgs;
           inherit (cfg) font;
           inherit (config.home) homeDirectory;
         };
