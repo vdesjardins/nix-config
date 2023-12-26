@@ -62,6 +62,7 @@
         settings = {
           "browser.ctrlTab.sortByRecentlyUsed" = true;
           "layout.css.prefers-color-scheme.content-override" = 0;
+          "browser.startup.page" = 3;
         };
 
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
