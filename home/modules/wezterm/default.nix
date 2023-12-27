@@ -48,5 +48,7 @@ in {
 
       colorSchemes = builtins.fromTOML (builtins.readFile "${src}/${file}");
     };
+
+    xdg.configFile."wezterm/my-config".source = ./my-config;
   };
 }
