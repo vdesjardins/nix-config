@@ -2,6 +2,7 @@
   imports = [
     ../../../programs/k9s
     ../../../programs/kubectl
+    ../../../programs/kubie
     ../../../programs/istioctl
     ../../../programs/stern
   ];
