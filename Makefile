@@ -24,12 +24,6 @@ hm/vince-mac:
 	export NIXPKGS_ALLOW_BROKEN=1
 	nix build ./#vince-mac --impure && ./result/activate
 
-.PHONY: hm/bt-mac
-## hm/bt-mac: build and activate vince system
-hm/bt-mac:
-	export NIXPKGS_ALLOW_BROKEN=1
-	nix build ./#hm-bt-mac --impure && ./result/activate
-
 .PHONY: hm/inf10906
 ## hm/inf10906: build and activate inf10906 system
 hm/inf10906:
