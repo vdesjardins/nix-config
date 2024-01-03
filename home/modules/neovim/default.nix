@@ -111,7 +111,7 @@ in {
       };
       vim = mkOption {
         type = types.bool;
-        default = false;
+        default = true;
         description = ''
           enable vimscript language support
         '';

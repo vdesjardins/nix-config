@@ -25,6 +25,7 @@
     ../roles/dev/rust
     ../roles/dev/terraform
     ../roles/dev/make
+    ../roles/dev/vimscript
     ../roles/dev/yaml
     ../roles/ops/aws
     ../roles/ops/gcloud
