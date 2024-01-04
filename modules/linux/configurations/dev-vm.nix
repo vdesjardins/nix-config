@@ -8,8 +8,9 @@
   ../../shared.nix
   ../hardware/vm-aarch64.nix
   ../shared
-  ../shared/xorg.nix
   ../shared/vm-kernel.nix
+  ../shared/xorg.nix
+  ../shared/pipewire.nix
   {
     imports = [
       ../modules/vmware-guest.nix

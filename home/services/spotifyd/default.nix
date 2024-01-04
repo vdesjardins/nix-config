@@ -11,7 +11,7 @@
       global = {
         username = "vdesjardins";
         password_cmd = "passage services/spotify";
-        device = "default:CARD=Generic";
+        device = "pipewire";
         device_type = "computer";
       };
     };
