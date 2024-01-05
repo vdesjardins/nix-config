@@ -418,9 +418,10 @@ in
     end)
 
     wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, _max_width)
+      local title = " " .. tab.tab_index .. " " .. tab.active_pane.title .. " "
       if tab.is_active then
         return {
-            { Text = " " .. tab.active_pane.title .. " " },
+            { Text = title },
         }
       end
 
@@ -428,12 +429,12 @@ in
         if pane.has_unseen_output then
           return {
               { Background = { Color = "turquoise" } },
-              { Text = " " .. tab.active_pane.title .. " " },
+              { Text = title },
           }
         end
       end
 
-      return tab.active_pane.title
+      return title
     end)
 
     return config
