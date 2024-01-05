@@ -418,7 +418,7 @@ in
     end)
 
     wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, _max_width)
-      local title = " " .. tab.tab_index .. " " .. tab.active_pane.title .. " "
+      local title = " " .. tab.tab_index+1 .. " " .. tab.active_pane.title .. " "
       if tab.is_active then
         return {
             { Text = title },
