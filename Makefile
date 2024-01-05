@@ -8,24 +8,29 @@ EXPERIMENTAL_FEATURES = nix-command flakes ca-derivations
 flake-update:
 	nix flake lock --update-input
 
+.PHONY: hm/current
+## hm/current: build and activate current user
+hm/current:
+	nix build ./#$$USER && ./result/activate
+
 .PHONY: hm/vincent_desjardins
-## hm/vincent_desjardins: build and activate vincent_desjardins system
+## hm/vincent_desjardins: build and activate vincent_desjardins user
 hm/vincent_desjardins:
 	nix build ./#vincent_desjardins && ./result/activate
 
 .PHONY: hm/vince
-## hm/vince: build and activate vince system
+## hm/vince: build and activate vince user
 hm/vince:
 	nix build ./#vince && ./result/activate
 
 .PHONY: hm/vince-mac
-## hm/vince-mac: build and activate vince system
+## hm/vince-mac: build and activate vince user
 hm/vince-mac:
 	export NIXPKGS_ALLOW_BROKEN=1
 	nix build ./#vince-mac --impure && ./result/activate
 
 .PHONY: hm/inf10906
-## hm/inf10906: build and activate inf10906 system
+## hm/inf10906: build and activate inf10906 user
 hm/inf10906:
 	nix build ./#inf10906 && ./result/activate
 
