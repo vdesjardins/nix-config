@@ -24,6 +24,8 @@
         pw = "pr view --web";
         pv = "pr view -c";
         pu = "pr view --json url";
+        pd = "pr diff";
+        rv = "repo view --web";
       };
     };
 
