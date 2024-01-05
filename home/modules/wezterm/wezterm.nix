@@ -48,7 +48,7 @@ in
 
       exit_behavior = "Close",
 
-      leader = { key = "${key_leader}", mods = "${mods_leader}" },
+      leader = { key = "${key_leader}", mods = "${mods_leader}", timeout_milliseconds = 2000 },
 
       keys = {
         { key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
