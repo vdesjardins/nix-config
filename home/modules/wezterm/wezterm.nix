@@ -427,7 +427,7 @@ in
       for _, pane in ipairs(tab.panes) do
         if pane.has_unseen_output then
           return {
-              { Background = { Color = "yellow" } },
+              { Background = { Color = "turquoise" } },
               { Text = " " .. tab.active_pane.title .. " " },
           }
         end
