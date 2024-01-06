@@ -10,13 +10,11 @@ in {
   programs.rofi = {
     enable = true;
     inherit terminal;
-    theme = "Arc-Dark";
-    pass.enable = true;
+    theme = ./theme.rasi;
+
     plugins = with pkgs; [
       rofi-calc
       rofi-menugen
-      rofi-pass
-      rofi-systemd
       rofi-emoji
       rofi-file-browser
     ];
@@ -35,7 +33,7 @@ in {
       drun-show-actions = true;
       markup-rows = true;
       matching = "fuzzy";
-      modi = "drun,ssh,run,window,combi";
+      modi = "drun,ssh,run,window,combi,calc,emoji,keys,filebrowser,file-browser-extended";
       no-lazy-grab = true;
       only-match = true;
       padding = "8";
@@ -51,6 +49,8 @@ in {
   };
 
   home.packages = with pkgs; [
+    rofi-systemd
+    rofimoji
     (makeDesktopItem {
       name = "Rofi-calc";
       desktopName = "Rofi: Calculator";
@@ -68,7 +68,13 @@ in {
       name = "Rofi-emojis";
       desktopName = "Rofi: emoji";
       icon = "face-smile";
-      exec = "rofi -show emoji";
+      exec = "rofimoji";
+    })
+    (makeDesktopItem {
+      name = "Rofi-systemd";
+      desktopName = "Rofi: systemd";
+      icon = "service";
+      exec = "rofi-systemd";
     })
   ];
 }
