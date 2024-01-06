@@ -8,8 +8,9 @@
   ../../shared.nix
   ../hardware/vm-aarch64.nix
   ../shared
-  ../shared/vm-kernel.nix
-  ../shared/xorg.nix
+  ../shared/vm.nix
+  ../shared/greetd.nix
+  # ../shared/xorg.nix
   ../shared/pipewire.nix
   {
     imports = [
