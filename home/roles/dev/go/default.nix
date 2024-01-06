@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.go = true;
+  programs.nvim.lang.go = true;
 
   home.packages = with pkgs; [
     delve

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.rego = true;
+  programs.nvim.lang.rego = true;
 
   home.packages = with pkgs; [
     conftest

@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.gotmpl = true;
+  programs.nvim.lang.gotmpl = true;
 }

@@ -2,6 +2,8 @@
   imports = [
     ../../../services/window-manager/sway
     ../../../programs/swaylock
-    ../../../programs/wofi
+    ../../../programs/rofi
   ];
+
+  programs.rofi.package = pkgs.rofi-wayland;
 }

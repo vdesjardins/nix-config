@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  services.window-manager.myI3 = {
+  services.window-manager.i3 = {
     enable = true;
   };
 }

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.cue = true;
+  programs.nvim.lang.cue = true;
 
   home.packages = with pkgs; [
     cue

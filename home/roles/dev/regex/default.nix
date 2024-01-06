@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.regex = true;
+  programs.nvim.lang.regex = true;
 }

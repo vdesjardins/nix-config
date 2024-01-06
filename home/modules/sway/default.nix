@@ -6,10 +6,10 @@
   ...
 }:
 with lib; let
-  cfg = config.services.window-manager.mySway;
+  cfg = config.services.window-manager.sway;
 in {
-  options.services.window-manager.mySway = {
-    enable = mkEnableOption "mySway";
+  options.services.window-manager.sway = {
+    enable = mkEnableOption "sway";
     font = mkOption {
       type = types.str;
     };
@@ -23,7 +23,7 @@ in {
   ];
 
   config = lib.mkIf cfg.enable {
-    wayland.windowManager.mySway = {
+    wayland.windowManager.sway = {
       enable = true;
       inherit (cfg) font;
     };
@@ -44,8 +44,6 @@ in {
 
     home.packages = with pkgs; [
       alsa-utils
-      wl-clipboard
-      wtype
       arandr
       grim
       pulseaudio
@@ -54,6 +52,12 @@ in {
       swayidle
       shotman
       udiskie
+      wev # event viewer
+      wl-clipboard
+      wlr-randr
+      wtype
+      xdg-utils
+      xwayland
       ydotool
 
       (makeDesktopItem {

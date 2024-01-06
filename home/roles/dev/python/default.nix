@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.python = true;
+  programs.nvim.lang.python = true;
 
   home.packages = with pkgs; [poetry];
 }

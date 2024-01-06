@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.myNeovim.lang.bash = true;
+  programs.nvim.lang.bash = true;
 
   home.packages = with pkgs; [
     bash

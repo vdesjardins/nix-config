@@ -4,7 +4,7 @@
     ../../../programs/nix-index
   ];
 
-  programs.myNeovim.lang.nix = true;
+  programs.nvim.lang.nix = true;
 
   home.packages = with pkgs; [
     nixpkgs-fmt

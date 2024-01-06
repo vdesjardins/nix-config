@@ -1,4 +1,5 @@
-let
+{lib, ...}:
+with lib; let
   font = "Monaspace Radon";
 in {
   home.sessionVariables = {
@@ -12,7 +13,7 @@ in {
   home.stateVersion = "23.11";
 
   # font
-  programs.myWezterm.font = font;
+  programs.wezterm.font = font;
   programs.alacritty.settings.font = {
     normal.family = font;
     bold.family = font;
@@ -21,15 +22,14 @@ in {
   };
 
   # tools
-  programs.zathura.options.font = "${font} 10";
+  programs.zathura.options.font = "${font} 12";
   programs.imv.settings.options.overlay_font = "${font}:12";
+  programs.rofi.font = "pango:${font} 12";
 
   # i3
-  programs.rofi.font = "pango:${font} 10";
-  services.window-manager.myI3.font = font;
+  services.window-manager.i3.font = font;
 
   # Sway
   programs.swaylock.settings.font = font;
-  programs.myWofi.font = font;
-  services.window-manager.mySway.font = font;
+  services.window-manager.sway.font = font;
 }

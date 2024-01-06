@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.programs.myNeovim;
+  cfg = config.programs.nvim;
 in {
-  options.programs.myNeovim = {
+  options.programs.nvim = {
     enable = mkEnableOption "My own neovim module";
 
     package = mkOption {

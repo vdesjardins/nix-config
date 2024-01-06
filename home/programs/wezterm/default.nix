@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.myWezterm = {
+  programs.wezterm = {
     enable = true;
   };
 }

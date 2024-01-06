@@ -31,10 +31,9 @@ with lib; let
   ws9 = "9";
   ws10 = "10";
 
-  cfg = config.wayland.windowManager.mySway;
+  cfg = config.wayland.windowManager.sway;
 in {
-  options.wayland.windowManager.mySway = {
-    enable = mkEnableOption "mySway";
+  options.wayland.windowManager.sway = {
     font = mkOption {
       type = types.str;
     };
@@ -42,8 +41,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     wayland.windowManager.sway = {
-      enable = true;
-
       config = {
         modifier = mod;
 
@@ -63,9 +60,9 @@ in {
             drag = "enabled";
             dwt = "enabled";
             middle_emulation = "enabled";
-            pointer_accel = 0.8;
+            pointer_accel = "0.8";
             scroll_method = "two_finger";
-            scroll_factor = 1.5;
+            scroll_factor = "1.5";
             tap = "enabled";
           };
         };
@@ -83,7 +80,7 @@ in {
 
         workspaceAutoBackAndForth = true;
 
-        menu = "wofi -show drun";
+        menu = "rofi -show drun";
 
         focus = {
           followMouse = true;
@@ -223,26 +220,26 @@ in {
           "${mod}+Ctrl+p" = "exec --no-startup-id shotman --capture output --copy";
 
           # clipboard
-          "${mod}+Shift+c" = ''exec "wofi 'clipboard:greenclip print' --show clipboard"'';
+          "${mod}+Shift+c" = ''exec "${pkgs.cliphist}/bin/cliphist list | rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | wl-copy"'';
 
           # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner Gaps.
           # Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
           # If you also press Shift with these keys, the change will be global for all workspaces.
           "${mod}+Shift+g" = "mode \"${modeGaps}\"";
 
-          # Wofi window switcher
-          "${mod}+Shift+d" = "exec wofi --show window";
+          # rofi window switcher
+          "${mod}+Shift+d" = "exec rofi -show window";
 
-          # Wofi combi switcher
-          "${mod}+Shift+o" = "exec wofi --show combi";
+          # rofi combi switcher
+          "${mod}+Shift+o" = "exec rofi -show combi";
 
           # Launch Browser
           "${mod}+b" = "exec firefox";
 
           # rename current workspace
-          "${mod}+comma" = "exec echo \"\" | wofi --dmenu -p 'New workspace name' | xargs -r swaymsg rename workspace to";
+          "${mod}+comma" = "exec echo \"\" | rofi -dmenu -p 'New workspace name' | xargs -r swaymsg rename workspace to";
           # rename current window
-          "${mod}+period" = "exec echo \"\" | wofi --dmenu -p 'New window name' | xargs -r swaymsg rename window to";
+          "${mod}+period" = "exec echo \"\" | rofi -dmenu -p 'New window name' | xargs -r swaymsg rename window to";
           # kill app
           "${mod}+Shift+q" = "kill";
 
@@ -250,7 +247,7 @@ in {
           "${mod}+x" = "shmlog toggle";
 
           # quick shortcut help
-          "${mod}+Shift+question" = "exec --no-startup-id swaycheatsheet-win";
+          "${mod}+Shift+slash" = "exec --no-startup-id swaycheatsheet-win";
         };
 
         modes = lib.mkOptionDefault {

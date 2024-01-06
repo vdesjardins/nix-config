@@ -31,10 +31,9 @@ with lib; let
   ws9 = "9";
   ws10 = "10";
 
-  cfg = config.xsession.windowManager.myI3;
+  cfg = config.xsession.windowManager.i3;
 in {
-  options.xsession.windowManager.myI3 = {
-    enable = mkEnableOption "myI3";
+  options.xsession.windowManager.i3 = {
     font = mkOption {
       type = types.str;
     };
@@ -98,7 +97,6 @@ in {
       '';
 
       windowManager.i3 = {
-        enable = true;
         package = pkgs.i3-gaps;
 
         config = {

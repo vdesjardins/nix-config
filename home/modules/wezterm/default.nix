@@ -14,10 +14,9 @@ with lib; let
   };
   file = "extras/wezterm/tokyonight_storm.toml";
 
-  cfg = config.programs.myWezterm;
+  cfg = config.programs.wezterm;
 in {
-  options.programs.myWezterm = {
-    enable = mkEnableOption "myWeztern";
+  options.programs.wezterm = {
     font = mkOption {
       type = types.str;
     };
@@ -29,8 +28,6 @@ in {
 
   config = mkIf cfg.enable {
     programs.wezterm = {
-      enable = true;
-
       package = pkg_wezterm;
 
       enableZshIntegration = true;

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.myNeovim = {
+  programs.nvim = {
     enable = true;
     package = pkgs.neovim-nightly;
   };

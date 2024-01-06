@@ -1,5 +1,7 @@
 {pkgs, ...}: {
-  services.window-manager.mySway = {
+  services.window-manager.sway = {
     enable = true;
   };
+
+  services.cliphist.enable = true;
 }

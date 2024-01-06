@@ -6,10 +6,10 @@
   ...
 }:
 with lib; let
-  cfg = config.services.window-manager.myI3;
+  cfg = config.services.window-manager.i3;
 in {
-  options.services.window-manager.myI3 = {
-    enable = mkEnableOption "myI3";
+  options.services.window-manager.i3 = {
+    enable = mkEnableOption "i3";
     font = mkOption {
       type = types.str;
     };
@@ -21,8 +21,8 @@ in {
   ];
 
   config = lib.mkIf cfg.enable {
-    xsession.windowManager.myI3.enable = true;
-    xsession.windowManager.myI3.font = cfg.font;
+    xsession.windowManager.i3.enable = true;
+    xsession.windowManager.i3.font = cfg.font;
 
     services.dunst = {
       enable = true;

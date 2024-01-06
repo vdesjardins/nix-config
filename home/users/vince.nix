@@ -46,9 +46,9 @@
       ../programs/rofi-rbw
 
       # i3
-      ../roles/win/i3
+      # ../roles/win/i3
 
       # Sway
-      # ../roles/win/sway
+      ../roles/win/sway
     ];
 }
