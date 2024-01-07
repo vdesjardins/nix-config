@@ -275,7 +275,7 @@ in {
             "${mod}+Shift+question" = "exec --no-startup-id i3cheatsheet-win";
           };
 
-          modes = lib.mkOptionDefault {
+          modes = {
             "${modeGaps}" = {
               i = "mode \"${modeGapInner}\"";
               o = "mode \"${modeGapsOuter}\"";
@@ -302,6 +302,20 @@ in {
               "Shift+plus" = "gaps outer all plus 5";
               "Shift+minus" = "gaps outer all minus 5";
               "Shift+0" = "gaps outer all set 0";
+
+              Return = "mode default";
+              Escape = "mode default";
+            };
+
+            "resize" = {
+              "h" = "resize shrink width 20 px or 20 ppt";
+              "j" = "resize grow height 20 px or 20 ppt";
+              "k" = "resize shrink height 20 px or 20 ppt";
+              "l" = "resize grow width 20 px or 20 ppt";
+              "Shift+h" = "resize shrink width 5 px or 5 ppt";
+              "Shift+j" = "resize grow height 5 px or 5 ppt";
+              "Shift+k" = "resize shrink height 5 px or 5 ppt";
+              "Shift+l" = "resize grow width 5 px or 5 ppt";
 
               Return = "mode default";
               Escape = "mode default";
