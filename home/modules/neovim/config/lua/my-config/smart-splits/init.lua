@@ -1,4 +1,6 @@
-require("smart-splits").setup({}) -- recommended mappings
+require("smart-splits").setup({
+    disable_multiplexer_nav_when_zoomed = false,
+}) -- recommended mappings
 
 local wk = require("which-key")
 
