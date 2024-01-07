@@ -1,9 +1,10 @@
 {
   home-manager,
   nix-index-database,
-  pkgs,
   pkgsConfig,
   utils,
+  nixpkgs,
+  ...
 }:
 home-manager.lib.homeManagerConfiguration {
   pkgs = import nixpkgs {

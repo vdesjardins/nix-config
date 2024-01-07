@@ -3,15 +3,12 @@
   inputs,
   lib,
   pkgsConfig,
-  nixpkgs,
 }:
 with lib; let
-  findFiles =
-    filter (name: builtins.match "^default.nix$" name == null)
-    (attrNames (builtins.readDir ./.));
+  findFiles = attrNames (builtins.readDir ./darwin);
   decl = f:
-    import ./${f} {
-      inherit darwin inputs nixpkgs pkgsConfig;
+    import ./darwin/${f} {
+      inherit darwin inputs pkgsConfig;
     };
   configs = builtins.listToAttrs (map (f: {
       name = builtins.replaceStrings [".nix"] [""] f;

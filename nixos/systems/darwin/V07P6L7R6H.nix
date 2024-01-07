@@ -11,7 +11,7 @@ in
     system = "aarch64-darwin";
     inherit inputs;
     modules = [
-      ../modules/darwin/shared
+      ../../modules/darwin/shared
       {
         homebrew.casks = [
           "Rectangle"
@@ -30,7 +30,7 @@ in
         networking.hostName = hostname;
 
         imports = [
-          (../modules/darwin/users + "/${username}.nix")
+          (../../modules/darwin/users + "/${username}.nix")
         ];
       }
       {users.knownUsers = [username];}

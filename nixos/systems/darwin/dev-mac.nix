@@ -12,7 +12,7 @@ in
     system = "aarch64-darwin";
     inherit inputs;
     modules = [
-      ../modules/darwin/shared
+      ../../modules/darwin/shared
       {
         homebrew.casks = [
           "Rectangle"
@@ -31,12 +31,12 @@ in
           "vmware-fusion"
         ];
       }
-      (import ../modules/darwin/services/spotifyd {device_name = hostname;})
+      (import ../../modules/darwin/services/spotifyd {device_name = hostname;})
       {
         networking.hostName = hostname;
 
         imports = [
-          (../modules/darwin/users + "/${username}.nix")
+          (../../modules/darwin/users + "/${username}.nix")
         ];
       }
       {users.knownUsers = [username];}

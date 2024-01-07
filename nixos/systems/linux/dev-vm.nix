@@ -9,7 +9,7 @@ in
     inherit system;
 
     modules =
-      import ../modules/linux/configurations/dev-vm.nix {inherit pkgsConfig;}
+      import ../../modules/linux/configurations/dev-vm.nix {inherit pkgsConfig;}
       ++ [
         {
           _module.args = {

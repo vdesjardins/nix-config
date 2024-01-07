@@ -405,26 +405,31 @@
       // comma.overlays;
   in
     {
-      darwinConfigurations.bootstrap-x86_64 = darwin.lib.darwinSystem {
-        system = utils.lib.system.x86_64-darwin;
-        inherit inputs;
-        modules = [
-          {nixpkgs = pkgsConfig;}
-          ./nixos/modules/darwin/bootstrap.nix
-        ];
-      };
+      darwinConfigurations =
+        {
+          bootstrap-x86_64 = darwin.lib.darwinSystem {
+            system = utils.lib.system.x86_64-darwin;
+            inherit inputs;
+            modules = [
+              {nixpkgs = pkgsConfig;}
+              ./nixos/modules/darwin/bootstrap.nix
+            ];
+          };
+          bootstrap-aarch = darwin.lib.darwinSystem {
+            system = utils.lib.system.aarch64-darwin;
+            inherit inputs;
+            modules = [
+              {nixpkgs = pkgsConfig;}
+              ./nixos/modules/darwin/bootstrap.nix
+            ];
+          };
+        }
+        // import ./nixos/systems/darwin.nix {
+          inherit lib darwin inputs pkgsConfig;
+        };
 
-      darwinConfigurations.bootstrap-aarch = darwin.lib.darwinSystem {
-        system = utils.lib.system.aarch64-darwin;
-        inherit inputs;
-        modules = [
-          {nixpkgs = pkgsConfig;}
-          ./nixos/modules/darwin/bootstrap.nix
-        ];
-      };
-
-      nixosConfigurations = import ./nixos/systems {
-        inherit lib darwin inputs nixpkgs pkgsConfig;
+      nixosConfigurations = import ./nixos/systems/linux.nix {
+        inherit lib inputs nixpkgs pkgsConfig;
       };
 
       homeConfigurations = import ./home/config {

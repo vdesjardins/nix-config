@@ -16,8 +16,8 @@ hm/apply: hm/generate
 .PHONY: config/apply
 ## config/apply: build and activate current system
 config/apply: config/genrate
-	if [[ "$(uname -o)" == "Darwin" ]] then
-		./result/sw/bin/darwin-rebuild switch --flake .#$$(uname --nodename)
+	if [[ "$$(uname -o)" == "Darwin" ]] then
+		darwin-rebuild switch --flake .#$$(uname --nodename)
 	else
 		sudo nixos-rebuild switch --flake .#$$(uname --nodename)
 	fi
@@ -30,8 +30,8 @@ hm/generate:
 .PHONY: config/genrate
 ## config/genrate: build current system
 config/genrate:
-	if [[ "$(uname -o)" == "Darwin" ]] then
-		./result/sw/bin/darwin-rebuild build --flake .#$$(uname --nodename)
+	if [[ "$$(uname -o)" == "Darwin" ]] then
+		darwin-rebuild build --flake .#$$(uname --nodename)
 	else
 		sudo nixos-rebuild build --flake .#$$(uname --nodename)
 	fi
