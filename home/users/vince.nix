@@ -3,52 +3,40 @@
     [
       ./common.nix
 
-      ../programs/alacritty
-      ../programs/hammerspoon
-      ../programs/ssh
-      ../programs/wezterm
-      ../programs/gpg
-      ../roles/dev/bash
-      ../roles/dev/cue
-      ../roles/dev/debugging
-      ../roles/dev/go
-      ../roles/dev/go-template
-      ../roles/dev/js
-      ../roles/dev/json
-      ../roles/dev/jq
-      ../roles/dev/lua
-      ../roles/dev/make
-      ../roles/dev/markdown
-      ../roles/dev/nix
-      ../roles/dev/python
-      ../roles/dev/regex
-      ../roles/dev/rust
-      ../roles/dev/terraform
-      ../roles/dev/vimscript
-      ../roles/dev/yaml
-      ../roles/dev/zig
-      ../roles/ops/aws
-      ../roles/ops/container
-      ../roles/ops/k8s
-      ../roles/ops/networking
-      ../roles/ops/virtualization
-      ../roles/security
-      ../roles/utils
-      ../services/yubikey-agent
-      ../programs/firefox
+      ../roles/win/darwin.nix
+      ../roles/dev/bash.nix
+      ../roles/dev/cue.nix
+      ../roles/dev/debugging.nix
+      ../roles/dev/go.nix
+      ../roles/dev/go-template.nix
+      ../roles/dev/js.nix
+      ../roles/dev/json.nix
+      ../roles/dev/jq.nix
+      ../roles/dev/lua.nix
+      ../roles/dev/make.nix
+      ../roles/dev/markdown.nix
+      ../roles/dev/nix.nix
+      ../roles/dev/python.nix
+      ../roles/dev/regex.nix
+      ../roles/dev/rust.nix
+      ../roles/dev/terraform.nix
+      ../roles/dev/vimscript.nix
+      ../roles/dev/yaml.nix
+      ../roles/dev/zig.nix
+      ../roles/ops/aws.nix
+      ../roles/ops/container.nix
+      ../roles/ops/k8s.nix
+      ../roles/ops/networking.nix
+      ../roles/ops/virtualization.nix
+      ../roles/security.nix
+      ../roles/utils.nix
+      ../roles/win/browsers.nix
     ]
     ++ lib.optionals (wm == "i3") [
-      ../services/spotifyd
-      ../programs/zathura
-
-      ../programs/imv
-      ../programs/i3status-rust
-      ../programs/rofi-rbw
-
-      # i3
-      # ../roles/win/i3
-
-      # Sway
-      ../roles/win/sway
+      ../roles/multimedia.nix
+      ../roles/win/viewers.nix
+      ../roles/win/status.nix
+      ../roles/win/security.nix
+      ../roles/win/sway.nix
     ];
 }

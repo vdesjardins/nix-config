@@ -12,6 +12,7 @@ in {
     enable = mkEnableOption "sway";
     font = mkOption {
       type = types.str;
+      default = "";
     };
   };
 
@@ -22,7 +23,7 @@ in {
     # ./swayidle
   ];
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     wayland.windowManager.sway = {
       enable = true;
       inherit (cfg) font;

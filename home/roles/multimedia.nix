@@ -1,0 +1,3 @@
+{...}: {
+  services.spotifyd.enable = true;
+}

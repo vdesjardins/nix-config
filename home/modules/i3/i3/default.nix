@@ -36,6 +36,7 @@ in {
   options.xsession.windowManager.i3 = {
     font = mkOption {
       type = types.str;
+      default = "";
     };
   };
 

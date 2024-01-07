@@ -1,0 +1,3 @@
+{...}: {
+  programs.vault.enable = true;
+}

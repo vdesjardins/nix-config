@@ -410,7 +410,7 @@
         inherit inputs;
         modules = [
           {nixpkgs = pkgsConfig;}
-          ./modules/darwin/bootstrap.nix
+          ./nixos/modules/darwin/bootstrap.nix
         ];
       };
 
@@ -419,63 +419,19 @@
         inherit inputs;
         modules = [
           {nixpkgs = pkgsConfig;}
-          ./modules/darwin/bootstrap.nix
+          ./nixos/modules/darwin/bootstrap.nix
         ];
       };
 
-      darwinConfigurations.work-mac = import ./modules/darwin/systems/work-mac.nix {
-        inherit darwin inputs pkgsConfig;
+      nixosConfigurations = import ./nixos/systems {
+        inherit lib darwin inputs nixpkgs pkgsConfig;
       };
-      work-mac = self.darwinConfigurations.work-mac.system;
 
-      darwinConfigurations.dev-mac = import ./modules/darwin/systems/dev-mac.nix {
-        inherit darwin inputs pkgsConfig;
+      homeConfigurations = import ./home/config {
+        inherit pkgsConfig home-manager nix-index-database nixpkgs utils lib;
       };
-      dev-mac = self.darwinConfigurations.dev-mac.system;
 
-      nixosConfigurations.dev-vm = import ./modules/linux/systems/dev-vm.nix {
-        inherit pkgsConfig;
-        pkgs = nixpkgs;
-      };
-      dev-vm = self.nixosConfigurations.dev-vm.config.system.build.toplevel;
-
-      homeConfigurations.vincent_desjardins = import ./home/config/vincent_desjardins.nix {
-        inherit home-manager nix-index-database;
-        pkgs = import nixpkgs {
-          system = utils.lib.system.x86_64-linux;
-          inherit (pkgsConfig) config overlays;
-        };
-      };
-      vincent_desjardins = self.homeConfigurations.vincent_desjardins.activationPackage;
-
-      homeConfigurations.inf10906 = import ./home/config/inf10906.nix {
-        inherit home-manager nix-index-database;
-        pkgs = import nixpkgs {
-          system = utils.lib.system.aarch64-darwin;
-          inherit (pkgsConfig) config overlays;
-        };
-      };
-      inf10906 = self.homeConfigurations.inf10906.activationPackage;
-
-      homeConfigurations.vince = import ./home/config/vince.nix {
-        inherit home-manager nix-index-database;
-        pkgs = import nixpkgs {
-          system = utils.lib.system.aarch64-linux;
-          inherit (pkgsConfig) config overlays;
-        };
-      };
-      vince = self.homeConfigurations.vince.activationPackage;
-
-      homeConfigurations.vince-mac = import ./home/config/vince-mac.nix {
-        inherit home-manager nix-index-database;
-        pkgs = import nixpkgs {
-          system = utils.lib.system.aarch64-darwin;
-          inherit (pkgsConfig) config overlays;
-        };
-      };
-      vince-mac = self.homeConfigurations.vince-mac.activationPackage;
-
-      os-images.vmware.dev-vm = import ./modules/linux/vm-images/dev-vm.nix {
+      os-images.vmware.dev-vm = import ./nixos/modules/linux/vm-images/dev-vm.nix {
         inherit pkgsConfig nixos-generators;
         pkgs = nixpkgs;
       };

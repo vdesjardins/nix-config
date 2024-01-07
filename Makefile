@@ -8,54 +8,33 @@ EXPERIMENTAL_FEATURES = nix-command flakes ca-derivations
 flake-update:
 	nix flake lock --update-input
 
-.PHONY: hm/current
-## hm/current: build and activate current user
-hm/current:
-	nix build ./#$$USER && ./result/activate
+.PHONY: hm/apply
+## hm/apply: build and activate current user
+hm/apply: hm/generate
+	./result/activate
 
-.PHONY: hm/vincent_desjardins
-## hm/vincent_desjardins: build and activate vincent_desjardins user
-hm/vincent_desjardins:
-	nix build ./#vincent_desjardins && ./result/activate
+.PHONY: config/apply
+## config/apply: build and activate current system
+config/apply: config/genrate
+	if [[ "$(uname -o)" == "Darwin" ]] then
+		./result/sw/bin/darwin-rebuild switch --flake .#$$(uname --nodename)
+	else
+		sudo nixos-rebuild switch --flake .#$$(uname --nodename)
+	fi
 
-.PHONY: hm/vince
-## hm/vince: build and activate vince user
-hm/vince:
-	nix build ./#vince && ./result/activate
+.PHONY: hm/generate
+## hm/generate: build current user
+hm/generate:
+	nix build ./#homeConfigurations.$$(uname --nodename)/$$USER.activationPackage
 
-.PHONY: hm/vince-mac
-## hm/vince-mac: build and activate vince user
-hm/vince-mac:
-	export NIXPKGS_ALLOW_BROKEN=1
-	nix build ./#vince-mac --impure && ./result/activate
-
-.PHONY: hm/inf10906
-## hm/inf10906: build and activate inf10906 user
-hm/inf10906:
-	nix build ./#inf10906 && ./result/activate
-
-.PHONY: config/work-mac
-## config/work-mac: build and activate work-mac system
-config/work-mac:
-	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#work-mac
-	./result/sw/bin/darwin-rebuild switch --flake .#work-mac
-
-.PHONY: config/dev-mac
-## config/dev-mac: build and activate dev-mac system
-config/dev-mac:
-	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#dev-mac
-	./result/sw/bin/darwin-rebuild switch --flake .#dev-mac
-
-.PHONY: config/bt-mac
-## config/bt-mac: build and activate bt-mac system
-config/bt-mac:
-	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#bt-mac
-	./result/sw/bin/darwin-rebuild switch --flake .#bt-mac
-
-.PHONY: config/dev-vm
-## config/dev-vm: build and activate dev-vm system
-config/dev-vm:
-	sudo nixos-rebuild switch --flake .#dev-vm
+.PHONY: config/genrate
+## config/genrate: build current system
+config/genrate:
+	if [[ "$(uname -o)" == "Darwin" ]] then
+		./result/sw/bin/darwin-rebuild build --flake .#$$(uname --nodename)
+	else
+		sudo nixos-rebuild build --flake .#$$(uname --nodename)
+	fi
 
 .PHONY: hm/install
 ## hm/install: install nix for home-manager

@@ -1,0 +1,3 @@
+{...}: {
+  programs.gcloud.enable = true;
+}

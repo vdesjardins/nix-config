@@ -1,40 +1,37 @@
 {...}: {lib, ...}: {
   imports = [
     ./common.nix
-    ./mac.nix
+    ./darwin.nix
 
-    ../programs/vault
-    ../programs/hammerspoon
-    ../programs/ssh
-    ../programs/wezterm
-    ../programs/gpg
-    ../roles/dev/bash
-    ../roles/dev/cue
-    ../roles/dev/debugging
-    ../roles/dev/go
-    ../roles/dev/go-template
-    ../roles/dev/js
-    ../roles/dev/json
-    ../roles/dev/lua
-    ../roles/dev/make
-    ../roles/dev/markdown
-    ../roles/dev/nix
-    ../roles/dev/python
-    ../roles/dev/regex
-    ../roles/dev/rego
-    ../roles/dev/rust
-    ../roles/dev/terraform
-    ../roles/dev/make
-    ../roles/dev/vimscript
-    ../roles/dev/yaml
-    ../roles/ops/aws
-    ../roles/ops/gcloud
-    ../roles/ops/container
-    ../roles/ops/k8s
-    ../roles/ops/networking
-    ../roles/ops/virtualization
-    ../roles/security
-    ../roles/utils
-    ../services/yubikey-agent
+    ../roles/win/darwin.nix
+    ../roles/security.nix
+    ../roles/dev/bash.nix
+    ../roles/dev/cue.nix
+    ../roles/dev/debugging.nix
+    ../roles/dev/go.nix
+    ../roles/dev/go-template.nix
+    ../roles/dev/js.nix
+    ../roles/dev/json.nix
+    ../roles/dev/lua.nix
+    ../roles/dev/make.nix
+    ../roles/dev/markdown.nix
+    ../roles/dev/nix.nix
+    ../roles/dev/python.nix
+    ../roles/dev/regex.nix
+    ../roles/dev/rego.nix
+    ../roles/dev/rust.nix
+    ../roles/dev/terraform.nix
+    ../roles/dev/make.nix
+    ../roles/dev/vimscript.nix
+    ../roles/dev/yaml.nix
+    ../roles/ops/aws.nix
+    ../roles/ops/gcloud.nix
+    ../roles/ops/container.nix
+    ../roles/ops/k8s.nix
+    ../roles/ops/networking.nix
+    ../roles/ops/vault.nix
+    ../roles/ops/virtualization.nix
+    ../roles/security.nix
+    ../roles/utils.nix
   ];
 }

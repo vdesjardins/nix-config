@@ -1,0 +1,3 @@
+{
+  programs.hammerspoon.enable = true;
+}
