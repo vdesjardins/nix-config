@@ -285,9 +285,6 @@ in {
 
         startup = [
           {
-            command = "mako";
-          }
-          {
             command = "udiskie";
           }
           {

@@ -17,17 +17,11 @@ in {
 
   imports = [
     ./i3
-    ./dunst
   ];
 
   config = lib.mkIf cfg.enable {
     xsession.windowManager.i3.enable = true;
     xsession.windowManager.i3.font = cfg.font;
-
-    services.dunst = {
-      enable = true;
-      settings.global.font = cfg.font;
-    };
 
     programs.zsh.shellGlobalAliases = {
       CL = "|& xclip -r -selection c";

@@ -5,6 +5,7 @@
 
   programs.rofi.package = pkgs.rofi-wayland;
   programs.i3status-rust.keyboardCommand = "sway";
+  services.dunst.enable = true;
 
   services.cliphist.enable = true;
 }

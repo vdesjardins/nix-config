@@ -25,6 +25,7 @@ in {
   programs.zathura.options.font = "${font} 12";
   programs.imv.settings.options.overlay_font = "${font}:12";
   programs.rofi.font = "pango:${font} 12";
+  services.dunst.settings.global.font = font;
 
   # i3
   services.window-manager.i3.font = font;

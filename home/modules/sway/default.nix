@@ -18,7 +18,6 @@ in {
 
   imports = [
     ./sway
-    ./mako
     ./swaynag
     # ./swayidle
   ];
@@ -27,11 +26,6 @@ in {
     wayland.windowManager.sway = {
       enable = true;
       inherit (cfg) font;
-    };
-
-    services.mako = {
-      enable = true;
-      font = "${cfg.font} 10";
     };
 
     wayland.windowManager.sway.swaynag = {
