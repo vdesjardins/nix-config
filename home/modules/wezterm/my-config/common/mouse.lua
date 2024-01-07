@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-local mouse = {}
+local M = {}
 
 local function make_mouse_binding(dir, streak, button, mods, action)
     return {
@@ -10,7 +10,7 @@ local function make_mouse_binding(dir, streak, button, mods, action)
     }
 end
 
-function mouse.configure(config)
+function M.configure(config)
     config.mouse_bindings = {
         {
             event = { Down = { streak = 3, button = "Left" } },
@@ -66,4 +66,4 @@ function mouse.configure(config)
     return config
 end
 
-return mouse
+return M
