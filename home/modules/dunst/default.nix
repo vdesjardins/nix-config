@@ -19,8 +19,8 @@
         width = 300;
         height = 300;
 
-        origin = "top-right";
-        offset = "10x50";
+        origin = "bottom-right";
+        offset = "10x30";
         scale = 0;
         notification_limit = 0;
         progress_bar = "true";
@@ -40,8 +40,7 @@
         horizontal_padding = 10;
         text_icon_padding = 0;
 
-        frame_width = 0;
-        frame_color = "#282a36";
+        frame_width = 2;
         separator_color = "frame";
 
         sort = "yes";
@@ -107,23 +106,25 @@
         per_monitor_dpi = "false";
       };
 
+      # from https://github.com/folke/tokyonight.nvim/blob/main/extras/dunst/tokyonight_storm.dunstrc
       urgency_low = {
-        background = "#282a36";
-        foreground = "#6272a4";
+        background = "#1f2335";
+        foreground = "#c0caf5";
+        frame_color = "#c0caf5";
         timeout = 10;
       };
-      ### Geometry ###
 
       urgency_normal = {
-        background = "#282a36";
-        foreground = "#bd93f9";
+        background = "#24283b";
+        foreground = "#c0caf5";
+        frame_color = "#c0caf5";
         timeout = 10;
       };
 
       urgency_critical = {
-        background = "#ff5555";
-        foreground = "#f8f8f2";
-        frame_color = "#ff5555";
+        background = "#292e42";
+        foreground = "#db4b4b";
+        frame_color = "#db4b4b";
         timeout = 0;
       };
     };
