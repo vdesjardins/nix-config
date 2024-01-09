@@ -12,6 +12,8 @@ in {
 
   home.stateVersion = "23.11";
 
+  home.enableNixpkgsReleaseCheck = false;
+
   # font
   programs.wezterm.font = font;
   programs.alacritty.settings.font = {

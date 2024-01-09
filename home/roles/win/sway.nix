@@ -7,5 +7,7 @@
   programs.i3status-rust.keyboardCommand = "sway";
   services.dunst.enable = true;
 
+  xdg.portal.enable = true;
+
   services.cliphist.enable = true;
 }
