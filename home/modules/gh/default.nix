@@ -31,6 +31,7 @@ with lib; {
           pu = "pr view --json url";
           pd = "pr diff";
           rv = "repo view --web";
+          ru = "gh repo view --json url -q .url";
         };
       };
 
@@ -53,6 +54,7 @@ with lib; {
     # TODO: support linux
     programs.zsh.shellAliases = {
       ghpc = "gh pu | jq '.url' -Mr | pbcopy";
+      ghrc = "gh ru | pbcopy";
     };
   };
 }
