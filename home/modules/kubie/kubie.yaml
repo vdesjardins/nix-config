@@ -1,0 +1,7 @@
+prompt:
+  disable: true
+  hooks:
+    start_ctx: >
+      echo -en "\033]1; `kubie info ctx`|`kubie info ns` \007"
+    stop_ctx: >
+      echo -en "\033]1; $SHELL \007"

@@ -14,9 +14,12 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [kubie];
 
+    home.file.".kube/kubie.yaml".source =
+      ./kubie.yaml;
+
     programs.zsh.shellAliases = {
       kbn = "kubie ns";
-      kbc = "kubie ctx";
+      kbx = "kubie ctx";
       kbe = "kubie exec";
     };
   };
