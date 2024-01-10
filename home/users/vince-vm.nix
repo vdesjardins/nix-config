@@ -1,10 +1,8 @@
 {lib, ...}: {
   imports = [
     ../roles/common.nix
-    ../roles/darwin.nix
 
     ../roles/win/darwin.nix
-    ../roles/security.nix
     ../roles/dev/bash.nix
     ../roles/dev/cue.nix
     ../roles/dev/debugging.nix
@@ -12,27 +10,32 @@
     ../roles/dev/go-template.nix
     ../roles/dev/js.nix
     ../roles/dev/json.nix
+    ../roles/dev/jq.nix
     ../roles/dev/lua.nix
     ../roles/dev/make.nix
     ../roles/dev/markdown.nix
     ../roles/dev/nix.nix
     ../roles/dev/python.nix
     ../roles/dev/regex.nix
-    ../roles/dev/rego.nix
     ../roles/dev/rust.nix
     ../roles/dev/terraform.nix
-    ../roles/dev/make.nix
     ../roles/dev/vimscript.nix
     ../roles/dev/yaml.nix
+    ../roles/dev/zig.nix
     ../roles/ops/aws.nix
-    ../roles/ops/gcloud.nix
     ../roles/ops/container.nix
     ../roles/ops/k8s.nix
     ../roles/ops/networking.nix
-    ../roles/ops/vault.nix
     ../roles/ops/virtualization.nix
     ../roles/security.nix
-    ../roles/nixpkgs.nix
     ../roles/utils.nix
+    ../roles/nixpkgs.nix
+    ../roles/win/browsers.nix
+
+    ../roles/multimedia.nix
+    ../roles/win/viewers.nix
+    ../roles/win/status.nix
+    ../roles/win/security.nix
+    ../roles/win/sway.nix
   ];
 }

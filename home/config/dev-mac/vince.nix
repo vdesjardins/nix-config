@@ -13,7 +13,7 @@ home-manager.lib.homeManagerConfiguration {
   };
   modules = [
     ../../modules
-    (import ../../users/vince.nix {})
+    ../../users/vince-mac.nix
     {
       home = {
         username = "vince";

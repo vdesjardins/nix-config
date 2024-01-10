@@ -12,7 +12,7 @@ home-manager.lib.homeManagerConfiguration {
   };
   modules = [
     ../../modules
-    (import ../../users/vince.nix {wm = "i3";})
+    ../../users/vince-vm.nix
     {
       home = {
         username = "vince";
