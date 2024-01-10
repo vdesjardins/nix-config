@@ -31,7 +31,7 @@ with lib; {
           pu = "pr view --json url";
           pd = "pr diff";
           rv = "repo view --web";
-          ru = "gh repo view --json url -q .url";
+          ru = "repo view --json url -q .url";
         };
       };
 
