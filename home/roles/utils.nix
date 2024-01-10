@@ -23,6 +23,7 @@
   programs.zellij.enable = true;
   programs.zoxide.enable = true;
   programs.zsh.enable = true;
+  programs.timewarrior.enable = true;
 
   programs.nvim = {
     enable = true;
@@ -75,7 +76,6 @@
       spotify-tui
       taskwarrior
       taskwarrior-tui
-      timewarrior
       tealdeer # faster tldr
       thefuck # fix commands
       tokei # displays code statistics
