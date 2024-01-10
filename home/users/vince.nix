@@ -30,6 +30,7 @@
       ../roles/ops/virtualization.nix
       ../roles/security.nix
       ../roles/utils.nix
+      ../roles/nixpkgs.nix
       ../roles/win/browsers.nix
     ]
     ++ lib.optionals (wm == "i3") [

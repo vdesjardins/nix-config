@@ -32,6 +32,7 @@
     ../roles/ops/vault.nix
     ../roles/ops/virtualization.nix
     ../roles/security.nix
+    ../roles/nixpkgs.nix
     ../roles/utils.nix
   ];
 }
