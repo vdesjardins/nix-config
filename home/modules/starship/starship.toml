@@ -12,9 +12,13 @@ symbol = "⛵"
 style = "bold blue"
 disabled = false
 
-[kubernetes.context_aliases]
-"gke_.*_(?P<cluster>[\\w-]+)" = "GKE:$cluster"
-"arn:.*:cluster/(?P<cluster>[\\w-]+)" = "EKS:$cluster"
+[[kubernetes.contexts]]
+context_pattern = "gke_.*_(?P<cluster>[\\w-]+)"
+context_alias = "GKE:$cluster"
+
+[[kubernetes.contexts]]
+context_pattern = "arn:.*:cluster/(?P<cluster>[\\w-]+)"
+context_alias = "EKS:$cluster"
 
 [terraform]
 format = "via [$symbol$version]($style) "
