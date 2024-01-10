@@ -18,9 +18,7 @@
   programs.openssl.enable = true;
   programs.ripgrep.enable = true;
   programs.starship.enable = true;
-  programs.tmux.enable = true;
   programs.yazi.enable = true;
-  programs.zellij.enable = true;
   programs.zoxide.enable = true;
   programs.zsh.enable = true;
   programs.timewarrior.enable = true;
