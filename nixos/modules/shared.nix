@@ -38,9 +38,7 @@
 
   time.timeZone = "America/New_York";
 
-  fonts.fonts = with pkgs; [
-    (unstable.nerdfonts.override {fonts = ["JetBrainsMono"];})
-    unstable.monaspace
-    noto-fonts-color-emoji
+  fonts.packages = with pkgs; [
+    (unstable.nerdfonts.override {fonts = ["JetBrainsMono" "Monaspace"];})
   ];
 }
