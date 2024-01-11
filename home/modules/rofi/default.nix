@@ -5,12 +5,16 @@
   ...
 }:
 with lib; let
-  terminal = "${pkgs.unstable.wezterm}/bin/wezterm";
+  terminal = "${config.programs.wezterm.package}/bin/wezterm";
+  cfg = config.programs.rofi;
 in {
-  config = mkIf config.programs.rofi.enable {
+  config = mkIf cfg.enable {
     programs.rofi = {
       inherit terminal;
-      theme = ./theme.rasi;
+
+      theme = import ./theme.nix {
+        inherit (config.lib.formats.rasi) mkLiteral;
+      };
 
       plugins = with pkgs; [
         rofi-calc

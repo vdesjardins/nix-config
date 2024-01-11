@@ -1,6 +1,6 @@
 {lib, ...}:
 with lib; let
-  font = "Monaspace Radon";
+  font = "MonaspiceRn Nerd Font";
 in {
   home.sessionVariables = {
     EDITOR = "vi";
@@ -9,8 +9,6 @@ in {
   programs.home-manager.enable = true;
 
   xdg.enable = true;
-
-  home.stateVersion = "23.11";
 
   home.enableNixpkgsReleaseCheck = false;
 
@@ -26,7 +24,7 @@ in {
   # tools
   programs.zathura.options.font = "${font} 12";
   programs.imv.settings.options.overlay_font = "${font}:12";
-  programs.rofi.font = "pango:${font} 12";
+  programs.rofi.font = "${font} 12";
   services.dunst.settings.global.font = font;
 
   # i3
