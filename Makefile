@@ -13,9 +13,9 @@ flake-update:
 hm/apply: hm/generate
 	./result/activate
 
-.PHONY: config/apply
-## config/apply: build and activate current system
-config/apply: config/genrate
+.PHONY: host/apply
+## host/apply: build and activate current system
+host/apply: host/genrate
 	if [[ "$$(uname -o)" == "Darwin" ]] then
 		darwin-rebuild switch --flake .#$$(uname --nodename)
 	else
@@ -27,9 +27,9 @@ config/apply: config/genrate
 hm/generate:
 	nix build ./#homeConfigurations.$$(uname --nodename)/$$USER.activationPackage
 
-.PHONY: config/genrate
-## config/genrate: build current system
-config/genrate:
+.PHONY: host/genrate
+## host/genrate: build current system
+host/genrate:
 	if [[ "$$(uname -o)" == "Darwin" ]] then
 		darwin-rebuild build --flake .#$$(uname --nodename)
 	else
