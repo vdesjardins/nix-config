@@ -1,5 +1,18 @@
 # This file contains configuration that is shared across all hosts.
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  stdenv,
+  ...
+}: let
+  inherit (lib) mkIf mkMerge;
+  inherit (pkgs) stdenv;
+  fonts = with pkgs; [
+    (unstable.nerdfonts.override {fonts = ["JetBrainsMono" "Monaspace"];})
+    noto-fonts
+    noto-fonts-emoji
+  ];
+in {
   nix = {
     settings = {
       substituters = [
@@ -38,9 +51,12 @@
 
   time.timeZone = "America/New_York";
 
-  fonts.packages = with pkgs; [
-    (unstable.nerdfonts.override {fonts = ["JetBrainsMono" "Monaspace"];})
-    noto-fonts
-    noto-fonts-emoji
+  fonts = mkMerge [
+    (mkIf stdenv.isDarwin {
+      inherit fonts;
+    })
+    (mkIf stdenv.isLinux {
+      packages = fonts;
+    })
   ];
 }
