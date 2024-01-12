@@ -1,4 +1,4 @@
-_openTerminalPane = function(file)
+local openTerminalPane = function(file)
     local file_name = file
     if file_name == nil then
         file_name = vim.api.nvim_buf_get_name(0)
@@ -14,7 +14,8 @@ _openTerminalPane = function(file)
     vim.cmd("ToggleTerm dir=" .. file_path)
 end
 
-require("toggleterm").setup()
+local toggleterm = require("toggleterm")
+toggleterm.setup()
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
@@ -41,7 +42,7 @@ local lazygit = Terminal:new({
     end,
 })
 
-function _lazygit_toggle()
+local function lazygit_toggle()
     lazygit:toggle()
 end
 
@@ -54,11 +55,23 @@ wk.register({
 
 wk.register({
     b = {
-        T = { "<cmd>lua _openTerminalPane()<cr>", "terminal" },
+        T = { openTerminalPane, "terminal" },
     },
 }, { prefix = "<leader>" })
 wk.register({
     g = {
-        y = { "<cmd>lua _lazygit_toggle()<cr>", "lazygit" },
+        y = { lazygit_toggle, "lazygit" },
     },
 }, { prefix = "<leader>" })
+wk.register({
+    s = {
+        function()
+            local tsel = "visual_selection"
+            if vim.fn.mode():sub(1, 1) == "V" then
+                tsel = "visual_lines"
+            end
+            toggleterm.send_lines_to_terminal(tsel, true, { args = vim.v.count })
+        end,
+        "send-selection-terminal",
+    },
+}, { prefix = "<leader>", mode = "v" })
