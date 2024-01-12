@@ -221,7 +221,7 @@
     neovim-plugin-neodev-nvim.flake = false;
     neovim-plugin-which-key-nvim.url = "github:folke/which-key.nvim";
     neovim-plugin-which-key-nvim.flake = false;
-    neovim-plugin-trouble-nvim.url = "github:folke/lsp-trouble.nvim";
+    neovim-plugin-trouble-nvim.url = "github:folke/trouble.nvim";
     neovim-plugin-trouble-nvim.flake = false;
     neovim-plugin-flash-nvim.url = "github:folke/flash.nvim";
     neovim-plugin-flash-nvim.flake = false;

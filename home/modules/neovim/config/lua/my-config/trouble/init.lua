@@ -8,16 +8,16 @@ wk.register({
             name = "trouble",
             x = { "<cmd>LspTroubleToggle<cr>", "trouble" },
             w = {
-                "<cmd>LspTroubleToggle lsp_workspace_diagnostics<cr>",
+                "<cmd>TroubleToggle workspace_diagnostics<cr>",
                 "trouble-workspace-diagnostics",
             },
             d = {
-                "<cmd>LspTroubleToggle lsp_document_diagnostics<cr>",
+                "<cmd>TroubleToggle document_diagnostics<cr>",
                 "trouble-document-diagnostics",
             },
-            q = { "<cmd>LspTroubleToggle quickfix<cr>", "trouble-quickfix" },
-            l = { "<cmd>LspTroubleToggle loclist<cr>", "trouble-loclist" },
-            r = { "<cmd>LspTroubleToggle lsp_references<cr>", "trouble-references" },
+            q = { "<cmd>TroubleToggle quickfix<cr>", "trouble-quickfix" },
+            l = { "<cmd>TroubleToggle loclist<cr>", "trouble-loclist" },
+            r = { "<cmd>TroubleToggle lsp_references<cr>", "trouble-references" },
         },
     },
     r = {

@@ -1597,13 +1597,13 @@
         "lastModified": 1697626811,
         "narHash": "sha256-8nLghiueYOtWY7OGVxow9A2G/5lgt+Kt5D8q1xeJvVg=",
         "owner": "folke",
-        "repo": "lsp-trouble.nvim",
+        "repo": "trouble.nvim",
         "rev": "f1168feada93c0154ede4d1fe9183bf69bac54ea",
         "type": "github"
       },
       "original": {
         "owner": "folke",
-        "repo": "lsp-trouble.nvim",
+        "repo": "trouble.nvim",
         "type": "github"
       }
     },
