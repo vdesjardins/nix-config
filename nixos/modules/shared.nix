@@ -40,5 +40,7 @@
 
   fonts.packages = with pkgs; [
     (unstable.nerdfonts.override {fonts = ["JetBrainsMono" "Monaspace"];})
+    noto-fonts
+    noto-fonts-emoji
   ];
 }

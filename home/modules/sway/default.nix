@@ -41,6 +41,7 @@ in {
       alsa-utils
       arandr
       grim
+      papirus-icon-theme
       pulseaudio
       playerctl
       slurp

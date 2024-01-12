@@ -21,23 +21,46 @@ in {
         rofi-menugen
         rofi-emoji
         rofi-file-browser
+        rofi-power-menu
       ];
 
       extraConfig = {
         async-pre-read = "50";
         click-to-exit = true;
         combi-modi = "drun,ssh,run,window";
-        display-combi = "ALL";
-        display-drun = "APP";
-        display-run = "EXEC";
-        display-ssh = "SSH";
-        display-window = "WIN";
-        drun-display-format = "'  <b>{name}</b>  <small>{comment}</small>'";
+
+        display-combi = "⭐ All";
+        display-ssh = "🐡 SSH";
+
+        display-run = "   Exec ";
+        display-drun = "   Run ";
+        display-emoji = "   Emoji ";
+        display-window = " 﩯 Window ";
+        display-power-menu = "  Power Menu ";
+
+        drun-display-format = " <b>{name}</b>  <small>{comment}</small>";
+
         drun-match-fields = "name,exec,comment,categories,generic";
+
         drun-show-actions = true;
         markup-rows = true;
         matching = "fuzzy";
-        modi = "drun,ssh,run,window,combi,calc,emoji,keys,filebrowser,file-browser-extended";
+
+        modi = strings.concatStringsSep "," [
+          "calc"
+          "combi"
+          "drun"
+          "emoji"
+          "file-browser-extended"
+          "filebrowser"
+          "keys"
+          "run"
+          "ssh"
+          "window"
+          "powermenu:${meta.getExe pkgs.rofi-power-menu}"
+          "systemd:${meta.getExe pkgs.rofi-systemd}"
+        ];
+
         no-lazy-grab = true;
         only-match = true;
         padding = "8";
