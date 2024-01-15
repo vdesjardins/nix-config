@@ -1,5 +1,5 @@
 {...}: let
-  username = "vince";
+  username = "inf10906";
   hostname = "V07P6L7R6H";
 in {
   homebrew.casks = [
@@ -19,7 +19,7 @@ in {
 
   imports = [
     ../shared
-    (../../modules/darwin/users + "/${username}.nix")
+    (../users + "/${username}.nix")
   ];
 
   users.knownUsers = [username];
