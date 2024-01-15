@@ -8,8 +8,8 @@
     master.url = "github:nixos/nixpkgs/master";
 
     # System
-    darwin.url = "github:LnL7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -334,7 +334,7 @@
     comma,
     nixpkgs,
     home-manager,
-    darwin,
+    nix-darwin,
     master,
     neovim-nightly,
     nixos-generators,

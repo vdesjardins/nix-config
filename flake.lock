@@ -37,26 +37,6 @@
         "type": "github"
       }
     },
-    "darwin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1704277720,
-        "narHash": "sha256-meAKNgmh3goankLGWqqpw73pm9IvXjEENJloF0coskE=",
-        "owner": "LnL7",
-        "repo": "nix-darwin",
-        "rev": "0dd382b70c351f528561f71a0a7df82c9d2be9a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LnL7",
-        "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
     "eks-node-viewer": {
       "flake": false,
       "locked": {
@@ -2011,6 +1991,26 @@
         "type": "indirect"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1704277720,
+        "narHash": "sha256-meAKNgmh3goankLGWqqpw73pm9IvXjEENJloF0coskE=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "0dd382b70c351f528561f71a0a7df82c9d2be9a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -2220,7 +2220,6 @@
       "inputs": {
         "base16-fzf": "base16-fzf",
         "comma": "comma",
-        "darwin": "darwin",
         "eks-node-viewer": "eks-node-viewer",
         "hammerspoon-controlescape": "hammerspoon-controlescape",
         "hammerspoon-spoons": "hammerspoon-spoons",
@@ -2325,6 +2324,7 @@
         "neovim-plugin-vim-toggleterm": "neovim-plugin-vim-toggleterm",
         "neovim-plugin-which-key-nvim": "neovim-plugin-which-key-nvim",
         "nix": "nix",
+        "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_3",

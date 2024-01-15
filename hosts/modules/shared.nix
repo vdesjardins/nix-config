@@ -7,6 +7,8 @@
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (pkgs) stdenv;
+  inherit (stdenv) isDarwin isLinux;
+
   fonts = with pkgs; [
     (unstable.nerdfonts.override {fonts = ["JetBrainsMono" "Monaspace"];})
     noto-fonts
@@ -51,12 +53,5 @@ in {
 
   time.timeZone = "America/New_York";
 
-  fonts = mkMerge [
-    (mkIf stdenv.isDarwin {
-      inherit fonts;
-    })
-    (mkIf stdenv.isLinux {
-      packages = fonts;
-    })
-  ];
+  fonts.fonts = fonts;
 }
