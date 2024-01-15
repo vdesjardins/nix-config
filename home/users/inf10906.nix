@@ -1,4 +1,10 @@
 {lib, ...}: {
+  home = {
+    username = "inf10906";
+    homeDirectory = "/Users/inf10906";
+    stateVersion = "23.11";
+  };
+
   imports = [
     ../roles/common.nix
     ../roles/darwin.nix

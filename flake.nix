@@ -348,23 +348,15 @@
     ...
   } @ inputs: let
     inherit (builtins) listToAttrs attrValues attrNames readDir filter match;
-    inherit (nixpkgs) lib;
-    inherit (lib) removeSuffix;
+    inherit (lib) genAttrs removeSuffix;
+    inherit (utils.lib.system) aarch64-darwin x86_64-linux aarch64-linux;
 
     linux64BitSystems = [
-      "x86_64-linux"
-      "aarch64-linux"
+      x86_64-linux
+      aarch64-linux
     ];
 
-    pkgsConfig = {
-      overlays = attrValues overlays;
-      config = {
-        allowUnfree = true;
-        allowUnsupportedSystem = true;
-        allowBroken = true;
-        # contentAddressedByDefault = true;
-      };
-    };
+    forAllSupportedSystems = genAttrs supportedSystems.all;
 
     mkOverlays = dir:
       listToAttrs (
@@ -403,102 +395,96 @@
       }
       // (mkOverlays ./overlays)
       // comma.overlays;
-  in
-    {
-      darwinConfigurations =
-        {
-          bootstrap-x86_64 = darwin.lib.darwinSystem {
-            system = utils.lib.system.x86_64-darwin;
-            inherit inputs;
-            modules = [
-              {nixpkgs = pkgsConfig;}
-              ./nixos/modules/darwin/bootstrap.nix
-            ];
-          };
-          bootstrap-aarch = darwin.lib.darwinSystem {
-            system = utils.lib.system.aarch64-darwin;
-            inherit inputs;
-            modules = [
-              {nixpkgs = pkgsConfig;}
-              ./nixos/modules/darwin/bootstrap.nix
-            ];
-          };
-        }
-        // import ./nixos/systems/darwin.nix {
-          inherit lib darwin inputs pkgsConfig;
-        };
 
-      nixosConfigurations = import ./nixos/systems/linux.nix {
-        inherit lib inputs nixpkgs pkgsConfig;
-      };
-
-      homeConfigurations = import ./home/config {
-        inherit pkgsConfig home-manager nix-index-database nixpkgs utils lib;
-      };
-
-      os-images.vmware.dev-vm = import ./nixos/modules/linux/vm-images/dev-vm.nix {
-        inherit pkgsConfig nixos-generators;
-        pkgs = nixpkgs;
-      };
-
-      packages =
-        listToAttrs
-        (builtins.map
-          (system: {
-            name = system;
-            value = {
-              "dockerImage/vm-builder" = import ./modules/linux/containers/vm-builder.nix {
-                inherit nixpkgs nix;
-                inherit system;
-                crossSystem = system;
-              };
-            };
-          })
-          linux64BitSystems)
-        // {
-          aarch64-darwin."dockerImage/vm-builder" = import ./modules/linux/containers/vm-builder.nix {
-            inherit nixpkgs nix;
-            system = utils.lib.system.aarch64-darwin;
-            crossSystem = utils.lib.system.aarch64-linux;
-          };
-        };
-
-      inherit overlays;
-    }
-    // utils.lib.eachDefaultSystem (
-      system: {
-        legacyPackages = import nixpkgs {
-          inherit system;
-          inherit (pkgsConfig) config overlays;
-        };
-        checks = {
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              alejandra.enable = true;
-              # deadnix.enable = true;
-              statix.enable = true;
-              stylua.enable = true;
-              shellcheck.enable = true;
-              shfmt.enable = true;
-              commitizen.enable = true;
-            };
-          };
-        };
-        devShell = nixpkgs.legacyPackages.${system}.mkShell {
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
-        };
-      }
-    )
-    // {
-      unstable = utils.lib.eachDefaultSystem (
-        system: {
-          legacyPackages = import unstable {
-            inherit system;
-            inherit (pkgsConfig) config;
-            overlays = attrValues (mkOverlays ./overlays/unstable);
-          };
-        }
-      );
+    supportedSystems = rec {
+      darwin = [aarch64-darwin];
+      linux = [x86_64-linux aarch64-linux];
+      all = darwin ++ linux;
     };
+
+    mkPkgs = pkgs: extraOverlays: system:
+      import pkgs {
+        inherit system;
+        overlays = extraOverlays ++ (attrValues self.overlays);
+        config = {
+          allowUnfree = true;
+          allowUnsupportedSystem = true;
+          allowBroken = true;
+          # contentAddressedByDefault = true;
+        };
+      };
+
+    pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs (attrValues overlays));
+    pkgsUnstable = genAttrs supportedSystems.all (mkPkgs unstable []);
+
+    lib = nixpkgs.lib.extend (final: prev: {
+      my = import ./lib {
+        inherit pkgs inputs;
+        lib = final;
+      };
+    });
+  in {
+    lib = lib.my;
+
+    darwinConfigurations = import ./hosts/systems/darwin.nix {
+      inherit lib;
+    };
+
+    nixosConfigurations = import ./hosts/systems/linux.nix {
+      inherit lib;
+    };
+
+    homeConfigurations = import ./home/config {
+      inherit lib;
+    };
+
+    os-images.vmware.dev-vm = import ./hosts/modules/linux/vm-images/dev-vm.nix {
+      inherit pkgs nixos-generators;
+    };
+
+    packages =
+      listToAttrs
+      (builtins.map
+        (system: {
+          name = system;
+          value = {
+            "dockerImage/vm-builder" = import ./hosts/modules/linux/containers/vm-builder.nix {
+              inherit nixpkgs nix;
+              inherit system;
+              crossSystem = system;
+            };
+          };
+        })
+        linux64BitSystems)
+      // {
+        aarch64-darwin."dockerImage/vm-builder" = import ./hosts/modules/linux/containers/vm-builder.nix {
+          inherit nixpkgs nix;
+          system = utils.lib.system.aarch64-darwin;
+          crossSystem = utils.lib.system.aarch64-linux;
+        };
+      };
+
+    inherit overlays;
+
+    devShell = forAllSupportedSystems (system:
+      with pkgs.${system};
+        mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+        });
+
+    checks = forAllSupportedSystems (system:
+      with pkgs.${system}; {
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            alejandra.enable = true;
+            statix.enable = true;
+            stylua.enable = true;
+            shellcheck.enable = true;
+            shfmt.enable = true;
+            commitizen.enable = true;
+          };
+        };
+      });
+  };
 }

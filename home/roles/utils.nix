@@ -1,6 +1,11 @@
-{pkgs, ...}: {
-  programs.alacritty.enable = true;
+{
+  config,
+  pkgs,
+  ...
+}: {
+  # config.modules.desktop.terminal.wezterm.enable = true;
   programs.wezterm.enable = true;
+  programs.alacritty.enable = true;
   programs.any-nix-shell.enable = true;
   programs.bash.enable = true;
   programs.bat.enable = true;

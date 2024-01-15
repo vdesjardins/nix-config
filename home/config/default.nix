@@ -1,23 +1,7 @@
-{
-  home-manager,
-  lib,
-  nix-index-database,
-  nixpkgs,
-  pkgsConfig,
-  utils,
-  ...
-}:
-with lib; let
-  dirs = attrNames (filterAttrs (n: v: v == "directory") (builtins.readDir ./.));
-  files = flatten (map (dir: (map (f: "${dir}/${f}") (attrNames (filterAttrs (n: v: v == "regular") (builtins.readDir ./${dir}))))) dirs);
-  decl = f:
-    import ./${f} {
-      inherit home-manager nix-index-database nixpkgs utils pkgsConfig;
-    };
-  configs = builtins.listToAttrs (map (f: {
-      name = builtins.replaceStrings [".nix"] [""] f;
-      value = decl f;
-    })
-    files);
-in
-  configs
+{lib, ...}: let
+  inherit (lib.my) mkHomeConfiguration;
+in {
+  "dev-vm/vince" = mkHomeConfiguration ../users/vince-vm.nix {system = "aarch64-linux";};
+  "dev-mac/vince" = mkHomeConfiguration ../users/vince-mac.nix {system = "aarch64-darwin";};
+  "V07P6L7R6H/inf10906" = mkHomeConfiguration ../users/inf10906.nix {system = "aarch64-darwin";};
+}
