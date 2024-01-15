@@ -53,5 +53,5 @@ in {
 
   time.timeZone = "America/New_York";
 
-  fonts.fonts = fonts;
+  fonts.packages = fonts;
 }
