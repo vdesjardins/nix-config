@@ -358,43 +358,37 @@
 
     forAllSupportedSystems = genAttrs supportedSystems.all;
 
-    mkOverlays = dir:
-      listToAttrs (
-        map
-        (
-          name: {
-            name = removeSuffix ".nix" name;
-            value = import (dir + "/${name}") inputs;
-          }
-        )
-        (
-          filter (name: match "^.+\.nix$" name != null)
-          (attrNames (readDir dir))
-        )
-      );
+    pkgsConfig = {
+      allowUnfree = true;
+      allowUnsupportedSystem = true;
+      allowBroken = true;
+      # contentAddressedByDefault = true;
+    };
 
-    overlays =
+    mkOverlays = path: self.lib.mapModulesRecursive path (o: import o inputs);
+    mkOverlays' = path: attrValues (mkOverlays path);
+    mkChildOverlays = name: final: _pref: {
+      ${name} = import inputs.${name} {
+        inherit (final) system;
+        config = pkgsConfig;
+        overlays = mkOverlays' ./overlays/${name};
+      };
+    };
+
+    myOverlays =
       {
-        unstable = final: _prev: {
-          unstable = import inputs.unstable {
-            inherit (final) system;
-            config.allowUnfree = true;
-            overlays = attrValues (mkOverlays ./overlays/unstable);
-          };
-        };
-        master = final: _prev: {
-          master = import inputs.master {
-            inherit (final) system;
-            config.allowUnfree = true;
-            overlays = attrValues (mkOverlays ./overlays/master);
-          };
-        };
+        unstable = mkChildOverlays "unstable";
+        master = mkChildOverlays "master";
+      }
+      // (mkOverlays ./overlays/nixpkgs);
+    extraOverlays =
+      {
         nur = nur.overlay;
         neovim-nightly = neovim-nightly.overlay;
         rust-overlay = rust-overlay.overlays.default;
       }
-      // (mkOverlays ./overlays)
       // comma.overlays;
+    allOverlays = extraOverlays // myOverlays;
 
     supportedSystems = rec {
       darwin = [aarch64-darwin];
@@ -405,17 +399,11 @@
     mkPkgs = pkgs: extraOverlays: system:
       import pkgs {
         inherit system;
-        overlays = extraOverlays ++ (attrValues self.overlays);
-        config = {
-          allowUnfree = true;
-          allowUnsupportedSystem = true;
-          allowBroken = true;
-          # contentAddressedByDefault = true;
-        };
+        overlays = extraOverlays ++ (attrValues myOverlays);
+        config = pkgsConfig;
       };
 
-    pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs (attrValues overlays));
-    pkgsUnstable = genAttrs supportedSystems.all (mkPkgs unstable []);
+    pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs (attrValues extraOverlays));
 
     lib = nixpkgs.lib.extend (final: prev: {
       my = import ./lib {
@@ -464,7 +452,10 @@
         };
       };
 
-    inherit overlays;
+    overlays = {
+      default = mkOverlays ./overlays/nixpkgs;
+      unstable = mkOverlays ./overlays/unstable;
+    };
 
     devShell = forAllSupportedSystems (system:
       with pkgs.${system};
