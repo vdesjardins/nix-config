@@ -347,8 +347,9 @@
     nix-index-database,
     ...
   } @ inputs: let
-    inherit (builtins) listToAttrs attrValues attrNames readDir filter match;
-    inherit (lib) genAttrs removeSuffix;
+    inherit (lib.attrsets) genAttrs listToAttrs attrValues attrNames;
+    inherit (builtins) readDir filter match;
+    inherit (lib.strings) removeSuffix;
     inherit (utils.lib.system) aarch64-darwin x86_64-linux aarch64-linux;
 
     linux64BitSystems = [
@@ -457,11 +458,12 @@
       unstable = mkOverlays ./overlays/unstable;
     };
 
-    devShell = forAllSupportedSystems (system:
-      with pkgs.${system};
-        mkShell {
+    devShells = forAllSupportedSystems (system:
+      with pkgs.${system}; {
+        default = mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;
-        });
+        };
+      });
 
     checks = forAllSupportedSystems (system:
       with pkgs.${system}; {
