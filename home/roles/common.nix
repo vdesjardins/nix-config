@@ -13,7 +13,7 @@ in {
   home.enableNixpkgsReleaseCheck = false;
 
   # font
-  programs.wezterm.font = font;
+  modules.desktop.terminal.wezterm.font = font;
   programs.alacritty.settings.font = {
     normal.family = font;
     bold.family = font;

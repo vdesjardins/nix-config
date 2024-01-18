@@ -3,8 +3,11 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib.modules) mkIf;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) bool str;
+
   pkg_wezterm = pkgs.unstable.wezterm;
   src = pkgs.fetchFromGitHub {
     owner = "folke";
@@ -14,20 +17,23 @@ with lib; let
   };
   file = "extras/wezterm/tokyonight_storm.toml";
 
-  cfg = config.programs.wezterm;
+  cfg = config.modules.desktop.terminal.wezterm;
 in {
-  options.programs.wezterm = {
+  options.modules.desktop.terminal.wezterm = {
+    enable = mkEnableOption "wezterm";
     font = mkOption {
-      type = types.str;
+      type = str;
     };
     useTmux = mkOption {
-      type = types.bool;
+      type = bool;
       default = false;
     };
   };
 
   config = mkIf cfg.enable {
     programs.wezterm = {
+      inherit (cfg) enable;
+
       package = pkg_wezterm;
 
       enableZshIntegration = true;
@@ -35,7 +41,7 @@ in {
       extraConfig =
         import (
           if cfg.useTmux
-          then ./wezterm-tmue.nix
+          then ./wezterm-tmux.nix
           else ./wezterm.nix
         ) {
           inherit pkgs;
