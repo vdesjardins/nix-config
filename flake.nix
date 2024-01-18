@@ -431,6 +431,8 @@
       inherit pkgs nixos-generators;
     };
 
+    hmModules = self.lib.mapModulesRecursive ./home/modules import;
+
     packages =
       listToAttrs
       (builtins.map
