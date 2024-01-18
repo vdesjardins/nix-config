@@ -4,7 +4,7 @@
   ...
 }: {
   modules.desktop.terminal.wezterm.enable = true;
-  programs.alacritty.enable = true;
+  modules.desktop.terminal.alacritty.enable = true;
   programs.any-nix-shell.enable = true;
   programs.bash.enable = true;
   programs.bat.enable = true;

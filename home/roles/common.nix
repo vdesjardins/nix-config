@@ -14,12 +14,7 @@ in {
 
   # font
   modules.desktop.terminal.wezterm.font = font;
-  programs.alacritty.settings.font = {
-    normal.family = font;
-    bold.family = font;
-    italic.family = font;
-    bold_italic.family = font;
-  };
+  modules.desktop.terminal.alacritty.font = font;
 
   # tools
   programs.zathura.options.font = "${font} 12";
