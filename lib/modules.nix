@@ -1,7 +1,9 @@
 {lib, ...}: let
-  inherit (builtins) pathExists readDir;
-  inherit (lib.attrsets) attrValues nameValuePair filterAttrs mapAttrs';
+  inherit (builtins) pathExists readDir isString toString;
+  inherit (lib.attrsets) collect nameValuePair filterAttrs mapAttrs';
   inherit (lib.strings) hasPrefix hasSuffix removeSuffix;
+  inherit (lib.trivial) id;
+  inherit (lib.lists) forEach;
 
   mapModulesRecursive = dir: fn:
     filterAttrs (n: v: v != null)
@@ -17,7 +19,10 @@
         then nameValuePair (removeSuffix ".nix" name) (fn path)
         else nameValuePair "" null) (readDir dir)
     );
-  mapModulesRecursive' = dir: fn: attrValues (mapModulesRecursive dir fn);
+  mapModulesRecursive' = dir: fn: (forEach
+    (collect isString
+      (mapModulesRecursive dir id))
+    fn);
 in {
   inherit mapModulesRecursive mapModulesRecursive';
 }
