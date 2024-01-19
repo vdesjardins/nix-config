@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.terraform.enable = true;
 
-  programs.nvim.lang.terraform = true;
+  modules.desktop.editors.neovim.lang.terraform = true;
 
   home.packages = with pkgs; [
     inframap

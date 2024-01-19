@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.nvim.lang.docker = true;
+  modules.desktop.editors.neovim.lang.docker = true;
 
   home.packages = with pkgs;
     [

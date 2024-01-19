@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  modules.desktop.terminal.wezterm.enable = true;
-  modules.desktop.terminal.alacritty.enable = true;
   programs.any-nix-shell.enable = true;
   programs.bash.enable = true;
   programs.bat.enable = true;
@@ -27,9 +25,15 @@
   programs.zsh.enable = true;
   programs.timewarrior.enable = true;
 
-  programs.nvim = {
-    enable = true;
-    package = pkgs.neovim-nightly;
+  modules = {
+    desktop = {
+      terminal.wezterm.enable = true;
+      terminal.alacritty.enable = true;
+      editors.neovim = {
+        enable = true;
+        package = pkgs.neovim-nightly;
+      };
+    };
   };
 
   home.packages = with pkgs;

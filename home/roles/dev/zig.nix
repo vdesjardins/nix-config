@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.nvim.lang.zig = true;
+  modules.desktop.editors.neovim.lang.zig = true;
 
   home.packages = with pkgs; [unstable.zig];
 }

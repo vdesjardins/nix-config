@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  programs.nvim.lang.vim = true;
+  modules.desktop.editors.neovim.lang.vim = true;
 }

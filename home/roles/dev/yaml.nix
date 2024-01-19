@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  programs.nvim.lang.yaml = true;
+  modules.desktop.editors.neovim.lang.yaml = true;
 
   home.packages = with pkgs; [
     yamllint

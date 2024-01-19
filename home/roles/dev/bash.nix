@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.nvim.lang.bash = true;
+  modules.desktop.editors.neovim.lang.bash = true;
 
   programs.bash.enable = true;
 

@@ -3,15 +3,22 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.programs.nvim;
+}: let
+  inherit (lib) mkIf;
+  inherit (builtins) pathExists;
+  inherit (lib.attrsets) attrNames getAttr hasAttr;
+  inherit (lib.options) mkEnableOption mkOption literalExpression;
+  inherit (lib.lists) concatLists filter flatten map;
+  inherit (lib.types) bool package str;
+  inherit (lib.strings) concatStringsSep;
+
+  cfg = config.modules.desktop.editors.neovim;
 in {
-  options.programs.nvim = {
-    enable = mkEnableOption "My own neovim module";
+  options.modules.desktop.editors.neovim = {
+    enable = mkEnableOption "neovim editor";
 
     package = mkOption {
-      type = types.package;
+      type = package;
       default = pkgs.neovim-unwrapped;
       defaultText = literalExpression "pkgs.neovim-unwrapped";
       description = "The package to use for the neovim binary.";
@@ -19,147 +26,147 @@ in {
 
     lang = {
       rust = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable rust language support
         '';
       };
       lua = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable lua language support
         '';
       };
       python = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable python language support
         '';
       };
       cue = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable cue language support
         '';
       };
       nix = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable nix language support
         '';
       };
       terraform = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable terraform language support
         '';
       };
       docker = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable docker language support
         '';
       };
       go = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable go language support
         '';
       };
       json = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable json language support
         '';
       };
       jq = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable jq language support
         '';
       };
       yaml = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable yaml language support
         '';
       };
       cpp = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable cpp language support
         '';
       };
       bash = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable bash language support
         '';
       };
       vim = mkOption {
-        type = types.bool;
+        type = bool;
         default = true;
         description = ''
           enable vimscript language support
         '';
       };
       query = mkOption {
-        type = types.bool;
+        type = bool;
         default = true;
         description = ''
           enable query parser support
         '';
       };
       zig = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable zig language support
         '';
       };
       gotmpl = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable go-template language support
         '';
       };
       make = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable make language support
         '';
       };
       markdown = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable markdown language support
         '';
       };
       rego = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable rego language support
         '';
       };
       regex = mkOption {
-        type = types.bool;
+        type = bool;
         default = false;
         description = ''
           enable regex language support
@@ -217,7 +224,7 @@ in {
             )
             (
               filter
-              (name: builtins.pathExists (./config/lua/my-lang + "/${name}"))
+              (name: pathExists (./config/lua/my-lang + "/${name}"))
               activeLanguages
             ));
 
@@ -229,7 +236,7 @@ in {
             )
             ((
                 filter
-                (name: builtins.pathExists (./config/lua/my-lang + "/${name}"))
+                (name: pathExists (./config/lua/my-lang + "/${name}"))
                 activeLanguages
               )
               ++ ["null-ls"]));

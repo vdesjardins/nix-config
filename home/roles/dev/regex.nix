@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  programs.nvim.lang.regex = true;
+  modules.desktop.editors.neovim.lang.regex = true;
 }

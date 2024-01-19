@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.nvim.lang.json = true;
+  modules.desktop.editors.neovim.lang.json = true;
 
   home.packages = with pkgs; [
     nodePackages.fixjson

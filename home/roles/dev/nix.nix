@@ -2,7 +2,7 @@
   # TODO: not working on aarch64
   programs.nix-index.enable = true;
 
-  programs.nvim.lang.nix = true;
+  modules.desktop.editors.neovim.lang.nix = true;
 
   home.packages = with pkgs; [
     nixpkgs-fmt
