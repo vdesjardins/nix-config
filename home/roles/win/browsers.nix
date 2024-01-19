@@ -1,3 +1,3 @@
 {
-  programs.firefox.enable = true;
+  modules.desktop.browsers.firefox.enable = true;
 }
