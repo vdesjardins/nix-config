@@ -10,7 +10,7 @@
   cfg = config.modules.shell.bash;
 in {
   options.modules.shell.bash = {
-    enable = mkEnableOption "any-nix-shell";
+    enable = mkEnableOption "bash";
   };
 
   config = mkIf cfg.enable {

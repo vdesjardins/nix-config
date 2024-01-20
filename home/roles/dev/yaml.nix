@@ -9,5 +9,5 @@
     yamllint
   ];
 
-  programs.yamllint.enable = true;
+  modules.dev.yamllint.enable = true;
 }

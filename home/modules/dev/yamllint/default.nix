@@ -1,12 +1,15 @@
 {
   config,
+  pkgs,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.programs.yamllint;
+}: let
+  inherit (lib) mkIf;
+  inherit (lib.options) mkEnableOption;
+
+  cfg = config.modules.dev.yamllint;
 in {
-  options.programs.yamllint = {
+  options.modules.dev.yamllint = {
     enable = mkEnableOption "yamllint";
   };
 
