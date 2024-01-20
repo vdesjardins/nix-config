@@ -35,6 +35,8 @@ with lib; let
 in {
   config = lib.mkIf cfg.enable {
     wayland.windowManager.sway = {
+      inherit (cfg) enable;
+
       config = {
         modifier = mod;
 

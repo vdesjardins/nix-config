@@ -92,6 +92,8 @@ in {
       '';
 
       windowManager.i3 = {
+        inherit (cfg) enable;
+
         package = pkgs.i3-gaps;
 
         config = {

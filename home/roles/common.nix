@@ -24,4 +24,5 @@ in {
   modules.desktop.window-managers.i3.font = font;
 
   modules.desktop.window-managers.sway.font = font;
+  modules.desktop.extensions.swaylock.font = font;
 }
