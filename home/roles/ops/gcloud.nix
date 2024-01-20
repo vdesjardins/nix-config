@@ -1,3 +1,3 @@
 {...}: {
-  programs.gcloud.enable = true;
+  modules.shell.tools.gcloud.enable = true;
 }

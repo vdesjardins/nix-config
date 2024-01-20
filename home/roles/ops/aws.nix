@@ -8,6 +8,6 @@
     ssm-session-manager-plugin
   ];
 
-  programs.awscli2.enable = true;
+  modules.shell.tools.awscli2.enable = true;
   programs.granted.enable = true;
 }

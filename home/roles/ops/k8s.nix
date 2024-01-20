@@ -1,9 +1,11 @@
 {pkgs, ...}: {
-  programs.k9s.enable = true;
-  programs.kubectl.enable = true;
-  programs.kubie.enable = true;
-  programs.istioctl.enable = true;
-  programs.stern.enable = true;
+  modules.shell.tools = {
+    k9s.enable = true;
+    istioctl.enable = true;
+    kubectl.enable = true;
+    kubie.enable = true;
+    stern.enable = true;
+  };
 
   home.packages = with pkgs;
     [

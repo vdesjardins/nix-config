@@ -1,13 +1,15 @@
 {pkgs, ...}: {
-  services.window-manager.sway.enable = true;
-  programs.swaylock.enable = true;
-  programs.rofi.enable = true;
+  modules.desktop.window-managers.sway.enable = true;
 
-  programs.rofi.package = pkgs.rofi-wayland;
-  programs.i3status-rust.keyboardCommand = "sway";
-  services.dunst.enable = true;
-
-  xdg.portal.enable = true;
+  modules.desktop.extensions = {
+    dunst.enable = true;
+    i3status-rust.enable = true;
+    i3status-rust.keyboardCommand = "sway";
+    rofi.enable = true;
+    rofi.package = pkgs.rofi-wayland;
+    swaylock.enable = true;
+    xdg-portal.enable = true;
+  };
 
   services.cliphist.enable = true;
 }

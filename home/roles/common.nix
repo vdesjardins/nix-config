@@ -16,16 +16,13 @@ in {
   modules.desktop.terminal.wezterm.font = font;
   modules.desktop.terminal.alacritty.font = font;
 
-  # tools
-  programs.zathura.options.font = "${font} 12";
-  programs.imv.settings.options.overlay_font = "${font}:12";
-  programs.rofi.font = "${font} 12";
-  services.dunst.settings.global.font = font;
+  modules.desktop.tools.zathura.font = "${font} 12";
+  modules.desktop.tools.imv.font = "${font}:12";
+  modules.desktop.extensions.rofi.font = "${font} 12";
+  modules.desktop.extensions.dunst.font = font;
 
-  # i3
-  services.window-manager.i3.font = font;
+  modules.desktop.window-managers.i3.font = font;
 
-  # Sway
-  programs.swaylock.settings.font = font;
-  services.window-manager.sway.font = font;
+  modules.desktop.extensions.swaylock.font = font;
+  modules.desktop.window-managers.sway.font = font;
 }

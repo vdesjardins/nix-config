@@ -3,36 +3,41 @@
   pkgs,
   ...
 }: {
-  programs.any-nix-shell.enable = true;
-  programs.bash.enable = true;
-  programs.bat.enable = true;
-  programs.broot.enable = true;
-  programs.direnv.enable = true;
-  programs.fd.enable = true;
-  programs.fzf.enable = true;
-  programs.gh.enable = true;
-  programs.git.enable = true;
-  programs.lazygit.enable = true;
-  programs.joshuto.enable = true;
-  programs.ls.enable = true;
-  programs.lsd.enable = true;
-  programs.ncspot.enable = true;
-  programs.openssl.enable = true;
-  programs.ripgrep.enable = true;
-  programs.starship.enable = true;
-  programs.yazi.enable = true;
-  programs.zoxide.enable = true;
-  programs.zsh.enable = true;
-  programs.timewarrior.enable = true;
+  programs = {
+    broot.enable = true;
+    fzf.enable = true;
+    zoxide.enable = true;
+  };
 
-  modules = {
-    desktop = {
-      terminal.wezterm.enable = true;
-      terminal.alacritty.enable = true;
-      editors.neovim = {
-        enable = true;
-        package = pkgs.neovim-nightly;
-      };
+  modules.shell = {
+    bash.enable = true;
+    zsh.enable = true;
+
+    tools = {
+      any-nix-shell.enable = true;
+      bat.enable = true;
+      direnv.enable = true;
+      fd.enable = true;
+      gh.enable = true;
+      git.enable = true;
+      joshuto.enable = true;
+      lazygit.enable = true;
+      ls.enable = true;
+      lsd.enable = true;
+      openssl.enable = true;
+      ripgrep.enable = true;
+      starship.enable = true;
+      timewarrior.enable = true;
+      yazi.enable = true;
+    };
+  };
+
+  modules.desktop = {
+    terminal.wezterm.enable = true;
+    terminal.alacritty.enable = true;
+    editors.neovim = {
+      enable = true;
+      package = pkgs.neovim-nightly;
     };
   };
 

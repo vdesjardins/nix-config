@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.terraform.enable = true;
+  modules.shell.tools.terraform.enable = true;
 
   modules.desktop.editors.neovim.lang.terraform = true;
 

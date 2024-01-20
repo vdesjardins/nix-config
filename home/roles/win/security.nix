@@ -1,3 +1,3 @@
 {
-  programs.rofi-rbw.enable = true;
+  modules.desktop.extensions.rofi-rbw.enable = true;
 }

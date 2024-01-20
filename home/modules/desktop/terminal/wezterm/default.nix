@@ -6,9 +6,8 @@
 }: let
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) bool str;
+  inherit (lib.types) bool package str;
 
-  pkg_wezterm = pkgs.unstable.wezterm;
   src = pkgs.fetchFromGitHub {
     owner = "folke";
     repo = "tokyonight.nvim"; # Bat uses sublime syntax for its themes
@@ -28,13 +27,17 @@ in {
       type = bool;
       default = false;
     };
+    package = mkOption {
+      type = package;
+      default = pkgs.unstable.wezterm;
+    };
   };
 
   config = mkIf cfg.enable {
     programs.wezterm = {
       inherit (cfg) enable;
 
-      package = pkg_wezterm;
+      inherit (cfg) package;
 
       enableZshIntegration = true;
 

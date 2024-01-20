@@ -1,3 +1,3 @@
 {
-  programs.hammerspoon.enable = true;
+  modules.darwin.hammerspoon.enable = true;
 }

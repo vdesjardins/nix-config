@@ -1,3 +1,3 @@
 {...}: {
-  programs.vault.enable = true;
+  modules.shell.tools.vault.enable = true;
 }
