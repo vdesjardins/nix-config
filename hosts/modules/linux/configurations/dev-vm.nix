@@ -6,15 +6,15 @@ in {
     ../../shared.nix
     ../hardware/vm-aarch64.nix
     ../shared
+    ../shared/desktop.nix
     ../shared/vm.nix
     ../shared/greetd.nix
     ../shared/pipewire.nix
-    ../modules/vmware-guest.nix
     (../users + "/${username}.nix")
+    {
+      system.stateVersion = "23.11";
+    }
   ];
-
-  # disable default module and because we need a custom one for aarch64
-  disabledModules = ["virtualisation/vmware-guest.nix"];
 
   networking.hostName = hostname;
   networking.interfaces.ens160.useDHCP = true;
