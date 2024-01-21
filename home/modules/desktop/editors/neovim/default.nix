@@ -7,7 +7,7 @@
   inherit (lib) mkIf;
   inherit (builtins) pathExists;
   inherit (lib.attrsets) attrNames getAttr hasAttr;
-  inherit (lib.options) mkEnableOption mkOption literalExpression;
+  inherit (lib.options) mkEnableOption mkPackageOption mkOption literalExpression;
   inherit (lib.lists) concatLists filter flatten map;
   inherit (lib.types) bool package str;
   inherit (lib.strings) concatStringsSep;
@@ -17,11 +17,8 @@ in {
   options.modules.desktop.editors.neovim = {
     enable = mkEnableOption "neovim editor";
 
-    package = mkOption {
-      type = package;
+    package = mkPackageOption pkgs "neovim-unwrapped" {
       default = pkgs.neovim-unwrapped;
-      defaultText = literalExpression "pkgs.neovim-unwrapped";
-      description = "The package to use for the neovim binary.";
     };
 
     lang = {
