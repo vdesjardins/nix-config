@@ -5,11 +5,9 @@
   currentSystem,
   naturalMouseScrolling,
   ...
-}: {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
+}: let
+  inherit (lib) mkOptionDefault;
+in {
   networking.useDHCP = false;
   #systemd.network.enable = true;
 
@@ -25,10 +23,6 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   users.mutableUsers = false;
-
-  environment.sessionVariables = {
-    TERM = "xterm-256color";
-  };
 
   # Enable the OpenSSH daemon.
   services.openssh = {

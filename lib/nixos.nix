@@ -5,6 +5,7 @@
   self,
   ...
 }: let
+  inherit (inputs) nixos-generators;
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (builtins) elem;
   inherit (lib.attrsets) filterAttrs;
@@ -21,6 +22,7 @@
         }
         (filterAttrs (n: v: !elem n ["system"]) attrs)
         (import path)
+        nixos-generators.nixosModules.all-formats
       ];
     };
 in {

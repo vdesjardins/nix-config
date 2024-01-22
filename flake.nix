@@ -427,10 +427,6 @@
       inherit lib;
     };
 
-    os-images.vmware.dev-vm = import ./hosts/modules/linux/vm-images/dev-vm.nix {
-      inherit pkgs nixos-generators;
-    };
-
     hmModules = self.lib.mapModulesRecursive ./home/modules import;
 
     packages =
@@ -440,8 +436,7 @@
           name = system;
           value = {
             "dockerImage/vm-builder" = import ./hosts/modules/linux/containers/vm-builder.nix {
-              inherit nixpkgs nix;
-              inherit system;
+              inherit nixpkgs nix system;
               crossSystem = system;
             };
           };

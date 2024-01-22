@@ -70,7 +70,7 @@ darwin-install-brew:
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 .PHONY: docker/vm-builder
-## docker/vm-builder: build docker image to build a vm dev instance
+## docker/vm-builder: build docker image to build a vm dev instance from darwin
 docker/vm-builder:
 	docker image load < $$(nix build '.#dockerImage/vm-builder' --no-link --json | jq '.[].outputs.out' -Mr)
 
@@ -93,7 +93,7 @@ builder/start:
 .PHONY: builder/dev-vm
 ## builder/dev-vm: build vmware vm directly using a darwin builder
 builder/dev-vm:
-	nix build ".#os-images.vmware.dev-vm"
+	nix build ".#nixosConfigurations.dev-vm.config.formats.vmware"
 
 .PHONY: help
 ## help: Prints this help message

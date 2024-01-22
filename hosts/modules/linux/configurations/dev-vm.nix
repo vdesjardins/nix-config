@@ -4,17 +4,18 @@
 in {
   imports = [
     ../../shared.nix
+    ../../desktop.nix
     ../hardware/vm-aarch64.nix
     ../shared
+    ../shared/boot.nix
     ../shared/desktop.nix
     ../shared/vm.nix
     ../shared/greetd.nix
     ../shared/pipewire.nix
     (../users + "/${username}.nix")
-    {
-      system.stateVersion = "23.11";
-    }
   ];
+
+  system.stateVersion = "23.11";
 
   networking.hostName = hostname;
   networking.interfaces.ens160.useDHCP = true;

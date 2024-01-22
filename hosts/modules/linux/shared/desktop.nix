@@ -21,6 +21,10 @@
 
   services.blueman.enable = config.hardware.bluetooth.enable;
 
+  environment.sessionVariables = {
+    TERM = "xterm-256color";
+  };
+
   nix = {
     daemonCPUSchedPolicy = "idle";
     daemonIOSchedClass = "idle";
