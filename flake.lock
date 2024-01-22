@@ -1395,6 +1395,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-oil": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705897922,
+        "narHash": "sha256-4xN8yT6E8nZGuVie/Hhl4ABL9dlwjopCVJkiDKHTkgs=",
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "rev": "bf753c3e3f8736939ad5597f92329dfe7b1df4f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-planery": {
       "flake": false,
       "locked": {
@@ -2287,6 +2303,7 @@
         "neovim-plugin-nvim-ts-context-commentstring": "neovim-plugin-nvim-ts-context-commentstring",
         "neovim-plugin-nvim-ts-rainbow": "neovim-plugin-nvim-ts-rainbow",
         "neovim-plugin-nvim-web-devicons": "neovim-plugin-nvim-web-devicons",
+        "neovim-plugin-oil": "neovim-plugin-oil",
         "neovim-plugin-planery": "neovim-plugin-planery",
         "neovim-plugin-playground": "neovim-plugin-playground",
         "neovim-plugin-popup": "neovim-plugin-popup",
