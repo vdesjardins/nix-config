@@ -1,7 +1,4 @@
 {pkgs, ...}: {
-  # TODO: not working on aarch64
-  programs.nix-index.enable = true;
-
   modules.desktop.editors.neovim.lang.nix = true;
 
   home.packages = with pkgs; [

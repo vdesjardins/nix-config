@@ -24,6 +24,7 @@
       lazygit.enable = true;
       ls.enable = true;
       lsd.enable = true;
+      nix-index.enable = true;
       openssl.enable = true;
       ripgrep.enable = true;
       starship.enable = true;
