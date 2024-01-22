@@ -8,12 +8,6 @@
   inherit (lib) mkIf mkMerge;
   inherit (pkgs) stdenv;
   inherit (stdenv) isDarwin isLinux;
-
-  fonts = with pkgs; [
-    (unstable.nerdfonts.override {fonts = ["JetBrainsMono" "Monaspace"];})
-    noto-fonts
-    noto-fonts-emoji
-  ];
 in {
   nix = {
     settings = {
@@ -52,6 +46,4 @@ in {
   };
 
   time.timeZone = "America/New_York";
-
-  fonts.packages = fonts;
 }
