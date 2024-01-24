@@ -88,7 +88,7 @@ build/dev-vm:
 ## builder/start: start a darwin builder vm https://nixos.org/manual/nixpkgs/stable/#sec-darwin-builder
 # To exit, Ctrl-a + c to open qemu prompt and type quit
 builder/start:
-	nix run 'nixpkgs#darwin.builder'
+	nix run 'nixpkgs#darwin.linux-builder'
 
 .PHONY: builder/dev-vm
 ## builder/dev-vm: build vmware vm directly using a darwin builder
