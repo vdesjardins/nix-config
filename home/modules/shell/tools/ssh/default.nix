@@ -18,9 +18,8 @@ in {
       inherit (cfg) enable;
 
       controlMaster = "auto";
-      controlPath = "/tmp/%r@%h:%p";
       hashKnownHosts = false;
-      controlPersist = "2m";
+      controlPersist = "30s";
 
       extraOptionOverrides = {
         Include = "local/*_config";
