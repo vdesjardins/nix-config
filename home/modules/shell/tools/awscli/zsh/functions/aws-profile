@@ -1,4 +1,13 @@
 function aws-profile {
+  local profile=$1
+
   unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
-  export AWS_PROFILE=$(aws configure list-profiles | fzf)
+
+  if [[ "$profile" != "" ]]; then
+      export AWS_PROFILE="$profile"
+  else
+      export AWS_PROFILE=$(aws configure list-profiles | fzf)
+  fi
 }
+
+# vim: ft=bash
