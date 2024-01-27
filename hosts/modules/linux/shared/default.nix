@@ -9,7 +9,7 @@
   inherit (lib) mkOptionDefault;
 in {
   networking.useDHCP = false;
-  #systemd.network.enable = true;
+  systemd.network.enable = true;
 
   security.pam.loginLimits = [
     {
