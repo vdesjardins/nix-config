@@ -1,17 +1,17 @@
 inputs: _self: super: let
   inherit (builtins) getAttr listToAttrs attrNames filter match map;
   inherit (super.pkgs.lib) removePrefix;
-  inherit (super.vimUtils) buildVimPluginFrom2Nix;
+  inherit (super.vimUtils) buildVimPlugin;
 
   plugins =
     map (removePrefix "neovim-plugin-")
     (filter (name: match "^neovim-plugin-.+$" name != null) (attrNames inputs));
 
-  buildPlugin = pname:
-    buildVimPluginFrom2Nix {
-      inherit pname;
+  buildPlugin = name:
+    buildVimPlugin {
+      inherit name;
       version = "main";
-      src = getAttr "neovim-plugin-${pname}" inputs;
+      src = getAttr "neovim-plugin-${name}" inputs;
     };
 in {
   neovimPlugins =
