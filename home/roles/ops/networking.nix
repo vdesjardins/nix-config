@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    dnspeep
+    dig
+    dnspeep # look at host dns queries
     mtr # network diagnostic tool
     tcpdump
     tcptraceroute
