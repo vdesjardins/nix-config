@@ -44,18 +44,6 @@ hm/install:
 	cachix use vdesjardins
 	@echo "TODO: need to source /nix/var/nix/profiles/default/etc/profile.d/nix.sh"
 
-.PHONY: darwin/bootstrap-x86_64
-## darwin/bootstrap-x86_64: bootstrap darmin nix with default configuration
-darwin/bootstrap-x86_64:
-	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#darwinConfigurations.bootstrap-x86_64.system
-	./result/sw/bin/darwin-rebuild switch --flake .#bootstrap-x86_64
-
-.PHONY: darwin/bootstrap-aarch
-## darwin/bootstrap-aarch: bootstrap darmin nix with default configuration
-darwin/bootstrap-aarch:
-	nix build --experimental-features "$(EXPERIMENTAL_FEATURES)" .#darwinConfigurations.bootstrap-aarch.system
-	./result/sw/bin/darwin-rebuild switch --flake .#bootstrap-aarch
-
 .PHONY: darwin/install
 ## darwin/install: install nix darwin
 darwin/install:
