@@ -25,7 +25,7 @@ host/apply: host/genrate
 .PHONY: hm/generate
 ## hm/generate: build current user
 hm/generate:
-	nix build ./#homeConfigurations.$$(uname --nodename)/$$USER.activationPackage
+	nix build ./#homeConfigurations.$$USER@$$(uname --nodename).activationPackage
 
 .PHONY: host/genrate
 ## host/genrate: build current system
