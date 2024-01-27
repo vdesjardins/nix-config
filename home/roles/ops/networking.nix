@@ -5,6 +5,7 @@
     tcpdump
     tcptraceroute
     termshark
+    unixtools.ping
     wireshark-cli
   ];
 }
