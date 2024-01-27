@@ -1,7 +1,6 @@
 local capabilities =
     require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("lspconfig").rnix.setup({
-    cmd = { "rnix-lsp", "--stdio" },
+require("lspconfig").nixd.setup({
     on_attach = require("my-config.lsp").common_on_attach_no_formatting,
     capabilities = capabilities,
 })
