@@ -12,6 +12,11 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "utils";
+    };
 
     # Others
     nur.url = "github:nix-community/NUR";
@@ -332,21 +337,22 @@
   };
 
   outputs = {
-    self,
     comma,
-    nixpkgs,
+    deploy-rs,
     home-manager,
-    nix-darwin,
     master,
     neovim-nightly,
-    nixos-generators,
-    nur,
-    rust-overlay,
-    utils,
-    unstable,
     nix,
-    pre-commit-hooks,
+    nix-darwin,
     nix-index-database,
+    nixos-generators,
+    nixpkgs,
+    nur,
+    pre-commit-hooks,
+    rust-overlay,
+    self,
+    unstable,
+    utils,
     ...
   } @ inputs: let
     inherit (lib.attrsets) genAttrs listToAttrs attrValues attrNames;
@@ -417,19 +423,15 @@
   in {
     lib = lib.my;
 
-    darwinConfigurations = import ./hosts/systems/darwin.nix {
-      inherit lib;
-    };
+    darwinConfigurations = import ./hosts/systems/darwin.nix {inherit lib;};
 
-    nixosConfigurations = import ./hosts/systems/linux.nix {
-      inherit lib;
-    };
+    nixosConfigurations = import ./hosts/systems/linux.nix {inherit lib;};
 
-    homeConfigurations = import ./home/config {
-      inherit lib;
-    };
+    homeConfigurations = import ./home/config {inherit lib;};
 
     hmModules = self.lib.mapModulesRecursive ./home/modules import;
+
+    deploy = import ./hosts/deploy {inherit lib deploy-rs self;};
 
     packages =
       listToAttrs
@@ -464,19 +466,23 @@
         };
       });
 
-    checks = forAllSupportedSystems (system:
-      with pkgs.${system}; {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            alejandra.enable = true;
-            statix.enable = true;
-            stylua.enable = true;
-            shellcheck.enable = true;
-            shfmt.enable = true;
-            commitizen.enable = true;
+    checks = forAllSupportedSystems (
+      system:
+        with pkgs.${system}; {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              alejandra.enable = true;
+              statix.enable = true;
+              stylua.enable = true;
+              shellcheck.enable = true;
+              shfmt.enable = true;
+              commitizen.enable = true;
+            };
           };
-        };
-      });
+        }
+      # FIXME: doesn't work when deploying from different architecture https://github.com/serokell/deploy-rs/issues/167
+      #// deploy-rs.lib.${system}.deployChecks self.deploy);
+    );
   };
 }
