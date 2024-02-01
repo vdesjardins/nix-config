@@ -57,6 +57,7 @@
       ctags
       curl
       dasel
+      deploy-rs
       du-dust # fancy du
       duf # df alternative
       file
