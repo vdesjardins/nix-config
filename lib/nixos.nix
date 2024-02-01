@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  inherit (inputs) nixos-generators;
+  inherit (inputs) nixos-generators nixos-hardware;
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (builtins) elem;
   inherit (lib.attrsets) filterAttrs;
@@ -14,7 +14,7 @@
     nixosSystem {
       inherit system;
 
-      specialArgs = {inherit lib inputs system;};
+      specialArgs = {inherit lib inputs system nixos-hardware;};
 
       modules = [
         {

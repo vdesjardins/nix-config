@@ -18,6 +18,9 @@
       inputs.utils.follows = "utils";
     };
 
+    # hardware
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     # Others
     nur.url = "github:nix-community/NUR";
     utils.url = "github:numtide/flake-utils";
@@ -346,6 +349,7 @@
     nix-darwin,
     nix-index-database,
     nixos-generators,
+    nixos-hardware,
     nixpkgs,
     nur,
     pre-commit-hooks,
