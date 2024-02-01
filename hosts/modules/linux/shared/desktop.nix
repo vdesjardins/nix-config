@@ -30,10 +30,6 @@
     daemonIOSchedClass = "idle";
   };
 
-  security = {
-    sudo.wheelNeedsPassword = false;
-  };
-
   fonts = {
     fontDir.enable = true;
   };

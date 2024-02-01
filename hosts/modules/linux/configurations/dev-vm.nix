@@ -18,7 +18,6 @@ in {
   system.stateVersion = "23.11";
 
   networking.hostName = hostname;
-  networking.interfaces.ens160.useDHCP = true;
 
   virtualisation.vmware.guest.enable = true;
 

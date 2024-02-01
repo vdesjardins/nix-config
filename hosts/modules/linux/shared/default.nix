@@ -10,15 +10,27 @@
 in {
   networking.useDHCP = false;
   systemd.network.enable = true;
+  systemd.network.networks."20-wired" = {
+    name = "en*";
+    networkConfig = {
+      DHCP = "yes";
+    };
+  };
 
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "4096";
-    }
-  ];
+  networking.nftables.enable = false;
+
+  security = {
+    pam.loginLimits = [
+      {
+        domain = "*";
+        type = "soft";
+        item = "nofile";
+        value = "4096";
+      }
+    ];
+
+    sudo.wheelNeedsPassword = false;
+  };
 
   i18n.defaultLocale = "en_CA.UTF-8";
 
