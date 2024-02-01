@@ -28,6 +28,11 @@ in {
       auto-optimise-store = true;
       keep-derivations = true;
       keep-outputs = true;
+
+      trusted-users = ["@wheel" "root"];
+
+      fallback = true;
+      warn-dirty = false;
     };
 
     gc = {
