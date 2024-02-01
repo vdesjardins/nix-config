@@ -22,7 +22,6 @@ in {
   imports = [
     ./sway
     ./swaynag
-    # ./swayidle
   ];
 
   config = mkIf cfg.enable {
@@ -42,6 +41,7 @@ in {
       shotman
       udiskie
       wev # event viewer
+      wdisplays
       wl-clipboard
       wlr-randr
       wtype
