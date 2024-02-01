@@ -21,6 +21,10 @@ in {
 
   virtualisation.vmware.guest.enable = true;
 
+  networking.extraHosts = ''
+    192.168.50.2 home-server
+  '';
+
   # Share our host filesystem
   fileSystems."/host" = {
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
