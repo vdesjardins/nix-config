@@ -112,10 +112,10 @@ in {
           mouse_left_click = "close_current";
           mouse_middle_click = "do_action, close_current";
           mouse_right_click = "close_all";
-        };
 
-        shortcuts = {
+          ### Shortcuts
           close = "ctrl+space";
+          close_all = "ctrl+shift+space";
           history = "ctrl+grave";
           context = "ctrl+shift+period";
         };
