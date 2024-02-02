@@ -62,6 +62,38 @@ in {
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@nw"];
               };
+              "GitHub" = {
+                urls = [
+                  {
+                    template = "https://github.com/search?q={searchTerms}";
+                    params = [
+                      {
+                        name = "type";
+                        value = "code";
+                      }
+                    ];
+                  }
+                ];
+                iconUpdateURL = "https://github.com/favicon.ico";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@g"];
+              };
+              "GitHub (Nix)" = {
+                urls = [
+                  {
+                    template = "https://github.com/search?q=language:nix+{searchTerms}";
+                    params = [
+                      {
+                        name = "type";
+                        value = "code";
+                      }
+                    ];
+                  }
+                ];
+                iconUpdateURL = "https://github.com/favicon.ico";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@gn"];
+              };
               "Wikipedia (en)".metaData.alias = "@wiki";
               "Google".metaData.hidden = false;
               "Amazon.com".metaData.hidden = false;
