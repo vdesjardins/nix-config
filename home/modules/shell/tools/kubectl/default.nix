@@ -105,29 +105,31 @@ in {
       };
     };
 
-    xdg.configFile."zsh/functions/kube-inspect".source =
-      ./zsh/functions/kube-inspect;
-    xdg.configFile."zsh/functions/kube-ctx-switch".source =
-      ./zsh/functions/kube-ctx-switch;
-    xdg.configFile."zsh/functions/kube-ctx-switch-current".source =
-      ./zsh/functions/kube-ctx-switch-current;
-    xdg.configFile."zsh/functions/kube-ctx-switch-detach".source =
-      ./zsh/functions/kube-ctx-switch-detach;
-    xdg.configFile."zsh/functions/kube-ns-switch".source =
-      ./zsh/functions/kube-ns-switch;
-    xdg.configFile."zsh/functions/kube-ns-switch-detach".source =
-      ./zsh/functions/kube-ns-switch-detach;
-    xdg.configFile."zsh/functions/kube-get-pod-images".source =
-      ./zsh/functions/kube-get-pod-images;
-    xdg.configFile."zsh/functions/kube-updateconfig-aws".source =
-      ./zsh/functions/kube-updateconfig-aws;
-    xdg.configFile."zsh/functions/kube-updateconfig-aws-all".source =
-      ./zsh/functions/kube-updateconfig-aws-all;
-    xdg.configFile."zsh/functions/kube-get-node-pods".source =
-      ./zsh/functions/kube-get-node-pods;
-    xdg.configFile."zsh/functions/kube-node-connect".source =
-      ./zsh/functions/kube-node-connect;
+    xdg.configFile = {
+      "zsh/functions/kube-inspect".source =
+        ./zsh/functions/kube-inspect;
+      "zsh/functions/kube-ctx-switch".source =
+        ./zsh/functions/kube-ctx-switch;
+      "zsh/functions/kube-ctx-switch-current".source =
+        ./zsh/functions/kube-ctx-switch-current;
+      "zsh/functions/kube-ctx-switch-detach".source =
+        ./zsh/functions/kube-ctx-switch-detach;
+      "zsh/functions/kube-ns-switch".source =
+        ./zsh/functions/kube-ns-switch;
+      "zsh/functions/kube-ns-switch-detach".source =
+        ./zsh/functions/kube-ns-switch-detach;
+      "zsh/functions/kube-get-pod-images".source =
+        ./zsh/functions/kube-get-pod-images;
+      "zsh/functions/kube-updateconfig-aws".source =
+        ./zsh/functions/kube-updateconfig-aws;
+      "zsh/functions/kube-updateconfig-aws-all".source =
+        ./zsh/functions/kube-updateconfig-aws-all;
+      "zsh/functions/kube-get-node-pods".source =
+        ./zsh/functions/kube-get-node-pods;
+      "zsh/functions/kube-node-connect".source =
+        ./zsh/functions/kube-node-connect;
 
-    xdg.configFile."zsh/conf.d/kubectl_aliases".source = "${pkgs.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
+      "zsh/conf.d/kubectl_aliases".source = "${pkgs.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
+    };
   };
 }

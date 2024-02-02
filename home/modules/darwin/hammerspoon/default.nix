@@ -14,8 +14,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".hammerspoon/Spoons/ControlEscape.spoon/".source = "${pkgs.hammerspoon-controlescape}/share/hammerspoon/controlescape/";
-    home.file.".hammerspoon/Spoons/PushToTalk.spoon/".source = "${pkgs.hammerspoon-push-to-talk}/share/hammerspoon/PushToTalk.spoon/";
-    home.file.".hammerspoon/init.lua".source = ./init.lua;
+    home.file = {
+      ".hammerspoon/Spoons/ControlEscape.spoon/".source = "${pkgs.hammerspoon-controlescape}/share/hammerspoon/controlescape/";
+      ".hammerspoon/Spoons/PushToTalk.spoon/".source = "${pkgs.hammerspoon-push-to-talk}/share/hammerspoon/PushToTalk.spoon/";
+      ".hammerspoon/init.lua".source = ./init.lua;
+    };
   };
 }

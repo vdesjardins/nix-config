@@ -35,21 +35,23 @@ in {
     })
 
     (mkIf pkgs.hostPlatform.isDarwin {
-      home.packages = with pkgs; [gnupg pinentry_mac];
+      home = {
+        packages = with pkgs; [gnupg pinentry_mac];
 
-      home.file.".gnupg/gpg-agent.conf".text = ''
-        default-cache-ttl 30
-        max-cache-ttl 120
-        default-cache-ttl-ssh 30
-        max-cache-ttl-ssh 120
-        ignore-cache-for-signing
-        no-allow-external-cache
-        enable-ssh-support
-        log-file ${config.home.homeDirectory}/.gnupg/gpg-agent.log
-      '';
+        file.".gnupg/gpg-agent.conf".text = ''
+          default-cache-ttl 30
+          max-cache-ttl 120
+          default-cache-ttl-ssh 30
+          max-cache-ttl-ssh 120
+          ignore-cache-for-signing
+          no-allow-external-cache
+          enable-ssh-support
+          log-file ${config.home.homeDirectory}/.gnupg/gpg-agent.log
+        '';
 
-      home.sessionVariables = {
-        SSH_AUTH_SOCK = config.home.homeDirectory + "/.gnupg/S.gpg-agent.ssh";
+        sessionVariables = {
+          SSH_AUTH_SOCK = config.home.homeDirectory + "/.gnupg/S.gpg-agent.ssh";
+        };
       };
 
       programs.zsh.initExtra = ''
