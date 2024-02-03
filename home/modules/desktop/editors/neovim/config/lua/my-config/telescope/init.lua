@@ -24,6 +24,9 @@ telescope.setup({
         frecency = {
             show_scores = true,
         },
+        file_browser = {
+            hijack_netrw = true,
+        },
     },
     pickers = {
         live_grep = {
