@@ -8,7 +8,10 @@
 
     finder = {
       AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
       FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
+      QuitMenuItem = true;
       _FXShowPosixPathInTitle = true;
     };
 
@@ -71,8 +74,6 @@
 
     # settings not yet supported by nix-darwin
     activationScripts.postUserActivation.text = ''
-      defaults write com.apple.Finder AppleShowAllFiles -bool YES
-
       defaults write NSGlobalDomain AppleLanguages -array "en-CA" "fr-CA"
       defaults write NSGlobalDomain AppleLocale -string "en_CA"
 
