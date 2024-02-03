@@ -33,15 +33,16 @@ in {
       alsa-utils
       arandr
       grim
+      kanshi # dynamic display configuration
       papirus-icon-theme
-      pulseaudio
       playerctl
+      pulseaudio
+      shotman
       slurp
       swayidle
-      shotman
       udiskie
-      wev # event viewer
       wdisplays
+      wev # event viewer
       wl-clipboard
       wlr-randr
       wtype
