@@ -25,6 +25,8 @@ telescope.setup({
             show_scores = true,
         },
         file_browser = {
+            cwd_to_path = true,
+            depth = false,
             hijack_netrw = true,
         },
     },
