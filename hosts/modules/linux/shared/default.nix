@@ -8,6 +8,8 @@
 }: let
   inherit (lib) mkOptionDefault;
 in {
+  nix.gc.dates = "weekly";
+
   networking.useDHCP = false;
   systemd.network.enable = true;
   systemd.network.networks."20-wired" = {
