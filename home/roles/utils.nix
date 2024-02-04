@@ -62,6 +62,7 @@
       duf # df alternative
       file
       findutils
+      gdu # interactive du
       glances # glances an eye on your system
       glow # renders markdown on command line
       gnumake
@@ -86,6 +87,7 @@
       pueue # task management tool
       qrencode
       rsync
+      sd # sed replacement
       spotify-tui
       taskwarrior
       taskwarrior-tui
