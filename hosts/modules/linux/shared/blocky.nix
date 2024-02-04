@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   # do not listen on port 53 with resolved
   services.resolved = {
     extraConfig = ''
@@ -93,6 +93,9 @@
           default = [
             "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt"
             "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/optional-list.txt"
+            (pkgs.writeText "personal-whitelist" ''
+              www.googleservices.com
+            '')
           ];
         };
         clientGroupsBlock = {
