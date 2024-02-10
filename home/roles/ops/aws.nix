@@ -9,5 +9,5 @@
   ];
 
   modules.shell.tools.awscli2.enable = true;
-  programs.granted.enable = true;
+  modules.shell.tools.granted.enable = true;
 }

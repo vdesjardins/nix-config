@@ -21,7 +21,7 @@ in {
         if pkgs.stdenv.isDarwin
         then null # unable to compile on M1. Relying on brew for now
         else
-          pkgs.firefox.override {
+          pkgs.firefox-wayland.override {
             nativeMessagingHosts = with pkgs; [
               tridactyl-native
             ];
@@ -35,6 +35,7 @@ in {
             force = true;
 
             default = "DuckDuckGo";
+            order = ["DuckDuckGo" "Google"];
 
             engines = {
               "Nix Packages" = {
@@ -76,7 +77,7 @@ in {
                 ];
                 iconUpdateURL = "https://github.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
-                definedAliases = ["@g"];
+                definedAliases = ["@gh"];
               };
               "GitHub (Nix)" = {
                 urls = [
@@ -92,11 +93,11 @@ in {
                 ];
                 iconUpdateURL = "https://github.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
-                definedAliases = ["@gn"];
+                definedAliases = ["@ghn"];
               };
-              "Wikipedia (en)".metaData.alias = "@wiki";
-              "Google".metaData.hidden = false;
-              "Amazon.com".metaData.hidden = false;
+              "Wikipedia (en)".metaData.alias = "@w";
+              "Google".metaData.alias = "@g";
+              "Amazon.ca".metaData.alias = "@a";
               "Bing".metaData.hidden = true;
               "eBay".metaData.hidden = true;
             };
@@ -106,8 +107,20 @@ in {
             "browser.ctrlTab.sortByRecentlyUsed" = true;
             "layout.css.prefers-color-scheme.content-override" = 0;
             "browser.startup.page" = 3;
+            "browser.aboutConfig.showWarning" = false;
+            "browser.aboutwelcome.enabled" = false;
+            "browser.contentblocking.category" = "strict";
+            "browser.tabs.warnOnClose" = false;
+            "browser.tabs.bookmarks.visibility" = "newtab";
+            "browser.warnOnQuit" = false;
             "extensions.pocket.enabled" = false;
             "identity.fxaccounts.toolbar.enabled" = false;
+            "signon.rememberSignons" = false;
+
+            # Extension recommendation
+            "browser.discovery.enabled" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
           };
 
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -116,8 +129,8 @@ in {
             dictionaries
             duckduckgo-privacy-essentials
             firefox-color
-            # TODO: convert this to a module to be able to add this extension from the granted program
-            granted
+            keepass-helper
+            qr-code-address-bar
             raindropio
             tridactyl
             # color scheme tokyonight storm from https://github.com/lokesh-krishna/dotfiles/tree/main/tokyo-night
@@ -137,6 +150,39 @@ in {
           ];
         };
       };
+    };
+
+    wayland.windowManager.sway.config = {
+      window.commands = [
+        {
+          criteria = {
+            app_id = "^firefox$";
+            title = "www.youtube.com";
+          };
+          command = "move container to workspace 7";
+        }
+        {
+          criteria = {
+            app_id = "^firefox$";
+            title = "calendar.google.com";
+          };
+          command = "move container to workspace 8";
+        }
+        {
+          criteria = {
+            app_id = "^firefox$";
+            title = "mail.google.com";
+          };
+          command = "move container to workspace 9";
+        }
+        {
+          criteria = {
+            app_id = "^firefox$";
+            title = "^Picture-in-Picture$";
+          };
+          command = "floating enable, sticky enable, border pixel 0, move position 1340 722, opacity 0.95";
+        }
+      ];
     };
   };
 }
