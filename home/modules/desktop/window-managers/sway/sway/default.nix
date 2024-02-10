@@ -210,10 +210,13 @@ in {
           "XF86AudioNext" = "exec playerctl next";
           "XF86AudioPrev" = "exec playerctl previous";
 
+          # Passwords
+          "${mod}+p" = "exec ${pkgs.rofi-rbw}/bin/rofi-rbw";
+
           # Screenshots
-          "${mod}+p" = "exec --no-startup-id shotman --capture window --copy";
-          "${mod}+Shift+p" = "exec --no-startup-id shotman --capture region --copy";
-          "${mod}+Ctrl+p" = "exec --no-startup-id shotman --capture output --copy";
+          "${mod}+Print" = "exec --no-startup-id shotman --capture window --copy";
+          "${mod}+Shift+Print" = "exec --no-startup-id shotman --capture region --copy";
+          "${mod}+Ctrl+Print" = "exec --no-startup-id shotman --capture output --copy";
 
           # clipboard
           "${mod}+Shift+c" = ''exec "${pkgs.cliphist}/bin/cliphist list | rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | wl-copy"'';
