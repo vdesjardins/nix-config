@@ -16,8 +16,9 @@
 
     xserver = {
       enable = true;
-      layout = "us,ca";
-      xkbVariant = ",fr";
+
+      layout = "us";
+      xkbVariant = "altgr-intl";
 
       dpi = 220;
 

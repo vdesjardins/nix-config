@@ -42,8 +42,8 @@ in {
 
         input = {
           "type:keyboard" = {
-            xkb_layout = "us,ca";
-            xkb_variant = "fr";
+            xkb_layout = "us";
+            xkb_variant = "altgr-intl";
             xkb_options = "grp:alt_space_toggle,caps:ctrl_modifier";
             xkb_model = "pc104";
             repeat_delay = "200";

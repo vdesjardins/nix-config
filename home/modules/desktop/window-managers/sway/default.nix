@@ -45,6 +45,7 @@ in {
       wev # event viewer
       wl-clipboard
       wlr-randr
+      wshowkeys
       wtype
       xdg-utils
       xwayland
