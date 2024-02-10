@@ -40,7 +40,7 @@ in {
       options = "--delete-older-than 7d";
     };
 
-    package = pkgs.unstable.nixFlakes;
+    package = pkgs.unstable.nixVersions.unstable;
   };
 
   programs = {
