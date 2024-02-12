@@ -12,7 +12,6 @@
 
   defaultExtensions = with pkgs.nur.repos.rycee.firefox-addons; [
     {
-      extensionID = "addon@darkreader.org";
       internalUUID = "278bad82-9303-4f35-b279-90490fc97bce";
       permissions = {
         "storageAccessAPI" = "allow";
@@ -20,7 +19,6 @@
       package = darkreader;
     }
     {
-      extensionID = "tridactyl.vim@cmcaine.co.uk";
       internalUUID = "f90c1241-cae9-466d-ad56-8621626b0e32";
       permissions = {
         "storageAccessAPI" = "allow";
@@ -28,7 +26,6 @@
       package = tridactyl;
     }
     {
-      extensionID = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
       internalUUID = "46536cfa-1e11-4a7b-9905-20875fe39b0c";
       permissions = {
         "WebExtensions-unlimitedStorage" = "allow";
@@ -38,7 +35,6 @@
       package = bitwarden;
     }
     {
-      extensionID = "bukubrow@samhh.com";
       internalUUID = "081d3506-83c6-4121-ad31-c7866bb71f67";
       permissions = {
         "storageAccessAPI" = "allow";
@@ -46,32 +42,26 @@
       package = bukubrow;
     }
     {
-      extensionID = "FirefoxColor@mozilla.com";
       internalUUID = "a06edab8-9c95-4544-843f-85a87e3a32a0";
       package = firefox-color;
     }
     {
-      extensionID = "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack";
       internalUUID = "e3aa3d9e-31ea-4fd7-8e86-f335aafbfb73";
       package = raindropio;
     }
     {
-      extensionID = "revir.qing@gmail.com";
       internalUUID = "059ce4cb-63f5-4042-9271-da4c138dc151";
       package = dictionaries;
     }
     {
-      extensionID = "{a218c3db-51ef-4170-804b-eb053fc9a2cd}";
       internalUUID = "5804f91f-19db-4afb-b26e-19b5970fc32d";
       package = qr-code-address-bar;
     }
     {
-      extensionID = "jid1-ZAdIEUB7XOzOJw@jetpack";
       internalUUID = "77936605-0e70-44b3-bed8-ba82df1f504f";
       package = duckduckgo-privacy-essentials;
     }
     {
-      extensionID = "autt@ericgoldman.name";
       internalUUID = "1467720b-3ef4-469b-9737-818f0449dc53";
       package = buildFirefoxXpiAddon {
         pname = "add-url-to-window-title";
@@ -87,59 +77,59 @@
     }
     # bundled firefox extensions
     {
-      extensionID = "formautofill@mozilla.org";
+      addonId = "formautofill@mozilla.org";
       internalUUID = "65b54ed4-1276-4979-bb34-2ee83244208a";
     }
     {
-      extensionID = "formautofill@mozilla.org";
+      addonId = "formautofill@mozilla.org";
       internalUUID = "65b54ed4-1276-4979-bb34-2ee83244208a";
     }
     {
-      extensionID = "pictureinpicture@mozilla.org";
+      addonId = "pictureinpicture@mozilla.org";
       internalUUID = "12d18d86-cff1-4399-b923-2f5b6bb34935";
     }
     {
-      extensionID = "screenshots@mozilla.org";
+      addonId = "screenshots@mozilla.org";
       internalUUID = "7b65c3dc-ef97-4745-8373-e0818aef8234";
     }
     {
-      extensionID = "webcompat-reporter@mozilla.org";
+      addonId = "webcompat-reporter@mozilla.org";
       internalUUID = "aebf9fb4-c8a4-4e8d-ad7f-00f693bf6f9a";
     }
     {
-      extensionID = "webcompat@mozilla.org";
+      addonId = "webcompat@mozilla.org";
       internalUUID = "8560d354-e6cf-488a-aba6-9870a0701706";
     }
     {
-      extensionID = "default-theme@mozilla.org";
+      addonId = "default-theme@mozilla.org";
       internalUUID = "723e55c0-97f1-4720-bd8d-dcee7fd88376";
     }
     {
-      extensionID = "addons-search-detection@mozilla.com";
+      addonId = "addons-search-detection@mozilla.com";
       internalUUID = "cd923326-5864-4f2f-b5f9-32b28c0ff6e2";
     }
     {
-      extensionID = "google@search.mozilla.org";
+      addonId = "google@search.mozilla.org";
       internalUUID = "670278f4-421a-4433-8047-ee881de717a9";
     }
     {
-      extensionID = "wikipedia@search.mozilla.org";
+      addonId = "wikipedia@search.mozilla.org";
       internalUUID = "5c402f1d-e0f8-4b92-87f7-61d89c3065c3";
     }
     {
-      extensionID = "bing@search.mozilla.org";
+      addonId = "bing@search.mozilla.org";
       internalUUID = "2746852c-c45b-4885-9766-3d4beafee4ee";
     }
     {
-      extensionID = "ddg@search.mozilla.org";
+      addonId = "ddg@search.mozilla.org";
       internalUUID = "d49d3758-74d2-45b8-a0af-898c24d357cc";
     }
     {
-      extensionID = "amazon@search.mozilla.org";
+      addonId = "amazon@search.mozilla.org";
       internalUUID = "c8c11263-2986-4f2c-89c3-1ad12f575a72";
     }
     {
-      extensionID = "ebay@search.mozilla.org";
+      addonId = "ebay@search.mozilla.org";
       internalUUID = "8db3a588-aa91-4c84-9dd2-8458e000584a";
     }
   ];
@@ -159,16 +149,19 @@ in {
     extensions = defaultExtensions ++ cfg.extensions;
 
     extensionPackages = lib.concatMap (e:
-      if lib.hasAttr "package" e
+      if hasAttr "package" e
       then [e.package]
       else [])
     extensions;
 
     uuidMappings = builtins.toJSON (lib.listToAttrs (lib.concatMap (e:
-      if lib.hasAttr "extensionID" e
+      if (hasAttr "package" e) || (hasAttr "addonId" e)
       then [
         {
-          name = e.extensionID;
+          name =
+            if hasAttr "package" e
+            then e.package.addonId
+            else e.addonId;
           value = e.internalUUID;
         }
       ]
@@ -176,7 +169,7 @@ in {
     extensions));
 
     extensionPermissions = lib.listToAttrs (lib.concatMap (e:
-      if lib.hasAttr "permissions" e
+      if hasAttr "permissions" e
       then [
         {
           name = "moz-extension://${e.internalUUID}";
