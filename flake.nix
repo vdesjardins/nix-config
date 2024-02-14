@@ -168,6 +168,11 @@
     neovim-plugin-cmp-treesitter.url = "github:ray-x/cmp-treesitter";
     neovim-plugin-cmp-treesitter.flake = false;
 
+    neovim-plugin-copilot.url = "github:zbirenbaum/copilot.lua";
+    neovim-plugin-copilot.flake = false;
+    neovim-plugin-copilot-cmp.url = "github:zbirenbaum/copilot-cmp";
+    neovim-plugin-copilot-cmp.flake = false;
+
     # ## Debugging
     neovim-plugin-nvim-dap.url = "github:mfussenegger/nvim-dap";
     neovim-plugin-nvim-dap.flake = false;

@@ -1,6 +1,13 @@
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 
+lspkind.init({
+    symbol_map = {
+        Copilot = "",
+    },
+})
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
 cmp.setup({
     formatting = {
         format = lspkind.cmp_format({
@@ -48,7 +55,25 @@ cmp.setup({
         -- { name = 'snippy' }, -- For snippy users.
         { name = "treesitter" },
         { name = "crates" },
+        { name = "copilot" },
     }, { { name = "buffer" } }),
+
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            require("copilot_cmp.comparators").prioritize,
+
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
+    },
 })
 
 -- Set configuration for specific filetype.

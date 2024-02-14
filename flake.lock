@@ -842,6 +842,38 @@
         "type": "github"
       }
     },
+    "neovim-plugin-copilot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707072714,
+        "narHash": "sha256-H8dwtkk5ADagpIXfZ2rL8Giy77cC6daWoSgntO9eh0c=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "03f825956ec49e550d07875d867ea6e7c4dc8c00",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
+    "neovim-plugin-copilot-cmp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694286652,
+        "narHash": "sha256-srgNohm/aJpswNJ5+T7p+zi9Jinp9e5FA8/wdk6VRiY=",
+        "owner": "zbirenbaum",
+        "repo": "copilot-cmp",
+        "rev": "72fbaa03695779f8349be3ac54fa8bd77eed3ee3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot-cmp",
+        "type": "github"
+      }
+    },
     "neovim-plugin-crates": {
       "flake": false,
       "locked": {
@@ -2323,6 +2355,8 @@
         "neovim-plugin-cmp-nvim-ultisnips": "neovim-plugin-cmp-nvim-ultisnips",
         "neovim-plugin-cmp-path": "neovim-plugin-cmp-path",
         "neovim-plugin-cmp-treesitter": "neovim-plugin-cmp-treesitter",
+        "neovim-plugin-copilot": "neovim-plugin-copilot",
+        "neovim-plugin-copilot-cmp": "neovim-plugin-copilot-cmp",
         "neovim-plugin-crates": "neovim-plugin-crates",
         "neovim-plugin-dressing": "neovim-plugin-dressing",
         "neovim-plugin-easypick": "neovim-plugin-easypick",
