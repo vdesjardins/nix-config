@@ -96,7 +96,7 @@ in {
           source ~/.zshrc.local
         fi
 
-        GLOBALIAS_FILTER_VALUES=(ls)
+        GLOBALIAS_FILTER_VALUES=(ls ll)
       '';
     };
   };
