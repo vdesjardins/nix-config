@@ -17,10 +17,7 @@ in {
     programs.granted.enable = true;
 
     modules.desktop.browsers.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      {
-        internalUUID = "539ffb7e-a6df-4771-a736-764eea386f67";
-        package = granted;
-      }
+      {package = granted;}
     ];
   };
 }

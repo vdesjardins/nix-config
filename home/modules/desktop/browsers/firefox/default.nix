@@ -12,57 +12,24 @@
 
   defaultExtensions = with pkgs.nur.repos.rycee.firefox-addons; [
     {
-      internalUUID = "278bad82-9303-4f35-b279-90490fc97bce";
-      permissions = {
-        "storageAccessAPI" = "allow";
-      };
       package = darkreader;
+      area = "navbar";
     }
+    {package = tridactyl;}
     {
-      internalUUID = "f90c1241-cae9-466d-ad56-8621626b0e32";
-      permissions = {
-        "storageAccessAPI" = "allow";
-      };
-      package = tridactyl;
-    }
-    {
-      internalUUID = "46536cfa-1e11-4a7b-9905-20875fe39b0c";
-      permissions = {
-        "WebExtensions-unlimitedStorage" = "allow";
-        "persistent-storage" = "allow";
-        "storageAccessAPI" = "allow";
-      };
       package = bitwarden;
+      area = "navbar";
     }
+    {package = bukubrow;}
+    {package = firefox-color;}
     {
-      internalUUID = "081d3506-83c6-4121-ad31-c7866bb71f67";
-      permissions = {
-        "storageAccessAPI" = "allow";
-      };
-      package = bukubrow;
-    }
-    {
-      internalUUID = "a06edab8-9c95-4544-843f-85a87e3a32a0";
-      package = firefox-color;
-    }
-    {
-      internalUUID = "e3aa3d9e-31ea-4fd7-8e86-f335aafbfb73";
       package = raindropio;
+      area = "navbar";
     }
+    {package = dictionaries;}
+    {package = qr-code-address-bar;}
+    {package = duckduckgo-privacy-essentials;}
     {
-      internalUUID = "059ce4cb-63f5-4042-9271-da4c138dc151";
-      package = dictionaries;
-    }
-    {
-      internalUUID = "5804f91f-19db-4afb-b26e-19b5970fc32d";
-      package = qr-code-address-bar;
-    }
-    {
-      internalUUID = "77936605-0e70-44b3-bed8-ba82df1f504f";
-      package = duckduckgo-privacy-essentials;
-    }
-    {
-      internalUUID = "1467720b-3ef4-469b-9737-818f0449dc53";
       package = buildFirefoxXpiAddon {
         pname = "add-url-to-window-title";
         version = "2.2.1";
@@ -71,66 +38,23 @@
         sha256 = "sha256-teUYOE26S6ikPNQ/F+QTqZlzw+2/5e2nxve9Q8pR4l0=";
         meta = with lib; {platforms = platforms.all;};
       };
-      permissions = {
-        "storageAccessAPI" = "allow";
-      };
-    }
-    # bundled firefox extensions
-    {
-      addonId = "formautofill@mozilla.org";
-      internalUUID = "65b54ed4-1276-4979-bb34-2ee83244208a";
     }
     {
-      addonId = "formautofill@mozilla.org";
-      internalUUID = "65b54ed4-1276-4979-bb34-2ee83244208a";
-    }
-    {
-      addonId = "pictureinpicture@mozilla.org";
-      internalUUID = "12d18d86-cff1-4399-b923-2f5b6bb34935";
-    }
-    {
-      addonId = "screenshots@mozilla.org";
-      internalUUID = "7b65c3dc-ef97-4745-8373-e0818aef8234";
-    }
-    {
-      addonId = "webcompat-reporter@mozilla.org";
-      internalUUID = "aebf9fb4-c8a4-4e8d-ad7f-00f693bf6f9a";
-    }
-    {
-      addonId = "webcompat@mozilla.org";
-      internalUUID = "8560d354-e6cf-488a-aba6-9870a0701706";
-    }
-    {
-      addonId = "default-theme@mozilla.org";
-      internalUUID = "723e55c0-97f1-4720-bd8d-dcee7fd88376";
-    }
-    {
-      addonId = "addons-search-detection@mozilla.com";
-      internalUUID = "cd923326-5864-4f2f-b5f9-32b28c0ff6e2";
-    }
-    {
-      addonId = "google@search.mozilla.org";
-      internalUUID = "670278f4-421a-4433-8047-ee881de717a9";
-    }
-    {
-      addonId = "wikipedia@search.mozilla.org";
-      internalUUID = "5c402f1d-e0f8-4b92-87f7-61d89c3065c3";
-    }
-    {
-      addonId = "bing@search.mozilla.org";
-      internalUUID = "2746852c-c45b-4885-9766-3d4beafee4ee";
-    }
-    {
-      addonId = "ddg@search.mozilla.org";
-      internalUUID = "d49d3758-74d2-45b8-a0af-898c24d357cc";
-    }
-    {
-      addonId = "amazon@search.mozilla.org";
-      internalUUID = "c8c11263-2986-4f2c-89c3-1ad12f575a72";
-    }
-    {
-      addonId = "ebay@search.mozilla.org";
-      internalUUID = "8db3a588-aa91-4c84-9dd2-8458e000584a";
+      # color scheme tokyonight storm from https://github.com/lokesh-krishna/dotfiles/tree/main/tokyo-night
+      # generated with firefox-color from url: https://color.firefox.com/?theme=XQAAAAKPAgAAAAAAAABBqYhm849SCicxcUJJ2CuG_ebZUZXOFqpMUXOqPCZ36qSRJkXN52FbbTjiyK1MWFJNETZQ0wYF4uVCIywstutBMeAW7Obsj80UcPJQAnIVpdPOctZ5qwuxzdELFY4rFOFPOTJ56RTVDwA4OBpstebirCu7hY0081_kMAs5kyLOhcBXVznGEJZ8hLEKcsRDWIpmds_f9Bz4MLMjGF7kJmKEH1RnLL_dJvGnMgclfyzqTqHxYRhUWrgMfQmbcvGavbRFEetLZGVRbQ5P8k0F0PyfAFgTc6TBQIiKVQa2zX8gZ3Gru31J5KGfZrIaMw2B-eKScfJjrqEILop2n4DLLEe_lqL3ujDgM0Uv8i9nwGVvvQNj_vGGxQ
+      package =
+        (buildFirefoxXpiAddon {
+          pname = "tokyonight-storm-theme";
+          version = "0.0.1";
+          addonId = "tokyonight-storm-theme@0.0.1";
+          url = "file://./theme.xpi";
+          sha256 = lib.fakeSha256;
+          meta = with lib; {platforms = platforms.all;};
+        })
+        .overrideAttrs
+        (old: {
+          src = ./theme.xpi;
+        });
     }
   ];
 
@@ -146,38 +70,43 @@ in {
   };
 
   config = mkIf cfg.enable (let
+    inherit (pkgs.stdenv) isDarwin;
+    inherit (builtins) listToAttrs;
+
     extensions = defaultExtensions ++ cfg.extensions;
 
-    extensionPackages = lib.concatMap (e:
+    mozillaConfigPath =
+      if isDarwin
+      then "Library/Application Support/Mozilla"
+      else ".mozilla";
+
+    firefoxConfigPath =
+      if isDarwin
+      then "Library/Application Support/Firefox"
+      else "${mozillaConfigPath}/firefox";
+
+    profilesPath =
+      if isDarwin
+      then "${firefoxConfigPath}/Profiles"
+      else firefoxConfigPath;
+
+    extensionPolicies = listToAttrs (map (e: {
+        name = e.package.addonId;
+        value = {
+          installation_mode = "forced_installed";
+          install_url = "file://${e.package.out}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${e.package.addonId}.xpi";
+          default_area =
+            if hasAttr "area" e
+            then e.area
+            else "menupanel";
+        };
+      })
+      extensions);
+
+    extensionPackages = concatMap (e:
       if hasAttr "package" e
       then [e.package]
-      else [])
-    extensions;
-
-    uuidMappings = builtins.toJSON (lib.listToAttrs (lib.concatMap (e:
-      if (hasAttr "package" e) || (hasAttr "addonId" e)
-      then [
-        {
-          name =
-            if hasAttr "package" e
-            then e.package.addonId
-            else e.addonId;
-          value = e.internalUUID;
-        }
-      ]
-      else [])
-    extensions));
-
-    extensionPermissions = lib.listToAttrs (lib.concatMap (e:
-      if hasAttr "permissions" e
-      then [
-        {
-          name = "moz-extension://${e.internalUUID}";
-          value = e.permissions;
-        }
-      ]
-      else [])
-    extensions);
+      else []);
   in {
     programs.firefox = {
       inherit (cfg) enable;
@@ -191,6 +120,17 @@ in {
               tridactyl-native
             ];
           };
+
+      policies = {
+        ExtensionSettings =
+          {
+            "*" = {
+              "installation_mode" = "allowed";
+              "allowed_types" = ["extension" "theme" "dictionary"];
+            };
+          }
+          // extensionPolicies;
+      };
 
       profiles = {
         default = {
@@ -260,6 +200,38 @@ in {
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@ghn"];
               };
+              "GitHub (Nixpkgs)" = {
+                urls = [
+                  {
+                    template = "https://github.com/search?q=language:nix+repo:nixos/nixpkgs+{searchTerms}";
+                    params = [
+                      {
+                        name = "type";
+                        value = "code";
+                      }
+                    ];
+                  }
+                ];
+                iconUpdateURL = "https://github.com/favicon.ico";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@ghnp"];
+              };
+              "GitHub (home-manager)" = {
+                urls = [
+                  {
+                    template = "https://github.com/search?q=language:nix+repo:nix-community/home-manager+{searchTerms}";
+                    params = [
+                      {
+                        name = "type";
+                        value = "code";
+                      }
+                    ];
+                  }
+                ];
+                iconUpdateURL = "https://github.com/favicon.ico";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@ghnh"];
+              };
               "Wikipedia (en)".metaData.alias = "@w";
               "Google".metaData.alias = "@g";
               "Amazon.ca".metaData.alias = "@a";
@@ -286,28 +258,9 @@ in {
             "browser.discovery.enabled" = false;
             "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
             "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
-
-            "extensions.webextensions.uuids" = uuidMappings;
           };
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons;
-            [
-              # color scheme tokyonight storm from https://github.com/lokesh-krishna/dotfiles/tree/main/tokyo-night
-              # generated with firefox-color from url: https://color.firefox.com/?theme=XQAAAAKPAgAAAAAAAABBqYhm849SCicxcUJJ2CuG_ebZUZXOFqpMUXOqPCZ36qSRJkXN52FbbTjiyK1MWFJNETZQ0wYF4uVCIywstutBMeAW7Obsj80UcPJQAnIVpdPOctZ5qwuxzdELFY4rFOFPOTJ56RTVDwA4OBpstebirCu7hY0081_kMAs5kyLOhcBXVznGEJZ8hLEKcsRDWIpmds_f9Bz4MLMjGF7kJmKEH1RnLL_dJvGnMgclfyzqTqHxYRhUWrgMfQmbcvGavbRFEetLZGVRbQ5P8k0F0PyfAFgTc6TBQIiKVQa2zX8gZ3Gru31J5KGfZrIaMw2B-eKScfJjrqEILop2n4DLLEe_lqL3ujDgM0Uv8i9nwGVvvQNj_vGGxQ
-              ((buildFirefoxXpiAddon {
-                  pname = "tokyonight-storm-theme";
-                  version = "0.0.1";
-                  addonId = "tokyonight-storm.theme@0.0.1";
-                  url = "file://./theme.xpi";
-                  sha256 = lib.fakeSha256;
-                  meta = with lib; {platforms = platforms.all;};
-                })
-                .overrideAttrs
-                (old: {
-                  src = ./theme.xpi;
-                }))
-            ]
-            ++ extensionPackages;
+          extensions = extensionPackages extensions;
         };
       };
     };
@@ -360,24 +313,24 @@ in {
     };
 
     home.activation.firefoxPermissions = let
-      permissions =
-        {
-          "https://mail.google.com" = {
-            "desktop-notification" = "allow";
-            "storageAccessAPI" = "allow";
-          };
-          "https://mail.proton.me" = {
-            "desktop-notification" = "allow";
-            "storageAccessAPI" = "allow";
-          };
-          "https://calendar.google.com" = {
-            "desktop-notification" = "allow";
-            "storageAccessAPI" = "allow";
-          };
-        }
-        // extensionPermissions;
+      inherit (pkgs.stdenv) isDarwin;
 
-      db = lib.escapeShellArg "${config.home.homeDirectory}/.mozilla/firefox/default/permissions.sqlite";
+      permissions = {
+        "https:enixpkgs/mail.google.com" = {
+          "desktop-notification" = "allow";
+          "storageAccessAPI" = "allow";
+        };
+        "https://mail.libproton.me" = {
+          "desktop-notification" = "allow";
+          "storageAccessAPI" = "allow";
+        };
+        "https://calendar.google.com" = {
+          "desktop-notification" = "allow";
+          "storageAccessAPI" = "allow";
+        };
+      };
+
+      db = lib.escapeShellArg "${profilesPath}/default/permissions.sqlite";
 
       schema = pkgs.writeText "schema.sql" ''
         CREATE TABLE moz_perms ( id INTEGER PRIMARY KEY,origin TEXT,type TEXT,permission INTEGER,expireType INTEGER,expireTime INTEGER,modificationTime INTEGER);
@@ -430,5 +383,14 @@ in {
       fi
       ${pkgs.sqlite}/bin/sqlite3 ${db} < ${data} || true
     '';
+
+    home.activation.firefoxPolicies = mkIf isDarwin (let
+      policyFile = pkgs.writeText "policies.json" (builtins.toJSON {
+        inherit (config.programs.firefox) policies;
+      });
+    in ''
+      mkdir -p /Applications/Firefox.app/Contents/Resources/distribution
+      ln -sf ${policyFile} /Applications/Firefox.app/Contents/Resources/distribution/policies.json
+    '');
   });
 }
