@@ -40,5 +40,7 @@
     ../roles/security.nix
     ../roles/nixpkgs.nix
     ../roles/utils.nix
+
+    ../roles/win/browsers.nix
   ];
 }
