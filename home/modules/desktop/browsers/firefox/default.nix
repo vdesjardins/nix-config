@@ -39,23 +39,23 @@
         meta = with lib; {platforms = platforms.all;};
       };
     }
-    {
-      # color scheme tokyonight storm from https://github.com/lokesh-krishna/dotfiles/tree/main/tokyo-night
-      # generated with firefox-color from url: https://color.firefox.com/?theme=XQAAAAKPAgAAAAAAAABBqYhm849SCicxcUJJ2CuG_ebZUZXOFqpMUXOqPCZ36qSRJkXN52FbbTjiyK1MWFJNETZQ0wYF4uVCIywstutBMeAW7Obsj80UcPJQAnIVpdPOctZ5qwuxzdELFY4rFOFPOTJ56RTVDwA4OBpstebirCu7hY0081_kMAs5kyLOhcBXVznGEJZ8hLEKcsRDWIpmds_f9Bz4MLMjGF7kJmKEH1RnLL_dJvGnMgclfyzqTqHxYRhUWrgMfQmbcvGavbRFEetLZGVRbQ5P8k0F0PyfAFgTc6TBQIiKVQa2zX8gZ3Gru31J5KGfZrIaMw2B-eKScfJjrqEILop2n4DLLEe_lqL3ujDgM0Uv8i9nwGVvvQNj_vGGxQ
-      package =
-        (buildFirefoxXpiAddon {
-          pname = "tokyonight-storm-theme";
-          version = "0.0.1";
-          addonId = "tokyonight-storm-theme@0.0.1";
-          url = "file://./theme.xpi";
-          sha256 = lib.fakeSha256;
-          meta = with lib; {platforms = platforms.all;};
-        })
-        .overrideAttrs
-        (old: {
-          src = ./theme.xpi;
-        });
-    }
+    # {
+    #   # color scheme tokyonight storm from https://github.com/lokesh-krishna/dotfiles/tree/main/tokyo-night
+    #   # generated with firefox-color from url: https://color.firefox.com/?theme=XQAAAAKPAgAAAAAAAABBqYhm849SCicxcUJJ2CuG_ebZUZXOFqpMUXOqPCZ36qSRJkXN52FbbTjiyK1MWFJNETZQ0wYF4uVCIywstutBMeAW7Obsj80UcPJQAnIVpdPOctZ5qwuxzdELFY4rFOFPOTJ56RTVDwA4OBpstebirCu7hY0081_kMAs5kyLOhcBXVznGEJZ8hLEKcsRDWIpmds_f9Bz4MLMjGF7kJmKEH1RnLL_dJvGnMgclfyzqTqHxYRhUWrgMfQmbcvGavbRFEetLZGVRbQ5P8k0F0PyfAFgTc6TBQIiKVQa2zX8gZ3Gru31J5KGfZrIaMw2B-eKScfJjrqEILop2n4DLLEe_lqL3ujDgM0Uv8i9nwGVvvQNj_vGGxQ
+    #   package =
+    #     (buildFirefoxXpiAddon {
+    #       pname = "tokyonight-storm-theme";
+    #       version = "0.0.1";
+    #       addonId = "tokyonight-storm-theme@0.0.1";
+    #       url = "file://./theme.xpi";
+    #       sha256 = lib.fakeSha256;
+    #       meta = with lib; {platforms = platforms.all;};
+    #     })
+    #     .overrideAttrs
+    #     (old: {
+    #       src = ./theme.xpi;
+    #     });
+    # }
   ];
 
   cfg = config.modules.desktop.browsers.firefox;
@@ -93,7 +93,7 @@ in {
     extensionPolicies = listToAttrs (map (e: {
         name = e.package.addonId;
         value = {
-          installation_mode = "forced_installed";
+          installation_mode = "normal_installed";
           install_url = "file://${e.package.out}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${e.package.addonId}.xpi";
           default_area =
             if hasAttr "area" e
@@ -258,9 +258,12 @@ in {
             "browser.discovery.enabled" = false;
             "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
             "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
-          };
 
-          extensions = extensionPackages extensions;
+            "intl.locale.requested" = "en-CA,en-US,fr";
+            "intl.accept_languages" = "en-CA,en-US,en,fr-CA,fr";
+
+            "browser.policies.loglevel" = "debug";
+          };
         };
       };
     };
