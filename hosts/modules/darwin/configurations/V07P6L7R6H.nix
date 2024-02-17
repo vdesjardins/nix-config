@@ -9,7 +9,6 @@ in {
     "flameshot"
     "google-chrome"
     "google-drive"
-    "hammerspoon"
     "maccy"
     "middleclick"
     "stats"

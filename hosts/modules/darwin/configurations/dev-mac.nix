@@ -6,16 +6,15 @@ in {
     "Rectangle"
     "alt-tab"
     "bitwarden"
-    "brave-browser"
     "docker"
     "firefox"
     "flameshot"
     "google-chrome"
     "google-drive"
-    "hammerspoon"
     "maccy"
     "middleclick"
     "stats"
+    "ukelele"
     "vmware-fusion"
   ];
 

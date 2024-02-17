@@ -135,56 +135,6 @@
       defaults write com.apple.HIToolbox AppleGlobalTextInputProperties '{"TextInputGlobalPropertyPerContextInput" = 1; }'
       defaults write com.apple.TextInputMenu visible 1
 
-      # Remap CapsLock to Control and swap left command and left alt for the builtin keyboard
-      #
-      # Composed of idVendor-idProduct. Gotten from command
-      # ioreg -c IOHIDUserDevice | grep -e VendorID -e ProductID
-      kbid=$(/usr/sbin/ioreg -c AppleEmbeddedKeyboard -r | sed -n -E 's/.*"(VendorID|ProductID)" = (\d*)/\2/p' | xargs printf '%s-%s-0')
-      echo "Configuring mapping for Apple internal keyboard $kbid"
-      defaults -currentHost write -g "com.apple.keyboard.modifiermapping.$kbid" -array ''\\
-      "<dict>
-        <key>HIDKeyboardModifierMappingDst</key>
-        <integer>30064771302</integer>
-        <key>HIDKeyboardModifierMappingSrc</key>
-        <integer>30064771303</integer>
-      </dict>" ''\\
-      "<dict>
-        <key>HIDKeyboardModifierMappingDst</key>
-        <integer>30064771300</integer>
-        <key>HIDKeyboardModifierMappingSrc</key>
-        <integer>30064771129</integer>
-      </dict>" ''\\
-      "<dict>
-        <key>HIDKeyboardModifierMappingDst</key>
-        <integer>30064771299</integer>
-        <key>HIDKeyboardModifierMappingSrc</key>
-        <integer>30064771298</integer>
-      </dict>" ''\\
-      "<dict>
-        <key>HIDKeyboardModifierMappingDst</key>
-        <integer>1095216660483</integer>
-        <key>HIDKeyboardModifierMappingSrc</key>
-        <integer>280379760050179</integer>
-      </dict>" ''\\
-      "<dict>
-        <key>HIDKeyboardModifierMappingDst</key>
-        <integer>30064771303</integer>
-        <key>HIDKeyboardModifierMappingSrc</key>
-        <integer>30064771302</integer>
-      </dict>" ''\\
-      "<dict>
-        <key>HIDKeyboardModifierMappingDst</key>
-        <integer>30064771298</integer>
-        <key>HIDKeyboardModifierMappingSrc</key>
-        <integer>30064771299</integer>
-      </dict>" ''\\
-      "<dict>
-        <key>HIDKeyboardModifierMappingDst</key>
-        <integer>1095216660483</integer>
-        <key>HIDKeyboardModifierMappingSrc</key>
-        <integer>1095216660483</integer>
-      </dict>"
-
       sudo cp ${./keyboards/us-altgr-intl.keylayout} /Library/keyboard\ Layouts/us-altgr-intl.keylayout
     '';
   };

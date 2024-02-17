@@ -1,7 +1,7 @@
 {
   pkgs,
-  key_leader ? "`",
-  mods_leader ? "",
+  key_leader ? "b",
+  mods_leader ? "CTRL",
   color_scheme ? "tokyonight_storm",
   homeDirectory,
   font,

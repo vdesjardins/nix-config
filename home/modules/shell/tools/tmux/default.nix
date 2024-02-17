@@ -21,7 +21,7 @@ in {
       tmux = {
         inherit (cfg) enable;
 
-        prefix = "`";
+        prefix = "C-b";
         baseIndex = 1;
         clock24 = true;
         historyLimit = 100000;

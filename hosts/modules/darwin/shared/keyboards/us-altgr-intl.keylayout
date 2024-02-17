@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
-<!--Last edited by Ukelele version 377 on 2024-02-08 at 22:33 (EST)-->
-<keyboard group="126" id="-25794" name="us-altgr-intl" maxout="2">
+<!--Last edited by Ukelele version 380 on 2024-02-16 at 17:29 (EST)-->
+<keyboard group="126" id="-16711" name="us-altgr-intl" maxout="2">
     <layouts>
         <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
         <layout first="18" last="18" mapSet="JIS" modifiers="Modifiers"/>
@@ -684,6 +684,7 @@
             <key code="7" output=""/>
             <key code="8" output=""/>
             <key code="9" output=""/>
+            <key code="10" output=""/>
             <key code="11" output=""/>
             <key code="12" output=""/>
             <key code="13" output=""/>
@@ -691,18 +692,18 @@
             <key code="15" output=""/>
             <key code="16" output=""/>
             <key code="17" output=""/>
-            <key code="18" output=""/>
-            <key code="19" output=""/>
-            <key code="20" output=""/>
-            <key code="21" output=""/>
-            <key code="22" output=""/>
-            <key code="23" output=""/>
+            <key code="18" output="1"/>
+            <key code="19" output="2"/>
+            <key code="20" output="3"/>
+            <key code="21" output="4"/>
+            <key code="22" output="6"/>
+            <key code="23" output="5"/>
             <key code="24" output=""/>
-            <key code="25" output=""/>
-            <key code="26" output=""/>
+            <key code="25" output="9"/>
+            <key code="26" output="7"/>
             <key code="27" output=""/>
-            <key code="28" output=""/>
-            <key code="29" output=""/>
+            <key code="28" output="8"/>
+            <key code="29" output="0"/>
             <key code="30" output=""/>
             <key code="31" output=""/>
             <key code="32" output=""/>

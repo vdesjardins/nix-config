@@ -1,3 +1,3 @@
 {
-  modules.darwin.hammerspoon.enable = true;
+  modules.darwin.karabiner.enable = true;
 }
