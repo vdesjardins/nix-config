@@ -22,6 +22,25 @@ jobs:
     name: Build/cache Linux Nix env
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        include:
+          - arch: aarch64
+            distro: alpine_latest
+            nix-command: build .#homeConfigurations.vince@dev-vm.activationPackage
+            user: vince
+            hostname: dev-vm
+          - arch: aarch64
+            distro: alpine_latest
+            nix-command: build .#nixosConfigurations.dev-vm.config.system.build.toplevel
+            user: vince
+            hostname: dev-vm
+          - arch: aarch64
+            distro: alpine_latest
+            nix-command: build .#nixosConfigurations.home-server.config.system.build.toplevel
+            user: admin
+            hostname: home-server
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -29,36 +48,84 @@ jobs:
           # Nix Flakes doesn't work on shallow clones
           fetch-depth: 0
 
-      - name: Install Nix
-        uses: cachix/install-nix-action@v22
-        with:
-          install_url: https://releases.nixos.org/nix/nix-2.13.3/install
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            substituters = https://cache.nixos.org/
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-
-      - name: Setup Cachix
-        uses: cachix/cachix-action@v12
-        with:
-          name: vdesjardins
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-
       - name: If scheduled, update inputs
         if: ${{ github.event_name == 'schedule' && success() }}
         run: |
           nix flake update
 
-      - name: Build and switch to home-manager env
-        run: |
-          sudo mkdir /home/vincent_desjardins
-          sudo chown $USER /home/vincent_desjardins
-          # Prevent conflict between Cachix installed by workflow and the one installed in the config
-          nix-env --set-flag priority 1 cachix
-          # Build and switch to home-manager env
-          export HOME_MANAGER_BACKUP_EXT=".bkp"
-          make hm/vincent_desjardins
+      - uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+          githubToken: ${{ github.token }}
+          # dockerRunArgs: |
+          #   --volume "${PWD}/nix:/nix"
+
+          # setup: |
+          #   mkdir -p "${PWD}/nix"
+
+          env: |
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            USER: root
+
+          install: |
+            set -x
+            set -euo pipefail
+
+            export USER=root
+
+            apk --no-cache add curl git xz
+
+            mkdir -p /etc/nix
+
+            cat <<EOF >> /etc/nix/nix.conf
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            keep-going = true
+            show-trace = true
+            trusted-users = root
+            build-users-group =
+            EOF
+
+            mkdir -m 0755 /nix && chown root /nix
+
+            INSTALL_FILE="install"
+            curl \
+              --silent \
+              --show-error \
+              --output "$INSTALL_FILE" \
+              --retry 5 \
+              --retry-all-errors \
+              --fail \
+              --location \
+              "https://releases.nixos.org/nix/nix-2.16.1/install"
+            sh "$INSTALL_FILE" --no-channel-add
+            rm "$INSTALL_FILE"
+
+          run: |
+            set -x
+            set -euo pipefail
+
+            export PATH=$PATH:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin
+
+            cat <<EOF >> /etc/nix/nix.conf
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            EOF
+
+            nix-env --quiet -j8 -iA cachix -f https://cachix.org/api/v1/install
+            cachix use vdesjardins
+
+            nix \
+              --keep-going \
+              --quiet \
+              ${{ matrix.nix-command }}
+
+      # - name: Upload artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     path: |
+      #       "${PWD}/nix"
 
       - name: If scheduled, push commit with updated inputs
         if: ${{ github.event_name == 'schedule' && success() }}
