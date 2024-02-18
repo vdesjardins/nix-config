@@ -103,6 +103,12 @@ in {
       then [e.messagingHost]
       else [])
     extensions;
+
+    messagingHostInstallCommands = concatMap (e:
+      if hasAttr "darwinMessagingHostInstallCommand" e
+      then [e.darwinMessagingHostInstallCommand]
+      else [])
+    extensions;
   in {
     programs.firefox = {
       inherit (cfg) enable;
@@ -313,85 +319,89 @@ in {
       ];
     };
 
-    home.activation.firefoxPermissions = let
-      inherit (pkgs.stdenv) isDarwin;
+    home.activation = {
+      firefoxPermissions = let
+        inherit (pkgs.stdenv) isDarwin;
 
-      permissions = {
-        "https:enixpkgs/mail.google.com" = {
-          "desktop-notification" = "allow";
-          "storageAccessAPI" = "allow";
+        permissions = {
+          "https:enixpkgs/mail.google.com" = {
+            "desktop-notification" = "allow";
+            "storageAccessAPI" = "allow";
+          };
+          "https://mail.libproton.me" = {
+            "desktop-notification" = "allow";
+            "storageAccessAPI" = "allow";
+          };
+          "https://calendar.google.com" = {
+            "desktop-notification" = "allow";
+            "storageAccessAPI" = "allow";
+          };
         };
-        "https://mail.libproton.me" = {
-          "desktop-notification" = "allow";
-          "storageAccessAPI" = "allow";
-        };
-        "https://calendar.google.com" = {
-          "desktop-notification" = "allow";
-          "storageAccessAPI" = "allow";
-        };
-      };
 
-      db = lib.escapeShellArg "${profilesPath}/default/permissions.sqlite";
+        db = lib.escapeShellArg "${profilesPath}/default/permissions.sqlite";
 
-      schema = pkgs.writeText "schema.sql" ''
-        CREATE TABLE moz_perms ( id INTEGER PRIMARY KEY,origin TEXT,type TEXT,permission INTEGER,expireType INTEGER,expireTime INTEGER,modificationTime INTEGER);
-        CREATE TABLE moz_hosts ( id INTEGER PRIMARY KEY,host TEXT,type TEXT,permission INTEGER,expireType INTEGER,expireTime INTEGER,modificationTime INTEGER,isInBrowserElement INTEGER);
+        schema = pkgs.writeText "schema.sql" ''
+          CREATE TABLE moz_perms ( id INTEGER PRIMARY KEY,origin TEXT,type TEXT,permission INTEGER,expireType INTEGER,expireTime INTEGER,modificationTime INTEGER);
+          CREATE TABLE moz_hosts ( id INTEGER PRIMARY KEY,host TEXT,type TEXT,permission INTEGER,expireType INTEGER,expireTime INTEGER,modificationTime INTEGER,isInBrowserElement INTEGER);
+        '';
+
+        data = let
+          inherit (builtins) replaceStrings concatMap map attrNames;
+          inherit (lib.strings) concatStringsSep;
+
+          escapeString = str: "'${replaceStrings ["'"] ["''"] str}'";
+          escapeInt = toString;
+          permissionValue = {
+            allow = 1;
+            deny = 2;
+            prompt = 3;
+          };
+        in
+          pkgs.writeText "data.sql" ''
+            BEGIN TRANSACTION;
+
+            CREATE UNIQUE INDEX IF NOT EXISTS moz_perms_upsert_index ON moz_perms(origin, type);
+
+            WITH now(unix_ms) AS (SELECT CAST((julianday('now') - 2440587.5) * 86400000 AS INTEGER))
+            INSERT INTO moz_perms(origin, type, permission, expireType, expireTime, modificationTime)
+            VALUES
+            ${concatStringsSep ",\n"
+              (concatMap
+                (origin: let
+                  originPermissions = permissions.${origin};
+                in
+                  map
+                  (type: let
+                    permission = permissionValue.${originPermissions.${type}};
+                  in "  (${escapeString origin}, ${escapeString type}, ${escapeInt permission}, 0, 0, (SELECT unix_ms FROM now))")
+                  (attrNames originPermissions))
+                (attrNames permissions))}
+                ON CONFLICT(origin, type) DO UPDATE SET
+                  permission=excluded.permission,
+                  expireType=excluded.expireType,
+                  expireTime=excluded.expireTime,
+                  modificationTime=excluded.modificationTime;
+
+            COMMIT;
+          '';
+      in ''
+        if [ ! -e ${db} ]; then
+          mkdir -p $(dirname ${db})
+          ${pkgs.sqlite}/bin/sqlite3 ${db} < ${schema}
+        fi
+        ${pkgs.sqlite}/bin/sqlite3 ${db} < ${data} || true
       '';
 
-      data = let
-        inherit (builtins) replaceStrings concatMap map attrNames;
-        inherit (lib.strings) concatStringsSep;
+      darwinFirefoxPolicies = mkIf isDarwin (let
+        policyFile = pkgs.writeText "policies.json" (builtins.toJSON {
+          inherit (config.programs.firefox) policies;
+        });
+      in ''
+        mkdir -p /Applications/Firefox.app/Contents/Resources/distribution
+        ln -sf ${policyFile} /Applications/Firefox.app/Contents/Resources/distribution/policies.json
+      '');
 
-        escapeString = str: "'${replaceStrings ["'"] ["''"] str}'";
-        escapeInt = toString;
-        permissionValue = {
-          allow = 1;
-          deny = 2;
-          prompt = 3;
-        };
-      in
-        pkgs.writeText "data.sql" ''
-          BEGIN TRANSACTION;
-
-          CREATE UNIQUE INDEX IF NOT EXISTS moz_perms_upsert_index ON moz_perms(origin, type);
-
-          WITH now(unix_ms) AS (SELECT CAST((julianday('now') - 2440587.5) * 86400000 AS INTEGER))
-          INSERT INTO moz_perms(origin, type, permission, expireType, expireTime, modificationTime)
-          VALUES
-          ${concatStringsSep ",\n"
-            (concatMap
-              (origin: let
-                originPermissions = permissions.${origin};
-              in
-                map
-                (type: let
-                  permission = permissionValue.${originPermissions.${type}};
-                in "  (${escapeString origin}, ${escapeString type}, ${escapeInt permission}, 0, 0, (SELECT unix_ms FROM now))")
-                (attrNames originPermissions))
-              (attrNames permissions))}
-              ON CONFLICT(origin, type) DO UPDATE SET
-                permission=excluded.permission,
-                expireType=excluded.expireType,
-                expireTime=excluded.expireTime,
-                modificationTime=excluded.modificationTime;
-
-          COMMIT;
-        '';
-    in ''
-      if [ ! -e ${db} ]; then
-        mkdir -p $(dirname ${db})
-        ${pkgs.sqlite}/bin/sqlite3 ${db} < ${schema}
-      fi
-      ${pkgs.sqlite}/bin/sqlite3 ${db} < ${data} || true
-    '';
-
-    home.activation.firefoxPolicies = mkIf isDarwin (let
-      policyFile = pkgs.writeText "policies.json" (builtins.toJSON {
-        inherit (config.programs.firefox) policies;
-      });
-    in ''
-      mkdir -p /Applications/Firefox.app/Contents/Resources/distribution
-      ln -sf ${policyFile} /Applications/Firefox.app/Contents/Resources/distribution/policies.json
-    '');
+      darwinMessagingHosts = mkIf isDarwin (lib.strings.concatStringsSep "\n" messagingHostInstallCommands);
+    };
   });
 }

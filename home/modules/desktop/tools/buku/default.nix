@@ -25,6 +25,7 @@ in {
         package = bukubrow;
         area = "navbar";
         messagingHost = pkgs.bukubrow;
+        darwinMessagingHostInstallCommand = "${pkgs.bukubrow}/bin/bukubrow --install-firefox";
       }
     ];
   };
