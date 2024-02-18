@@ -103,10 +103,11 @@ in {
       })
       extensions);
 
-    extensionPackages = concatMap (e:
-      if hasAttr "package" e
-      then [e.package]
-      else []);
+    messagingHosts = concatMap (e:
+      if hasAttr "messagingHost" e
+      then [e.messagingHost]
+      else [])
+    extensions;
   in {
     programs.firefox = {
       inherit (cfg) enable;
@@ -116,9 +117,11 @@ in {
         then null # unable to compile on M1. Relying on brew for now
         else
           pkgs.firefox-wayland.override {
-            nativeMessagingHosts = with pkgs; [
-              tridactyl-native
-            ];
+            nativeMessagingHosts = with pkgs;
+              [
+                tridactyl-native
+              ]
+              ++ messagingHosts;
           };
 
       policies = {
