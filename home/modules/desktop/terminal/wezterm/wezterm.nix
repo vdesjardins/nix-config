@@ -1,6 +1,6 @@
 {
   pkgs,
-  key_leader ? "b",
+  key_leader ? "-",
   mods_leader ? "CTRL",
   color_scheme ? "tokyonight_storm",
   homeDirectory,
