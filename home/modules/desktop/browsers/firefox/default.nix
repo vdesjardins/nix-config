@@ -20,12 +20,7 @@
       package = bitwarden;
       area = "navbar";
     }
-    {package = bukubrow;}
     {package = firefox-color;}
-    {
-      package = raindropio;
-      area = "navbar";
-    }
     {package = dictionaries;}
     {package = qr-code-address-bar;}
     {package = duckduckgo-privacy-essentials;}
