@@ -36,6 +36,7 @@
     ../roles/security.nix
     ../roles/utils.nix
     ../roles/nixpkgs.nix
+    ../roles/sync.nix
     ../roles/win/browsers.nix
 
     ../roles/multimedia.nix

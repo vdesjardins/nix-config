@@ -9,6 +9,7 @@
     ../roles/common.nix
     ../roles/darwin.nix
 
+    ../roles/sync.nix
     ../roles/win/darwin.nix
     ../roles/dev/bash.nix
     ../roles/dev/cue.nix
