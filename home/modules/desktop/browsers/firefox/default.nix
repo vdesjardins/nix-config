@@ -15,7 +15,10 @@
       package = darkreader;
       area = "navbar";
     }
-    {package = tridactyl;}
+    {
+      package = tridactyl;
+      nativeMessagingHost = pkgs.tridactyl-native;
+    }
     {
       package = bitwarden;
       area = "navbar";
@@ -98,15 +101,9 @@ in {
       })
       extensions);
 
-    messagingHosts = concatMap (e:
-      if hasAttr "messagingHost" e
-      then [e.messagingHost]
-      else [])
-    extensions;
-
-    messagingHostInstallCommands = concatMap (e:
-      if hasAttr "darwinMessagingHostInstallCommand" e
-      then [e.darwinMessagingHostInstallCommand]
+    nativeMessagingHosts = concatMap (e:
+      if hasAttr "nativeMessagingHost" e
+      then [e.nativeMessagingHost]
       else [])
     extensions;
   in {
@@ -118,11 +115,7 @@ in {
         then null # unable to compile on M1. Relying on brew for now
         else
           pkgs.firefox-wayland.override {
-            nativeMessagingHosts = with pkgs;
-              [
-                tridactyl-native
-              ]
-              ++ messagingHosts;
+            inherit nativeMessagingHosts;
           };
 
       policies = {
@@ -401,7 +394,12 @@ in {
         ln -sf ${policyFile} /Applications/Firefox.app/Contents/Resources/distribution/policies.json
       '');
 
-      darwinMessagingHosts = mkIf isDarwin (lib.strings.concatStringsSep "\n" messagingHostInstallCommands);
+      darwinFirefoxNativeMessagingHosts = mkIf isDarwin ''
+        mkdir -p "${mozillaConfigPath}/NativeMessagingHosts"
+          for ext in ${toString nativeMessagingHosts}; do
+              ln -sf $ext/lib/mozilla/native-messaging-hosts/* "${mozillaConfigPath}/NativeMessagingHosts"
+          done
+      '';
     };
   });
 }
