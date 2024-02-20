@@ -15,14 +15,6 @@
       package = darkreader;
       area = "navbar";
     }
-    {
-      package = tridactyl;
-      nativeMessagingHost = pkgs.tridactyl-native;
-    }
-    {
-      package = bitwarden;
-      area = "navbar";
-    }
     {package = firefox-color;}
     {package = dictionaries;}
     {package = qr-code-address-bar;}
