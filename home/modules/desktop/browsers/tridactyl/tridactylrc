@@ -1,0 +1,44 @@
+set configversion 2.0
+
+set editorcmd nvim
+
+colors midnight
+
+bind --mode=ex <C-a> text.beginning_of_line
+bind --mode=insert <C-a> text.beginning_of_line
+bind --mode=input <C-a> text.beginning_of_line
+bind --mode=ex <C-e> text.end_of_line
+bind --mode=insert <C-e> text.end_of_line
+bind --mode=input <C-e> text.end_of_line
+bind --mode=ex <C-f> text.forward_word
+bind --mode=insert <C-f> text.forward_word
+bind --mode=input <C-f> text.forward_word
+bind --mode=ex <C-k> text.kill_line
+bind --mode=insert <C-k> text.kill_line
+bind --mode=input <C-k> text.kill_line
+bind --mode=ex <C-u> text.backward_kill_line
+bind --mode=insert <C-u> text.backward_kill_line
+bind --mode=input <C-u> text.backward_kill_line
+bind --mode=ex <C-w> text.backward_kill_word
+bind --mode=insert <C-w> text.backward_kill_word
+bind --mode=input <C-w> text.backward_kill_word
+
+" FIXME: C-n opens a new window even with this mapping
+" Will be fix if ever with
+" https://bugzilla.mozilla.org/show_bug.cgi?id=1325692
+" Reference: https://github.com/tridactyl/tridactyl/issues/996
+bind --mode=ex <C-n> ex.next_completion
+bind --mode=ex <C-p> ex.prev_completion
+bind --mode=ex <C-y> ex.insert_completion
+bind --mode=ex <C-e> ex.deselect_completion
+bind --mode=ex <C-g> composite text.beginning_of_line ; text.forward_word ; text.kill_word
+
+" containers
+set auconcreatecontainer true
+
+autocontain facebook.com facebook
+autocontain gmail.com google
+autocontain youtube.com youtube
+autocontain youtu.be youtube
+
+" vim: filetype=vim

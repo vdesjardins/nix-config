@@ -14,6 +14,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;
+
     modules.desktop.browsers.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       {
         package = tridactyl;
