@@ -29,23 +29,16 @@
         meta = with lib; {platforms = platforms.all;};
       };
     }
-    # {
-    #   # color scheme tokyonight storm from https://github.com/lokesh-krishna/dotfiles/tree/main/tokyo-night
-    #   # generated with firefox-color from url: https://color.firefox.com/?theme=XQAAAAKPAgAAAAAAAABBqYhm849SCicxcUJJ2CuG_ebZUZXOFqpMUXOqPCZ36qSRJkXN52FbbTjiyK1MWFJNETZQ0wYF4uVCIywstutBMeAW7Obsj80UcPJQAnIVpdPOctZ5qwuxzdELFY4rFOFPOTJ56RTVDwA4OBpstebirCu7hY0081_kMAs5kyLOhcBXVznGEJZ8hLEKcsRDWIpmds_f9Bz4MLMjGF7kJmKEH1RnLL_dJvGnMgclfyzqTqHxYRhUWrgMfQmbcvGavbRFEetLZGVRbQ5P8k0F0PyfAFgTc6TBQIiKVQa2zX8gZ3Gru31J5KGfZrIaMw2B-eKScfJjrqEILop2n4DLLEe_lqL3ujDgM0Uv8i9nwGVvvQNj_vGGxQ
-    #   package =
-    #     (buildFirefoxXpiAddon {
-    #       pname = "tokyonight-storm-theme";
-    #       version = "0.0.1";
-    #       addonId = "tokyonight-storm-theme@0.0.1";
-    #       url = "file://./theme.xpi";
-    #       sha256 = lib.fakeSha256;
-    #       meta = with lib; {platforms = platforms.all;};
-    #     })
-    #     .overrideAttrs
-    #     (old: {
-    #       src = ./theme.xpi;
-    #     });
-    # }
+    {
+      package = buildFirefoxXpiAddon {
+        pname = "tokyo-night-milav";
+        version = "1.0";
+        addonId = "{4520dc08-80f4-4b2e-982a-c17af42e5e4d}";
+        url = "https://addons.mozilla.org/firefox/downloads/file/3952418/tokyo_night_milav-1.0.xpi";
+        sha256 = "sha256-2RwxweYF6MicmHbIV1h0q2RP9ptJNHAABqkW7C8Il6w=";
+        meta = with lib; {platforms = platforms.all;};
+      };
+    }
   ];
 
   cfg = config.modules.desktop.browsers.firefox;
