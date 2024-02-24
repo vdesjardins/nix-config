@@ -106,9 +106,12 @@ in {
         if pkgs.stdenv.isDarwin
         then null # unable to compile on M1. Relying on brew for now
         else
-          pkgs.firefox-wayland.override {
+          (pkgs.firefox-wayland.override {
             inherit nativeMessagingHosts;
-          };
+            extraPrefsFiles = [
+              "${./config.js}"
+            ];
+          });
 
       policies = {
         ExtensionSettings =
