@@ -17,5 +17,15 @@ in {
     home.packages = with pkgs; [
       rofi-rbw
     ];
+
+    wayland.windowManager.sway = {
+      config = let
+        swayCfg = config.wayland.windowManager.sway.config;
+      in {
+        keybindings = lib.mkOptionDefault {
+          "${swayCfg.modifier}+p" = "exec ${pkgs.rofi-rbw}/bin/rofi-rbw";
+        };
+      };
+    };
   };
 }

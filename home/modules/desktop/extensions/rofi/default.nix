@@ -22,7 +22,7 @@ in {
 
     package = mkOption {
       type = package;
-      default = pkgs.unstable.wezterm;
+      default = pkgs.rofi-wayland;
     };
 
     font = mkOption {
@@ -30,7 +30,9 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable (let
+    rofimoji = pkgs.rofimoji.override {rofi = cfg.package;};
+  in {
     programs.rofi = {
       inherit (cfg) enable font package terminal;
 
@@ -72,7 +74,7 @@ in {
           "calc"
           "combi"
           "drun"
-          "emoji"
+          "emoji:${rofimoji}/bin/rofimoji"
           "file-browser-extended"
           "filebrowser"
           "keys"
@@ -126,5 +128,25 @@ in {
         exec = "rofi-systemd";
       })
     ];
-  };
+
+    wayland.windowManager.sway = {
+      config = let
+        swayCfg = config.wayland.windowManager.sway.config;
+        rofi = config.programs.rofi.finalPackage;
+      in {
+        menu = "${rofi}/bin/rofi -show drun -matching fuzzy";
+
+        keybindings = lib.mkOptionDefault {
+          "${swayCfg.modifier}+x" = "exec ${rofi}/bin/rofi -show run -matching fuzzy";
+          "${swayCfg.modifier}+w" = "exec ${rofi}/bin/rofi -show window -matching fuzzy";
+          "${swayCfg.modifier}+c" = "exec ${rofi}/bin/rofi -show ssh -matching fuzzy";
+          "${swayCfg.modifier}+m" = "exec ${rofi}/bin/rofi -show window -matching fuzzy";
+          "${swayCfg.modifier}+Shift+o" = "exec ${rofi}/bin/rofi -show combi";
+
+          "${swayCfg.modifier}+comma" = "exec echo \"\" | ${rofi}/bin/rofi -dmenu -p 'New workspace name' | xargs -r swaymsg rename workspace to";
+          "${swayCfg.modifier}+period" = "exec echo \"\" | ${rofi}/bin/rofi -dmenu -p 'New window name' | xargs -r swaymsg rename window to";
+        };
+      };
+    };
+  });
 }

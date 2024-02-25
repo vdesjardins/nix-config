@@ -76,8 +76,6 @@ in {
 
         workspaceAutoBackAndForth = true;
 
-        menu = "rofi -show drun";
-
         focus = {
           followMouse = true;
           mouseWarping = "container";
@@ -210,43 +208,24 @@ in {
           "XF86AudioNext" = "exec playerctl next";
           "XF86AudioPrev" = "exec playerctl previous";
 
-          # Passwords
-          "${mod}+p" = "exec ${pkgs.rofi-rbw}/bin/rofi-rbw";
-
           # Screenshots
           "${mod}+Print" = "exec --no-startup-id shotman --capture window --copy";
           "${mod}+Shift+Print" = "exec --no-startup-id shotman --capture region --copy";
           "${mod}+Ctrl+Print" = "exec --no-startup-id shotman --capture output --copy";
 
           # clipboard
-          "${mod}+Shift+c" = ''exec "${pkgs.cliphist}/bin/cliphist list | rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | wl-copy"'';
+          "${mod}+Shift+c" = ''exec "${pkgs.cliphist}/bin/cliphist list | ${config.programs.rofi.finalPackage}/bin/rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | wl-copy"'';
 
           # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner Gaps.
           # Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
           # If you also press Shift with these keys, the change will be global for all workspaces.
           "${mod}+Shift+g" = "mode \"${modeGaps}\"";
 
-          # rofi window switcher
-          "${mod}+Shift+d" = "exec rofi -show window";
-
-          # rofi combi switcher
-          "${mod}+Shift+o" = "exec rofi -show combi";
-
           # Launch Browser
           "${mod}+b" = "exec firefox";
 
-          # Bookmarks
-          "${mod}+Shift+b" = "exec rofi-buku";
-
-          # rename current workspace
-          "${mod}+comma" = "exec echo \"\" | rofi -dmenu -p 'New workspace name' | xargs -r swaymsg rename workspace to";
-          # rename current window
-          "${mod}+period" = "exec echo \"\" | rofi -dmenu -p 'New window name' | xargs -r swaymsg rename window to";
           # kill app
           "${mod}+Shift+q" = "kill";
-
-          # Enable/disable logging
-          "${mod}+x" = "shmlog toggle";
 
           # quick shortcut help
           "${mod}+Shift+slash" = "exec --no-startup-id swaycheatsheet-win";

@@ -7,9 +7,9 @@
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption;
 
-  cfg = config.modules.desktop.tools.rofi-buku;
+  cfg = config.modules.desktop.extensions.rofi-buku;
 in {
-  options.modules.desktop.tools.rofi-buku = {
+  options.modules.desktop.extensions.rofi-buku = {
     enable = mkEnableOption "rofi-buku";
   };
 
@@ -25,5 +25,15 @@ in {
         display_type=3
         help_color="#2d7ed8";
       '';
+
+    wayland.windowManager.sway = {
+      config = let
+        swayCfg = config.wayland.windowManager.sway.config;
+      in {
+        keybindings = lib.mkOptionDefault {
+          "${swayCfg.modifier}+Shift+b" = "exec ${pkgs.rofi-buku}/bin/rofi-buku";
+        };
+      };
+    };
   };
 }
