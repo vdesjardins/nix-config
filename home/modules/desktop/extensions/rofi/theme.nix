@@ -17,7 +17,7 @@
 
   "window" = {
     "location" = mkLiteral "center";
-    "width" = mkLiteral "900";
+    "width" = mkLiteral "1500";
 
     "background-color" = mkLiteral "@bg0";
     "border-color" = mkLiteral "@bg1";
