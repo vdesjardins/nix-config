@@ -235,6 +235,9 @@ in {
           # Launch Browser
           "${mod}+b" = "exec firefox";
 
+          # Bookmarks
+          "${mod}+Shift+b" = "exec rofi-buku";
+
           # rename current workspace
           "${mod}+comma" = "exec echo \"\" | rofi -dmenu -p 'New workspace name' | xargs -r swaymsg rename workspace to";
           # rename current window

@@ -381,7 +381,7 @@
 
     mkOverlays = path: self.lib.mapModulesRecursive path (o: import o inputs);
     mkOverlays' = path: attrValues (mkOverlays path);
-    mkChildOverlays = name: final: _pref: {
+    mkChildOverlays = name: final: _prev: {
       ${name} = import inputs.${name} {
         inherit (final) system;
         config = pkgsConfig;
@@ -389,12 +389,23 @@
       };
     };
 
+    myPackages = pkgs:
+      self.lib.mapModulesRecursive ./packages (o: pkgs.callPackage o {});
+
+    mkPackagesOverlay = final: prev:
+      lib.attrsets.mapAttrs' (
+        name: value:
+          lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" name) (prev.callPackage ./packages/${name} {})
+      ) (builtins.readDir ./packages);
+
     myOverlays =
       {
         unstable = mkChildOverlays "unstable";
         master = mkChildOverlays "master";
+        myPkgs = mkPackagesOverlay;
       }
       // (mkOverlays ./overlays/nixpkgs);
+
     extraOverlays =
       {
         nur = nur.overlay;
@@ -402,7 +413,6 @@
         rust-overlay = rust-overlay.overlays.default;
       }
       // comma.overlays;
-    allOverlays = extraOverlays // myOverlays;
 
     supportedSystems = rec {
       darwin = [aarch64-darwin];
@@ -457,10 +467,12 @@
           system = utils.lib.system.aarch64-darwin;
           crossSystem = utils.lib.system.aarch64-linux;
         };
-      };
+      }
+      // forAllSupportedSystems (system: myPackages pkgs.${system});
 
     overlays = {
-      default = mkOverlays ./overlays/nixpkgs;
+      default = mkPackagesOverlay;
+      nixpkgs = mkOverlays ./overlays/nixpkgs;
       unstable = mkOverlays ./overlays/unstable;
     };
 
