@@ -15,7 +15,6 @@
       package = darkreader;
       area = "navbar";
     }
-    {package = firefox-color;}
     {package = dictionaries;}
     {package = qr-code-address-bar;}
     {package = duckduckgo-privacy-essentials;}
