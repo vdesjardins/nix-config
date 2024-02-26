@@ -28,7 +28,7 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly.inputs.nixpkgs.follows = "unstable";
     lscolors.url = "github:/trapd00r/LS_COLORS";
     lscolors.flake = false;
     base16-fzf.url = "github:/tinted-theming/base16-fzf";
@@ -338,6 +338,10 @@
     ## Nix
     neovim-plugin-vim-nix.url = "github:LnL7/vim-nix";
     neovim-plugin-vim-nix.flake = false;
+
+    ## YAML
+    neovim-plugin-vim-yaml-companion.url = "github:someone-stole-my-name/yaml-companion.nvim";
+    neovim-plugin-vim-yaml-companion.flake = false;
   };
 
   outputs = {

@@ -36,7 +36,7 @@ in {
         userEmail = "vdesjardins@gmail.com";
         userName = "Vincent Desjardins";
 
-        package = pkgs.unstable.git;
+        package = pkgs.git;
 
         lfs = {
           enable = true;
@@ -146,9 +146,9 @@ in {
           lg = "log --graph --pretty=format:'%Cred%h%Creset %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
         in {
           st = "status";
-          c = "commit";
+          c = "commit -s";
           ca = "commit --amend";
-          cm = "commit -m";
+          cm = "commit -s -m";
           cf = "commit --fixup";
           re = "restore";
           sw = "switch";
@@ -209,6 +209,7 @@ in {
       zsh.shellAliases = {
         g = "git";
         gr = "cd $(git rev-parse --show-toplevel)";
+        gow = ''fd -H '^\.git$' ~/projects/ | sed -e 's/\.git\/$//g' | fzf | xargs -L1 bash -c 'cd "$0" && git config remote.origin.url' | sed -re 's,^git@(.*):(.*)(\.git)?$,https://\1/\2,' | xargs open'';
       };
 
       zsh.shellGlobalAliases = {
