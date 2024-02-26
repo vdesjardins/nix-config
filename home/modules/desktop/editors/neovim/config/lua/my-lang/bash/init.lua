@@ -10,5 +10,3 @@ require("lspconfig").bashls.setup({
 local null_ls = require("null-ls")
 _G.null_ls_sources[#_G.null_ls_sources + 1] = null_ls.builtins.formatting.shfmt
 _G.null_ls_sources[#_G.null_ls_sources + 1] = null_ls.builtins.formatting.shellharden
-_G.null_ls_sources[#_G.null_ls_sources + 1] = null_ls.builtins.diagnostics.shellcheck
-_G.null_ls_sources[#_G.null_ls_sources + 1] = null_ls.builtins.code_actions.shellcheck
