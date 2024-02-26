@@ -7,7 +7,7 @@ local function define_hyperlinks()
 
     -- make username/project paths clickable. this implies paths like the following are for github.
     table.insert(hyperlink_rules, {
-        regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+        regex = [[github:([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
         format = "https://www.github.com/$1/$3",
     })
 
