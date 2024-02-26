@@ -4,7 +4,7 @@
     rbw.enable = true;
     ssh.enable = true;
     gpg.enable = true;
-    yubikey-agent.enable = true;
+    gpg-agent.enable = true;
   };
 
   home.packages = with pkgs; [

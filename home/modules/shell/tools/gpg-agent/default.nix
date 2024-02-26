@@ -15,7 +15,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     (mkIf pkgs.hostPlatform.isLinux {
-      home.packages = with pkgs; [gnupg pinentry-gtk2];
+      home.packages = with pkgs; [gnupg gcr];
 
       services.gpg-agent = {
         inherit (cfg) enable;
@@ -26,11 +26,23 @@ in {
         maxCacheTtlSsh = 120;
         enableSshSupport = true;
         enableScDaemon = true;
+        pinentryFlavor = "gnome3";
 
         extraConfig = ''
           ignore-cache-for-signing
           no-allow-external-cache
         '';
+      };
+
+      wayland.windowManager.sway.config = {
+        window.commands = [
+          {
+            criteria = {
+              app_id = "^gcr-prompter$";
+            };
+            command = "floating enable, sticky enable, border pixel 0";
+          }
+        ];
       };
     })
 
