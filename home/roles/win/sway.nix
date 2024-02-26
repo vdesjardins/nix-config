@@ -12,4 +12,5 @@
   };
 
   services.cliphist.enable = true;
+  gtk.enable = true;
 }

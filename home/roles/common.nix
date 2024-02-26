@@ -1,4 +1,8 @@
-{lib, ...}:
+{
+  lib,
+  pkgs,
+  ...
+}:
 with lib; let
   font = "MonaspiceRn Nerd Font";
 in {
@@ -33,6 +37,13 @@ in {
     window-managers = {
       i3.font = font;
       sway.font = font;
+    };
+  };
+
+  gtk = {
+    theme = {
+      name = "Tokyonight-Storm-BL";
+      package = pkgs.tokyo-night-gtk-theme;
     };
   };
 }
