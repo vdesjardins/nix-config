@@ -18,12 +18,13 @@ in {
       inherit (cfg) enable;
 
       controlMaster = "auto";
-      hashKnownHosts = false;
       controlPersist = "30s";
 
       extraOptionOverrides = {
         Include = "local/*_config";
       };
+
+      userKnownHostsFile = builtins.toString (config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/data/ssh/config/known_hosts");
     };
   };
 }
