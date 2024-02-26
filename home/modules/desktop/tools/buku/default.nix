@@ -27,5 +27,7 @@ in {
         nativeMessagingHost = pkgs.bukubrow;
       }
     ];
+
+    xdg.dataFile.buku.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/data/buku/share";
   };
 }
