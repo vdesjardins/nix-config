@@ -19,10 +19,12 @@ in {
   ];
 
   networking.hostName = hostname;
+  modules.services.spotifyd.enable = true;
+  modules.services.spotifyd.deviceName = hostname;
 
   imports = [
     ../shared
-    (import ../services/spotifyd {device_name = hostname;})
+    ../shared/spotifyd.nix
     (../users + "/${username}.nix")
   ];
 
