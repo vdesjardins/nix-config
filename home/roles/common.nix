@@ -42,7 +42,7 @@ in {
 
   gtk = {
     theme = {
-      name = "Tokyonight-Storm-BL";
+      name = "Tokyonight-Storm-B";
       package = pkgs.tokyo-night-gtk-theme;
     };
   };
