@@ -5,6 +5,7 @@ in {
   imports = [
     ../../shared.nix
     ../../desktop.nix
+    ../../tailscale.nix
     ../hardware/vm-aarch64.nix
     ../shared
     ../shared/boot.nix

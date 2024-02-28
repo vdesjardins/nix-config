@@ -13,6 +13,7 @@ in {
   imports = [
     nixos-hardware.nixosModules.raspberry-pi-4
     ../../shared.nix
+    ../../tailscale.nix
     ../shared
     ../shared/blocky.nix
     ../users/admin.nix

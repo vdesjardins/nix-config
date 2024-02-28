@@ -23,8 +23,8 @@ in {
   modules.services.spotifyd.deviceName = hostname;
 
   imports = [
+    ../../tailscale.nix
     ../shared
-    ../shared/tailscale.nix
     ../shared/spotifyd.nix
     (../users + "/${username}.nix")
   ];
