@@ -9,30 +9,31 @@
   mkDeployNode = {
     system,
     hostname,
+    hostConfig ? hostname,
     sshUser ? "vince",
     user ? null,
+    remoteBuild ? true,
   }: let
     os =
       if hasSuffix "linux" system
       then "nixos"
       else "darwin";
   in {
-    inherit hostname;
+    inherit hostname remoteBuild;
     sshUser = user;
 
     profiles = {
       system = {
         user = "root";
-        path = deploy-rs.lib.${system}.activate.${os} self."${os}Configurations".${hostname};
+        path = deploy-rs.lib.${system}.activate.${os} self."${os}Configurations".${hostConfig};
       };
       home = {
         inherit user;
-        path = deploy-rs.lib.${system}.activate.home-manager self.homeConfigurations."${user}@${hostname}";
+        path = deploy-rs.lib.${system}.activate.home-manager self.homeConfigurations."${user}@${hostConfig}";
       };
     };
   };
 in {
-  remoteBuild = true;
   fastConnection = true;
 
   nodes = {
