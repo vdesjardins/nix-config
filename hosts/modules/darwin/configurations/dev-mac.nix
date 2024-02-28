@@ -24,6 +24,7 @@ in {
 
   imports = [
     ../shared
+    ../shared/tailscale.nix
     ../shared/spotifyd.nix
     (../users + "/${username}.nix")
   ];
