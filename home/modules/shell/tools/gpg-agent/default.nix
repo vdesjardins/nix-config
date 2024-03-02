@@ -40,7 +40,7 @@ in {
             criteria = {
               app_id = "^gcr-prompter$";
             };
-            command = "floating enable, sticky enable, border pixel 0";
+            command = "floating enable, sticky enable, border pixel 1";
           }
         ];
       };
