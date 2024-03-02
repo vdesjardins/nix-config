@@ -67,6 +67,15 @@ in {
           "Virtual-1" = {
             mode = "3840x2160@60Hz";
           };
+          "DP-1" = {
+            mode = "3840x2160@60Hz";
+            position = "6000 508";
+          };
+          "HDMI-A-1" = {
+            mode = "3840x2160@60Hz";
+            transform = "270";
+            position = "3840 0";
+          };
           "*" = {
             background = "~/.config/wallpapers/${wallpaperName} fill";
           };
