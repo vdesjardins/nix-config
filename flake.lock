@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "base16-fzf": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1708699142,
-        "narHash": "sha256-nx+mOL6wGkwDPfE8q3QHWwKuLtjTmYPOlsNk8TYyVQ0=",
-        "owner": "tinted-theming",
-        "repo": "base16-fzf",
-        "rev": "51e58f8396fe75ca790ac372adbcf72b3c7e6542",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tinted-theming",
-        "repo": "base16-fzf",
-        "type": "github"
-      }
-    },
     "comma": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -58,23 +42,6 @@
       "original": {
         "owner": "serokell",
         "repo": "deploy-rs",
-        "type": "github"
-      }
-    },
-    "eks-node-viewer": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1701191578,
-        "narHash": "sha256-BK84hxbwZSJDO5WoyborJnVBS5pB69jTMU1csgiT0sw=",
-        "owner": "awslabs",
-        "repo": "eks-node-viewer",
-        "rev": "e45ef3df0d6efbf25693f7d16c103593f8a3c006",
-        "type": "github"
-      },
-      "original": {
-        "owner": "awslabs",
-        "ref": "v0.6.0",
-        "repo": "eks-node-viewer",
         "type": "github"
       }
     },
@@ -275,40 +242,6 @@
         "type": "github"
       }
     },
-    "helm-dashboard": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1687347734,
-        "narHash": "sha256-hjIo2AEXNcFK0z4op59NnC2R8GspF5t808DZ72AxgMw=",
-        "owner": "komodorio",
-        "repo": "helm-dashboard",
-        "rev": "b61adf133f639b8bffd43925b5b4b8230c197a26",
-        "type": "github"
-      },
-      "original": {
-        "owner": "komodorio",
-        "ref": "v1.3.3",
-        "repo": "helm-dashboard",
-        "type": "github"
-      }
-    },
-    "helm-gcs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1684052844,
-        "narHash": "sha256-AV0eiQ2GR+l8wVCoDL2kE9kgy1UJQpVr3xMMsUuCLoE=",
-        "owner": "hayorov",
-        "repo": "helm-gcs",
-        "rev": "1f8c6b930392c2185cff31c7a585351720b3d818",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hayorov",
-        "ref": "0.4.3",
-        "repo": "helm-gcs",
-        "type": "github"
-      }
-    },
     "hercules-ci-effects": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -351,219 +284,6 @@
         "type": "github"
       }
     },
-    "jq-lsp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1708858678,
-        "narHash": "sha256-R+ZbHz4IFcadYUewc0sKa8ZzagASZHVbiGSNwEGmaPw=",
-        "owner": "wader",
-        "repo": "jq-lsp",
-        "rev": "db2fe480fc3f0d7eb1551b0ca9a6d8bd4f0687ee",
-        "type": "github"
-      },
-      "original": {
-        "owner": "wader",
-        "repo": "jq-lsp",
-        "type": "github"
-      }
-    },
-    "ketall": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1668810484,
-        "narHash": "sha256-36hJ1r6Ql40zhQSUCT5qn1uOyxcDr5jnkbFkwaidINo=",
-        "owner": "corneliusweig",
-        "repo": "ketall",
-        "rev": "16390bd75095091b59142cd34f4c5ae060738556",
-        "type": "github"
-      },
-      "original": {
-        "owner": "corneliusweig",
-        "repo": "ketall",
-        "type": "github"
-      }
-    },
-    "kube-capacity": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1676269463,
-        "narHash": "sha256-zf6e8+jkgJns1c71QLL1gd0zK34X7gJo1gS38A1DPJo=",
-        "owner": "robscott",
-        "repo": "kube-capacity",
-        "rev": "807764563371f82047bed8f55f5a037aae3e1298",
-        "type": "github"
-      },
-      "original": {
-        "owner": "robscott",
-        "ref": "v0.7.4",
-        "repo": "kube-capacity",
-        "type": "github"
-      }
-    },
-    "kube-lineage": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1646411968,
-        "narHash": "sha256-KDboopQNoxnKfaP7ikbC1m4nniJEA4/Q/SHKbFRntrM=",
-        "owner": "tohjustin",
-        "repo": "kube-lineage",
-        "rev": "6d0e8cf1616ab376afef59b4b69a87642f906deb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tohjustin",
-        "ref": "v0.5.0",
-        "repo": "kube-lineage",
-        "type": "github"
-      }
-    },
-    "kube-no-trouble": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704997262,
-        "narHash": "sha256-+g6BoSefbIo9s5OaYz3W1pXfy1fbuIqBxFYJCMEW/p4=",
-        "owner": "doitintl",
-        "repo": "kube-no-trouble",
-        "rev": "9ae8cb543f3c0797d84360842dc03f43f5f7ff68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "doitintl",
-        "repo": "kube-no-trouble",
-        "type": "github"
-      }
-    },
-    "kubectl-aliases": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1700671828,
-        "narHash": "sha256-X2E0n/U8uzZ/JAsYIvPjnEQLri8A7nveMmbkOFSxO5s=",
-        "owner": "ahmetb",
-        "repo": "kubectl-aliases",
-        "rev": "ac5bfb00a1b351e7d5183d4a8f325bb3b235c1bd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ahmetb",
-        "repo": "kubectl-aliases",
-        "type": "github"
-      }
-    },
-    "kubectl-blame": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1682605455,
-        "narHash": "sha256-mxnaATjbMC/DiCE1X1mmeJf4hg5fKozdn9Zx+IxMQIA=",
-        "owner": "knight42",
-        "repo": "kubectl-blame",
-        "rev": "e7a2785416455e772d7a04a1be9466eee785a2f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "knight42",
-        "ref": "v0.0.11",
-        "repo": "kubectl-blame",
-        "type": "github"
-      }
-    },
-    "kubectl-hns": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1648761305,
-        "narHash": "sha256-OEncaNkl46QDnptcmeMvIXHQSrepgWMPKZvll0EcOJQ=",
-        "owner": "kubernetes-sigs",
-        "repo": "hierarchical-namespaces",
-        "rev": "e3b4dc13d42cc774de948d1e49d8de0267ed11db",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kubernetes-sigs",
-        "ref": "v1.0.0",
-        "repo": "hierarchical-namespaces",
-        "type": "github"
-      }
-    },
-    "kubectl-rbac-tool": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1707933169,
-        "narHash": "sha256-O9Z7Eh9OwEFiRhvCEcm2ogQVxZcyOqTXwXaVvIs1heA=",
-        "owner": "alcideio",
-        "repo": "rbac-tool",
-        "rev": "98ac2d8b6137c6d7e146626f56530077974ca0cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "alcideio",
-        "repo": "rbac-tool",
-        "type": "github"
-      }
-    },
-    "kubectl-tap": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1610725908,
-        "narHash": "sha256-oUlnsrFVX/91IaUkGOhLaKh2uwFdycUXfq4Oj40yYUw=",
-        "owner": "soluble-ai",
-        "repo": "kubetap",
-        "rev": "ebf9a56c94e16b3c249f71bb0bb77c8d8d6d52c7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "soluble-ai",
-        "repo": "kubetap",
-        "type": "github"
-      }
-    },
-    "kubectl-trace": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1698310568,
-        "narHash": "sha256-80fi3su/wpTU3Gh3guMIq5oyS5FxWQmP9Ao/r5guV4E=",
-        "owner": "iovisor",
-        "repo": "kubectl-trace",
-        "rev": "478404c229bc10ca58a6b60d14e23b663036bf89",
-        "type": "github"
-      },
-      "original": {
-        "owner": "iovisor",
-        "repo": "kubectl-trace",
-        "type": "github"
-      }
-    },
-    "kubectl-view-utilization": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1599700423,
-        "narHash": "sha256-4mqc4DAcxBkU0ZsMNypSQXgKxOGLQ8KBgiaU3lPAkpU=",
-        "owner": "etopeter",
-        "repo": "kubectl-view-utilization",
-        "rev": "ec114ef3bf9609e8dff9b952fa10c6a75b94f570",
-        "type": "github"
-      },
-      "original": {
-        "owner": "etopeter",
-        "repo": "kubectl-view-utilization",
-        "type": "github"
-      }
-    },
-    "kubectl-who-can": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1644859421,
-        "narHash": "sha256-nyUDzNxlizSr3P3dh9Cz/9CaMfmjeE9qSJkCLo4lBqw=",
-        "owner": "aquasecurity",
-        "repo": "kubectl-who-can",
-        "rev": "f5b0b3f6c5d141250873526dc7fd46cae63664f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aquasecurity",
-        "ref": "v0.4.0",
-        "repo": "kubectl-who-can",
-        "type": "github"
-      }
-    },
     "libgit2": {
       "flake": false,
       "locked": {
@@ -577,22 +297,6 @@
       "original": {
         "owner": "libgit2",
         "repo": "libgit2",
-        "type": "github"
-      }
-    },
-    "lscolors": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702499750,
-        "narHash": "sha256-DT9WmtyJ/wngoiOTXMcnstVbGh3BaFWrr8Zxm4g4b6U=",
-        "owner": "trapd00r",
-        "repo": "LS_COLORS",
-        "rev": "a283d79dcbb23a8679f4b1a07d04a80cab01c0ba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "trapd00r",
-        "repo": "LS_COLORS",
         "type": "github"
       }
     },
@@ -2306,27 +2010,9 @@
     },
     "root": {
       "inputs": {
-        "base16-fzf": "base16-fzf",
         "comma": "comma",
         "deploy-rs": "deploy-rs",
-        "eks-node-viewer": "eks-node-viewer",
-        "helm-dashboard": "helm-dashboard",
-        "helm-gcs": "helm-gcs",
         "home-manager": "home-manager",
-        "jq-lsp": "jq-lsp",
-        "ketall": "ketall",
-        "kube-capacity": "kube-capacity",
-        "kube-lineage": "kube-lineage",
-        "kube-no-trouble": "kube-no-trouble",
-        "kubectl-aliases": "kubectl-aliases",
-        "kubectl-blame": "kubectl-blame",
-        "kubectl-hns": "kubectl-hns",
-        "kubectl-rbac-tool": "kubectl-rbac-tool",
-        "kubectl-tap": "kubectl-tap",
-        "kubectl-trace": "kubectl-trace",
-        "kubectl-view-utilization": "kubectl-view-utilization",
-        "kubectl-who-can": "kubectl-who-can",
-        "lscolors": "lscolors",
         "master": "master",
         "neovim-nightly": "neovim-nightly",
         "neovim-plugin-auto-pairs": "neovim-plugin-auto-pairs",

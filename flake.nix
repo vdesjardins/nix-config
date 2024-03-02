@@ -29,10 +29,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly.inputs.nixpkgs.follows = "unstable";
-    lscolors.url = "github:/trapd00r/LS_COLORS";
-    lscolors.flake = false;
-    base16-fzf.url = "github:/tinted-theming/base16-fzf";
-    base16-fzf.flake = false;
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,46 +37,8 @@
     tmux-tokyo-night.url = "github:/fabioluciano/tmux-tokyo-night";
     tmux-tokyo-night.flake = false;
 
-    # aws
-    eks-node-viewer.url = "github:/awslabs/eks-node-viewer/v0.6.0";
-    eks-node-viewer.flake = false;
-
-    # Kubernetes
-    kubectl-view-utilization.url = "github:/etopeter/kubectl-view-utilization";
-    kubectl-view-utilization.flake = false;
-    kubectl-trace.url = "github:/iovisor/kubectl-trace";
-    kubectl-trace.flake = false;
-    kubectl-who-can.url = "github:aquasecurity/kubectl-who-can/v0.4.0";
-    kubectl-who-can.flake = false;
-    kubectl-aliases.url = "github:/ahmetb/kubectl-aliases";
-    kubectl-aliases.flake = false;
-    kubectl-rbac-tool.url = "github:/alcideio/rbac-tool";
-    kubectl-rbac-tool.flake = false;
-    kubectl-tap.url = "github:/soluble-ai/kubetap";
-    kubectl-tap.flake = false;
-    kube-no-trouble.url = "github:/doitintl/kube-no-trouble";
-    kube-no-trouble.flake = false;
-    kube-lineage.url = "github:/tohjustin/kube-lineage/v0.5.0";
-    kube-lineage.flake = false;
-    kube-capacity.url = "github:/robscott/kube-capacity/v0.7.4";
-    kube-capacity.flake = false;
-    kubectl-blame.url = "github:/knight42/kubectl-blame/v0.0.11";
-    kubectl-blame.flake = false;
-    ketall.url = "github:corneliusweig/ketall";
-    ketall.flake = false;
-    kubectl-hns.url = "github:/kubernetes-sigs/hierarchical-namespaces/v1.0.0";
-    kubectl-hns.flake = false;
-    helm-dashboard.url = "github:komodorio/helm-dashboard/v1.3.3";
-    helm-dashboard.flake = false;
-    helm-gcs.url = "github:hayorov/helm-gcs/0.4.3";
-    helm-gcs.flake = false;
-
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
-
-    # jq
-    jq-lsp.url = "github:wader/jq-lsp";
-    jq-lsp.flake = false;
 
     # tree-sitter grammars
     tree-sitter-grammars-vim.url = "github:neovim/tree-sitter-vim";

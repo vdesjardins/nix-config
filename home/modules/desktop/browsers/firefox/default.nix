@@ -17,6 +17,7 @@
     }
     {package = dictionaries;}
     {package = qr-code-address-bar;}
+    {package = sidebery;}
     {package = duckduckgo-privacy-essentials;}
     {
       package = buildFirefoxXpiAddon {

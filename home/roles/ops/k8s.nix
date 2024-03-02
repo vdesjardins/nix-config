@@ -20,13 +20,13 @@
       kube-lineage
       kube3d
       kubectl-blame
-      kubectl-hns
       kubectl-images
       kubectl-node-shell
       kubectl-rbac-tool
       kubectl-tap
       # kubectl-trace
       kubectl-tree
+      kubectl-who-can
       kubectx
       kubent
       (wrapHelm
@@ -35,7 +35,7 @@
           plugins = [
             kubernetes-helmPlugins.helm-diff
             kubernetes-helmPlugins.helm-git
-            kubernetes-helmPlugins.helm-gcs
+            helm-gcs
           ];
         })
       kubespy
@@ -50,7 +50,6 @@
       unstable.fluxcd
       unstable.kubeconform
       unstable.kubectl-example
-      unstable.kubectl-who-can
       unstable.kubectl-view-allocations
       unstable.kubelogin
       unstable.kubeshark
