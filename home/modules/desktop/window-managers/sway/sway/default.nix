@@ -53,9 +53,9 @@ in {
             drag = "enabled";
             dwt = "enabled";
             middle_emulation = "enabled";
-            pointer_accel = "0.8";
+            pointer_accel = "0.5";
             scroll_method = "two_finger";
-            scroll_factor = "1.5";
+            scroll_factor = "1.1";
             tap = "enabled";
           };
         };
