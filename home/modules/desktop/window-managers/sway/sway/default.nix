@@ -59,26 +59,23 @@ in {
           };
         };
 
-        output =
-          {
-            "Virtual-1" = {
-              mode = "3840x2160@60Hz";
-            };
-            "DP-1" = {
-              mode = "3840x2160@60Hz";
-              position = "6000 508";
-            };
-            "HDMI-A-1" = {
-              mode = "3840x2160@60Hz";
-              transform = "270";
-              position = "3840 0";
-            };
-          }
-          // mkIf (wallpaperPath != null) {
-            "*" = {
-              background = "${wallpaperPath} fill";
-            };
+        output = {
+          "Virtual-1" = {
+            mode = "3840x2160@60Hz";
           };
+          "HDMI-A-1" = {
+            mode = "3840x2160@60Hz";
+            transform = "270";
+            position = "0 0";
+          };
+          "DP-1" = {
+            mode = "3840x2160@60Hz";
+            position = "2160 529";
+          };
+          "*" = {
+            background = "${wallpaperPath} fill";
+          };
+        };
 
         defaultWorkspace = "workspace ${ws1}";
 
