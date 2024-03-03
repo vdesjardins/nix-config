@@ -39,7 +39,6 @@ in {
       pulseaudio
       shotman
       slurp
-      swayidle
       udiskie
       wdisplays
       wev # event viewer

@@ -8,6 +8,7 @@
     rofi.enable = true;
     rofi.package = pkgs.rofi-wayland;
     swaylock.enable = true;
+    swayidle.enable = true;
     xdg-portal.enable = true;
   };
 
