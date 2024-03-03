@@ -20,11 +20,11 @@ in {
 
       timeouts = [
         {
-          timeout = 120;
+          timeout = 300;
           command = "${pkgs.swaylock-effects}/bin/swaylock --fade-in 2 --clock --indicator-radius 100";
         }
         {
-          timeout = 300;
+          timeout = 600;
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
