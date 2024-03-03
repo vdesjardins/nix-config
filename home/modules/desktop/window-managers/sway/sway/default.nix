@@ -13,7 +13,7 @@ with lib; let
     hash = "sha256-FcBT/iyL9erjyk+iZ6b1OLJ+lB7N5IUVXWdMxmmUnDk=";
   };
 
-  locker = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
+  locker = "${pkgs.swaylock-effects}/bin/swaylock --clock --indicator-radius 100";
   terminal = "wezterm";
 
   modeGaps = "Gaps: (o) outer, (i) inner";

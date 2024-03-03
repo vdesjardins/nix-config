@@ -59,4 +59,6 @@
   networking.firewall.enable = false;
 
   virtualisation.docker.enable = true;
+
+  security.pam.services.swaylock = {};
 }
