@@ -9,7 +9,8 @@ with lib; let
 
   inherit (config.modules.desktop.window-managers.sway) wallpaperPath;
 
-  locker = "${pkgs.swaylock-effects}/bin/swaylock --fade-in 2 --clock --indicator-radius 100";
+  locker = "${config.programs.swaylock.package}/bin/swaylock";
+
   terminal = "wezterm";
 
   modeGaps = "Gaps: (o) outer, (i) inner";

@@ -16,6 +16,11 @@ in {
     font = mkOption {
       type = str;
     };
+
+    wallpaperPath = mkOption {
+      type = str;
+      default = config.modules.desktop.window-managers.sway.wallpaperPath;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -29,7 +34,7 @@ in {
 
         ignore-empty-password = true;
         disable-caps-lock-text = true;
-        image = "$HOME/.config/wallpapers/wallhaven-wq1wlr.jpg";
+        image = toString cfg.wallpaperPath;
 
         text-ver-color = "00000000";
         text-wrong-color = "00000000";
