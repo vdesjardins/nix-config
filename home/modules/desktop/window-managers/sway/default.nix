@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) str;
+  inherit (lib.types) nullOr str;
 
   cfg = config.modules.desktop.window-managers.sway;
 in {
@@ -16,6 +16,9 @@ in {
     font = mkOption {
       type = str;
       default = "";
+    };
+    wallpaperPath = mkOption {
+      type = nullOr str;
     };
   };
 

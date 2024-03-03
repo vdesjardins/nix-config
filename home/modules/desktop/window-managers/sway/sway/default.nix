@@ -7,13 +7,9 @@
 with lib; let
   mod = "Mod4";
 
-  wallpaperName = "wallhaven-wq1wlr.jpg";
-  wallpaper = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/wq/wallhaven-wq1wlr.jpg";
-    hash = "sha256-FcBT/iyL9erjyk+iZ6b1OLJ+lB7N5IUVXWdMxmmUnDk=";
-  };
+  inherit (config.modules.desktop.window-managers.sway) wallpaperPath;
 
-  locker = "${pkgs.swaylock-effects}/bin/swaylock --clock --indicator-radius 100";
+  locker = "${pkgs.swaylock-effects}/bin/swaylock --fade-in 2 --clock --indicator-radius 100";
   terminal = "wezterm";
 
   modeGaps = "Gaps: (o) outer, (i) inner";
@@ -63,23 +59,26 @@ in {
           };
         };
 
-        output = {
-          "Virtual-1" = {
-            mode = "3840x2160@60Hz";
+        output =
+          {
+            "Virtual-1" = {
+              mode = "3840x2160@60Hz";
+            };
+            "DP-1" = {
+              mode = "3840x2160@60Hz";
+              position = "6000 508";
+            };
+            "HDMI-A-1" = {
+              mode = "3840x2160@60Hz";
+              transform = "270";
+              position = "3840 0";
+            };
+          }
+          // mkIf (wallpaperPath != null) {
+            "*" = {
+              background = "${wallpaperPath} fill";
+            };
           };
-          "DP-1" = {
-            mode = "3840x2160@60Hz";
-            position = "6000 508";
-          };
-          "HDMI-A-1" = {
-            mode = "3840x2160@60Hz";
-            transform = "270";
-            position = "3840 0";
-          };
-          "*" = {
-            background = "~/.config/wallpapers/${wallpaperName} fill";
-          };
-        };
 
         defaultWorkspace = "workspace ${ws1}";
 
@@ -320,8 +319,6 @@ in {
         }
       '';
     };
-
-    xdg.configFile."wallpapers/${wallpaperName}".source = wallpaper;
 
     home.packages = with pkgs; [
       autotiling

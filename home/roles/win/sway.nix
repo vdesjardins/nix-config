@@ -1,5 +1,15 @@
-{pkgs, ...}: {
-  modules.desktop.window-managers.sway.enable = true;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkDefault;
+in {
+  modules.desktop.window-managers.sway = {
+    enable = true;
+    wallpaperPath = mkDefault "${config.home.homeDirectory}/Pictures/Wallpapers/wallhaven.jpg";
+  };
 
   modules.desktop.extensions = {
     dunst.enable = true;
