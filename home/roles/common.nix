@@ -32,6 +32,8 @@ in {
       rofi.font = "${font} 12";
       dunst.font = font;
       swaylock.font = font;
+      i3status-rust.font = font;
+      waybar.font = font;
     };
 
     window-managers = {

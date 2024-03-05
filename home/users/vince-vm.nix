@@ -41,7 +41,6 @@
 
     ../roles/multimedia.nix
     ../roles/win/viewers.nix
-    ../roles/win/status.nix
     ../roles/win/security.nix
     ../roles/win/sway.nix
   ];

@@ -13,8 +13,7 @@ in {
 
   modules.desktop.extensions = {
     dunst.enable = true;
-    i3status-rust.enable = true;
-    i3status-rust.keyboardCommand = "sway";
+    waybar.enable = true;
     rofi.enable = true;
     rofi.package = pkgs.rofi-wayland;
     swaylock.enable = true;

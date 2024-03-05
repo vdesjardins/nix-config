@@ -87,26 +87,6 @@ in {
           mouseWarping = "container";
         };
 
-        bars = [
-          {
-            colors = {
-              background = "#1c1c22";
-              focusedWorkspace = {
-                border = "#7592af";
-                background = "#2e3440";
-                text = "#ffffff";
-              };
-            };
-
-            fonts = {
-              names = [cfg.font];
-              size = 12.0;
-            };
-
-            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
-          }
-        ];
-
         fonts = {
           names = [cfg.font];
           size = 10.0;

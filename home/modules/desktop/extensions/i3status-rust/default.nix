@@ -6,12 +6,17 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) enum;
+  inherit (lib.types) enum str;
 
   cfg = config.modules.desktop.extensions.i3status-rust;
 in {
   options.modules.desktop.extensions.i3status-rust = {
     enable = mkEnableOption "3status-rust";
+
+    font = mkOption {
+      type = str;
+      default = "";
+    };
 
     keyboardCommand = mkOption {
       type = enum ["setxkbmap" "localbus" "kbddbus" "sway"];
@@ -77,6 +82,28 @@ in {
           ];
         };
       };
+    };
+
+    wayland.windowManager.sway = {
+      config.bars = [
+        {
+          colors = {
+            background = "#1c1c22";
+            focusedWorkspace = {
+              border = "#7592af";
+              background = "#2e3440";
+              text = "#ffffff";
+            };
+          };
+
+          fonts = {
+            names = [cfg.font];
+            size = 12.0;
+          };
+
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
+        }
+      ];
     };
   };
 }
