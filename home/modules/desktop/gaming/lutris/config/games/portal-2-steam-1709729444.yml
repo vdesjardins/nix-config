@@ -1,0 +1,16 @@
+game:
+  appid: '620'
+game_slug: portal-2
+name: Portal 2
+requires: null
+script:
+  game:
+    appid: 620
+service: steam
+service_id: '620'
+slug: portal-2-steam
+steam: {}
+system: {}
+variables: {}
+version: steam
+year: 2011

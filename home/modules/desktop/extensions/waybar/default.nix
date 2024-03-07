@@ -29,7 +29,7 @@ in {
           position = "bottom";
           height = 40;
           modules-left = ["sway/workspaces" "sway/mode"];
-          modules-center = ["cpu" "memory" "disk" "temperature" "tray"];
+          modules-center = ["cpu" "memory" "disk" "temperature" "gamemode" "tray"];
           modules-right = ["idle_inhibitor" "backlight" "network" "wireplumber" "battery" "custom/date" "clock"];
 
           "sway/workspaces" = {
@@ -81,6 +81,17 @@ in {
           "cpu" = {
             format = "{usage}% ";
             tooltip = false;
+          };
+
+          "gamemode" = {
+            "format" = "{glyph}";
+            "format-alt" = "{glyph} {count}";
+            "glyph" = "";
+            "hide-not-running" = true;
+            "use-icon" = true;
+            "icon-name" = "input-gaming-symbolic";
+            "tooltip" = true;
+            "tooltip-format" = "Games running {count}";
           };
 
           "memory" = {

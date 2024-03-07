@@ -12,6 +12,7 @@ in {
     ../shared/desktop.nix
     ../shared/greetd.nix
     ../shared/pipewire.nix
+    ../shared/gaming.nix
     (../users + "/${username}.nix")
   ];
 

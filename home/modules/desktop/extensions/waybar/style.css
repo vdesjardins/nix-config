@@ -114,8 +114,8 @@ window#waybar {
 	border-radius: 0px 5px 5px 0px;
 }
 
-#tray {
-   color: #b48ead;
+#gamemode, #tray {
+    color: #b48ead;
 	background-color: #24283b;
 	padding: 5px 10px;
 	border-radius: 5px;
