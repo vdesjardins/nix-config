@@ -24,7 +24,8 @@ in {
         Include = "local/*_config";
       };
 
-      userKnownHostsFile = builtins.toString (config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/data/ssh/config/known_hosts");
+      userKnownHostsFile =
+        builtins.toString (config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/shell/tools/ssh/config/known_hosts");
     };
   };
 }
