@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xdg.configFile."karabiner/karabiner.json".source = config.lib.file.mkOutOfStoreSymlink ./karabiner.json;
+    xdg.configFile."karabiner/karabiner.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/darwin/karabiner/config/karabiner.json";
   };
 }
