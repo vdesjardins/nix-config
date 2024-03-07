@@ -28,6 +28,7 @@ in {
       }
     ];
 
-    xdg.dataFile.buku.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/data/buku/share";
+    xdg.dataFile.buku.source =
+      config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/desktop/tools/buku/share";
   };
 }
