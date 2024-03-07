@@ -169,6 +169,9 @@ in {
           # lock screen
           "${mod}+Shift+x" = "exec --no-startup-id ${locker}";
 
+          # reload config
+          "${mod}+Shift+r" = "reload";
+
           # toggle tiling / floating
           "${mod}+Shift+space" = "floating toggle";
 
