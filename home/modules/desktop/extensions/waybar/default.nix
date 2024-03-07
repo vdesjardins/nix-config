@@ -29,8 +29,8 @@ in {
           position = "bottom";
           height = 40;
           modules-left = ["sway/workspaces" "sway/mode"];
-          modules-center = ["cpu" "memory" "disk" "temperature"];
-          modules-right = ["idle_inhibitor" "backlight" "network" "wireplumber" "battery" "custom/date" "clock" "tray"];
+          modules-center = ["cpu" "memory" "disk" "temperature" "tray"];
+          modules-right = ["idle_inhibitor" "backlight" "network" "wireplumber" "battery" "custom/date" "clock"];
 
           "sway/workspaces" = {
             all-outputs = true;

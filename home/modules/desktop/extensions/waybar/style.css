@@ -34,6 +34,15 @@ window#waybar {
 	border-radius: 5px;
 }
 
+#mode {
+	color: #f7768e;
+	background-color: #24283b;
+	margin: 5px;
+	margin-left: 10px;
+    padding: 0px 5px;
+	border-radius: 5px;
+}
+
 #custom-date, #clock, #battery, #wireplumber, #network, #idle_inhibitor {
 	background-color: #24283b;
 	padding: 5px 10px;
@@ -103,4 +112,13 @@ window#waybar {
 }
 #temperature {
 	border-radius: 0px 5px 5px 0px;
+}
+
+#tray {
+   color: #b48ead;
+	background-color: #24283b;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin: 5px;
+	margin-left: 10px;
 }
