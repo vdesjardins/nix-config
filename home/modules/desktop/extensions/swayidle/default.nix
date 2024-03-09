@@ -18,14 +18,34 @@ in {
     services.swayidle = {
       inherit (cfg) enable;
 
-      timeouts = [
+      events = [
         {
-          timeout = 300;
-          command = "${pkgs.swaylock-effects}/bin/swaylock --fade-in 0.2 --clock --indicator-radius 100 --screenshots --effect-blur 5x7 --indicator --indicator-radius 100 indicator-thickness 7 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2";
+          event = "before-sleep";
+          command = "${pkgs.swaylock-effects}/bin/swaylock --daemonize";
         }
         {
-          timeout = 600;
-          command = "${pkgs.systemd}/bin/systemctl suspend";
+          event = "lock";
+          command = "${pkgs.swaylock-effects}/bin/swaylock --daemonize --grace 0";
+        }
+        {
+          event = "unlock";
+          command = "pkill -SIGUSR1 swaylock";
+        }
+        {
+          event = "after-resume";
+          command = "swaymsg \"output * dpms on\"";
+        }
+      ];
+
+      timeouts = [
+        {
+          timeout = 1800;
+          command = "${pkgs.swaylock-effects}/bin/swaylock --daemonize";
+        }
+        {
+          timeout = 2000;
+          command = "swaymsg \"output * dpms off\"";
+          resumeCommand = "swaymsg \"output * dpms on\"";
         }
       ];
     };
