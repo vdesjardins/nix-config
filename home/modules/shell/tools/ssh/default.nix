@@ -6,6 +6,8 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption;
+  inherit (config.modules.home) configDirectory;
+  inherit (config.lib.file) mkOutOfStoreSymlink;
 
   cfg = config.modules.shell.tools.ssh;
 in {
@@ -25,7 +27,7 @@ in {
       };
 
       userKnownHostsFile =
-        builtins.toString (config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/shell/tools/ssh/config/known_hosts");
+        builtins.toString (mkOutOfStoreSymlink "${configDirectory}/shell/tools/ssh/config/known_hosts");
     };
   };
 }

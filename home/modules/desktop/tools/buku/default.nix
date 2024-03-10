@@ -6,6 +6,8 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption;
+  inherit (config.modules.home) configDirectory;
+  inherit (config.lib.file) mkOutOfStoreSymlink;
 
   cfg = config.modules.desktop.tools.buku;
 in {
@@ -29,6 +31,6 @@ in {
     ];
 
     xdg.dataFile.buku.source =
-      config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/desktop/tools/buku/share";
+      mkOutOfStoreSymlink "${configDirectory}/desktop/tools/buku/share";
   };
 }

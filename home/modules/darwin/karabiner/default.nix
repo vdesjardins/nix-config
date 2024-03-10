@@ -6,6 +6,8 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption;
+  inherit (config.modules.home) configDirectory;
+  inherit (config.lib.file) mkOutOfStoreSymlink;
 
   cfg = config.modules.darwin.karabiner;
 in {
@@ -15,6 +17,6 @@ in {
 
   config = mkIf cfg.enable {
     xdg.configFile."karabiner/karabiner.json".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/darwin/karabiner/config/karabiner.json";
+      mkOutOfStoreSymlink "${configDirectory}/darwin/karabiner/config/karabiner.json";
   };
 }

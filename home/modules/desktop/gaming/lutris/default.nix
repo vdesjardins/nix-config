@@ -6,6 +6,8 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption;
+  inherit (config.modules.home) configDirectory;
+  inherit (config.lib.file) mkOutOfStoreSymlink;
 
   settingsFormat = pkgs.formats.yaml {};
 
@@ -20,10 +22,10 @@ in {
 
     xdg.configFile = {
       "lutris/lutris.conf".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/desktop/gaming/lutris/config/lutris.conf";
+        mkOutOfStoreSymlink "${configDirectory}/desktop/gaming/lutris/config/lutris.conf";
 
       "lutris/games".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.modules.home.configDirectory}/desktop/gaming/lutris/config/games";
+        mkOutOfStoreSymlink "${configDirectory}/desktop/gaming/lutris/config/games";
 
       "lutris/runners/linux.yml".source = settingsFormat.generate "linux.yml" {
         linux = {};
