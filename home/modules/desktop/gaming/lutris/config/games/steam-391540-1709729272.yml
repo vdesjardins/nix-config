@@ -1,4 +1,6 @@
-system: {}
-null: {}
+system:
+  locale: ''
+steam: {}
 game:
   appid: '391540'
+null: {}
