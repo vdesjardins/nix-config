@@ -10,6 +10,7 @@ in {
     ../shared
     ../shared/boot.nix
     ../shared/desktop.nix
+    ../shared/wayland.nix
     ../shared/greetd.nix
     ../shared/pipewire.nix
     ../shared/gaming.nix
