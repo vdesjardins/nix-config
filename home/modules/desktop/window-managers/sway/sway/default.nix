@@ -320,7 +320,14 @@ in {
         ''
           #!${runtimeShell}
 
-          ${gnugrep}/bin/grep -E "^bindsym" ~/.config/sway/config | ${gawk}/bin/awk '{$1=""; print $0}' | ${gnused}/bin/sed 's/^ *//g' | ${gnugrep}/bin/grep -vE "^XF86" | ${unixtools.column}/bin/column -t -l2 | ${coreutils}/bin/pr -2 -w 220 -t | ${less}/bin/less
+          ${gnugrep}/bin/grep -E "^bindsym" ~/.config/sway/config | \
+            ${gawk}/bin/awk '{$1=""; print $0}' | \
+            ${gnused}/bin/sed 's/^ *//g' | \
+            ${gnugrep}/bin/grep -vE "^XF86" | \
+            ${gnused}/bin/sed -e 's|/nix/store/.*/bin/||g' | \
+            ${unixtools.column}/bin/column -t -l2 | \
+            ${coreutils}/bin/pr -2 -w 220 -t | \
+            ${less}/bin/less
         '')
       (writeScriptBin
         "swaycheatsheet-win"
