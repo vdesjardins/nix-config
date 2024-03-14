@@ -8,6 +8,15 @@
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) str;
+  inherit (pkgs) writeShellScriptBin;
+
+  color-picker = writeShellScriptBin "color-picker" ''
+    ${pkgs.grim}/bin/grim -g "''$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | \
+      ${pkgs.imagemagick_light}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | \
+      ${pkgs.coreutils}/bin/tail -n 1 | \
+      ${pkgs.coreutils}/bin/cut -d ' ' -f 4 | \
+      ${pkgs.wl-clipboard}/bin/wl-copy
+  '';
 
   cfg = config.modules.desktop.window-managers.sway;
 in {
@@ -52,6 +61,7 @@ in {
       xdg-utils
       xwayland
       ydotool
+      color-picker
 
       (makeDesktopItem {
         name = "reboot";
@@ -64,6 +74,12 @@ in {
         desktopName = "System: Shut Down";
         icon = "system-shutdown";
         exec = "systemctl shutdown";
+      })
+      (makeDesktopItem {
+        name = "Color Picker";
+        desktopName = "Color Picker";
+        icon = "";
+        exec = "${color-picker}/bin/color-picker";
       })
     ];
   };
