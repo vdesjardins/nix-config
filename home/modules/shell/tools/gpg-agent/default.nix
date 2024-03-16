@@ -26,7 +26,6 @@ in {
         maxCacheTtlSsh = 120;
         enableSshSupport = true;
         enableScDaemon = true;
-        pinentryFlavor = "gnome3";
 
         extraConfig = ''
           ignore-cache-for-signing

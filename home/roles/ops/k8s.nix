@@ -50,7 +50,7 @@
       unstable.fluxcd
       unstable.kubeconform
       unstable.kubectl-example
-      unstable.kubectl-view-allocations
+      # unstable.kubectl-view-allocations
       unstable.kubelogin
       unstable.kubeshark
       unstable.kustomize
