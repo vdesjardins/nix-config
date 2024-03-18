@@ -67,11 +67,11 @@ in {
           "HDMI-A-1" = {
             mode = "3840x2160@60Hz";
             transform = "270";
-            position = "0 0";
+            position = "-2160 -529";
           };
           "DP-1" = {
             mode = "3840x2160@60Hz";
-            position = "2160 529";
+            position = "0 0";
           };
           "*" = {
             background = "${wallpaperPath} fill";
