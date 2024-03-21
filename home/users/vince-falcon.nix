@@ -8,7 +8,7 @@
   imports = [
     ../roles/common.nix
 
-    ../roles/win/darwin.nix
+    ../roles/desktop/darwin.nix
     ../roles/dev/bash.nix
     ../roles/dev/cue.nix
     ../roles/dev/debugging.nix
@@ -37,12 +37,12 @@
     ../roles/utils.nix
     ../roles/nixpkgs.nix
     ../roles/sync.nix
-    ../roles/win/browsers.nix
+    ../roles/desktop/browsers.nix
 
     ../roles/multimedia.nix
-    ../roles/win/viewers.nix
-    ../roles/win/security.nix
-    ../roles/win/sway.nix
-    ../roles/win/gaming.nix
+    ../roles/desktop/viewers.nix
+    ../roles/desktop/security.nix
+    ../roles/desktop/sway.nix
+    ../roles/desktop/gaming.nix
   ];
 }

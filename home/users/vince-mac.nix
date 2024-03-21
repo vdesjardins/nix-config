@@ -10,7 +10,7 @@
     ../roles/darwin.nix
 
     ../roles/sync.nix
-    ../roles/win/darwin.nix
+    ../roles/desktop/darwin.nix
     ../roles/dev/bash.nix
     ../roles/dev/cue.nix
     ../roles/dev/debugging.nix
@@ -38,6 +38,6 @@
     ../roles/security.nix
     ../roles/utils.nix
     ../roles/nixpkgs.nix
-    ../roles/win/browsers.nix
+    ../roles/desktop/browsers.nix
   ];
 }

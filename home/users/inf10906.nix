@@ -9,7 +9,7 @@
     ../roles/common.nix
     ../roles/darwin.nix
 
-    ../roles/win/darwin.nix
+    ../roles/desktop/darwin.nix
     ../roles/security.nix
     ../roles/dev/bash.nix
     ../roles/dev/cue.nix
@@ -41,6 +41,6 @@
     ../roles/nixpkgs.nix
     ../roles/utils.nix
 
-    ../roles/win/browsers.nix
+    ../roles/desktop/browsers.nix
   ];
 }
