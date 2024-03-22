@@ -42,5 +42,6 @@
     ../roles/utils.nix
 
     ../roles/desktop/browsers.nix
+    ../roles/desktop/productivity.nix
   ];
 }
