@@ -44,5 +44,6 @@
     ../roles/desktop/security.nix
     ../roles/desktop/sway.nix
     ../roles/desktop/gaming.nix
+    ../roles/desktop/productivity.nix
   ];
 }
