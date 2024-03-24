@@ -16,14 +16,18 @@ in {
     ../../tailscale.nix
     ../shared
     ../shared/blocky.nix
+    ../shared/omada-controller.nix
     ../users/admin.nix
   ];
 
   networking.hostName = hostname;
 
+  networking.firewall.enable = false;
+
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
+    vim
   ];
 
   fileSystems = {
