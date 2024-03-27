@@ -137,6 +137,8 @@
     neovim-plugin-telescope-dap.flake = false;
     neovim-plugin-nvim-dap-go.url = "github:leoluz/nvim-dap-go";
     neovim-plugin-nvim-dap-go.flake = false;
+    neovim-plugin-nvim-nio.url = "github:nvim-neotest/nvim-nio";
+    neovim-plugin-nvim-nio.flake = false;
 
     ## Treesitter
     neovim-plugin-nvim-treesitter.url = "github:nvim-treesitter/nvim-treesitter";
