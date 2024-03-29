@@ -33,17 +33,19 @@
     ../roles/ops/k8s.nix
     ../roles/ops/networking.nix
     ../roles/ops/virtualization.nix
+    ../roles/ops/bpf.nix
     ../roles/security.nix
     ../roles/utils.nix
     ../roles/nixpkgs.nix
     ../roles/sync.nix
-    ../roles/desktop/browsers.nix
 
     ../roles/multimedia.nix
+    ../roles/desktop/browsers.nix
     ../roles/desktop/viewers.nix
     ../roles/desktop/security.nix
     ../roles/desktop/sway.nix
     ../roles/desktop/gaming.nix
     ../roles/desktop/productivity.nix
+    ../roles/desktop/ai.nix
   ];
 }
