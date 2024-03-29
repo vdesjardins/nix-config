@@ -4,13 +4,18 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib) mkIf getExe;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) package;
 
   cfg = config.modules.shell.tools.rbw;
 in {
   options.modules.shell.tools.rbw = {
     enable = mkEnableOption "rbw";
+    pinentryPackage = mkOption {
+      type = package;
+      default = pkgs.pinentry-gnome;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -19,6 +24,7 @@ in {
 
       settings = {
         email = "vdesjardins@gmail.com";
+        pinentry = cfg.pinentryPackage;
       };
     };
   };
