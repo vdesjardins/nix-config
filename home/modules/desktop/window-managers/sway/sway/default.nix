@@ -7,9 +7,13 @@
 with lib; let
   mod = "Mod4";
 
-  inherit (config.modules.desktop.window-managers.sway) wallpaperPath;
+  inherit (config.modules.desktop.window-managers.sway) wallpapersPath;
 
-  locker = "${config.programs.swaylock.package}/bin/swaylock";
+  random-wallpaper = pkgs.writeShellScript "random-wallpaper" ''
+    ${pkgs.findutils}/bin/find -L ${wallpapersPath} -type f | ${pkgs.coreutils}/bin/shuf -n 1
+  '';
+
+  locker = "${config.programs.swaylock.package}/bin/swaylock --image `${random-wallpaper}`";
 
   terminal = "wezterm";
 
@@ -74,7 +78,7 @@ in {
             position = "0 0";
           };
           "*" = {
-            background = "${wallpaperPath} fill";
+            background = "`${random-wallpaper}` fill";
           };
         };
 

@@ -40,6 +40,7 @@
     ../roles/sync.nix
 
     ../roles/multimedia.nix
+    ../roles/desktop/wallpapers.nix
     ../roles/desktop/browsers.nix
     ../roles/desktop/viewers.nix
     ../roles/desktop/security.nix

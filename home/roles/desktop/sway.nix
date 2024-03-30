@@ -8,7 +8,7 @@
 in {
   modules.desktop.window-managers.sway = {
     enable = true;
-    wallpaperPath = mkDefault "${config.home.homeDirectory}/Pictures/Wallpapers/wallhaven.jpg";
+    wallpapersPath = mkDefault "${config.home.homeDirectory}/Pictures/Wallpapers/";
   };
 
   modules.desktop.extensions = {

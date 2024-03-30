@@ -26,7 +26,7 @@ in {
       type = str;
       default = "";
     };
-    wallpaperPath = mkOption {
+    wallpapersPath = mkOption {
       type = str;
     };
   };
