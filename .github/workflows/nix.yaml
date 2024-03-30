@@ -27,14 +27,14 @@ jobs:
         include:
           - arch: aarch64
             distro: alpine_latest
-            nix-command: build .#homeConfigurations.vince@dev-vm.activationPackage
+            nix-command: build .#homeConfigurations.vince@falcon.activationPackage
             user: vince
-            hostname: dev-vm
-          - arch: aarch64
+            hostname: falcon
+          - arch: amd64
             distro: alpine_latest
-            nix-command: build .#nixosConfigurations.dev-vm.config.system.build.toplevel
+            nix-command: build .#nixosConfigurations.falcon.config.system.build.toplevel
             user: vince
-            hostname: dev-vm
+            hostname: falcon
           - arch: aarch64
             distro: alpine_latest
             nix-command: build .#nixosConfigurations.home-server.config.system.build.toplevel
