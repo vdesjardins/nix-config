@@ -14,14 +14,13 @@ in {
     ../shared/greetd.nix
     ../shared/pipewire.nix
     ../shared/gaming.nix
+    ../shared/wifi.nix
     (../users + "/${username}.nix")
   ];
 
   system.stateVersion = "23.11";
 
   networking.hostName = hostname;
-
-  networking.networkmanager.enable = true;
 
   boot.initrd.luks.devices = {
     root = {
