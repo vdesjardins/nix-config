@@ -35,6 +35,7 @@
     ../roles/ops/virtualization.nix
     ../roles/ops/bpf.nix
     ../roles/security.nix
+    ../roles/vaults.nix
     ../roles/utils.nix
     ../roles/nixpkgs.nix
     ../roles/sync.nix

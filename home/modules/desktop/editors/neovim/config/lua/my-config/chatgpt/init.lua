@@ -1,5 +1,9 @@
 local chatgpt = require("chatgpt")
 
+if vim.fn.executable("rbw") == 0 then
+    return
+end
+
 chatgpt.setup({
     api_key_cmd = "rbw get open-ai-key",
     keymaps = {

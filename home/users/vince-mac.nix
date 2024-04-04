@@ -36,6 +36,7 @@
     ../roles/ops/networking.nix
     ../roles/ops/virtualization.nix
     ../roles/security.nix
+    ../roles/vaults.nix
     ../roles/utils.nix
     ../roles/nixpkgs.nix
     ../roles/desktop/browsers.nix
