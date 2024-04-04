@@ -48,5 +48,6 @@
     ../roles/desktop/gaming.nix
     ../roles/desktop/productivity.nix
     ../roles/desktop/ai.nix
+    ../roles/desktop/wifi.nix
   ];
 }
