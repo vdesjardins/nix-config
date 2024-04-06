@@ -241,8 +241,6 @@
     neovim-plugin-nvim-notify.flake = false;
     neovim-plugin-oil.url = "github:stevearc/oil.nvim";
     neovim-plugin-oil.flake = false;
-    neovim-plugin-obsidian.url = "github:epwalsh/obsidian.nvim";
-    neovim-plugin-obsidian.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";

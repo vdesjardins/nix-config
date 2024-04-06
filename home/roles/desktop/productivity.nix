@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  modules.desktop.tools.obsidian.enable = true;
+  modules.desktop.tools.logseq.enable = true;
 }

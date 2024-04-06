@@ -1173,22 +1173,6 @@
         "type": "github"
       }
     },
-    "neovim-plugin-obsidian": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1711594244,
-        "narHash": "sha256-EBkioWuxdMnmwbrO+wjKjMU8yHOGSbbhnxr//E56rlY=",
-        "owner": "epwalsh",
-        "repo": "obsidian.nvim",
-        "rev": "c5c40887028366a6417a1aec7292dfe1054d27df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "epwalsh",
-        "repo": "obsidian.nvim",
-        "type": "github"
-      }
-    },
     "neovim-plugin-oil": {
       "flake": false,
       "locked": {
@@ -2166,7 +2150,6 @@
         "neovim-plugin-nvim-ts-context-commentstring": "neovim-plugin-nvim-ts-context-commentstring",
         "neovim-plugin-nvim-ts-rainbow": "neovim-plugin-nvim-ts-rainbow",
         "neovim-plugin-nvim-web-devicons": "neovim-plugin-nvim-web-devicons",
-        "neovim-plugin-obsidian": "neovim-plugin-obsidian",
         "neovim-plugin-oil": "neovim-plugin-oil",
         "neovim-plugin-planery": "neovim-plugin-planery",
         "neovim-plugin-playground": "neovim-plugin-playground",

@@ -8,16 +8,16 @@
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) str;
 
-  cfg = config.modules.desktop.tools.obsidian;
+  cfg = config.modules.desktop.tools.logseq;
 in {
-  options.modules.desktop.tools.obsidian = {
-    enable = mkEnableOption "obsidian";
+  options.modules.desktop.tools.logseq = {
+    enable = mkEnableOption "logseq";
     font = mkOption {
       type = str;
     };
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [unstable.obsidian];
+    home.packages = with pkgs; [unstable.logseq];
   };
 }
