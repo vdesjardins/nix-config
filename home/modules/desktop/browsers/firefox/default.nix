@@ -258,13 +258,6 @@ in {
         {
           criteria = {
             app_id = "^firefox$";
-            title = "www.youtube.com";
-          };
-          command = "move container to workspace 7";
-        }
-        {
-          criteria = {
-            app_id = "^firefox$";
             title = "discord.com";
           };
           command = "move container to workspace 10";
