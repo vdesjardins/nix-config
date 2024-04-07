@@ -202,9 +202,9 @@ in {
           "XF86AudioPrev" = "exec playerctl previous";
 
           # Screenshots
-          "${mod}+Print" = "exec --no-startup-id shotman --capture window --copy";
-          "${mod}+Shift+Print" = "exec --no-startup-id shotman --capture region --copy";
-          "${mod}+Ctrl+Print" = "exec --no-startup-id shotman --capture output --copy";
+          "${mod}+Print" = ''exec --no-startup-id swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | ${getExe pkgs.slurp} | ${getExe pkgs.grim} -g - - | ${getExe pkgs.swappy} -f -'';
+          "${mod}+Shift+Print" = ''exec --no-startup-id ${getExe pkgs.slurp} | ${getExe pkgs.grim} -g - - | ${getExe pkgs.swappy} -f -'';
+          "${mod}+Ctrl+Print" = ''exec --no-startup-id swaymsg -t get_tree | jq -r '.. | select(.active?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | ${getExe pkgs.slurp} | ${getExe pkgs.grim} -g - - | ${getExe pkgs.swappy} -f -'';
 
           # clipboard
           "${mod}+Shift+c" = ''exec "${pkgs.cliphist}/bin/cliphist list | ${config.programs.rofi.finalPackage}/bin/rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | wl-copy"'';

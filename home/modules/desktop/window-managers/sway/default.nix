@@ -49,7 +49,6 @@ in {
       papirus-icon-theme
       playerctl
       pulseaudio
-      shotman
       slurp
       udiskie
       wdisplays
