@@ -47,6 +47,7 @@ in {
       grim
       kanshi # dynamic display configuration
       papirus-icon-theme
+      pcmanfm # file browser
       playerctl
       pulseaudio
       slurp
