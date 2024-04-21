@@ -9,7 +9,6 @@ wk.register({
     g = {
         name = "git",
         a = { addFile, "fugitive-add" },
-        b = { "<cmd>Git blame<cr>", "fugitive-blame" },
         c = { "<cmd>Git commit<cr>", "fugitive-commit" },
         d = { "<cmd>Gdiffsplit<cr>", "fugitive-diff" },
         e = { "<cmd>Gedit<cr>", "fugitive-edit" },

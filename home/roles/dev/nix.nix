@@ -6,6 +6,7 @@
     # nix-linter
     nix-bisect # bisect nix builds
     nix-init # generate nix packages
+    unstable.nix-inspect # tui for evaluating nix expression
     nix-tree
     nix-prefetch
     nix-output-monitor

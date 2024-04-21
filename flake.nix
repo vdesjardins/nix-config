@@ -165,8 +165,8 @@
     ## git
     neovim-plugin-gitsigns-nvim.url = "github:lewis6991/gitsigns.nvim";
     neovim-plugin-gitsigns-nvim.flake = false;
-    neovim-plugin-git-blame-nvim.url = "github:f-person/git-blame.nvim";
-    neovim-plugin-git-blame-nvim.flake = false;
+    neovim-plugin-blame-nvim.url = "github:FabijanZulj/blame.nvim";
+    neovim-plugin-blame-nvim.flake = false;
     neovim-plugin-vim-fugitive.url = "github:tpope/vim-fugitive";
     neovim-plugin-vim-fugitive.flake = false;
     neovim-plugin-vim-rhubarb.url = "github:tpope/vim-rhubarb";

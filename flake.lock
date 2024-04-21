@@ -420,6 +420,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-blame-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713376216,
+        "narHash": "sha256-y5xHiGn3zLJw3cepf/4prtuPqkliOSua7WCoIV7+nLo=",
+        "owner": "FabijanZulj",
+        "repo": "blame.nvim",
+        "rev": "b713e4a9679164027e7f4d2131a0d0e62cfa4a36",
+        "type": "github"
+      },
+      "original": {
+        "owner": "FabijanZulj",
+        "repo": "blame.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-chatgpt": {
       "flake": false,
       "locked": {
@@ -641,22 +657,6 @@
       "original": {
         "owner": "folke",
         "repo": "flash.nvim",
-        "type": "github"
-      }
-    },
-    "neovim-plugin-git-blame-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1713039451,
-        "narHash": "sha256-siAywnX95lApcz+2gksmj28GwhSaA6sDrvGibk0iXOk=",
-        "owner": "f-person",
-        "repo": "git-blame.nvim",
-        "rev": "ad1d1365c9189d89797fe8d559677d5f55dc2830",
-        "type": "github"
-      },
-      "original": {
-        "owner": "f-person",
-        "repo": "git-blame.nvim",
         "type": "github"
       }
     },
@@ -2103,6 +2103,7 @@
         "master": "master",
         "neovim-nightly": "neovim-nightly",
         "neovim-plugin-auto-pairs": "neovim-plugin-auto-pairs",
+        "neovim-plugin-blame-nvim": "neovim-plugin-blame-nvim",
         "neovim-plugin-chatgpt": "neovim-plugin-chatgpt",
         "neovim-plugin-cmp-buffer": "neovim-plugin-cmp-buffer",
         "neovim-plugin-cmp-cmdline": "neovim-plugin-cmp-cmdline",
@@ -2117,7 +2118,6 @@
         "neovim-plugin-easypick": "neovim-plugin-easypick",
         "neovim-plugin-editorconfig": "neovim-plugin-editorconfig",
         "neovim-plugin-flash-nvim": "neovim-plugin-flash-nvim",
-        "neovim-plugin-git-blame-nvim": "neovim-plugin-git-blame-nvim",
         "neovim-plugin-gitignore": "neovim-plugin-gitignore",
         "neovim-plugin-gitsigns-nvim": "neovim-plugin-gitsigns-nvim",
         "neovim-plugin-glow-nvim": "neovim-plugin-glow-nvim",
