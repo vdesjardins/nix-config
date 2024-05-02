@@ -19,6 +19,7 @@ in {
     ];
 
     programs.zsh.shellAliases = {
+      tw = "timew";
       twt = "timew track";
       tws = "timew summary :week :ids";
       twta = "timew tags";
