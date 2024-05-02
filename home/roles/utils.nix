@@ -91,6 +91,7 @@
       spotify-tui
       taskwarrior
       taskwarrior-tui
+      sslscan
       tealdeer # faster tldr
       thefuck # fix commands
       tokei # displays code statistics
