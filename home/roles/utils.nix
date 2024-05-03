@@ -78,7 +78,6 @@
       jc # json conversion
       jp # jmespath
       jq
-      jrnl
       just
       lsof
       neofetch # fetch system/theme information
@@ -89,8 +88,6 @@
       qrencode
       rsync
       sd # sed replacement
-      taskwarrior
-      taskwarrior-tui
       sslscan
       tealdeer # faster tldr
       thefuck # fix commands
