@@ -89,7 +89,6 @@
       qrencode
       rsync
       sd # sed replacement
-      spotify-tui
       taskwarrior
       taskwarrior-tui
       sslscan
