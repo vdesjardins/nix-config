@@ -38,6 +38,9 @@ in {
     wayland.windowManager.sway = {
       inherit (cfg) enable;
 
+      # failed to validate on background script call
+      checkConfig = false;
+
       config = {
         modifier = mod;
 
