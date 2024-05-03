@@ -14,6 +14,7 @@
     zsh.enable = true;
 
     tools = {
+      nix.enable = true;
       any-nix-shell.enable = true;
       bat.enable = true;
       direnv.enable = true;
