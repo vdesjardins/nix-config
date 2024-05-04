@@ -39,7 +39,8 @@
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
-    nixd.url = "github:nix-community/nixd";
+    nixd.url = "github:nix-community/nixd/2.0.0";
+    nixd.inputs.nixpkgs.follows = "unstable";
 
     # tree-sitter grammars
     tree-sitter-grammars-vim.url = "github:neovim/tree-sitter-vim";
@@ -221,10 +222,8 @@
     neovim-plugin-nvim-web-devicons.flake = false;
     neovim-plugin-nui.url = "github:MunifTanjim/nui.nvim";
     neovim-plugin-nui.flake = false;
-    neovim-plugin-editorconfig.url = "github:gpanders/editorconfig.nvim";
-    neovim-plugin-editorconfig.flake = false;
-    neovim-plugin-chatgpt.url = "github:jackMort/ChatGPT.nvim";
-    neovim-plugin-chatgpt.flake = false;
+    neovim-plugin-ogpt.url = "github:huynle/ogpt.nvim";
+    neovim-plugin-ogpt.flake = false;
     neovim-plugin-harpoon.url = "github:ThePrimeagen/harpoon/harpoon2";
     neovim-plugin-harpoon.flake = false;
     neovim-plugin-gitignore.url = "github:wintermute-cell/gitignore.nvim";
@@ -241,6 +240,8 @@
     neovim-plugin-nvim-notify.flake = false;
     neovim-plugin-oil.url = "github:stevearc/oil.nvim";
     neovim-plugin-oil.flake = false;
+    neovim-plugin-edgy.url = "github:folke/edgy.nvim";
+    neovim-plugin-edgy.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";
