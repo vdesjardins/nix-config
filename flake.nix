@@ -127,6 +127,9 @@
     neovim-plugin-copilot-cmp.url = "github:zbirenbaum/copilot-cmp";
     neovim-plugin-copilot-cmp.flake = false;
 
+    neovim-plugin-cmp-ai.url = "github:tzachar/cmp-ai";
+    neovim-plugin-cmp-ai.flake = false;
+
     # ## Debugging
     neovim-plugin-nvim-dap.url = "github:mfussenegger/nvim-dap";
     neovim-plugin-nvim-dap.flake = false;
