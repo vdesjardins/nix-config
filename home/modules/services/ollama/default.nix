@@ -38,6 +38,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
+    {
+      home.packages = [ollamaPackage];
+    }
     (lib.mkIf pkgs.stdenv.isLinux {
       systemd.user.services.ollama = {
         Unit = {
@@ -52,18 +55,18 @@ in {
 
         Install = {WantedBy = ["default.target"];};
       };
-
-      home.packages = [ollamaPackage];
     })
 
     (lib.mkIf pkgs.stdenv.isDarwin {
       launchd.agents.ollama = {
         enable = true;
         config = {
-          ProgramArguments = ["${lib.getExe ollamaPackage}" "server"];
+          ProgramArguments = ["${lib.getExe ollamaPackage}" "serve"];
           EnvironmentVariables.OLLAMA_HOST = "${cfg.listenAddress}";
           ProcessType = "Adaptive";
           RunAtLoad = true;
+          StandardOutPath = "${config.xdg.stateHome}/ollama/ollama.log";
+          StandardErrorPath = "${config.xdg.stateHome}/ollama/ollama.log";
         };
       };
     })
