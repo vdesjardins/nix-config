@@ -242,6 +242,8 @@
     neovim-plugin-oil.flake = false;
     neovim-plugin-edgy.url = "github:folke/edgy.nvim";
     neovim-plugin-edgy.flake = false;
+    neovim-plugin-nvim-luadev.url = "github:bfredl/nvim-luadev";
+    neovim-plugin-nvim-luadev.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";

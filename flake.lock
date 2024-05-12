@@ -1033,6 +1033,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-nvim-luadev": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1678741164,
+        "narHash": "sha256-/k/vl22LDq44xut/XW7K9uLxpMNt3vOG7pD02lYRa18=",
+        "owner": "bfredl",
+        "repo": "nvim-luadev",
+        "rev": "3ba0c02c378503739f1fdb95cff3ea2aad48db3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bfredl",
+        "repo": "nvim-luadev",
+        "type": "github"
+      }
+    },
     "neovim-plugin-nvim-neoclip-lua": {
       "flake": false,
       "locked": {
@@ -2196,6 +2212,7 @@
         "neovim-plugin-nvim-dap-ui": "neovim-plugin-nvim-dap-ui",
         "neovim-plugin-nvim-lightbulb": "neovim-plugin-nvim-lightbulb",
         "neovim-plugin-nvim-lspconfig": "neovim-plugin-nvim-lspconfig",
+        "neovim-plugin-nvim-luadev": "neovim-plugin-nvim-luadev",
         "neovim-plugin-nvim-neoclip-lua": "neovim-plugin-nvim-neoclip-lua",
         "neovim-plugin-nvim-nio": "neovim-plugin-nvim-nio",
         "neovim-plugin-nvim-notify": "neovim-plugin-nvim-notify",
