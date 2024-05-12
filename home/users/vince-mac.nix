@@ -40,5 +40,6 @@
     ../roles/utils.nix
     ../roles/nixpkgs.nix
     ../roles/desktop/browsers.nix
+    ../roles/ai.nix
   ];
 }
