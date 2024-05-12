@@ -220,8 +220,6 @@
     neovim-plugin-nvim-web-devicons.flake = false;
     neovim-plugin-nui.url = "github:MunifTanjim/nui.nvim";
     neovim-plugin-nui.flake = false;
-    neovim-plugin-ogpt.url = "github:huynle/ogpt.nvim";
-    neovim-plugin-ogpt.flake = false;
     neovim-plugin-harpoon.url = "github:ThePrimeagen/harpoon/harpoon2";
     neovim-plugin-harpoon.flake = false;
     neovim-plugin-gitignore.url = "github:wintermute-cell/gitignore.nvim";
@@ -242,6 +240,10 @@
     neovim-plugin-edgy.flake = false;
     neovim-plugin-nvim-luadev.url = "github:bfredl/nvim-luadev";
     neovim-plugin-nvim-luadev.flake = false;
+
+    ## AI
+    neovim-plugin-ogpt.url = "github:huynle/ogpt.nvim";
+    neovim-plugin-ogpt.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";
