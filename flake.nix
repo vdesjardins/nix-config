@@ -39,8 +39,6 @@
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
-    nixd.url = "github:nix-community/nixd/2.0.0";
-    nixd.inputs.nixpkgs.follows = "unstable";
 
     # tree-sitter grammars
     tree-sitter-grammars-vim.url = "github:neovim/tree-sitter-vim";
@@ -317,7 +315,6 @@
     nix,
     nix-darwin,
     nix-index-database,
-    nixd,
     nixos-generators,
     nixos-hardware,
     nixpkgs,
@@ -380,7 +377,6 @@
         nur = nur.overlay;
         neovim-nightly = neovim-nightly.overlay;
         rust-overlay = rust-overlay.overlays.default;
-        nixd = nixd.overlays.default;
       }
       // comma.overlays;
 
