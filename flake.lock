@@ -2210,6 +2210,7 @@
         "tree-sitter-grammars-make": "tree-sitter-grammars-make",
         "tree-sitter-grammars-markdown": "tree-sitter-grammars-markdown",
         "tree-sitter-grammars-markdown-inline": "tree-sitter-grammars-markdown-inline",
+        "tree-sitter-grammars-mermaid": "tree-sitter-grammars-mermaid",
         "tree-sitter-grammars-nix": "tree-sitter-grammars-nix",
         "tree-sitter-grammars-python": "tree-sitter-grammars-python",
         "tree-sitter-grammars-query": "tree-sitter-grammars-query",
@@ -2557,6 +2558,22 @@
       "original": {
         "owner": "MDeiml",
         "repo": "tree-sitter-markdown",
+        "type": "github"
+      }
+    },
+    "tree-sitter-grammars-mermaid": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713824419,
+        "narHash": "sha256-Tt1bPqpL59FQzuI8CPljBmQoAfJPUkVC9Xe1GcfXzfE=",
+        "owner": "monaqa",
+        "repo": "tree-sitter-mermaid",
+        "rev": "90ae195b31933ceb9d079abfa8a3ad0a36fee4cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "monaqa",
+        "repo": "tree-sitter-mermaid",
         "type": "github"
       }
     },

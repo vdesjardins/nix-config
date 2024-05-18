@@ -73,6 +73,8 @@
     tree-sitter-grammars-markdown.flake = false;
     tree-sitter-grammars-markdown-inline.url = "github:MDeiml/tree-sitter-markdown";
     tree-sitter-grammars-markdown-inline.flake = false;
+    tree-sitter-grammars-mermaid.url = "github:monaqa/tree-sitter-mermaid";
+    tree-sitter-grammars-mermaid.flake = false;
     tree-sitter-grammars-nix.url = "github:cstrahan/tree-sitter-nix";
     tree-sitter-grammars-nix.flake = false;
     tree-sitter-grammars-python.url = "github:tree-sitter/tree-sitter-python";

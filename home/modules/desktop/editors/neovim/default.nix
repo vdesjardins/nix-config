@@ -155,6 +155,13 @@ in {
           enable markdown language support
         '';
       };
+      mermaid = mkOption {
+        type = bool;
+        default = false;
+        description = ''
+          enable mermaid language support
+        '';
+      };
       rego = mkOption {
         type = bool;
         default = false;
