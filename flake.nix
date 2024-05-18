@@ -201,8 +201,6 @@
     neovim-plugin-nvim-bqf.flake = false;
     neovim-plugin-lsp-rooter-nvim.url = "github:ahmedkhalf/lsp-rooter.nvim";
     neovim-plugin-lsp-rooter-nvim.flake = false;
-    neovim-plugin-vim-commentary.url = "github:tpope/vim-commentary";
-    neovim-plugin-vim-commentary.flake = false;
     neovim-plugin-vim-rsi.url = "github:tpope/vim-rsi"; # emacs style keybindings in edit/cmd
     neovim-plugin-vim-rsi.flake = false;
     neovim-plugin-vim-bookmarks.url = "github:MattesGroeger/vim-bookmarks";

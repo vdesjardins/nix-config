@@ -1477,22 +1477,6 @@
         "type": "github"
       }
     },
-    "neovim-plugin-vim-commentary": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712594061,
-        "narHash": "sha256-7praqmXKB1VMaEiRE/mvUdYf7F18V204ICU/VKWtJuw=",
-        "owner": "tpope",
-        "repo": "vim-commentary",
-        "rev": "c4b8f52cbb7142ec239494e5a2c4a512f92c4d07",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tpope",
-        "repo": "vim-commentary",
-        "type": "github"
-      }
-    },
     "neovim-plugin-vim-cue": {
       "flake": false,
       "locked": {
@@ -2165,7 +2149,6 @@
         "neovim-plugin-vim-bbye": "neovim-plugin-vim-bbye",
         "neovim-plugin-vim-better-whitespace": "neovim-plugin-vim-better-whitespace",
         "neovim-plugin-vim-bookmarks": "neovim-plugin-vim-bookmarks",
-        "neovim-plugin-vim-commentary": "neovim-plugin-vim-commentary",
         "neovim-plugin-vim-cue": "neovim-plugin-vim-cue",
         "neovim-plugin-vim-diffview": "neovim-plugin-vim-diffview",
         "neovim-plugin-vim-endwise": "neovim-plugin-vim-endwise",
