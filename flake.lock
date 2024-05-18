@@ -1077,6 +1077,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-nvim-schemastore": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715926046,
+        "narHash": "sha256-GZ1frYe7ICNUXOCKrw94jA496JebPFHK0suB//N/kds=",
+        "owner": "b0o",
+        "repo": "SchemaStore.nvim",
+        "rev": "953dc9a37f646a7f0420c41394f716f0dddf5687",
+        "type": "github"
+      },
+      "original": {
+        "owner": "b0o",
+        "repo": "SchemaStore.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-nvim-treesitter": {
       "flake": false,
       "locked": {
@@ -2124,6 +2140,7 @@
         "neovim-plugin-nvim-neoclip-lua": "neovim-plugin-nvim-neoclip-lua",
         "neovim-plugin-nvim-nio": "neovim-plugin-nvim-nio",
         "neovim-plugin-nvim-notify": "neovim-plugin-nvim-notify",
+        "neovim-plugin-nvim-schemastore": "neovim-plugin-nvim-schemastore",
         "neovim-plugin-nvim-treesitter": "neovim-plugin-nvim-treesitter",
         "neovim-plugin-nvim-treesitter-context": "neovim-plugin-nvim-treesitter-context",
         "neovim-plugin-nvim-treesitter-textobjects": "neovim-plugin-nvim-treesitter-textobjects",

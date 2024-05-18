@@ -241,6 +241,8 @@
     neovim-plugin-edgy.flake = false;
     neovim-plugin-nvim-luadev.url = "github:bfredl/nvim-luadev";
     neovim-plugin-nvim-luadev.flake = false;
+    neovim-plugin-nvim-schemastore.url = "github:b0o/SchemaStore.nvim";
+    neovim-plugin-nvim-schemastore.flake = false;
 
     ## AI
     neovim-plugin-ogpt.url = "github:huynle/ogpt.nvim";
