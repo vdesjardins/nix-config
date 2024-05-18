@@ -1,5 +1,7 @@
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
+vim.lsp.inlay_hint.enable()
+
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
     "   (Text) ",
@@ -107,6 +109,10 @@ wk.register({
             a = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "run" },
         },
         r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
+        i = {
+            "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+            "toggle-inlay-hints",
+        },
     },
 }, { prefix = "<leader>" })
 
