@@ -11,7 +11,7 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "unstable";
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -153,8 +153,6 @@
     neovim-plugin-nvim-ts-rainbow.flake = false;
     neovim-plugin-indent-blankline-nvim.url = "github:lukas-reineke/indent-blankline.nvim";
     neovim-plugin-indent-blankline-nvim.flake = false;
-    neovim-plugin-playground.url = "github:nvim-treesitter/playground";
-    neovim-plugin-playground.flake = false;
     neovim-plugin-nvim-ts-context-commentstring.url = "github:JoosepAlviste/nvim-ts-context-commentstring";
     neovim-plugin-nvim-ts-context-commentstring.flake = false;
     neovim-plugin-nvim-ts-autotag.url = "github:windwp/nvim-ts-autotag";
@@ -314,25 +312,18 @@
   outputs = {
     comma,
     deploy-rs,
-    home-manager,
-    master,
     neovim-nightly,
     nix,
-    nix-darwin,
-    nix-index-database,
-    nixos-generators,
-    nixos-hardware,
     nixpkgs,
     nur,
     pre-commit-hooks,
     rust-overlay,
     self,
-    unstable,
     utils,
     ...
   } @ inputs: let
-    inherit (lib.attrsets) genAttrs listToAttrs attrValues attrNames;
-    inherit (builtins) readDir filter match;
+    inherit (lib.attrsets) genAttrs listToAttrs attrValues;
+    inherit (builtins) readDir;
     inherit (lib.strings) removeSuffix;
     inherit (utils.lib.system) aarch64-darwin x86_64-linux aarch64-linux;
 
@@ -366,8 +357,8 @@
     mkPackagesOverlay = final: prev:
       lib.attrsets.mapAttrs' (
         name: value:
-          lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" name) (prev.callPackage ./packages/${name} {})
-      ) (builtins.readDir ./packages);
+          lib.attrsets.nameValuePair (removeSuffix ".nix" name) (prev.callPackage ./packages/${name} {})
+      ) (readDir ./packages);
 
     myOverlays =
       {
@@ -400,7 +391,7 @@
 
     pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs (attrValues extraOverlays));
 
-    lib = nixpkgs.lib.extend (final: prev: {
+    lib = inputs.unstable.lib.extend (final: prev: {
       my = import ./lib {
         inherit pkgs inputs;
         lib = final;
@@ -447,28 +438,26 @@
       unstable = mkOverlays ./overlays/unstable;
     };
 
-    devShells = forAllSupportedSystems (system:
-      with pkgs.${system}; {
-        default = mkShell {
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
-        };
-      });
+    devShells = forAllSupportedSystems (system: {
+      default = pkgs.${system}.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+      };
+    });
 
     checks = forAllSupportedSystems (
-      system:
-        with pkgs.${system}; {
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              alejandra.enable = true;
-              statix.enable = true;
-              stylua.enable = true;
-              shellcheck.enable = true;
-              shfmt.enable = true;
-              commitizen.enable = true;
-            };
+      system: {
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            alejandra.enable = true;
+            statix.enable = true;
+            stylua.enable = true;
+            shellcheck.enable = true;
+            shfmt.enable = true;
+            commitizen.enable = true;
           };
-        }
+        };
+      }
       # FIXME: doesn't work when deploying from different architecture https://github.com/serokell/deploy-rs/issues/167
       #// deploy-rs.lib.${system}.deployChecks self.deploy);
     );
