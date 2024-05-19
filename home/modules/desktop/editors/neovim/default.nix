@@ -7,9 +7,9 @@
   inherit (lib) mkIf;
   inherit (builtins) pathExists;
   inherit (lib.attrsets) attrNames getAttr hasAttr;
-  inherit (lib.options) mkEnableOption mkPackageOption mkOption literalExpression;
+  inherit (lib.options) mkEnableOption mkPackageOption mkOption;
   inherit (lib.lists) concatLists filter flatten map;
-  inherit (lib.types) bool package str;
+  inherit (lib.types) bool;
   inherit (lib.strings) concatStringsSep;
 
   cfg = config.modules.desktop.editors.neovim;
@@ -286,19 +286,19 @@ in {
             };
           };
       in {
-        home.packages = with pkgs;
+        home.packages =
           [
             pkgNeovim
-            unstable.python311
-            python3Packages.pynvim
+            pkgs.unstable.python311
+            pkgs.python3Packages.pynvim
             pkgs.unstable.tree-sitter
             (pkgs.unstable.tree-sitter.withPlugins (_: generateTreeSitterGrammars))
 
             # tools
-            fzf
-            bat
-            ripgrep
-            curl
+            pkgs.fzf
+            pkgs.bat
+            pkgs.ripgrep
+            pkgs.curl
           ]
           ++ generatePackages;
       }
