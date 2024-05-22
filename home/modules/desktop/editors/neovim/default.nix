@@ -1,7 +1,7 @@
 {
-  pkgs,
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -188,20 +188,7 @@ in {
           src = ./config;
         };
 
-        plugins =
-          pkgs.neovimPlugins
-          // {
-            nvim-treesitter =
-              pkgs.neovimPlugins.nvim-treesitter.overrideAttrs
-              (_: {
-                postPatch = let
-                  grammars = pkgs.unstable.tree-sitter.withPlugins (_: generateTreeSitterGrammars);
-                in ''
-                  rm -r parser
-                  ln -s ${grammars} parser
-                '';
-              });
-          };
+        plugins = pkgs.neovimPlugins;
 
         treeSitterMapping = {
           terraform = ["hcl"];
@@ -255,19 +242,16 @@ in {
             treeSitterLanguages
           );
 
-        pkgNeovim =
-          pkgs.wrapNeovim cfg.package
-          {
-            viAlias = true;
-            vimAlias = true;
-            # vimdiffAlias = true;
-
-            withPython3 = true;
+        pkgNeovim = pkgs.unstable.wrapNeovimUnstable cfg.package (
+          pkgs.unstable.neovimUtils.makeNeovimConfig {
             withNodeJs = true;
             withRuby = false;
 
-            configure = {
-              customRC = ''
+            customRC =
+              /*
+              vim
+              */
+              ''
                 luafile ${nvimConfig.out}/init.lua
 
                 lua << EOF
@@ -280,19 +264,20 @@ in {
                 EOF
               '';
 
-              packages.myVimPackage = {
-                start = (builtins.attrValues plugins) ++ [nvimConfig];
-              };
-            };
-          };
+            plugins =
+              [
+                nvimConfig
+                (pkgs.unstable.vimPlugins.nvim-treesitter.withPlugins (_: generateTreeSitterGrammars))
+              ]
+              ++ (builtins.attrValues plugins);
+          }
+        );
       in {
         home.packages =
           [
             pkgNeovim
             pkgs.unstable.python311
             pkgs.python3Packages.pynvim
-            pkgs.unstable.tree-sitter
-            (pkgs.unstable.tree-sitter.withPlugins (_: generateTreeSitterGrammars))
 
             # tools
             pkgs.fzf
@@ -301,6 +286,21 @@ in {
             pkgs.curl
           ]
           ++ generatePackages;
+
+        programs = {
+          bash.shellAliases = {
+            vi = "nvim";
+            vimdiff = "nvim -d";
+          };
+          fish.shellAliases = {
+            vi = "nvim";
+            vimdiff = "nvim -d";
+          };
+          zsh.shellAliases = {
+            vi = "nvim";
+            vimdiff = "nvim -d";
+          };
+        };
       }
     );
 }
