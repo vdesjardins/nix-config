@@ -373,7 +373,7 @@
     extraOverlays =
       {
         nur = nur.overlay;
-        neovim-nightly = neovim-nightly.overlay;
+        neovim-nightly = neovim-nightly.overlays.default;
         rust-overlay = rust-overlay.overlays.default;
       }
       // comma.overlays;
