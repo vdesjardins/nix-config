@@ -3,7 +3,7 @@
     amazon-ecr-credential-helper
     aws-vault
     awslogs
-    eks-node-viewer
+    unstable.eks-node-viewer
     eksctl
     ssm-session-manager-plugin
   ];

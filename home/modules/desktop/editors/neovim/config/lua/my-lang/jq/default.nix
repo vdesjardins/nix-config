@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   packages = with pkgs; [
-    jq-lsp
+    unstable.jq-lsp
   ];
 }

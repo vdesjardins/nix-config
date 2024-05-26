@@ -45,6 +45,10 @@
       skaffold
       starboard # security tools
       trivy
+      unstable.kubectl-validate
+      unstable.kubectl-explore # better explain
+      unstable.kubecolor
+      unstable.kubectl-neat
       unstable.cosign
       unstable.crane # tool to manage container images
       unstable.fluxcd
