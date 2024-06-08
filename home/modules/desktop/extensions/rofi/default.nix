@@ -9,6 +9,7 @@
   inherit (lib.types) package str;
   inherit (lib.strings) concatStringsSep;
   inherit (lib.meta) getExe;
+  inherit (builtins) map;
 
   cfg = config.modules.desktop.extensions.rofi;
 in {
@@ -31,22 +32,35 @@ in {
   };
 
   config = mkIf cfg.enable (let
-    rofimoji = pkgs.rofimoji.override {rofi = cfg.package;};
+    # workaround for https://github.com/NixOS/nixpkgs/issues/298539
+    plugins =
+      map
+      (p:
+        p.override {
+          rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
+        }) (
+        with pkgs; [
+          rofi-calc
+          rofi-emoji
+        ]
+      )
+      ++ (with pkgs; [
+        rofi-file-browser
+        rofi-menugen
+        rofi-power-menu
+      ]);
+
+    rofimoji = pkgs.rofimoji.override {
+      rofi = config.programs.rofi.finalPackage;
+    };
   in {
     programs.rofi = {
       inherit (cfg) enable font package terminal;
+      inherit plugins;
 
       theme = import ./theme.nix {
         inherit (config.lib.formats.rasi) mkLiteral;
       };
-
-      plugins = with pkgs; [
-        rofi-calc
-        rofi-menugen
-        rofi-emoji
-        rofi-file-browser
-        rofi-power-menu
-      ];
 
       extraConfig = {
         async-pre-read = "50";
@@ -71,12 +85,12 @@ in {
         matching = "fuzzy";
 
         modi = concatStringsSep "," [
-          "calc"
-          "combi"
           "drun"
+          "combi"
+          "calc"
           "emoji:${rofimoji}/bin/rofimoji"
-          "file-browser-extended"
           "filebrowser"
+          "recursivebrowser"
           "keys"
           "run"
           "ssh"
@@ -113,7 +127,13 @@ in {
         name = "Rofi-files";
         desktopName = "Rofi: Filebrowser";
         icon = "system-file-manager";
-        exec = "rofi -show file-browser-extended";
+        exec = "rofi -show filebrowser";
+      })
+      (makeDesktopItem {
+        name = "Rofi-recursive-files";
+        desktopName = "Rofi: Recursive Filebrowser";
+        icon = "system-file-manager";
+        exec = "rofi -show recursivebrowser";
       })
       (makeDesktopItem {
         name = "Rofi-emojis";

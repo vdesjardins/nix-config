@@ -8,7 +8,6 @@
   imports = [
     ../roles/common.nix
 
-    ../roles/desktop/darwin.nix
     ../roles/dev/bash.nix
     ../roles/dev/cue.nix
     ../roles/dev/debugging.nix

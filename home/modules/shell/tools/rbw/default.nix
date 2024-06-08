@@ -14,7 +14,7 @@ in {
     enable = mkEnableOption "rbw";
     pinentryPackage = mkOption {
       type = package;
-      default = pkgs.pinentry-gnome;
+      default = pkgs.pinentry-gnome3;
     };
   };
 

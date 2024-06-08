@@ -50,7 +50,9 @@ in {
 
         Service = {
           ExecStart = "${lib.getExe ollamaPackage} serve";
-          Environment = ["OLLAMA_HOST=${cfg.listenAddress}"];
+          Environment = [
+            "OLLAMA_HOST=${cfg.listenAddress}"
+          ];
         };
 
         Install = {WantedBy = ["default.target"];};
