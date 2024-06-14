@@ -49,5 +49,6 @@
     ../roles/desktop/productivity.nix
     ../roles/desktop/ai.nix
     ../roles/desktop/wifi.nix
+    ../roles/desktop/diagnostic.nix
   ];
 }
