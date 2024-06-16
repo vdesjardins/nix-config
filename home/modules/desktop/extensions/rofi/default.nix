@@ -32,7 +32,7 @@ in {
   };
 
   config = mkIf cfg.enable (let
-    # workaround for https://github.com/NixOS/nixpkgs/issues/298539
+    # TODO: workaround for https://github.com/NixOS/nixpkgs/issues/298539
     plugins =
       map
       (p:
