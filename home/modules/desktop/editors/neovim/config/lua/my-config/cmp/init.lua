@@ -60,7 +60,7 @@ cmp.setup({
         { name = "treesitter" },
         { name = "crates" },
         { name = "copilot" },
-        { name = "cmp_ai" },
+        -- { name = "cmp_ai" },
     }, { { name = "buffer" } }),
 
     sorting = {
