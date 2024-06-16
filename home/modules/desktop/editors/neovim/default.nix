@@ -246,6 +246,8 @@ in {
           pkgs.unstable.neovimUtils.makeNeovimConfig {
             withNodeJs = true;
             withRuby = false;
+            viAlias = true;
+            vimAlias = true;
 
             customRC =
               /*

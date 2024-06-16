@@ -1,13 +1,8 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
-with lib; let
+{pkgs, ...}: let
   font = "MonaspiceRn Nerd Font";
 in {
   home.sessionVariables = {
-    EDITOR = "vi";
+    EDITOR = "nvim";
   };
 
   programs.home-manager.enable = true;
