@@ -108,9 +108,9 @@ cmp_ai:setup({
     provider = "Ollama",
     provider_options = {
         stream = true,
-        model = "codegemma:2b",
+        model = "qwen2",
     },
-    notify = true,
+    notify = false,
     notify_callback = function(msg)
         vim.notify(msg)
     end,
