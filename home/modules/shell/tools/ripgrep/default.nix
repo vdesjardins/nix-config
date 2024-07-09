@@ -14,11 +14,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [repgrep];
+
     programs.ripgrep = {
       inherit (cfg) enable;
 
       arguments = [
-        "--max-columns=150"
+        "--max-columns=0"
         "--max-columns-preview"
         "--hidden"
         "--type-add=zshrc:*.zsh*"
