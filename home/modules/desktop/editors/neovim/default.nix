@@ -278,7 +278,7 @@ in {
         home.packages =
           [
             pkgNeovim
-            pkgs.unstable.python311
+            pkgs.unstable.python3
             pkgs.python3Packages.pynvim
 
             # tools
