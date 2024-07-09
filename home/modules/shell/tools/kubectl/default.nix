@@ -80,9 +80,9 @@ in {
         ke = "kubectl edit";
 
         # top
-        ktp = "kc top pods";
-        ktc = "kc top pods --containers=true";
-        ktn = "kc top nodes";
+        ktp = "kubectl top pods";
+        ktc = "kubectl top pods --containers=true";
+        ktn = "kubectl top nodes";
 
         # certs
         kube-get-certs = ''kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{" "}' | sort'';
