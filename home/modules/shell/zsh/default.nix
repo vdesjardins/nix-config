@@ -10,7 +10,7 @@
   cfg = config.modules.shell.zsh;
 in {
   options.modules.shell.zsh = {
-    enable = mkEnableOption "any-nix-shell";
+    enable = mkEnableOption "zsh";
   };
 
   config = mkIf cfg.enable {

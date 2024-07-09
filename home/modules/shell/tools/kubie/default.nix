@@ -24,7 +24,7 @@ in {
         kbn = "kubie ns";
         kbx = "kubie ctx";
         kbe = "kubie exec";
-        kbs = "wezterm cli split-pane --top-level kubie ctx $(kubie info ctx) -n $(kubie info ns || echo 'default')";
+        kbs = "wezterm cli split-pane --top-level kubie exec $(kubie info ctx) $(kubie info ns || echo 'default') zsh";
       };
 
       zsh.initExtra =
