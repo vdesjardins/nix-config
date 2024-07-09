@@ -22,7 +22,6 @@ in {
       git-filter-repo
       git-extras
       git-recent
-      gitbatch
       lab
       pre-commit
       tig
