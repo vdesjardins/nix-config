@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   modules.desktop = {
     browsers = {
       firefox.enable = true;
@@ -9,7 +9,7 @@
       buku.enable = true;
     };
     extensions = {
-      rofi-buku.enable = true;
+      rofi-buku.enable = pkgs.stdenv.isLinux;
     };
   };
 }
