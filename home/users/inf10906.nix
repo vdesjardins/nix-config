@@ -12,8 +12,6 @@
     ../roles/desktop/darwin.nix
     ../roles/security.nix
     ../roles/dev/bash.nix
-    ../roles/dev/cue.nix
-    ../roles/dev/debugging.nix
     ../roles/dev/go.nix
     ../roles/dev/go-template.nix
     ../roles/dev/js.nix
@@ -36,12 +34,11 @@
     ../roles/ops/k8s.nix
     ../roles/ops/networking.nix
     ../roles/ops/vault.nix
-    ../roles/ops/virtualization.nix
     ../roles/security.nix
     ../roles/nixpkgs.nix
     ../roles/utils.nix
 
     ../roles/desktop/browsers.nix
-    ../roles/desktop/productivity.nix
+    ../roles/ai.nix
   ];
 }
