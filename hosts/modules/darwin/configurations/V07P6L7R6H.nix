@@ -12,6 +12,7 @@ in {
     "maccy"
     "middleclick"
     "stats"
+    "logseq"
   ];
 
   networking.hostName = hostname;
