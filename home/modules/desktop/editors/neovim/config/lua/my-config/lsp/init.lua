@@ -89,42 +89,34 @@ vim.fn.sign_define("DiagnosticSignHint", {
 
 -- keybindings
 local wk = require("which-key")
-wk.register({
-    l = {
-        name = "lsp",
-        g = {
-            name = "goto",
-            d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go-to-definition" },
-            D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go-to-declaration" },
-            i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go-to-implementation" },
-            r = { "<cmd>lua vim.lsp.buf.references()<cr>", "references" },
-        },
-        a = {
-            "<cmd>lua vim.lsp.buf.code_action()<CR>",
-            "code-action",
-        },
-        e = {
-            name = "code-lens",
-            r = { "<Cmd>lua vim.lsp.codelens.refresh()<CR>", "refresh" },
-            a = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "run" },
-        },
-        r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-        i = {
-            "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
-            "toggle-inlay-hints",
-        },
+wk.add({
+    { "<leader>l", group = "lsp" },
+    { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "code-action" },
+    { "<leader>le", group = "code-lens" },
+    { "<leader>lea", "<Cmd>lua vim.lsp.codelens.run()<CR>", desc = "run" },
+    { "<leader>ler", "<Cmd>lua vim.lsp.codelens.refresh()<CR>", desc = "refresh" },
+    { "<leader>lg", group = "goto" },
+    { "<leader>lgD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "go-to-declaration" },
+    { "<leader>lgd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "go-to-definition" },
+    { "<leader>lgi", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "go-to-implementation" },
+    { "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "references" },
+    {
+        "<leader>li",
+        "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+        desc = "toggle-inlay-hints",
     },
-}, { prefix = "<leader>" })
+    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "rename" },
+})
 
-wk.register({
-    l = {
-        name = "lsp",
-        a = {
-            ":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
-            "range-code-action",
-        },
+wk.add({
+    { "<leader>l", group = "lsp", mode = "v" },
+    {
+        "<leader>la",
+        ":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
+        desc = "range-code-action",
+        mode = "v",
     },
-}, { mode = "v", prefix = "<leader>" })
+})
 
 vim.cmd("nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>")
 vim.cmd("nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>")

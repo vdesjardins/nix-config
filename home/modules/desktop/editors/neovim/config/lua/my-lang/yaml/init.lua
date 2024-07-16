@@ -18,12 +18,10 @@ require("lspconfig").yamlls.setup({
 require("yaml-companion").setup({})
 
 local wk = require("which-key")
-wk.register({
-    b = {
-        name = "buffer",
-        y = { "<cmd>Telescope yaml_schema<cr>", "yaml-schema-chooser" },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>b", group = "buffer" },
+    { "<leader>by", "<cmd>Telescope yaml_schema<cr>", desc = "yaml-schema-chooser" },
+})
 
 local null_ls = require("null-ls")
 _G.null_ls_sources[#_G.null_ls_sources + 1] = null_ls.builtins.diagnostics.yamllint

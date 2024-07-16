@@ -1,34 +1,43 @@
 require("trouble").setup({})
 
 local wk = require("which-key")
-wk.register({
-    l = {
-        name = "lsp",
-        t = {
-            name = "trouble",
-            x = { "<cmd>LspTroubleToggle<cr>", "trouble" },
-            w = {
-                "<cmd>TroubleToggle workspace_diagnostics<cr>",
-                "trouble-workspace-diagnostics",
-            },
-            d = {
-                "<cmd>TroubleToggle document_diagnostics<cr>",
-                "trouble-document-diagnostics",
-            },
-            q = { "<cmd>TroubleToggle quickfix<cr>", "trouble-quickfix" },
-            l = { "<cmd>TroubleToggle loclist<cr>", "trouble-loclist" },
-            r = { "<cmd>TroubleToggle lsp_references<cr>", "trouble-references" },
-        },
+wk.add({
+    { "<leader>l", group = "lsp" },
+    { "<leader>lt", group = "trouble" },
+    {
+        "<leader>ltd",
+        "<cmd>TroubleToggle document_diagnostics<cr>",
+        desc = "trouble-document-diagnostics",
     },
-    r = {
-        name = "trouble",
-        n = { "<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>", "next" },
-        p = {
-            "<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<cr>",
-            "previous",
-        },
-        f = { "<cmd>lua require('trouble').first({skip_groups = true, jump = true})<cr>", "first" },
-        l = { "<cmd>lua require('trouble').last({skip_groups = true, jump = true})<cr>", "last" },
-        t = { "<cmd>TroubleToggle<cr>", "toggle" },
+    { "<leader>ltl", "<cmd>TroubleToggle loclist<cr>", desc = "trouble-loclist" },
+    { "<leader>ltq", "<cmd>TroubleToggle quickfix<cr>", desc = "trouble-quickfix" },
+    { "<leader>ltr", "<cmd>TroubleToggle lsp_references<cr>", desc = "trouble-references" },
+    {
+        "<leader>ltw",
+        "<cmd>TroubleToggle workspace_diagnostics<cr>",
+        desc = "trouble-workspace-diagnostics",
     },
-}, { prefix = "<leader>" })
+    { "<leader>ltx", "<cmd>LspTroubleToggle<cr>", desc = "trouble" },
+    { "<leader>r", group = "trouble" },
+    {
+        "<leader>rf",
+        "<cmd>lua require('trouble').first({skip_groups = true, jump = true})<cr>",
+        desc = "first",
+    },
+    {
+        "<leader>rl",
+        "<cmd>lua require('trouble').last({skip_groups = true, jump = true})<cr>",
+        desc = "last",
+    },
+    {
+        "<leader>rn",
+        "<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>",
+        desc = "next",
+    },
+    {
+        "<leader>rp",
+        "<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<cr>",
+        desc = "previous",
+    },
+    { "<leader>rt", "<cmd>TroubleToggle<cr>", desc = "toggle" },
+})

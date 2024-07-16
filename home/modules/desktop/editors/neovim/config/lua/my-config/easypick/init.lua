@@ -33,11 +33,9 @@ easypick.setup({
 })
 
 local wk = require("which-key")
-wk.register({
-    p = {
-        name = "projects",
-        m = { "<cmd>Easypick modified_files<cr>", "files-modified" },
-        c = { "<cmd>Easypick conflicts<cr>", "file-conflicts" },
-        x = { "<cmd>Easypick make_targets<cr>", "make-targets" },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>p", group = "projects" },
+    { "<leader>pc", "<cmd>Easypick conflicts<cr>", desc = "file-conflicts" },
+    { "<leader>pm", "<cmd>Easypick modified_files<cr>", desc = "files-modified" },
+    { "<leader>px", "<cmd>Easypick make_targets<cr>", desc = "make-targets" },
+})

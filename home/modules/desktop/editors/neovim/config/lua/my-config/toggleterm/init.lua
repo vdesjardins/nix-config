@@ -47,31 +47,25 @@ local function lazygit_toggle()
 end
 
 local wk = require("which-key")
-wk.register({
-    p = {
-        T = { "<cmd>ToggleTerm<cr>", "toggle-terminal" },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>pT", "<cmd>ToggleTerm<cr>", desc = "toggle-terminal" },
+})
 
-wk.register({
-    b = {
-        T = { openTerminalPane, "terminal" },
-    },
-}, { prefix = "<leader>" })
-wk.register({
-    g = {
-        y = { lazygit_toggle, "lazygit" },
-    },
-}, { prefix = "<leader>" })
-wk.register({
-    s = {
-        function()
-            local tsel = "visual_selection"
-            if vim.fn.mode():sub(1, 1) == "V" then
-                tsel = "visual_lines"
-            end
-            toggleterm.send_lines_to_terminal(tsel, true, { args = vim.v.count })
-        end,
-        "send-selection-terminal",
-    },
-}, { prefix = "<leader>", mode = "v" })
+wk.add({
+    { "<leader>bT", openTerminalPane, desc = "terminal" },
+})
+wk.add({
+    { "<leader>gy", lazygit_toggle, desc = "lazygit" },
+})
+wk.add({
+    "<leader>s",
+    function()
+        local tsel = "visual_selection"
+        if vim.fn.mode():sub(1, 1) == "V" then
+            tsel = "visual_lines"
+        end
+        toggleterm.send_lines_to_terminal(tsel, true, { args = vim.v.count })
+    end,
+    desc = "send-selection-terminal",
+    mode = "v",
+})

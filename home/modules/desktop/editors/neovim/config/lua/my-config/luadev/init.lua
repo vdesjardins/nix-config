@@ -2,14 +2,10 @@ require("luadev")
 
 local wk = require("which-key")
 
-wk.register({
-    n = {
-        name = "neovim",
-        l = {
-            name = "luadev",
-            l = { "<Plug>(Luadev-RunLine)", "run-line" },
-            a = { "<Plug>(Luadev-Run)", "run" },
-            e = { "<Plug>(Luadev-RunWord)", "run-word" },
-        },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>n", group = "neovim" },
+    { "<leader>nl", group = "luadev" },
+    { "<leader>nla", "<Plug>(Luadev-Run)", desc = "run" },
+    { "<leader>nle", "<Plug>(Luadev-RunWord)", desc = "run-word" },
+    { "<leader>nll", "<Plug>(Luadev-RunLine)", desc = "run-line" },
+})

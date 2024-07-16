@@ -3,42 +3,45 @@ harpoon:setup()
 
 local wk = require("which-key")
 local mappings = {
-    m = {
-        name = "harpoon",
-        m = {
-            function()
-                harpoon:list():append()
-            end,
-            "add-file",
-        },
-        q = {
-            function()
-                harpoon.ui:toggle_quick_menu(harpoon:list())
-            end,
-            "quick-menu",
-        },
-        n = {
-            function()
-                harpoon:list():next()
-            end,
-            "next",
-        },
-        p = {
-            function()
-                harpoon:list():prev()
-            end,
-            "previous",
-        },
+    { "<leader>m", group = "harpoon" },
+    {
+        "<leader>mm",
+        function()
+            harpoon:list():append()
+        end,
+        desc = "add-file",
+    },
+    {
+        "<leader>mq",
+        function()
+            harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = "quick-menu",
+    },
+    {
+        "<leader>mn",
+        function()
+            harpoon:list():next()
+        end,
+        desc = "next",
+    },
+    {
+        "<leader>mp",
+        function()
+            harpoon:list():prev()
+        end,
+        desc = "previous",
     },
 }
 
 for i = 1, 9, 1 do
-    mappings.m[tostring(i)] = {
+    table.insert(mappings, {
+        "<leader>m" .. tostring(i),
         function()
             harpoon:list():select(i)
         end,
-        "goto " .. tostring(i),
-    }
+        desc = "goto " .. tostring(i),
+    })
 end
 
-wk.register(mappings, { prefix = "<leader>" })
+wk.add(mappings)

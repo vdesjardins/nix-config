@@ -1,8 +1,6 @@
 local wk = require("which-key")
-wk.register({
-    s = {
-        name = "search",
-        h = { "<cmd>nohlsearch<cr>", "clear-highlight" },
-        c = { "<cmd>Telescope commands theme=dropdown<cr>", "commands" },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>s", group = "search" },
+    { "<leader>sc", "<cmd>Telescope commands theme=dropdown<cr>", desc = "commands" },
+    { "<leader>sh", "<cmd>nohlsearch<cr>", desc = "clear-highlight" },
+})

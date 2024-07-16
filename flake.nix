@@ -219,6 +219,8 @@
     neovim-plugin-popup.flake = false;
     neovim-plugin-nvim-web-devicons.url = "github:kyazdani42/nvim-web-devicons";
     neovim-plugin-nvim-web-devicons.flake = false;
+    neovim-plugin-mini-icons.url = "github:echasnovski/mini.icons";
+    neovim-plugin-mini-icons.flake = false;
     neovim-plugin-nui.url = "github:MunifTanjim/nui.nvim";
     neovim-plugin-nui.flake = false;
     neovim-plugin-harpoon.url = "github:ThePrimeagen/harpoon/harpoon2";

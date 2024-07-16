@@ -1,13 +1,9 @@
 local wk = require("which-key")
-wk.register({
-    g = {
-        name = "git",
-        D = {
-            name = "diffview",
-            o = { vim.cmd.DiffviewOpen, "open" },
-            c = { vim.cmd.DiffviewClose, "close" },
-            f = { vim.cmd.DiffviewFocusFiles, "focus" },
-            r = { vim.cmd.DiffviewRefresh, "refresh" },
-        },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>g", group = "git" },
+    { "<leader>gD", group = "diffview" },
+    { "<leader>gDc", vim.cmd.DiffviewClose, desc = "close" },
+    { "<leader>gDf", vim.cmd.DiffviewFocusFiles, desc = "focus" },
+    { "<leader>gDo", vim.cmd.DiffviewOpen, desc = "open" },
+    { "<leader>gDr", vim.cmd.DiffviewRefresh, desc = "refresh" },
+})

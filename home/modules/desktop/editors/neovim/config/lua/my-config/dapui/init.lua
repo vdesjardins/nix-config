@@ -1,37 +1,31 @@
 require("dapui").setup()
 
 local wk = require("which-key")
-wk.register({
-    d = {
-        name = "debugging",
-        o = { '<cmd>lua require("dapui").open()<cr>', "open" },
-        c = { '<cmd>lua require("dapui").close()<cr>', "close" },
-        t = { '<cmd>lua require("dapui").close()<cr>', "toggle" },
-        b = {
-            '<cmd>lua require("dap").toggle_breakpoint()<cr>',
-            "toggle breakpoint",
-        },
-        B = {
-            '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>',
-            "set breakpoint with condition",
-        },
-        l = {
-            name = "logging",
-            p = {
-                '<cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>',
-                "log point message",
-            },
-        },
-        d = {
-            name = "debugging",
-            r = {
-                '<cmd>lua require("dap").repl.open()<cr>',
-                "repl",
-            },
-        },
-        r = { '<cmd>lua require("dap").continue()<cr>', "continue" },
-        n = { '<cmd>lua require("dap").step_over()<cr>', "step over" },
-        s = { '<cmd>lua require("dap").step_into()<cr>', "step into" },
-        e = { '<cmd>lua require("dap").step_out()<cr>', "step out" },
+wk.add({
+    { "<leader>d", group = "debugging" },
+    {
+        "<leader>dB",
+        '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>',
+        desc = "set breakpoint with condition",
     },
-}, { prefix = "<leader>" })
+    {
+        "<leader>db",
+        '<cmd>lua require("dap").toggle_breakpoint()<cr>',
+        desc = "toggle breakpoint",
+    },
+    { "<leader>dc", '<cmd>lua require("dapui").close()<cr>', desc = "close" },
+    { "<leader>dd", group = "debugging" },
+    { "<leader>ddr", '<cmd>lua require("dap").repl.open()<cr>', desc = "repl" },
+    { "<leader>de", '<cmd>lua require("dap").step_out()<cr>', desc = "step out" },
+    { "<leader>dl", group = "logging" },
+    {
+        "<leader>dlp",
+        '<cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>',
+        desc = "log point message",
+    },
+    { "<leader>dn", '<cmd>lua require("dap").step_over()<cr>', desc = "step over" },
+    { "<leader>do", '<cmd>lua require("dapui").open()<cr>', desc = "open" },
+    { "<leader>dr", '<cmd>lua require("dap").continue()<cr>', desc = "continue" },
+    { "<leader>ds", '<cmd>lua require("dap").step_into()<cr>', desc = "step into" },
+    { "<leader>dt", '<cmd>lua require("dapui").close()<cr>', desc = "toggle" },
+})

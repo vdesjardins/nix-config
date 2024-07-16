@@ -1,10 +1,8 @@
 local wk = require("which-key")
-wk.register({
-    e = {
-        name = "errors",
-        n = { "<cmd>cnext<cr>", "next-error" },
-        p = { "<cmd>cprevious<cr>", "previous-error" },
-        c = { "<cmd>cclose<cr>", "close-quickfix-window" },
-        o = { "<cmd>copen<cr>", "open-quickfix-window" },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>e", group = "errors" },
+    { "<leader>ec", "<cmd>cclose<cr>", desc = "close-quickfix-window" },
+    { "<leader>en", "<cmd>cnext<cr>", desc = "next-error" },
+    { "<leader>eo", "<cmd>copen<cr>", desc = "open-quickfix-window" },
+    { "<leader>ep", "<cmd>cprevious<cr>", desc = "previous-error" },
+})

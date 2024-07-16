@@ -5,20 +5,18 @@ local function addFile()
     vim.cmd("Git add " .. f)
 end
 
-wk.register({
-    g = {
-        name = "git",
-        a = { addFile, "fugitive-add" },
-        c = { "<cmd>Git commit<cr>", "fugitive-commit" },
-        d = { "<cmd>Gdiffsplit<cr>", "fugitive-diff" },
-        e = { "<cmd>Gedit<cr>", "fugitive-edit" },
-        l = { "<cmd>Gclog<cr>", "fugitive-log" },
-        r = { "<cmd>Gread<cr>", "fugitive-read" },
-        s = { "<cmd>Git<cr>", "fugitive-status" },
-        w = { "<cmd>Gwrite<cr>", "fugitive-write" },
-        p = { "<cmd>Git push<cr>", "fugitive-push" },
-        P = { "<cmd>Git pull<cr>", "fugitive-pull" },
-        f = { "<cmd>diffget //2<cr>", "diff-get-left" },
-        j = { "<cmd>diffget //3<cr>", "diff-get-right" },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>g", group = "git" },
+    { "<leader>gP", "<cmd>Git pull<cr>", desc = "fugitive-pull" },
+    { "<leader>ga", addFile, desc = "fugitive-add" },
+    { "<leader>gc", "<cmd>Git commit<cr>", desc = "fugitive-commit" },
+    { "<leader>gd", "<cmd>Gdiffsplit<cr>", desc = "fugitive-diff" },
+    { "<leader>ge", "<cmd>Gedit<cr>", desc = "fugitive-edit" },
+    { "<leader>gf", "<cmd>diffget //2<cr>", desc = "diff-get-left" },
+    { "<leader>gj", "<cmd>diffget //3<cr>", desc = "diff-get-right" },
+    { "<leader>gl", "<cmd>Gclog<cr>", desc = "fugitive-log" },
+    { "<leader>gp", "<cmd>Git push<cr>", desc = "fugitive-push" },
+    { "<leader>gr", "<cmd>Gread<cr>", desc = "fugitive-read" },
+    { "<leader>gs", "<cmd>Git<cr>", desc = "fugitive-status" },
+    { "<leader>gw", "<cmd>Gwrite<cr>", desc = "fugitive-write" },
+})

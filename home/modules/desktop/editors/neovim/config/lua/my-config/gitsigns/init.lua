@@ -1,10 +1,8 @@
 require("gitsigns").setup({})
 
 local wk = require("which-key")
-wk.register({
-    g = {
-        name = "git",
-        n = { "<cmd>Gitsigns next_hunk<cr>", "next-hunk" },
-        p = { "<cmd>Gitsigns prev_hunk<cr>", "previous-hunk" },
-    },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>g", group = "git" },
+    { "<leader>gn", "<cmd>Gitsigns next_hunk<cr>", desc = "next-hunk" },
+    { "<leader>gp", "<cmd>Gitsigns prev_hunk<cr>", desc = "previous-hunk" },
+})

@@ -42,27 +42,33 @@ telescope.load_extension("ui-select")
 telescope.load_extension("file_browser")
 
 local wk = require("which-key")
-wk.register({
-    p = {
-        name = "projects",
-        f = { "<cmd>Telescope find_files theme=dropdown hidden=true<cr>", "find-file-in-project" },
-        s = { "<cmd>Telescope live_grep theme=dropdown<cr>", "search-in-project" },
-        M = { "<cmd>Telescope marks theme=dropdown<cr>", "bookmarks" },
-        h = { "<cmd>Telescope help_tags theme=dropdown<cr>", "help" },
-        b = { "<cmd>Telescope file_browser theme=dropdown hidden=true<cr>", "file-browser" },
-        t = { "<cmd>Telescope builtin theme=dropdown<cr>", "telescope" },
-        r = {
-            "<cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<cr>",
-            "frecency",
-        },
+wk.add({
+    {
+        "<leader>bb",
+        "<cmd>Telescope file_browser theme=dropdown path=%:p:help |select_buffer=true| hidden=true<CR>",
+        desc = "file-browser",
     },
-    b = {
-        b = {
-            "<cmd>Telescope file_browser theme=dropdown path=%:p:h select_buffer=true hidden=true<CR>",
-            "file-browser",
-        },
+    { "<leader>p", group = "projects" },
+    { "<leader>pM", "<cmd>Telescope marks theme=dropdown<cr>", desc = "bookmarks" },
+    {
+        "<leader>pb",
+        "<cmd>Telescope file_browser theme=dropdown hidden=true<cr>",
+        desc = "file-browser",
     },
-}, { prefix = "<leader>" })
+    {
+        "<leader>pf",
+        "<cmd>Telescope find_files theme=dropdown hidden=true<cr>",
+        desc = "find-file-in-project",
+    },
+    { "<leader>ph", "<cmd>Telescope help_tags theme=dropdown<cr>", desc = "help" },
+    {
+        "<leader>pr",
+        "<cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<cr>",
+        desc = "frecency",
+    },
+    { "<leader>ps", "<cmd>Telescope live_grep theme=dropdown<cr>", desc = "search-in-project" },
+    { "<leader>pt", "<cmd>Telescope builtin theme=dropdown<cr>", desc = "telescope" },
+})
 
 vim.api.nvim_set_keymap("n", "gs", "<plug>(GrepperOperator)", { silent = true })
 vim.api.nvim_set_keymap("x", "gs", "<plug>(GrepperOperator)", { silent = true })
