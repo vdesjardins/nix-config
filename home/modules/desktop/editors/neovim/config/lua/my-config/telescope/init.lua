@@ -1,5 +1,5 @@
-local _actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+local actions = require("telescope.actions")
+local trouble = require("trouble.sources.telescope")
 
 local telescope = require("telescope")
 
@@ -8,12 +8,12 @@ telescope.setup({
         mappings = {
             i = {
                 ["<c-h>"] = "which_key",
-                ["<c-t>"] = trouble.open_with_trouble,
-                ["<c-d>"] = require("telescope.actions").delete_buffer,
+                ["<c-t>"] = trouble.open,
+                ["<c-d>"] = actions.delete_buffer,
             },
             n = {
                 ["<c-t>"] = trouble.open_with_trouble,
-                ["<c-d>"] = require("telescope.actions").delete_buffer,
+                ["<c-d>"] = actions.delete_buffer,
             },
         },
     },
