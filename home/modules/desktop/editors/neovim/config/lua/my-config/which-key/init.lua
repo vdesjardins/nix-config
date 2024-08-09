@@ -2,7 +2,7 @@ require("which-key").setup({
     spelling = {
         enabled = true,
     },
-    window = {
+    win = {
         border = "single",
     },
 })
