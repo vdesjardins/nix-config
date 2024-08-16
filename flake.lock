@@ -731,6 +731,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-gp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723453874,
+        "narHash": "sha256-2vjPoRiT26dftA0t4hdGedN6qZyIgQUjGMRF4IND/O4=",
+        "owner": "Robitx",
+        "repo": "gp.nvim",
+        "rev": "861ed5240214dc76b00edeaec15e71370a7a5046",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Robitx",
+        "repo": "gp.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-harpoon": {
       "flake": false,
       "locked": {
@@ -1241,22 +1257,6 @@
       "original": {
         "owner": "kyazdani42",
         "repo": "nvim-web-devicons",
-        "type": "github"
-      }
-    },
-    "neovim-plugin-ogpt": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1713267424,
-        "narHash": "sha256-l7lFP2hgvK1IBv27pIfvXo68/cXbq8jxtYz/9NUj9Zs=",
-        "owner": "huynle",
-        "repo": "ogpt.nvim",
-        "rev": "aad5dfbbbc6e90e12cb15b77d0dc15da83077b48",
-        "type": "github"
-      },
-      "original": {
-        "owner": "huynle",
-        "repo": "ogpt.nvim",
         "type": "github"
       }
     },
@@ -2157,6 +2157,7 @@
         "neovim-plugin-gitignore": "neovim-plugin-gitignore",
         "neovim-plugin-gitsigns-nvim": "neovim-plugin-gitsigns-nvim",
         "neovim-plugin-glow-nvim": "neovim-plugin-glow-nvim",
+        "neovim-plugin-gp": "neovim-plugin-gp",
         "neovim-plugin-harpoon": "neovim-plugin-harpoon",
         "neovim-plugin-indent-blankline-nvim": "neovim-plugin-indent-blankline-nvim",
         "neovim-plugin-lsp-rooter-nvim": "neovim-plugin-lsp-rooter-nvim",
@@ -2189,7 +2190,6 @@
         "neovim-plugin-nvim-ts-context-commentstring": "neovim-plugin-nvim-ts-context-commentstring",
         "neovim-plugin-nvim-ts-rainbow": "neovim-plugin-nvim-ts-rainbow",
         "neovim-plugin-nvim-web-devicons": "neovim-plugin-nvim-web-devicons",
-        "neovim-plugin-ogpt": "neovim-plugin-ogpt",
         "neovim-plugin-oil": "neovim-plugin-oil",
         "neovim-plugin-planery": "neovim-plugin-planery",
         "neovim-plugin-popup": "neovim-plugin-popup",

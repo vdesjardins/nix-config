@@ -247,8 +247,8 @@
     neovim-plugin-nvim-schemastore.flake = false;
 
     ## AI
-    neovim-plugin-ogpt.url = "github:huynle/ogpt.nvim";
-    neovim-plugin-ogpt.flake = false;
+    neovim-plugin-gp.url = "github:Robitx/gp.nvim";
+    neovim-plugin-gp.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";
