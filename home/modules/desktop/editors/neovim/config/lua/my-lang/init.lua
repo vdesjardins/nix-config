@@ -14,6 +14,3 @@ function _G.LangFormatBuffer()
         end
     end
 end
-
--- null_ls source table
-_G.null_ls_sources = {}

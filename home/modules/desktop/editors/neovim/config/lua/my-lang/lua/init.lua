@@ -38,4 +38,4 @@ require("lspconfig").lua_ls.setup({
 })
 
 local null_ls = require("null-ls")
-_G.null_ls_sources[#_G.null_ls_sources + 1] = null_ls.builtins.formatting.stylua
+null_ls.register(null_ls.builtins.formatting.stylua)
