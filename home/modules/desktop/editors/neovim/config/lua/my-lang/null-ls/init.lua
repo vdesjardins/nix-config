@@ -5,4 +5,10 @@ local null_ls = require("null-ls")
 
 null_ls.setup({ capabilities = capabilities })
 
-null_ls.register(null_ls.builtins.diagnostics.markdownlint)
+local md = null_ls.builtins.diagnostics.markdownlint.with({
+    runtime_condition = function(params)
+        -- do not validate for gp plugin chats
+        return not params.bufname:lower():match("gp/chats/.*.md$")
+    end,
+})
+null_ls.register(md)
