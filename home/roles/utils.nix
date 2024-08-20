@@ -22,6 +22,7 @@
       gh.enable = true;
       git.enable = true;
       joshuto.enable = true;
+      jujutsu.enable = true;
       lazygit.enable = true;
       ls.enable = true;
       lsd.enable = true;
