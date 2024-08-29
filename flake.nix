@@ -24,7 +24,6 @@
     # Others
     nur.url = "github:nix-community/NUR";
     utils.url = "github:numtide/flake-utils";
-    comma.url = "github:nix-community/comma";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
@@ -53,7 +52,7 @@
     tree-sitter-grammars-dockerfile.flake = false;
     tree-sitter-grammars-gotmpl.url = "github:ngalaiko/tree-sitter-go-template";
     tree-sitter-grammars-gotmpl.flake = false;
-    tree-sitter-grammars-go.url = "github:tree-sitter/tree-sitter-go";
+    tree-sitter-grammars-go.url = "github:tree-sitter/tree-sitter-go/v0.20.0";
     tree-sitter-grammars-go.flake = false;
     tree-sitter-grammars-gomod.url = "github:camdencheek/tree-sitter-go-mod";
     tree-sitter-grammars-gomod.flake = false;
@@ -314,7 +313,6 @@
   };
 
   outputs = {
-    comma,
     deploy-rs,
     neovim-nightly,
     nix,
@@ -372,13 +370,11 @@
       }
       // (mkOverlays ./overlays/nixpkgs);
 
-    extraOverlays =
-      {
-        nur = nur.overlay;
-        neovim-nightly = neovim-nightly.overlays.default;
-        rust-overlay = rust-overlay.overlays.default;
-      }
-      // comma.overlays;
+    extraOverlays = {
+      nur = nur.overlay;
+      neovim-nightly = neovim-nightly.overlays.default;
+      rust-overlay = rust-overlay.overlays.default;
+    };
 
     supportedSystems = rec {
       darwin = [aarch64-darwin];
