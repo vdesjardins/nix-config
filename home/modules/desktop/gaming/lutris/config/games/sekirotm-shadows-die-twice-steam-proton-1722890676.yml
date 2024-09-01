@@ -1,0 +1,22 @@
+game:
+  appid: '814380'
+  run_without_steam: false
+game_slug: sekirotm-shadows-die-twice
+name: "Sekiro\u2122: Shadows Die Twice"
+script:
+  game:
+    appid: 814380
+service: steam
+service_id: '814380'
+slug: sekirotm-shadows-die-twice-steam-proton
+steam:
+  lsi_steam: false
+  start_in_big_picture: false
+system:
+  fps_limit: ''
+  pulse_latency: true
+  reset_pulse: true
+  resolution: 'off'
+  sdl_video_fullscreen: 'off'
+version: Steam Proton
+year: 2019
