@@ -50,5 +50,7 @@
     ../roles/desktop/ai.nix
     ../roles/desktop/wifi.nix
     ../roles/desktop/diagnostic.nix
+    ../roles/desktop/graphics.nix
+    ../roles/desktop/videos.nix
   ];
 }
