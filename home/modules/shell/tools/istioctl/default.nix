@@ -21,7 +21,7 @@ in {
       ie = "istioctl proxy-config endpoints";
       iej = "istioctl proxy-config endpoints -ojson";
       ic = "istioctl proxy-config clusters";
-      icj = "istioctl proxy-config culsters -ojson";
+      icj = "istioctl proxy-config clusters -ojson";
       il = "istioctl proxy-config listeners";
       ilj = "istioctl proxy-config listeners -ojson";
       is = "istioctl proxy-status";
