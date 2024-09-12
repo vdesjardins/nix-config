@@ -22,6 +22,7 @@ in {
       jq
       bat
       gnugrep
+      unstable.kubecolor
     ];
 
     programs.zsh = {
@@ -29,6 +30,8 @@ in {
         source ${config.xdg.configHome}/zsh/conf.d/kubectl_aliases
 
         KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code"
+
+        compdef kubecolor=kubectl
       '';
 
       oh-my-zsh.plugins = ["kubectl"];
@@ -43,6 +46,8 @@ in {
       };
 
       shellAliases = {
+        kubectl = "kubecolor";
+
         # Produce a period-delimited tree of all keys
         kgnop = "kubectl get nodes -o json | jq -c 'path(..)|[.[]|tostring]|join(\".\")'";
         kgpp = "kubectl get pods -o json | jq -c 'path(..)|[.[]|tostring]|join(\".\")'";
