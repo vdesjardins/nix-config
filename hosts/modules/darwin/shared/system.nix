@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  fonts.fontDir.enable = true;
-
   system = {
     defaults = {
       loginwindow = {
