@@ -81,6 +81,7 @@
       jq
       just
       lsof
+      meld
       neofetch # fetch system/theme information
       oha # HTTP load generator inspired by rakyll/hey with tui animation
       openssh
