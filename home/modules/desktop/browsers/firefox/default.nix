@@ -15,7 +15,6 @@
       package = darkreader;
       area = "navbar";
     }
-    {package = dictionaries;}
     {package = qr-code-address-bar;}
     {package = sidebery;}
     {package = duckduckgo-privacy-essentials;}
@@ -314,8 +313,6 @@ in {
 
     home.activation = {
       firefoxPermissions = let
-        inherit (pkgs.stdenv) isDarwin;
-
         permissions = {
           "https:enixpkgs/mail.google.com" = {
             "desktop-notification" = "allow";
