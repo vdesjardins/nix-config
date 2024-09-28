@@ -14,6 +14,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs.unstable; [
+      difftastic
+    ];
+
     programs = {
       jujutsu = {
         inherit (cfg) enable;
@@ -26,7 +30,12 @@ in {
             name = "Vincent Desjardins";
           };
           ui = {
-            diff-editor = ":builtin";
+            diff-editor = "meld-3";
+            diff = {
+              tool = ["difft" "--color=always" "$left" "$right"];
+            };
+            merge-editor = "meld";
+            paginate = "never";
           };
         };
       };
