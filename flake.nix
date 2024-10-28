@@ -341,6 +341,10 @@
       allowUnsupportedSystem = true;
       allowBroken = true;
       # contentAddressedByDefault = true;
+
+      permittedInsecurePackages = [
+        "electron-27.3.11"
+      ];
     };
 
     mkOverlays = path: self.lib.mapModulesRecursive path (o: import o inputs);
