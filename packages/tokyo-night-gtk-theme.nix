@@ -12,8 +12,8 @@ stdenvNoCC.mkDerivation {
   src = fetchFromGitHub {
     owner = "Fausto-Korpsvart";
     repo = "Tokyo-Night-GTK-Theme";
-    rev = "e9790345a6231cd6001f1356d578883fac52233a";
-    hash = "sha256-Q9UnvmX+GpvqSmTwdjU4hsEsYhA887wPqs5pyqbIhmc=";
+    rev = "0a03005a02b9eba130e158cd1169d542e3a5a99a";
+    hash = "sha256-WRFFjYLwZM42zgGsGmVdUmaFrLlYibgBsFvhgG5VHNU=";
   };
 
   propagatedUserEnvPkgs = [
