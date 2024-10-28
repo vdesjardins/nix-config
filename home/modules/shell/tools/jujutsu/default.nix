@@ -50,9 +50,9 @@ in {
         jr = "jj restore";
         jm = "jj describe";
         js = "jj split";
-        jbr = "jj branch list";
-        jbc = "jj branch create";
-        jbd = "jj branch delete";
+        jbr = "jj bookmark list";
+        jbc = "jj bookmark create";
+        jbd = "jj bookmark delete";
         jl = "jj op log";
       };
     };
