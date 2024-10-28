@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  modules.shell.tools.gdb.enable = pkgs.stdenv.isLinux;
+
   home.packages = with pkgs;
     [
       binutils
@@ -8,7 +10,6 @@
       xxd
     ]
     ++ lib.optionals stdenv.isLinux [
-      gdb
       gdbgui
       cgdb
       uftrace # Function graph tracer for C/C++/Rust
