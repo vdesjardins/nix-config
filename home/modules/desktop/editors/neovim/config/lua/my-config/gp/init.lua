@@ -38,6 +38,22 @@ require("gp").setup({
         },
     },
 
+    agents = {
+        {
+            provider = "ollama",
+            name = "ChatOllamaLlama3.1-Storm-8B",
+            chat = true,
+            command = false,
+            model = {
+                model = "ajindal/llama3.1-storm:8b",
+                temperature = 0.6,
+                top_p = 1,
+                min_p = 0.05,
+            },
+            system_prompt = "You are a general AI assistant.",
+        },
+    },
+
     hooks = {
         UnitTests = function(gp, params)
             local template = "I have the following code from {{filename}}:\n\n"
