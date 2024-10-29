@@ -45,6 +45,7 @@ in {
         jd = "jj diff";
         jg = "jj git";
         jgp = "jj git push";
+        jgpc = "jj git push -c @";
         jgf = "jj git fetch";
         ja = "jj abandon";
         jr = "jj restore";
@@ -54,6 +55,9 @@ in {
         jbc = "jj bookmark create";
         jbd = "jj bookmark delete";
         jl = "jj op log";
+        je = "jj edit";
+        jne = "jj next --edit";
+        jnb = "jj new -B";
       };
     };
   };
