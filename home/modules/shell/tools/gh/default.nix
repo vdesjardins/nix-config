@@ -14,10 +14,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs.gitAndTools; [
-      gh
-    ];
-
     # TODO: a ~/.config/gh/hosts.yml file need to be created with credentials
     # ex.:
     # github.com:
@@ -25,6 +21,8 @@ in {
     #   oauth_token: <REDACTED>
     programs.gh = {
       inherit (cfg) enable;
+
+      package = pkgs.unstable.gitAndTools.gh;
 
       settings = {
         git_protocol = "ssh";
