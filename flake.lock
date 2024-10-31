@@ -721,22 +721,6 @@
         "type": "github"
       }
     },
-    "neovim-plugin-lsp-rooter-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1628886218,
-        "narHash": "sha256-j9iDwZ1oq7v6rc8XQnBDBUUXTQ5defz/a5ZrcVRisv4=",
-        "owner": "ahmedkhalf",
-        "repo": "lsp-rooter.nvim",
-        "rev": "7c83364f5a40db6c91f322fb148a99be8cec7b91",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ahmedkhalf",
-        "repo": "lsp-rooter.nvim",
-        "type": "github"
-      }
-    },
     "neovim-plugin-lsp-signature-nvim": {
       "flake": false,
       "locked": {
@@ -1246,6 +1230,22 @@
       "original": {
         "owner": "nvim-lua",
         "repo": "popup.nvim",
+        "type": "github"
+      }
+    },
+    "neovim-plugin-project": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680567592,
+        "narHash": "sha256-avV3wMiDbraxW4mqlEsKy0oeewaRj9Q33K8NzWoaptU=",
+        "owner": "ahmedkhalf",
+        "repo": "project.nvim",
+        "rev": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ahmedkhalf",
+        "repo": "project.nvim",
         "type": "github"
       }
     },
@@ -2084,7 +2084,6 @@
         "neovim-plugin-gp": "neovim-plugin-gp",
         "neovim-plugin-harpoon": "neovim-plugin-harpoon",
         "neovim-plugin-indent-blankline-nvim": "neovim-plugin-indent-blankline-nvim",
-        "neovim-plugin-lsp-rooter-nvim": "neovim-plugin-lsp-rooter-nvim",
         "neovim-plugin-lsp-signature-nvim": "neovim-plugin-lsp-signature-nvim",
         "neovim-plugin-lspkind-nvim": "neovim-plugin-lspkind-nvim",
         "neovim-plugin-lua-dev": "neovim-plugin-lua-dev",
@@ -2117,6 +2116,7 @@
         "neovim-plugin-oil": "neovim-plugin-oil",
         "neovim-plugin-planery": "neovim-plugin-planery",
         "neovim-plugin-popup": "neovim-plugin-popup",
+        "neovim-plugin-project": "neovim-plugin-project",
         "neovim-plugin-rust-tools": "neovim-plugin-rust-tools",
         "neovim-plugin-telescope-dap": "neovim-plugin-telescope-dap",
         "neovim-plugin-telescope-file-browser": "neovim-plugin-telescope-file-browser",

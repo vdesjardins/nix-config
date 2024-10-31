@@ -198,8 +198,8 @@
     neovim-plugin-flash-nvim.flake = false;
     neovim-plugin-nvim-bqf.url = "github:kevinhwang91/nvim-bqf"; # preview in quickfix
     neovim-plugin-nvim-bqf.flake = false;
-    neovim-plugin-lsp-rooter-nvim.url = "github:ahmedkhalf/lsp-rooter.nvim";
-    neovim-plugin-lsp-rooter-nvim.flake = false;
+    neovim-plugin-project.url = "github:ahmedkhalf/project.nvim";
+    neovim-plugin-project.flake = false;
     neovim-plugin-vim-rsi.url = "github:tpope/vim-rsi"; # emacs style keybindings in edit/cmd
     neovim-plugin-vim-rsi.flake = false;
     neovim-plugin-vim-bookmarks.url = "github:MattesGroeger/vim-bookmarks";
