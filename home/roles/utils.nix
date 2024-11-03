@@ -53,6 +53,7 @@
       bottom # top with graphs
       browsh # terminal browser
       cachix
+      circumflex # hackernews reader
       cloc # source code line counter
       cmake
       coreutils
