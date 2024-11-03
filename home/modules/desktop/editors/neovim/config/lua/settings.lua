@@ -20,6 +20,7 @@ vim.o.errorbells = false -- No sound on errors
 vim.o.visualbell = false
 vim.o.clipboard = "unnamedplus" -- OS and tmux clipboard transparent access
 vim.o.mouse = ""
+vim.o.splitright = true
 
 -- GUI
 -- TODO: find how to remove -T

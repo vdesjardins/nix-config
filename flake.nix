@@ -248,6 +248,8 @@
     ## AI
     neovim-plugin-gp.url = "github:Robitx/gp.nvim";
     neovim-plugin-gp.flake = false;
+    neovim-plugin-codecompanion.url = "github:olimorris/codecompanion.nvim";
+    neovim-plugin-codecompanion.flake = false;
 
     ## text
     neovim-plugin-vim-better-whitespace.url = "github:ntpeters/vim-better-whitespace";

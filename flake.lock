@@ -512,6 +512,22 @@
         "type": "github"
       }
     },
+    "neovim-plugin-codecompanion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730394230,
+        "narHash": "sha256-Xs+rR7FLo5o0xvn+2eCruay+aEB1Z56GvwU1WWmZMYQ=",
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "rev": "ebbf6c7c9a5ccbe7ecb694201e2a6722a932345b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "type": "github"
+      }
+    },
     "neovim-plugin-copilot": {
       "flake": false,
       "locked": {
@@ -2071,6 +2087,7 @@
         "neovim-plugin-cmp-nvim-ultisnips": "neovim-plugin-cmp-nvim-ultisnips",
         "neovim-plugin-cmp-path": "neovim-plugin-cmp-path",
         "neovim-plugin-cmp-treesitter": "neovim-plugin-cmp-treesitter",
+        "neovim-plugin-codecompanion": "neovim-plugin-codecompanion",
         "neovim-plugin-copilot": "neovim-plugin-copilot",
         "neovim-plugin-copilot-cmp": "neovim-plugin-copilot-cmp",
         "neovim-plugin-crates": "neovim-plugin-crates",
