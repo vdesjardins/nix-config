@@ -16,6 +16,12 @@ in {
     terminal = {
       wezterm.font = font;
       alacritty.font = font;
+      ghostty = {
+        font = font;
+        font-italic = font-italic;
+        font-bold = font-bold;
+        font-bold-italic = font-bold-italic;
+      };
     };
 
     tools = {
