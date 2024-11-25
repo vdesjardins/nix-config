@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs.unstable; [
+    home.packages = with pkgs; [
       difftastic
     ];
 
@@ -22,7 +22,7 @@ in {
       jujutsu = {
         inherit (cfg) enable;
 
-        package = pkgs.unstable.jujutsu;
+        package = pkgs.jujutsu;
 
         settings = {
           user = {

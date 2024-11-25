@@ -2,7 +2,7 @@
   modules.services.ollama = {
     enable = true;
     acceleration = "rocm";
-    package = pkgs.unstable.ollama;
+    package = pkgs.ollama;
   };
 
   # needed until support is added for gfx1103

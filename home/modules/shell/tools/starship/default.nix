@@ -17,7 +17,7 @@ in {
     programs.starship = {
       inherit (cfg) enable;
 
-      package = pkgs.unstable.starship;
+      package = pkgs.starship;
     };
 
     xdg.configFile."starship.toml".source = ./starship.toml;

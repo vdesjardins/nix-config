@@ -2,6 +2,6 @@
   packages = with pkgs; [
     alejandra
     statix
-    unstable.nixd
+    nixd
   ];
 }

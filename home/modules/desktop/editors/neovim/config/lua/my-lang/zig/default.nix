@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  packages = with pkgs; [unstable.zls];
+  packages = with pkgs; [zls];
 }

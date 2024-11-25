@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [unstable.asdf-vm];
+  home.packages = with pkgs; [asdf-vm];
 }

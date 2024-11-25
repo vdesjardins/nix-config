@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [dolphinEmuMaster];
+    home.packages = with pkgs; [dolphin-emu-beta];
 
     wayland.windowManager.sway.config.assigns."5" = [
       {app_id = "^org.dolphin-emu.$";}

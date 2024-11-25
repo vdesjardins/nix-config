@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   home.packages = with pkgs;
     [
-      unstable.qemu
+      qemu
     ]
     ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
-      unstable.vagrant
-      unstable.OVMF
+      vagrant
+      OVMF
     ];
 }

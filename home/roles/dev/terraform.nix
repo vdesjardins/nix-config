@@ -9,9 +9,9 @@
     terraform-docs
     terraform-landscape
     terraformer
-    unstable.infracost
-    unstable.terragrunt
-    unstable.tflint
-    unstable.tfsec
+    infracost
+    terragrunt
+    tflint
+    tfsec
   ];
 }

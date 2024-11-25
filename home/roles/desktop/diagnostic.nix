@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [unstable.mission-center];
+  # home.packages = with pkgs; [mission-center];
 }

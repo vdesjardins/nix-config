@@ -8,10 +8,10 @@
       grype # vulnerability scanner
       podman
       skopeo
-      unstable.colima
+      colima
     ]
     ++ lib.optionals stdenv.isLinux [
       cntr # container debugging tool
-      unstable.nerdctl # docker compatible containerd cli
+      nerdctl # docker compatible containerd cli
     ];
 }

@@ -235,15 +235,15 @@ in {
         generateTreeSitterGrammars =
           map
           (
-            name: (getAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars)
+            name: (getAttr "tree-sitter-${name}" pkgs.tree-sitter-grammars)
           )
           (
-            filter (name: (hasAttr "tree-sitter-${name}" pkgs.unstable.tree-sitter-grammars))
+            filter (name: (hasAttr "tree-sitter-${name}" pkgs.tree-sitter-grammars))
             treeSitterLanguages
           );
 
-        pkgNeovim = pkgs.unstable.wrapNeovimUnstable cfg.package (
-          pkgs.unstable.neovimUtils.makeNeovimConfig {
+        pkgNeovim = pkgs.wrapNeovimUnstable cfg.package (
+          pkgs.neovimUtils.makeNeovimConfig {
             withNodeJs = true;
             withRuby = false;
             viAlias = true;
@@ -269,7 +269,7 @@ in {
             plugins =
               [
                 nvimConfig
-                (pkgs.unstable.vimPlugins.nvim-treesitter.withPlugins (_: generateTreeSitterGrammars))
+                (pkgs.vimPlugins.nvim-treesitter.withPlugins (_: generateTreeSitterGrammars))
               ]
               ++ (builtins.attrValues plugins);
           }
@@ -278,7 +278,7 @@ in {
         home.packages =
           [
             pkgNeovim
-            pkgs.unstable.python3
+            pkgs.python3
             pkgs.python3Packages.pynvim
 
             # tools

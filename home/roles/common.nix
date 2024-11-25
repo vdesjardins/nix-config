@@ -1,5 +1,8 @@
 {pkgs, ...}: let
-  font = "MonaspiceRn Nerd Font";
+  font = "MonaspiceRn NF";
+  font-italic = "MonaspiceRn NF Italic";
+  font-bold = "MonaspiceRn NF Bold";
+  font-bold-italic = "MonaspiceRn NF Bold Italic";
 in {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -46,7 +49,7 @@ in {
   gtk = {
     theme = {
       name = "Tokyonight-Storm-B";
-      package = pkgs.tokyo-night-gtk-theme;
+      package = pkgs.tokyonight-gtk-theme;
     };
   };
 }

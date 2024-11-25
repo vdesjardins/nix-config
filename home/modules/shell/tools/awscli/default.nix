@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [aws-iam-authenticator unstable.awscli2 aws-sso-creds];
+    home.packages = with pkgs; [aws-iam-authenticator awscli2 aws-sso-creds];
 
     home.file.".aws/cli/alias".source = ./alias;
     programs.zsh = {

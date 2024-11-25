@@ -3,15 +3,14 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
 
     # System
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +26,6 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly.inputs.nixpkgs.follows = "unstable";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +33,12 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     tmux-tokyo-night.url = "github:/fabioluciano/tmux-tokyo-night";
     tmux-tokyo-night.flake = false;
+
+    ghostty = {
+      url = "git+ssh://git@github.com/ghostty-org/ghostty";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs-unstable.follows = "nixpkgs";
+    };
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -316,6 +320,7 @@
 
   outputs = {
     deploy-rs,
+    ghostty,
     neovim-nightly,
     nix,
     nixpkgs,
@@ -370,7 +375,6 @@
 
     myOverlays =
       {
-        unstable = mkChildOverlays "unstable";
         master = mkChildOverlays "master";
         myPkgs = mkPackagesOverlay;
       }
@@ -380,6 +384,7 @@
       nur = nur.overlay;
       neovim-nightly = neovim-nightly.overlays.default;
       rust-overlay = rust-overlay.overlays.default;
+      ghostty = self: super: {ghostty = ghostty.packages.${super.system}.default;};
     };
 
     supportedSystems = rec {
@@ -397,7 +402,7 @@
 
     pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs (attrValues extraOverlays));
 
-    lib = inputs.unstable.lib.extend (final: prev: {
+    lib = inputs.nixpkgs.lib.extend (final: prev: {
       my = import ./lib {
         inherit pkgs inputs;
         lib = final;
@@ -416,6 +421,7 @@
 
     deploy = import ./hosts/deploy {inherit lib deploy-rs self;};
 
+    inherit pkgs;
     packages =
       listToAttrs
       (builtins.map
@@ -441,7 +447,6 @@
     overlays = {
       default = mkPackagesOverlay;
       nixpkgs = mkOverlays ./overlays/nixpkgs;
-      unstable = mkOverlays ./overlays/unstable;
     };
 
     devShells = forAllSupportedSystems (system: {

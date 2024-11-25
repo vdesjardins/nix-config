@@ -38,7 +38,7 @@ in {
       "lutris/runners/dolphin.yml".source = settingsFormat.generate "dolphin.yml" {
         dolphin = {
           nogui = true;
-          runner_executable = "${pkgs.dolphinEmuMaster}/bin/dolphin-emu";
+          runner_executable = "${pkgs.dolphin-emu-beta}/bin/dolphin-emu";
         };
 
         system = {

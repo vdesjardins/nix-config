@@ -19,7 +19,7 @@ in {
       inherit (cfg) enable;
 
       enableZshIntegration = true;
-      package = pkgs.unstable.yazi;
+      package = pkgs.yazi;
     };
 
     home.packages = with pkgs; [

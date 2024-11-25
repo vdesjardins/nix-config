@@ -3,8 +3,8 @@
 
   home.packages = with pkgs; [
     delve
-    unstable.go_1_22
+    go_1_22
     gopls
-    unstable.gokart
+    gokart
   ];
 }

@@ -15,7 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      unstable.terraform
+      terraform
     ];
 
     programs.zsh.shellAliases = {

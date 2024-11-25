@@ -15,14 +15,14 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      unstable.dyff
-      unstable.kubectl
+      dyff
+      kubectl
       gawk
       fzf
       jq
       bat
       gnugrep
-      unstable.kubecolor
+      kubecolor
     ];
 
     programs.zsh = {

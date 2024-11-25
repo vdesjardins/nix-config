@@ -9,6 +9,7 @@ in {
     ../hardware/beelink.nix
     ../shared
     ../shared/boot.nix
+    ../shared/debugging.nix
     ../shared/desktop.nix
     ../shared/wayland.nix
     ../shared/greetd.nix

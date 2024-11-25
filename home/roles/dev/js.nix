@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    unstable.nodePackages.node2nix
+    nodePackages.node2nix
   ];
 }

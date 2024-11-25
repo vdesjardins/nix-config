@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [unstable.stern];
+    home.packages = with pkgs; [stern];
 
     programs.zsh.initExtra = ''
       source <(${pkgs.stern}/bin/stern --completion zsh)

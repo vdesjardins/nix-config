@@ -30,7 +30,7 @@
       kubectx
       kubent
       (wrapHelm
-        unstable.kubernetes-helm
+        kubernetes-helm
         {
           plugins = [
             kubernetes-helmPlugins.helm-diff
@@ -45,26 +45,26 @@
       skaffold
       starboard # security tools
       trivy
-      unstable.kubectl-validate
-      unstable.kubectl-explore # better explain
-      unstable.kubecolor
-      unstable.kubectl-neat
-      unstable.cosign
-      unstable.crane # tool to manage container images
-      unstable.fluxcd
-      unstable.kubeconform
-      unstable.kubectl-example
-      # unstable.kubectl-view-allocations
-      unstable.kubelogin
-      unstable.kubeshark
-      unstable.kustomize
-      unstable.oras
-      unstable.rakkess # RBAC query tool
-      unstable.telepresence2
-      unstable.tilt
+      kubectl-validate
+      kubectl-explore # better explain
+      kubecolor
+      kubectl-neat
+      cosign
+      crane # tool to manage container images
+      fluxcd
+      kubeconform
+      kubectl-example
+      # kubectl-view-allocations
+      kubelogin
+      kubeshark
+      kustomize
+      oras
+      rakkess # RBAC query tool
+      telepresence2
+      tilt
       velero
     ]
     ++ lib.optionals stdenv.isLinux [
-      unstable.popeye # unable to build on darwin
+      popeye # unable to build on darwin
     ];
 }

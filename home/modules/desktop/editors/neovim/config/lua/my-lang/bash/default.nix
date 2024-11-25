@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   packages = with pkgs; [
     shellcheck
-    unstable.shellharden
+    shellharden
     shfmt
     nodePackages.bash-language-server
   ];

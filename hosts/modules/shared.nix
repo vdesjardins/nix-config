@@ -42,7 +42,7 @@ in {
       options = "--delete-older-than 7d";
     };
 
-    package = pkgs.unstable.nixVersions.stable;
+    package = pkgs.nixVersions.stable;
   };
 
   programs = {

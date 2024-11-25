@@ -5,8 +5,8 @@
     [
       binutils
       lldb
-      mitmproxy
-      mitmproxy2swagger
+      # mitmproxy
+      # mitmproxy2swagger
       xxd
     ]
     ++ lib.optionals stdenv.isLinux [

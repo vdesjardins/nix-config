@@ -38,15 +38,16 @@
   modules.desktop = {
     terminal.wezterm.enable = true;
     terminal.alacritty.enable = true;
+    terminal.ghostty.enable = true;
     editors.neovim = {
+      package = pkgs.neovim-unwrapped;
       enable = true;
-      package = pkgs.unstable.neovim-unwrapped;
     };
   };
 
   home.packages = with pkgs;
     [
-      unstable.fq # jq for binary formats
+      fq # jq for binary formats
       act # github actions testing
       ast-grep # find code by syntax
       bandwhich # network utilization by process
@@ -63,6 +64,7 @@
       deploy-rs
       du-dust # fancy du
       duf # df alternative
+      figlet # generate large text
       file
       findutils
       gdu # interactive du
@@ -96,8 +98,8 @@
       thefuck # fix commands
       tokei # displays code statistics
       tree
-      unstable.btop # monitor resources
-      unstable.procs # replacement for ps
+      btop # monitor resources
+      procs # replacement for ps
       wget
       yq
     ]
@@ -110,5 +112,6 @@
     ]
     ++ lib.optionals stdenv.isDarwin [
       m-cli # controls apps from command line
+      pngpaste
     ];
 }

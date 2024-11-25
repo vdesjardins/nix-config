@@ -37,7 +37,7 @@
   environment.systemPackages = with pkgs; [
     gnumake
     git
-    unstable.neovim
+    neovim
 
     (writeShellScriptBin "xrandr-auto" ''
       xrandr --output Virtual-1 --auto

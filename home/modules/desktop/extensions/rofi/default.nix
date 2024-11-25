@@ -34,25 +34,15 @@ in {
   config = mkIf cfg.enable (let
     # TODO: workaround for https://github.com/NixOS/nixpkgs/issues/298539
     plugins =
-      map
-      (p:
-        p.override {
-          rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
-        }) (
-        with pkgs; [
-          rofi-calc
-          rofi-emoji
-        ]
-      )
-      ++ (with pkgs; [
-        rofi-file-browser
-        rofi-menugen
-        rofi-power-menu
-      ]);
-
-    rofimoji = pkgs.rofimoji.override {
-      rofi = config.programs.rofi.finalPackage;
-    };
+      [
+        pkgs.rofi-file-browser
+        pkgs.rofi-menugen
+        pkgs.rofi-power-menu
+        pkgs.rofimoji
+        (pkgs.rofi-calc.override {
+            rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
+        })
+      ];
   in {
     programs.rofi = {
       inherit (cfg) enable font package terminal;
@@ -88,7 +78,7 @@ in {
           "drun"
           "combi"
           "calc"
-          "emoji:${rofimoji}/bin/rofimoji"
+          "emoji:${pkgs.rofimoji}/bin/rofimoji"
           "filebrowser"
           "recursivebrowser"
           "keys"

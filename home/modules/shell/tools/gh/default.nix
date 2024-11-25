@@ -22,7 +22,7 @@ in {
     programs.gh = {
       inherit (cfg) enable;
 
-      package = pkgs.unstable.gitAndTools.gh;
+      package = pkgs.gitAndTools.gh;
 
       settings = {
         git_protocol = "ssh";
@@ -43,7 +43,7 @@ in {
         };
       };
 
-      extensions = with pkgs.unstable; [
+      extensions = with pkgs; [
         gh-dash
         gh-eco
         gh-markdown-preview

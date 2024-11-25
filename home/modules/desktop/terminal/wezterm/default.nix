@@ -29,7 +29,7 @@ in {
     };
     package = mkOption {
       type = package;
-      default = pkgs.unstable.wezterm;
+      default = pkgs.wezterm;
     };
   };
 
