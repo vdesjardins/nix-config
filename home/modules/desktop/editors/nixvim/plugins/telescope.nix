@@ -74,6 +74,9 @@
         manix = {
           enable = true;
         };
+        fzf-native = {
+          enable = true;
+        };
       };
     };
 
