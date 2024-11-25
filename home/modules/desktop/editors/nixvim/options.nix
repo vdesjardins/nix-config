@@ -40,8 +40,7 @@
       smartindent = true;
       softtabstop = 4;
       tabstop = 4;
-      textwidth = 80;
-      colorcolumn = "+1";
+      colorcolumn = "81";
     };
 
     # Window
