@@ -6,7 +6,7 @@
       provider = "ollama";
       vendors = {
         ollama = {
-          local = true;
+          api_key_name = "";
           endpoint = "http://localhost:11434/v1";
           model = "ajindal/llama3.1-storm:8b";
           parse_curl_args.__raw =
