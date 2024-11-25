@@ -40,7 +40,10 @@
     terminal.alacritty.enable = true;
     terminal.ghostty.enable = true;
     editors.neovim = {
+      enable = false;
       package = pkgs.neovim-unwrapped;
+    };
+    editors.nixvim = {
       enable = true;
     };
   };

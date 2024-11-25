@@ -8,6 +8,7 @@
   inherit (builtins) elem;
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
   inherit (inputs.nix-index-database.hmModules) nix-index;
+  inherit (inputs.nixvim.homeManagerModules) nixvim;
   inherit (lib.attrsets) filterAttrs;
   inherit (self.modules) mapModulesRecursive';
 
@@ -21,6 +22,7 @@
           (filterAttrs (n: v: !elem n ["system"]) attrs)
           (import path)
           nix-index
+          nixvim
         ]
         ++ mapModulesRecursive' ../home/modules import;
     };
