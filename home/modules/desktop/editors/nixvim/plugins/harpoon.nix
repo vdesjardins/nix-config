@@ -23,6 +23,7 @@
     keymaps =
       [
         {
+          mode = "n";
           key = "<leader>ga";
           action.__raw =
             # lua
@@ -34,6 +35,7 @@
           options.desc = "Add File";
         }
         {
+          mode = "n";
           key = "<leader>gq";
           action.__raw =
             # lua
@@ -46,6 +48,7 @@
           options.desc = "Quick Menu";
         }
         {
+          mode = "n";
           key = "<leader>gn";
           action.__raw =
             # lua
@@ -57,6 +60,7 @@
           options.desc = "Next";
         }
         {
+          mode = "n";
           key = "<leader>gp";
           action.__raw =
             # lua

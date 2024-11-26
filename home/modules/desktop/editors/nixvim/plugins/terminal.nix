@@ -55,16 +55,19 @@
 
     keymaps = [
       {
+        mode = "n";
         key = "<leader>tp";
         action = "<cmd>ToggleTerm<cr>";
         options.desc = "Project Directory (ToggleTerm)";
       }
       {
+        mode = "n";
         key = "<leader>tb";
         action.__raw = "function() openTerminalPane() end";
         options.desc = "Current Buffer Directory (ToggleTerm)";
       }
       {
+        mode = "n";
         key = "<leader>sy";
         action.__raw = "function() lazygit_toggle() end";
         options.desc = "Lazygit (ToggleTerm)";

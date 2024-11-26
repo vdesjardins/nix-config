@@ -149,11 +149,13 @@
 
       # jump
       {
+        mode = "n";
         key = "<C-p>";
         action = "<cmd>lua vim.diagnostic.goto_prev({})<CR>";
         options.desc = "Goto Diagnostic Previous";
       }
       {
+        mode = "n";
         key = "<C-n>";
         action = "<cmd>lua vim.diagnostic.goto_next({})<CR>";
         options.desc = "Goto Diagnostic Next";
