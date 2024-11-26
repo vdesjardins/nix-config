@@ -2,6 +2,14 @@
   programs.nixvim = {
     plugins = {
       toggleterm.enable = true;
+
+      trim = {
+        settings = {
+          ft_blocklist = [
+            "toggleterm"
+          ];
+        };
+      };
     };
 
     extraConfigLua =

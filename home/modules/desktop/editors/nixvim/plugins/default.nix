@@ -117,7 +117,6 @@
             "floaterm"
             "lspinfo"
             "TelescopePrompt"
-            "toggleterm"
           ];
         };
       };
