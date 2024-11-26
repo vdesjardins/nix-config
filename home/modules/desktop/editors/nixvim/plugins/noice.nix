@@ -25,9 +25,7 @@
     };
 
     extraConfigLua =
-      /*
-      lua
-      */
+      # lua
       ''
         require("telescope").load_extension("noice")
       '';

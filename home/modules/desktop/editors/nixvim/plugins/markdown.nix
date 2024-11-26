@@ -21,9 +21,7 @@
           "BufRead"
         ];
         callback =
-          /*
-          lua
-          */
+          # lua
           ''
             function()
               vim.opt_local.conceallevel = 2
