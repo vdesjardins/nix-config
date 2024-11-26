@@ -116,8 +116,8 @@
             "checkhealth"
             "floaterm"
             "lspinfo"
-            "neo-tree"
             "TelescopePrompt"
+            "toggleterm"
           ];
         };
       };
