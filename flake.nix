@@ -112,7 +112,7 @@
       nur = nur.overlay;
       neovim-nightly = neovim-nightly.overlays.default;
       rust-overlay = rust-overlay.overlays.default;
-      ghostty = self: super: {ghostty = ghostty.packages.${super.system}.default;};
+      ghostty = final: prev: {ghostty = ghostty.packages.${prev.system}.default;};
     };
 
     supportedSystems = rec {
