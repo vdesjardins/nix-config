@@ -4,6 +4,7 @@
 
   imports = [
     ./avante.nix
+
     ./buffers.nix
     ./dressing.nix
     ./flash.nix
@@ -13,7 +14,6 @@
     ./telescope.nix
     ./treesitter.nix
     ./which-key.nix
-    ./yank.nix
     ./copilot.nix
     ./rsi.nix
     ./fugitive.nix
@@ -21,6 +21,7 @@
     ./comment.nix
     ./nvim-surround.nix
     ./rainbow-delimiters.nix
+    ./text-case.nix
 
     ./guess-indent.nix
     ./indent-blankline.nix
@@ -37,6 +38,7 @@
 
     # clipboard
     # ./yanky.nix # TODO: cause collision with other plugins like smart-splits
+    ./yank.nix # # TODO: probably not required if yanky is added
 
     # lsp
     ./cmp.nix
@@ -67,7 +69,6 @@
     ./terminal.nix
 
     # nvim-ts-autotag
-    # easypick
     # vim-bookmark
     # mini-icons
     # nvim-img-clip
@@ -75,7 +76,6 @@
     # vim-endwise
     # vim-grepper
     # nvim-surround
-    # vim-text-case
     # vim-snippets
 
     # vim-clue
