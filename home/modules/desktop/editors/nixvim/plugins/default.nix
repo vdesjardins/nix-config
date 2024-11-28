@@ -3,22 +3,24 @@
   # TODO: neorg or similar to replace logseq
 
   imports = [
-    ./avante.nix
+    ./startify.nix
+
+    # moves
+    ./telescope.nix
+    ./flash.nix
+    ./which-key.nix
+    ./rsi.nix
 
     ./buffers.nix
     ./dressing.nix
-    ./flash.nix
     ./lualine.nix
-    ./noice.nix
-    ./startify.nix
-    ./telescope.nix
     ./treesitter.nix
-    ./which-key.nix
-    ./copilot.nix
-    ./rsi.nix
+
     ./fugitive.nix
-    ./autopairs.nix
+
     ./comment.nix
+
+    ./autopairs.nix
     ./nvim-surround.nix
     ./rainbow-delimiters.nix
     ./text-case.nix
@@ -26,6 +28,7 @@
     ./guess-indent.nix
     ./indent-blankline.nix
 
+    ./noice.nix
     ./trouble.nix
     ./bqf.nix
     ./project.nix
@@ -43,7 +46,6 @@
     # lsp
     ./cmp.nix
     ./lsp.nix
-    ./lsp-lines.nix
     ./lsp-format.nix
     ./lsp-signature.nix
     ./none-ls.nix
@@ -67,6 +69,10 @@
 
     # terminal
     ./terminal.nix
+
+    # AI
+    ./avante.nix
+    ./copilot.nix
 
     # nvim-ts-autotag
     # vim-bookmark
