@@ -15,11 +15,12 @@
     extraConfigLua =
       # lua
       ''
-        function openTerminalPane(file)
-          local file_name = file
-          if file_name == nil then
-            file_name = vim.api.nvim_buf_get_name(0)
-          end
+        require("toggleterm").setup({})
+
+        function openTerminalPane(file, count, name)
+          local file_name = file or vim.api.nvim_buf_get_name(0)
+          local count = count or 2
+          local name = name or "buffer"
 
           local file_path
           if vim.fn.isdirectory(file_name) ~= 0 then
@@ -28,7 +29,7 @@
             file_path = vim.fs.dirname(file_name)
           end
 
-          vim.cmd("ToggleTerm dir=" .. file_path)
+          vim.cmd(count .. "ToggleTerm name=buffer dir=" .. file_path)
         end
 
         local Terminal = require("toggleterm.terminal").Terminal
@@ -36,6 +37,7 @@
           cmd = "lazygit",
           dir = "git_dir",
           direction = "float",
+          display_name = "lazygit",
           float_opts = {
             border = "double",
           },
@@ -65,14 +67,26 @@
       {
         mode = "n";
         key = "<leader>tp";
-        action = "<cmd>ToggleTerm<cr>";
+        action = "<cmd>1ToggleTerm name=project<cr>";
         options.desc = "Project Directory (ToggleTerm)";
       }
       {
         mode = "n";
         key = "<leader>tb";
-        action.__raw = "function() openTerminalPane() end";
+        action.__raw = "function() openTerminalPane(null, 2, \"buffer\") end";
         options.desc = "Current Buffer Directory (ToggleTerm)";
+      }
+      {
+        mode = "n";
+        key = "<leader>ts";
+        action = "<cmd>TermSelect<cr>";
+        options.desc = "Select Terminal (ToggleTerm)";
+      }
+      {
+        mode = "n";
+        key = "<leader>tt";
+        action = "<cmd>ToggleTermToggleAll<cr>";
+        options.desc = "Toggle All Terminals (ToggleTerm)";
       }
       {
         mode = "n";
