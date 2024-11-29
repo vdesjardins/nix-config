@@ -35,6 +35,7 @@
     ./project.nix
     ./harpoon.nix
     ./easypick.nix
+    ./diagnostic.nix
 
     # snippets
     ./luasnip.nix
