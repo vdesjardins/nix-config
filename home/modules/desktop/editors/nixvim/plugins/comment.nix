@@ -21,25 +21,25 @@
         mode = "n";
         key = "<leader>Tq";
         action = "<cmd>TodoQuickFix<cr>";
-        options.desc = "quickfix";
+        options.desc = "Quickfix";
       }
       {
         mode = "n";
         key = "<leader>Tl";
         action = "<cmd>TodoLocList<cr>";
-        options.desc = "loclist";
+        options.desc = "Loclist";
       }
       {
         mode = "n";
         key = "<leader>Tt";
         action = "<cmd>Trouble todo<cr>";
-        options.desc = "trouble";
+        options.desc = "Trouble";
       }
       {
         mode = "n";
         key = "<leader>Ts";
         action = "<cmd>TodoTelescope<cr>";
-        options.desc = "search";
+        options.desc = "Search";
       }
     ];
   };

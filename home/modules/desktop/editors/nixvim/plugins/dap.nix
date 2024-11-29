@@ -20,61 +20,61 @@
         mode = "n";
         key = "<leader>db";
         action = "<cmd>lua require('dap').toggle_breakpoint()<cr>";
-        options.desc = "toggle breakpoint";
+        options.desc = "Toggle Breakpoint";
       }
       {
         mode = "n";
         key = "<leader>dc";
         action = "<cmd>lua require('dapui').close()<cr>";
-        options.desc = "close";
+        options.desc = "Close";
       }
       {
         mode = "n";
         key = "<leader>ddr";
         action = "<cmd>lua require('dap').repl.open()<cr>";
-        options.desc = "repl";
+        options.desc = "Repl";
       }
       {
         mode = "n";
         key = "<leader>de";
         action = "<cmd>lua require('dap').step_out()<cr>";
-        options.desc = "step out";
+        options.desc = "Step Out";
       }
       {
         mode = "n";
         key = "<leader>dlp";
         action = "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>";
-        options.desc = "log point message";
+        options.desc = "Log Point Message";
       }
       {
         mode = "n";
         key = "<leader>dn";
         action = "<cmd>lua require('dap').step_over()<cr>";
-        options.desc = "step over";
+        options.desc = "Step Over";
       }
       {
         mode = "n";
         key = "<leader>do";
         action = "<cmd>lua require('dapui').open()<cr>";
-        options.desc = "open";
+        options.desc = "Open";
       }
       {
         mode = "n";
         key = "<leader>dr";
         action = "<cmd>lua require('dap').continue()<cr>";
-        options.desc = "continue";
+        options.desc = "Continue";
       }
       {
         mode = "n";
         key = "<leader>ds";
         action = "<cmd>lua require('dap').step_into()<cr>";
-        options.desc = "step into";
+        options.desc = "Step Into";
       }
       {
         mode = "n";
         key = "<leader>dt";
         action = "<cmd>lua require('dapui').close()<cr>";
-        options.desc = "toggle";
+        options.desc = "Toggle";
       }
     ];
   };
