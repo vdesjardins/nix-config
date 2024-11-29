@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
-  modules.desktop.editors.neovim.lang.yaml = true;
-
+{pkgs, ...}: {
   home.packages = with pkgs; [
     yamllint
   ];

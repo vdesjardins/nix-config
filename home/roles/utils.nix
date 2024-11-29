@@ -36,13 +36,12 @@
   };
 
   modules.desktop = {
-    terminal.wezterm.enable = true;
-    terminal.alacritty.enable = true;
-    terminal.ghostty.enable = true;
-    editors.neovim = {
-      enable = false;
-      package = pkgs.neovim-unwrapped;
+    terminal = {
+      wezterm.enable = true;
+      alacritty.enable = true;
+      ghostty.enable = true;
     };
+
     editors.nixvim = {
       enable = true;
     };

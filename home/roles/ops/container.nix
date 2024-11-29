@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  modules.desktop.editors.neovim.lang.docker = true;
-
   home.packages = with pkgs;
     [
       buildkit

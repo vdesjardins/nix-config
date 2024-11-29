@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  modules.desktop.editors.neovim.lang.nix = true;
-
   home.packages = with pkgs; [
     nixpkgs-fmt
     # nix-linter
