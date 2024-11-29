@@ -24,6 +24,7 @@
     ./nvim-surround.nix
     ./rainbow-delimiters.nix
     ./text-case.nix
+    ./treesj.nix
 
     ./guess-indent.nix
     ./indent-blankline.nix
