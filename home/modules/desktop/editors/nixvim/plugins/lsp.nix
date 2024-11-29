@@ -110,7 +110,7 @@
         options.desc = "Goto References";
       }
       {
-        key = "<leader>lt";
+        key = "<leader>lT";
         action = "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>";
         options.desc = "Toggle Inlay Hints";
       }

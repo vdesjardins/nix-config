@@ -23,6 +23,18 @@
         action = "<cmd>TextCaseOpenTelescope<cr>";
         options.desc = "Text Case (Telescope)";
       }
+      {
+        mode = "n";
+        key = "gat";
+        action = "<cmd>lua require('textcase').operator('to_title_case')<cr>";
+        options.desc = "Convert to Title Case";
+      }
+      {
+        mode = "x";
+        key = "gat";
+        action = "<cmd>lua require('textcase').operator('to_title_case')<cr>";
+        options.desc = "Convert to Title Case";
+      }
     ];
   };
 }
