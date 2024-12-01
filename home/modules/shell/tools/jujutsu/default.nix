@@ -30,7 +30,6 @@ in {
             name = "Vincent Desjardins";
           };
           ui = {
-            diff-editor = "meld-3";
             diff = {
               tool = ["difft" "--color=always" "$left" "$right"];
             };
@@ -50,14 +49,20 @@ in {
         ja = "jj abandon";
         jr = "jj restore";
         jm = "jj describe";
-        js = "jj split";
         jbr = "jj bookmark list";
         jbc = "jj bookmark create";
         jbd = "jj bookmark delete";
+        jbs = "jj bookmark set";
+        jbsm = "jj bookmark set main -r @- --allow-backwards";
         jl = "jj op log";
         je = "jj edit";
         jne = "jj next --edit";
         jnb = "jj new -B";
+        jn = "jj new --insert-before=@ --no-edit";
+        jmp = "jj describe @- -m";
+        jsh = "jj show";
+        js = "jj squash";
+        jsi = "jj squash";
       };
     };
   };
