@@ -1,9 +1,16 @@
-{
+{pkgs, ...}: {
   programs.nixvim.plugins.avante = {
     enable = true;
 
     settings = {
       provider = "ollama";
+
+      claude = {
+        api_key_name = "cmd:${pkgs.passage}/bin/passage /apis/ai/anthropic";
+      };
+      openai = {
+        api_key_name = "cmd:${pkgs.passage}/bin/passage /apis/ai/openai";
+      };
 
       vendors = {
         ollama = {
