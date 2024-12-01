@@ -4,6 +4,8 @@
 
   imports = [
     ./startify.nix
+    ./image.nix
+    ./img-clip.nix
 
     # moves
     ./telescope.nix
