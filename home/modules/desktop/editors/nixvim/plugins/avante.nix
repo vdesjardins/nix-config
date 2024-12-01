@@ -4,6 +4,7 @@
 
     settings = {
       provider = "ollama";
+
       vendors = {
         ollama = {
           api_key_name = "";
@@ -22,8 +23,8 @@
                   },
                   body = {
                     model = opts.model,
-                    messages = require("avante.providers").copilot.parse_message(code_opts), -- you can make your own message, but this is very advanced
-                    max_tokens = 2048,
+                    messages = require("avante.providers").copilot.parse_messages(code_opts),
+                    max_tokens = opts.max_tokens,
                     stream = true,
                   },
                 }
