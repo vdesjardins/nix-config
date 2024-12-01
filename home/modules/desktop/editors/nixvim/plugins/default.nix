@@ -17,6 +17,7 @@
     ./treesitter.nix
 
     ./fugitive.nix
+    ./git-conflict.nix
 
     ./comment.nix
 
