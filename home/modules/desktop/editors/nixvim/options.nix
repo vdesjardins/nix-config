@@ -41,6 +41,8 @@
       softtabstop = 4;
       tabstop = 4;
       colorcolumn = "81";
+
+      laststatus = 3;
     };
 
     # Window
