@@ -30,15 +30,7 @@ in {
       defaultEditor = true;
 
       performance = {
-        combinePlugins = {
-          enable = true;
-          standalonePlugins = [
-            "hmts.nvim"
-            "neorg"
-            "nvim-treesitter"
-          ];
-        };
-        # byteCompileLua.enable = true;
+        byteCompileLua.enable = true;
       };
 
       viAlias = true;
