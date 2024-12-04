@@ -1,16 +1,8 @@
 # This file contains configuration that is shared across all hosts.
-{
-  pkgs,
-  lib,
-  stdenv,
-  ...
-}: let
-  inherit (lib) mkIf mkMerge;
-  inherit (pkgs) stdenv;
-  inherit (stdenv) isDarwin isLinux;
-
+{pkgs, ...}: let
   fonts = with pkgs; [
-    (nerdfonts.override {fonts = ["JetBrainsMono" "Monaspace"];})
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.monaspace
     noto-fonts
     noto-fonts-emoji
   ];

@@ -10,6 +10,8 @@
   inherit (stdenv) isDarwin isLinux;
 in {
   nix = {
+    optimise.automatic = true;
+
     settings = {
       substituters = [
         "https://cache.nixos.org/"
@@ -27,7 +29,6 @@ in {
 
       keep-going = true;
       experimental-features = ["nix-command" "flakes" "ca-derivations"];
-      auto-optimise-store = true;
       keep-derivations = true;
       keep-outputs = true;
 
