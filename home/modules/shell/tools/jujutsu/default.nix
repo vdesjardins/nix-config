@@ -37,6 +37,31 @@ in {
             };
             merge-editor = "meld";
           };
+
+          aliases = {
+            d = ["diff"];
+            g = ["git"];
+            gp = ["git" "push"];
+            gpc = ["git" "push" "-c" "@"];
+            gf = ["git" "fetch"];
+            a = ["abandon"];
+            r = ["restore"];
+            m = ["describe"];
+            br = ["bookmark" "list"];
+            bc = ["bookmark" "create"];
+            bd = ["bookmark" "delete"];
+            bs = ["bookmark" "set"];
+            bsm = ["bookmark" "set" "main" "-r" "@-" "--allow-backwards"];
+            ol = ["op" "log"];
+            e = ["edit"];
+            ne = ["next" "--edit"];
+            nb = ["new" "-B"];
+            n = ["new" "--insert-before=@" "--no-edit"];
+            mp = ["describe" "@-" "-m"];
+            sh = ["show"];
+            s = ["squash"];
+            si = ["squash"];
+          };
         };
       };
 
