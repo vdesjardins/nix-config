@@ -30,6 +30,7 @@ in {
             name = "Vincent Desjardins";
           };
           ui = {
+            default-command = "log";
             diff = {
               tool = ["difft" "--color=always" "$left" "$right"];
             };
