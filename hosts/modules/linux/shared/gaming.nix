@@ -28,11 +28,6 @@
     };
   };
 
-  services.replay-sorcery = {
-    enable = true;
-    enableSysAdminCapability = true;
-  };
-
   security.pam.loginLimits = [
     {
       domain = "*";
