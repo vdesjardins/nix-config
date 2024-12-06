@@ -12,7 +12,7 @@
   boot = {
     initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod"];
     initrd.kernelModules = ["dm-snapshot"];
-    kernelModules = ["kvm-amd"];
+    kernelModules = ["amdgpu" "kvm-amd"];
     extraModulePackages = [];
   };
 
