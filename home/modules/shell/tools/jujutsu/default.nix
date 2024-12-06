@@ -31,11 +31,11 @@ in {
           };
           ui = {
             default-command = "log";
+            pager = "less -FRX";
             diff = {
               tool = ["difft" "--color=always" "$left" "$right"];
             };
             merge-editor = "meld";
-            paginate = "never";
           };
         };
       };
