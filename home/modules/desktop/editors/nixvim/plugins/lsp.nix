@@ -11,6 +11,10 @@
 
         inlayHints = true;
 
+        preConfig = ''
+          vim.lsp.set_log_level('off')
+        '';
+
         postConfig = ''
           vim.lsp.protocol.CompletionItemKind = {
               "   (Text) ",
@@ -164,12 +168,6 @@
       # extra
       {
         mode = "n";
-        key = "<leader>lI";
-        action = "<cmd>LspInfo<cr>";
-        options.desc = "Show LSP info";
-      }
-      {
-        mode = "n";
         key = "<leader>ll";
         action.__raw = "function() vim.lsp.codelens.refresh() end";
         options.desc = "LSP CodeLens Refresh";
@@ -180,6 +178,45 @@
         action.__raw = "function() vim.lsp.codelens.run() end";
         options.desc = "LSP CodeLens Run";
       }
+      {
+        mode = "n";
+        key = "<leader>lI";
+        action = "<cmd>LspInfo<cr>";
+        options.desc = "Show LSP Info";
+      }
+
+      # logging
+      {
+        mode = "n";
+        key = "<leader>lxo";
+        action = "<cmd>LspLog<cr>";
+        options.desc = "Open LSP Log File";
+      }
+      {
+        mode = "n";
+        key = "<leader>lxe";
+        action.__raw = "function() vim.lsp.set_log_level('debug') end";
+        options.desc = "Enable LSP Logging";
+      }
+      {
+        mode = "n";
+        key = "<leader>lxd";
+        action.__raw = "function() vim.lsp.set_log_level('off') end";
+        options.desc = "Disable LSP Logging";
+      }
+      {
+        mode = "n";
+        key = "<leader>lxc";
+        action = "<cmd>LspLogClear<cr>";
+        options.desc = "Clear LSP Log File";
+      }
     ];
+
+    extraConfigLua = ''
+      vim.api.nvim_create_user_command("LspLogClear", function()
+        local lsplogpath = vim.fn.stdpath("state") .. "/lsp.log"
+        if io.close(io.open(lsplogpath, "w+b")) == false then vim.notify("Clearning LSP Log failed.", vim.log.levels.WARN) end
+      end, { nargs = 0 })
+    '';
   };
 }

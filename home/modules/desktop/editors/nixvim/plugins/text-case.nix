@@ -3,12 +3,10 @@
     extraPlugins = with pkgs.vimPlugins; [
       text-case-nvim
     ];
-    extraConfigLua =
-      # lua
-      ''
-        require('textcase').setup({})
-        require("telescope").load_extension("textcase")
-      '';
+    extraConfigLua = ''
+      require('textcase').setup({})
+      require("telescope").load_extension("textcase")
+    '';
 
     keymaps = [
       {

@@ -20,13 +20,11 @@
           "BufNewFile"
           "BufRead"
         ];
-        callback =
-          # lua
-          ''
-            function()
-              vim.opt_local.conceallevel = 2
-            end
-          '';
+        callback.__raw = ''
+          function()
+            vim.opt_local.conceallevel = 2
+          end
+        '';
       }
     ];
   };

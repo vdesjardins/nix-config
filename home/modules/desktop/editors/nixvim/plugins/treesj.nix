@@ -4,13 +4,11 @@
       treesj
     ];
 
-    extraConfigLua =
-      # lua
-      ''
-        require('treesj').setup({
-          use_default_keymaps = false,
-        })
-      '';
+    extraConfigLua = ''
+      require('treesj').setup({
+        use_default_keymaps = false,
+      })
+    '';
 
     keymaps = [
       {

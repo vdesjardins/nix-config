@@ -19,13 +19,11 @@
         pickers = {
           live_grep = {
             theme = "dropdown";
-            additional_args.__raw =
-              # lua
-              ''
-                function()
-                  return { "--hidden" }
-                end
-              '';
+            additional_args.__raw = ''
+              function()
+                return { "--hidden" }
+              end
+            '';
           };
           marks = {
             theme = "dropdown";
@@ -108,18 +106,16 @@
       {
         mode = "n";
         key = "<leader>fF";
-        action.__raw =
-          # lua
-          ''
-            function()
-              local file_path = vim.fn.expand("%:~:.:h")
+        action.__raw = ''
+          function()
+            local file_path = vim.fn.expand("%:~:.:h")
 
-              require("telescope.builtin").find_files({
-                search_dirs = {file_path},
-                prompt_title = string.format("Find Files in [%s]", file_path),
-              })
-            end
-          '';
+            require("telescope.builtin").find_files({
+              search_dirs = {file_path},
+              prompt_title = string.format("Find Files in [%s]", file_path),
+            })
+          end
+        '';
         options.desc = "Buffer's Directory Files";
       }
       {
@@ -143,18 +139,16 @@
       {
         mode = "n";
         key = "<leader>fS";
-        action.__raw =
-          # lua
-          ''
-            function()
-              local file_path = vim.fn.expand("%:~:.:h")
+        action.__raw = ''
+          function()
+            local file_path = vim.fn.expand("%:~:.:h")
 
-              require("telescope.builtin").live_grep({
-                search_dirs = {file_path},
-                prompt_title = string.format("Grep in [%s]", file_path),
-              })
-            end
-          '';
+            require("telescope.builtin").live_grep({
+              search_dirs = {file_path},
+              prompt_title = string.format("Grep in [%s]", file_path),
+            })
+          end
+        '';
         options.desc = "String in Buffer's Directory";
       }
       {

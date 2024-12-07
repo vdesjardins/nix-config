@@ -40,18 +40,14 @@
           defaults = {
             mappings = {
               i = {
-                "<c-t>".__raw =
-                  # lua
-                  ''
-                    require("trouble.sources.telescope").open
-                  '';
+                "<c-t>".__raw = ''
+                  require("trouble.sources.telescope").open
+                '';
               };
               n = {
-                "<c-t>".__raw =
-                  # lua
-                  ''
-                    require("trouble.sources.telescope").open
-                  '';
+                "<c-t>".__raw = ''
+                  require("trouble.sources.telescope").open
+                '';
               };
             };
           };

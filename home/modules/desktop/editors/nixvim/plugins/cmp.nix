@@ -24,13 +24,11 @@
           #     }),
           #     '';
 
-          snippet.expand =
-            # lua
-            ''
-              function(args)
-                require("luasnip").lsp_expand(args.body)
-              end
-            '';
+          snippet.expand.__raw = ''
+            function(args)
+              require("luasnip").lsp_expand(args.body)
+            end
+          '';
 
           window = {
             completion.border = "rounded";
@@ -50,30 +48,28 @@
           };
           mappingPresets = ["insert"];
 
-          sources.__raw =
-            # lua
-            ''
-              cmp.config.sources({
-                  {name = "nvim_lsp"},
-                  {name = "nvim_lsp_signature_help"},
-                  {name = "treesitter"},
-                  {name = "luasnip"},
-                  {name = "path"},
-                  {name = "copilot"},
-                }, {
-                  {name = "buffer", keywordLength = 3},
-                  {name = "calc" },
-                  {name = "emoji" },
-                }, {
-                  {name = "rg", keywordLength = 3},
-                  {name = "spell", keywordLength = 3},
-                  {name = "fuzzy_path"},
-                  {name = "cmp_yanky"},
-                }, {
-                  {name = "git"},
-                  {name = "conventionalcommits"},
-                })
-            '';
+          sources.__raw = ''
+            cmp.config.sources({
+                {name = "nvim_lsp"},
+                {name = "nvim_lsp_signature_help"},
+                {name = "treesitter"},
+                {name = "luasnip"},
+                {name = "path"},
+                {name = "copilot"},
+              }, {
+                {name = "buffer", keywordLength = 3},
+                {name = "calc" },
+                {name = "emoji" },
+              }, {
+                {name = "rg", keywordLength = 3},
+                {name = "spell", keywordLength = 3},
+                {name = "fuzzy_path"},
+                {name = "cmp_yanky"},
+              }, {
+                {name = "git"},
+                {name = "conventionalcommits"},
+              })
+          '';
         };
       };
 

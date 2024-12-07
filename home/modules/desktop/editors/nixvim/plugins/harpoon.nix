@@ -25,92 +25,80 @@
         {
           mode = "n";
           key = "<leader>ga";
-          action.__raw =
-            # lua
-            ''
-              function()
-                require("harpoon"):list():append()
-              end
-            '';
+          action.__raw = ''
+            function()
+              require("harpoon"):list():append()
+            end
+          '';
           options.desc = "Add File";
         }
         {
           mode = "n";
           key = "<leader>gq";
-          action.__raw =
-            # lua
-            ''
-              function()
-                harpoon = require("harpoon")
-                harpoon.ui:toggle_quick_menu(harpoon:list())
-              end
-            '';
+          action.__raw = ''
+            function()
+              harpoon = require("harpoon")
+              harpoon.ui:toggle_quick_menu(harpoon:list())
+            end
+          '';
           options.desc = "Quick Menu";
         }
         {
           mode = "n";
           key = "<leader>gn";
-          action.__raw =
-            # lua
-            ''
-              function()
-                require("harpoon"):list():next()
-              end
-            '';
+          action.__raw = ''
+            function()
+              require("harpoon"):list():next()
+            end
+          '';
           options.desc = "Next";
         }
         {
           mode = "n";
           key = "<leader>gp";
-          action.__raw =
-            # lua
-            ''
-              function()
-                require("harpoon"):list():prev()
-              end
-            '';
+          action.__raw = ''
+            function()
+              require("harpoon"):list():prev()
+            end
+          '';
           options.desc = "Previous";
         }
         {
           mode = "n";
           key = "<leader>fh";
-          action.__raw =
-            #lua
-            ''
-              function()
-                  local conf = require("telescope.config").values
-                  local harpoon_files = require("harpoon"):list()
+          action.__raw = ''
+            function()
+                local conf = require("telescope.config").values
+                local harpoon_files = require("harpoon"):list()
 
-                  local file_paths = {}
-                  for _, item in ipairs(harpoon_files.items) do
-                      table.insert(file_paths, item.value)
-                  end
+                local file_paths = {}
+                for _, item in ipairs(harpoon_files.items) do
+                    table.insert(file_paths, item.value)
+                end
 
-                  require("telescope.pickers").new({}, {
-                      prompt_title = "Harpoon",
-                      finder = require("telescope.finders").new_table({
-                          results = file_paths,
-                      }),
-                      previewer = conf.file_previewer({}),
-                      sorter = conf.generic_sorter({}),
-                      theme = require("telescope.themes").get_dropdown({}),
-                  }):find()
+                require("telescope.pickers").new({}, {
+                    prompt_title = "Harpoon",
+                    finder = require("telescope.finders").new_table({
+                        results = file_paths,
+                    }),
+                    previewer = conf.file_previewer({}),
+                    sorter = conf.generic_sorter({}),
+                    theme = require("telescope.themes").get_dropdown({}),
+                }):find()
 
-              end
-            '';
+            end
+          '';
           options.desc = "Harpoon";
         }
       ]
       ++ builtins.map (i: {
         mode = "n";
         key = "<leader>g${toString i}";
-        action.__raw =
-          # lua
-          ''
-            function()
-                require("harpoon"):list():select(${toString i})
-            end
-          '';
+        action.__raw = ''
+          function()
+              require("harpoon"):list():select(${toString i})
+          end
+        '';
         options.desc = "Goto ${toString i}";
       }) (lib.lists.range 1 9);
 

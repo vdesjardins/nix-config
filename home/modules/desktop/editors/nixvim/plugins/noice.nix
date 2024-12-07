@@ -24,10 +24,8 @@
       };
     };
 
-    extraConfigLua =
-      # lua
-      ''
-        require("telescope").load_extension("noice")
-      '';
+    extraConfigLua = ''
+      require("telescope").load_extension("noice")
+    '';
   };
 }

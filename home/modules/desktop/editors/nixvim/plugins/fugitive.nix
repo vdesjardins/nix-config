@@ -14,14 +14,12 @@
       {
         mode = "n";
         key = "<leader>sa";
-        action.__raw =
-          # lua
-          ''
-            function()
-                local f = vim.api.nvim_buf_get_name(0)
-                vim.cmd("Git add " .. f)
-            end
-          '';
+        action.__raw = ''
+          function()
+              local f = vim.api.nvim_buf_get_name(0)
+              vim.cmd("Git add " .. f)
+          end
+        '';
         options.desc = "Add (fugitive)";
       }
       {

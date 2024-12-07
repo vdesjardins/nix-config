@@ -70,6 +70,10 @@
           __unkeyed-15 = "<leader>e";
           group = "Execute";
         }
+        {
+          __unkeyed-16 = "<leader>lx";
+          group = "LSP Logging";
+        }
       ];
     };
   };

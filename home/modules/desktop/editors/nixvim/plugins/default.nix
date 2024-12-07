@@ -3,7 +3,6 @@
   # TODO: neorg or similar to replace logseq
 
   imports = [
-    ./startify.nix
     ./image.nix
     ./img-clip.nix
 
@@ -39,19 +38,19 @@
     ./harpoon.nix
     ./easypick.nix
     ./diagnostic.nix
+    ./snacks.nix
+    ./mini.nix
 
     # snippets
     ./luasnip.nix
     ./friendly-snippets.nix
 
     # clipboard
-    # ./yanky.nix # TODO: cause collision with other plugins like smart-splits
-    ./yank.nix # # TODO: probably not required if yanky is added
+    ./yanky.nix
 
     # lsp
     ./cmp.nix
     ./lsp.nix
-    ./lsp-format.nix
     ./lsp-signature.nix
     ./none-ls.nix
     ./dap.nix
@@ -116,8 +115,6 @@
         enable = true;
         userDefaultOptions.names = false;
       };
-
-      oil.enable = true;
 
       trim = {
         enable = true;
