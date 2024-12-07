@@ -17,7 +17,7 @@
     polkit.enable = true;
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   services.blueman.enable = config.hardware.bluetooth.enable;
 

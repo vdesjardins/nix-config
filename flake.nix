@@ -109,7 +109,7 @@
       // (mkOverlays ./overlays/nixpkgs);
 
     extraOverlays = {
-      nur = nur.overlay;
+      nur = nur.overlays.default;
       neovim-nightly = neovim-nightly.overlays.default;
       rust-overlay = rust-overlay.overlays.default;
       ghostty = final: prev: {ghostty = ghostty.packages.${prev.system}.default;};
