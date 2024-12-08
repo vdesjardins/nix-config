@@ -103,7 +103,7 @@
               icon = " ";
               title = "Jujutsu Status";
               section = "terminal";
-              enabled.__raw = "function() return (Snacks.git.get_root() ~= nil and vim.fn.isdirectory(Snacks.git.get_root() .. '/.jj')) end";
+              enabled.__raw = "function() return (Snacks.git.get_root() ~= nil and vim.fn.isdirectory(Snacks.git.get_root() .. '/.jj') == true) end";
               cmd = "${pkgs.jujutsu}/bin/jj status";
               height = 10;
               padding = 1;
