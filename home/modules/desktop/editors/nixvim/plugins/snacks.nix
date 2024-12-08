@@ -91,7 +91,12 @@
               icon = " ";
               title = "Git Status";
               section = "terminal";
-              enabled.__raw = "function() return (Snacks.git.get_root() ~= nil and vim.fn.isdirectory(Snacks.git.get_root() .. '/.jj') == false) end";
+              enabled.__raw = ''
+                function()
+                  local output = vim.fn.system("jj workspace root --ignore-working-copy")
+                  return (Snacks.git.get_root() ~= nil and vim.v.shell_error ~= 0)
+                end
+              '';
               cmd = "${pkgs.hub}/bin/hub status --short --branch --renames";
               height = 10;
               padding = 1;
@@ -103,7 +108,12 @@
               icon = " ";
               title = "Jujutsu Status";
               section = "terminal";
-              enabled.__raw = "function() return (Snacks.git.get_root() ~= nil and vim.fn.isdirectory(Snacks.git.get_root() .. '/.jj') == true) end";
+              enabled.__raw = ''
+                function()
+                  local output = vim.fn.system("jj workspace root --ignore-working-copy")
+                  return (Snacks.git.get_root() ~= nil and vim.v.shell_error == 0)
+                end
+              '';
               cmd = "${pkgs.jujutsu}/bin/jj status";
               height = 10;
               padding = 1;
