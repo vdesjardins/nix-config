@@ -1,14 +1,21 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: let
-  inherit (lib) mkDefault;
+  wallpapersPath = "${config.home.homeDirectory}/Pictures/Wallpapers/";
+
+  wallpaperChooser = pkgs.writeShellScript "random-wallpaper" ''
+    ${pkgs.findutils}/bin/find -L ${wallpapersPath} -type f | ${pkgs.coreutils}/bin/shuf -n 1
+  '';
+
+  lockerCommand = pkgs.writeShellScript "lock-random-wallpaper" ''
+    ${config.programs.swaylock.package}/bin/swaylock --image `${wallpaperChooser}`
+  '';
 in {
   modules.desktop.window-managers.sway = {
     enable = true;
-    wallpapersPath = mkDefault "${config.home.homeDirectory}/Pictures/Wallpapers/";
+    inherit wallpaperChooser lockerCommand;
   };
 
   modules.desktop.extensions = {
@@ -17,7 +24,10 @@ in {
     rofi.enable = true;
     rofi.package = pkgs.rofi-wayland;
     swaylock.enable = true;
-    swayidle.enable = true;
+    swayidle = {
+      enable = true;
+      inherit lockerCommand;
+    };
     xdg-portal.enable = true;
   };
 

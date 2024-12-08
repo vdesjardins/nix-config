@@ -1,17 +1,20 @@
 {
+  pkgs,
   config,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) str;
+  inherit (lib.types) package;
 
   cfg = config.modules.desktop.extensions.swayidle;
 in {
   options.modules.desktop.extensions.swayidle = {
     enable = mkEnableOption "swayidle";
+    lockerCommand = mkOption {
+      type = package;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,31 +24,18 @@ in {
       events = [
         {
           event = "before-sleep";
-          command = "${pkgs.swaylock-effects}/bin/swaylock --daemonize";
-        }
-        {
-          event = "lock";
-          command = "${pkgs.swaylock-effects}/bin/swaylock --daemonize --grace 0";
-        }
-        {
-          event = "unlock";
-          command = "pkill -SIGUSR1 swaylock";
-        }
-        {
-          event = "after-resume";
-          command = "swaymsg \"output * dpms on\"";
+          command = "${cfg.lockerCommand}";
         }
       ];
 
       timeouts = [
         {
-          timeout = 1800;
-          command = "${pkgs.swaylock-effects}/bin/swaylock --daemonize";
+          timeout = 300;
+          command = "${cfg.lockerCommand}";
         }
         {
-          timeout = 2000;
-          command = "swaymsg \"output * dpms off\"";
-          resumeCommand = "swaymsg \"output * dpms on\"";
+          timeout = 600;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
     };

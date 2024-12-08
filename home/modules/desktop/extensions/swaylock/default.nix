@@ -22,7 +22,7 @@ in {
     programs.swaylock = {
       inherit (cfg) enable;
 
-      package = pkgs.swaylock-effects;
+      package = pkgs.swaylock;
 
       settings = {
         inherit (cfg) font;

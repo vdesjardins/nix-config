@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) str;
+  inherit (lib.types) package str;
   inherit (pkgs) writeShellScriptBin;
 
   color-picker = writeShellScriptBin "color-picker" ''
@@ -26,8 +26,11 @@ in {
       type = str;
       default = "";
     };
-    wallpapersPath = mkOption {
-      type = str;
+    lockerCommand = mkOption {
+      type = package;
+    };
+    wallpaperChooser = mkOption {
+      type = package;
     };
   };
 
