@@ -1,7 +1,4 @@
 {
-  # TODO: check if possible to load images (hologram?)
-  # TODO: neorg or similar to replace logseq
-
   imports = [
     ./image.nix
     ./img-clip.nix
@@ -23,7 +20,6 @@
     ./comment.nix
 
     ./autopairs.nix
-    ./nvim-surround.nix
     ./rainbow-delimiters.nix
     ./text-case.nix
     ./treesj.nix
@@ -79,15 +75,6 @@
     ./copilot.nix
 
     # nvim-ts-autotag
-    # vim-bookmark
-    # mini-icons
-    # nvim-img-clip
-    # vim-better-whitespace
-    # vim-endwise
-    # vim-grepper
-    # nvim-surround
-    # vim-snippets
-
     # vim-clue
   ];
 
