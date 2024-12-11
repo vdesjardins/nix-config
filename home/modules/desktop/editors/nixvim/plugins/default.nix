@@ -98,9 +98,8 @@
       notify.enable = true;
       nui.enable = true;
 
-      nvim-colorizer = {
+      colorizer = {
         enable = true;
-        userDefaultOptions.names = false;
       };
 
       trim = {
