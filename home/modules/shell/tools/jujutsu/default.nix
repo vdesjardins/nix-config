@@ -38,6 +38,10 @@ in {
             merge-editor = "meld";
           };
 
+          git = {
+            auto-local-bookmark = true;
+          };
+
           aliases = {
             d = ["diff"];
             g = ["git"];
