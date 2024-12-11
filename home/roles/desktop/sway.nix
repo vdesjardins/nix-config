@@ -10,7 +10,7 @@
   '';
 
   lockerCommand = pkgs.writeShellScript "lock-random-wallpaper" ''
-    ${config.programs.swaylock.package}/bin/swaylock --image `${wallpaperChooser}`
+    ${config.programs.swaylock.package}/bin/swaylock -f --image `${wallpaperChooser}`
   '';
 in {
   modules.desktop.window-managers.sway = {

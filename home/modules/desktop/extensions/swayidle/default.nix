@@ -6,7 +6,8 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) package;
+  inherit (lib.types) package int;
+  inherit (builtins) toString;
 
   cfg = config.modules.desktop.extensions.swayidle;
 in {
@@ -14,6 +15,18 @@ in {
     enable = mkEnableOption "swayidle";
     lockerCommand = mkOption {
       type = package;
+    };
+    notifyTimeout = mkOption {
+      type = int;
+      default = 5 * 60;
+    };
+    lockTimeout = mkOption {
+      type = int;
+      default = 7 * 60;
+    };
+    dpmsTimeout = mkOption {
+      type = int;
+      default = 10 * 60;
     };
   };
 
@@ -30,12 +43,35 @@ in {
 
       timeouts = [
         {
-          timeout = 300;
+          timeout = cfg.notifyTimeout;
+          command = let
+            delta = toString (cfg.lockTimeout - cfg.notifyTimeout);
+          in
+            builtins.toString (
+              pkgs.writeShellScript "swayidle-notify-command"
+              ''
+                ${pkgs.libnotify}/bin/notify-send "Going to sleep in ${delta} seconds" -t 5000
+              ''
+            );
+        }
+        {
+          timeout = cfg.lockTimeout;
           command = "${cfg.lockerCommand}";
         }
         {
-          timeout = 600;
-          command = "${pkgs.systemd}/bin/systemctl suspend";
+          timeout = cfg.dpmsTimeout;
+          command = builtins.toString (
+            pkgs.writeShellScript "swayidle-timeout-command"
+            ''
+              ${pkgs.sway}/bin/swaymsg "output * dpms off"
+            ''
+          );
+          resumeCommand = builtins.toString (
+            pkgs.writeShellScript "swayidle-resume-command"
+            ''
+              ${pkgs.sway}/bin/swaymsg "output * dpms on"
+            ''
+          );
         }
       ];
     };
