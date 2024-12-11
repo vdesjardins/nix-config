@@ -61,6 +61,8 @@ in {
             sh = ["show"];
             s = ["squash"];
             si = ["squash"];
+            lg = ["log" "all()"];
+            lm = ["log" "mine()"];
           };
         };
       };
