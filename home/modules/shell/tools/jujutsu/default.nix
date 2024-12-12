@@ -47,6 +47,7 @@ in {
               format = "git";
             };
             merge-editor = "meld";
+            diff-editor = ":builtin";
           };
 
           git = {
