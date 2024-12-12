@@ -42,9 +42,9 @@ in {
           };
           ui = {
             default-command = "log";
-            pager = "less -FRX";
+            pager = "delta";
             diff = {
-              tool = ["difft" "--color=always" "$left" "$right"];
+              format = "git";
             };
             merge-editor = "meld";
           };
