@@ -14,37 +14,13 @@
 
     keymaps = [
       {
-        mode = "n";
+        mode = ["n" "x" "o"];
         key = "s";
         action.__raw = ''function() require("flash").jump() end'';
         options.desc = "Flash";
       }
       {
-        mode = "x";
-        key = "s";
-        action.__raw = ''function() require("flash").jump() end'';
-        options.desc = "Flash";
-      }
-      {
-        mode = "o";
-        key = "s";
-        action.__raw = ''function() require("flash").jump() end'';
-        options.desc = "Flash";
-      }
-      {
-        mode = "n";
-        key = "S";
-        action.__raw = ''function() require("flash").treesitter() end'';
-        options.desc = "Flash Treesitter";
-      }
-      {
-        mode = "x";
-        key = "S";
-        action.__raw = ''function() require("flash").treesitter() end'';
-        options.desc = "Flash Treesitter";
-      }
-      {
-        mode = "o";
+        mode = ["n" "x" "o"];
         key = "S";
         action.__raw = ''function() require("flash").treesitter() end'';
         options.desc = "Flash Treesitter";
@@ -56,13 +32,7 @@
         options.desc = "Remote Flash";
       }
       {
-        mode = "o";
-        key = "R";
-        action.__raw = ''function() require("flash").treesitter_search() end'';
-        options.desc = "Treesitter Search";
-      }
-      {
-        mode = "x";
+        mode = ["o" "x"];
         key = "R";
         action.__raw = ''function() require("flash").treesitter_search() end'';
         options.desc = "Treesitter Search";
