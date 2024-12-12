@@ -27,5 +27,37 @@
     extraConfigLua = ''
       require("telescope").load_extension("noice")
     '';
+
+    keymaps = [
+      {
+        mode = ["n" "i" "s"];
+        key = "<c-f>";
+        action.__raw = ''
+          function()
+            if not require("noice.lsp").scroll(4) then
+              return "<c-f>"
+            end
+          end
+        '';
+        options = {
+          silent = true;
+          expr = true;
+        };
+      }
+      {
+        mode = ["n" "i" "s"];
+        key = "<c-b>";
+        action.__raw = ''
+          function()
+            if not require("noice.lsp").scroll(-4) then
+              return "<c-b>"
+            end
+          end'';
+        options = {
+          silent = true;
+          expr = true;
+        };
+      }
+    ];
   };
 }
