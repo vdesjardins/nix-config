@@ -5,12 +5,23 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.options) mkOption mkEnableOption;
+  inherit (lib.types) str;
 
   cfg = config.modules.shell.tools.jujutsu;
 in {
   options.modules.shell.tools.jujutsu = {
     enable = mkEnableOption "jujutsu scm";
+
+    email = mkOption {
+      type = str;
+      default = "vdesjardins@gmail.com";
+    };
+
+    username = mkOption {
+      type = str;
+      default = "Vincent Desjardins";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -26,8 +37,8 @@ in {
 
         settings = {
           user = {
-            email = "vdesjardins@gmail.com";
-            name = "Vincent Desjardins";
+            inherit (cfg) email;
+            name = cfg.username;
           };
           ui = {
             default-command = "log";
@@ -40,6 +51,11 @@ in {
 
           git = {
             auto-local-bookmark = true;
+          };
+
+          revset-aliases = {
+            "user()" = ''user("${cfg.email}")'';
+            "user(x)" = "author(x) | committer(x)";
           };
 
           aliases = {
