@@ -4,12 +4,22 @@
       {
         key = "<leader>xn";
         action = "<cmd>cnext<cr>";
-        options.desc = "Next (Quckfix)";
+        options.desc = "Next (Quickfix)";
       }
       {
         key = "<leader>xp";
         action = "<cmd>cprevious<cr>";
-        options.desc = "Previous (Quckfix)";
+        options.desc = "Previous (Quickfix)";
+      }
+      {
+        key = "<leader>xc";
+        action = "<cmd>cclose<cr>";
+        options.desc = "Close (Quickfix)";
+      }
+      {
+        key = "<leader>xo";
+        action = "<cmd>copen<cr>";
+        options.desc = "Open (Quickfix)";
       }
     ];
   };
