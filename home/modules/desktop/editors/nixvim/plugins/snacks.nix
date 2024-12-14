@@ -114,7 +114,7 @@
                   return (Snacks.git.get_root() ~= nil and vim.v.shell_error == 0)
                 end
               '';
-              cmd = "${pkgs.jujutsu}/bin/jj status";
+              cmd = "${pkgs.jujutsu}/bin/jj status --no-pager";
               height = 10;
               padding = 1;
               ttl = 5 * 60;
