@@ -49,7 +49,6 @@ in {
         ) {
           inherit pkgs;
           inherit (cfg) font;
-          inherit (config.home) homeDirectory;
         };
 
       colorSchemes = builtins.fromTOML (builtins.readFile "${src}/${file}");

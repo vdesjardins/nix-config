@@ -1,11 +1,8 @@
 {
   pkgs,
-  homeDirectory,
   font,
 }:
-/*
-lua
-*/
+# lua
 ''
   wezterm.add_to_config_reload_watch_list(wezterm.config_dir)
 

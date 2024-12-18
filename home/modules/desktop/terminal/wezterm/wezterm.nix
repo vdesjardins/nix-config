@@ -3,7 +3,6 @@
   key_leader ? "-",
   mods_leader ? "CTRL",
   color_scheme ? "tokyonight_storm",
-  homeDirectory,
   font,
 }:
 with pkgs; let
@@ -26,9 +25,7 @@ with pkgs; let
 
   moduleImports = lib.concatMapStrings (s: "require('" + s + "').configure(config, globals)\n") modules;
 in
-  /*
-  lua
-  */
+  # lua
   ''
     local globals = {
       key_leader = "${key_leader}",
