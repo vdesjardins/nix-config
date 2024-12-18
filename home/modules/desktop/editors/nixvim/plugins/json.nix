@@ -1,7 +1,14 @@
 {
   programs.nixvim = {
     plugins = {
-      lsp.servers.jsonls.enable = true;
+      lsp.servers.jsonls = {
+        enable = true;
+        settings = {
+          validate = {
+            enable = true;
+          };
+        };
+      };
 
       schemastore = {
         enable = true;
