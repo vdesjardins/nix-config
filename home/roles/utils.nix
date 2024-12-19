@@ -102,6 +102,9 @@
       tree
       btop # monitor resources
       procs # replacement for ps
+      btop # monitor resources
+      procs # replacement for ps
+      step-cli # plumbing for distributed systems
       wget
       yq
     ]
