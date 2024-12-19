@@ -38,8 +38,10 @@ in {
           pv = "pr view -c";
           pu = "pr view --json url";
           pd = "pr diff";
-          rv = "repo view --web";
+          rw = "repo view --web";
           ru = "repo view --json url -q .url";
+          rl = "run list";
+          rv = "run view";
         };
       };
 
@@ -63,6 +65,8 @@ in {
     programs.zsh.shellAliases = {
       ghpc = "gh pu | jq '.url' -Mr | pbcopy";
       ghrc = "gh ru | pbcopy";
+      ghfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+      ghfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
     };
   };
 }
