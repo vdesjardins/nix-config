@@ -4,6 +4,9 @@
       lsp-format = {
         enable = true;
         lspServersToEnable = "all";
+        settings = {
+          sync = true;
+        };
       };
 
       lsp = {
