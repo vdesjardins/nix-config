@@ -4,6 +4,7 @@
     dogdns
     dnspeep # look at host dns queries
     mtr # network diagnostic tool
+    nmap
     tcpdump
     tcpflow
     tcptraceroute
