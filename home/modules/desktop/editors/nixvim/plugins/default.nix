@@ -46,6 +46,7 @@
 
     # lsp
     ./cmp.nix
+    # ./blink-cmp.nix # TODO:not yet
     ./lsp.nix
     ./lsp-signature.nix
     ./none-ls.nix
