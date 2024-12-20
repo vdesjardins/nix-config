@@ -23,6 +23,7 @@
     ./rainbow-delimiters.nix
     ./text-case.nix
     ./treesj.nix
+    ./ts-autotag.nix
 
     ./guess-indent.nix
     ./indent-blankline.nix
@@ -75,7 +76,6 @@
     ./avante.nix
     ./copilot.nix
 
-    # nvim-ts-autotag
     # vim-clue
   ];
 
