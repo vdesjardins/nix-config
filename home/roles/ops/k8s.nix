@@ -10,6 +10,7 @@
   home.packages = with pkgs;
     [
       buildpack
+      cmctl
       helm-dashboard
       helm-docs
       helmfile
