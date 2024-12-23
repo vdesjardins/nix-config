@@ -16,6 +16,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       zsh-syntax-highlighting
+      zsh-zhooks
     ];
 
     programs.zsh = {
