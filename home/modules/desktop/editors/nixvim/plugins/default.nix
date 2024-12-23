@@ -65,6 +65,7 @@
     ./yaml.nix
     ./json.nix
     ./zig.nix
+    ./toml.nix
 
     # nav
     ./smart-splits.nix
