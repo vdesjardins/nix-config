@@ -52,5 +52,6 @@
     ../roles/desktop/diagnostic.nix
     ../roles/desktop/graphics.nix
     ../roles/desktop/videos.nix
+    ../roles/desktop/messaging.nix
   ];
 }
