@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -21,6 +20,12 @@ in {
         enable = true;
       };
 
+      config = {
+        global = {
+          hide_env_diff = true;
+        };
+      };
+
       stdlib = ''
         # move .direnv cache to xdg cache home
         : ''${XDG_CACHE_HOME:=$HOME/.cache}
@@ -36,5 +41,7 @@ in {
 
       enableZshIntegration = true;
     };
+
+    home.sessionVariables.DIRENV_LOG_FORMAT = "";
   };
 }
