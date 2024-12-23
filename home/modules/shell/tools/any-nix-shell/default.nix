@@ -17,7 +17,7 @@ in {
     home.packages = with pkgs; [any-nix-shell];
 
     programs.zsh.initExtra = ''
-      any-nix-shell zsh --info-right | source /dev/stdin
+      any-nix-shell zsh | source /dev/stdin
     '';
   };
 }
