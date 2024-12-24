@@ -15,7 +15,6 @@ in {
     ../../shared.nix
     ../../tailscale.nix
     ../shared
-    ../shared/blocky.nix
     ../shared/omada-controller.nix
     ../users/admin.nix
   ];
