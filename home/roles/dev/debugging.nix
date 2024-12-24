@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   modules.shell.tools.gdb.enable = pkgs.stdenv.isLinux;
 
+  modules.shell.tools.nix-function-calls.enable = true;
+
   home.packages = with pkgs;
     [
       binutils
