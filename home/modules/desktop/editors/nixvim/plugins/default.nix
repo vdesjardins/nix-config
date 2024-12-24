@@ -32,7 +32,7 @@
     ./trouble.nix
     ./bqf.nix
     ./project.nix
-    ./harpoon.nix
+    ./grapple.nix
     ./easypick.nix
     ./diagnostic.nix
     ./snacks.nix
