@@ -74,6 +74,10 @@
           __unkeyed-16 = "<leader>lx";
           group = "LSP Logging";
         }
+        {
+          __unkeyed-17 = "<leader>n";
+          group = "Notifications";
+        }
       ];
     };
   };

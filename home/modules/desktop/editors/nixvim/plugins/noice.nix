@@ -58,6 +58,58 @@
           expr = true;
         };
       }
+      {
+        mode = "c";
+        key = "<S-Enter>";
+        action.__raw = ''
+          function()
+            require("noice").redirect(vim.fn.getcmdline())
+          end
+        '';
+        options.desc = "Redirect Cmdline (Noice)";
+      }
+      {
+        mode = "n";
+        key = "<leader>nf";
+        action = "<cmd>Noice pick<cr>";
+        options.desc = "Search (Noice)";
+      }
+      {
+        mode = "n";
+        key = "<leader>nl";
+        action = "<cmd>Noice last<cr>";
+        options.desc = "Last (Noice)";
+      }
+      {
+        mode = "n";
+        key = "<leader>ne";
+        action = "<cmd>Noice errors<cr>";
+        options.desc = "Errors (Noice)";
+      }
+      {
+        mode = "n";
+        key = "<leader>nh";
+        action = "<cmd>Noice history<cr>";
+        options.desc = "History (Noice)";
+      }
+      {
+        mode = "n";
+        key = "<leader>nd";
+        action = "<cmd>Noice dismiss<cr>";
+        options.desc = "Dismiss (Noice)";
+      }
+      {
+        mode = "n";
+        key = "<leader>nD";
+        action = "<cmd>Noice disable<cr>";
+        options.desc = "Disable (Noice)";
+      }
+      {
+        mode = "n";
+        key = "<leader>nE";
+        action = "<cmd>Noice enable<cr>";
+        options.desc = "Enable (Noice)";
+      }
     ];
   };
 }
