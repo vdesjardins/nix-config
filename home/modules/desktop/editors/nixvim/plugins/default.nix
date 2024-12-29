@@ -39,6 +39,7 @@
     ./diagnostic.nix
     ./snacks.nix
     ./mini.nix
+    ./barbecue.nix
 
     # snippets
     ./luasnip.nix
