@@ -4,6 +4,7 @@
     ./img-clip.nix
 
     ./auto-save.nix
+    ./auto-session.nix
     # moves
     ./telescope.nix
     ./flash.nix
