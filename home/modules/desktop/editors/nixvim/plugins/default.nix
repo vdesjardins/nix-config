@@ -3,6 +3,7 @@
     ./image.nix
     ./img-clip.nix
 
+    ./auto-save.nix
     # moves
     ./telescope.nix
     ./flash.nix
