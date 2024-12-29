@@ -58,6 +58,7 @@
 
     # languages
     ./nix.nix
+    ./lazydev.nix
     ./markdown.nix
     ./terraform.nix
     ./bash.nix
