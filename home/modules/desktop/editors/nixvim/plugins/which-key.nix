@@ -67,7 +67,7 @@
           group = "Chat / AI";
         }
         {
-          __unkeyed-15 = "<leader>e";
+          __unkeyed-15 = "<leader><space>";
           group = "Execute";
         }
         {

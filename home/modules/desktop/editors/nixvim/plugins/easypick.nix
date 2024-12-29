@@ -55,7 +55,7 @@
       }
       {
         mode = "n";
-        key = "<leader>em";
+        key = "<leader><space>m";
         action = "<cmd>Easypick make_targets<cr>";
         options.desc = "Make Targets";
       }
