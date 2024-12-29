@@ -1,4 +1,36 @@
 {lib, ...}: {
+  services.tailscale.permitCertUid = "caddy";
+
+  services.caddy = {
+    enable = true;
+
+    email = "vdesjardins@gmail.com";
+
+    globalConfig =
+      # caddyfile
+      ''
+        servers {
+          protocols h1 h2 h3
+        }
+
+        grace_period 5s
+      '';
+
+    virtualHosts.home-server = {
+      hostName = "home-server.cerberus-pollux.ts.net";
+
+      extraConfig =
+        # caddyfile
+        ''
+           reverse_proxy https://localhost:8043 {
+             transport http {
+           	  tls_insecure_skip_verify
+             }
+          }
+        '';
+    };
+  };
+
   virtualisation.oci-containers = {
     backend = lib.mkForce "docker";
     containers = {
