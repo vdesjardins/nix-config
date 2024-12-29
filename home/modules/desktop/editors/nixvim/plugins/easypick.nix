@@ -33,7 +33,9 @@
               {
                   name = "make_targets",
                   command = list_make_targets,
-                  action = easypick.actions.nvim_commandf("1TermExec name=make cmd=\"make %s\""),
+                  action = easypick.actions.nvim_commandf([[
+                    lua Snacks.terminal("make " .. vim.split("%s", " ", {trimempty = true})[1])
+                  ]]),
                   opts = require("telescope.themes").get_dropdown({}),
               },
           },
