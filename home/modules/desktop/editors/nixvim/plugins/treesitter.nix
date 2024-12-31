@@ -133,7 +133,7 @@
       {
         mode = "n";
         key = "<leader>ft";
-        action = "<cmd>Telescope treesitter theme=dropdown<cr>";
+        action = "<cmd>FzfLua treesitter<cr>";
         options.desc = "Treesitter";
       }
     ];

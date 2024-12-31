@@ -3,7 +3,8 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/d70bd19e0a38ad4790d3913bf08fcbfc9eeca507";
     master.url = "github:nixos/nixpkgs/master";
 
     # System
@@ -45,10 +46,14 @@
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
+
+    # neovim plugins
+    blink-cmp.url = "github:Saghen/blink.cmp/v0.8.2";
   };
 
   outputs = {
     deploy-rs,
+    blink-cmp,
     ghostty,
     neovim-nightly,
     nix,
@@ -113,6 +118,7 @@
       neovim-nightly = neovim-nightly.overlays.default;
       rust-overlay = rust-overlay.overlays.default;
       ghostty = final: prev: {ghostty = ghostty.packages.${prev.system}.default;};
+      blink-cmp = final: prev: {vimPlugins = prev.vimPlugins // {blink-cmp = blink-cmp.packages.${prev.system}.default;};};
     };
 
     supportedSystems = rec {

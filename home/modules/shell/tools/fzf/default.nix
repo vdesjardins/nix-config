@@ -58,6 +58,6 @@ with lib; {
 
     xdg.configFile."zsh/fzf-colors.zsh".source =
       mkIf config.programs.zsh.enable
-      "${pkgs.base16-fzf}/share/base16-fzf/bash/base16-nord.config";
+      "${pkgs.tinted-fzf}/share/tinted-fzf/bash/base16-tokyo-night-storm.config";
   };
 }

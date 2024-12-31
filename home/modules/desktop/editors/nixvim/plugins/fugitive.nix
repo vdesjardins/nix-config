@@ -54,12 +54,6 @@
       }
       {
         mode = "n";
-        key = "<leader>sl";
-        action = "<cmd>Gclog<cr>";
-        options.desc = "Log (fugitive)";
-      }
-      {
-        mode = "n";
         key = "<leader>sp";
         action = "<cmd>Git push<cr>";
         options.desc = "Push (fugitive)";

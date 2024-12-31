@@ -4,7 +4,7 @@
       {
         mode = "n";
         key = "<leader>fy";
-        action = "<cmd>Telescope yank_history<cr>";
+        action = "<cmd>YankyRingHistory<cr>";
         options.desc = "Yank History";
       }
     ];
@@ -12,7 +12,6 @@
     plugins = {
       yanky = {
         enable = true;
-        enableTelescope = true;
       };
 
       lspkind = {

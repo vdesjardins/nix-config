@@ -12,6 +12,7 @@
         git.enable = true;
         scratch.eanble = true;
         debug.enable = true;
+        terminal.enable = true;
         dashboard = {
           enable = true;
           preset = {

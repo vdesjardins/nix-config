@@ -1,4 +1,4 @@
-{...}: let
+{pkgs, ...}: let
   username = "vince";
   hostname = "falcon";
 in {

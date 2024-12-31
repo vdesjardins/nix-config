@@ -38,7 +38,7 @@
       {
         mode = "n";
         key = "<leader>Ts";
-        action = "<cmd>TodoTelescope<cr>";
+        action = "<cmd>TodoFzfLua<cr>";
         options.desc = "Search";
       }
     ];

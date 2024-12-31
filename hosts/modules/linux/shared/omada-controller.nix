@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.tailscale.permitCertUid = "caddy";
 
   services.caddy = {

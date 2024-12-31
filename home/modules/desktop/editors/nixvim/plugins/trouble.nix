@@ -35,25 +35,6 @@
         };
       };
 
-      telescope = {
-        settings = {
-          defaults = {
-            mappings = {
-              i = {
-                "<c-t>".__raw = ''
-                  require("trouble.sources.telescope").open
-                '';
-              };
-              n = {
-                "<c-t>".__raw = ''
-                  require("trouble.sources.telescope").open
-                '';
-              };
-            };
-          };
-        };
-      };
-
       trim = {
         settings = {
           highlight = true;
@@ -64,36 +45,52 @@
       };
     };
 
+    extraConfigLua = ''
+      local config = require("fzf-lua.config")
+      local actions = require("trouble.sources.fzf").actions
+      config.defaults.actions.files["ctrl-t"] = actions.open
+    '';
+
     keymaps = [
       {
         key = "<leader>xx";
-        action = "<cmd>Trouble preview_float diagnostics toggle<cr>";
+        action = "<cmd>Trouble diagnostics toggle<cr>";
         options.desc = "Diagnostics (Trouble)";
       }
       {
         key = "<leader>xX";
-        action = "<cmd>Trouble preview_float diagnostics toggle filter.buf=0<cr>";
+        action = "<cmd>Trouble diagnostics toggle filter.buf=0<cr>";
         options.desc = "Buffer Diagnostics (Trouble)";
       }
       {
         key = "<leader>xs";
-        action = "<cmd>Trouble preview_float symbols toggle focus=false<cr>";
+        action = "<cmd>Trouble symbols toggle focus=false<cr>";
         options.desc = "Symbols (Trouble)";
       }
       {
         key = "<leader>xl";
-        action = "<cmd>Trouble preview_float lsp toggle focus=false win.position=right<cr>";
+        action = "<cmd>Trouble lsp toggle focus=false win.position=right<cr>";
         options.desc = "LSP Definitions / references / ... (Trouble)";
       }
       {
         key = "<leader>xL";
-        action = "<cmd>Trouble preview_float loclist toggle<cr>";
+        action = "<cmd>Trouble loclist toggle<cr>";
         options.desc = "Location List (Trouble)";
       }
       {
         key = "<leader>xQ";
-        action = "<cmd>Trouble preview_float qflist toggle<cr>";
+        action = "<cmd>Trouble qflist toggle<cr>";
         options.desc = "Quickfix List (Trouble)";
+      }
+      {
+        key = "<leader>xf";
+        action = "<cmd>Trouble fzf<cr>";
+        options.desc = "Find Results (Trouble)";
+      }
+      {
+        key = "<leader>xF";
+        action = "<cmd>Trouble fzf_files<cr>";
+        options.desc = "Find Results - Files (Trouble)";
       }
     ];
   };

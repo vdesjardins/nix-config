@@ -5,8 +5,10 @@
 
     ./auto-save.nix
     ./auto-session.nix
+
     # moves
     ./telescope.nix
+    ./fzf-lua.nix
     ./flash.nix
     ./which-key.nix
     ./rsi.nix
@@ -35,7 +37,7 @@
     ./bqf.nix
     ./project.nix
     ./grapple.nix
-    ./easypick.nix
+    ./exec.nix
     ./diagnostic.nix
     ./snacks.nix
     ./mini.nix
@@ -49,8 +51,8 @@
     ./yanky.nix
 
     # lsp
-    ./cmp.nix
-    # ./blink-cmp.nix # TODO:not yet
+    # ./cmp.nix
+    ./blink-cmp.nix # TODO:not yet
     ./lsp.nix
     ./lsp-signature.nix
     ./none-ls.nix

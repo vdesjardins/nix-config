@@ -21,12 +21,12 @@ in {
 
       config = {
         # [theme]
-        theme = "tokyonight-storm";
+        theme = "tokyonight";
         paging = "never";
       };
 
       themes = {
-        tokyonight-storm = {
+        tokyonight = {
           src = pkgs.fetchFromGitHub {
             owner = "folke";
             repo = "tokyonight.nvim"; # Bat uses sublime syntax for its themes
