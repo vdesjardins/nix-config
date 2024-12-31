@@ -19,7 +19,8 @@
           };
 
           signature = {
-            enabled = true;
+            # let noice handle this
+            enabled = false;
           };
 
           sources = {
