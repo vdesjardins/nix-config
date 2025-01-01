@@ -40,20 +40,18 @@
                 async = true;
                 module = "blink-cmp-copilot";
                 name = "copilot";
-                score_offset = 100;
               };
 
               cmp_yanky = {
                 async = true;
                 name = "cmp_yanky";
                 module = "blink.compat.source";
-                score_offset = 200;
               };
 
               emoji = {
                 module = "blink-emoji";
                 name = "Emoji";
-                score_offset = 15;
+                score_offset = -30;
               };
             };
           };
