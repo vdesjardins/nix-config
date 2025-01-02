@@ -112,7 +112,7 @@
         options.desc = "Goto Implementation";
       }
       {
-        key = "<leader>lr";
+        key = "<leader>lR";
         action = "<cmd>lua vim.lsp.buf.references()<cr>";
         options.desc = "Goto References";
       }
