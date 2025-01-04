@@ -23,14 +23,25 @@ in {
             url = "https://raw.githubusercontent.com/NixOS/nix/master/contrib/stack-collapse.py";
             sha256 = "sha256:0mi9cf3nx7xjxcrvll1hlkhmxiikjn0w95akvwxs50q270pafbjw";
           }));
-      nix-function-calls = pkgs.writeShellScriptBin "nix-function-calls" ''
-        WORKDIR=$(mktemp -d)
+      generate-flamegraph = pkgs.writeShellScript "generate-flamegraph" ''
+        WORKDIR=$1
 
-        nix eval -vvvvvvvvvvvvvvvvvvvv --raw --option trace-function-calls true "$1" 1>/dev/null 2>"$WORKDIR"/nix-function-calls.trace
         ${stack-collapse} "$WORKDIR"/nix-function-calls.trace >"$WORKDIR"/nix-function-calls.folded
         ${pkgs.inferno}/bin/inferno-flamegraph "$WORKDIR"/nix-function-calls.folded >"$WORKDIR"/nix-function-calls.svg
         echo "$WORKDIR/nix-function-calls.svg"
       '';
-    in [nix-function-calls];
+      nix-trace-eval = pkgs.writeShellScriptBin "nix-trace-eval" ''
+        WORKDIR=$(mktemp -d)
+
+        nix eval -vvvvvvvvvvvvvvvvvvvv --raw --option trace-function-calls true "$@" 1>/dev/null 2>"$WORKDIR"/nix-function-calls.trace
+        ${generate-flamegraph} "$WORKDIR"
+      '';
+      nix-trace-shell = pkgs.writeShellScriptBin "nix-trace-shell" ''
+        WORKDIR=$(mktemp -d)
+
+        nix env shell -vvvvvvvvvvvvvvvvvvvv --option trace-function-calls true "$@" 1>/dev/null 2>"$WORKDIR"/nix-function-calls.trace
+        ${generate-flamegraph} "$WORKDIR"
+      '';
+    in [nix-trace-shell nix-trace-eval];
   };
 }
