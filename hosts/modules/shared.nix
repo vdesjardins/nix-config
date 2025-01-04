@@ -43,8 +43,12 @@ in {
       options = "--delete-older-than 7d";
     };
 
-    package = pkgs.nixVersions.stable;
+    package = pkgs.nixVersions.nix_2_25;
   };
+
+  environment.systemPackages = with pkgs; [
+    nixVersions.nix_2_25
+  ];
 
   programs = {
     zsh = {
