@@ -73,8 +73,6 @@ in {
       ];
 
       initExtraBeforeCompInit = ''
-        source ${config.home.homeDirectory}/.nix-profile/etc/profile.d/nix.sh 2>/dev/null
-
         fpath=( ${config.xdg.configHome}/zsh/functions "''${fpath[@]}" )
         autoload -Uz $fpath[1]/*
       '';
@@ -91,14 +89,18 @@ in {
 
         bindkey \^U backward-kill-line
 
-        export PATH=~/.local/bin:$PATH
-
         if [[ -f ~/.zshrc.local ]]; then
           source ~/.zshrc.local
         fi
 
         GLOBALIAS_FILTER_VALUES=(ls ll)
+
+        export PATH=$HOME/.nix-profile/bin:$PATH
       '';
     };
+
+    home.sessionPath = [
+      "$HOME/.local/bin:$PATH"
+    ];
   };
 }
