@@ -2,6 +2,7 @@
   username = "inf10906";
   hostname = "V07P6L7R6H";
 in {
+  system.stateVersion = 5;
   homebrew.casks = [
     "Rectangle"
     "alt-tab"

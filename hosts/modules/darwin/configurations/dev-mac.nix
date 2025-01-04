@@ -2,6 +2,8 @@
   username = "vince";
   hostname = "dev-mac";
 in {
+  system.stateVersion = 5;
+
   homebrew.casks = [
     "Rectangle"
     "alt-tab"
