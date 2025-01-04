@@ -3,17 +3,18 @@
   hostname = "V07P6L7R6H";
 in {
   system.stateVersion = 5;
+
   homebrew.casks = [
     "Rectangle"
     "alt-tab"
-    "firefox"
-    "flameshot"
     "google-chrome"
     "google-drive"
+    "insomnia"
+    "logseq"
     "maccy"
     "middleclick"
     "stats"
-    "logseq"
+    "wezterm"
   ];
 
   networking.hostName = hostname;
