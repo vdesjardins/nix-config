@@ -1,8 +1,0 @@
-k9s:
-  views:
-    v1/namespaces:
-      columns:
-        - NAME
-        - STATUS
-        - AGE
-        - LABELS

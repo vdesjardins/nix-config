@@ -18,7 +18,11 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [k9s];
 
-    xdg.configFile."k9s/config.yml".source = mkOutOfStoreSymlink "${configDirectory}/shell/tools/k9s/config/config.yml";
-    xdg.configFile."k9s/views.yml".source = mkOutOfStoreSymlink "${configDirectory}/shell/tools/k9s/config/views.yml";
+    xdg.configFile = {
+      "k9s/skins/tokyonight.yaml".source = ./config/skin-tokyonight.yaml;
+      "k9s/config.yaml".source = mkOutOfStoreSymlink "${configDirectory}/shell/tools/k9s/config/config.yaml";
+      "k9s/views.yaml".source = mkOutOfStoreSymlink "${configDirectory}/shell/tools/k9s/config/views.yaml";
+      "k9s/plugins".source = ./config/plugins;
+    };
   };
 }
