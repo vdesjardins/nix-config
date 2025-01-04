@@ -79,7 +79,7 @@
               auto_show = true;
 
               draw = {
-                treesitter.enabled = true;
+                treesitter = ["lsp"];
               };
             };
           };
