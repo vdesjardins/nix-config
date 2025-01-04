@@ -107,6 +107,9 @@ in {
         kc = "kubectl config";
         kcgu = "kubectl config get-users";
         kcgcl = "kubectl config get-clusters";
+
+        kgpcapadd = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.add'";
+        kgpcapdrop = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.drop'";
       };
     };
 
