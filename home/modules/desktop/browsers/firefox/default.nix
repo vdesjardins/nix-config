@@ -17,6 +17,8 @@
     }
     {package = qr-code-address-bar;}
     {package = sidebery;}
+    {package = copy-link-text;}
+    {package = copy-selected-links;}
     {package = duckduckgo-privacy-essentials;}
     {
       package = buildFirefoxXpiAddon {
