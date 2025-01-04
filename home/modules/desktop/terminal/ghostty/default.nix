@@ -7,6 +7,7 @@
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) bool package str;
+  inherit (pkgs.stdenv) isLinux;
 
   cfg = config.modules.desktop.terminal.ghostty;
 in {
@@ -35,7 +36,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ghostty];
+    home.packages =
+      if isLinux
+      then with pkgs; [ghostty]
+      else [];
+
     xdg.configFile."ghostty/config".text = ''
       font-size = 13.3
       font-thicken = true
