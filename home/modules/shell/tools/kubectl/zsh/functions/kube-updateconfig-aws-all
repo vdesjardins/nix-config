@@ -1,5 +1,5 @@
 #!/bin/bash
-function kube-updateconfig-aws() {
+function kube-updateconfig-aws-all() {
 	local user="$1"
 	(
 		export KUBECONFIG="$HOME/.kube/config"
