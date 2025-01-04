@@ -19,5 +19,9 @@ in {
 
       enableAliases = true;
     };
+
+    programs.zsh.shellAliases = {
+      lltr = "lsd -ltr";
+    };
   };
 }
