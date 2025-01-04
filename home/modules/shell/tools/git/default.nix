@@ -16,6 +16,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs.gitAndTools; [
       commitizen
+      gita
       git-absorb
       git-revise
       delta
