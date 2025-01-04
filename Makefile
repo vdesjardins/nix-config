@@ -17,7 +17,7 @@ hm/apply: hm/generate
 ## host/apply: build and activate current system
 host/apply: host/genrate
 	if [[ "$$(uname -o)" == "Darwin" ]] then
-		darwin-rebuild switch --flake .#$$(uname --nodename)
+		nix run nix-darwin -- switch --flake .#$$(uname --nodename)
 	else
 		sudo nixos-rebuild switch --flake .#$$(uname --nodename)
 	fi
@@ -31,7 +31,7 @@ hm/generate:
 ## host/genrate: build current system
 host/genrate:
 	if [[ "$$(uname -o)" == "Darwin" ]] then
-		darwin-rebuild build --flake .#$$(uname --nodename)
+		nix run nix-darwin -- build --flake .#$$(uname --nodename)
 	else
 		sudo nixos-rebuild build --flake .#$$(uname --nodename)
 	fi
