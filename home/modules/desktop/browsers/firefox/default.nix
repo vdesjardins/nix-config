@@ -280,7 +280,7 @@ in {
             app_id = "^firefox$";
             title = "discord.com";
           };
-          command = "move container to workspace 10";
+          command = "move container to workspace 7";
         }
         {
           criteria = {
