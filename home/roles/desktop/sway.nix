@@ -13,12 +13,18 @@
     ${config.programs.swaylock.package}/bin/swaylock -f --image `${wallpaperChooser}`
   '';
 in {
+  imports = [
+    ./gtk.nix
+    ./qt.nix
+  ];
+
   modules.desktop.window-managers.sway = {
     enable = true;
     inherit wallpaperChooser lockerCommand;
   };
 
   modules.desktop.extensions = {
+    dconf.enable = true;
     dunst.enable = true;
     waybar.enable = true;
     rofi.enable = true;
@@ -32,5 +38,4 @@ in {
   };
 
   services.cliphist.enable = true;
-  gtk.enable = true;
 }

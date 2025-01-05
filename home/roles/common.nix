@@ -14,9 +14,9 @@ in {
 
   home.enableNixpkgsReleaseCheck = false;
 
+  # font
   modules = {
     desktop = {
-      # font
       terminal = {
         wezterm.font = font;
         alacritty.font = font;
@@ -31,6 +31,12 @@ in {
       };
 
       extensions = {
+        dconf = {
+          font = font;
+          gtk-theme = "Tokyonight-Storm-B";
+          color-scheme = "prefer-dark";
+          icon-theme = "Papirus-Dark";
+        };
         rofi.font = "${font} 12";
         dunst.font = font;
         swaylock.font = font;
@@ -41,10 +47,11 @@ in {
       window-managers = {
         i3.font = font;
         sway.font = font;
-        shell.tools = {
-          btop.color-theme = "tokio-storm";
-        };
       };
+    };
+
+    shell.tools = {
+      btop.color-theme = "tokio-storm";
     };
   };
 
