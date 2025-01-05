@@ -14,32 +14,37 @@ in {
 
   home.enableNixpkgsReleaseCheck = false;
 
-  # font
-  modules.desktop = {
-    terminal = {
-      wezterm.font = font;
-      alacritty.font = font;
-      ghostty = {
-        inherit font font-italic font-bold font-bold-italic;
+  modules = {
+    desktop = {
+      # font
+      terminal = {
+        wezterm.font = font;
+        alacritty.font = font;
+        ghostty = {
+          inherit font font-italic font-bold font-bold-italic;
+        };
       };
-    };
 
-    tools = {
-      zathura.font = "${font} 12";
-      imv.font = "${font}:12";
-    };
+      tools = {
+        zathura.font = "${font} 12";
+        imv.font = "${font}:12";
+      };
 
-    extensions = {
-      rofi.font = "${font} 12";
-      dunst.font = font;
-      swaylock.font = font;
-      i3status-rust.font = font;
-      waybar.font = font;
-    };
+      extensions = {
+        rofi.font = "${font} 12";
+        dunst.font = font;
+        swaylock.font = font;
+        i3status-rust.font = font;
+        waybar.font = font;
+      };
 
-    window-managers = {
-      i3.font = font;
-      sway.font = font;
+      window-managers = {
+        i3.font = font;
+        sway.font = font;
+        shell.tools = {
+          btop.color-theme = "tokio-storm";
+        };
+      };
     };
   };
 

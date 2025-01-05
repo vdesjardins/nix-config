@@ -14,6 +14,7 @@
     zsh.enable = true;
 
     tools = {
+      btop.enable = true;
       nix.enable = true;
       any-nix-shell.enable = true;
       bat.enable = true;
@@ -100,9 +101,7 @@
       thefuck # fix commands
       tokei # displays code statistics
       tree
-      btop # monitor resources
       procs # replacement for ps
-      btop # monitor resources
       procs # replacement for ps
       step-cli # plumbing for distributed systems
       wget
