@@ -1,14 +1,14 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: mononoki Nerd Font;
-    font-size: 14px;
-    min-height: 0;
+	border: none;
+	border-radius: 0;
+	font-family: mononoki Nerd Font;
+	font-size: 14px;
+	min-height: 0;
 }
 
 window#waybar {
-    background: transparent;
-    color: white;
+	background: transparent;
+	color: white;
 }
 
 #workspaces {
@@ -17,15 +17,16 @@ window#waybar {
 	margin-left: 10px;
 	border-radius: 5px;
 }
+
 #workspaces button {
-    padding: 5px 10px;
-    color: #c0caf5;
+	padding: 5px 10px;
+	color: #c0caf5;
 }
 
 #workspaces button.focused {
-    color: #24283b;
-    background-color: #7aa2f7;
-    border-radius: 5px;
+	color: #24283b;
+	background-color: #7aa2f7;
+	border-radius: 5px;
 }
 
 #workspaces button:hover {
@@ -39,11 +40,17 @@ window#waybar {
 	background-color: #24283b;
 	margin: 5px;
 	margin-left: 10px;
-    padding: 0px 5px;
+	padding: 0px 5px;
 	border-radius: 5px;
 }
 
-#custom-date, #clock, #battery, #wireplumber, #network, #idle_inhibitor {
+#custom-date,
+#clock,
+#custom-utc,
+#battery,
+#wireplumber,
+#network,
+#idle_inhibitor {
 	background-color: #24283b;
 	padding: 5px 10px;
 	margin: 5px 0px;
@@ -65,31 +72,36 @@ window#waybar {
 }
 
 #clock {
-    color: #b48ead;
-    border-radius: 0px 5px 5px 0px;
-    margin-right: 10px;
+	color: #b48ead;
+}
+
+#custom-utc {
+	color: #b48ead;
+	margin-right: 10px;
+	border-radius: 0px 5px 5px 0px;
 }
 
 #battery {
-    color: #9ece6a;
+	color: #9ece6a;
 }
 
 #battery.charging {
-    color: #9ece6a;
+	color: #9ece6a;
 }
 
 #battery.warning:not(.charging) {
-    background-color: #f7768e;
-    color: #24283b;
-    border-radius: 5px 5px 5px 5px;
+	background-color: #f7768e;
+	color: #24283b;
+	border-radius: 5px 5px 5px 5px;
 }
 
 #idle_inhibitor {
 	color: #f7768e;
 	border-radius: 5px 0px 0px 5px;
 }
+
 #idle_inhibitor.enabled {
-    color: #9ece6a;
+	color: #9ece6a;
 }
 
 #network {
@@ -100,8 +112,11 @@ window#waybar {
 	color: #e0af68;
 }
 
-#cpu, #memory, #disk, #temperature {
-    color: #b48ead;
+#cpu,
+#memory,
+#disk,
+#temperature {
+	color: #b48ead;
 	background-color: #24283b;
 	padding: 5px 10px;
 	margin: 5px 0px;
@@ -110,12 +125,14 @@ window#waybar {
 #cpu {
 	border-radius: 5px 0px 0px 5px;
 }
+
 #temperature {
 	border-radius: 0px 5px 5px 0px;
 }
 
-#gamemode, #tray {
-    color: #b48ead;
+#gamemode,
+#tray {
+	color: #b48ead;
 	background-color: #24283b;
 	padding: 5px 10px;
 	border-radius: 5px;

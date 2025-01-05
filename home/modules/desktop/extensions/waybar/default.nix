@@ -30,7 +30,7 @@ in {
           height = 40;
           modules-left = ["sway/workspaces" "sway/mode"];
           modules-center = ["cpu" "memory" "disk" "temperature" "gamemode" "tray"];
-          modules-right = ["idle_inhibitor" "backlight" "network" "wireplumber" "battery" "custom/date" "clock"];
+          modules-right = ["idle_inhibitor" "backlight" "network" "wireplumber" "battery" "custom/date" "clock" "custom/utc"];
 
           "sway/workspaces" = {
             all-outputs = true;
@@ -41,10 +41,10 @@ in {
               "3" = "";
               "4" = "";
               "5" = "";
-              "7" = "";
+              "7" = "";
               "8" = "";
               "9" = "";
-              "10" = "";
+              "10" = "";
               default = "";
             };
           };
@@ -70,6 +70,11 @@ in {
             format-alt = "{:%a %b %d, %Y}";
             interval = 1;
             tooltip-format = "{:%a %b %d, %Y | %H:%M:%S}";
+          };
+
+          "custom/utc" = {
+            format = "UTC {}";
+            "exec" = ''date -u +"%H"'';
           };
 
           "custom/date" = {
