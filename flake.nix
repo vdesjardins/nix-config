@@ -3,8 +3,7 @@
 
   inputs = {
     # Packages
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/d70bd19e0a38ad4790d3913bf08fcbfc9eeca507";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
 
     # System
