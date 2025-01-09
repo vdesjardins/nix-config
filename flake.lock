@@ -7,16 +7,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1735939328,
-        "narHash": "sha256-uvMB3oU6uxERfkXiweeFS0cCIOgO/ogy7GoYAlXUPDs=",
+        "lastModified": 1736295934,
+        "narHash": "sha256-MfHI4efAdaoCU8si6YFdznZmSTprthDq3YKuF91z7ss=",
         "owner": "Saghen",
         "repo": "blink.cmp",
-        "rev": "e3b7cb4a1094377c3093a021300de123d9fc60d3",
+        "rev": "1cc3b1a908fbcfd15451c4772759549724f38524",
         "type": "github"
       },
       "original": {
         "owner": "Saghen",
-        "ref": "v0.9.2",
+        "ref": "v0.10.0",
         "repo": "blink.cmp",
         "type": "github"
       }

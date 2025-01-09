@@ -48,7 +48,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     # neovim plugins
-    blink-cmp.url = "github:Saghen/blink.cmp/v0.9.2";
+    blink-cmp.url = "github:Saghen/blink.cmp/v0.10.0";
   };
 
   outputs = {

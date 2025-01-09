@@ -27,7 +27,7 @@
             default = [
               "lsp"
               "path"
-              "luasnip"
+              "snippets"
               "buffer"
               "cmp_yanky"
               "copilot"
@@ -63,11 +63,15 @@
               };
             };
 
-            list.selection.__raw = ''
-              function(ctx)
-                return ctx.mode == "cmdline" and "manual" or "preselect"
-              end
-            '';
+            list = {
+              selection = {
+                preselect.__raw = ''
+                  function(ctx)
+                    return ctx.mode ~= 'cmdline' and not require('blink.cmp').snippet_active({ direction = 1 })
+                  end
+                '';
+              };
+            };
 
             documentation = {
               auto_show = true;
@@ -85,6 +89,7 @@
           };
 
           snippets = {
+            preset = "luasnip";
             expand.__raw = ''
               function(snippet) require('luasnip').lsp_expand(snippet) end
             '';
