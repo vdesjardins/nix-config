@@ -75,6 +75,7 @@ in {
           "custom/utc" = {
             format = "UTC {}";
             "exec" = ''date -u +"%H"'';
+            interval = 1;
           };
 
           "custom/date" = {
