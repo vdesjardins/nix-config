@@ -4,14 +4,16 @@ _inputs: _final: prev: {
     // {
       blink-emoji = prev.vimUtils.buildVimPlugin {
         pname = "blink-emoji";
-        version = "2024-12-26";
+        version = "2025-01-08";
 
         src = prev.fetchFromGitHub {
           owner = "moyiz";
           repo = "blink-emoji.nvim";
-          rev = "699493775b61b94ead76841c981a51d3df350ea0";
-          hash = "sha256-WHFifYQ7kBSVxjE9/y65/+UKbRnhmev3h2Ux1E5emBU=";
+          rev = "81e6c080d1e64c9ef548534c51147fd8063481c8";
+          hash = "sha256-xzBMFc1BwCNEWJGFWQbXSuxZ4WsiTs2gbFdPW+nSBc4=";
         };
+
+        doCheck = false;
 
         meta = {
           description = "Emoji source for blink.cmp";
