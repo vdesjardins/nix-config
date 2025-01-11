@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -19,6 +18,8 @@ in {
 
   config = mkIf cfg.enable {
     programs.zathura = {
+      inherit (cfg) enable;
+
       options = {
         inherit (cfg) font;
 
@@ -64,6 +65,12 @@ in {
         highlight-active-color = "#bb9af7";
 
         adjust-open = "width";
+      };
+    };
+
+    xdg.mimeApps = {
+      defaultApplications = {
+        "application/pdf" = "org.pwmt.zathura.desktop";
       };
     };
   };

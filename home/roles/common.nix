@@ -11,6 +11,7 @@ in {
   programs.home-manager.enable = true;
 
   xdg.enable = true;
+  xdg.mimeApps.enable = true;
 
   home.enableNixpkgsReleaseCheck = false;
 

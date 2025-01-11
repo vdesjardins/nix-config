@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -28,6 +27,17 @@ in {
           fullscreen = "true";
           overlay = "false";
         };
+      };
+    };
+
+    xdg.mimeApps = {
+      defaultApplications = {
+        "image/*" = "imv-dir.desktop";
+        "image/gif" = "imv-dir.desktop";
+        "image/jpeg" = "imv-dir.desktop";
+        "image/png" = "imv-dir.desktop";
+        "image/webp" = "imv-dir.desktop";
+        "image/svg" = "imv-dir.desktop";
       };
     };
   };
