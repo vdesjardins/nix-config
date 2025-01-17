@@ -15,7 +15,6 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      eza
       zsh-syntax-highlighting
       zsh-zhooks
     ];
@@ -81,8 +80,7 @@ in {
       initExtra = ''
         source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-        export ENHANCD_FILTER="fzf --preview 'eza -al --tree --level 1 --group-directories-first --git-ignore \
-          --header --git --no-user --no-time --no-filesize --no-permissions {}' \
+        export ENHANCD_FILTER="fzf --preview 'lsd --git -al --tree --depth=1 --group-directories-first --header --color=always --icon=always --blocks git,name {}' \
           --preview-window right,50% --height 35% --reverse --ansi"
 
         function take() {
