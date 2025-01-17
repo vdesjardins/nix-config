@@ -15,6 +15,8 @@ in {
     ../../shared.nix
     ../../tailscale.nix
     ../shared
+    ../shared/caddy.nix
+    ../shared/home-assistant.nix
     ../shared/omada-controller.nix
     ../users/admin.nix
   ];

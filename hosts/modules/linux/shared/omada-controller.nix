@@ -1,25 +1,5 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
-  services.tailscale.permitCertUid = "caddy";
-
+{lib, ...}: {
   services.caddy = {
-    enable = true;
-
-    email = "vdesjardins@gmail.com";
-
-    globalConfig =
-      # caddyfile
-      ''
-        servers {
-          protocols h1 h2 h3
-        }
-
-        grace_period 5s
-      '';
-
     virtualHosts.home-server = {
       hostName = "home-server.cerberus-pollux.ts.net";
 
@@ -82,5 +62,29 @@
         };
       };
     };
+  };
+
+  services.restic.backups.omada = {
+    initialize = true;
+    repository = "rclone:gdrive:/backups/omada";
+
+    user = "root";
+    paths = [
+      "/data/omada/data/autobackup"
+    ];
+
+    timerConfig = {
+      OnCalendar = "01:00";
+      RandomizedDelaySec = "1h";
+    };
+
+    passwordFile = "/etc/backups/omada/restic-password";
+    rcloneConfigFile = "/etc/backups/omada/rclone-config";
+
+    pruneOpts = [
+      "--keep-daily 3"
+      "--keep-weekly 3"
+      "--keep-monthly 3"
+    ];
   };
 }
