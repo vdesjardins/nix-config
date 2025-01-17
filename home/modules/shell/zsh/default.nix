@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
+      eza
       zsh-syntax-highlighting
       zsh-zhooks
     ];
@@ -66,8 +67,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "babarot";
             repo = "enhancd";
-            rev = "c6967f7f70f18991a5f9148996afffc0d3ae76e4";
-            sha256 = "sha256-p7ZG4NC9UWa55tPxYAaFocc0waIaTt+WO6MNearbO0U=";
+            rev = "8b1f00ef9f55f5820f789375db90f3774514f0cc";
+            sha256 = "sha256-WDBCUgeMx8P6mgvy4CxpIKZYym4vq+aKtG9GUiKxyFU=";
           };
         }
       ];
@@ -80,7 +81,9 @@ in {
       initExtra = ''
         source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-        export ENHANCD_FILTER=fzf
+        export ENHANCD_FILTER="fzf --preview 'eza -al --tree --level 1 --group-directories-first --git-ignore \
+          --header --git --no-user --no-time --no-filesize --no-permissions {}' \
+          --preview-window right,50% --height 35% --reverse --ansi"
 
         function take() {
           mkdir -p $1
