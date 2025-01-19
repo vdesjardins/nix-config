@@ -39,9 +39,11 @@
 
   services.restic.backups.home-assistant = {
     initialize = true;
-    repository = "rclone:gdrive:/backups/home-assistant";
+
+    repository = "s3:s3.ca-east-006.backblazeb2.com/kube-backups-home-server/backups/home-assistant";
 
     user = "root";
+
     paths = [
       "/data/home-assistant/config/backups"
     ];
@@ -51,8 +53,10 @@
       RandomizedDelaySec = "1h";
     };
 
-    passwordFile = "/etc/backups/home-assistant/restic-password";
-    rcloneConfigFile = "/etc/backups/home-assistant/rclone-config";
+    # HACK: abuse options to use passage instead of supplying a password file
+    passwordFile = "";
+
+    environmentFile = "/var/backups/home-assistant/env";
 
     pruneOpts = [
       "--keep-daily 3"
@@ -60,4 +64,19 @@
       "--keep-monthly 3"
     ];
   };
+
+  system.activationScripts.backups-home-server-home-assistant.text =
+    # bash
+    ''
+      mkdir -p /var/backups/home-assistant
+      chmod 700 /var/backups/home-assistant
+
+      cat << EOF > /var/backups/home-assistant/env
+      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage backups/home-server/home-assistant/b2.key-id)"
+      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage backups/home-server/home-assistant/b2.key)"
+      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage backups/home-server/home-assistant/restic)"
+      EOF
+    '';
+
+  environment.systemPackages = with pkgs; [git age passage];
 }

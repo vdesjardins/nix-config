@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   services.caddy = {
     virtualHosts.home-server = {
       hostName = "home-server.cerberus-pollux.ts.net";
@@ -66,9 +70,11 @@
 
   services.restic.backups.omada = {
     initialize = true;
-    repository = "rclone:gdrive:/backups/omada";
+
+    repository = "s3:s3.ca-east-006.backblazeb2.com/kube-backups-home-server/backups/omada";
 
     user = "root";
+
     paths = [
       "/data/omada/data/autobackup"
     ];
@@ -78,8 +84,10 @@
       RandomizedDelaySec = "1h";
     };
 
-    passwordFile = "/etc/backups/omada/restic-password";
-    rcloneConfigFile = "/etc/backups/omada/rclone-config";
+    # HACK: use passage instead of supplying a password file
+    passwordFile = "";
+
+    environmentFile = "/var/backups/omada/env";
 
     pruneOpts = [
       "--keep-daily 3"
@@ -87,4 +95,19 @@
       "--keep-monthly 3"
     ];
   };
+
+  system.activationScripts.backups-home-server-omada.text =
+    # bash
+    ''
+      mkdir -p /var/backups/omada
+      chmod 700 /var/backups/omada
+
+      cat << EOF > /var/backups/omada/env
+      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage backups/home-server/omada/b2.key-id)"
+      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage backups/home-server/omada/b2.key)"
+      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage backups/home-server/omada/restic)"
+      EOF
+    '';
+
+  environment.systemPackages = with pkgs; [git age passage];
 }
