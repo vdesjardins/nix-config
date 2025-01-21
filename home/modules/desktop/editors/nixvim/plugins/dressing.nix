@@ -4,7 +4,7 @@
 
     settings = {
       select = {
-        backend = ["fzf_lua" "telescope" "fzf" "builtin" "nui"];
+        backend = ["nui"];
       };
     };
   };
