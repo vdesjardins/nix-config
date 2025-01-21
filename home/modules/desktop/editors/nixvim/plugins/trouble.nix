@@ -1,8 +1,10 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins = {
       trouble = {
         enable = true;
+
+        package = pkgs.vimPlugins.trouble-nvim;
 
         settings = {
           modes = {
@@ -77,12 +79,12 @@
       }
       {
         key = "<leader>xf";
-        action = "<cmd>Trouble fzf<cr>";
+        action = "<cmd>Trouble snacks<cr>";
         options.desc = "Find Results (Trouble)";
       }
       {
         key = "<leader>xF";
-        action = "<cmd>Trouble fzf_files<cr>";
+        action = "<cmd>Trouble snacks_files<cr>";
         options.desc = "Find Results - Files (Trouble)";
       }
     ];
