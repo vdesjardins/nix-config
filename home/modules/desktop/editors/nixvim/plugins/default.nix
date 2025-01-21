@@ -8,7 +8,6 @@
 
     # moves
     ./telescope.nix
-    ./fzf-lua.nix
     ./flash.nix
     ./which-key.nix
     ./rsi.nix
