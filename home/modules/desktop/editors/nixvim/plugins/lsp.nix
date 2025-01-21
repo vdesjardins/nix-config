@@ -96,34 +96,90 @@
         action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
         options.desc = "Code Action";
       }
+
+      # lsp
       {
-        key = "<leader>lD";
-        action = "<cmd>lua vim.lsp.buf.declaration()<cr>";
-        options.desc = "Goto Declaration";
-      }
-      {
+        mode = "n";
         key = "<leader>ld";
-        action = "<cmd>lua vim.lsp.buf.definition()<cr>";
-        options.desc = "Goto Definition";
+        action.__raw = "Snacks.picker.lsp_definitions";
+        options.desc = "LSP Definitions (Snacks)";
       }
       {
+        mode = "n";
+        key = "<leader>lD";
+        action.__raw = "Snacks.picker.lsp_declarations";
+        options.desc = "LSP Declarations (Snacks)";
+      }
+      {
+        mode = "n";
         key = "<leader>li";
-        action = "<cmd>lua vim.lsp.buf.implementation()<cr>";
-        options.desc = "Goto Implementation";
+        action.__raw = "Snacks.picker.lsp_implementations";
+        options.desc = "LSP Implementations (Snacks)";
       }
       {
+        mode = "n";
         key = "<leader>lR";
-        action = "<cmd>lua vim.lsp.buf.references()<cr>";
-        options.desc = "Goto References";
+        action.__raw = "Snacks.picker.lsp_implementations";
+        options.desc = "LSP References (Snacks)";
       }
+      {
+        mode = "n";
+        key = "<leader>ls";
+        action.__raw = "Snacks.picker.lsp_symbols";
+        options.desc = "LSP Symbols (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "gd";
+        action.__raw = "Snacks.picker.lsp_definitions";
+        options.desc = "LSP Definitions (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "gD";
+        action.__raw = "Snacks.picker.lsp_declarations";
+        options.desc = "LSP Declarations (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "gi";
+        action.__raw = "Snacks.picker.lsp_implementations";
+        options.desc = "LSP Implementations (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "gr";
+        action.__raw = "Snacks.picker.lsp_implementations";
+        options.desc = "LSP References (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "gs";
+        action.__raw = "Snacks.picker.lsp_symbols";
+        options.desc = "LSP Symbols (Snacks)";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>lt";
+        action.__raw = "Snacks.picker.lsp_type_definitions";
+        options.desc = "LSP Type Definitions (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>fw";
+        action.__raw = "Snacks.picker.lsp_workspace_symbols";
+        options.desc = "LSP Workspace Symbols (Snacks)";
+      }
+
       {
         key = "<leader>lT";
-        action = "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>";
+        action.__raw = "function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end";
         options.desc = "Toggle Inlay Hints";
       }
       {
         key = "<leader>lr";
-        action = "<cmd>lua vim.lsp.buf.rename()<CR>";
+        action.__raw = "function() vim.lsp.buf.rename() end";
         options.desc = "Rename";
       }
       {
@@ -131,27 +187,6 @@
         action = ":<C-U>lua vim.lsp.buf.range_code_action()<CR>";
         options.desc = "Range Code Action";
         mode = "v";
-      }
-
-      {
-        key = "gD";
-        action = "<cmd>lua vim.lsp.buf.declaration()<CR>";
-        options.desc = "Goto Declaration";
-      }
-      {
-        key = "gd";
-        action = "<cmd>lua vim.lsp.buf.definition()<CR>";
-        options.desc = "Goto Definition";
-      }
-      {
-        key = "gi";
-        action = "<cmd>lua vim.lsp.buf.implementation()<CR>";
-        options.desc = "Goto Implementation";
-      }
-      {
-        key = "gr";
-        action = "<cmd>lua vim.lsp.buf.references()<CR>";
-        options.desc = "Goto References";
       }
 
       # jump

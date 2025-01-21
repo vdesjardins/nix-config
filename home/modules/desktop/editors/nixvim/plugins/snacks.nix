@@ -1,130 +1,146 @@
 {pkgs, ...}: {
   programs.nixvim = {
-    plugins.snacks = {
-      enable = true;
+    plugins = {
+      snacks = {
+        enable = true;
 
-      settings = {
-        bufdelete.enable = true;
-        bigfile.enable = true;
-        notifier.enable = true;
-        lazygit.enable = true;
-        gitbrowse.enable = true;
-        git.enable = true;
-        scratch.eanble = true;
-        debug.enable = true;
-        terminal.enable = true;
-        dashboard = {
-          enable = true;
-          preset = {
-            keys = [
+        package = pkgs.vimPlugins.snacks-nvim;
+
+        settings = {
+          bufdelete.enable = true;
+          bigfile.enable = true;
+          notifier.enable = true;
+          lazygit.enable = true;
+          gitbrowse.enable = true;
+          git.enable = true;
+          scratch.eanble = true;
+          debug.enable = true;
+          terminal.enable = true;
+          picker = {
+            enable = true;
+            layout = "vertical";
+          };
+          dashboard = {
+            enable = true;
+            preset = {
+              keys = [
+                {
+                  icon = " ";
+                  key = "f";
+                  desc = "Find File";
+                  action = ":lua Snacks.dashboard.pick('files')";
+                }
+                {
+                  icon = " ";
+                  key = "n";
+                  desc = "New File";
+                  action = ":ene | startinsert";
+                }
+                {
+                  icon = " ";
+                  key = "g";
+                  desc = "Find Text";
+                  action = ":lua Snacks.dashboard.pick('live_grep')";
+                }
+                {
+                  icon = " ";
+                  key = "r";
+                  desc = "Recent Files";
+                  action = ":lua Snacks.dashboard.pick('oldfiles')";
+                }
+                {
+                  icon = " ";
+                  key = "s";
+                  desc = "Restore Session";
+                  section = "session";
+                }
+                {
+                  icon = " ";
+                  key = "q";
+                  desc = "Quit";
+                  action = ":qa";
+                }
+              ];
+            };
+            sections = [
               {
-                icon = " ";
-                key = "f";
-                desc = "Find File";
-                action = ":lua Snacks.dashboard.pick('files')";
+                section = "header";
               }
               {
+                pane = 2;
+                section = "terminal";
+                cmd = "${pkgs.dwt1-shell-color-scripts}/bin/colorscript -e square";
+                height = 5;
+                padding = 1;
+              }
+              {
+                section = "keys";
+                gap = 1;
+                padding = 1;
+              }
+              {
+                pane = 2;
                 icon = " ";
-                key = "n";
-                desc = "New File";
-                action = ":ene | startinsert";
+                title = "Recent Files";
+                section = "recent_files";
+                indent = 2;
+                padding = 1;
               }
               {
-                icon = " ";
-                key = "g";
-                desc = "Find Text";
-                action = ":lua Snacks.dashboard.pick('live_grep')";
+                pane = 2;
+                icon = " ";
+                title = "Projects";
+                section = "projects";
+                indent = 2;
+                padding = 1;
               }
               {
-                icon = " ";
-                key = "r";
-                desc = "Recent Files";
-                action = ":lua Snacks.dashboard.pick('oldfiles')";
+                pane = 2;
+                icon = " ";
+                title = "Git Status";
+                section = "terminal";
+                enabled.__raw = ''
+                  function()
+                    local output = vim.fn.system("jj workspace root --ignore-working-copy")
+                    return (Snacks.git.get_root() ~= nil and vim.v.shell_error ~= 0)
+                  end
+                '';
+                cmd = "${pkgs.hub}/bin/hub status --short --branch --renames";
+                height = 10;
+                padding = 1;
+                ttl = 5 * 60;
+                indent = 3;
               }
               {
-                icon = " ";
-                key = "s";
-                desc = "Restore Session";
-                section = "session";
+                pane = 2;
+                icon = " ";
+                title = "Jujutsu Status";
+                section = "terminal";
+                enabled.__raw = ''
+                  function()
+                    local output = vim.fn.system("jj workspace root --ignore-working-copy")
+                    return (Snacks.git.get_root() ~= nil and vim.v.shell_error == 0)
+                  end
+                '';
+                cmd = "${pkgs.jujutsu}/bin/jj status --no-pager";
+                height = 10;
+                padding = 1;
+                ttl = 5 * 60;
+                indent = 3;
               }
               {
-                icon = " ";
-                key = "q";
-                desc = "Quit";
-                action = ":qa";
+                section = "startup";
+                enabled = false;
               }
             ];
           };
-          sections = [
-            {
-              section = "header";
-            }
-            {
-              pane = 2;
-              section = "terminal";
-              cmd = "${pkgs.dwt1-shell-color-scripts}/bin/colorscript -e square";
-              height = 5;
-              padding = 1;
-            }
-            {
-              section = "keys";
-              gap = 1;
-              padding = 1;
-            }
-            {
-              pane = 2;
-              icon = " ";
-              title = "Recent Files";
-              section = "recent_files";
-              indent = 2;
-              padding = 1;
-            }
-            {
-              pane = 2;
-              icon = " ";
-              title = "Projects";
-              section = "projects";
-              indent = 2;
-              padding = 1;
-            }
-            {
-              pane = 2;
-              icon = " ";
-              title = "Git Status";
-              section = "terminal";
-              enabled.__raw = ''
-                function()
-                  local output = vim.fn.system("jj workspace root --ignore-working-copy")
-                  return (Snacks.git.get_root() ~= nil and vim.v.shell_error ~= 0)
-                end
-              '';
-              cmd = "${pkgs.hub}/bin/hub status --short --branch --renames";
-              height = 10;
-              padding = 1;
-              ttl = 5 * 60;
-              indent = 3;
-            }
-            {
-              pane = 2;
-              icon = " ";
-              title = "Jujutsu Status";
-              section = "terminal";
-              enabled.__raw = ''
-                function()
-                  local output = vim.fn.system("jj workspace root --ignore-working-copy")
-                  return (Snacks.git.get_root() ~= nil and vim.v.shell_error == 0)
-                end
-              '';
-              cmd = "${pkgs.jujutsu}/bin/jj status --no-pager";
-              height = 10;
-              padding = 1;
-              ttl = 5 * 60;
-              indent = 3;
-            }
-            {
-              section = "startup";
-              enabled = false;
-            }
+        };
+      };
+
+      trim = {
+        settings = {
+          ft_blocklist = [
+            "snacks_dashboard"
           ];
         };
       };
@@ -170,6 +186,175 @@
         key = "<leader>BS";
         action.__raw = "Snacks.scratch.select";
         options.desc = "Select Scratch Buffer (Snacks)";
+      }
+
+      # picker
+      {
+        mode = "n";
+        key = "<leader>fp";
+        action.__raw = "Snacks.picker.projects";
+        options.desc = "Projects";
+      }
+      {
+        mode = "n";
+        key = "<leader>fm";
+        action.__raw = "Snacks.picker.marks";
+        options.desc = "Bookmarks";
+      }
+      {
+        mode = "n";
+        key = "<leader>ff";
+        action.__raw = "Snacks.picker.files";
+        options.desc = "Project's Files";
+      }
+      {
+        mode = "n";
+        key = "<leader>fF";
+        action.__raw = "function() Snacks.picker.files({cwd=vim.fn.expand('%:p:h')}) end";
+        options.desc = "Buffer's Directory Files";
+      }
+      {
+        mode = "n";
+        key = "<leader>fr";
+        action.__raw = "Snacks.picker.recent";
+        options.desc = "Recent Files";
+      }
+      {
+        mode = "n";
+        key = "<leader>fc";
+        action.__raw = "Snacks.picker.resume";
+        options.desc = "Resume Last Find";
+      }
+      {
+        mode = "n";
+        key = "<leader>fM";
+        action.__raw = "Snacks.picker.git_status";
+        options.desc = "Files Modified";
+      }
+      {
+        mode = "n";
+        key = "<leader>fH";
+        action.__raw = "Snacks.picker.help";
+        options.desc = "Help";
+      }
+      {
+        mode = "n";
+        key = "<leader>fs";
+        action.__raw = "Snacks.picker.grep";
+        options.desc = "String in Project";
+      }
+      # {
+      #   mode = "n";
+      #   key = "<leader>fg";
+      #   action.__raw = "function() Snacks.picker.grep({glob=})";
+      #   options.desc = "String and Glob in Project";
+      # }
+      {
+        mode = "n";
+        key = "<leader>fS";
+        action.__raw = "function() Snacks.picker.grep({cwd=vim.fn.expand('%:~:.:h')}) end";
+        options.desc = "String in Buffer's Directory";
+      }
+      {
+        mode = "n";
+        key = "<leader>fB";
+        action.__raw = "Snacks.picker.pickers";
+        options.desc = "Pickers";
+      }
+      {
+        mode = "n";
+        key = "<leader>fb";
+        action.__raw = "Snacks.picker.buffers";
+        options.desc = "Buffers";
+      }
+      {
+        mode = "n";
+        key = "<leader>f:";
+        action.__raw = "Snacks.picker.commands";
+        options.desc = "Commands (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>fq";
+        action.__raw = "Snacks.picker.command_history";
+        options.desc = "Commands History (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>fk";
+        action.__raw = "Snacks.picker.keymaps";
+        options.desc = "Keymaps (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>fy";
+        action.__raw = "Snacks.picker.cliphist";
+        options.desc = "Clipboard History (Snacks)";
+      }
+
+      # git
+      {
+        mode = "n";
+        key = "<leader>sC";
+        action.__raw = "Snacks.picker.git_log_file";
+        options.desc = "Buffer's Git Commits (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>sl";
+        action.__raw = "Snacks.picker.git_log_line";
+        options.desc = "Line's Git Commits (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>sS";
+        action.__raw = "Snacks.picker.git_status";
+        options.desc = "Git Status (Snacks)";
+      }
+
+      # make targets
+      {
+        mode = "n";
+        key = "<leader><space>m";
+        action.__raw = ''
+          function()
+            M = {}
+            function M.finder(opts)
+              return require("snacks.picker.source.proc").proc(vim.tbl_deep_extend("force", {
+                cmd = "sed",
+                args = { "-n", "s/^##//p", "Makefile" },
+                ---@param item snacks.picker.finder.Item
+                transform = function(item)
+                  local target, desc = item.text:match("^%s*(%S+):%s+(.+)$")
+                  if target and desc then
+                    item.target = target
+                    item.desc = desc
+                  else
+                    return false
+                  end
+                end,
+              }, opts or {}))
+            end
+
+            function M.format(item, picker)
+              local ret = {} ---@type snacks.picker.Highlight[]
+              ret[#ret + 1] = { Snacks.picker.util.align(tostring(item.target), 20), "SnacksPickerBufNr" }
+              ret[#ret + 1] = { " " }
+              ret[#ret + 1] = { item.desc }
+              return ret
+            end
+
+            require("snacks.picker").pick({
+              layout = "select",
+              finder = M.finder,
+              format = M.format,
+              confirm = function(picker, item)
+                Snacks.terminal("make " .. item.target)
+              end,
+            })
+          end
+        '';
+        options.desc = "Make Targets";
       }
     ];
   };

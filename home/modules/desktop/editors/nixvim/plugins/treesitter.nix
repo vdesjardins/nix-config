@@ -128,14 +128,5 @@
         };
       };
     };
-
-    keymaps = [
-      {
-        mode = "n";
-        key = "<leader>ft";
-        action = "<cmd>FzfLua treesitter<cr>";
-        options.desc = "Treesitter";
-      }
-    ];
   };
 }

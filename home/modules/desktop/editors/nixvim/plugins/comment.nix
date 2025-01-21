@@ -38,7 +38,7 @@
       {
         mode = "n";
         key = "<leader>Ts";
-        action = "<cmd>TodoFzfLua<cr>";
+        action.__raw = "function() Snacks.picker.todo_comments() end";
         options.desc = "Search";
       }
     ];

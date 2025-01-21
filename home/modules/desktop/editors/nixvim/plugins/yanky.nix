@@ -1,14 +1,5 @@
 {
   programs.nixvim = {
-    keymaps = [
-      {
-        mode = "n";
-        key = "<leader>fy";
-        action = "<cmd>YankyRingHistory<cr>";
-        options.desc = "Yank History";
-      }
-    ];
-
     plugins = {
       yanky = {
         enable = true;

@@ -37,7 +37,6 @@
 
       trim = {
         settings = {
-          highlight = true;
           ft_blocklist = [
             "trouble"
           ];

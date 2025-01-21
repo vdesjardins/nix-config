@@ -13,7 +13,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>lt";
+        key = "<leader>lj";
         action = "<cmd>TSJToggle<cr>";
         options.desc = "Toggle Split/Join (treesj)";
       }
