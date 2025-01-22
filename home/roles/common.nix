@@ -15,7 +15,7 @@ in {
 
   home.enableNixpkgsReleaseCheck = false;
 
-  # font
+  # fonts and colors
   modules = {
     desktop = {
       terminal = {
@@ -35,6 +35,15 @@ in {
         imv.font = "${font}:12";
       };
 
+      editors.nixvim = {
+        colorschemes.tokyonight = {
+          enable = true;
+          settings = {
+            style = "night";
+          };
+        };
+      };
+
       extensions = {
         dconf = {
           font = font;
@@ -43,7 +52,29 @@ in {
           icon-theme = "Papirus-Dark";
         };
         rofi.font = "${font} 12";
-        dunst.font = font;
+        dunst = {
+          font = font;
+          settings = {
+            # from https://github.com/folke/tokyonight.nvim/blob/main/extras/dunst/tokyonight_night.dunstrc
+            urgency_low = {
+              background = "#16161e";
+              foreground = "#c0caf5";
+              frame_color = "#c0caf5";
+            };
+
+            urgency_normal = {
+              background = "#1a1b26";
+              foreground = "#c0caf5";
+              frame_color = "#c0caf5";
+            };
+
+            urgency_critical = {
+              background = "#292e42";
+              foreground = "#db4b4b";
+              frame_color = "#db4b4b";
+            };
+          };
+        };
         swaylock.font = font;
         i3status-rust.font = font;
         waybar.font = font;
@@ -59,6 +90,23 @@ in {
       btop.color-scheme = "tokio-night";
       fzf.color-scheme = "${pkgs.tinted-fzf}/share/tinted-fzf/bash/base16-tokyo-night-dark.config";
       bat.color-scheme = "${pkgs.colorscheme-tokyonight}/share/themes/tokyonight/extras/sublime/tokyonight_night.tmTheme";
+      git = {
+        delta = {
+          # [theme] tokyonight-night
+          # from https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_night.gitconfig
+          minus-style = "syntax #37222c";
+          minus-non-emph-style = "syntax #37222c";
+          minus-emph-style = "syntax #713137";
+          minus-empty-line-marker-style = "syntax #37222c";
+          line-numbers-minus-style = "#914c54";
+          plus-style = "syntax #20303b";
+          plus-non-emph-style = "syntax #20303b";
+          plus-emph-style = "syntax #2c5a66";
+          plus-empty-line-marker-style = "syntax #20303b";
+          line-numbers-plus-style = "#449dab";
+          line-numbers-zero-style = "#3b4261";
+        };
+      };
     };
   };
 

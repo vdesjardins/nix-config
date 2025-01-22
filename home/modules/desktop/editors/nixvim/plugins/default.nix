@@ -51,7 +51,7 @@
 
     # lsp
     # ./cmp.nix
-    ./blink-cmp.nix # TODO:not yet
+    ./blink-cmp.nix
     ./lsp.nix
     ./lsp-signature.nix
     ./none-ls.nix
@@ -86,13 +86,6 @@
   ];
 
   programs.nixvim = {
-    colorschemes.tokyonight = {
-      enable = true;
-      settings = {
-        style = "night";
-      };
-    };
-
     plugins = {
       web-devicons.enable = true;
 

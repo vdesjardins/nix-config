@@ -5,12 +5,17 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) str attrsOf;
 
   cfg = config.modules.shell.tools.git;
 in {
   options.modules.shell.tools.git = {
     enable = mkEnableOption "git scm";
+
+    delta = mkOption {
+      type = attrsOf str;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -44,29 +49,17 @@ in {
 
         delta = {
           enable = true;
-          options = {
-            decorations = {
-              commit-decoration-style = "bold yellow box ul";
-              file-decoration-style = "none";
-              file-style = "bold yellow ul";
-            };
-            features = "line-numbers decorations diff-so-fancy";
-            whitespace-error-style = "22 reverse";
-
-            # [theme] tokyonight-night
-            # from https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_night.gitconfig
-            minus-style = "syntax #37222c";
-            minus-non-emph-style = "syntax #37222c";
-            minus-emph-style = "syntax #713137";
-            minus-empty-line-marker-style = "syntax #37222c";
-            line-numbers-minus-style = "#914c54";
-            plus-style = "syntax #20303b";
-            plus-non-emph-style = "syntax #20303b";
-            plus-emph-style = "syntax #2c5a66";
-            plus-empty-line-marker-style = "syntax #20303b";
-            line-numbers-plus-style = "#449dab";
-            line-numbers-zero-style = "#3b4261";
-          };
+          options =
+            {
+              decorations = {
+                commit-decoration-style = "bold yellow box ul";
+                file-decoration-style = "none";
+                file-style = "bold yellow ul";
+              };
+              features = "line-numbers decorations diff-so-fancy";
+              whitespace-error-style = "22 reverse";
+            }
+            // cfg.delta;
         };
 
         ignores = [".DS_Store"];

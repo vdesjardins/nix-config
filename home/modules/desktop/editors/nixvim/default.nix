@@ -5,12 +5,17 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) attrs;
 
   cfg = config.modules.desktop.editors.nixvim;
 in {
   options.modules.desktop.editors.nixvim = {
     enable = mkEnableOption "neovim editor";
+
+    colorschemes = mkOption {
+      type = attrs;
+    };
   };
 
   imports = [
@@ -24,6 +29,8 @@ in {
 
     programs.nixvim = {
       enable = true;
+
+      inherit (cfg) colorschemes;
 
       package = pkgs.neovim;
 
