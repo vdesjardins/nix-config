@@ -76,6 +76,12 @@ in {
       copy-on-select = clipboard
       focus-follows-mouse = true
 
+      quick-terminal-position = bottom
+      quick-terminal-autohide = true
+      keybind = global:cmd+/=toggle_quick_terminal
+
+      macos-option-as-alt = true
+
       # splits
       keybind = ctrl+space>v=new_split:right
       keybind = ctrl+space>s=new_split:down
