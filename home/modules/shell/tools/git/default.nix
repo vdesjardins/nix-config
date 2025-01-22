@@ -53,18 +53,18 @@ in {
             features = "line-numbers decorations diff-so-fancy";
             whitespace-error-style = "22 reverse";
 
-            # [theme] tokyonight-storm
-            # from https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_storm.gitconfig
-            minus-style = "syntax #3f2d3d";
-            minus-non-emph-style = "syntax #3f2d3d";
-            minus-emph-style = "syntax #763842";
-            minus-empty-line-marker-style = "syntax #3f2d3d";
-            line-numbers-minus-style = "#b2555b";
-            plus-style = "syntax #283b4d";
-            plus-non-emph-style = "syntax #283b4d";
-            plus-emph-style = "syntax #316172";
-            plus-empty-line-marker-style = "syntax #283b4d";
-            line-numbers-plus-style = "#266d6a";
+            # [theme] tokyonight-night
+            # from https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_night.gitconfig
+            minus-style = "syntax #37222c";
+            minus-non-emph-style = "syntax #37222c";
+            minus-emph-style = "syntax #713137";
+            minus-empty-line-marker-style = "syntax #37222c";
+            line-numbers-minus-style = "#914c54";
+            plus-style = "syntax #20303b";
+            plus-non-emph-style = "syntax #20303b";
+            plus-emph-style = "syntax #2c5a66";
+            plus-empty-line-marker-style = "syntax #20303b";
+            line-numbers-plus-style = "#449dab";
             line-numbers-zero-style = "#3b4261";
           };
         };

@@ -5,7 +5,6 @@
 }: {
   programs = {
     broot.enable = true;
-    fzf.enable = true;
     zoxide.enable = true;
   };
 
@@ -33,6 +32,7 @@
       starship.enable = true;
       timewarrior.enable = true;
       yazi.enable = true;
+      fzf.enable = true;
     };
   };
 

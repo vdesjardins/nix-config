@@ -5,12 +5,16 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) str;
 
   cfg = config.modules.shell.tools.bat;
 in {
   options.modules.shell.tools.bat = {
     enable = mkEnableOption "bat pager";
+    color-scheme = mkOption {
+      type = str;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,19 +25,13 @@ in {
 
       config = {
         # [theme]
-        theme = "tokyonight";
+        theme = "custom";
         paging = "never";
       };
 
       themes = {
-        tokyonight = {
-          src = pkgs.fetchFromGitHub {
-            owner = "folke";
-            repo = "tokyonight.nvim"; # Bat uses sublime syntax for its themes
-            rev = "f247ee700b569ed43f39320413a13ba9b0aef0db";
-            sha256 = "sha256-axjZVZOI+WIv85FfMG+lxftDKlDIw/HzQKyJVFkL33M=";
-          };
-          file = "extras/sublime/tokyonight_storm.tmTheme";
+        custom = {
+          src = cfg.color-scheme;
         };
       };
     };

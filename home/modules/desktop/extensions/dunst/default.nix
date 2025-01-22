@@ -124,26 +124,23 @@ in {
           per_monitor_dpi = "false";
         };
 
-        # from https://github.com/folke/tokyonight.nvim/blob/main/extras/dunst/tokyonight_storm.dunstrc
+        # from https://github.com/folke/tokyonight.nvim/blob/main/extras/dunst/tokyonight_night.dunstrc
         urgency_low = {
-          background = "#1f2335";
+          background = "#16161e";
           foreground = "#c0caf5";
           frame_color = "#c0caf5";
-          timeout = 10;
         };
 
         urgency_normal = {
-          background = "#24283b";
+          background = "#1a1b26";
           foreground = "#c0caf5";
           frame_color = "#c0caf5";
-          timeout = 10;
         };
 
         urgency_critical = {
           background = "#292e42";
           foreground = "#db4b4b";
           frame_color = "#db4b4b";
-          timeout = 0;
         };
       };
     };

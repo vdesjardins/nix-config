@@ -19,10 +19,14 @@ in {
   modules = {
     desktop = {
       terminal = {
-        wezterm.font = font;
         alacritty.font = font;
+        wezterm = {
+          font = font;
+          color-scheme = "tokyonight_night";
+        };
         ghostty = {
           inherit font font-italic font-bold font-bold-italic;
+          theme = "tokyonight_night";
         };
       };
 
@@ -34,7 +38,7 @@ in {
       extensions = {
         dconf = {
           font = font;
-          gtk-theme = "Tokyonight-Storm-B";
+          gtk-theme = "Tokyonight-Night-B";
           color-scheme = "prefer-dark";
           icon-theme = "Papirus-Dark";
         };
@@ -52,13 +56,15 @@ in {
     };
 
     shell.tools = {
-      btop.color-theme = "tokio-storm";
+      btop.color-scheme = "tokio-night";
+      fzf.color-scheme = "${pkgs.tinted-fzf}/share/tinted-fzf/bash/base16-tokyo-night-dark.config";
+      bat.color-scheme = "${pkgs.colorscheme-tokyonight}/share/themes/tokyonight/extras/sublime/tokyonight_night.tmTheme";
     };
   };
 
   gtk = {
     theme = {
-      name = "Tokyonight-Storm-B";
+      name = "Tokyonight-Night-B";
       package = pkgs.tokyonight-gtk-theme;
     };
   };

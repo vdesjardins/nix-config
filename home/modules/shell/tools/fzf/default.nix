@@ -3,12 +3,26 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
-  config = mkIf config.programs.fzf.enable {
+}: let
+  inherit (lib) mkIf;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) str;
+
+  cfg = config.modules.shell.tools.fzf;
+in {
+  options.modules.shell.tools.fzf = {
+    enable = mkEnableOption "fzf";
+    color-scheme = mkOption {
+      type = str;
+    };
+  };
+
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [fd bat];
 
     programs.fzf = {
+      enable = true;
+
       defaultCommand = "fd --type f";
       defaultOptions = ["--height 40%" "--border"];
       fileWidgetCommand = "fd --type f";
@@ -56,8 +70,6 @@ with lib; {
       '';
     };
 
-    xdg.configFile."zsh/fzf-colors.zsh".source =
-      mkIf config.programs.zsh.enable
-      "${pkgs.tinted-fzf}/share/tinted-fzf/bash/base16-tokyo-night-storm.config";
+    xdg.configFile."zsh/fzf-colors.zsh".source = cfg.color-scheme;
   };
 }

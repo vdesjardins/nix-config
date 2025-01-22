@@ -12,7 +12,7 @@ in {
   options.modules.shell.tools.btop = {
     enable = mkEnableOption "btop";
 
-    color-theme = mkOption {
+    color-scheme = mkOption {
       type = str;
     };
   };
@@ -21,7 +21,7 @@ in {
     programs.btop = {
       enable = true;
       settings = {
-        color_theme = cfg.color-theme;
+        color_theme = cfg.color-scheme;
         vim_keys = true;
       };
     };

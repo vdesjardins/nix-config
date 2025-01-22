@@ -2,7 +2,7 @@
   pkgs,
   key_leader ? "-",
   mods_leader ? "CTRL",
-  color_scheme ? "tokyonight_storm",
+  color-scheme,
   font,
 }:
 with pkgs; let
@@ -31,7 +31,7 @@ in
       key_leader = "${key_leader}",
       mods_leader = "${mods_leader}",
       font = "${font}",
-      color_scheme = "${color_scheme}",
+      color_scheme = "${color-scheme}",
     }
 
     local config = {

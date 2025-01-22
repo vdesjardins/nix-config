@@ -25,6 +25,9 @@ in {
     font-bold-italic = mkOption {
       type = str;
     };
+    theme = mkOption {
+      type = str;
+    };
     useTmux = mkOption {
       type = bool;
       default = false;
@@ -61,7 +64,7 @@ in {
       font-feature = dlig
       font-feature = liga
 
-      theme = "tokyonight-storm"
+      theme = "${cfg.theme}"
 
       gtk-adwaita = true
       bold-is-bright = true
