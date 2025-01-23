@@ -41,6 +41,7 @@
     ./snacks.nix
     ./mini.nix
     ./barbecue.nix
+    ./oil.nix
 
     # snippets
     ./luasnip.nix
