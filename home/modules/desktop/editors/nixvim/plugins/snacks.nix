@@ -20,6 +20,7 @@
             enable = true;
             layout = "vertical";
           };
+          input.enable = true;
           dashboard = {
             enable = true;
             preset = {
@@ -193,55 +194,55 @@
         mode = "n";
         key = "<leader>fp";
         action.__raw = "Snacks.picker.projects";
-        options.desc = "Projects";
+        options.desc = "Projects (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fm";
         action.__raw = "Snacks.picker.marks";
-        options.desc = "Bookmarks";
+        options.desc = "Bookmarks (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>ff";
         action.__raw = "Snacks.picker.files";
-        options.desc = "Project's Files";
+        options.desc = "Project's Files (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fF";
         action.__raw = "function() Snacks.picker.files({cwd=vim.fn.expand('%:p:h')}) end";
-        options.desc = "Buffer's Directory Files";
+        options.desc = "Buffer's Directory Files (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fr";
         action.__raw = "Snacks.picker.recent";
-        options.desc = "Recent Files";
+        options.desc = "Recent Files (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fc";
         action.__raw = "Snacks.picker.resume";
-        options.desc = "Resume Last Find";
+        options.desc = "Resume Last Find (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fM";
         action.__raw = "Snacks.picker.git_status";
-        options.desc = "Files Modified";
+        options.desc = "Files Modified (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fH";
         action.__raw = "Snacks.picker.help";
-        options.desc = "Help";
+        options.desc = "Help (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fs";
         action.__raw = "Snacks.picker.grep";
-        options.desc = "String in Project";
+        options.desc = "String in Project (Snacks)";
       }
       # {
       #   mode = "n";
@@ -253,19 +254,31 @@
         mode = "n";
         key = "<leader>fS";
         action.__raw = "function() Snacks.picker.grep({cwd=vim.fn.expand('%:~:.:h')}) end";
-        options.desc = "String in Buffer's Directory";
+        options.desc = "String in Buffer's Directory (Snacks)";
+      }
+      {
+        mode = ["n" "x"];
+        key = "<leader>fw";
+        action.__raw = "function() Snacks.picker.grep_word() end";
+        options.desc = "Visual selection or Word in Project's Files (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>f/";
+        action.__raw = "function() Snacks.picker.smart() end";
+        options.desc = "Smart Search in Project's Files (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fB";
         action.__raw = "Snacks.picker.pickers";
-        options.desc = "Pickers";
+        options.desc = "Pickers (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>fb";
         action.__raw = "Snacks.picker.buffers";
-        options.desc = "Buffers";
+        options.desc = "Buffers (Snacks)";
       }
       {
         mode = "n";
@@ -354,7 +367,7 @@
             })
           end
         '';
-        options.desc = "Make Targets";
+        options.desc = "Make Targets (Snacks)";
       }
     ];
   };
