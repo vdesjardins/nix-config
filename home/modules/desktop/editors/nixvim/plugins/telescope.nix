@@ -74,18 +74,6 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>bb";
-        action = "<cmd>Telescope file_browser theme=dropdown path=%:p:h |select_buffer=true| hidden=true<CR>";
-        options.desc = "Buffer's Directory Files";
-      }
-      {
-        mode = "n";
-        key = "<leader>bp";
-        action = "<cmd>Telescope file_browser theme=dropdown hidden=true<cr>";
-        options.desc = "Project's Files";
-      }
-      {
-        mode = "n";
         key = "<leader>fn";
         action = "<cmd>Telescope manix<cr>";
         options = {
