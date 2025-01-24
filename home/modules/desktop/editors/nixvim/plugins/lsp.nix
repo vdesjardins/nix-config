@@ -167,7 +167,7 @@
       }
       {
         mode = "n";
-        key = "<leader>fw";
+        key = "<leader>lw";
         action.__raw = "Snacks.picker.lsp_workspace_symbols";
         options.desc = "LSP Workspace Symbols (Snacks)";
       }
