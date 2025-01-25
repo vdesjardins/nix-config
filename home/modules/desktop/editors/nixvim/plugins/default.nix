@@ -41,6 +41,7 @@
     ./mini.nix
     ./dropbar.nix
     ./oil.nix
+    ./helpview.nix
 
     # snippets
     ./luasnip.nix
