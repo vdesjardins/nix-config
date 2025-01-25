@@ -110,9 +110,6 @@
 
       blink-compat = {
         enable = true;
-        settings = {
-          debug = true;
-        };
       };
 
       blink-cmp-copilot = {
