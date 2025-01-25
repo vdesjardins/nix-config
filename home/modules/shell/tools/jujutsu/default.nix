@@ -82,8 +82,8 @@ in {
             sh = ["show"];
             s = ["squash"];
             si = ["squash"];
-            lg = ["log" "all()"];
-            lm = ["log" "mine()"];
+            lg = ["log" "-r" "all()"];
+            lm = ["log" "-r" "user()"];
           };
         };
       };
@@ -111,7 +111,8 @@ in {
         jmp = "jj describe @- -m";
         jsh = "jj show";
         js = "jj squash";
-        jsi = "jj squash";
+        jsi = "jj squash -i";
+        jst = "jj status";
       };
     };
   };
