@@ -39,7 +39,7 @@
     ./diagnostic.nix
     ./snacks.nix
     ./mini.nix
-    ./barbecue.nix
+    ./dropbar.nix
     ./oil.nix
 
     # snippets
