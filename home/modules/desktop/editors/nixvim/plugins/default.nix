@@ -7,7 +7,6 @@
     ./auto-session.nix
 
     # moves
-    ./telescope.nix
     ./flash.nix
     ./which-key.nix
     ./rsi.nix
@@ -111,7 +110,6 @@
             "checkhealth"
             "floaterm"
             "lspinfo"
-            "TelescopePrompt"
           ];
         };
       };

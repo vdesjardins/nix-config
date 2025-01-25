@@ -25,10 +25,6 @@
       };
     };
 
-    extraConfigLua = ''
-      require("telescope").load_extension("noice")
-    '';
-
     keymaps = [
       {
         mode = ["n" "i" "s"];
