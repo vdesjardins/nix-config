@@ -53,6 +53,9 @@
           suggestion = "<leader>cs";
           repomap = "<leader>cR";
         };
+        files = {
+          add_current = "<leader>cc";
+        };
       };
     };
   };
