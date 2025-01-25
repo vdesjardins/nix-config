@@ -16,7 +16,8 @@
         ollama = {
           api_key_name = "";
           endpoint = "http://localhost:11434/v1";
-          model = "ajindal/llama3.1-storm:8b";
+          model = "hf.co/unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF";
+          temperature = "0.6";
           parse_curl_args.__raw = ''
             function(opts, code_opts)
               return {
