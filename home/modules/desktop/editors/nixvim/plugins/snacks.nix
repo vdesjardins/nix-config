@@ -264,6 +264,12 @@
       }
       {
         mode = "n";
+        key = "<leader>f?";
+        action.__raw = "Snacks.picker.search_history";
+        options.desc = "Search History (Snacks)";
+      }
+      {
+        mode = "n";
         key = "<leader>f/";
         action.__raw = "function() Snacks.picker.smart() end";
         options.desc = "Smart Search in Project's Files (Snacks)";
