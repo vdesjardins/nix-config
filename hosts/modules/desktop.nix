@@ -3,6 +3,10 @@
   fonts = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.monaspace
+    nerd-fonts.fira-code
+    fira-code
+    maple-mono-NF
+    maple-mono
     noto-fonts
     noto-fonts-emoji
   ];

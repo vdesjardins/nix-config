@@ -1,8 +1,8 @@
 {pkgs, ...}: let
-  font = "MonaspiceRn NF";
-  font-italic = "MonaspiceRn NF Italic";
-  font-bold = "MonaspiceRn NF Bold";
-  font-bold-italic = "MonaspiceRn NF Bold Italic";
+  font = "Fira Code";
+  font-italic = "Maple Mono Italic";
+  font-bold = "Fira Code Bold";
+  font-bold-italic = "Maple Mono Bold Italic";
 in {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -21,7 +21,8 @@ in {
       terminal = {
         alacritty.font = font;
         wezterm = {
-          font = font;
+          font = "Fira Code";
+          font-italic = "Maple Mono";
           color-scheme = "tokyonight_night";
         };
         ghostty = {

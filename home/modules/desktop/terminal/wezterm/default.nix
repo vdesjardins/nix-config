@@ -16,6 +16,10 @@ in {
       type = str;
     };
 
+    font-italic = mkOption {
+      type = str;
+    };
+
     useTmux = mkOption {
       type = bool;
       default = false;
@@ -46,7 +50,7 @@ in {
           else ./wezterm.nix
         ) {
           inherit pkgs;
-          inherit (cfg) font color-scheme;
+          inherit (cfg) font font-italic color-scheme;
         };
     };
 

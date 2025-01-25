@@ -4,6 +4,7 @@
   mods_leader ? "CTRL",
   color-scheme,
   font,
+  font-italic,
 }:
 with pkgs; let
   os =
@@ -30,8 +31,11 @@ in
     local globals = {
       key_leader = "${key_leader}",
       mods_leader = "${mods_leader}",
-      font = "${font}",
+
       color_scheme = "${color-scheme}",
+
+      font = "${font}",
+      font_italic = "${font-italic}",
     }
 
     local config = {

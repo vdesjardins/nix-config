@@ -1,6 +1,7 @@
 {
   pkgs,
   font,
+  font-italic,
   color-scheme,
 }:
 # lua
@@ -29,8 +30,12 @@
 
   local config = {
       check_for_updates = false,
-      font = "${font}",
       color_scheme = "${color-scheme}",
+      bold_brightens_ansi_colors = true,
+
+      font = "${font}",
+      font_italic = "${font-italic}",
+
       tab_bar_at_bottom = true,
       inactive_pane_hsb = { hue = 1.0, saturation = 0.5, brightness = 1.0 },
       exit_behavior = "Close",
