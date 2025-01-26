@@ -2,15 +2,15 @@ _inputs: _final: prev: {
   vimPlugins =
     prev.vimPlugins
     // {
-      markview-nvim = prev.vimUtils.buildVimPlugin {
+      markview-nvim = prev.vimUtils.buildVimPlugin rec {
         pname = "markview.nvim";
-        version = "2025-01-25";
+        version = "25.0.3";
 
         src = prev.fetchFromGitHub {
           owner = "OXY2DEV";
           repo = "markview.nvim";
-          rev = "19ad95013815c640a33935d586b8b015d1037d66";
-          sha256 = "sha256-MYKOBkaRP5J9C168xkM+mKECodil5eV3VvYqtjQCBxw=";
+          rev = "v${version}";
+          sha256 = "sha256-PJp/SjK4K6mPp/j4TwTlCt3HcnjxE6WzyDaiAPCRfl8=";
           fetchSubmodules = true;
         };
 
