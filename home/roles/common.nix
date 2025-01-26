@@ -77,12 +77,10 @@ in {
           };
         };
         swaylock.font = font;
-        i3status-rust.font = font;
         waybar.font = font;
       };
 
       window-managers = {
-        i3.font = font;
         sway.font = font;
       };
     };
