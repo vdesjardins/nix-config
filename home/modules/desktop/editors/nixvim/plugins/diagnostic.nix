@@ -25,7 +25,7 @@
         mode = "n";
         key = "<leader>xd";
         action.__raw = "Snacks.picker.diagnostics";
-        options.desc = "Diagnostics in Project(Snacks)";
+        options.desc = "Diagnostics in Project (Snacks)";
       }
       {
         mode = "n";
