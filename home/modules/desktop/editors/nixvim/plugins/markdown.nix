@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   # TODO: see if those are still needed
   # glow
   # markdown-preview
@@ -8,6 +8,7 @@
     plugins = {
       markview = {
         enable = true;
+        package = pkgs.vimPlugins.markview-nvim;
       };
     };
 
