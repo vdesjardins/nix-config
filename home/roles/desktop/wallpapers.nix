@@ -1,13 +1,5 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.file = {
-    "Pictures/Wallpapers/wallhaven-wq1wlr.png".source = pkgs.fetchurl {
-      url = "https://w.wallhaven.cc/full/wq/wallhaven-wq1wlr.jpg";
-      hash = "sha256-FcBT/iyL9erjyk+iZ6b1OLJ+lB7N5IUVXWdMxmmUnDk=";
-    };
     "Pictures/Wallpapers/wallhaven-8586my.png".source = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/85/wallhaven-8586my.png";
       hash = "sha256-dDYu/P82yhc5OISu2hf5EOG//YPaX5JvALOz6zAddKM=";
@@ -51,6 +43,22 @@
     "Pictures/Wallpapers/wallhaven-9d5x5k.png".source = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/9d/wallhaven-9d5x5k.png";
       hash = "sha256-/xDwuUbad2gU1wGAWrgLJGXx1enU5zLUBHxHEUuQj/U=";
+    };
+    "Pictures/Wallpapers/wallhaven-m3exz9.jpg".source = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/m3/wallhaven-m3exz9.jpg";
+      hash = "sha256-ZsW6FzEuoWplO3NmF17QjIB6j5hF72Q6TVZDpbj6gVw=";
+    };
+    "Pictures/Wallpapers/wallhaven-md9v29.jpg".source = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/md/wallhaven-md9v29.jpg";
+      hash = "sha256-QAN1tQvWJSOs/JtXorBiUee4IiUoLKfUJf0dJJKUBJE=";
+    };
+    "Pictures/Wallpapers/wallhaven-qz691r.jpg".source = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/qz/wallhaven-qz691r.jpg";
+      hash = "sha256-AKJKMSu0uHNJBn+K1iqgX6SgR1xiozFu++UIdydswrA=";
+    };
+    "Pictures/Wallpapers/wallhaven-o5oq77.jpg".source = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/o5/wallhaven-o5oq77.jpg";
+      hash = "sha256-MKcgbPB8V97zbc9faDv5XygA30aiGx4ad0B73sDkSx4=";
     };
   };
 }
