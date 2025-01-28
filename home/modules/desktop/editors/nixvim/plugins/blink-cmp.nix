@@ -52,12 +52,13 @@
                 async = true;
                 name = "cmp_yanky";
                 module = "blink.compat.source";
+                score_offset = -5;
               };
 
               emoji = {
                 module = "blink-emoji";
                 name = "Emoji";
-                score_offset = 15;
+                score_offset = -10;
                 opts = {insert = true;};
               };
 
