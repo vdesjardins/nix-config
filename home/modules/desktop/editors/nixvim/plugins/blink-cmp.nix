@@ -33,13 +33,19 @@
               "copilot"
               "emoji"
               "lazydev"
+              "codecompanion"
             ];
 
             providers = {
               copilot = {
-                async = true;
-                module = "blink-cmp-copilot";
                 name = "copilot";
+                async = true;
+                module = "blink-copilot";
+                score_offset = 15;
+                opts = {
+                  max_completions = 2;
+                  max_attemps = 3;
+                };
               };
 
               cmp_yanky = {
@@ -51,7 +57,13 @@
               emoji = {
                 module = "blink-emoji";
                 name = "Emoji";
-                score_offset = -30;
+                score_offset = 15;
+                opts = {insert = true;};
+              };
+
+              codecompanion = {
+                name = "CodeCompanion";
+                module = "codecompanion.providers.completion.blink";
               };
             };
           };
@@ -110,10 +122,6 @@
       };
 
       blink-compat = {
-        enable = true;
-      };
-
-      blink-cmp-copilot = {
         enable = true;
       };
     };

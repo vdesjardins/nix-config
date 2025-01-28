@@ -80,9 +80,9 @@
     ./terminal.nix
 
     # AI
+    ./copilot.nix
     ./avante.nix
     ./codecompanion.nix
-    ./copilot.nix
 
     # vim-clue
   ];
