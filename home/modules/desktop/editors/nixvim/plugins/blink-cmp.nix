@@ -10,10 +10,6 @@
             ignore_version_mismatch = true;
           };
 
-          appearance = {
-            use_nvim_cmp_as_default = true;
-          };
-
           keymap = {
             preset = "enter";
           };
@@ -38,7 +34,7 @@
 
             providers = {
               copilot = {
-                name = "copilot";
+                name = "Copilot";
                 async = true;
                 module = "blink-copilot";
                 score_offset = 15;
@@ -67,6 +63,16 @@
                 module = "codecompanion.providers.completion.blink";
               };
             };
+          };
+
+          appearance = {
+            kind_icons = {
+              Copilot = "";
+              # those 2 do not work
+              cmp_yanky = "⧉";
+              emoji = "";
+            };
+            use_nvim_cmp_as_default = false;
           };
 
           completion = {
