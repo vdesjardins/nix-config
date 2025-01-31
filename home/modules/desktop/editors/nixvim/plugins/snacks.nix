@@ -326,6 +326,12 @@
       # git
       {
         mode = "n";
+        key = "<leader>sB";
+        action.__raw = "Snacks.picker.git_branches";
+        options.desc = "Git Branches (Snacks)";
+      }
+      {
+        mode = "n";
         key = "<leader>sC";
         action.__raw = "Snacks.picker.git_log_file";
         options.desc = "Buffer's Git Commits (Snacks)";
@@ -338,7 +344,13 @@
       }
       {
         mode = "n";
-        key = "<leader>sS";
+        key = "<leader>sL";
+        action.__raw = "Snacks.picker.git_log";
+        options.desc = "Git Commits (Snacks)";
+      }
+      {
+        mode = "n";
+        key = "<leader>ss";
         action.__raw = "Snacks.picker.git_status";
         options.desc = "Git Status (Snacks)";
       }

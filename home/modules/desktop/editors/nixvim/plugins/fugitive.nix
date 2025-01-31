@@ -66,7 +66,7 @@
       }
       {
         mode = "n";
-        key = "<leader>ss";
+        key = "<leader>sS";
         action = "<cmd>Git<cr>";
         options.desc = "Status (fugitive)";
       }
