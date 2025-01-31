@@ -2,15 +2,15 @@ _inputs: _final: prev: {
   vimPlugins =
     prev.vimPlugins
     // {
-      snacks-nvim = prev.vimUtils.buildVimPlugin {
+      snacks-nvim = prev.vimUtils.buildVimPlugin rec {
         pname = "snacks.nvim";
-        version = "2.15.0";
+        version = "2.17.0";
 
         src = prev.fetchFromGitHub {
           owner = "folke";
           repo = "snacks.nvim";
-          rev = "v2.15.0";
-          hash = "sha256-N5UtYPhelXVelun8NSHZJa42IbBDX9TRGpYppEiCwBA=";
+          rev = "v${version}";
+          hash = "sha256-SwMr2R3/JBwzHlEyFt2fujUQCUfmJJSjVNd1JKVIoHM=";
         };
 
         doCheck = false;

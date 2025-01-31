@@ -23,6 +23,6 @@
       };
     };
 
-    dap.extensions.dap-go.enable = true;
+    dap-go.enable = true;
   };
 }

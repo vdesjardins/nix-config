@@ -5,6 +5,6 @@
       ruff.enable = true;
     };
 
-    dap.extensions.dap-python.enable = true;
+    dap-python.enable = true;
   };
 }

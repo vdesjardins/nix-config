@@ -33,7 +33,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>bp";
+        key = "<leader>bo";
         action.__raw = ''
           function()
             local oil = require("oil")
@@ -49,7 +49,7 @@
       }
       {
         mode = "n";
-        key = "<leader>bb";
+        key = "<leader>bO";
         action.__raw = ''
           function()
             local oil = require("oil")
