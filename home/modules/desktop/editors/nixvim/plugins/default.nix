@@ -42,6 +42,7 @@
     ./dropbar.nix
     ./oil.nix
     ./helpview.nix
+    ./nvim-surround.nix
 
     # snippets
     ./luasnip.nix

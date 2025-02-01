@@ -154,7 +154,7 @@
       }
       {
         mode = "n";
-        key = "gs";
+        key = "gS";
         action.__raw = "Snacks.picker.lsp_symbols";
         options.desc = "LSP Symbols (Snacks)";
       }
