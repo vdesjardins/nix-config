@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   system = {
     defaults = {
       loginwindow = {
@@ -63,10 +59,17 @@
         AppleMetricUnits = 1;
         AppleMeasurementUnits = "Centimeters";
         AppleTemperatureUnit = "Celsius";
+
+        NSWindowShouldDragOnGesture = true;
+        NSAutomaticWindowAnimationsEnabled = true;
       };
 
       trackpad = {
         Clicking = true;
+      };
+
+      universalaccess = {
+        reduceMotion = true;
       };
     };
 
