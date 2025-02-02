@@ -11,7 +11,7 @@ in {
   programs.home-manager.enable = true;
 
   xdg.enable = true;
-  xdg.mimeApps.enable = true;
+  xdg.mimeApps.enable = pkgs.stdenv.isLinux;
 
   home.enableNixpkgsReleaseCheck = false;
 
@@ -47,14 +47,14 @@ in {
 
       extensions = {
         dconf = {
-          font = font;
+          inherit font;
           gtk-theme = "Tokyonight-Night-B";
           color-scheme = "prefer-dark";
           icon-theme = "Papirus-Dark";
         };
         rofi.font = "${font} 12";
         dunst = {
-          font = font;
+          inherit font;
           settings = {
             # from https://github.com/folke/tokyonight.nvim/blob/main/extras/dunst/tokyonight_night.dunstrc
             urgency_low = {
