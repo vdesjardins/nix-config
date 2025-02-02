@@ -18,6 +18,7 @@ in {
     "stats"
     "ukelele"
     "vmware-fusion"
+    "ghostty"
   ];
 
   networking.hostName = hostname;

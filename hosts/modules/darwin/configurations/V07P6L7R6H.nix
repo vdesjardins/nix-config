@@ -15,6 +15,7 @@ in {
     "middleclick"
     "stats"
     "wezterm"
+    "ghostty"
   ];
 
   networking.hostName = hostname;
