@@ -1,3 +1,6 @@
 {
-  modules.darwin.karabiner.enable = true;
+  modules.darwin = {
+    aerospace.enable = true;
+    karabiner.enable = true;
+  };
 }
