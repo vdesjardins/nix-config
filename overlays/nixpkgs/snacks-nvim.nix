@@ -4,13 +4,13 @@ _inputs: _final: prev: {
     // {
       snacks-nvim = prev.vimUtils.buildVimPlugin rec {
         pname = "snacks.nvim";
-        version = "2.17.0";
+        version = "2.18.0";
 
         src = prev.fetchFromGitHub {
           owner = "folke";
           repo = "snacks.nvim";
           rev = "v${version}";
-          hash = "sha256-SwMr2R3/JBwzHlEyFt2fujUQCUfmJJSjVNd1JKVIoHM=";
+          hash = "sha256-90+LyldTortUMM7CpGZFH42QIP0efQhDshb6nw8pLXI=";
         };
 
         doCheck = false;

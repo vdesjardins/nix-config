@@ -193,13 +193,13 @@
       {
         mode = "n";
         key = "<leader>bp";
-        action.__raw = "function() Snacks.picker.explorer({follow_file = false, auto_close = true}) end";
+        action.__raw = "function() Snacks.explorer({follow_file = false, auto_close = true}) end";
         options.desc = "Project's File Explorer (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>bb";
-        action.__raw = "function() Snacks.picker.explorer({follow_file = true, auto_close = true}) end";
+        action.__raw = "function() Snacks.explorer({follow_file = true, auto_close = true}) end";
         options.desc = "Buffer's File Explorer (Snacks)";
       }
       {
