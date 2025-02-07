@@ -392,6 +392,7 @@
               finder = M.finder,
               format = M.format,
               confirm = function(picker, item)
+                picker:close()
                 Snacks.terminal("make " .. item.target)
               end,
             })
