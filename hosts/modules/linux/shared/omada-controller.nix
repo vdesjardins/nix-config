@@ -3,19 +3,17 @@
   pkgs,
   ...
 }: {
-  services.caddy = {
-    virtualHosts.home-server = {
-      hostName = "home-server.cerberus-pollux.ts.net";
+  services.nginx = {
+    enable = true;
 
-      extraConfig =
-        # caddyfile
-        ''
-           reverse_proxy https://localhost:8043 {
-             transport http {
-           	  tls_insecure_skip_verify
-             }
-          }
-        '';
+    virtualHosts."omada.kube-stack.org" = {
+      forceSSL = true;
+      enableACME = true;
+      acmeRoot = null;
+
+      locations."/" = {
+        proxyPass = "https://localhost:8043";
+      };
     };
   };
 
@@ -103,9 +101,9 @@
       chmod 700 /var/backups/omada
 
       cat << EOF > /var/backups/omada/env
-      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage backups/home-server/omada/b2.key-id)"
-      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage backups/home-server/omada/b2.key)"
-      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage backups/home-server/omada/restic)"
+      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage hosts/home-server/backups/omada/b2.key-id)"
+      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage hosts/home-server/backups/omada/b2.key)"
+      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage hosts/home-server/backups/omada/restic)"
       EOF
     '';
 

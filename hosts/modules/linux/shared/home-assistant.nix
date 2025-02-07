@@ -4,16 +4,26 @@
   pkgs,
   ...
 }: {
-  services.caddy = {
-    virtualHosts.home-assistant = {
-      hostName = "home-assistant.cerberus-pollux.ts.net";
+  services.nginx = {
+    enable = true;
 
-      extraConfig =
-        # caddyfile
-        ''
-           reverse_proxy http://localhost:8123 {
-          }
+    virtualHosts."home-assistant.kube-stack.org" = {
+      forceSSL = true;
+      enableACME = true;
+      acmeRoot = null;
+
+      locations."/" = {
+        extraConfig = ''
+          proxy_pass http://127.0.0.1:8123;
+          proxy_set_header   X-Real-IP $remote_addr;
+          proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header   Host $host;
+          proxy_http_version 1.1;
+          proxy_set_header   Upgrade $http_upgrade;
+          proxy_set_header   Connection "upgrade";
+          proxy_buffering off;
         '';
+      };
     };
   };
 
@@ -72,9 +82,9 @@
       chmod 700 /var/backups/home-assistant
 
       cat << EOF > /var/backups/home-assistant/env
-      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage backups/home-server/home-assistant/b2.key-id)"
-      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage backups/home-server/home-assistant/b2.key)"
-      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage backups/home-server/home-assistant/restic)"
+      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage hosts/home-server/backups/home-assistant/b2.key-id)"
+      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage hosts/home-server/backups/home-assistant/b2.key)"
+      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage hosts/home-server/backups/home-assistant/restic)"
       EOF
     '';
 

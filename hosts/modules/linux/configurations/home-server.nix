@@ -15,9 +15,10 @@ in {
     ../../shared.nix
     ../../tailscale.nix
     ../shared
-    ../shared/caddy.nix
+    ../shared/acme.nix
     ../shared/home-assistant.nix
     ../shared/omada-controller.nix
+    ../shared/it-tools.nix
     ../users/admin.nix
   ];
 
