@@ -18,18 +18,18 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [fd bat];
+    home.packages = with pkgs; [fd bat kitty.kitten];
 
     programs.fzf = {
       enable = true;
 
       defaultCommand = "fd --type f";
-      defaultOptions = ["--height 40%" "--border"];
+      defaultOptions = ["--height 60%" "--border"];
       fileWidgetCommand = "fd --type f";
       fileWidgetOptions = ["--preview 'bat --color=always {}'"];
       changeDirWidgetCommand = "fd --type d";
       changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
-      historyWidgetOptions = ["--sort" "--exact"];
+      historyWidgetOptions = ["--layout=reverse" "--sort" "--exact" "--height=60%" "--preview='echo {..}'" "--preview-window='bottom:3:wrap'"];
 
       enableZshIntegration = true;
     };
@@ -58,10 +58,12 @@ in {
         zstyle ':completion:*:descriptions' format '[%d]'
         # set list-colors to enable filename colorizing
         zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-        # preview directory's content with exa when completing cd
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+        # preview directory's content with lsd when completing cd
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview '${pkgs.lsd}/bin/lsd  --color=always --oneline --icon=always $realpath'
+        zstyle ':fzf-tab:complete:cp:*' fzf-preview '${pkgs.lsd}/bin/lsd  --color=always --oneline --icon=always --blocks name,date $realpath'
+        zstyle ':fzf-tab:complete:mv:*' fzf-preview '${pkgs.lsd}/bin/lsd  --color=always --oneline --icon=always --blocks name,date $realpath'
         # switch group using `,` and `.`
-        zstyle ':fzf-tab:*' switch-group ',' '.'
+        zstyle ':fzf-tab:*' switch-group '<' '>'
 
         # complete manual by their section
         zstyle ':completion:*:manuals'   separate-sections true
