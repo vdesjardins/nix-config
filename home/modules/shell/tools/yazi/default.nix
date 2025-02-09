@@ -19,6 +19,8 @@ in {
       inherit (cfg) enable;
 
       enableZshIntegration = true;
+      enableNushellIntegration = true;
+
       package = pkgs.yazi;
     };
 

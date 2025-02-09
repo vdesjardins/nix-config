@@ -11,6 +11,7 @@
   modules.shell = {
     bash.enable = true;
     zsh.enable = true;
+    nushell.enable = true;
 
     tools = {
       btop.enable = true;

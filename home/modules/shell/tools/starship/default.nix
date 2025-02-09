@@ -17,6 +17,9 @@ in {
     programs.starship = {
       inherit (cfg) enable;
 
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+
       package = pkgs.starship;
     };
 
