@@ -34,6 +34,8 @@ in {
 
       package = pkgs.neovim;
 
+      nixpkgs.config.allowBroken = true;
+
       defaultEditor = true;
 
       performance = {

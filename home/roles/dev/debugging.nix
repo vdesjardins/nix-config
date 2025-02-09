@@ -6,7 +6,7 @@
   home.packages = with pkgs;
     [
       binutils
-      lldb
+      # lldb
       # mitmproxy
       # mitmproxy2swagger
       xxd
