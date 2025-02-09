@@ -57,9 +57,9 @@ in {
           cmd-shift-l = "move right";
 
           # change layout
-          cmd-s = "layout v_accordion"; # 'layout stacking' in i3
-          cmd-w = "layout h_accordion"; # 'layout tabbed' in i3
-          cmd-e = "layout tiles horizontal vertical"; # 'layout toggle split' in i3
+          cmd-shift-s = "layout v_accordion"; # 'layout stacking' in i3
+          cmd-shift-w = "layout h_accordion"; # 'layout tabbed' in i3
+          cmd-shift-e = "layout tiles horizontal vertical"; # 'layout toggle split' in i3
 
           cmd-shift-space = "layout floating tiling"; # 'floating toggle' in i3
 
