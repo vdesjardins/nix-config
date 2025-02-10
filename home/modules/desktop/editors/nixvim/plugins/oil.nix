@@ -4,6 +4,8 @@
       enable = true;
 
       settings = {
+        default_file_explorer = false;
+
         float = {
           preview_split = "below";
         };

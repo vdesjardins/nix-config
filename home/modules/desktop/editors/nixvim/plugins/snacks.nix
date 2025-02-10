@@ -21,6 +21,7 @@
             layout = "vertical";
           };
           input.enable = true;
+          explorer.enable = true;
           dashboard = {
             enable = true;
             preset = {
