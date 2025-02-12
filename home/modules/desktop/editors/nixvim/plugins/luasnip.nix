@@ -23,12 +23,6 @@
               hl_mode = 'combine',
             },
           },
-          [require('luasnip.util.types').insertNode] = {
-            active = {
-              virt_text = { { 'insert', 'Comment' } },
-              hl_mode = 'combine',
-            },
-          },
         }
         '';
       };
