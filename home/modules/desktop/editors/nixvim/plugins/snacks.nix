@@ -200,7 +200,7 @@
       {
         mode = "n";
         key = "<leader>bb";
-        action.__raw = "function() Snacks.explorer({follow_file = true, auto_close = true}) end";
+        action.__raw = "function() Snacks.explorer({cwd=vim.fn.expand('%:p:h'), follow_file = true, auto_close = true}) end";
         options.desc = "Buffer's File Explorer (Snacks)";
       }
       {
