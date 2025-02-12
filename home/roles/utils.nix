@@ -52,23 +52,17 @@
   home.packages = with pkgs;
     [
       fq # jq for binary formats
-      act # github actions testing
       ast-grep # find code by syntax
       bandwhich # network utilization by process
       bottom # top with graphs
-      browsh # terminal browser
       cachix
       circumflex # hackernews reader
       cloc # source code line counter
-      cmake
       coreutils
-      ctags
       curl
-      dasel
       deploy-rs
       du-dust # fancy du
       duf # df alternative
-      figlet # generate large text
       file
       findutils
       gdu # interactive du
@@ -77,23 +71,19 @@
       gnumake
       gnused
       # graphviz
-      grpcurl
       hexyl # hex viewer
-      htmlq # Like jq, but for HTML
       htop # fancy top
       httpie
       hyperfine
       jc # json conversion
       jp # jmespath
       jq
-      just
       lsof
       meld
       neofetch # fetch system/theme information
       oha # HTTP load generator inspired by rakyll/hey with tui animation
       openssh
       ps
-      pueue # task management tool
       qrencode
       rsync
       sd # sed replacement
@@ -102,7 +92,6 @@
       thefuck # fix commands
       tokei # displays code statistics
       tree
-      procs # replacement for ps
       procs # replacement for ps
       step-cli # plumbing for distributed systems
       wget
