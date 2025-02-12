@@ -58,6 +58,7 @@
     ./lsp-signature.nix
     ./none-ls.nix
     ./dap.nix
+    ./blink-dictionary.nix
 
     # languages
     ./nix.nix

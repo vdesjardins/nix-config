@@ -30,6 +30,7 @@
               "emoji"
               "lazydev"
               "codecompanion"
+              "dictionary"
             ];
 
             providers = {
@@ -61,6 +62,19 @@
               codecompanion = {
                 name = "CodeCompanion";
                 module = "codecompanion.providers.completion.blink";
+              };
+
+              dictionary = {
+                module = "blink-cmp-dictionary";
+                name = "Dict";
+                score_offset = -5;
+                min_keyword_length = 3;
+                max_items = 5;
+                opts = {
+                  dictionary_directories = {
+                    __unkeyed-1.__raw = ''vim.fn.expand("~/.config/dictionaries/")'';
+                  };
+                };
               };
             };
           };
@@ -136,5 +150,9 @@
     extraPlugins = with pkgs.vimPlugins; [
       blink-emoji
     ];
+
+    extraConfigLua = ''
+      vim.api.nvim_set_hl(0, 'BlinkCmpKindDict', { default = false, fg = '#a6e3a1' })
+    '';
   };
 }

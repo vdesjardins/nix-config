@@ -9,12 +9,8 @@
       };
     };
 
-    extraPlugins = [
-      pkgs.vimPlugins.blink-copilot
-    ];
-
-    extraConfigLua = ''
-      require("blink-copilot").setup({})
-    '';
+    plugins.blink-copilot = {
+      enable = true;
+    };
   };
 }
