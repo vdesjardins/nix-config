@@ -71,8 +71,8 @@
       {
         mode = "n";
         key = "<leader>nf";
-        action = "<cmd>Noice pick<cr>";
-        options.desc = "Search (Noice)";
+        action.__raw = "Snacks.picker.notifications";
+        options.desc = "Search (Snacks)";
       }
       {
         mode = "n";
