@@ -364,23 +364,28 @@
         action.__raw = ''
           function()
             M = {}
-            function M.finder(opts)
-              return require("snacks.picker.source.proc").proc(vim.tbl_deep_extend("force", {
-                cmd = "sed",
-                args = { "-n", "s/^##//p", "Makefile" },
-                ---@param item snacks.picker.finder.Item
-                transform = function(item)
-                  local target, desc = item.text:match("^%s*(%S+):%s+(.+)$")
-                  if target and desc then
-                    item.target = target
-                    item.desc = desc
-                  else
-                    return false
-                  end
-                end,
-              }, opts or {}))
+
+            function M.make_targets(opts, ctx)
+              return require("snacks.picker.source.proc").proc({
+                opts,
+                {
+                  cmd = "sed",
+                  args = { "-n", "s/^##//p", "Makefile" },
+                  ---@param item snacks.picker.finder.Item
+                  transform = function(item)
+                    local target, desc = item.text:match("^%s*(%S+):%s+(.+)$")
+                    if target and desc then
+                      item.target = target
+                      item.desc = desc
+                    else
+                      return false
+                    end
+                  end,
+                },
+              }, ctx)
             end
 
+            ---@param item snacks.picker.Item
             function M.format(item, picker)
               local ret = {} ---@type snacks.picker.Highlight[]
               ret[#ret + 1] = { Snacks.picker.util.align(tostring(item.target), 20), "SnacksPickerBufNr" }
@@ -389,15 +394,27 @@
               return ret
             end
 
-            require("snacks.picker").pick({
-              layout = "select",
-              finder = M.finder,
-              format = M.format,
-              confirm = function(picker, item)
+            function M.confirm(picker, item)
                 picker:close()
                 Snacks.terminal("make " .. item.target)
-              end,
-            })
+            end
+
+            ---@type snacks.picker.Config
+            M.source = {
+              source = "make_targets",
+              finder = M.make_targets,
+              format = M.format,
+              confirm = M.confirm,
+              layout = "select",
+            }
+
+            ---@param opts? snacks.picker.Config|{}
+            function M.open(opts)
+              return Snacks.picker("noice", opts)
+            end
+
+            Snacks.picker.sources.make_targets = M.source
+            Snacks.picker.make_targets()
           end
         '';
         options.desc = "Make Targets (Snacks)";
