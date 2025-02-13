@@ -16,6 +16,7 @@
           scratch.eanble = true;
           debug.enable = true;
           terminal.enable = true;
+          image.enable = true;
           picker = {
             enable = true;
             layout = "vertical";
@@ -401,6 +402,10 @@
         '';
         options.desc = "Make Targets (Snacks)";
       }
+    ];
+
+    extraPackages = with pkgs; [
+      imagemagick
     ];
   };
 }

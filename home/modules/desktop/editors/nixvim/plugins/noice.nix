@@ -1,7 +1,10 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins.noice = {
       enable = true;
+
+      package = pkgs.vimPlugins.noice-nvim;
+
       settings = {
         cmdline.view = "cmdline";
 
