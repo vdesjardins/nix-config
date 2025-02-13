@@ -69,7 +69,8 @@
                 name = "Dict";
                 score_offset = -5;
                 min_keyword_length = 3;
-                max_items = 5;
+                # TODO: throwing error
+                # max_items = 5;
                 opts = {
                   dictionary_directories = {
                     __unkeyed-1.__raw = ''vim.fn.expand("~/.config/dictionaries/")'';
