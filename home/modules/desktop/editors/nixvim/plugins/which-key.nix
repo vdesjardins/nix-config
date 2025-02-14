@@ -82,6 +82,10 @@
           __unkeyed-18 = "<leader>m";
           group = "Misc";
         }
+        {
+          __unkeyed-19 = "<leader>r";
+          group = "Requests";
+        }
       ];
     };
   };

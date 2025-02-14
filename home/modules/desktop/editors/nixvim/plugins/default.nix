@@ -17,6 +17,7 @@
 
     ./fugitive.nix
     ./git-conflict.nix
+    ./neogit.nix
 
     ./comment.nix
 
@@ -79,12 +80,11 @@
 
     # terminal
     ./terminal.nix
+    ./rest.nix
 
     # AI
     ./copilot.nix
     ./codecompanion.nix
-
-    # vim-clue
   ];
 
   programs.nixvim = {
