@@ -1,6 +1,5 @@
 {
   imports = [
-    ./image.nix
     ./img-clip.nix
 
     ./auto-save.nix
@@ -28,7 +27,6 @@
     ./ts-autotag.nix
 
     ./guess-indent.nix
-    ./indent-blankline.nix
 
     ./noice.nix
     ./trouble.nix

@@ -3,7 +3,7 @@ _inputs: _final: prev: {
     prev.vimPlugins
     // {
       snacks-nvim = let
-        version = "2025-02-12";
+        version = "2.21.0";
       in (prev.vimUtils.buildVimPlugin {
         pname = "snacks.nvim";
         inherit version;
@@ -11,8 +11,8 @@ _inputs: _final: prev: {
         src = prev.fetchFromGitHub {
           owner = "folke";
           repo = "snacks.nvim";
-          rev = "1491b543ef1d8a0eb29a6ebc35db4fb808dcb47f";
-          hash = "sha256-DLbXRDBKGxe3JcgrqNp4FPJq/yKZZcGdOR6I9b3+YCo=";
+          rev = "v${version}";
+          hash = "sha256-COvKNofUMiNV9MZvP18dtmkNSMXeTlumN2sIeBl4VqE=";
         };
 
         doCheck = false;

@@ -57,6 +57,12 @@
         options.desc = "Toggle All Terminals (ToggleTerm)";
       }
       {
+        mode = "n";
+        key = "<leader>tl";
+        action.__raw = "Snacks.terminal.list";
+        options.desc = "List Terminals (Snacks)";
+      }
+      {
         mode = "v";
         key = "<leader>s";
         action.__raw = ''

@@ -7,16 +7,20 @@
         package = pkgs.vimPlugins.snacks-nvim;
 
         settings = {
+          scope.enable = true;
+          statuscolumn.enable = true;
+          words.enable = true;
           bufdelete.enable = true;
           bigfile.enable = true;
           notifier.enable = true;
           lazygit.enable = true;
           gitbrowse.enable = true;
           git.enable = true;
-          scratch.eanble = true;
+          scratch.enable = true;
           debug.enable = true;
           terminal.enable = true;
           image.enable = true;
+          indent.enable = true;
           picker = {
             enable = true;
             layout = "vertical";
@@ -422,7 +426,11 @@
     ];
 
     extraPackages = with pkgs; [
+      # for images
       imagemagick
+      ghostscript
+      tectonic
+      mermaid-cli
     ];
   };
 }
