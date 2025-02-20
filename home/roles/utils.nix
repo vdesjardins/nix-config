@@ -95,6 +95,7 @@
       procs # replacement for ps
       step-cli # plumbing for distributed systems
       wget
+      xh # tool to send http request
       yq
     ]
     ++ lib.optionals stdenv.isLinux [
