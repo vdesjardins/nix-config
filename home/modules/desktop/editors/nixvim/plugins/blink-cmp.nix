@@ -17,6 +17,9 @@
           signature = {
             # let noice handle this
             enabled = false;
+            window = {
+              border = "rounded";
+            };
           };
 
           sources = {
@@ -112,9 +115,14 @@
               auto_show = true;
               auto_show_delay_ms = 500;
               treesitter_highlighting = true;
+              window = {
+                border = "rounded";
+              };
             };
 
             menu = {
+              border = "rounded";
+
               auto_show = true;
 
               draw = {
