@@ -15,7 +15,7 @@ return {
     )
   ),
   s(
-    { trig = "kustomize", name = "Kustomize", desc = { "Adds the kustomize boilerplate." } },
+    { trig = "k-kustomize", name = "Kustomize", desc = { "Adds the kustomize boilerplate." } },
     fmt(
       [[
       # yaml-language-server: $schema=https://json.schemastore.org/kustomization.json
@@ -25,6 +25,44 @@ return {
       resources: []
       ]],
       {}
+    )
+  ),
+  s(
+    { trig = "k-serviceaccount", name = "k8s ServiceAccount", desc = { "Adds the ServiceAccount boilerplate." } },
+    fmt(
+      [[
+      # https://kubernetes.io/docs/concepts/configuration/serviceaccount/
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: {}
+        namespace: {}
+      {}
+      ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+      }
+    )
+  ),
+  s(
+    { trig = "k-namespace", name = "k8s Namespace", desc = { "Adds the Namespace boilerplate." } },
+    fmt(
+      [[
+      # https://kubernetes.io/docs/concepts/configuration/namespace/
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: {}
+        namespace: {}
+      {}
+      ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+      }
     )
   ),
   s(
