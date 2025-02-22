@@ -36,7 +36,7 @@
         }
         {
           __unkeyed-7 = "<leader>d";
-          group = "Debugger";
+          group = "Debug";
         }
         {
           __unkeyed-8 = "<leader>dl";
@@ -77,6 +77,10 @@
         {
           __unkeyed-17 = "<leader>n";
           group = "Notifications";
+        }
+        {
+          __unkeyed-18 = "<leader>m";
+          group = "Misc";
         }
       ];
     };

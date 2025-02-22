@@ -128,5 +128,20 @@
         };
       };
     };
+
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>mi";
+        action = "<cmd>InspectTree<cr>";
+        options.desc = "Inspect (Treesitter)";
+      }
+      {
+        mode = "n";
+        key = "<leader>mq";
+        action = "<cmd>EditQuery<cr>";
+        options.desc = "Query (Treesitter)";
+      }
+    ];
   };
 }
