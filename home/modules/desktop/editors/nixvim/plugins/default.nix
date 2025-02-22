@@ -25,6 +25,7 @@
     ./text-case.nix
     ./treesj.nix
     ./ts-autotag.nix
+    ./matchup.nix
 
     ./guess-indent.nix
 
