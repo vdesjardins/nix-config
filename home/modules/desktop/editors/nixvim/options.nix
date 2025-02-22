@@ -12,6 +12,7 @@
       undofile = true; # Write undo files
       undolevels = 1000; # Increase undo levels
       backup = false; # No file backup
+      swapfile = false; # No swap file
 
       completeopt = "menuone,noselect"; # Completion options
       hidden = true; # Enable modified buffers in background
