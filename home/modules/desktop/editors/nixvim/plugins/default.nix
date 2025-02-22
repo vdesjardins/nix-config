@@ -50,7 +50,6 @@
     ./yanky.nix
 
     # lsp
-    # ./cmp.nix
     ./blink-cmp.nix
     ./lsp.nix
     ./lsp-signature.nix
@@ -81,7 +80,6 @@
 
     # AI
     ./copilot.nix
-    ./avante.nix
     ./codecompanion.nix
 
     # vim-clue
