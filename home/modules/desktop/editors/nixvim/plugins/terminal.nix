@@ -1,80 +1,83 @@
 {
   programs.nixvim = {
-    plugins = {
-      toggleterm.enable = true;
-
-      trim = {
-        settings = {
-          ft_blocklist = [
-            "toggleterm"
-          ];
-        };
-      };
-    };
-
-    extraConfigLua = ''
-      require("toggleterm").setup({})
-
-      function openTerminalPane(file, count, name)
-        local file_name = file or vim.api.nvim_buf_get_name(0)
-        local count = count or 2
-        local name = name or "buffer"
-
-        local file_path
-        if vim.fn.isdirectory(file_name) ~= 0 then
-          file_path = file_name
-        else
-          file_path = vim.fs.dirname(file_name)
-        end
-
-        vim.cmd(count .. "ToggleTerm name=buffer dir=" .. file_path)
-      end
-    '';
-
     keymaps = [
       {
         mode = "n";
         key = "<leader>tp";
-        action = "<cmd>1ToggleTerm name=project<cr>";
-        options.desc = "Project Directory (ToggleTerm)";
+        action.__raw = "function() Snacks.terminal.open() end";
+        options.desc = "Project Directory (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>tb";
-        action.__raw = "function() openTerminalPane(null, 2, \"buffer\") end";
-        options.desc = "Current Buffer Directory (ToggleTerm)";
-      }
-      {
-        mode = "n";
-        key = "<leader>ts";
-        action = "<cmd>TermSelect<cr>";
-        options.desc = "Select Terminal (ToggleTerm)";
+        action.__raw = ''function() Snacks.terminal.open(nil, {cwd=tostring(vim.fn.expand("%:p:h"))}) end'';
+        options.desc = "Current Buffer Directory (Snacks)";
       }
       {
         mode = "n";
         key = "<leader>tt";
-        action = "<cmd>ToggleTermToggleAll<cr>";
-        options.desc = "Toggle All Terminals (ToggleTerm)";
-      }
-      {
-        mode = "n";
-        key = "<leader>tl";
-        action.__raw = "Snacks.terminal.list";
-        options.desc = "List Terminals (Snacks)";
+        action.__raw = "function() Snacks.terminal.toggle() end";
+        options.desc = "Toggle All Terminals (Snacks)";
       }
       {
         mode = "v";
         key = "<leader>s";
         action.__raw = ''
           function()
-            local tsel = "visual_selection"
-            if vim.fn.mode():sub(1, 1) == "V" then
-              tsel = "visual_lines"
+            --- @return string[]|nil lines The selected text as an array of lines.
+            function get_visual_selection_text()
+              local _, srow, scol = unpack(vim.fn.getpos('v'))
+              local _, erow, ecol = unpack(vim.fn.getpos('.'))
+
+              -- visual line mode
+              if vim.fn.mode() == 'V' then
+                if srow > erow then
+                  return vim.api.nvim_buf_get_lines(0, erow - 1, srow, true)
+                else
+                  return vim.api.nvim_buf_get_lines(0, srow - 1, erow, true)
+                end
+              end
+
+              -- regular visual mode
+              if vim.fn.mode() == 'v' then
+                if srow < erow or (srow == erow and scol <= ecol) then
+                  return vim.api.nvim_buf_get_text(0, srow - 1, scol - 1, erow - 1, ecol, {})
+                else
+                  return vim.api.nvim_buf_get_text(0, erow - 1, ecol - 1, srow - 1, scol, {})
+                end
+              end
+
+              -- visual block mode
+              if vim.fn.mode() == '\22' then
+                local lines = {}
+                if srow > erow then
+                  srow, erow = erow, srow
+                end
+                if scol > ecol then
+                  scol, ecol = ecol, scol
+                end
+                for i = srow, erow do
+                  table.insert(
+                    lines,
+                    vim.api.nvim_buf_get_text(0, i - 1, math.min(scol - 1, ecol), i - 1, math.max(scol - 1, ecol), {})[1]
+                  )
+                end
+                return lines
+              end
             end
-            require("toggleterm").send_lines_to_terminal(tsel, true, { args = vim.v.count })
+
+            local text = get_visual_selection_text()
+            table.insert(text, '\n')
+
+            local terminals = Snacks.terminal.list()
+            for _, term in ipairs(terminals) do
+              local job_id = vim.bo[term.buf].channel
+              vim.fn.chansend(job_id, text)
+              return
+            end
           end
         '';
-        options.desc = "Send Selection Terminal (ToggleTerm)";
+        options.desc = "Send Selection Terminal (Snacks)";
       }
     ];
   };
