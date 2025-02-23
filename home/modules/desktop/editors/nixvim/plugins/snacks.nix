@@ -429,7 +429,7 @@
       # for images
       imagemagick
       ghostscript
-      tectonic
+      # tectonic # FIX  broken in unstable 2025-02-23
       mermaid-cli
     ];
   };
