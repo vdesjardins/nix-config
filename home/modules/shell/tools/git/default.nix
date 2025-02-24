@@ -67,20 +67,38 @@ in {
         includes = [{path = "~/.gitconfig.local";}];
 
         extraConfig = {
-          help = {autocorrect = 20;};
+          help = {autocorrect = true;};
+
+          column = {
+            ui = "auto";
+          };
+
+          grep = {
+            perlRegexp = true;
+          };
+
+          rerere = {
+            enabled = true;
+            autoupdate = true;
+          };
+
+          commit = {
+            verbose = true;
+          };
 
           merge = {
-            conflictstyle = "diff3";
+            conflictstyle = "zdiff3";
             tool = "vimdiff";
             renamelimit = 3000;
           };
 
           diff = {
             renameLimit = 3000;
-            algorithm = "patience";
-            colorMoved = "default";
+            algorithm = "histogram";
+            colorMoved = "plain";
+            mnemonicPrefix = true;
             context = 5;
-            renames = "copy";
+            renames = "true";
 
             dyff = {
               command = "dyff_between() { ${pkgs.dyff}/bin/dyff --color on between \"$2\" \"$5\"; }; dyff_between";
@@ -88,17 +106,26 @@ in {
           };
 
           push = {
-            default = "current";
+            default = "simple";
             followTags = true;
             autoSetupRemote = true;
           };
 
           pull = {rebase = true;};
 
-          fetch = {prune = true;};
+          fetch = {
+            prune = true;
+            pruneTags = true;
+            all = true;
+          };
 
           branch = {
             autosetuprebase = "always";
+            sort = "-commiterdate";
+          };
+
+          tag = {
+            sort = "version:refname";
           };
 
           rebase = {
