@@ -241,13 +241,13 @@
       }
       {
         mode = "n";
-        key = "<leader>ff";
+        key = "<leader>fF";
         action.__raw = "Snacks.picker.files";
         options.desc = "Project's Files (Snacks)";
       }
       {
         mode = "n";
-        key = "<leader>fF";
+        key = "<leader>ff";
         action.__raw = "function() Snacks.picker.files({cwd=vim.fn.expand('%:p:h')}) end";
         options.desc = "Buffer's Directory Files (Snacks)";
       }
@@ -277,7 +277,7 @@
       }
       {
         mode = "n";
-        key = "<leader>fs";
+        key = "<leader>fS";
         action.__raw = "Snacks.picker.grep";
         options.desc = "String in Project (Snacks)";
       }
@@ -289,7 +289,7 @@
       # }
       {
         mode = "n";
-        key = "<leader>fS";
+        key = "<leader>fs";
         action.__raw = "function() Snacks.picker.grep({cwd=vim.fn.expand('%:~:.:h')}) end";
         options.desc = "String in Buffer's Directory (Snacks)";
       }
