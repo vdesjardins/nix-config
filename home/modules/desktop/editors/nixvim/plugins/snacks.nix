@@ -24,6 +24,25 @@
           picker = {
             enable = true;
             layout = "vertical";
+            actions = {
+              cd_up.__raw = ''
+                function(picker)
+                  picker:set_cwd(vim.fs.dirname(picker:cwd()))
+                  picker:find()
+                end
+              '';
+            };
+            win = {
+              input = {
+                keys = {
+                  "<a-u>" = {
+                    __unkeyed_1 = "cd_up";
+                    desc = "cd_up";
+                    mode = ["i" "n"];
+                  };
+                };
+              };
+            };
           };
           input.enable = true;
           explorer.enable = true;
