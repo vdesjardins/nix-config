@@ -4,7 +4,14 @@
       blink-cmp = {
         enable = true;
 
+        package = pkgs.vimPlugins.blink-cmp;
+
         settings = {
+          cmdline = {
+            enabled = true;
+            completion.menu.auto_show = true;
+          };
+
           fuzzy.prebuilt_binaries = {
             download = false;
             ignore_version_mismatch = true;
@@ -52,14 +59,32 @@
                 async = true;
                 name = "cmp_yanky";
                 module = "blink.compat.source";
-                score_offset = -5;
+                score_offset = -15;
+                transform_items.__raw = ''
+                  function(_, items)
+                    return vim.tbl_map(function(item)
+                      item.kind_name = "Yanky"
+                      item.kind_icon = "⧉"
+                      return item
+                    end, items)
+                  end
+                '';
               };
 
               emoji = {
                 module = "blink-emoji";
                 name = "Emoji";
-                score_offset = -10;
+                score_offset = -20;
                 opts = {insert = true;};
+                transform_items.__raw = ''
+                  function(_, items)
+                    return vim.tbl_map(function(item)
+                      item.kind_name = "Emoji"
+                      item.kind_icon = ""
+                      return item
+                    end, items)
+                  end
+                '';
               };
 
               codecompanion = {
@@ -70,7 +95,7 @@
               dictionary = {
                 module = "blink-cmp-dictionary";
                 name = "Dict";
-                score_offset = -5;
+                score_offset = -10;
                 min_keyword_length = 3;
                 # TODO: throwing error
                 # max_items = 5;
@@ -84,12 +109,6 @@
           };
 
           appearance = {
-            kind_icons = {
-              Copilot = "";
-              # those 2 do not work
-              cmp_yanky = "⧉";
-              emoji = "";
-            };
             use_nvim_cmp_as_default = false;
           };
 
