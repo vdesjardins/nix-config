@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{...}: let
   username = "vince";
   hostname = "falcon";
 in {
@@ -9,6 +9,7 @@ in {
     ../hardware/beelink.nix
     ../shared
     ../shared/boot.nix
+    ../shared/networking.nix
     ../shared/debugging.nix
     ../shared/desktop.nix
     ../shared/wayland.nix

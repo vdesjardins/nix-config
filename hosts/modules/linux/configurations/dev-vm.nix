@@ -8,6 +8,7 @@ in {
     ../../tailscale.nix
     ../hardware/vm-aarch64.nix
     ../shared
+    ../shared/networking.nix
     ../shared/boot.nix
     ../shared/desktop.nix
     ../shared/vm.nix

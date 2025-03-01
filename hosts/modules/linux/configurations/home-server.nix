@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  modulesPath,
   nixos-hardware,
   pkgs,
   ...
@@ -15,6 +13,7 @@ in {
     ../../shared.nix
     ../../tailscale.nix
     ../shared
+    ../shared/networking.nix
     ../shared/acme.nix
     ../shared/home-assistant.nix
     ../shared/omada-controller.nix

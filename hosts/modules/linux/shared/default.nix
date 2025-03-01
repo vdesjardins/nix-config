@@ -1,25 +1,5 @@
-{
-  config,
-  pkgs,
-  lib,
-  currentSystem,
-  naturalMouseScrolling,
-  ...
-}: let
-  inherit (lib) mkOptionDefault;
-in {
+{...}: {
   nix.gc.dates = "weekly";
-
-  networking.useDHCP = false;
-  systemd.network.enable = true;
-  systemd.network.networks."20-wired" = {
-    name = "en*";
-    networkConfig = {
-      DHCP = "yes";
-    };
-  };
-
-  networking.nftables.enable = false;
 
   security = {
     pam.loginLimits = [
