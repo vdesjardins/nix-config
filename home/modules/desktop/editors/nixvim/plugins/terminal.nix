@@ -73,6 +73,8 @@
             for _, term in ipairs(terminals) do
               local job_id = vim.bo[term.buf].channel
               vim.fn.chansend(job_id, text)
+              -- cancel selection
+              vim.api.nvim_input('<esc>')
               return
             end
           end
