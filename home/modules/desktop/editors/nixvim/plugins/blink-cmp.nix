@@ -30,6 +30,7 @@
               "path"
               "snippets"
               "buffer"
+              "omni"
               "cmp_yanky"
               "copilot"
               "emoji"
