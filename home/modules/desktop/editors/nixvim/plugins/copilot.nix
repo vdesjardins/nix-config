@@ -11,6 +11,7 @@
 
     plugins.blink-copilot = {
       enable = true;
+      package = pkgs.vimPlugins.blink-copilot;
     };
   };
 }
