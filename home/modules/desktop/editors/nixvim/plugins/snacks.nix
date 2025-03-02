@@ -313,6 +313,12 @@
       }
       {
         mode = "n";
+        key = "<leader>fu";
+        action.__raw = "Snacks.picker.undo";
+        options.desc = "Undo (Snacks)";
+      }
+      {
+        mode = "n";
         key = "<leader>fB";
         action.__raw = "Snacks.picker.pickers";
         options.desc = "Pickers (Snacks)";
