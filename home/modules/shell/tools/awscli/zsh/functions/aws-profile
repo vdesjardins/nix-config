@@ -6,7 +6,7 @@ function aws-profile {
   if [[ "$profile" != "" ]]; then
       export AWS_PROFILE="$profile"
   else
-      export AWS_PROFILE=$(aws configure list-profiles | fzf)
+      cat ~/.aws/config | jc --ini | jq 'to_entries | .[] | select(.value.sso_account_id != null) | "\(.value.sso_account_id)\t\(.key | split(" ") | .[1])"' -Mr | fzf | awk '{ print $2; }'
   fi
 }
 
