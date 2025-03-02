@@ -75,7 +75,7 @@
       htop # fancy top
       httpie
       hyperfine
-      jc # json conversion
+      jc # format converter/parser
       jp # jmespath
       jq
       lsof
