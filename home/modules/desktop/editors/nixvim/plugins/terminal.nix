@@ -67,7 +67,7 @@
             end
 
             local text = get_visual_selection_text()
-            table.insert(text, '\n')
+            table.insert(text, "")
 
             local terminals = Snacks.terminal.list()
             for _, term in ipairs(terminals) do
