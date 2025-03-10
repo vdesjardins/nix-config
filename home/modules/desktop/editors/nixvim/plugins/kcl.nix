@@ -5,6 +5,7 @@
     ];
 
     extraConfigLua = ''
+      require('lspconfig').kcl.setup({})
     '';
   };
 }
