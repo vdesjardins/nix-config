@@ -10,6 +10,7 @@
 
     ../roles/dev/bash.nix
     ../roles/dev/cue.nix
+    ../roles/dev/kcl.nix
     ../roles/dev/debugging.nix
     ../roles/dev/go.nix
     ../roles/dev/go-template.nix

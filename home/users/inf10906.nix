@@ -12,6 +12,7 @@
     ../roles/desktop/darwin.nix
     ../roles/security.nix
     ../roles/dev/bash.nix
+    ../roles/dev/kcl.nix
     ../roles/dev/go.nix
     ../roles/dev/go-template.nix
     ../roles/dev/js.nix

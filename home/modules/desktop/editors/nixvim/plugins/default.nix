@@ -72,6 +72,7 @@
     ./json.nix
     ./zig.nix
     ./toml.nix
+    ./kcl.nix
 
     # nav
     ./smart-splits.nix
