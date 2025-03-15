@@ -7,13 +7,17 @@
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption;
 
-  cfg = config.modules.shell.tools.jwt;
+  cfg = config.modules.shell.tools.oauth;
 in {
-  options.modules.shell.tools.jwt = {
-    enable = mkEnableOption "jwt";
+  options.modules.shell.tools.oauth = {
+    enable = mkEnableOption "oauth";
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      oauth2c
+    ];
+
     programs.zsh.initExtra =
       # bash
       ''
