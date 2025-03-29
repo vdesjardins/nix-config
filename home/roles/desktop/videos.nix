@@ -1,5 +1,3 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    obs-studio
-  ];
+{...}: {
+  modules.desktop.video.obs-studio.enable = true;
 }
