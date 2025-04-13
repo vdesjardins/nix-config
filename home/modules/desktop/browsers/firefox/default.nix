@@ -15,6 +15,8 @@
       package = darkreader;
       area = "navbar";
     }
+    {package = multi-account-containers;}
+    {package = open-url-in-container;}
     {package = qr-code-address-bar;}
     {package = sidebery;}
     {package = copy-link-text;}
