@@ -50,11 +50,6 @@ window#waybar {
 #battery,
 #wireplumber,
 #network,
-#idle_inhibitor {
-	background-color: #24283b;
-	padding: 5px 10px;
-	margin: 5px 0px;
-}
 
 #custom-date {
 	color: #7dcfff;
@@ -95,17 +90,9 @@ window#waybar {
 	border-radius: 5px 5px 5px 5px;
 }
 
-#idle_inhibitor {
-	color: #f7768e;
-	border-radius: 5px 0px 0px 5px;
-}
-
-#idle_inhibitor.enabled {
-	color: #9ece6a;
-}
-
 #network {
 	color: #f7768e;
+	border-radius: 5px 0px 0px 5px;
 }
 
 #wireplumber {
@@ -130,6 +117,7 @@ window#waybar {
 	border-radius: 0px 5px 5px 0px;
 }
 
+#idle_inhibitor,
 #gamemode,
 #tray {
 	color: #b48ead;
@@ -137,5 +125,12 @@ window#waybar {
 	padding: 5px 10px;
 	border-radius: 5px;
 	margin: 5px;
-	margin-left: 10px;
+}
+
+#idle_inhibitor {
+	padding-right: 15px;
+}
+
+#idle_inhibitor.activated {
+	color: #9ece6a;
 }
