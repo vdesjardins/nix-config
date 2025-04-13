@@ -22,14 +22,6 @@ in {
       b = "buku --suggest";
     };
 
-    modules.desktop.browsers.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      {
-        package = bukubrow;
-        area = "navbar";
-        nativeMessagingHost = pkgs.bukubrow;
-      }
-    ];
-
     xdg.dataFile.buku.source =
       mkOutOfStoreSymlink "${configDirectory}/desktop/tools/buku/share";
   };

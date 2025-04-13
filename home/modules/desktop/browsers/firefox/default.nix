@@ -127,8 +127,8 @@ in {
           search = {
             force = true;
 
-            default = "DuckDuckGo";
-            order = ["DuckDuckGo" "Google"];
+            default = "ddg";
+            order = ["ddg" "google"];
 
             engines = {
               "Nix Packages" = {
@@ -171,7 +171,7 @@ in {
               };
               "NixOS Wiki" = {
                 urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
-                iconUpdateURL = "https://nixos.wiki/favicon.png";
+                icon = "https://nixos.wiki/favicon.png";
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@nw"];
               };
@@ -187,7 +187,7 @@ in {
                     ];
                   }
                 ];
-                iconUpdateURL = "https://github.com/favicon.ico";
+                icon = "https://github.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@gh"];
               };
@@ -203,7 +203,7 @@ in {
                     ];
                   }
                 ];
-                iconUpdateURL = "https://github.com/favicon.ico";
+                icon = "https://github.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@ghn"];
               };
@@ -219,7 +219,7 @@ in {
                     ];
                   }
                 ];
-                iconUpdateURL = "https://github.com/favicon.ico";
+                icon = "https://github.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@ghnp"];
               };
@@ -235,15 +235,15 @@ in {
                     ];
                   }
                 ];
-                iconUpdateURL = "https://github.com/favicon.ico";
+                icon = "https://github.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@ghnh"];
               };
-              "Wikipedia (en)".metaData.alias = "@w";
-              "Google".metaData.alias = "@g";
+              "wikipedia".metaData.alias = "@w";
+              "google".metaData.alias = "@g";
               "Amazon.ca".metaData.alias = "@a";
-              "Bing".metaData.hidden = true;
-              "eBay".metaData.hidden = true;
+              "bing".metaData.hidden = true;
+              "ebay".metaData.hidden = true;
             };
           };
 
