@@ -5,8 +5,8 @@
     nerd-fonts.monaspace
     nerd-fonts.fira-code
     fira-code
-    maple-mono-NF
-    maple-mono
+    maple-mono.NF
+    maple-mono.variable
     noto-fonts
     noto-fonts-emoji
   ];

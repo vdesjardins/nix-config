@@ -17,7 +17,10 @@
     polkit.enable = true;
   };
 
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   services.blueman.enable = config.hardware.bluetooth.enable;
 
@@ -38,6 +41,7 @@
     gnumake
     git
     neovim
+    clinfo
 
     (writeShellScriptBin "xrandr-auto" ''
       xrandr --output Virtual-1 --auto

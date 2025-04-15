@@ -12,6 +12,7 @@ in {
     ../shared/networking.nix
     ../shared/debugging.nix
     ../shared/desktop.nix
+    ../shared/amd.nix
     ../shared/wayland.nix
     ../shared/greetd.nix
     ../shared/pipewire.nix

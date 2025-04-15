@@ -43,11 +43,11 @@ in {
       options = "--delete-older-than 7d";
     };
 
-    package = pkgs.nixVersions.nix_2_25;
+    package = pkgs.nixVersions.nix_2_28;
   };
 
   environment.systemPackages = with pkgs; [
-    nixVersions.nix_2_25
+    nixVersions.nix_2_28
   ];
 
   programs = {
