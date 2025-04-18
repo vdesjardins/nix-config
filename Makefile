@@ -15,7 +15,7 @@ hm/apply: hm/generate
 
 .PHONY: host/apply
 ## host/apply: build and activate current system
-host/apply: host/genrate
+host/apply: host/generate
 	if [[ "$$(uname -o)" == "Darwin" ]] then
 		nix run nix-darwin -- switch --flake .#$$(uname --nodename)
 	else
@@ -27,9 +27,9 @@ host/apply: host/genrate
 hm/generate:
 	nix build ./#homeConfigurations.$$USER@$$(uname --nodename).activationPackage
 
-.PHONY: host/genrate
-## host/genrate: build current system
-host/genrate:
+.PHONY: host/generate
+## host/generate: build current system
+host/generate:
 	if [[ "$$(uname -o)" == "Darwin" ]] then
 		nix run nix-darwin -- build --flake .#$$(uname --nodename)
 	else

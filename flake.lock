@@ -335,17 +335,17 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1744406261,
-        "narHash": "sha256-Wh7pdOAZk0aQnA9agLjf+NUaXQrwLCFNT9Ai/YtQpAo=",
-        "ref": "refs/heads/main",
-        "rev": "66636195f18d21bd65f8e7ced461f6b6770be189",
-        "revCount": 10052,
-        "type": "git",
-        "url": "ssh://git@github.com/ghostty-org/ghostty"
+        "lastModified": 1744985866,
+        "narHash": "sha256-OXFQ4NNnk+NaDim5tpk9mt6Qe9zK/ext8PqZZU7w6WM=",
+        "owner": "ghostty-org",
+        "repo": "ghostty",
+        "rev": "03a1c04a6e5494ea9e657c841fbae5d143f97707",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/ghostty-org/ghostty"
+        "owner": "ghostty-org",
+        "repo": "ghostty",
+        "type": "github"
       }
     },
     "git-hooks": {

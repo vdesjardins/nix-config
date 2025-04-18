@@ -6,7 +6,7 @@ in {
     ../../shared.nix
     ../../desktop.nix
     ../../tailscale.nix
-    ../hardware/beelink.nix
+    ../hardware/v.nix
     ../shared
     ../shared/boot.nix
     ../shared/networking.nix
@@ -24,4 +24,19 @@ in {
   system.stateVersion = "24.11";
 
   networking.hostName = hostname;
+
+  fileSystems = {
+    "/".options = ["compress=zstd"];
+    "/home".options = ["compress=zstd" "noatime"];
+    "/nix".options = ["compress=zstd" "noatime"];
+    "/swap".options = ["noatime"];
+  };
+
+  swapDevices = [{device = "/swap/swapfile";}];
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = ["/"];
+  };
 }

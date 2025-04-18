@@ -65,7 +65,7 @@ in {
           "Virtual-1" = {
             mode = "3840x2160@60Hz";
           };
-          "HDMI-A-1" = {
+          "DP-2" = {
             mode = "3840x2160@60Hz";
             transform = "270";
             position = "-2160 -529";

@@ -28,10 +28,10 @@
       url = "https://w.wallhaven.cc/full/y8/wallhaven-y8kzjk.jpg";
       hash = "sha256-CJyQZa2cC2vYnHh7bcfP3XG4hsHCjx+G11jKWNh3SWc=";
     };
-    # "Pictures/Wallpapers/wallhaven-3lyq66.png".source = pkgs.fetchurl {
-    #   url = "https://w.wallhaven.cc/full/3l/wallhaven-3lyq66.png";
-    #   hash = "sha256-wPt1Lxwndl7m0hG3rQCp1hRK5qIDC7n4gqOgY5vNP/E=";
-    # };
+    "Pictures/Wallpapers/wallhaven-3lyq66.png".source = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/3l/wallhaven-3lyq66.png";
+      hash = "sha256-wPt1Lxwndl7m0hG3rQCp1hRK5qIDC7n4gqOgY5vNP/E=";
+    };
     "Pictures/Wallpapers/wallhaven-p9kwgj.png".source = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/p9/wallhaven-p9kwgj.png";
       hash = "sha256-BWbD0UJ8JqYpxqQ7nuouiAlUwVfkck+18fVSkBw9Zog=";
