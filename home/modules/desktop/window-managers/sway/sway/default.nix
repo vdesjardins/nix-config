@@ -281,16 +281,16 @@ in {
 
       extraConfig = ''
         # Workspace ouput preferences
-        workspace 1 output DP-1 HDMI-A-1
-        workspace 2 output DP-1 HDMI-A-1
-        workspace 3 output DP-1 HDMI-A-1
-        workspace 4 output DP-1 HDMI-A-1
-        workspace 5 output DP-1 HDMI-A-1
-        workspace 6 output DP-1 HDMI-A-1
-        workspace 7 output HDMI-A-1 DP-1
-        workspace 8 output HDMI-A-1 DP-1
-        workspace 9 output HDMI-A-1 DP-1
-        workspace 10 output HDMI-A-1 DP-1
+        workspace 1 output DP-2 DP-3
+        workspace 2 output DP-2 DP-3
+        workspace 3 output DP-2 DP-3
+        workspace 4 output DP-2 DP-3
+        workspace 5 output DP-2 DP-3
+        workspace 6 output DP-2 DP-3
+        workspace 7 output DP-3 DP-2
+        workspace 8 output DP-3 DP-2
+        workspace 9 output DP-3 DP-2
+        workspace 10 output DP-3 DP-2
 
         set {
           $ii inhibit_idle focus
