@@ -70,7 +70,7 @@ in {
             transform = "270";
             position = "-2160 -529";
           };
-          "DP-1" = {
+          "DP-3" = {
             mode = "3840x2160@60Hz";
             position = "0 0";
           };
@@ -281,16 +281,16 @@ in {
 
       extraConfig = ''
         # Workspace ouput preferences
-        workspace 1 output DP-2 DP-3
-        workspace 2 output DP-2 DP-3
-        workspace 3 output DP-2 DP-3
-        workspace 4 output DP-2 DP-3
-        workspace 5 output DP-2 DP-3
-        workspace 6 output DP-2 DP-3
-        workspace 7 output DP-3 DP-2
-        workspace 8 output DP-3 DP-2
-        workspace 9 output DP-3 DP-2
-        workspace 10 output DP-3 DP-2
+        workspace 1 output DP-3 DP-2
+        workspace 2 output DP-3 DP-2
+        workspace 3 output DP-3 DP-2
+        workspace 4 output DP-3 DP-2
+        workspace 5 output DP-3 DP-2
+        workspace 6 output DP-3 DP-2
+        workspace 7 output DP-2 DP-3
+        workspace 8 output DP-2 DP-3
+        workspace 9 output DP-2 DP-3
+        workspace 10 output DP-2 DP-3
 
         set {
           $ii inhibit_idle focus
