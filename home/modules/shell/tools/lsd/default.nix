@@ -16,8 +16,6 @@ in {
   config = mkIf cfg.enable {
     programs.lsd = {
       inherit (cfg) enable;
-
-      enableAliases = true;
     };
 
     programs.zsh.shellAliases = {

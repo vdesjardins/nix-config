@@ -20,7 +20,7 @@ in {
       services.gpg-agent = {
         inherit (cfg) enable;
 
-        pinentryPackage = pkgs.pinentry-gnome3;
+        pinentry.package = pkgs.pinentry-gnome3;
 
         defaultCacheTtl = 30;
         maxCacheTtl = 120;

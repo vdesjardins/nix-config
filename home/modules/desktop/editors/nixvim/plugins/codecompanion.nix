@@ -51,7 +51,7 @@
                   },
                   schema = {
                     model = {
-                      default = 'hf.co/unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF',
+                      default = 'qwen3:4b',
                     },
                     temperature = {
                       default = 0.6,
@@ -71,13 +71,13 @@
           };
           strategies = {
             agent = {
-              adapter = "ollama";
+              adapter = "copilot";
             };
             chat = {
-              adapter = "ollama";
+              adapter = "copilot";
             };
             inline = {
-              adapter = "ollama";
+              adapter = "copilot";
             };
           };
         };

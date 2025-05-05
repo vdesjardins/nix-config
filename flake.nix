@@ -48,12 +48,14 @@
 
     # neovim plugins
     blink-cmp.url = "github:Saghen/blink.cmp";
+    mcp-hub.url = "github:ravitemer/mcp-hub";
   };
 
   outputs = {
     deploy-rs,
     blink-cmp,
     ghostty,
+    mcp-hub,
     neovim-nightly,
     nix,
     nixpkgs,
@@ -118,6 +120,7 @@
       rust-overlay = rust-overlay.overlays.default;
       ghostty = final: prev: {ghostty = ghostty.packages.${prev.system}.default;};
       blink-cmp = final: prev: {vimPlugins = prev.vimPlugins // {blink-cmp = blink-cmp.packages.${prev.system}.default;};};
+      mcp-hub = final: prev: {mcp-hub = mcp-hub.packages.${prev.system}.default;};
     };
 
     supportedSystems = rec {
