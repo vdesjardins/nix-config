@@ -85,6 +85,7 @@
     # AI
     ./copilot.nix
     ./codecompanion.nix
+    ./mcphub.nix
   ];
 
   programs.nixvim = {
