@@ -35,9 +35,12 @@
               "copilot"
               "emoji"
               "lazydev"
-              "codecompanion"
               "dictionary"
             ];
+
+            per_filetype = {
+              codecompanion = ["codecompanion"];
+            };
 
             providers = {
               copilot = {
@@ -81,11 +84,6 @@
                     end, items)
                   end
                 '';
-              };
-
-              codecompanion = {
-                name = "CodeCompanion";
-                module = "codecompanion.providers.completion.blink";
               };
 
               dictionary = {
