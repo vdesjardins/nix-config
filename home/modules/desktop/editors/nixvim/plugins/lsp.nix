@@ -53,28 +53,28 @@
             underline = true,
             update_in_insert = true,
             severity_sort = false,
+            signs = {
+              text = {
+                [vim.diagnostic.severity.ERROR] = " ",
+                [vim.diagnostic.severity.WARN] = " ",
+                [vim.diagnostic.severity.INFO] = " ",
+                [vim.diagnostic.severity.HINT] = "󰌵 ",
+              },
+              linehl = {
+                [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+                [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+                [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+              },
+              numhl = {
+                [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+                [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+                [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+              },
+            },
           })
 
-          vim.fn.sign_define("DiagnosticSignError", {
-              text = " ",
-              numhl = "DiagnosticSignError",
-              texthl = "DiagnosticSignError",
-          })
-          vim.fn.sign_define("DiagnosticSignWarn", {
-              text = " ",
-              numhl = "DiagnosticSignWarn",
-              texthl = "DiagnosticSignWarn",
-          })
-          vim.fn.sign_define("DiagnosticSignInfo", {
-              text = " ",
-              numhl = "DiagnosticSignInfo",
-              texthl = "DiagnosticSignInfo",
-          })
-          vim.fn.sign_define("DiagnosticSignHint", {
-              text = "󰌵 ",
-              numhl = "DiagnosticSignHint",
-              texthl = "DiagnosticSignHint",
-          })
         '';
 
         servers = {
