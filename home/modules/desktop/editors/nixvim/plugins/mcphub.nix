@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (config.modules.home) configDirectory;
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+in {
   home.packages = with pkgs; [mcp-hub];
 
   programs.nixvim = {
@@ -28,12 +35,17 @@
     };
 
     keymaps = [
-      # {
-      #   mode = "n";
-      #   key = "<leader>gm";
-      #   action = "<cmd>Grapple tag<cr>";
-      #   options.desc = "Toggle Tag (Grapple)";
-      # }
+      {
+        mode = "n";
+        key = "<leader>cm";
+        action = "<cmd>MCPHub<cr>";
+        options.desc = "Open (MCPHub)";
+      }
     ];
+  };
+
+  xdg.configFile = {
+    "mcphub/servers.json".source =
+      mkOutOfStoreSymlink "${configDirectory}/desktop/editors/nixvim/plugins/mcphub/servers.json";
   };
 }

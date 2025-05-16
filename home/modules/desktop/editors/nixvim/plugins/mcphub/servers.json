@@ -1,0 +1,21 @@
+{
+    "mcpServers": {
+        "puppeteer": {
+            "args": [
+                "run",
+                "-i",
+                "--rm",
+                "--init",
+                "-e",
+                "DOCKER_CONTAINER=true",
+                "mcp/puppeteer"
+            ],
+            "command": "docker"
+        }
+    },
+    "nativeMCPServers": {
+        "neovim": {
+            "disabled_tools": []
+        }
+    }
+}
