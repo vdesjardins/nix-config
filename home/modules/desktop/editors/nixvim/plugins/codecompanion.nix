@@ -64,11 +64,13 @@
               end
             '';
           };
+
           opts = {
             send_code = true;
             use_default_actions = true;
             use_default_prompts = true;
           };
+
           strategies = {
             agent = {
               adapter = "copilot";
@@ -78,6 +80,12 @@
             };
             inline = {
               adapter = "copilot";
+            };
+          };
+
+          display = {
+            action_palette = {
+              provider = "snacks";
             };
           };
         };
