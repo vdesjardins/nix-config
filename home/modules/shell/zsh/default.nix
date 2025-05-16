@@ -72,7 +72,7 @@ in {
         }
       ];
 
-      initExtraBeforeCompInit = ''
+      initContent = lib.mkOrder 550 ''
         fpath=( ${config.xdg.configHome}/zsh/functions "''${fpath[@]}" )
         autoload -Uz $fpath[1]/*
       '';
