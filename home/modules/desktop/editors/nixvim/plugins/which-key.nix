@@ -53,22 +53,27 @@
         {
           __unkeyed-11 = "<leader>f";
           group = "Find";
+          mode = ["n" "v"];
         }
         {
           __unkeyed-12 = "<leader>x";
           group = "Diagnostics";
+          mode = ["n" "v"];
         }
         {
           __unkeyed-13 = "<leader>l";
           group = "Language Tools";
+          mode = ["n" "v"];
         }
         {
           __unkeyed-14 = "<leader>c";
           group = "Chat / AI";
+          mode = ["n" "v"];
         }
         {
           __unkeyed-15 = "<leader><space>";
           group = "Execute";
+          mode = ["n" "v"];
         }
         {
           __unkeyed-16 = "<leader>lx";
