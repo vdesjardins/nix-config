@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [stern];
 
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       source <(${pkgs.stern}/bin/stern --completion zsh)
     '';
   };

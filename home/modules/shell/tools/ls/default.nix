@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     home.file.".dircolors".source = "${pkgs.lscolors}/share/lscolors/LS_COLORS";
 
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       eval $(${pkgs.coreutils}/bin/dircolors -b ~/.dircolors)
     '';
   };

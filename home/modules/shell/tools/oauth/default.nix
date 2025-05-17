@@ -18,7 +18,7 @@ in {
       oauth2c
     ];
 
-    programs.zsh.initExtra =
+    programs.zsh.initContent =
       # bash
       ''
         jwt-decode() {

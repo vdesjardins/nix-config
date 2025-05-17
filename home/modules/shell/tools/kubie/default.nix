@@ -27,7 +27,7 @@ in {
         kbs = "wezterm cli split-pane --top-level kubie exec $(kubie info ctx) $(kubie info ns || echo 'default') zsh";
       };
 
-      zsh.initExtra =
+      zsh.initContent =
         /*
         bash
         */

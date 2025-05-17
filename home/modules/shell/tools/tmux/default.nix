@@ -43,7 +43,7 @@ in {
 
       zsh.shellAliases = {t = "tmux attach -d";};
 
-      zsh.initExtra = ''
+      zsh.initContent = ''
         preexec_functions+=(__tmux-refresh-env-preexec)
       '';
     };

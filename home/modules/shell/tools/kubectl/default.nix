@@ -26,7 +26,7 @@ in {
     ];
 
     programs.zsh = {
-      initExtra = ''
+      initContent = ''
         source ${config.xdg.configHome}/zsh/conf.d/kubectl_aliases
 
         KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code"

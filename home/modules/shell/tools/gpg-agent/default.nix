@@ -67,7 +67,7 @@ in {
         };
       };
 
-      programs.zsh.initExtra = ''
+      programs.zsh.initContent = ''
         gpgconf --launch gpg-agent >/dev/null
       '';
     })

@@ -20,7 +20,7 @@ in {
     xdg.configFile."zsh/functions/vault-copy".source =
       mkIf config.programs.zsh.enable ./zsh/functions/vault-copy;
 
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       source ${pkgs.vault}/share/bash-completion/completions/vault.bash
     '';
   };

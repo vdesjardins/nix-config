@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkOrder mkMerge;
   inherit (lib.options) mkEnableOption;
 
   cfg = config.modules.shell.zsh;
@@ -72,32 +72,33 @@ in {
         }
       ];
 
-      initContent = lib.mkOrder 550 ''
-        fpath=( ${config.xdg.configHome}/zsh/functions "''${fpath[@]}" )
-        autoload -Uz $fpath[1]/*
-      '';
+      initContent = mkMerge [
+        (mkOrder 550 ''
+          fpath=( ${config.xdg.configHome}/zsh/functions "''${fpath[@]}" )
+          autoload -Uz $fpath[1]/*
+        '')
+        (mkOrder 1000 ''
+          source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-      initExtra = ''
-        source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+          export ENHANCD_FILTER="fzf --preview 'lsd --git -al --tree --depth=1 --group-directories-first --header --color=always --icon=always --blocks git,name {}' \
+            --preview-window right,50% --height 35% --reverse --ansi"
 
-        export ENHANCD_FILTER="fzf --preview 'lsd --git -al --tree --depth=1 --group-directories-first --header --color=always --icon=always --blocks git,name {}' \
-          --preview-window right,50% --height 35% --reverse --ansi"
+          function take() {
+            mkdir -p $1
+            cd $1
+          }
 
-        function take() {
-          mkdir -p $1
-          cd $1
-        }
+          bindkey \^U backward-kill-line
 
-        bindkey \^U backward-kill-line
+          if [[ -f ~/.zshrc.local ]]; then
+            source ~/.zshrc.local
+          fi
 
-        if [[ -f ~/.zshrc.local ]]; then
-          source ~/.zshrc.local
-        fi
+          GLOBALIAS_FILTER_VALUES=(ls ll cd)
 
-        GLOBALIAS_FILTER_VALUES=(ls ll cd)
-
-        export PATH=$HOME/.nix-profile/bin:$PATH
-      '';
+          export PATH=$HOME/.nix-profile/bin:$PATH
+        '')
+      ];
     };
 
     home.sessionPath = [

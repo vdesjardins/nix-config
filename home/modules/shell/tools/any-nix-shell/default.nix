@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [any-nix-shell];
 
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       any-nix-shell zsh | source /dev/stdin
     '';
   };

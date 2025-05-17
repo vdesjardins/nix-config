@@ -18,7 +18,7 @@ in {
 
     home.file.".aws/cli/alias".source = ./alias;
     programs.zsh = {
-      initExtra = ''
+      initContent = ''
         complete -C ${pkgs.awscli2}/bin/aws_completer aws
 
         function aws-profile-name-from-id() {
