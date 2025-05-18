@@ -49,6 +49,7 @@
     # neovim plugins
     blink-cmp.url = "github:Saghen/blink.cmp";
     mcp-hub.url = "github:ravitemer/mcp-hub";
+    mcp-hub-nvim.url = "github:ravitemer/mcphub.nvim";
   };
 
   outputs = {
@@ -56,6 +57,7 @@
     blink-cmp,
     ghostty,
     mcp-hub,
+    mcp-hub-nvim,
     neovim-nightly,
     nix,
     nixpkgs,
@@ -121,6 +123,7 @@
       ghostty = final: prev: {ghostty = ghostty.packages.${prev.system}.default;};
       blink-cmp = final: prev: {vimPlugins = prev.vimPlugins // {blink-cmp = blink-cmp.packages.${prev.system}.default;};};
       mcp-hub = final: prev: {mcp-hub = mcp-hub.packages.${prev.system}.default;};
+      mcp-hub-nvim = final: prev: {mcp-hub-nvim = mcp-hub-nvim.packages.${prev.system}.default;};
     };
 
     supportedSystems = rec {

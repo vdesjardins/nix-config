@@ -3,14 +3,17 @@
   pkgs,
   ...
 }: let
-  inherit (config.modules.home) configDirectory;
-  inherit (config.lib.file) mkOutOfStoreSymlink;
+  jsonFormat = pkgs.formats.json {};
 in {
-  home.packages = with pkgs; [mcp-hub];
+  home.packages = with pkgs; [
+    mcp-hub
+    nodejs
+    steam-run
+  ];
 
   programs.nixvim = {
-    extraPlugins = with pkgs.vimPlugins; [
-      mcphub
+    extraPlugins = with pkgs; [
+      mcp-hub-nvim
     ];
 
     extraConfigLua = ''
@@ -45,7 +48,52 @@ in {
   };
 
   xdg.configFile = {
-    "mcphub/servers.json".source =
-      mkOutOfStoreSymlink "${configDirectory}/desktop/editors/nixvim/plugins/mcphub/servers.json";
+    "mcphub/servers.json".source = jsonFormat.generate "servers.json" {
+      nativeMCPServers = {
+        "neovim" = {
+          "disabled_tools" = [];
+        };
+      };
+
+      mcpServers = {
+        puppeteer = {
+          command = "steam-run";
+          args = [
+            "npx"
+            "-y"
+            "@modelcontextprotocol/server-puppeteer"
+          ];
+          env = {
+            PUPPETEER_LAUNCH_OPTIONS = "{ \"executablePath\": \"${pkgs.firefox}/bin/firefox\", \"args\": [] }";
+          };
+        };
+
+        mcp-server-git = {
+          command = "${pkgs.steam-run}/bin/steam-run";
+          args = [
+            "${pkgs.uv}/bin/uvx"
+            "mcp-server-git"
+          ];
+        };
+
+        github = {
+          command = "${pkgs.github-mcp-server}/bin/github-mcp-server";
+          args = [
+            "stdio"
+            # "--enable-command-logging"
+            # "--log-file=${config.home.homeDirectory}/.local/share/github-cmp-server/command.log"
+          ];
+          env = {
+            # passthrough GITHUB_PERSONAL_ACCESS_TOKEN from passage
+            GITHUB_PERSONAL_ACCESS_TOKEN = "";
+          };
+        };
+      };
+    };
   };
+
+  programs.zsh.initContent = ''
+    mkdir -p ~/.local/share/github-cmp-server/
+    export GITHUB_PERSONAL_ACCESS_TOKEN="$(${pkgs.passage}/bin/passage apis/github/${config.home.username}/default || 'not-set')"
+  '';
 }

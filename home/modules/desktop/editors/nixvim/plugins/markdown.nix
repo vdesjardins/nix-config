@@ -8,7 +8,16 @@
     plugins = {
       markview = {
         enable = true;
+
         package = pkgs.vimPlugins.markview-nvim;
+
+        settings = {
+          preview = {
+            filetypes = ["markdown" "codecompanion"];
+            # when this field is set to an empty array, the field in lua is not generated
+            ignore_buftypes = ["invalid-buftype"];
+          };
+        };
       };
     };
 

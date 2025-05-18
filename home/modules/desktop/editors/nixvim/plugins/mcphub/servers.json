@@ -2,15 +2,10 @@
     "mcpServers": {
         "puppeteer": {
             "args": [
-                "run",
-                "-i",
-                "--rm",
-                "--init",
-                "-e",
-                "DOCKER_CONTAINER=true",
-                "mcp/puppeteer"
+                "-y",
+                "@modelcontextprotocol/server-puppeteer"
             ],
-            "command": "docker"
+            "command": "npx"
         }
     },
     "nativeMCPServers": {
