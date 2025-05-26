@@ -4,13 +4,13 @@ _inputs: _final: prev: {
     // {
       codecompanion = prev.vimUtils.buildVimPlugin rec {
         pname = "codecompanion.nvim";
-        version = "15.4.2";
+        version = "15.7.0";
 
         src = prev.fetchFromGitHub {
           owner = "olimorris";
           repo = "codecompanion.nvim";
           rev = "v${version}";
-          hash = "sha256-3mXRSdGLFOoaJM8lXhTP8FOKUbnIBlViY/l3Slt8UvY=";
+          hash = "sha256-SORr6nMHi8WS0xSzBUKtS0iwmOFLEKOQrrW53B66ofQ=";
         };
 
         doCheck = false;
