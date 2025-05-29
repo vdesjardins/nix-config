@@ -1,45 +1,36 @@
-{lib, ...}: {
+{...}: {
   home = {
     username = "inf10906";
     homeDirectory = "/Users/inf10906";
     stateVersion = "23.11";
   };
 
-  imports = [
-    ../roles/common.nix
-    ../roles/darwin.nix
+  roles.common.enable = true;
+  roles.darwin.enable = true;
+  roles.security.enable = true;
+  roles.nixpkgs.enable = true;
+  roles.utils.enable = true;
 
-    ../roles/desktop/darwin.nix
-    ../roles/security.nix
-    ../roles/dev/bash.nix
-    ../roles/dev/kcl.nix
-    ../roles/dev/go.nix
-    ../roles/dev/go-template.nix
-    ../roles/dev/js.nix
-    ../roles/dev/json.nix
-    ../roles/dev/lua.nix
-    ../roles/dev/make.nix
-    ../roles/dev/markdown.nix
-    ../roles/dev/nix.nix
-    ../roles/dev/python.nix
-    ../roles/dev/regex.nix
-    ../roles/dev/rego.nix
-    ../roles/dev/rust.nix
-    ../roles/dev/terraform.nix
-    ../roles/dev/make.nix
-    ../roles/dev/vimscript.nix
-    ../roles/dev/yaml.nix
-    ../roles/ops/aws.nix
-    ../roles/ops/gcloud.nix
-    ../roles/ops/container.nix
-    ../roles/ops/k8s.nix
-    ../roles/ops/networking.nix
-    ../roles/ops/vault.nix
-    ../roles/security.nix
-    ../roles/nixpkgs.nix
-    ../roles/utils.nix
+  roles.dev.bash.enable = true;
+  roles.dev.go.enable = true;
+  roles.dev.json.enable = true;
+  roles.dev.lua.enable = true;
+  roles.dev.make.enable = true;
+  roles.dev.markdown.enable = true;
+  roles.dev.nix.enable = true;
+  roles.dev.python.enable = true;
+  roles.dev.rego.enable = true;
+  roles.dev.rust.enable = true;
+  roles.dev.terraform.enable = true;
+  roles.dev.yaml.enable = true;
 
-    ../roles/desktop/browsers.nix
-    ../roles/ai.nix
-  ];
+  roles.ops.aws.enable = true;
+  roles.ops.gcloud.enable = true;
+  roles.ops.container.enable = true;
+  roles.ops.k8s.enable = true;
+  roles.ops.networking.enable = true;
+  roles.ops.vault.enable = true;
+
+  roles.desktop.darwin.enable = true;
+  roles.desktop.browsers.enable = true;
 }

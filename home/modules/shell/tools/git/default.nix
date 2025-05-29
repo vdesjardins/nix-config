@@ -23,7 +23,7 @@ in {
       commitizen
       gita
       git-absorb
-      git-revise
+      # git-revise
       delta
       git-filter-repo
       git-extras
@@ -193,6 +193,7 @@ in {
           ri = "rebase -i";
           res = "restore --staged";
           remove = "!sh -c 'git ls-files --deleted -z | xargs -0 git rm'";
+          untracked = "ls-files --others --exclude-standard";
           whois = ''
             !sh -c 'git log -i -1 --pretty="format:%an <%ae>
             " --author="$1"' -'';

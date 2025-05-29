@@ -110,6 +110,9 @@ in {
 
         kgpcapadd = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.add'";
         kgpcapdrop = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.drop'";
+
+        # CRDs
+        kgcrds = "kubectl get crd -o=custom-columns=NAME:.metadata.name,SCOPE:.spec.scope";
       };
     };
 

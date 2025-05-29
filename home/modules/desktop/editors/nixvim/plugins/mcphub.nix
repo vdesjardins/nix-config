@@ -5,11 +5,14 @@
 }: let
   jsonFormat = pkgs.formats.json {};
 in {
-  home.packages = with pkgs; [
-    mcp-hub
-    nodejs
-    steam-run
-  ];
+  home.packages = with pkgs;
+    [
+      mcp-hub
+      nodejs
+    ]
+    ++ lib.optionals stdenv.isLinux [
+      steam-run
+    ];
 
   programs.nixvim = {
     extraPlugins = with pkgs; [
@@ -69,7 +72,7 @@ in {
         };
 
         mcp-server-git = {
-          command = "${pkgs.steam-run}/bin/steam-run";
+          command = "steam-run";
           args = [
             "${pkgs.uv}/bin/uvx"
             "mcp-server-git"

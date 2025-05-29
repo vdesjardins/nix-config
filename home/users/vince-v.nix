@@ -5,54 +5,50 @@
     stateVersion = "24.11";
   };
 
-  imports = [
-    ../roles/common.nix
+  roles.common.enable = true;
+  roles.vaults.enable = true;
+  roles.utils.enable = true;
+  roles.nixpkgs.enable = true;
+  roles.sync.enable = true;
+  roles.ai.enable = true;
+  roles.security.enable = true;
+  roles.multimedia.enable = true;
 
-    ../roles/dev/bash.nix
-    ../roles/dev/cue.nix
-    ../roles/dev/kcl.nix
-    ../roles/dev/debugging.nix
-    ../roles/dev/go.nix
-    ../roles/dev/go-template.nix
-    ../roles/dev/js.nix
-    ../roles/dev/json.nix
-    ../roles/dev/jq.nix
-    ../roles/dev/lua.nix
-    ../roles/dev/make.nix
-    ../roles/dev/markdown.nix
-    ../roles/dev/nix.nix
-    ../roles/dev/python.nix
-    ../roles/dev/regex.nix
-    ../roles/dev/rust.nix
-    ../roles/dev/terraform.nix
-    ../roles/dev/vimscript.nix
-    ../roles/dev/yaml.nix
-    ../roles/dev/zig.nix
-    ../roles/ops/aws.nix
-    ../roles/ops/container.nix
-    ../roles/ops/k8s.nix
-    ../roles/ops/networking.nix
-    ../roles/ops/bpf.nix
-    ../roles/security.nix
-    ../roles/vaults.nix
-    ../roles/utils.nix
-    ../roles/nixpkgs.nix
-    ../roles/sync.nix
-    ../roles/ai.nix
+  roles.dev.bash.enable = true;
+  roles.dev.cue.enable = true;
+  roles.dev.kcl.enable = true;
+  roles.dev.debugging.enable = true;
+  roles.dev.go.enable = true;
+  roles.dev.js.enable = true;
+  roles.dev.json.enable = true;
+  roles.dev.lua.enable = true;
+  roles.dev.make.enable = true;
+  roles.dev.markdown.enable = true;
+  roles.dev.nix.enable = true;
+  roles.dev.python.enable = true;
+  roles.dev.regex.enable = true;
+  roles.dev.rust.enable = true;
+  roles.dev.terraform.enable = true;
+  roles.dev.vimscript.enable = true;
+  roles.dev.yaml.enable = true;
+  roles.dev.zig.enable = true;
+  roles.ops.aws.enable = true;
+  roles.ops.container.enable = true;
+  roles.ops.k8s.enable = true;
+  roles.ops.networking.enable = true;
+  roles.ops.bpf.enable = true;
 
-    ../roles/multimedia.nix
-    ../roles/desktop/wallpapers.nix
-    ../roles/desktop/browsers.nix
-    ../roles/desktop/viewers.nix
-    ../roles/desktop/security.nix
-    ../roles/desktop/sway.nix
-    ../roles/desktop/gaming.nix
-    ../roles/desktop/productivity.nix
-    ../roles/desktop/ai.nix
-    ../roles/desktop/wifi.nix
-    ../roles/desktop/diagnostic.nix
-    ../roles/desktop/graphics.nix
-    ../roles/desktop/videos.nix
-    ../roles/desktop/messaging.nix
-  ];
+  roles.desktop.wallpapers.enable = true;
+  roles.desktop.browsers.enable = true;
+  roles.desktop.viewers.enable = true;
+  roles.desktop.security.enable = true;
+  roles.desktop.sway.enable = true;
+  roles.desktop.gaming.enable = true;
+  roles.desktop.productivity.enable = true;
+  roles.desktop.ai.enable = true;
+  roles.desktop.wifi.enable = true;
+  roles.desktop.diagnostic.enable = true;
+  roles.desktop.graphics.enable = true;
+  roles.desktop.videos.enable = true;
+  roles.desktop.messaging.enable = true;
 }
