@@ -4,7 +4,9 @@
       text-case-nvim
     ];
     extraConfigLua = ''
-      require('textcase').setup({})
+      require('textcase').setup({
+        prefix = "gA",
+      })
     '';
   };
 }
