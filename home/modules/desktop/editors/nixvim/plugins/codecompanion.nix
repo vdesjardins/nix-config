@@ -63,6 +63,16 @@
                 })
               end
             '';
+
+            tavily.__raw = ''
+              function()
+                return require('codecompanion.adapters').extend('tavily', {
+                  env = {
+                    api_key = "cmd:${pkgs.passage}/bin/passage /apis/ai/tavily",
+                  },
+                })
+              end
+            '';
           };
 
           opts = {
