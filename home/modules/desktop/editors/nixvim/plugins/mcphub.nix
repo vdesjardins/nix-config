@@ -97,6 +97,6 @@ in {
 
   programs.zsh.initContent = ''
     mkdir -p ~/.local/share/github-cmp-server/
-    export GITHUB_PERSONAL_ACCESS_TOKEN="$(${pkgs.passage}/bin/passage apis/github/${config.home.username}/default || 'not-set')"
+    export GITHUB_PERSONAL_ACCESS_TOKEN="$(${pkgs.passage}/bin/passage apis/github/${config.home.username}/default 2>/dev/null || echo 'not-set')"
   '';
 }
