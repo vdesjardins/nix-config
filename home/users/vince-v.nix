@@ -26,10 +26,8 @@
   roles.dev.markdown.enable = true;
   roles.dev.nix.enable = true;
   roles.dev.python.enable = true;
-  roles.dev.regex.enable = true;
   roles.dev.rust.enable = true;
   roles.dev.terraform.enable = true;
-  roles.dev.vimscript.enable = true;
   roles.dev.yaml.enable = true;
   roles.dev.zig.enable = true;
   roles.ops.aws.enable = true;
@@ -45,7 +43,6 @@
   roles.desktop.sway.enable = true;
   roles.desktop.gaming.enable = true;
   roles.desktop.productivity.enable = true;
-  roles.desktop.ai.enable = true;
   roles.desktop.wifi.enable = true;
   roles.desktop.diagnostic.enable = true;
   roles.desktop.graphics.enable = true;

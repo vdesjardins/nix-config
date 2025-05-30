@@ -6,9 +6,9 @@
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption;
 
-  cfg = config.roles.desktop.multimedia;
+  cfg = config.roles.multimedia;
 in {
-  options.roles.desktop.multimedia = {
+  options.roles.multimedia = {
     enable = mkEnableOption "desktop.multimedia";
   };
 

@@ -73,7 +73,7 @@ in {
       };
       "Pictures/Wallpapers/wallhaven-o5oq77.jpg".source = pkgs.fetchurl {
         url = "https://w.wallhaven.cc/full/o5/wallhaven-o5oq77.jpg";
-        hash = "sha256-MKcgbPB8V97zbc9faDv5XygA30desktop.wallpapersGx4ad0B73sDkSx4=";
+        hash = "sha256-MKcgbPB8V97zbc9faDv5XygA30aiGx4ad0B73sDkSx4=";
       };
     };
   };
