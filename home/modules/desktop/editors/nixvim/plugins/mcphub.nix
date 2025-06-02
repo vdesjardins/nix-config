@@ -5,14 +5,9 @@
 }: let
   jsonFormat = pkgs.formats.json {};
 in {
-  home.packages = with pkgs;
-    [
-      mcp-hub
-      nodejs
-    ]
-    ++ lib.optionals stdenv.isLinux [
-      steam-run
-    ];
+  home.packages = with pkgs; [
+    mcp-hub
+  ];
 
   programs.nixvim = {
     extraPlugins = with pkgs; [
@@ -59,24 +54,8 @@ in {
       };
 
       mcpServers = {
-        puppeteer = {
-          command = "steam-run";
-          args = [
-            "npx"
-            "-y"
-            "@modelcontextprotocol/server-puppeteer"
-          ];
-          env = {
-            PUPPETEER_LAUNCH_OPTIONS = "{ \"executablePath\": \"${pkgs.firefox}/bin/firefox\", \"args\": [] }";
-          };
-        };
-
         mcp-server-git = {
-          command = "steam-run";
-          args = [
-            "${pkgs.uv}/bin/uvx"
-            "mcp-server-git"
-          ];
+          command = "${pkgs.mcp-server-git}/bin/mcp-server-git";
         };
 
         github = {
