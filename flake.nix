@@ -34,11 +34,7 @@
     tmux-tokyo-night.url = "github:/fabioluciano/tmux-tokyo-night";
     tmux-tokyo-night.flake = false;
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
-    };
+    ghostty.url = "github:ghostty-org/ghostty";
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
