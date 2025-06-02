@@ -6,8 +6,8 @@
   src = fetchFromGitHub {
     owner = "modelcontextprotocol";
     repo = "servers";
-    rev = "main";
-    hash = "sha256-H2jvXHeeLFJ9Z2ZiX5gl3UudeVysdm653MbysCbpcKs=";
+    rev = "e515378a9086c3a067042c78ce808ed6483f4c9d";
+    hash = "sha256-RckniEqXyCMBZuo9Mw1SYnhcKCUfXr6nQypT0wrJDCY=";
   };
 in
   python3Packages.buildPythonApplication {
