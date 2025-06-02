@@ -87,6 +87,32 @@
             };
             chat = {
               adapter = "copilot";
+              keymaps = {
+                options = {
+                  modes = {
+                    n = "g?";
+                  };
+                  callback = "keymaps.options";
+                  description = "Options";
+                  hide = true;
+                };
+                next_chat = {
+                  modes = {
+                    n = "g}";
+                  };
+                  index = 11;
+                  callback = "keymaps.next_chat";
+                  description = "Next Chat";
+                };
+                previous_chat = {
+                  modes = {
+                    n = "g{";
+                  };
+                  index = 12;
+                  callback = "keymaps.previous_chat";
+                  description = "Previous Chat";
+                };
+              };
             };
             inline = {
               adapter = "copilot";
