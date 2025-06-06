@@ -3,7 +3,7 @@
   stdenv,
   fetchFromGitHub,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "kubectl-aliases";
   version = "unstable-2023-11-22";
 

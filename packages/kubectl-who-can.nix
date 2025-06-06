@@ -3,18 +3,21 @@
   buildGoModule,
   fetchFromGitHub,
 }:
+let
+  versioning = builtins.fromJSON (builtins.readFile ./kubectl-who-can.json);
+in
 buildGoModule rec {
   pname = "kubectl-who-can";
-  version = "0.4.0";
+  version = versioning.version;
 
   src = fetchFromGitHub {
     owner = "aquasecurity";
     repo = "kubectl-who-can";
-    rev = "v${version}";
-    hash = "sha256-nyUDzNxlizSr3P3dh9Cz/9CaMfmjeE9qSJkCLo4lBqw=";
+    rev = "v${versioning.revision}";
+    hash = versioning.hash;
   };
 
-  vendorHash = "sha256-KWLuS29aI3XqqyJAY9DVX+ldFU53vEumpBKUwinhYGQ=";
+  vendorHash = versioning.vendorHash;
 
   doCheck = false;
 

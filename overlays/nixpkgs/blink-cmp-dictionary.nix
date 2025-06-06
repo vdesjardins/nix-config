@@ -1,16 +1,18 @@
-_inputs: _final: prev: {
+_inputs: _final: prev: let
+  versioning = builtins.fromJSON (builtins.readFile ./blink-cmp-dictionary.json);
+in {
   vimPlugins =
     prev.vimPlugins
     // {
       blink-cmp-dictionary = prev.vimUtils.buildVimPlugin {
         pname = "blink-cmp-dictionary";
-        version = "2025-02-12";
+        version = versioning.version;
 
         src = prev.fetchFromGitHub {
           owner = "Kaiser-Yang";
           repo = "blink-cmp-dictionary";
-          rev = "06bc48096e2c5cce57f04843ddcb59941532c2d6";
-          hash = "sha256-SPrOlzo4nf7foONhWIMzAk8qYpPJR9Ogki8f3KHOKZk=";
+          rev = versioning.revision;
+          hash = versioning.hash;
         };
 
         doCheck = false;

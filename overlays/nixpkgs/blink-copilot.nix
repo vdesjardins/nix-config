@@ -1,16 +1,18 @@
-_inputs: _final: prev: {
+_inputs: _final: prev: let
+  versioning = builtins.fromJSON (builtins.readFile ./blink-copilot.json);
+in {
   vimPlugins =
     prev.vimPlugins
     // {
       blink-copilot = prev.vimUtils.buildVimPlugin {
         pname = "blink-copilot";
-        version = "2025-03-01";
+        version = versioning.version;
 
         src = prev.fetchFromGitHub {
           owner = "fang2hou";
           repo = "blink-copilot";
-          rev = "08ed48deb89a6b39fdb46fb7e6aee426ae174c09";
-          hash = "sha256-V57myzoWJP077Xcks/tdK+YPUdVe0Z8QaBpfSZmvEEM=";
+          rev = versioning.revision;
+          hash = versioning.hash;
         };
 
         doCheck = false;

@@ -1,16 +1,18 @@
-_inputs: _final: prev: {
+_inputs: _final: prev: let
+  info = builtins.fromJSON (builtins.readFile ./trouble-nvim.json);
+in {
   vimPlugins =
     prev.vimPlugins
     // {
-      trouble-nvim = prev.vimUtils.buildVimPlugin {
+      trouble-nvim = prev.vimUtils.buildVimPlugin rec {
         pname = "trouble.nvim";
-        version = "2025-01-21";
+        version = info.revision;
 
         src = prev.fetchFromGitHub {
           owner = "folke";
           repo = "trouble.nvim";
-          rev = "50481f414bd3c1a40122c1d759d7e424d5fafe84";
-          hash = "sha256-Z2STeDZ8uhfyfH1TqSbRdWPYdPMxOb9s8/hLS76Fm5E=";
+          rev = "v${version}";
+          hash = info.hash;
         };
 
         doCheck = false;

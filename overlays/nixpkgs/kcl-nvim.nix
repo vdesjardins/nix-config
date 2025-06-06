@@ -1,16 +1,18 @@
-_inputs: _final: prev: {
+_inputs: _final: prev: let
+  versioning = builtins.fromJSON (builtins.readFile ./kcl-nvim.json);
+in {
   vimPlugins =
     prev.vimPlugins
     // {
       kcl = prev.vimUtils.buildVimPlugin {
         pname = "kcl.nvim";
-        version = "2025-03-09";
+        version = versioning.version;
 
         src = prev.fetchFromGitHub {
           owner = "kcl-lang";
           repo = "kcl.nvim";
-          rev = "beededb5a8ed01ba2d121ed053aa6380ecb59597";
-          hash = "sha256-8tslNwnprsrhRjW6Wf+pzVvtJyfVUIslb1Sg5X5ERpc=";
+          rev = versioning.revision;
+          hash = versioning.hash;
         };
 
         doCheck = false;

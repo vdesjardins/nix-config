@@ -2,27 +2,29 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
-}:
-buildGoModule rec {
-  pname = "kubectl-blame";
-  version = "0.0.11";
+}: let
+  versioning = builtins.fromJSON (builtins.readFile ./kubectl-blame.json);
+in
+  buildGoModule {
+    pname = "kubectl-blame";
+    version = versioning.version;
 
-  src = fetchFromGitHub {
-    owner = "knight42";
-    repo = "kubectl-blame";
-    rev = "v${version}";
-    hash = "sha256-mxnaATjbMC/DiCE1X1mmeJf4hg5fKozdn9Zx+IxMQIA=";
-  };
+    src = fetchFromGitHub {
+      owner = "knight42";
+      repo = "kubectl-blame";
+      rev = "v${versioning.revision}";
+      hash = versioning.hash;
+    };
 
-  vendorHash = "sha256-f3JqDRqTvnmdpdkMVorKVJI1hoRlLDtVbZi2VB/an/k=";
+    vendorHash = versioning.vendorHash;
 
-  ldflags = ["-s" "-w"];
+    ldflags = ["-s" "-w"];
 
-  meta = with lib; {
-    description = "Show who edited resource fields";
-    homepage = "https://github.com/knight42/kubectl-blame";
-    license = licenses.mit;
-    maintainers = with maintainers; [vdesjardins];
-    mainProgram = "kubectl-blame";
-  };
-}
+    meta = with lib; {
+      description = "Show who edited resource fields";
+      homepage = "https://github.com/knight42/kubectl-blame";
+      license = licenses.mit;
+      maintainers = with maintainers; [vdesjardins];
+      mainProgram = "kubectl-blame";
+    };
+  }

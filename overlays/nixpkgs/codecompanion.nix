@@ -1,16 +1,18 @@
-_inputs: _final: prev: {
+_inputs: _final: prev: let
+  versioning = builtins.fromJSON (builtins.readFile ./codecompanion.json);
+in {
   vimPlugins =
     prev.vimPlugins
     // {
-      codecompanion = prev.vimUtils.buildVimPlugin rec {
+      codecompanion = prev.vimUtils.buildVimPlugin {
         pname = "codecompanion.nvim";
-        version = "15.8.0";
+        version = versioning.version;
 
         src = prev.fetchFromGitHub {
           owner = "olimorris";
           repo = "codecompanion.nvim";
-          rev = "v${version}";
-          hash = "sha256-4ywga415U2QgxGiGLGdf5F9RkHxfJtVVPgorgY/KQ6g=";
+          rev = versioning.revision;
+          hash = versioning.hash;
         };
 
         doCheck = false;

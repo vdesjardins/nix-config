@@ -1,0 +1,9 @@
+{
+  "revision": "v0.5.0",
+  "owner": "tohjustin",
+  "repo": "kube-lineage",
+  "hash": "sha256-XK1eJvM3ICahINaAyiIqM1Kstg9pq7hD5C80jsRgJ8s=",
+  "vendorHash": "sha256-+p1QsUYPWf1YVYjkQs5V3bhcMZ4iBYLJFXPK2C6V12g=",
+  "vendorAttr": "goModules",
+  "version": "0.5.0"
+}

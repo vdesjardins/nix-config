@@ -2,46 +2,49 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
-}:
-buildGoModule rec {
+}: let
+  versioning = builtins.fromJSON (builtins.readFile ./helm-gcs.json);
   pname = "helm-gcs";
-  version = "0.4.2";
+in
+  buildGoModule {
+    inherit pname;
+    version = versioning.version;
 
-  src = fetchFromGitHub {
-    owner = "hayorov";
-    repo = "helm-gcs";
-    rev = version;
-    hash = "sha256-5/+atypEctnIz41N6jxkLMthMr5E62cEEVMs+y49/Io=";
-  };
+    src = fetchFromGitHub {
+      owner = "hayorov";
+      repo = "helm-gcs";
+      rev = versioning.revision;
+      hash = versioning.hash;
+    };
 
-  vendorHash = "sha256-wapS6O3OO65DrQ18MbS2ILBNpNvPqpHi1iuEMgFTVNg=";
+    vendorHash = versioning.vendorHash;
 
-  ldflags = [
-    "-s"
-    "-w"
-    "-X=github.com/hayorov/helm-gcs/cmd/helm-gcs/cmd.version=${version}"
-    "-X=github.com/hayorov/helm-gcs/cmd/helm-gcs/cmd.commit=${src.rev}"
-    "-X=github.com/hayorov/helm-gcs/cmd/helm-gcs/cmd.date=1970-01-01T00:00:00Z"
-  ];
+    ldflags = [
+      "-s"
+      "-w"
+      "-X=github.com/hayorov/helm-gcs/cmd/helm-gcs/cmd.version=${versioning.version}"
+      "-X=github.com/hayorov/helm-gcs/cmd/helm-gcs/cmd.commit=${versioning.revision}"
+      "-X=github.com/hayorov/helm-gcs/cmd/helm-gcs/cmd.date=1970-01-01T00:00:00Z"
+    ];
 
-  doCheck = false; # NOTE: Remove the install and upgrade hooks.
+    doCheck = false; # NOTE: Remove the install and upgrade hooks.
 
-  postPatch = ''
-    sed -i '/^hooks:/,+2 d' plugin.yaml
-  '';
+    postPatch = ''
+      sed -i '/^hooks:/,+2 d' plugin.yaml
+    '';
 
-  postInstall = ''
-    install -dm755 $out/${pname}
-    mv $out/bin $out/${pname}/
-    install -m644 -Dt $out/${pname} plugin.yaml
-    cp -r scripts $out/${pname}/scripts
-  '';
+    postInstall = ''
+      install -dm755 $out/${pname}
+      mv $out/bin $out/${pname}/
+      install -m644 -Dt $out/${pname} plugin.yaml
+      cp -r scripts $out/${pname}/scripts
+    '';
 
-  meta = with lib; {
-    description = "Manage Helm 3 repositories on Google Cloud Storage 🔐 **privately";
-    homepage = "https://github.com/hayorov/helm-gcs";
-    license = licenses.mit;
-    maintainers = with maintainers; [vdesjardins];
-    mainProgram = "helm-gcs";
-  };
-}
+    meta = with lib; {
+      description = "Manage Helm 3 repositories on Google Cloud Storage 🔐 **privately";
+      homepage = "https://github.com/hayorov/helm-gcs";
+      license = licenses.mit;
+      maintainers = with maintainers; [vdesjardins];
+      mainProgram = "helm-gcs";
+    };
+  }

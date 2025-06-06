@@ -1,0 +1,9 @@
+{
+  "owner": "hayorov",
+  "repo": "helm-gcs",
+  "revision": "0.4.2",
+  "hash": "sha256-t6FQoqT1EIqpNPntM9sY1yPTp9y8YHmsLnFOXw7VqeA=",
+  "vendorHash": "sha256-iZ+VtxZp59MjoJD2+hVhnAO6Kp3WT409ZrllJm4KUR8=",
+  "vendorAttr": "goModules",
+  "version": "0.4.2"
+}

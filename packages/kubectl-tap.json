@@ -1,0 +1,9 @@
+{
+  "revision": "v0.1.4",
+  "owner": "soluble-ai",
+  "repo": "kubetap",
+  "hash": "sha256-oUlnsrFVX/91IaUkGOhLaKh2uwFdycUXfq4Oj40yYUw=",
+  "vendorHash": "sha256-6RbdlBRB3kzNQ986vWwLC+ReHeO5Es/fqzxWysLPYpA=",
+  "vendorAttr": "goModules",
+  "version": "0.1.4"
+}

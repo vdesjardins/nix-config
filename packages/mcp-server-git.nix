@@ -3,16 +3,18 @@
   python3Packages,
   fetchFromGitHub,
 }: let
+  versioning = builtins.fromJSON (builtins.readFile ./mcp-server-git.json);
+
   src = fetchFromGitHub {
     owner = "modelcontextprotocol";
     repo = "servers";
-    rev = "e515378a9086c3a067042c78ce808ed6483f4c9d";
-    hash = "sha256-RckniEqXyCMBZuo9Mw1SYnhcKCUfXr6nQypT0wrJDCY=";
+    rev = versioning.revision;
+    hash = versioning.hash;
   };
 in
   python3Packages.buildPythonApplication {
     pname = "mcp-server-git";
-    version = "2025-05-31";
+    version = versioning.version;
 
     inherit src;
 

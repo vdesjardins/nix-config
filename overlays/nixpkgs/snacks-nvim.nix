@@ -1,9 +1,11 @@
-_inputs: _final: prev: {
+_inputs: _final: prev: let
+  info = builtins.fromJSON (builtins.readFile ./snacks-nvim.json);
+in {
   vimPlugins =
     prev.vimPlugins
     // {
       snacks-nvim = let
-        version = "2.22.0";
+        version = info.revision;
       in (prev.vimUtils.buildVimPlugin {
         pname = "snacks.nvim";
         inherit version;
@@ -12,7 +14,7 @@ _inputs: _final: prev: {
           owner = "folke";
           repo = "snacks.nvim";
           rev = "v${version}";
-          hash = "sha256-iXfOTmeTm8/BbYafoU6ZAstu9+rMDfQtuA2Hwq0jdcE=";
+          hash = info.hash;
         };
 
         doCheck = false;

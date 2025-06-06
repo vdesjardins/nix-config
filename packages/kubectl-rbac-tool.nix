@@ -2,32 +2,34 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
-}:
-buildGoModule rec {
-  pname = "kubectl-rbac-tool";
-  version = "1.16.0";
+}: let
+  versioning = builtins.fromJSON (builtins.readFile ./kubectl-rbac-tool.json);
+in
+  buildGoModule {
+    pname = "kubectl-rbac-tool";
+    version = versioning.version;
 
-  src = fetchFromGitHub {
-    owner = "alcideio";
-    repo = "rbac-tool";
-    rev = "v${version}";
-    hash = "sha256-O9Z7Eh9OwEFiRhvCEcm2ogQVxZcyOqTXwXaVvIs1heA=";
-  };
+    src = fetchFromGitHub {
+      owner = "alcideio";
+      repo = "rbac-tool";
+      rev = "v${versioning.revision}";
+      hash = versioning.hash;
+    };
 
-  vendorHash = "sha256-eopF5XNML0z4WuAeg7S9dicOY1r3Z3B2dPH0oZQHUB4=";
+    vendorHash = versioning.vendorHash;
 
-  ldflags = [
-    "-s"
-    "-w"
-    "-X=github.com/alcideio/rbac-tool/cmd.Commit=${src.rev}"
-    "-X=github.com/alcideio/rbac-tool/cmd.Version=${version}"
-  ];
+    ldflags = [
+      "-s"
+      "-w"
+      "-X=github.com/alcideio/rbac-tool/cmd.Commit=${versioning.revision}"
+      "-X=github.com/alcideio/rbac-tool/cmd.Version=${versioning.version}"
+    ];
 
-  meta = with lib; {
-    description = "Rapid7 | insightCloudSec | Kubernetes RBAC Power Toys - Visualize, Analyze, Generate & Query";
-    homepage = "https://github.com/alcideio/rbac-tool";
-    license = licenses.asl20;
-    maintainers = with maintainers; [];
-    mainProgram = "kubectl-rbac-tool";
-  };
-}
+    meta = with lib; {
+      description = "Rapid7 | insightCloudSec | Kubernetes RBAC Power Toys - Visualize, Analyze, Generate & Query";
+      homepage = "https://github.com/alcideio/rbac-tool";
+      license = licenses.asl20;
+      maintainers = [];
+      mainProgram = "kubectl-rbac-tool";
+    };
+  }

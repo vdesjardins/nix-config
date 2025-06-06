@@ -1,9 +1,11 @@
-_inputs: _final: prev: {
+_inputs: _final: prev: let
+  versioning = builtins.fromJSON (builtins.readFile ./noice-nvim.json);
+in {
   vimPlugins =
     prev.vimPlugins
     // {
       noice-nvim = let
-        version = "2015-02-12";
+        version = versioning.version;
       in (prev.vimUtils.buildVimPlugin {
         pname = "noice.nvim";
         inherit version;
@@ -11,8 +13,8 @@ _inputs: _final: prev: {
         src = prev.fetchFromGitHub {
           owner = "folke";
           repo = "noice.nvim";
-          rev = "0427460c2d7f673ad60eb02b35f5e9926cf67c59";
-          hash = "sha256-0yu3JX7dXb9b+1REAVP+6K350OlYN6DBm8hEKgkQHgA=";
+          rev = versioning.revision;
+          hash = versioning.hash;
         };
 
         doCheck = false;
