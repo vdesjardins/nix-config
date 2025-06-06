@@ -1,18 +1,18 @@
 _inputs: _final: prev: let
-  info = builtins.fromJSON (builtins.readFile ./markview-nvim.json);
+  versioning = builtins.fromJSON (builtins.readFile ./markview-nvim.json);
 in {
   vimPlugins =
     prev.vimPlugins
     // {
-      markview-nvim = prev.vimUtils.buildVimPlugin rec {
+      markview-nvim = prev.vimUtils.buildVimPlugin {
         pname = "markview.nvim";
-        version = info.revision;
+        version = versioning.version;
 
         src = prev.fetchFromGitHub {
           owner = "OXY2DEV";
           repo = "markview.nvim";
-          rev = "v${version}";
-          sha256 = info.hash;
+          rev = versioning.revision;
+          hash = versioning.hash;
           fetchSubmodules = true;
         };
 

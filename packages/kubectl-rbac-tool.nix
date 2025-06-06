@@ -12,7 +12,7 @@ in
     src = fetchFromGitHub {
       owner = "alcideio";
       repo = "rbac-tool";
-      rev = "v${versioning.revision}";
+      rev = versioning.revision;
       hash = versioning.hash;
     };
 

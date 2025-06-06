@@ -2,32 +2,31 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
-}:
-let
+}: let
   versioning = builtins.fromJSON (builtins.readFile ./kubectl-who-can.json);
 in
-buildGoModule rec {
-  pname = "kubectl-who-can";
-  version = versioning.version;
+  buildGoModule {
+    pname = "kubectl-who-can";
+    version = versioning.version;
 
-  src = fetchFromGitHub {
-    owner = "aquasecurity";
-    repo = "kubectl-who-can";
-    rev = "v${versioning.revision}";
-    hash = versioning.hash;
-  };
+    src = fetchFromGitHub {
+      owner = "aquasecurity";
+      repo = "kubectl-who-can";
+      rev = versioning.revision;
+      hash = versioning.hash;
+    };
 
-  vendorHash = versioning.vendorHash;
+    vendorHash = versioning.vendorHash;
 
-  doCheck = false;
+    doCheck = false;
 
-  ldflags = ["-s" "-w"];
+    ldflags = ["-s" "-w"];
 
-  meta = with lib; {
-    description = "Show who has RBAC permissions to perform actions on different resources in Kubernetes";
-    homepage = "https://github.com/aquasecurity/kubectl-who-can";
-    license = licenses.asl20;
-    maintainers = with maintainers; [vdesjardins];
-    mainProgram = "kubectl-who-can";
-  };
-}
+    meta = with lib; {
+      description = "Show who has RBAC permissions to perform actions on different resources in Kubernetes";
+      homepage = "https://github.com/aquasecurity/kubectl-who-can";
+      license = licenses.asl20;
+      maintainers = with maintainers; [vdesjardins];
+      mainProgram = "kubectl-who-can";
+    };
+  }

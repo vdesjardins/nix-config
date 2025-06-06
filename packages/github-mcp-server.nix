@@ -5,14 +5,14 @@
 }: let
   versioning = builtins.fromJSON (builtins.readFile ./github-mcp-server.json);
 in
-  buildGoModule rec {
+  buildGoModule {
     pname = "github-mcp-server";
     version = versioning.version;
 
     src = fetchFromGitHub {
       owner = "github";
       repo = "github-mcp-server";
-      rev = "v${version}";
+      rev = versioning.revision;
       hash = versioning.hash;
     };
 

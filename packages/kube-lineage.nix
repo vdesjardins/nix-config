@@ -12,7 +12,7 @@ in
     src = fetchFromGitHub {
       owner = "tohjustin";
       repo = "kube-lineage";
-      rev = "v${versioning.revision}";
+      rev = versioning.revision;
       hash = versioning.hash;
     };
 
