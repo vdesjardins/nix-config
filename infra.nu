@@ -25,6 +25,7 @@ def "main host generate" [] {
 # update packages/overlays fixed dependencies
 def "main deps update" [
 	pattern: string = "**/*.json"
+	--compute-hash = false
 ] {
 	glob $pattern | each { |file|
 		let package_data = (open $file)
@@ -45,10 +46,10 @@ def "main deps update" [
 
 		if ($ref != null) {
 			print $"Processing ($file) by ref"
-			update_by_ref $token $file $package_data $owner $repo $revision $ref
+			update_by_ref $token $file $package_data $owner $repo $revision $ref $compute_hash
 		} else {
 			print $"Processing ($file) by version"
-			update_by_version $token $file $package_data $owner $repo $revision $version
+			update_by_version $token $file $package_data $owner $repo $revision $version $compute_hash
 		}
 	}
 }
@@ -61,13 +62,18 @@ def update_by_version [
 	repo
 	revision
 	version
+	compute_hash
 ] {
 	let latest = http get --headers ["Authorization" $"Bearer ($token)"] $"https://api.github.com/repos/($owner)/($repo)/releases/latest" | get tag_name
 
 	if ($revision == $latest) {
-		print $"Skipping ($file): Revision is up to date"
-		return
+		if ($compute_hash == false) {
+			print $"Skipping ($file): Revision is up to date"
+			return
+		}
 	}
+
+	print $"Updating ($file)"
 
 	let url = $"https://github.com/($owner)/($repo)/archive/($latest).tar.gz"
 
@@ -96,13 +102,18 @@ def update_by_ref [
 	repo
 	revision
 	ref
+	compute_hash
 ] {
 	let commit = http get --headers ["Authorization" $"Bearer ($token)"] $"https://api.github.com/repos/($owner)/($repo)/commits" | first | get sha
 
 	if $commit == $revision {
-		print $"Skipping ($file): Revision is up to date"
-		return
+		if ($compute_hash == false) {
+			print $"Skipping ($file): Revision is up to date"
+			return
+		}
 	}
+
+	print $"Updating ($file)"
 
 	let url = $"https://github.com/($owner)/($repo)/archive/($commit).tar.gz"
 
