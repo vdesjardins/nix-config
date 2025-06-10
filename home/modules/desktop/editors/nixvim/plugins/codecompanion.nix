@@ -1,5 +1,9 @@
 {pkgs, ...}: {
   programs.nixvim = {
+    extraPlugins = with pkgs.vimPlugins; [
+      codecompanion-history
+    ];
+
     plugins = {
       codecompanion = {
         enable = true;
@@ -7,6 +11,15 @@
         package = pkgs.vimPlugins.codecompanion;
 
         settings = {
+          extensions = {
+            history = {
+              enabled = true;
+              opts = {
+                picker = "snacks";
+              };
+            };
+          };
+
           adapters = {
             anthropic.__raw = ''
               function()
@@ -194,6 +207,12 @@
         key = "<leader>ca";
         action = "<cmd>CodeCompanionActions<cr>";
         options.desc = "Actions (CodeCompanion)";
+      }
+      {
+        mode = "n";
+        key = "<leader>ch";
+        action = "<cmd>CodeCompanionHistory<cr>";
+        options.desc = "History (CodeCompanionHistory)";
       }
     ];
   };
