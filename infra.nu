@@ -36,6 +36,7 @@ def "main deps update" [
 		let version = ($package_data | get version?)
 		let locked = ($package_data | default false locked | get locked)
 		let ref = ($package_data | get ref?)
+		let fetch_method = ($package_data | get fetch_method? | default "url")
 
 		let token = passage apis/github/vince/default
 
@@ -46,11 +47,39 @@ def "main deps update" [
 
 		if ($ref != null) {
 			print $"Processing ($file) by ref"
-			update_by_ref $token $file $package_data $owner $repo $revision $ref $compute_hash
+			update_by_ref $token $file $package_data $owner $repo $revision $ref $compute_hash $fetch_method
 		} else {
 			print $"Processing ($file) by version"
-			update_by_version $token $file $package_data $owner $repo $revision $version $compute_hash
+			update_by_version $token $file $package_data $owner $repo $revision $version $compute_hash $fetch_method
 		}
+	}
+}
+
+def fetch_dep [
+	file: string
+	revision: string
+	owner: string
+	repo: string
+	fetch_method: string
+] {
+	let result = if ($fetch_method == "git") {
+		print $"Fetching git revision ($revision) for ($file)"
+		let url = $"git@github.com:($owner)/($repo)"
+		(nix-prefetch-git --url $url --rev $revision --fetch-submodules --quiet | jq '.hash' -Mr | xargs nix hash convert --to sri --hash-algo sha256 | complete)
+	} else {
+		print $"Fetching archive revision ($revision) for ($file)"
+		let url = $"https://github.com/($owner)/($repo)/archive/($revision).tar.gz"
+		(nix-prefetch-url --unpack $url --type sha256 | xargs nix hash convert --to sri --hash-algo sha256 | complete)
+	}
+
+	if ($result.exit_code != 0) {
+		make error {
+			msg: $"Fetch failed for ($file): ($result)"
+		}
+	}
+
+	{
+		hash: ($result.stdout | str trim)
 	}
 }
 
@@ -63,6 +92,7 @@ def update_by_version [
 	revision
 	version
 	compute_hash
+	fetch_method
 ] {
 	let latest = http get --headers ["Authorization" $"Bearer ($token)"] $"https://api.github.com/repos/($owner)/($repo)/releases/latest" | get tag_name
 
@@ -75,19 +105,12 @@ def update_by_version [
 
 	print $"Updating ($file)"
 
-	let url = $"https://github.com/($owner)/($repo)/archive/($latest).tar.gz"
-
-	let result = (nurl $url --hash | to text | complete)
-
-	if ($result.exit_code != 0) {
-		print $"nurl failed for ($file): ($result)"
-		return
-	}
+	let fetch_rev = fetch_dep $file $latest $owner $repo $fetch_method
 
 	let $package_data = $package_data | merge {
 		revision: $latest
 		version: ($latest | str replace "v" "")
-		hash: $result.stdout
+		hash: $fetch_rev.hash
 	}
 	$package_data | to json | save $file -f
 
@@ -103,6 +126,7 @@ def update_by_ref [
 	revision
 	ref
 	compute_hash
+	fetch_method
 ] {
 	let commit = http get --headers ["Authorization" $"Bearer ($token)"] $"https://api.github.com/repos/($owner)/($repo)/commits" | first | get sha
 
@@ -115,21 +139,14 @@ def update_by_ref [
 
 	print $"Updating ($file)"
 
-	let url = $"https://github.com/($owner)/($repo)/archive/($commit).tar.gz"
-
-	let result = (nurl $url --hash | to text | complete)
-
-	if ($result.exit_code != 0) {
-		print $"nurl failed for ($file): ($result)"
-		return
-	}
+	let fetch_rev = fetch_dep $file $commit $owner $repo $fetch_method
 
 	let version = date now | format date "%Y-%m-%d"
 
 	let $package_data = $package_data | merge {
 		version: $version
 		revision: $commit
-		hash: $result.stdout
+		hash: $fetch_rev.hash
 	}
 	$package_data | to json | save $file -f
 

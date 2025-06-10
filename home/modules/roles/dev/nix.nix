@@ -22,6 +22,7 @@ in {
       nix-inspect # tui for evaluating nix expression
       nix-tree
       nix-prefetch
+      nix-prefetch-git
       nix-output-monitor
       nurl # generate nix fetcher calls
       nvd # package version diff tool
