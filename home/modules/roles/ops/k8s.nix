@@ -34,7 +34,6 @@ in {
         ketall # get all rersources
         kind
         kube-capacity
-        kube-lineage
         kube3d
         kubectl-blame
         kubectl-images
