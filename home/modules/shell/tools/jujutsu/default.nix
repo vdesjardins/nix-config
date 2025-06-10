@@ -43,9 +43,7 @@ in {
           ui = {
             default-command = "log";
             pager = "delta";
-            diff = {
-              format = "git";
-            };
+            diff-formatter = ":git";
             merge-editor = "meld";
             diff-editor = ":builtin";
           };

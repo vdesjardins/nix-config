@@ -100,7 +100,7 @@ in {
         sd # sed replacement
         sslscan
         tealdeer # faster tldr
-        thefuck # fix commands
+        pay-respects
         tokei # displays code statistics
         tree
         procs # replacement for ps
