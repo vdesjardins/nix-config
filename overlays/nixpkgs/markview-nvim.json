@@ -2,6 +2,7 @@
   "owner": "OXY2DEV",
   "repo": "markview.nvim",
   "revision": "v25.8.0",
-  "hash": "sha256-HLbMd3jEU9PcRXFJGhmbxvjzKmt4YBgckEMyyHnMRco=",
-  "version": "25.8.0"
+  "hash": "sha256-GOzOSJdyiLCjMSQMuf548diwwF14OnAii/irTFsSvxI=",
+  "version": "25.8.0",
+  "fetch_method": "git"
 }

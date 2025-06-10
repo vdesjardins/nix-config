@@ -2,7 +2,7 @@
   "revision": "v0.4.0",
   "owner": "aquasecurity",
   "repo": "kubectl-who-can",
-  "hash": "sha256-k/FKp+TInUKoN1PJdPDu/zgpkdasiyj7iOeEXCU/9Bc=",
+  "hash": "sha256-nyUDzNxlizSr3P3dh9Cz/9CaMfmjeE9qSJkCLo4lBqw=",
   "vendorHash": "sha256-KWLuS29aI3XqqyJAY9DVX+ldFU53vEumpBKUwinhYGQ=",
   "vendorAttr": "goModules",
   "version": "0.4.0"

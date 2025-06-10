@@ -2,8 +2,8 @@
   "owner": "github",
   "repo": "github-mcp-server",
   "revision": "v0.4.0",
-  "hash": "sha256-AmUD+ecL9AEXx+UUCpzvf3XGIlVqkBVlE2i9fPw4aTw=",
-  "vendorHash": "sha256-gVR7Md3xYrPpeMhHRTKCQKCJvRRIl85uXo+QwlVaPzk=",
+  "hash": "sha256-7bxphEQOewy7RZIfKp6aEIPvhgvq4AsU8FozsDsGVgM=",
+  "vendorHash": "sha256-yUg+4Z8e9j4wpDD+5XG7pZFnxibGiI5Gks1CEQT2E3g=",
   "vendorAttr": "goModules",
   "version": "0.4.0"
 }
