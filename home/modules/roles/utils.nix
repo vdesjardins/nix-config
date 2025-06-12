@@ -33,6 +33,7 @@ in {
         fd.enable = true;
         gh.enable = true;
         git.enable = true;
+        mergiraf.enable = true;
         joshuto.enable = true;
         jujutsu.enable = true;
         lazygit.enable = true;
