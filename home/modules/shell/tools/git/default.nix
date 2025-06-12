@@ -87,7 +87,7 @@ in {
           };
 
           merge = {
-            conflictstyle = "zdiff3";
+            conflictstyle = "diff3";
             tool = "vimdiff";
             renamelimit = 3000;
           };
