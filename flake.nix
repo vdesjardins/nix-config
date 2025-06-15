@@ -140,6 +140,7 @@
     lib = inputs.nixpkgs.lib.extend (final: prev: {
       my = import ./lib {
         inherit pkgs inputs;
+        system = pkgs.system;
         lib = final;
       };
     });
