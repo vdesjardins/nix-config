@@ -70,6 +70,10 @@ in {
             GITHUB_PERSONAL_ACCESS_TOKEN = "";
           };
         };
+
+        context7 = {
+          command = "${pkgs.context7}/bin/context7-mcp";
+        };
       };
     };
   };
