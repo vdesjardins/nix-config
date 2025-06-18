@@ -93,6 +93,7 @@ in {
         lsof
         meld
         neofetch # fetch system/theme information
+        nix-update
         oha # HTTP load generator inspired by rakyll/hey with tui animation
         openssh
         ps

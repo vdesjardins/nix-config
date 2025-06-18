@@ -1,8 +1,0 @@
-{
-  "version": "2025-06-09",
-  "revision": "f22ce8cac02a6ece05368220f1e38bd34fe376f9",
-  "hash": "sha256-pPHESNsByHg2liNUYkUEVR1wP1MZcil1sKTqrNI53e4=",
-  "ref": "main",
-  "owner": "moyiz",
-  "repo": "blink-emoji.nvim"
-}

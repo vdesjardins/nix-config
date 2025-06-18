@@ -97,12 +97,22 @@
     };
 
     myPackages = pkgs:
-      self.lib.mapModulesRecursive ./packages (o: pkgs.callPackage o {});
+      lib.my.filterScopes (
+        self.lib.mapModulesRecursive ./packages (o:
+          pkgs.callPackage o {})
+      );
 
     mkPackagesOverlay = final: prev:
       lib.attrsets.mapAttrs' (
-        name: value:
-          lib.attrsets.nameValuePair (removeSuffix ".nix" name) (prev.callPackage ./packages/${name} {})
+        name: value: let
+          sym = removeSuffix ".nix" name;
+        in
+          lib.attrsets.nameValuePair sym (let
+            pkg = prev.callPackage ./packages/${name} {};
+          in
+            if builtins.typeOf pkg == "set" && pkg ? type && pkg.type == "derivation"
+            then pkg
+            else prev.${sym} // pkg)
       ) (readDir ./packages);
 
     myOverlays =

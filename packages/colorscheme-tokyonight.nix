@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation {
   pname = "colortheme-tokyonight";
-  version = "2025-01-22";
+  version = "4.11.0";
 
   src = fetchFromGitHub {
     owner = "folke";
     repo = "tokyonight.nvim"; # Bat uses sublime syntax for its themes
-    rev = "c3ab53c3f544e4a04f2a05d43451fd9bedff51b4";
-    sha256 = "sha256-vY054vqhOLyARRpm3XcfM84Qzwb3mMIh5QRSQU1Bcg0=";
+    rev = "v4.11.0";
+    sha256 = "sha256-pMzk1gRQFA76BCnIEGBRjJ0bQ4YOf3qecaU6Fl/nqLE=";
   };
 
   phases = ["unpackPhase" "installPhase"];

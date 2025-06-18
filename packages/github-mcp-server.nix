@@ -2,27 +2,24 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
-}: let
-  versioning = builtins.fromJSON (builtins.readFile ./github-mcp-server.json);
-in
-  buildGoModule {
-    pname = "github-mcp-server";
-    version = versioning.version;
+}:
+buildGoModule rec {
+  pname = "github-mcp-server";
+  version = "0.5.0";
 
-    src = fetchFromGitHub {
-      owner = "github";
-      repo = "github-mcp-server";
-      rev = versioning.revision;
-      hash = versioning.hash;
-    };
+  src = fetchFromGitHub {
+    owner = "github";
+    repo = "github-mcp-server";
+    rev = "v${version}";
+    hash = "sha256-dbzO8yTAIfdAwcZEdoJqp+loPQea8iRSsAHdk2DfZ2A=";
+  };
 
-    vendorHash = versioning.vendorHash;
+  vendorHash = "sha256-gVR7Md3xYrPpeMhHRTKCQKCJvRRIl85uXo+QwlVaPzk=";
 
-    meta = with lib; {
-      description = "GitHub's official MCP Server";
-      homepage = "https://github.com/github/github-mcp-server";
-      license = licenses.mit;
-      maintainers = with maintainers; [vdesjardins];
-      mainProgram = "github-mcp-server";
-    };
-  }
+  meta = with lib; {
+    description = "GitHub's official MCP Server";
+    homepage = "https://github.com/github/github-mcp-server";
+    license = licenses.mit;
+    mainProgram = "github-mcp-server";
+  };
+}

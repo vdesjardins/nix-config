@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation {
   pname = "kubectl-aliases";
-  version = "unstable-2023-11-22";
+  version = "0-unstable-2025-05-11";
 
   src = fetchFromGitHub {
     owner = "ahmetb";
     repo = "kubectl-aliases";
-    rev = "ac5bfb00a1b351e7d5183d4a8f325bb3b235c1bd";
-    hash = "sha256-X2E0n/U8uzZ/JAsYIvPjnEQLri8A7nveMmbkOFSxO5s=";
+    rev = "7549fa45bbde7499b927c74cae13bfb9169c9497";
+    hash = "sha256-NkprSk55aRVHiq9JXduQl6AGZv5pBLHznRToOdm9OUw=";
   };
 
   phases = ["unpackPhase" "installPhase"];
@@ -25,7 +25,6 @@ stdenv.mkDerivation {
     description = "Programmatically generated handy kubectl aliases";
     homepage = "https://github.com/ahmetb/kubectl-aliases";
     license = licenses.asl20;
-    maintainers = with maintainers; [vdesjardins];
     mainProgram = "kubectl-aliases";
     platforms = platforms.all;
   };

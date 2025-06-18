@@ -1,9 +1,0 @@
-{
-  "revision": "v1.20.0",
-  "owner": "alcideio",
-  "repo": "rbac-tool",
-  "hash": "sha256-JnGodkPGWpAC2ksMnXjVTHn+UmgAkG63m9rbhcoLA1E=",
-  "vendorHash": "sha256-nCWK3bdSsx1O+hUyFozZfolZQtAQC27kO04DY+c8SmY=",
-  "vendorAttr": "goModules",
-  "version": "1.20.0"
-}
