@@ -7,13 +7,13 @@
 lib.makeScope newScope (self: {
   codecompanion = vimUtils.buildVimPlugin rec {
     pname = "codecompanion.nvim";
-    version = "17.1.1";
+    version = "17.3.0";
 
     src = fetchFromGitHub {
       owner = "olimorris";
       repo = "codecompanion.nvim";
       rev = "v${version}";
-      hash = "sha256-kNpJJo7GSYLgtsk8NCNwF/CIwLjPBVUqO995UPzX/bA=";
+      hash = "sha256-AncUzLoKMWLaugkLzTX0WGpz5lk1sweFNCX+2RShTcA=";
     };
 
     doCheck = false;
@@ -25,13 +25,13 @@ lib.makeScope newScope (self: {
 
   codecompanion-history = vimUtils.buildVimPlugin {
     pname = "codecompanion-history";
-    version = "0-unstable-2025-06-17";
+    version = "0-unstable-2025-06-24";
 
     src = fetchFromGitHub {
       owner = "ravitemer";
       repo = "codecompanion-history.nvim";
-      rev = "5442513f1303884079c8f13cf8b75da44a3db679";
-      hash = "sha256-HzuTcfl2k5fAI/wRCDXyA4WgZHIBNmwHRt4BXU1OQPE=";
+      rev = "56db56c13e5db10d366262603f17fff54c700169";
+      hash = "sha256-nmBB6ljHRo4Qsq/O6D54VsfaZTv2EPK0m2fmhm9gj6Y=";
     };
 
     doCheck = false;
