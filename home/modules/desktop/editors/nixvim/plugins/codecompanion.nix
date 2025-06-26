@@ -97,9 +97,11 @@
           strategies = {
             agent = {
               adapter = "copilot";
+              model = "claude-3.5-sonnet";
             };
             chat = {
               adapter = "copilot";
+              model = "claude-3.5-sonnet";
               keymaps = {
                 options = {
                   modes = {
@@ -129,6 +131,7 @@
             };
             inline = {
               adapter = "copilot";
+              model = "claude-3.5-sonnet";
             };
           };
 
