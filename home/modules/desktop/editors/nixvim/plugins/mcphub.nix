@@ -74,6 +74,10 @@ in {
         context7 = {
           command = "${pkgs.context7}/bin/context7-mcp";
         };
+
+        desktop-commander = {
+          command = "${pkgs.desktop-commander-mcp}/bin/desktop-commander";
+        };
       };
     };
   };
