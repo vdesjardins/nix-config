@@ -37,6 +37,15 @@ in {
               end
             '';
 
+            gemini.__raw = ''
+              function()
+                return require('codecompanion.adapters').extend('gemini', {
+                  env = {
+                    api_key = "cmd:${pkgs.passage}/bin/passage /apis/ai/gemini"
+                  }
+                })
+              end
+            '';
             openai.__raw = ''
               function()
                 return require('codecompanion.adapters').extend('openai', {
