@@ -28,6 +28,7 @@ def "main nix-update" [
 ] {
 	let pkgs_latest = [
 		"english-words", "kubectl-aliases", "lscolors", "tinted-fzf",
+		"serena",
 		"vimPlugins.kcl", "vimPlugins.codecompanion-history",
 		"vimPlugins.blink-emoji", "vimPlugins.blink-copilot", "vimPlugins.blink-cmp-dictionary",
 		"vimPlugin.noice-nvim "]

@@ -78,6 +78,17 @@ in {
         desktop-commander = {
           command = "${pkgs.desktop-commander-mcp}/bin/desktop-commander";
         };
+
+        serena = {
+          command = "${pkgs.serena}/bin/serena-mcp-server";
+          args = [
+            "--context"
+            "ide-assistant"
+          ];
+          env = {
+            XDG_CONFIG_HOME = "${config.xdg.configHome}";
+          };
+        };
       };
     };
   };
