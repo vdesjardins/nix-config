@@ -27,6 +27,6 @@ in
       description = "Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors ";
       homepage = "https://github.com/upstash/context7";
       license = licenses.mit;
-      mainProgram = "context7";
+      mainProgram = "context7-mcp";
     };
   }

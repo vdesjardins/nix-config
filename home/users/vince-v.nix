@@ -10,7 +10,6 @@
   roles.utils.enable = true;
   roles.nixpkgs.enable = true;
   roles.sync.enable = true;
-  roles.ai.enable = true;
   roles.security.enable = true;
   roles.multimedia.enable = true;
 
@@ -35,6 +34,15 @@
   roles.ops.k8s.enable = true;
   roles.ops.networking.enable = true;
   roles.ops.bpf.enable = true;
+
+  roles.ai.ollama.enable = true;
+  roles.ai.mcp.context7.enable = true;
+  roles.ai.mcp.desktop-commander.enable = true;
+  roles.ai.mcp.fetch.enable = true;
+  roles.ai.mcp.git.enable = true;
+  roles.ai.mcp.github.enable = true;
+  roles.ai.mcp.kubernetes.enable = true;
+  roles.ai.mcp.serena.enable = true;
 
   roles.desktop.wallpapers.enable = true;
   roles.desktop.browsers.enable = true;

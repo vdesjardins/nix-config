@@ -39,6 +39,11 @@ in {
           model = "claude-3.5-sonnet";
         };
       };
+
+      mcpServers = mkOption {
+        type = attrs;
+        default = {};
+      };
     };
   };
 

@@ -8,6 +8,6 @@
 in {
   options.modules.home.configDirectory = mkOption {
     type = path;
-    default = "${config.home.homeDirectory}/projects/nix-config/home/modules";
+    default = "${config.home.homeDirectory}/projects/nix-config/home/modules/modules";
   };
 }

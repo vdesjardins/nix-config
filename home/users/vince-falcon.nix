@@ -11,7 +11,7 @@
   roles.utils.enable = true;
   roles.nixpkgs.enable = true;
   roles.sync.enable = true;
-  roles.ai.enable = true;
+  roles.ai.ollama.enable = true;
   roles.multimedia.enable = true;
 
   roles.dev.bash.enable = true;

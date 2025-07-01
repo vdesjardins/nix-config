@@ -31,6 +31,14 @@
   roles.ops.networking.enable = true;
   roles.ops.vault.enable = true;
 
+  roles.ai.mcp.context7.enable = true;
+  roles.ai.mcp.desktop-commander.enable = true;
+  roles.ai.mcp.fetch.enable = true;
+  roles.ai.mcp.git.enable = true;
+  roles.ai.mcp.github.enable = true;
+  roles.ai.mcp.kubernetes.enable = true;
+  roles.ai.mcp.serena.enable = true;
+
   roles.desktop.darwin.enable = true;
   roles.desktop.browsers.enable = true;
 }
