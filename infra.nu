@@ -29,9 +29,11 @@ def "main nix-update" [
 	let pkgs_latest = [
 		"english-words", "kubectl-aliases", "lscolors", "tinted-fzf",
 		"serena",
+		"mcp-proxy",
+		"gemini-cli", "git-mcp",
 		"vimPlugins.kcl", "vimPlugins.codecompanion-history",
-		"vimPlugins.blink-emoji", "vimPlugins.blink-copilot", "vimPlugins.blink-cmp-dictionary",
-		"vimPlugin.noice-nvim "]
+		"vimPlugins.blink-emoji", "vimPlugins.blink-copilot",
+		"vimPlugins.blink-cmp-dictionary", "vimPlugin.noice-nvim "]
 
 	let pkgs_to_update = if ($packages | length) > 0 {
 		$packages
