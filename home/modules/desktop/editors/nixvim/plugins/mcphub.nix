@@ -17,6 +17,7 @@ in {
     extraConfigLua = ''
       require("mcphub").setup({
         auto_approve = true,
+        mcp_request_timeout = 120000,
       })
     '';
 
@@ -88,6 +89,15 @@ in {
           env = {
             XDG_CONFIG_HOME = "${config.xdg.configHome}";
           };
+          disabled_tools = ["read_file"];
+        };
+
+        kubernetes = {
+          command = "${pkgs.mcp-server-kubernetes}/bin/mcp-server-kubernetes";
+        };
+
+        fetch = {
+          command = "${pkgs.mcp-server-fetch}/bin/mcp-server-fetch";
         };
       };
     };

@@ -5,7 +5,7 @@ index 7da88e1..16846f4 100644
 @@ -391,11 +391,17 @@ class SerenaConfig(SerenaConfigBase):
          loaded_commented_yaml = load_yaml(SELENA_CONFIG_TEMPLATE_FILE, preserve_comments=True)
          save_yaml(cls.get_config_file_path(), loaded_commented_yaml, preserve_comments=True)
-
+ 
      @classmethod
      def get_config_file_path(cls) -> str:
 +        # Prefer XDG_CONFIG_HOME if set, fallback to REPO_ROOT
@@ -16,7 +16,24 @@ index 7da88e1..16846f4 100644
 +            os.makedirs(config_dir, exist_ok=True)
 +            return os.path.join(config_dir, config_file)
          return os.path.join(REPO_ROOT, config_file)
-
+ 
      @classmethod
      def _load_commented_yaml(cls, config_file: str, generate_if_missing: bool = True) -> CommentedMap:
          if not os.path.exists(config_file):
+diff --git c/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py i/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py
+index 1f951e5..4c6a64c 100644
+--- c/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py
++++ i/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py
+@@ -26,11 +26,11 @@ class RustAnalyzer(SolidLanguageServer):
+ 
+     def __init__(self, config: LanguageServerConfig, logger: LanguageServerLogger, repository_root_path: str):
+         """
+         Creates a RustAnalyzer instance. This class is not meant to be instantiated directly. Use LanguageServer.create() instead.
+         """
+-        rustanalyzer_executable_path = self.setup_runtime_dependencies(logger, config)
++        rustanalyzer_executable_path = "rust-nalyzer"
+         super().__init__(
+             config,
+             logger,
+             repository_root_path,
+             ProcessLaunchInfo(cmd=rustanalyzer_executable_path, cwd=repository_root_path),

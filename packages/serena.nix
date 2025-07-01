@@ -6,13 +6,13 @@
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "808cc86248260e7626621b7258abb9dbcc5ff5b0";
-    hash = "sha256-VLc7BHEqeKFDilviQxpNMUYPqA3OigPjnlX56lHHSXE=";
+    rev = "b1eba4563e7f892c96e2b8e97ca871984b4d2e08";
+    hash = "sha256-WCwda+TYTikn1NjSK9eLEcJXrz71qZazfnLU9mbTTjE=";
   };
 in
   python3Packages.buildPythonApplication {
     pname = "serena";
-    version = "2025-06-20-unstable-2025-06-29";
+    version = "2025-06-20";
 
     inherit src;
 
