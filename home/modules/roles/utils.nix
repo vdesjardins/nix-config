@@ -86,6 +86,7 @@ in {
         hexyl # hex viewer
         htop # fancy top
         httpie
+        httpx
         hyperfine
         jc # format converter/parser
         jp # jmespath
