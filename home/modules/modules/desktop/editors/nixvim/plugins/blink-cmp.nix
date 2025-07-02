@@ -58,12 +58,12 @@
                 async = true;
                 name = "cmp_yanky";
                 module = "blink.compat.source";
-                score_offset = -15;
                 transform_items.__raw = ''
                   function(_, items)
                     return vim.tbl_map(function(item)
                       item.kind_name = "Yanky"
                       item.kind_icon = "⧉"
+                      item.score = -15
                       return item
                     end, items)
                   end
