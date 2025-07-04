@@ -41,4 +41,27 @@
 
   roles.desktop.darwin.enable = true;
   roles.desktop.browsers.enable = true;
+
+  modules.desktop.editors.nixvim = {
+    ai = {
+      chat = {
+        adapter = {
+          name = "copilot";
+          model = "gemini-2.5-pro";
+        };
+      };
+      agent = {
+        adapter = {
+          name = "copilot";
+          model = "gemini-2.5-pro";
+        };
+      };
+      inline = {
+        adapter = {
+          name = "copilot";
+          model = "gemini-2.5-pro";
+        };
+      };
+    };
+  };
 }

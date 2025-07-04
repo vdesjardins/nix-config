@@ -21,22 +21,28 @@ in {
       chat = mkOption {
         type = attrs;
         default = {
-          adapter = "copilot";
-          model = "claude-3.5-sonnet";
+          adapter = {
+            name = "copilot";
+            model = "claude-3.5-sonnet";
+          };
         };
       };
       agent = mkOption {
         type = attrs;
         default = {
-          adapter = "copilot";
-          model = "claude-3.5-sonnet";
+          adapter = {
+            name = "copilot";
+            model = "claude-3.5-sonnet";
+          };
         };
       };
       inline = mkOption {
         type = attrs;
         default = {
-          adapter = "copilot";
-          model = "claude-3.5-sonnet";
+          adapter = {
+            name = "copilot";
+            model = "claude-3.5-sonnet";
+          };
         };
       };
 
