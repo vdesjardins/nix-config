@@ -6,8 +6,8 @@
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "f493f7a6c4e72259953a172b5710371c2cbb4ec2";
-    hash = "sha256-Qo+QxAsYNieBOVX1JntTO7VrUasbSUEytZnAp8hHmps=";
+    rev = "07ebdf78a3429f7019c832b75332ebd07a04a005";
+    hash = "sha256-6oWJojkZu5KhTT6/V7n5U+ikd5M57DWJXtqvHVqdSso=";
   };
 in
   python3Packages.buildPythonApplication {

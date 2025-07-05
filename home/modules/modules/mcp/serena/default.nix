@@ -20,6 +20,7 @@ in {
       args = [
         "--context"
         "ide-assistant"
+        "--enable-web-dashboard=false"
       ];
       env = {
         XDG_CONFIG_HOME = "${config.xdg.configHome}";
