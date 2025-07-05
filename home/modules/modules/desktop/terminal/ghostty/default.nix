@@ -66,7 +66,6 @@ in {
 
       theme = "${cfg.theme}"
 
-      gtk-adwaita = true
       bold-is-bright = true
 
       gtk-tabs-location = bottom
@@ -82,14 +81,16 @@ in {
 
       macos-option-as-alt = true
 
+      desktop-notifications = true
+
       # splits
       keybind = ctrl+space>v=new_split:right
       keybind = ctrl+space>s=new_split:down
 
-      keybind = alt+h=resize_split:left,20
-      keybind = alt+k=resize_split:up,20
-      keybind = alt+j=resize_split:down,20
-      keybind = alt+l=resize_split:right,20
+      keybind = alt+h=resize_split:left,50
+      keybind = alt+k=resize_split:up,50
+      keybind = alt+j=resize_split:down,50
+      keybind = alt+l=resize_split:right,50
 
       keybind = ctrl+h=goto_split:left
       keybind = ctrl+k=goto_split:top
