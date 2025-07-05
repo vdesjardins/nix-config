@@ -6,15 +6,15 @@
 }: let
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) package int;
+  inherit (lib.types) int str;
   inherit (builtins) toString;
 
   cfg = config.modules.desktop.extensions.swayidle;
 in {
   options.modules.desktop.extensions.swayidle = {
     enable = mkEnableOption "swayidle";
-    lockerCommand = mkOption {
-      type = package;
+    wallpapersPath = mkOption {
+      type = str;
     };
     notifyTimeout = mkOption {
       type = int;
@@ -30,14 +30,22 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable (let
+    wallpaperChooser = pkgs.writeShellScript "random-wallpaper" ''
+      ${pkgs.findutils}/bin/find -L ${cfg.wallpapersPath} -type f | ${pkgs.coreutils}/bin/shuf -n 1
+    '';
+
+    lockerCommand = pkgs.writeShellScript "lock-random-wallpaper" ''
+      ${config.programs.swaylock.package}/bin/swaylock -f --image `${wallpaperChooser}`
+    '';
+  in {
     services.swayidle = {
       inherit (cfg) enable;
 
       events = [
         {
           event = "before-sleep";
-          command = "${cfg.lockerCommand}";
+          command = "${lockerCommand}";
         }
       ];
 
@@ -56,7 +64,7 @@ in {
         }
         {
           timeout = cfg.lockTimeout;
-          command = "${cfg.lockerCommand}";
+          command = "${lockerCommand}";
         }
         {
           timeout = cfg.dpmsTimeout;
@@ -64,16 +72,32 @@ in {
             pkgs.writeShellScript "swayidle-timeout-command"
             ''
               ${pkgs.sway}/bin/swaymsg "output * dpms off"
+              ${pkgs.hyprland}/bin/hyprctl dispatch dpms off
             ''
           );
           resumeCommand = builtins.toString (
             pkgs.writeShellScript "swayidle-resume-command"
             ''
               ${pkgs.sway}/bin/swaymsg "output * dpms on"
+              ${pkgs.hyprland}/bin/hyprctl dispatch dpms on
             ''
           );
         }
       ];
     };
-  };
+
+    wayland.windowManager.hyprland = {
+      settings.bind = [
+        # lock session
+        "$mod SHIFT, X, exec, ${lockerCommand}"
+      ];
+    };
+
+    wayland.windowManager.sway = {
+      config.keybindings = lib.mkOptionDefault {
+        # lock screen
+        "Mod4+Shift+x" = "exec --no-startup-id ${lockerCommand}";
+      };
+    };
+  });
 }

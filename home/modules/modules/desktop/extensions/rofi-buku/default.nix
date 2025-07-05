@@ -26,6 +26,10 @@ in {
         help_color="#2d7ed8";
       '';
 
+    wayland.windowManager.hyprland.settings.bind = [
+      "$mod SHIFT, B, exec, ${pkgs.rofi-buku}/bin/rofi-buku"
+    ];
+
     wayland.windowManager.sway = {
       config = let
         swayCfg = config.wayland.windowManager.sway.config;

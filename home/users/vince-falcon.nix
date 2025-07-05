@@ -46,7 +46,9 @@
   roles.desktop.browsers.enable = true;
   roles.desktop.viewers.enable = true;
   roles.desktop.security.enable = true;
+  roles.desktop.extensions.enable = true;
   roles.desktop.sway.enable = true;
+  roles.desktop.hyprland.enable = true;
   roles.desktop.gaming.enable = true;
   roles.desktop.productivity.enable = true;
   roles.desktop.ai.enable = true;

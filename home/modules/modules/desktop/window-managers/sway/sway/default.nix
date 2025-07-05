@@ -7,8 +7,6 @@
 with lib; let
   mod = "Mod4";
 
-  inherit (config.modules.desktop.window-managers.sway) lockerCommand wallpaperChooser;
-
   terminal = "wezterm";
 
   modeGaps = "Gaps: (o) outer, (i) inner";
@@ -27,6 +25,10 @@ with lib; let
   ws10 = "10";
 
   cfg = config.modules.desktop.window-managers.sway;
+
+  wallpaperChooser = pkgs.writeShellScript "random-wallpaper" ''
+    ${pkgs.findutils}/bin/find -L ${cfg.wallpapersPath} -type f | ${pkgs.coreutils}/bin/shuf -n 1
+  '';
 in {
   config = lib.mkIf cfg.enable {
     wayland.windowManager.sway = {
@@ -166,9 +168,6 @@ in {
 
           # start a terminal
           "${mod}+Return" = "exec ${terminal}";
-
-          # lock screen
-          "${mod}+Shift+x" = "exec --no-startup-id ${lockerCommand}";
 
           # reload config
           "${mod}+Shift+r" = "reload";

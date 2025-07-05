@@ -33,16 +33,15 @@ in {
 
   config = mkIf cfg.enable (let
     # TODO: workaround for https://github.com/NixOS/nixpkgs/issues/298539
-    plugins =
-      [
-        pkgs.rofi-file-browser
-        pkgs.rofi-menugen
-        pkgs.rofi-power-menu
-        pkgs.rofimoji
-        (pkgs.rofi-calc.override {
-            rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
-        })
-      ];
+    plugins = [
+      pkgs.rofi-file-browser
+      pkgs.rofi-menugen
+      pkgs.rofi-power-menu
+      pkgs.rofimoji
+      (pkgs.rofi-calc.override {
+        rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
+      })
+    ];
   in {
     programs.rofi = {
       inherit (cfg) enable font package terminal;
@@ -138,6 +137,19 @@ in {
         exec = "rofi-systemd";
       })
     ];
+
+    wayland.windowManager.hyprland = let
+      rofi = config.programs.rofi.finalPackage;
+    in {
+      settings.bind = [
+        "$mod, D, exec, ${rofi}/bin/rofi -show drun -matching fuzzy"
+        "$mod, X, exec, ${rofi}/bin/rofi -show run -matching fuzzy"
+        "$mod, W, exec, ${rofi}/bin/rofi -show window -matching fuzzy"
+        "$mod, C, exec, ${rofi}/bin/rofi -show ssh -matching fuzzy"
+        "$mod, M, exec, ${rofi}/bin/rofi -show window -matching fuzzy"
+        "$mod SHIFT, O, exec, ${rofi}/bin/rofi -show combi"
+      ];
+    };
 
     wayland.windowManager.sway = {
       config = let

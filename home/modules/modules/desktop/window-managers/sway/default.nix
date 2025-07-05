@@ -26,11 +26,9 @@ in {
       type = str;
       default = "";
     };
-    lockerCommand = mkOption {
-      type = package;
-    };
-    wallpaperChooser = mkOption {
-      type = package;
+
+    wallpapersPath = mkOption {
+      type = str;
     };
   };
 

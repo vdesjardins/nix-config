@@ -8,12 +8,13 @@
           --time \
           --asterisks \
           --user-menu \
-          --cmd sway
+          --cmd hyprland
       '';
     };
   };
 
   environment.etc."greetd/environments".text = ''
+    hyprland
     sway
     zsh
   '';
