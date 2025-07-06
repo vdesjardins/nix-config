@@ -299,7 +299,7 @@ in {
           $video inhibit_idle fullscreen; border none; max_render_time off
           $important inhibit_idle open; floating enable; border pixel 1
           $max inhibit_idle visible; floating enable; sticky enable; border pixel 1
-          $shortcuts floating enable, resize set 2300 1000
+          $shortcuts floating enable, kesize set 2300 1000
           $dialog $float; shadows enable
         }
 

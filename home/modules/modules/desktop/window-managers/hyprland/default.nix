@@ -8,6 +8,38 @@
   inherit (lib.types) str;
 
   cfg = config.modules.desktop.window-managers.hyprland;
+
+  hyprland-help-keybinds = pkgs.writeShellScript "hyprland-help-keybinds" ''
+    HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
+
+    mapfile -t BINDINGS < <(grep '^bind=' "$HYPR_CONF" | \
+        sed -e 's/  */ /g' -e 's/bind=//g' -e 's/, /,/g' -e 's/ # /,/' | \
+        awk -F, -v q="'" '{cmd=""; for(i=3;i<NF;i++) cmd=cmd $(i) " ";print "<b>"$1 " + " $2 "</b>  <i>" $NF "</i> <span color=" q "gray" q ">" cmd "</span>"}')
+
+    CHOICE=$(printf '%s\n' "''${BINDINGS[@]}" | rofi -dmenu -i -markup-rows -p "Hyprland Keybinds:")
+
+    CMD=$(echo "$CHOICE" | sed -n 's/.*<span color='\'''gray'\'''>\(.*\)<\/span>.*/\1/p')
+    EXEC=$(echo "$CHOICE" | sed -n 's/.*<i>\(.*\)<\/i>.*/\1/p')
+
+    if [[ $CMD == exec* ]]; then
+        eval "$EXEC"
+    else
+        hyprctl dispatch "$CMD"
+    fi
+  '';
+
+  monitor-attached = pkgs.writeShellScript "monitor-attached" ''
+    hyprctl dispatch moveworkspacetomonitor 10 0
+    hyprctl dispatch moveworkspacetomonitor 9 0
+    hyprctl dispatch moveworkspacetomonitor 8 0
+    hyprctl dispatch moveworkspacetomonitor 7 0
+    hyprctl dispatch moveworkspacetomonitor 6 1
+    hyprctl dispatch moveworkspacetomonitor 5 1
+    hyprctl dispatch moveworkspacetomonitor 4 1
+    hyprctl dispatch moveworkspacetomonitor 3 1
+    hyprctl dispatch moveworkspacetomonitor 2 1
+    hyprctl dispatch moveworkspacetomonitor 1 1
+  '';
 in {
   options.modules.desktop.window-managers.hyprland = {
     enable = mkEnableOption "hyprland wm";
@@ -18,6 +50,47 @@ in {
   };
 
   config = mkIf cfg.enable {
+    programs.zsh.shellGlobalAliases = {
+      CL = "|& wl-copy";
+    };
+
+    home.packages = with pkgs; [
+      alsa-utils
+      arandr
+      clipse
+      grim
+      nautilus
+      papirus-icon-theme
+      pcmanfm # file browser
+      playerctl
+      pulseaudio
+      slurp
+      udiskie
+      wdisplays
+      wev # event viewer
+      wl-clipboard
+      wlr-randr
+      wshowkeys
+      wtype
+      xdg-utils
+      xwayland
+      ydotool
+      hyprland-monitor-attached
+
+      (makeDesktopItem {
+        name = "reboot";
+        desktopName = "System: Reboot";
+        icon = "system-reboot";
+        exec = "systemctl reboot";
+      })
+      (makeDesktopItem {
+        name = "shutdown";
+        desktopName = "System: Shut Down";
+        icon = "system-shutdown";
+        exec = "systemctl shutdown";
+      })
+    ];
+
     services.hyprpolkitagent.enable = true;
     services.hyprpaper.enable = true;
     services.wpaperd = {
@@ -154,10 +227,10 @@ in {
           "$mod, l, movefocus, r"
 
           # Move
-          "$mod SHIFT, h, swapwindow, l"
-          "$mod SHIFT, j, swapwindow, d"
-          "$mod SHIFT, k, swapwindow, u"
-          "$mod SHIFT, l, swapwindow, r"
+          "$mod SHIFT, h, movewindow, l"
+          "$mod SHIFT, j, movewindow, d"
+          "$mod SHIFT, k, movewindow, u"
+          "$mod SHIFT, l, movewindow, r"
 
           # Swtich to workspace
           "$mod, 1, workspace, 1"
@@ -184,7 +257,7 @@ in {
           "$mod SHIFT, 0, movetoworkspacesilent, 10"
 
           # Control tiling
-          "$mod, J, togglesplit, # dwindle"
+          "$mod, S, togglesplit, # dwindle"
           "$mod, P, pseudo, # dwindle"
           "$mod, V, togglefloating,"
 
@@ -194,7 +267,7 @@ in {
           "CTRL, PRINT, exec, ${getExe pkgs.hyprshot} -m output"
 
           # Color picker
-          "SUPER, PRINT, exec, ${getExe pkgs.hyprpicker} -a"
+          "$mod, PRINT, exec, ${getExe pkgs.hyprpicker} -a"
 
           # clipboard
           "$mod Shift, C, exec, ${pkgs.cliphist}/bin/cliphist list | ${config.programs.rofi.finalPackage}/bin/rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | wl-copy"
@@ -203,13 +276,14 @@ in {
           "$mod, return, exec, $terminal"
           "$mod SHIFT, F, exec, $fileManager"
           "$mod, B, exec, $browser"
-          "$mod, M, exec, $music"
+          "$mod, M, exec, $webapp gmail.com"
           "$mod, N, exec, $terminal -e nvim"
           "$mod, T, exec, $terminal -e btop"
           "$mod SHIFT, D, exec, $terminal -e lazydocker"
           "$mod, G, exec, $messenger"
           "$mod, O, exec, logseq"
           "$mod, slash, exec, $passwordManager"
+          "$mod, E, exec, $webapp calendar.google.com"
 
           # fullscreen
           "$mod, F, fullscreen"
@@ -219,12 +293,18 @@ in {
 
           # lock screen
           "$mod SHIFT, X, exec, ${getExe pkgs.hyprlock}"
+
+          # shortcut help
+          "$mod SHIFT, Slash, exec, ${hyprland-help-keybinds}"
+
+          # resize windows
+          "$mod, R, submap, resize"
         ];
 
         bindm = [
           # Move/resize windows with mainMod + LMB/RMB and dragging
           "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
+          "$mod SHIFT, mouse:272, resizewindow"
         ];
 
         bindel = [
@@ -238,8 +318,9 @@ in {
         ];
 
         exec-once = [
-          "${getExe pkgs.hypridle} & ${getExe pkgs.mako} & ${getExe pkgs.waybar} & ${getExe pkgs.fcitx5}"
+          "${getExe pkgs.fcitx5}"
           "${getExe pkgs.wl-clip-persist} --clipboard regular & ${getExe pkgs.clipse} -listen"
+          "${getExe pkgs.hyprland-monitor-attached} ${monitor-attached}"
         ];
 
         workspace = [
@@ -357,6 +438,20 @@ in {
           disable_splash_rendering = true;
         };
       };
+
+      extraConfig = ''
+        submap = resize
+        binde = , h, resizeactive, -50 0
+        binde = , j, resizeactive, 0 50
+        binde = , k, resizeactive, 0 -50
+        binde = , l, resizeactive, 50 0
+        binde = Shift, h, resizeactive, -10 0
+        binde = Shift, j, resizeactive, 0 10
+        binde = Shift, k, resizeactive, 0 -10
+        binde = Shift, l, resizeactive, 10 0
+        bind = , escape, submap, reset
+        submap = reset
+      '';
     };
   };
 }

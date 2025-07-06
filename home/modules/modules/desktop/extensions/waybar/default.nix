@@ -28,12 +28,27 @@ in {
           layer = "top";
           position = "bottom";
           height = 40;
-          modules-left = ["sway/workspaces" "sway/mode"];
+          modules-left = ["sway/workspaces" "sway/mode" "hyprland/workspaces" "hyprland/mode"];
           modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "gamemode" "tray"];
           modules-right = ["backlight" "network" "wireplumber" "battery" "custom/date" "clock" "custom/utc"];
 
           "sway/workspaces" = {
-            all-outputs = true;
+            format = "{icon}";
+            format-icons = {
+              "1" = "󰋜";
+              "2" = "";
+              "3" = "";
+              "4" = "";
+              "5" = "";
+              "7" = "";
+              "8" = "";
+              "9" = "";
+              "10" = "";
+              default = "";
+            };
+          };
+
+          "hyprland/workspaces" = {
             format = "{icon}";
             format-icons = {
               "1" = "󰋜";
@@ -142,6 +157,14 @@ in {
       };
 
       style = ./style.css;
+    };
+
+    wayland.windowManager.hyprland = {
+      settings = {
+        exec-once = [
+          "${lib.getExe pkgs.waybar}"
+        ];
+      };
     };
 
     wayland.windowManager.sway = {

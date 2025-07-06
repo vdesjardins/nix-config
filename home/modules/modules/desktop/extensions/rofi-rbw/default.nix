@@ -18,6 +18,12 @@ in {
       rofi-rbw
     ];
 
+    wayland.windowManager.hyprland = {
+      settings.bind = [
+          "$mod SHIFT, P, exec, ${pkgs.rofi-rbw}/bin/rofi-rbw"
+      ];
+    };
+
     wayland.windowManager.sway = {
       config = let
         swayCfg = config.wayland.windowManager.sway.config;
