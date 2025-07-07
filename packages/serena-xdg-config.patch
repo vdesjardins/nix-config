@@ -1,15 +1,15 @@
-diff --git c/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py i/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py
-index 1f951e5..4c6a64c 100644
---- c/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py
-+++ i/src/solidlsp/language_servers/rust_analyzer/rust_analyzer.py
+diff --git c/src/solidlsp/language_servers/rust_analyzer.py i/src/solidlsp/language_servers/rust_analyzer.py
+index bf79fa3..9c077e5 100644
+--- c/src/solidlsp/language_servers/rust_analyzer.py
++++ i/src/solidlsp/language_servers/rust_analyzer.py
 @@ -26,11 +26,11 @@ class RustAnalyzer(SolidLanguageServer):
  
      def __init__(self, config: LanguageServerConfig, logger: LanguageServerLogger, repository_root_path: str):
          """
          Creates a RustAnalyzer instance. This class is not meant to be instantiated directly. Use LanguageServer.create() instead.
          """
--        rustanalyzer_executable_path = self.setup_runtime_dependencies(logger, config)
-+        rustanalyzer_executable_path = "rust-nalyzer"
+-        rustanalyzer_executable_path = self._setup_runtime_dependencies(logger, config)
++        rustanalyzer_executable_path = "rust-analyzer"
          super().__init__(
              config,
              logger,
