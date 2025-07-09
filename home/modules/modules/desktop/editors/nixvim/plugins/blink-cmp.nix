@@ -57,17 +57,12 @@
               cmp_yanky = {
                 async = true;
                 name = "cmp_yanky";
-                module = "blink.compat.source";
-                transform_items.__raw = ''
-                  function(_, items)
-                    return vim.tbl_map(function(item)
-                      item.kind_name = "Yanky"
-                      item.kind_icon = "⧉"
-                      item.score = -15
-                      return item
-                    end, items)
-                  end
-                '';
+                module = "blink-yanky";
+                opts = {
+                  minLength = 5;
+                  onlyCurrentFiletype = true;
+                  kind_icon = "󰅍";
+                };
               };
 
               emoji = {
@@ -175,6 +170,7 @@
 
     extraPlugins = with pkgs.vimPlugins; [
       blink-emoji
+      blink-cmp-yanky
     ];
 
     extraConfigLua = ''
