@@ -1,6 +1,6 @@
 {
   pkgs,
-  key_leader ? "-",
+  key_leader ? "Space",
   mods_leader ? "CTRL",
   color-scheme,
   font,
