@@ -41,6 +41,8 @@ in {
         kubectl-tap
         # kubectl-trace
         kubectl-tree
+        kubectl-ktop
+        kubectl-view-secret
         kubectl-who-can
         kubectx
         kubent
@@ -56,6 +58,7 @@ in {
         kubespy
         kubetail
         kubeval
+        kubeshark
         minikube
         skaffold
         starboard # security tools
