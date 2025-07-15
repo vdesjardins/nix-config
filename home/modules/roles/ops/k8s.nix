@@ -18,6 +18,7 @@ in {
       k9s.enable = true;
       istioctl.enable = true;
       kubectl.enable = true;
+      kubectl-ai.enable = true;
       kubie.enable = true;
       stern.enable = true;
     };
