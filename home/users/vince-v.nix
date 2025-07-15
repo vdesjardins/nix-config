@@ -42,6 +42,7 @@
   roles.ai.mcp.fetch.enable = true;
   roles.ai.mcp.git.enable = true;
   roles.ai.mcp.github.enable = true;
+  roles.ai.mcp.sequential-thinking.enable = true;
   roles.ai.mcp.kubernetes.enable = true;
   roles.ai.mcp.serena.enable = true;
 

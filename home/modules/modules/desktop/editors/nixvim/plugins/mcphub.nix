@@ -1,8 +1,7 @@
 {
-config,
-pkgs,
-lib,
-...
+  config,
+  pkgs,
+  ...
 }: let
   jsonFormat = pkgs.formats.json {};
 
@@ -19,10 +18,10 @@ in {
       ];
 
       extraConfigLua = ''
-      require("mcphub").setup({
-        auto_approve = true,
-        mcp_request_timeout = 120000,
-      })
+        require("mcphub").setup({
+          auto_approve = true,
+          mcp_request_timeout = 120000,
+        })
       '';
 
       plugins.codecompanion = {
