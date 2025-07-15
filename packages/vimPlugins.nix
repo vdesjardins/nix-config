@@ -7,13 +7,13 @@
 lib.makeScope newScope (self: {
   codecompanion = vimUtils.buildVimPlugin rec {
     pname = "codecompanion.nvim";
-    version = "17.7.1";
+    version = "17.8.0";
 
     src = fetchFromGitHub {
       owner = "olimorris";
       repo = "codecompanion.nvim";
       rev = "v${version}";
-      hash = "sha256-IlEGsvjWalX49iQgPqk2L/ffMHmyF3HudcYDTvKvR7E=";
+      hash = "sha256-ydMOKETNAWQGtr8zpUPkEjgc5c8hHnT0nOk1OXWBQtg=";
     };
 
     doCheck = false;
