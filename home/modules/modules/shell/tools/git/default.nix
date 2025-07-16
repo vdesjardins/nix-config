@@ -166,9 +166,9 @@ in {
           lg = "log --graph --pretty=format:'%Cred%h%Creset %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
         in {
           st = "status";
-          c = "commit -s";
+          c = "commit";
           ca = "commit --amend";
-          cm = "commit -s -m";
+          cm = "commit -m";
           cf = "commit --fixup";
           re = "restore";
           sw = "switch";
