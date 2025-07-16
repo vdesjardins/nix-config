@@ -81,9 +81,12 @@ function M.configure(config, globals)
       action = act({ PasteFrom = "PrimarySelection" }),
     },
     -- pane selection mode
-    { key = "0",     mods = "LEADER", action = act.PaneSelect({ mode = "SwapWithActive" }) },
+    { key = "0",     mods = "LEADER",       action = act.PaneSelect({ mode = "SwapWithActive" }) },
     -- rotate panes
-    { key = "Space", mods = "LEADER", action = act.RotatePanes("Clockwise") },
+    { key = "Space", mods = "LEADER|SHIFT", action = act.RotatePanes("Clockwise") },
+
+    -- send CTRL+Space - NUL character
+    { key = "Space", mods = "LEADER|CTRL",  action = act.SendString("\x00") },
 
     -- launch menu
     {
