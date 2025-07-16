@@ -119,7 +119,7 @@
       {
         mode = "n";
         key = "<leader>lR";
-        action.__raw = "Snacks.picker.lsp_implementations";
+        action.__raw = "Snacks.picker.lsp_references";
         options.desc = "LSP References (Snacks)";
       }
       {
@@ -149,7 +149,7 @@
       {
         mode = "n";
         key = "gr";
-        action.__raw = "Snacks.picker.lsp_implementations";
+        action.__raw = "Snacks.picker.lsp_references";
         options.desc = "LSP References (Snacks)";
       }
       {
