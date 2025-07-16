@@ -59,7 +59,7 @@ lib.makeScope newScope (self: {
 
   noice-nvim = vimUtils.buildVimPlugin {
     pname = "noice.nvim";
-    version = "4.10.0";
+    version = "4.10.0-unstable-2025-02-11";
 
     src = fetchFromGitHub {
       owner = "folke";
@@ -151,7 +151,7 @@ lib.makeScope newScope (self: {
 
   blink-cmp-yanky = vimUtils.buildVimPlugin {
     pname = "blink-cmp-yanky";
-    version = "0-unstable-2025-07-09";
+    version = "0-unstable-2025-06-24";
 
     src = fetchFromGitHub {
       owner = "marcoSven";

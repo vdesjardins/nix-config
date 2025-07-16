@@ -7,13 +7,13 @@
 in
   buildNpmPackage rec {
     pname = "DesktopCommanderMCP";
-    version = "0.2.3";
+    version = "0.2.4";
 
     src = fetchFromGitHub {
       owner = "wonderwhy-er";
       repo = "DesktopCommanderMCP";
       rev = "v${version}";
-      hash = "sha256-6HuKpWfwwWb4kSsr1vuR7NcIMQpUTqdzXBkqazGJEVc=";
+      hash = "sha256-sCd7Bd2OHERi28DbTzgP0mAHm69L0pQVMTr9xMKsB4c=";
     };
 
     npmDepsHash = "sha256-g/2QPUdfzkt45fxzMXS5BuoJ6EFwKweqX7sb0qN23as=";
