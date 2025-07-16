@@ -7,7 +7,7 @@
 }: let
   inherit (builtins) elem;
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
-  inherit (inputs.nix-index-database.hmModules) nix-index;
+  inherit (inputs.nix-index-database.homeModules) nix-index;
   inherit (inputs.nixvim.homeManagerModules) nixvim;
   inherit (lib.attrsets) filterAttrs;
   inherit (self.modules) mapModulesRecursive';
