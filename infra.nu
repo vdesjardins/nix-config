@@ -33,7 +33,8 @@ def "main nix-update" [
 		"gemini-cli", "git-mcp",
 		"vimPlugins.kcl", "vimPlugins.codecompanion-history",
 		"vimPlugins.blink-emoji", "vimPlugins.blink-copilot",
-		"vimPlugins.blink-cmp-dictionary", "vimPlugin.noice-nvim "]
+		"vimPlugins.blink-cmp-dictionary", "vimPlugins.noice-nvim",
+		"vimPlugins.blink-cmp-yanky"]
 
 	let pkgs_to_update = if ($packages | length) > 0 {
 		$packages
