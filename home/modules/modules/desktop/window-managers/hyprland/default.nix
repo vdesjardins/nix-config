@@ -61,7 +61,6 @@ in {
       grim
       nautilus
       papirus-icon-theme
-      pcmanfm # file browser
       playerctl
       pulseaudio
       slurp
