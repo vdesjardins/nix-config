@@ -7,16 +7,16 @@
 in
   buildNpmPackage rec {
     pname = "DesktopCommanderMCP";
-    version = "0.2.4";
+    version = "0.2.7";
 
     src = fetchFromGitHub {
       owner = "wonderwhy-er";
       repo = "DesktopCommanderMCP";
       rev = "v${version}";
-      hash = "sha256-sCd7Bd2OHERi28DbTzgP0mAHm69L0pQVMTr9xMKsB4c=";
+      hash = "sha256-LZFsA4eNF5YQnE8ftBOV1nDC/JhT7g8QYkfyRv3Y1rc=";
     };
 
-    npmDepsHash = "sha256-g/2QPUdfzkt45fxzMXS5BuoJ6EFwKweqX7sb0qN23as=";
+    npmDepsHash = "sha256-hnRlp5nfFoB6B9dM0C6Q7lreykIx8YttF2aZWU2XWvo=";
 
     # do not run install script, put ripgrep ourselves at the right place
     npmRebuildFlags = ["--ignore-scripts"];

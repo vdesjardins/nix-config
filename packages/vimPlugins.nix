@@ -7,13 +7,13 @@
 lib.makeScope newScope (self: {
   codecompanion = vimUtils.buildVimPlugin rec {
     pname = "codecompanion.nvim";
-    version = "17.8.0";
+    version = "17.12.0";
 
     src = fetchFromGitHub {
       owner = "olimorris";
       repo = "codecompanion.nvim";
       rev = "v${version}";
-      hash = "sha256-ydMOKETNAWQGtr8zpUPkEjgc5c8hHnT0nOk1OXWBQtg=";
+      hash = "sha256-afq7N1YwM1MkoyvCQo3SOrDY6c2LciN7LUW05TnFFpc=";
     };
 
     doCheck = false;
@@ -25,13 +25,13 @@ lib.makeScope newScope (self: {
 
   codecompanion-history = vimUtils.buildVimPlugin {
     pname = "codecompanion-history";
-    version = "0-unstable-2025-07-09";
+    version = "0-unstable-2025-07-27";
 
     src = fetchFromGitHub {
       owner = "ravitemer";
       repo = "codecompanion-history.nvim";
-      rev = "284e062a91fadb180b8362b6e079227a0229860c";
-      hash = "sha256-LiTyrke5hSCMjAWc4nP47bKQCVeJoggdOuNg7DCpe38=";
+      rev = "811b9af74c8fd4752a3422acf2379fba0639a96c";
+      hash = "sha256-mlE9sFACBZQ7TQEMSjCR4I0qGc41Mq8p6ezVsHb1VGA=";
     };
 
     doCheck = false;
@@ -170,13 +170,13 @@ lib.makeScope newScope (self: {
 
   blink-copilot = vimUtils.buildVimPlugin {
     pname = "blink-copilot";
-    version = "1.4.0-unstable-2025-04-24";
+    version = "1.4.1-unstable-2025-07-26";
 
     src = fetchFromGitHub {
       owner = "fang2hou";
       repo = "blink-copilot";
-      rev = "bdc45bbbed2ec252b3a29f4adecf031e157b5573";
-      hash = "sha256-7P4CUg4ryfQnrc15/4dCMYEDP0u+L2QrI/GPI/r1/zM=";
+      rev = "41e91a659bd9b8cba9ba2ea68a69b52ba5a9ebd8";
+      hash = "sha256-Ya9RagGE+Awo9xuF8XtwgAO2B9DKJLNsLDU2wsEMumo=";
     };
 
     doCheck = false;
