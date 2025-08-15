@@ -15,7 +15,7 @@ in {
     settings = mkOption {
       type = lib.types.attrs;
       default = {
-        enable = false;
+        enable = true;
         acceleration = "rocm"; # "rocm" or "cuda"
         package = pkgs.ollama;
       };
