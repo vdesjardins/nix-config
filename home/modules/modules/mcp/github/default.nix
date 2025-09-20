@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
@@ -11,7 +12,7 @@ in {
   options.modules.mcp.github = {
     enable = mkEnableOption "github mcp server";
 
-    package = mkPackageOption pkgs "github-mcp-server" {};
+    package = mkPackageOption my-packages "github-mcp-server" {};
   };
 
   config = mkIf cfg.enable {

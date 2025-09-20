@@ -3,7 +3,6 @@
     ../../shared.nix
     ../../desktop.nix
     ./nix.nix
-    ./nixpkgs.nix
     ./system.nix
     ./homebrew.nix
     ./karabiner.nix

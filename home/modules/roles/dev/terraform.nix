@@ -20,7 +20,7 @@ in {
       hcledit
       inframap
       terraform-compliance
-      terraform-docs
+      # terraform-docs
       terraform-landscape
       terraformer
       infracost

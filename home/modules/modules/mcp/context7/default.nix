@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
@@ -11,7 +11,7 @@ in {
   options.modules.mcp.context7 = {
     enable = mkEnableOption "context7 mcp server";
 
-    package = mkPackageOption pkgs "context7" {};
+    package = mkPackageOption my-packages "context7" {};
   };
 
   config = mkIf cfg.enable {

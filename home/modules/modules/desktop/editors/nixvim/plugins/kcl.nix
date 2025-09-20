@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{my-packages, ...}: {
   programs.nixvim = {
-    extraPlugins = with pkgs.vimPlugins; [
+    extraPlugins = with my-packages.vimPlugins; [
       kcl
     ];
 

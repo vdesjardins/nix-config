@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
@@ -11,7 +11,7 @@ in {
   options.modules.mcp.desktop-commander = {
     enable = mkEnableOption "desktop-commander mcp server";
 
-    package = mkPackageOption pkgs "desktop-commander-mcp" {};
+    package = mkPackageOption my-packages "desktop-commander-mcp" {};
   };
 
   config = mkIf cfg.enable {

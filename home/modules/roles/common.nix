@@ -1,5 +1,6 @@
 {
   config,
+  my-packages,
   pkgs,
   lib,
   ...
@@ -102,8 +103,8 @@ in {
 
       shell.tools = {
         btop.color-scheme = "tokio-night";
-        fzf.color-scheme = "${pkgs.tinted-fzf}/share/tinted-fzf/bash/base16-tokyo-night-dark.config";
-        bat.color-scheme = "${pkgs.colorscheme-tokyonight}/share/themes/tokyonight/extras/sublime/tokyonight_night.tmTheme";
+        fzf.color-scheme = "${my-packages.tinted-fzf}/share/tinted-fzf/bash/base16-tokyo-night-dark.config";
+        bat.color-scheme = "${my-packages.colorscheme-tokyonight}/share/themes/tokyonight/extras/sublime/tokyonight_night.tmTheme";
         git = {
           delta = {
             # [theme] tokyonight-night

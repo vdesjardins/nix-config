@@ -65,8 +65,6 @@
     ...
   } @ inputs: let
     inherit (lib.attrsets) genAttrs listToAttrs attrValues;
-    inherit (builtins) readDir;
-    inherit (lib.strings) removeSuffix;
     inherit (utils.lib.system) aarch64-darwin x86_64-linux aarch64-linux;
 
     linux64BitSystems = [
@@ -97,28 +95,14 @@
     };
 
     myPackages = pkgs:
-      lib.my.filterScopes (
-        self.lib.mapModulesRecursive ./packages (o:
-          pkgs.callPackage o {})
-      );
-
-    mkPackagesOverlay = final: prev:
-      lib.attrsets.mapAttrs' (
-        name: value: let
-          sym = removeSuffix ".nix" name;
-        in
-          lib.attrsets.nameValuePair sym (let
-            pkg = prev.callPackage ./packages/${name} {};
-          in
-            if builtins.typeOf pkg == "set" && pkg ? type && pkg.type == "derivation"
-            then pkg
-            else prev.${sym} // pkg)
-      ) (readDir ./packages);
+      lib.packagesFromDirectoryRecursive {
+        inherit (pkgs) callPackage;
+        directory = ././packages;
+      };
 
     myOverlays =
       {
         master = mkChildOverlays "master";
-        myPkgs = mkPackagesOverlay;
       }
       // (mkOverlays ./overlays/nixpkgs);
 
@@ -152,6 +136,7 @@
         inherit pkgs inputs;
         system = pkgs.system;
         lib = final;
+        my-packages = self.packages;
       };
     });
   in {
@@ -161,39 +146,44 @@
 
     nixosConfigurations = import ./hosts/systems/linux.nix {inherit lib;};
 
-    homeConfigurations = import ./home/config {inherit lib;};
+    homeConfigurations = import ./home/config {
+      inherit lib;
+    };
 
-    hmModules = self.lib.mapModulesRecursive ./home/modules import;
+    homeModules = {
+      default = {
+        imports = self.lib.mapModulesRecursive' ./home/modules (f: f);
+      };
+      nixvim = inputs.nixvim.homeModules.nixvim;
+    };
 
     deploy = import ./hosts/deploy {inherit lib deploy-rs self;};
 
+    # TODO: remove
     inherit pkgs;
     packages =
+      builtins.foldl'
+      (acc: value: (nixpkgs.lib.recursiveUpdate acc value)) {} [
+        (forAllSupportedSystems (system: myPackages pkgs.${system}))
+        # (forAllSupportedSystems (system: {
+        #   mcp-hub = mcp-hub.outputs.packages.${system}.default;
+        #   mcp-hub-nvim = mcp-hub-nvim.packages.${system}.default;
+        # }))
+      ];
+
+    dockerImages =
       listToAttrs
       (builtins.map
         (system: {
           name = system;
           value = {
-            "dockerImage/vm-builder" = import ./hosts/modules/linux/containers/vm-builder.nix {
+            vm-builder = import ./hosts/modules/linux/containers/vm-builder.nix {
               inherit nixpkgs nix system;
               crossSystem = system;
             };
           };
         })
-        linux64BitSystems)
-      // {
-        aarch64-darwin."dockerImage/vm-builder" = import ./hosts/modules/linux/containers/vm-builder.nix {
-          inherit nixpkgs nix;
-          system = utils.lib.system.aarch64-darwin;
-          crossSystem = utils.lib.system.aarch64-linux;
-        };
-      }
-      // forAllSupportedSystems (system: myPackages pkgs.${system});
-
-    overlays = {
-      default = mkPackagesOverlay;
-      nixpkgs = mkOverlays ./overlays/nixpkgs;
-    };
+        linux64BitSystems);
 
     devShells = forAllSupportedSystems (system: {
       default = pkgs.${system}.mkShell {

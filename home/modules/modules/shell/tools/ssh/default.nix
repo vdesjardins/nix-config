@@ -19,15 +19,19 @@ in {
     programs.ssh = {
       inherit (cfg) enable;
 
-      controlMaster = "auto";
-      controlPersist = "30s";
+      enableDefaultConfig = false;
 
       extraOptionOverrides = {
         Include = "local/*_config";
       };
 
-      userKnownHostsFile =
-        builtins.toString (mkOutOfStoreSymlink "${configDirectory}/shell/tools/ssh/config/known_hosts");
+      matchBlocks."*" = {
+        controlMaster = "auto";
+        controlPersist = "30s";
+
+        userKnownHostsFile =
+          builtins.toString (mkOutOfStoreSymlink "${configDirectory}/shell/tools/ssh/config/known_hosts");
+      };
     };
   };
 }

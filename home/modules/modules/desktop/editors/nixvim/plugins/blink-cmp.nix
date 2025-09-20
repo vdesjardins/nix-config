@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  my-packages,
+  ...
+}: {
   programs.nixvim = {
     plugins = {
       blink-cmp = {
@@ -168,7 +172,7 @@
       };
     };
 
-    extraPlugins = with pkgs.vimPlugins; [
+    extraPlugins = with my-packages.vimPlugins; [
       blink-emoji
       blink-cmp-yanky
     ];

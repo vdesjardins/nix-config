@@ -1,12 +1,13 @@
 {
   config,
   pkgs,
+  my-packages,
   ...
 }: let
   cfg = config.modules.desktop.editors.nixvim;
 in {
   programs.nixvim = {
-    extraPlugins = with pkgs.vimPlugins; [
+    extraPlugins = with my-packages.vimPlugins; [
       codecompanion-history
     ];
 
@@ -14,7 +15,7 @@ in {
       codecompanion = {
         enable = true;
 
-        package = pkgs.vimPlugins.codecompanion;
+        package = my-packages.vimPlugins.codecompanion;
 
         settings = {
           extensions = {

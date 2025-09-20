@@ -1,4 +1,10 @@
-{...}: {
+{config, ...}: {
+  networking.applicationFirewall = {
+    enable = true;
+    enableStealthMode = true;
+    allowSignedApp = true;
+  };
+
   system = {
     defaults = {
       loginwindow = {
@@ -12,13 +18,6 @@
         FXPreferredViewStyle = "Nlsv";
         QuitMenuItem = true;
         _FXShowPosixPathInTitle = true;
-      };
-
-      alf = {
-        globalstate = 1;
-        loggingenabled = 0;
-        stealthenabled = 1;
-        allowdownloadsignedenabled = 1;
       };
 
       # dock settings
@@ -68,9 +67,9 @@
         Clicking = true;
       };
 
-      universalaccess = {
-        reduceMotion = true;
-      };
+      # universalaccess = {
+      #   reduceMotion = true;
+      # };
     };
 
     keyboard = {
@@ -78,35 +77,35 @@
     };
 
     # settings not yet supported by nix-darwin
-    activationScripts.postUserActivation.text = ''
+    activationScripts.postActivation.text = ''
       # Disable the sound effects on boot
-      sudo /usr/sbin/nvram StartupMute="%01"
+      /usr/sbin/nvram StartupMute="%01"
       # disable sound when connecting charger
-      defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
+      sudo -u ${config.system.primaryUser} defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
 
       # Disable the “Are you sure you want to open this application?” dialog
-      defaults write com.apple.LaunchServices LSQuarantine -bool false
+      sudo -u ${config.system.primaryUser} defaults write com.apple.LaunchServices LSQuarantine -bool false
       # Automatically quit printer app once the print jobs complete
-      defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+      sudo -u ${config.system.primaryUser} defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
       # Reveal IP address, hostname, OS version, etc. when clicking the clock
       # in the login window
-      sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+      defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
       # screenshot
-      defaults write com.apple.screencapture location -string "''${HOME}/Documents/Screenshots"
-      defaults write com.apple.screencapture type -string "png"
-      defaults write com.apple.screencapture disable-shadow -bool true
+      sudo -u ${config.system.primaryUser} defaults write com.apple.screencapture location -string "''${HOME}/Documents/Screenshots"
+      sudo -u ${config.system.primaryUser} defaults write com.apple.screencapture type -string "png"
+      sudo -u ${config.system.primaryUser} defaults write com.apple.screencapture disable-shadow -bool true
 
       # Avoid creating .DS_Store files on network or USB volumes
-      defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-      defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+      sudo -u ${config.system.primaryUser} defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+      sudo -u ${config.system.primaryUser} defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
       # Lang
-      defaults write NSGlobalDomain AppleLanguages -array "en-CA" "fr-CA"
-      defaults write NSGlobalDomain AppleLocale -string "en_CA"
+      sudo -u ${config.system.primaryUser} defaults write NSGlobalDomain AppleLanguages -array "en-CA" "fr-CA"
+      sudo -u ${config.system.primaryUser} defaults write NSGlobalDomain AppleLocale -string "en_CA"
 
-      defaults write com.apple.HIToolbox AppleEnabledInputSources -array ''\\
+      sudo -u ${config.system.primaryUser} defaults write com.apple.HIToolbox AppleEnabledInputSources -array ''\\
       "<dict>
         <key>InputSourceKind</key>
         <string>Keyboard Layout</string>
@@ -132,11 +131,13 @@
         <string>Canadian - CSA</string>
       </dict>"
 
-      defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID  "org.unknown.keylayout.us-altgr-intl"
-      defaults write com.apple.HIToolbox AppleGlobalTextInputProperties '{"TextInputGlobalPropertyPerContextInput" = 1; }'
-      defaults write com.apple.TextInputMenu visible 1
+      sudo -u ${config.system.primaryUser} defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID  "org.unknown.keylayout.us-altgr-intl"
+      sudo -u ${config.system.primaryUser} defaults write com.apple.HIToolbox AppleGlobalTextInputProperties '{"TextInputGlobalPropertyPerContextInput" = 1; }'
+      sudo -u ${config.system.primaryUser} defaults write com.apple.TextInputMenu visible 1
 
-      sudo cp ${./keyboards/us-altgr-intl.keylayout} /Library/keyboard\ Layouts/us-altgr-intl.keylayout
+      cp ${./keyboards/us-altgr-intl.keylayout} /Library/keyboard\ Layouts/us-altgr-intl.keylayout
+
+      sudo -u ${config.system.primaryUser} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
   };
 }

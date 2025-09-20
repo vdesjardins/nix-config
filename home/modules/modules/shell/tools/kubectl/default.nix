@@ -1,5 +1,6 @@
 {
   config,
+  my-packages,
   pkgs,
   lib,
   ...
@@ -140,7 +141,7 @@ in {
       "zsh/functions/kube-node-connect".source =
         ./zsh/functions/kube-node-connect;
 
-      "zsh/conf.d/kubectl_aliases".source = "${pkgs.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
+      "zsh/conf.d/kubectl_aliases".source = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
     };
   };
 }

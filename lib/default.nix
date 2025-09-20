@@ -2,6 +2,7 @@
   inputs,
   lib,
   pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib.attrsets) attrValues;
@@ -13,6 +14,6 @@
     inherit lib;
   };
 
-  mylib = makeExtensible (self: mapModulesRecursive ./. (file: import file {inherit self lib pkgs inputs;}));
+  mylib = makeExtensible (self: mapModulesRecursive ./. (file: import file {inherit self lib pkgs inputs my-packages;}));
 in
   mylib.extend (self: super: foldr (a: b: a // b) {} (attrValues super))

@@ -14,6 +14,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [crate2nix rust-bin.stable.latest.default];
+    home.packages = with pkgs; [crate2nix cargo rustc];
   };
 }

@@ -6,9 +6,11 @@
       };
 
       lspkind = {
-        cmp = {
-          menu = {
-            cmp_yanky = "⧉";
+        settings = {
+          cmp = {
+            menu = {
+              cmp_yanky = "⧉";
+            };
           };
         };
       };

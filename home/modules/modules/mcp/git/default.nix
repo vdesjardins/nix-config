@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
@@ -11,7 +11,7 @@ in {
   options.modules.mcp.git = {
     enable = mkEnableOption "git mcp server";
 
-    package = mkPackageOption pkgs "mcp-server-git" {};
+    package = mkPackageOption my-packages "mcp-server-git" {};
   };
 
   config = mkIf cfg.enable {

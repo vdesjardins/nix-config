@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
@@ -11,7 +11,7 @@ in {
   options.modules.mcp.serena = {
     enable = mkEnableOption "serena mcp server";
 
-    package = mkPackageOption pkgs "serena" {};
+    package = mkPackageOption my-packages "serena" {};
   };
 
   config = mkIf cfg.enable {

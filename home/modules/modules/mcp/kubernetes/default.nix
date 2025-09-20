@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
@@ -11,7 +11,7 @@ in {
   options.modules.mcp.kubernetes = {
     enable = mkEnableOption "kubernetes mcp server";
 
-    package = mkPackageOption pkgs "mcp-server-kubernetes" {};
+    package = mkPackageOption my-packages "mcp-server-kubernetes" {};
   };
 
   config = mkIf cfg.enable {

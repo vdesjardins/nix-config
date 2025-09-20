@@ -4,6 +4,8 @@
 in {
   system.stateVersion = 5;
 
+  system.primaryUser = username;
+
   homebrew.casks = [
     "Rectangle"
     "alt-tab"

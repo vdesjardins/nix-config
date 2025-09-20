@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  my-packages,
   ...
 }: let
   inherit (lib) mkIf;
@@ -32,19 +33,14 @@ in {
         helm-docs
         helmfile
         # kail
-        ketall # get all rersources
         kind
         kube-capacity
         kube3d
-        kubectl-blame
         kubectl-images
-        kubectl-rbac-tool
-        kubectl-tap
         # kubectl-trace
         kubectl-tree
         kubectl-ktop
         kubectl-view-secret
-        kubectl-who-can
         kubectx
         kubent
         (wrapHelm
@@ -53,7 +49,7 @@ in {
             plugins = [
               kubernetes-helmPlugins.helm-diff
               kubernetes-helmPlugins.helm-git
-              helm-gcs
+              my-packages.helm-gcs
             ];
           })
         kubespy
@@ -84,6 +80,13 @@ in {
         velero
         python3Packages.kubernetes
       ]
+      ++ (with my-packages; [
+        ketall
+        kubectl-blame
+        kubectl-rbac-tool
+        kubectl-tap
+        kubectl-who-can
+      ])
       ++ lib.optionals stdenv.isLinux [
         popeye # unable to build on darwin
         kubectl-node-shell

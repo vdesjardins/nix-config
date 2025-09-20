@@ -61,12 +61,29 @@ in {
       ];
     };
 
-    # TODO: support linux
-    programs.zsh.shellAliases = {
-      ghpc = "gh pu | jq '.url' -Mr | pbcopy";
-      ghrc = "gh ru | pbcopy";
-      ghfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
-      ghfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+    programs.zsh = {
+      shellAliases = {
+        # TODO: support linux
+        ghpc = "gh pu | jq '.url' -Mr | pbcopy";
+        ghrc = "gh ru | pbcopy";
+        ghfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+        ghfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+      };
+
+      initContent =
+        /*
+        bash
+        */
+        ''
+          function ghhc() {
+            branch=$(gh repo view --json defaultBranchRef | jq '.defaultBranchRef.name' -Mr)
+            url=$(gh pu)
+            git_root=$(git rev-parse --show-toplevel)
+            current_dir=$(pwd)
+            subdir=''${current_dir #"$git_root"/}
+            echo "$url$branch/$subdir" | pbcopy
+          }
+        '';
     };
   };
 }

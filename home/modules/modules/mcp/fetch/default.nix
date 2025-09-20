@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
@@ -11,7 +11,7 @@ in {
   options.modules.mcp.fetch = {
     enable = mkEnableOption "fetch mcp server";
 
-    package = mkPackageOption pkgs "mcp-server-fetch" {};
+    package = mkPackageOption my-packages "mcp-server-fetch" {};
   };
 
   config = mkIf cfg.enable {
