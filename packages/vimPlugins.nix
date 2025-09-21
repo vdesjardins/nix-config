@@ -7,13 +7,13 @@
 lib.makeScope newScope (self: {
   codecompanion = vimUtils.buildVimPlugin rec {
     pname = "codecompanion.nvim";
-    version = "17.12.0";
+    version = "17.15.0";
 
     src = fetchFromGitHub {
       owner = "olimorris";
       repo = "codecompanion.nvim";
       rev = "v${version}";
-      hash = "sha256-afq7N1YwM1MkoyvCQo3SOrDY6c2LciN7LUW05TnFFpc=";
+      hash = "sha256-MGCs7I49oFPL8AUT7Btp/yjpplJHEkDWKMlHUo3sHJ4=";
     };
 
     doCheck = false;
@@ -25,13 +25,13 @@ lib.makeScope newScope (self: {
 
   codecompanion-history = vimUtils.buildVimPlugin {
     pname = "codecompanion-history";
-    version = "0-unstable-2025-07-27";
+    version = "0-unstable-2025-08-05";
 
     src = fetchFromGitHub {
       owner = "ravitemer";
       repo = "codecompanion-history.nvim";
-      rev = "811b9af74c8fd4752a3422acf2379fba0639a96c";
-      hash = "sha256-mlE9sFACBZQ7TQEMSjCR4I0qGc41Mq8p6ezVsHb1VGA=";
+      rev = "336987afe9aca1fca30c20ca27dc91e1f7690c77";
+      hash = "sha256-MMAFsDJvdLWJLbr6MW+4j6N/S3CQVNs1BZ/8uB12KnU=";
     };
 
     doCheck = false;
@@ -78,13 +78,13 @@ lib.makeScope newScope (self: {
 
   markview-nvim = vimUtils.buildVimPlugin rec {
     pname = "markview.nvim";
-    version = "25.9.0";
+    version = "25.10.0";
 
     src = fetchFromGitHub {
       owner = "OXY2DEV";
       repo = "markview.nvim";
       rev = "v${version}";
-      hash = "sha256-8W8tzwJcfStkUZWGYRqab5QkEw2ubzDuH5kyixt56Dg=";
+      hash = "sha256-W8IUnsPukWhSY0RgshPkHURZGtAikKI6Qym0ugNBAJo=";
       fetchSubmodules = true;
     };
 

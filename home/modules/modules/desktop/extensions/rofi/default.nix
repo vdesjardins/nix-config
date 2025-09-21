@@ -9,7 +9,6 @@
   inherit (lib.types) package str;
   inherit (lib.strings) concatStringsSep;
   inherit (lib.meta) getExe;
-  inherit (builtins) map;
 
   cfg = config.modules.desktop.extensions.rofi;
 in {
@@ -23,7 +22,7 @@ in {
 
     package = mkOption {
       type = package;
-      default = pkgs.rofi-wayland;
+      default = pkgs.rofi;
     };
 
     font = mkOption {
@@ -39,7 +38,7 @@ in {
       pkgs.rofi-power-menu
       pkgs.rofimoji
       (pkgs.rofi-calc.override {
-        rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
+        rofi-unwrapped = pkgs.rofi-unwrapped;
       })
     ];
   in {

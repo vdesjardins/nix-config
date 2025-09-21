@@ -4,7 +4,6 @@
       qemu
     ]
     ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
-      vagrant
       OVMF
     ];
 }

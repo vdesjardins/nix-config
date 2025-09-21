@@ -4,4 +4,8 @@
       rocmPackages.clr.icd
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    amdgpu_top
+  ];
 }

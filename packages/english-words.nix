@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  nix-update-script,
 }:
 stdenv.mkDerivation {
   pname = "english-words";
@@ -21,6 +22,13 @@ stdenv.mkDerivation {
     cp words*.txt $out/share/english-words/
     cp words*.json $out/share/english-words/
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--version=branch"
+      "--flake"
+    ];
+  };
 
   meta = with lib; {
     description = "📝 A text file containing 479k English words for all your dictionary/word-based projects e.g: auto-completion / autosuggestion";

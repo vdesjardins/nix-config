@@ -7,17 +7,18 @@
   pnpm,
   stdenv,
   wrangler,
+  nix-update-script,
 }: let
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "git-mcp";
-    version = "0-unstable-2025-05-25";
+    version = "0-unstable-2025-08-03";
 
     src = fetchFromGitHub {
       owner = "idosal";
       repo = "git-mcp";
-      rev = "4a748185c581ce481a6998c04ba0f055f08f0c33";
-      hash = "sha256-RHMTPv71kPMRg2lKuMBiN46AmRweemJVloPDcOnI6DQ=";
+      rev = "a1063e82c177213cf752ff1412131889511b3948";
+      hash = "sha256-j1k0ATpoN6X+mMum1t55uc9PPGcB8AGMdEXkLkETcSg=";
     };
 
     nativeBuildInputs = [
@@ -47,6 +48,12 @@ in
         --append-flags "dev" \
         --append-flags "--cwd $out/lib/node_modules/git-mcp"
     '';
+
+    passthru.updateScript = nix-update-script {
+      extraArgs = [
+        "--version=branch"
+      ];
+    };
 
     meta = {
       description = "Put an end to code hallucinations! GitMCP is a free, open-source, remote MCP server for any GitHub project";

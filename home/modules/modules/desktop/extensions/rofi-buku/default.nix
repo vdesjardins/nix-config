@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  my-packages,
   pkgs,
   ...
 }: let
@@ -14,7 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [rofi-buku];
+    home.packages = with my-packages; [rofi-buku];
 
     xdg.configFile."rofi-buku/config".text =
       /*
@@ -27,7 +28,7 @@ in {
       '';
 
     wayland.windowManager.hyprland.settings.bind = [
-      "$mod SHIFT, B, exec, ${pkgs.rofi-buku}/bin/rofi-buku"
+      "$mod SHIFT, B, exec, ${my-packages.rofi-buku}/bin/rofi-buku"
     ];
 
     wayland.windowManager.sway = {
