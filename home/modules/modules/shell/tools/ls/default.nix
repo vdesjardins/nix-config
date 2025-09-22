@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  my-packages,
   lib,
   ...
 }: let
@@ -14,7 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".dircolors".source = "${pkgs.lscolors}/share/lscolors/LS_COLORS";
+    home.file.".dircolors".source = "${my-packages.lscolors}/share/lscolors/LS_COLORS";
 
     programs.zsh.initContent = ''
       eval $(${pkgs.coreutils}/bin/dircolors -b ~/.dircolors)
