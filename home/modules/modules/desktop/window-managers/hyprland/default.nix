@@ -215,9 +215,7 @@ in {
           };
         };
 
-        gestures = {
-          workspace_swipe = false;
-        };
+        gesture = "3, horizontal, workspace";
 
         bind = [
           # Focus
