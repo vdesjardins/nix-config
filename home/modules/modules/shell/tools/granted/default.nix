@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   lib,
   ...
@@ -16,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     programs.granted.enable = true;
 
-    modules.desktop.browsers.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    modules.desktop.browsers.firefox.extensions = with inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons; [
       {package = granted;}
     ];
   };

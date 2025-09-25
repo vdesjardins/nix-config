@@ -51,16 +51,9 @@
 
   outputs = {
     deploy-rs,
-    blink-cmp,
-    ghostty,
-    mcp-hub,
-    mcp-hub-nvim,
-    neovim-nightly,
     nix,
     nixpkgs,
-    nur,
     pre-commit-hooks,
-    rust-overlay,
     self,
     utils,
     ...
@@ -107,30 +100,20 @@
       }
       // (mkOverlays ./overlays/nixpkgs);
 
-    extraOverlays = {
-      nur = nur.overlays.default;
-      neovim-nightly = neovim-nightly.overlays.default;
-      rust-overlay = rust-overlay.overlays.default;
-      ghostty = final: prev: {ghostty = ghostty.packages.${prev.system}.default;};
-      blink-cmp = final: prev: {vimPlugins = prev.vimPlugins // {blink-cmp = blink-cmp.packages.${prev.system}.default;};};
-      mcp-hub = final: prev: {mcp-hub = mcp-hub.packages.${prev.system}.default;};
-      mcp-hub-nvim = final: prev: {mcp-hub-nvim = mcp-hub-nvim.packages.${prev.system}.default;};
-    };
-
     supportedSystems = rec {
       darwin = [aarch64-darwin];
       linux = [x86_64-linux aarch64-linux];
       all = darwin ++ linux;
     };
 
-    mkPkgs = pkgs: extraOverlays: system:
+    mkPkgs = pkgs: system:
       import pkgs {
         inherit system;
-        overlays = extraOverlays ++ (attrValues myOverlays);
+        overlays = attrValues myOverlays;
         config = pkgsConfig;
       };
 
-    pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs (attrValues extraOverlays));
+    pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs);
 
     lib = inputs.nixpkgs.lib.extend (final: prev: {
       my = import ./lib {

@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }: let
@@ -67,7 +68,7 @@ in {
 
       inherit (cfg) colorschemes;
 
-      package = pkgs.neovim;
+      package = inputs.neovim-nightly.packages.${pkgs.system}.default;
 
       nixpkgs.config.allowBroken = true;
 

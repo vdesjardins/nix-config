@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: let
@@ -8,13 +9,13 @@
   cfg = config.modules.desktop.editors.nixvim;
 in {
   config = {
-    home.packages = with pkgs; [
-      mcp-hub
+    home.packages = [
+      inputs.mcp-hub.packages.${pkgs.system}.default
     ];
 
     programs.nixvim = {
-      extraPlugins = with pkgs; [
-        mcp-hub-nvim
+      extraPlugins = [
+        inputs.mcp-hub-nvim.packages.${pkgs.system}.default
       ];
 
       extraConfigLua = ''
