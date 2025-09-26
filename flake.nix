@@ -143,16 +143,10 @@
 
     deploy = import ./hosts/deploy {inherit lib deploy-rs self;};
 
-    # TODO: remove
-    inherit pkgs;
     packages =
       builtins.foldl'
       (acc: value: (nixpkgs.lib.recursiveUpdate acc value)) {} [
         (forAllSupportedSystems (system: myPackages pkgs.${system}))
-        # (forAllSupportedSystems (system: {
-        #   mcp-hub = mcp-hub.outputs.packages.${system}.default;
-        #   mcp-hub-nvim = mcp-hub-nvim.packages.${system}.default;
-        # }))
       ];
 
     dockerImages =
