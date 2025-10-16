@@ -7,13 +7,13 @@
 lib.makeScope newScope (self: {
   codecompanion = vimUtils.buildVimPlugin rec {
     pname = "codecompanion.nvim";
-    version = "17.15.0";
+    version = "17.26.0";
 
     src = fetchFromGitHub {
       owner = "olimorris";
       repo = "codecompanion.nvim";
       rev = "v${version}";
-      hash = "sha256-MGCs7I49oFPL8AUT7Btp/yjpplJHEkDWKMlHUo3sHJ4=";
+      hash = "sha256-uVgkx1t6uBJ0HJLvo2FbR+ToW8a6JpuzjdCp0YvM+Yg=";
     };
 
     doCheck = false;
@@ -25,13 +25,13 @@ lib.makeScope newScope (self: {
 
   codecompanion-history = vimUtils.buildVimPlugin {
     pname = "codecompanion-history";
-    version = "0-unstable-2025-08-05";
+    version = "0-unstable-2025-09-07";
 
     src = fetchFromGitHub {
       owner = "ravitemer";
       repo = "codecompanion-history.nvim";
-      rev = "336987afe9aca1fca30c20ca27dc91e1f7690c77";
-      hash = "sha256-MMAFsDJvdLWJLbr6MW+4j6N/S3CQVNs1BZ/8uB12KnU=";
+      rev = "eb99d256352144cf3b6a1c45608ec25544a0813d";
+      hash = "sha256-0haETLOVASaFRpRF98IxFKOLbY873D5LDHfdcuEp0W4=";
     };
 
     doCheck = false;
@@ -59,13 +59,13 @@ lib.makeScope newScope (self: {
 
   noice-nvim = vimUtils.buildVimPlugin {
     pname = "noice.nvim";
-    version = "4.10.0-unstable-2025-02-11";
+    version = "4.10.0-unstable-2025-10-08";
 
     src = fetchFromGitHub {
       owner = "folke";
       repo = "noice.nvim";
-      rev = "0427460c2d7f673ad60eb02b35f5e9926cf67c59";
-      hash = "sha256-0yu3JX7dXb9b+1REAVP+6K350OlYN6DBm8hEKgkQHgA=";
+      rev = "38c702be0d8fea81527ee6a73e1e834e72481193";
+      hash = "sha256-l75Ml6S0LFh8DisOCnFoQ18Yp5y3247YOpPFRVaQLzo=";
     };
 
     doCheck = false;
@@ -78,13 +78,13 @@ lib.makeScope newScope (self: {
 
   markview-nvim = vimUtils.buildVimPlugin rec {
     pname = "markview.nvim";
-    version = "25.10.0";
+    version = "26.0.1";
 
     src = fetchFromGitHub {
       owner = "OXY2DEV";
       repo = "markview.nvim";
       rev = "v${version}";
-      hash = "sha256-W8IUnsPukWhSY0RgshPkHURZGtAikKI6Qym0ugNBAJo=";
+      hash = "sha256-c8kvtC9PuFtKPbdrTWQFX3Hsw7vwYXVDSQ5/W46s2ZM=";
       fetchSubmodules = true;
     };
 
@@ -95,13 +95,13 @@ lib.makeScope newScope (self: {
 
   snacks-nvim = vimUtils.buildVimPlugin rec {
     pname = "snacks.nvim";
-    version = "2.22.0";
+    version = "2.23.0";
 
     src = fetchFromGitHub {
       owner = "folke";
       repo = "snacks.nvim";
       rev = "v${version}";
-      hash = "sha256-iXfOTmeTm8/BbYafoU6ZAstu9+rMDfQtuA2Hwq0jdcE=";
+      hash = "sha256-VSvLnZclLo441jDGFJdk8fgZ+vtBuQV6mRLG2XXf7Jc=";
     };
 
     doCheck = false;
@@ -170,13 +170,13 @@ lib.makeScope newScope (self: {
 
   blink-copilot = vimUtils.buildVimPlugin {
     pname = "blink-copilot";
-    version = "1.4.1-unstable-2025-07-26";
+    version = "1.4.1-unstable-2025-09-30";
 
     src = fetchFromGitHub {
       owner = "fang2hou";
       repo = "blink-copilot";
-      rev = "41e91a659bd9b8cba9ba2ea68a69b52ba5a9ebd8";
-      hash = "sha256-Ya9RagGE+Awo9xuF8XtwgAO2B9DKJLNsLDU2wsEMumo=";
+      rev = "5d35fd07fcc148be20442da1bdd2407e03263d7d";
+      hash = "sha256-s57/vIMvWoumP/Sp+3JMv0bHOf4rq33aEWPMLJdsBpk=";
     };
 
     doCheck = false;

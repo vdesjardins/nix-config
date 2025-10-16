@@ -38,7 +38,6 @@
     ghostty.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";

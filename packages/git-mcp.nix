@@ -12,13 +12,13 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "git-mcp";
-    version = "0-unstable-2025-08-03";
+    version = "0-unstable-2025-08-22";
 
     src = fetchFromGitHub {
       owner = "idosal";
       repo = "git-mcp";
-      rev = "a1063e82c177213cf752ff1412131889511b3948";
-      hash = "sha256-j1k0ATpoN6X+mMum1t55uc9PPGcB8AGMdEXkLkETcSg=";
+      rev = "d1808ca6a66a3c9b7c3f9cd554ee61e7ae3984ef";
+      hash = "sha256-GUtKg5Q8B6FNU309WIx828xsN8fc+eIhwJosfNEZBO8=";
     };
 
     nativeBuildInputs = [
