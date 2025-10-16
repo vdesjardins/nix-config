@@ -44,7 +44,6 @@
   roles.ai.mcp.github.enable = true;
   roles.ai.mcp.sequential-thinking.enable = true;
   roles.ai.mcp.kubernetes.enable = true;
-  roles.ai.mcp.serena.enable = true;
 
   roles.desktop.wallpapers.enable = true;
   roles.desktop.browsers.enable = true;
