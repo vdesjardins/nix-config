@@ -27,7 +27,8 @@ in {
 
       matchBlocks."*" = {
         controlMaster = "auto";
-        controlPersist = "30s";
+        controlPersist = "5m";
+        controlPath = "~/.ssh/controlmasters/%r@%h:%p";
 
         userKnownHostsFile =
           builtins.toString (mkOutOfStoreSymlink "${configDirectory}/shell/tools/ssh/config/known_hosts");
