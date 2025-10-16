@@ -28,7 +28,6 @@ def "main nix-update" [
 ] {
 	let pkgs_latest = [
 		"english-words", "kubectl-aliases", "lscolors", "tinted-fzf",
-		"serena",
 		"mcp-proxy",
 		"gemini-cli", "git-mcp",
 		"vimPlugins.kcl", "vimPlugins.codecompanion-history",
@@ -36,25 +35,28 @@ def "main nix-update" [
 		"vimPlugins.blink-cmp-dictionary", "vimPlugins.noice-nvim",
 		"vimPlugins.blink-cmp-yanky"]
 
+    let flake_path = pwd
 	let pkgs_to_update = if ($packages | length) > 0 {
 		$packages
 	} else {
-		nix eval --impure --expr `
+		nix eval --impure --expr $"
 		let
-		  inherit (builtins) getFlake;
+		  inherit \(builtins\) getFlake;
 		  currentSystem = builtins.currentSystem;
-		  flake = getFlake "/home/vince/projects/nix-config";
+		  flake = getFlake \"($flake_path)\";
 		in
-		builtins.toJSON (builtins.attrNames (flake.lib.flattenAttrs' flake.outputs.packages.${currentSystem}))` --raw | from json
+		builtins.toJSON \(builtins.attrNames \(flake.lib.flattenAttrs' flake.outputs.packages.${currentSystem}\)\)" --raw | from json
 	}
 
 	$pkgs_to_update | each { |package|
 		print $"Updating package: ($package)"
-		if $package in $pkgs_latest {
-			nix-update --flake --generate-lockfile $package --version=branch
-		} else {
-			nix-update --flake --generate-lockfile $package
-		}
+        try {
+          if $package in $pkgs_latest {
+              nix-update --flake --generate-lockfile $package --version=branch
+          } else {
+              nix-update --flake --generate-lockfile $package
+          }
+        }
 	}
 }
 
