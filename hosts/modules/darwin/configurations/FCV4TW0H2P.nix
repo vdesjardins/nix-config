@@ -1,19 +1,13 @@
 {...}: let
   username = "inf10906";
-  hostname = "V07P6L7R6H";
+  hostname = "FCV4TW0H2P";
 in {
   system.stateVersion = 5;
 
   system.primaryUser = username;
 
-  ids.gids.nixbld = 30000;
-
   homebrew.casks = [
     "Rectangle"
-    "alt-tab"
-    "ghostty"
-    "google-chrome"
-    "google-drive"
     "insomnia"
     "logseq"
     "maccy"
@@ -31,4 +25,6 @@ in {
   ];
 
   users.knownUsers = [username];
+
+  nix.enable = false;
 }
