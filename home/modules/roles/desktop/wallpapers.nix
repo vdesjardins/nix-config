@@ -43,10 +43,6 @@ in {
         url = "https://w.wallhaven.cc/full/y8/wallhaven-y8kzjk.jpg";
         hash = "sha256-CJyQZa2cC2vYnHh7bcfP3XG4hsHCjx+G11jKWNh3SWc=";
       };
-      # "Pictures/Wallpapers/wallhaven-3lyq66.png".source = pkgs.fetchurl {
-      #   url = "https://w.wallhaven.cc/full/3l/wallhaven-3lyq66.png";
-      #   hash = "sha256-wPt1Lxwndl7m0hG3rQCp1hRK5qIDC7n4gqOgY5vNP/E=";
-      # };
       "Pictures/Wallpapers/wallhaven-p9kwgj.png".source = pkgs.fetchurl {
         url = "https://w.wallhaven.cc/full/p9/wallhaven-p9kwgj.png";
         hash = "sha256-BWbD0UJ8JqYpxqQ7nuouiAlUwVfkck+18fVSkBw9Zog=";
@@ -74,6 +70,18 @@ in {
       "Pictures/Wallpapers/wallhaven-o5oq77.jpg".source = pkgs.fetchurl {
         url = "https://w.wallhaven.cc/full/o5/wallhaven-o5oq77.jpg";
         hash = "sha256-MKcgbPB8V97zbc9faDv5XygA30aiGx4ad0B73sDkSx4=";
+      };
+      "Pictures/Wallpapers/1-scenery-pink-lakeside-sunset-lake-landscape-scenic-panorama.png".source = pkgs.fetchurl {
+        url = "https://github.com/basecamp/omarchy/blob/1e859d37cb7fef6ac687442dc1fe515d01d1302d/themes/tokyo-night/backgrounds/1-scenery-pink-lakeside-sunset-lake-landscape-scenic-panorama-7680x3215-144.png?raw=true";
+        hash = "sha256-Bt+5/OAp7DWttA6jk5KWd3wrFA0SMrWhaXsVBS1XU2I=";
+      };
+      "Pictures/Wallpapers/2-Pawel-Czerwinski-Abstract-Purple-Blue.jpg".source = pkgs.fetchurl {
+        url = "https://github.com/basecamp/omarchy/blob/1e859d37cb7fef6ac687442dc1fe515d01d1302d/themes/tokyo-night/backgrounds/2-Pawel-Czerwinski-Abstract-Purple-Blue.jpg?raw=true";
+        hash = "sha256-acxN1KQHwH9VRgD549BP7AKTuMiF3dhR/lg+/C6ty1I=";
+      };
+      "Pictures/Wallpapers/3-Milad-Fakurian-Abstract-Purple-Blue.jpg".source = pkgs.fetchurl {
+        url = "https://github.com/basecamp/omarchy/blob/1e859d37cb7fef6ac687442dc1fe515d01d1302d/themes/tokyo-night/backgrounds/3-Milad-Fakurian-Abstract-Purple-Blue.jpg?raw=true";
+        hash = "sha256-KGjGdDS84QmkhjpH838wJZb+Nt8zQwtQi3TIAMNo8lo=";
       };
     };
   };
