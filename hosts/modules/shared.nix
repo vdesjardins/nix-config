@@ -29,7 +29,7 @@
 
     gc = {
       automatic = true;
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than +5";
     };
 
     package = pkgs.nixVersions.nix_2_28;
