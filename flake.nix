@@ -11,11 +11,6 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "utils";
-    };
 
     # hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -49,7 +44,6 @@
   };
 
   outputs = {
-    deploy-rs,
     nix,
     nixpkgs,
     pre-commit-hooks,
@@ -140,8 +134,6 @@
       nixvim = inputs.nixvim.homeModules.nixvim;
     };
 
-    deploy = import ./hosts/deploy {inherit lib deploy-rs self;};
-
     packages =
       builtins.foldl'
       (acc: value: (nixpkgs.lib.recursiveUpdate acc value)) {} [
@@ -182,8 +174,6 @@
           };
         };
       }
-      # FIXME: doesn't work when deploying from different architecture https://github.com/serokell/deploy-rs/issues/167
-      #// deploy-rs.lib.${system}.deployChecks self.deploy);
     );
   };
 }
