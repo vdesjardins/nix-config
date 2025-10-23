@@ -14,10 +14,6 @@ in {
     ../../tailscale.nix
     ../shared
     ../shared/networking.nix
-    ../shared/acme.nix
-    ../shared/home-assistant.nix
-    ../shared/omada-controller.nix
-    ../shared/it-tools.nix
     ../users/admin.nix
   ];
 

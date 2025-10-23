@@ -1,9 +1,68 @@
 {
   config,
-  lib,
   pkgs,
   ...
-}: {
+}: let
+  frigateComponent = pkgs.fetchFromGitHub {
+    owner = "blakeblackshear";
+    repo = "frigate-hass-integration";
+    tag = "v5.9.4";
+    hash = "sha256-LzrIvHJMB6mFAEfKoMIs0wL+xbEjoBIx48pSEcCHmg4=";
+  };
+  opnsenseComponent = pkgs.fetchFromGitHub {
+    owner = "travisghansen";
+    repo = "hass-opnsense";
+    tag = "v0.4.8";
+    hash = "sha256-5oWIFdOcLSul1debsnE34DWqEC1dEXN7vZYR2gLlI7A=";
+  };
+  advancedCameraCardComponent = pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
+    pname = "advanced-camera-card";
+    version = "7.3.6";
+
+    src = pkgs.fetchzip {
+      url = "https://github.com/dermotduffy/advanced-camera-card/releases/download/v7.19.0/advanced-camera-card.zip";
+      hash = "sha256-+sDIs1r3668FrpnJ3qcQlrfDvtapODj5LVOb6yStSA8=";
+    };
+
+    dontBuild = true;
+
+    installPhase = ''
+      mkdir -p $out/advanced-camera-card
+      mv * $out/advanced-camera-card
+    '';
+  });
+
+  hassConfig = {
+    # Loads default set of integrations. Do not remove.
+    default_config = {};
+
+    # Load frontend themes from the themes folder
+    frontend = {
+      themes = "!include_dir_merge_named themes";
+    };
+
+    automation = "!include automations.yaml";
+    script = "!include scripts.yaml";
+    scene = "!include scenes.yaml";
+
+    http = {
+      use_x_forwarded_for = true;
+      trusted_proxies = "127.0.0.1";
+    };
+
+    # lovelace = {
+    #   mode = "storage";
+    #   resources = [
+    #     {
+    #       url = "/hassfiles/advanced-camera-card/advanced-camera-card.js";
+    #       type = "module";
+    #     }
+    #   ];
+    # };
+  };
+
+  configFile = (pkgs.formats.yaml {}).generate "configuration.yaml" hassConfig;
+in {
   services.nginx = {
     enable = true;
 
@@ -30,19 +89,26 @@
   networking.firewall.allowedTCPPorts = [8123];
 
   virtualisation.oci-containers = {
-    backend = lib.mkForce "docker";
-
     containers = {
       home-assistant = {
-        image = "ghcr.io/home-assistant/home-assistant:stable";
-        volumes = [
-          "/data/home-assistant/config:/config"
-        ];
+        image = "ghcr.io/home-assistant/home-assistant:2025.10.0";
+
+        environment.TZ = config.time.timeZone;
 
         extraOptions = [
           "--network=host"
+          "--cap-add=NET_RAW"
+          "--cap-add=NET_ADMIN"
         ];
-        environment.TZ = config.time.timeZone;
+
+        volumes = [
+          "/run/dbus:/run/dbus:ro"
+          "/data/home-assistant/config:/config"
+          # "${configFile}:/config/configuration.yaml:ro"
+          "${frigateComponent}/custom_components/frigate:/config/custom_components/frigate"
+          "${opnsenseComponent}/custom_components/opnsense:/config/custom_components/opnsense"
+          "${advancedCameraCardComponent}/advanced-camera-card/:/hassfiles/advanced-camera-card"
+        ];
       };
     };
   };

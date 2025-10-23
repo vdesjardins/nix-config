@@ -13,6 +13,9 @@ in {
   system.activationScripts.acme-cloudflare-creds.text =
     # bash
     ''
+      # using nixos-rebuild on remote host with sudo loses $HOME
+      export HOME=/root
+
       mkdir -p ${credsDir}
       chmod 700 ${credsDir}
 

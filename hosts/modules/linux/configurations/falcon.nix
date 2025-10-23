@@ -1,34 +1,28 @@
 {...}: let
-  username = "vince";
+  username = "admin";
   hostname = "falcon";
 in {
   imports = [
     ../../shared.nix
-    ../../desktop.nix
     ../../tailscale.nix
     ../hardware/beelink.nix
     ../shared
     ../shared/boot.nix
     ../shared/networking.nix
-    ../shared/debugging.nix
-    ../shared/desktop.nix
     ../shared/amd.nix
-    ../shared/wayland.nix
-    ../shared/greetd.nix
-    ../shared/pipewire.nix
-    ../shared/gaming.nix
-    ../shared/wifi.nix
+    ../shared/acme.nix
+    ../shared/omada-controller.nix
+    ../shared/it-tools.nix
+    ../shared/frigate.nix
+    ../shared/home-assistant.nix
+    ../shared/mosquitto.nix
+    ../users/admin.nix
     (../users + "/${username}.nix")
   ];
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.11";
 
   networking.hostName = hostname;
 
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/disk/by-partlabel/root";
-      preLVM = true;
-    };
-  };
+  networking.firewall.enable = false;
 }

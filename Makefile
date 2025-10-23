@@ -36,6 +36,11 @@ host/generate:
 		sudo nixos-rebuild build --flake .#$$(uname --nodename)
 	fi
 
+.PHONY: falcon/apply
+## falcon/apply: apply configuration to falcon server
+falcon/apply:
+	nixos-rebuild --target-host admin@10.0.0.50 --sudo --flake '.#falcon' switch
+
 .PHONY: hm/install
 ## hm/install: install nix for home-manager
 hm/install:

@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   services.nginx = {
     enable = true;
 
@@ -14,7 +14,6 @@
   };
 
   virtualisation.oci-containers = {
-    backend = lib.mkForce "docker";
     containers = {
       it-tools = {
         image = "ghcr.io/corentinth/it-tools:latest";

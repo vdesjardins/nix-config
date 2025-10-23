@@ -7,4 +7,8 @@
     loader.efi.canTouchEfiVariables = true;
     kernelPackages = pkgs.linuxPackages_latest;
   };
+
+  # environment.systemPackages = with pkgs; [
+  #   linuxPackages.bpftrace
+  # ];
 }

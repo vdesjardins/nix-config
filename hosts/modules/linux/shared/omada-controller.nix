@@ -18,7 +18,6 @@
   };
 
   virtualisation.oci-containers = {
-    backend = lib.mkForce "docker";
     containers = {
       omada = {
         image = "mbentley/omada-controller:5.15";
