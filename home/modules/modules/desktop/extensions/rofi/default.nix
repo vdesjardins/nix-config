@@ -33,7 +33,7 @@ in {
   config = mkIf cfg.enable (let
     # TODO: workaround for https://github.com/NixOS/nixpkgs/issues/298539
     plugins = [
-      pkgs.rofi-file-browser
+      # pkgs.rofi-file-browser
       pkgs.rofi-menugen
       pkgs.rofi-power-menu
       pkgs.rofimoji
@@ -141,7 +141,7 @@ in {
       rofi = config.programs.rofi.finalPackage;
     in {
       settings.bind = [
-        "$mod, D, exec, ${rofi}/bin/rofi -show drun -matching fuzzy"
+        "$mod, SPACE, exec, ${rofi}/bin/rofi -show drun -matching fuzzy"
         "$mod, X, exec, ${rofi}/bin/rofi -show run -matching fuzzy"
         "$mod, W, exec, ${rofi}/bin/rofi -show window -matching fuzzy"
         "$mod, C, exec, ${rofi}/bin/rofi -show ssh -matching fuzzy"
