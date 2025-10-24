@@ -26,11 +26,21 @@
       };
     };
 
-    # detectors = {
-    #   onnx_0 = {
-    #     type = "onnx";
-    #   };
-    # };
+    detectors = {
+      onnx_0 = {
+        type = "onnx";
+      };
+    };
+
+    model = {
+      model_type = "yolox";
+      width = 416;
+      height = 416;
+      input_dtype = "float_denorm";
+      input_tensor = "nchw";
+      path = "/config/model_cache/yolo_tiny.onnx";
+      labelmap_path = "/labelmap/coco-80.txt";
+    };
 
     go2rtc = {
       streams = {
@@ -110,7 +120,8 @@
           threshold = 40;
           contour_area = 15;
           mask = [
-            "0.002,0.002,0.493,0.002,1,0,0.995,0.56,0.974,0.668,0.3,0.71,0.003,0.708"
+            "0.002,0.004,0.001,0.495,0.152,0.487,0.162,0.004"
+            "0.342,0.006,0.283,0.415,0.783,0.463,0.859,0"
           ];
         };
         review = {
@@ -193,6 +204,11 @@
     };
   };
 
+  yoloModelTiny = builtins.fetchurl {
+    url = "https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_tiny.onnx";
+    sha256 = "sha256:1xxhf36c2awlpf41yad25qk5qhki6rg9p2g20dxgy9sfsdkc6z22";
+  };
+
   configFile = (pkgs.formats.yaml {}).generate "frigate.yml" frigateConfig;
 in {
   services.nginx = {
@@ -248,6 +264,12 @@ in {
           "/var/lib/frigate:/config"
           "${configFile}:/config/config.yaml:ro"
           "/data/frigate/data:/media/frigate"
+          "${yoloModelTiny}:/config/model_cache/yolo_tiny.onnx:ro"
+        ];
+
+        devices = [
+          "/dev/kfd:/dev/kfd"
+          "/dev/dri:/dev/dri"
         ];
 
         ports = [
@@ -275,6 +297,10 @@ in {
           "--cap-add=SYS_ADMIN"
           # "--group-add=keep-groups"
         ];
+
+        environment = {
+          HSA_OVERRIDE_GFX_VERSION = "11.0.0";
+        };
 
         environmentFiles = ["/var/services/frigate/env"];
       };
