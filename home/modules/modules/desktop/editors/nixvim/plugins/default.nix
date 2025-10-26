@@ -86,6 +86,7 @@
     ./copilot.nix
     ./codecompanion.nix
     ./mcphub.nix
+    ./sidekick.nix
   ];
 
   programs.nixvim = {

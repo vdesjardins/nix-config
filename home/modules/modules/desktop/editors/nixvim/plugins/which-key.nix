@@ -11,6 +11,10 @@
 
       spec = [
         {
+          __unkeyed-1 = "<leader>a";
+          group = "Sidekick";
+        }
+        {
           __unkeyed-1 = "<leader>B";
           group = "Buffers";
         }
