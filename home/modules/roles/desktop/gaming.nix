@@ -17,7 +17,7 @@ in {
       lutris.enable = true;
       steam.enable = true;
       wine.enable = true;
-      dolphin.enable = true;
+      dolphin.enable = false;
     };
   };
 }

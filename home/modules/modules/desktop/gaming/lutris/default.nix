@@ -35,24 +35,6 @@ in {
         };
       };
 
-      "lutris/runners/dolphin.yml".source = settingsFormat.generate "dolphin.yml" {
-        dolphin = {
-          nogui = true;
-          runner_executable = "${pkgs.dolphin-emu-beta}/bin/dolphin-emu";
-        };
-
-        system = {
-          disable_runtime = true;
-
-          env = {
-            QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-            QT_QPA_PLATFORM = "xcb";
-          };
-
-          prefix_command = "wrap-scale-off";
-        };
-      };
-
       "lutris/runners/mupen64plus.yml".source = settingsFormat.generate "mupen64plus.yml" {
         mupen64plus = {
           runner_executable = "${pkgs.mupen64plus}/bin/mupen64plus";
