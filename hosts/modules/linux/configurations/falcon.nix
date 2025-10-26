@@ -11,6 +11,7 @@ in {
     ../shared/networking.nix
     ../shared/amd.nix
     ../shared/acme.nix
+    ../shared/podman.nix
     ../shared/omada-controller.nix
     ../shared/it-tools.nix
     ../shared/frigate.nix
