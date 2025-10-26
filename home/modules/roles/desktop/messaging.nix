@@ -14,5 +14,6 @@ in {
 
   config = mkIf cfg.enable {
     modules.desktop.messaging.signal-desktop.enable = true;
+    modules.desktop.messaging.zoom.enable = true;
   };
 }
