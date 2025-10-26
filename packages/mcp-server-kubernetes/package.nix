@@ -6,16 +6,16 @@
 in
   buildNpmPackage rec {
     pname = "mcp-server-kubernetes";
-    version = "2.9.6";
+    version = "2.9.7";
 
     src = fetchFromGitHub {
       owner = "Flux159";
       repo = "mcp-server-kubernetes";
       rev = "v${version}";
-      hash = "sha256-gyX4XoqR69fQ1aPFo7HSYpNhuey0YlM45xXGTwqi98s=";
+      hash = "sha256-gAcwt49qtvVn/X703O7lORPu2OBt/ahYTlufCZDNgOw=";
     };
 
-    npmDepsHash = "sha256-+0OWck2lcJQcRMKNv/+XRei8EXTuEtgtjLIAewhZSvU=";
+    npmDepsHash = "sha256-j12NyACgywnxs1qh+2T3EZKeMVMw6tg5tCjr0N7xguc=";
 
     packageLock = ./package-lock.json;
 

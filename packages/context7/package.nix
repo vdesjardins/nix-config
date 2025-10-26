@@ -6,16 +6,16 @@
 in
   buildNpmPackage rec {
     pname = "context7";
-    version = "1.0.21";
+    version = "1.0.26";
 
     src = fetchFromGitHub {
       owner = "upstash";
       repo = "context7";
       rev = "v${version}";
-      hash = "sha256-F4IiS5hIutVt2XSNGr3vhEy7kr/ad8WtstX5rZVuIao=";
+      hash = "sha256-sOyZwYB9WlPfzbrQW+krf2QDoWzei+wMJvohGi+C6B0=";
     };
 
-    npmDepsHash = "sha256-XtZoKs2NGZY+TjLtr3Yeo4pHnNd0XHPYvpr7ASAg+As=";
+    npmDepsHash = "sha256-FNfDmjaZywowyqy1YVzkTrEZvsvZQpUugXeR6uCnSRU=";
 
     packageLock = ./package-lock.json;
 

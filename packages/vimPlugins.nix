@@ -7,13 +7,13 @@
 lib.makeScope newScope (self: {
   codecompanion = vimUtils.buildVimPlugin rec {
     pname = "codecompanion.nvim";
-    version = "17.26.0";
+    version = "17.28.0";
 
     src = fetchFromGitHub {
       owner = "olimorris";
       repo = "codecompanion.nvim";
       rev = "v${version}";
-      hash = "sha256-uVgkx1t6uBJ0HJLvo2FbR+ToW8a6JpuzjdCp0YvM+Yg=";
+      hash = "sha256-UB6VT40bmD2iKXenNs8skGfYLlVFlMFOb2IiufTvmZY=";
     };
 
     doCheck = false;
@@ -59,13 +59,13 @@ lib.makeScope newScope (self: {
 
   noice-nvim = vimUtils.buildVimPlugin {
     pname = "noice.nvim";
-    version = "4.10.0-unstable-2025-10-08";
+    version = "4.10.0-unstable-2025-10-21";
 
     src = fetchFromGitHub {
       owner = "folke";
       repo = "noice.nvim";
-      rev = "38c702be0d8fea81527ee6a73e1e834e72481193";
-      hash = "sha256-l75Ml6S0LFh8DisOCnFoQ18Yp5y3247YOpPFRVaQLzo=";
+      rev = "c86aea584d98be7ee1167ce4d4ef946fbd7f3ae0";
+      hash = "sha256-1BW1yQ8yd/HF127CAqIC7ZayJJ2T+j6YCXQWm3vHrhQ=";
     };
 
     doCheck = false;
@@ -95,13 +95,13 @@ lib.makeScope newScope (self: {
 
   snacks-nvim = vimUtils.buildVimPlugin rec {
     pname = "snacks.nvim";
-    version = "2.23.0";
+    version = "2.25.0";
 
     src = fetchFromGitHub {
       owner = "folke";
       repo = "snacks.nvim";
       rev = "v${version}";
-      hash = "sha256-VSvLnZclLo441jDGFJdk8fgZ+vtBuQV6mRLG2XXf7Jc=";
+      hash = "sha256-FtGnuqaJYlZdIt2pPPSlbLEtUVwJBcI7ogUS2KcIXEM=";
     };
 
     doCheck = false;
@@ -132,13 +132,13 @@ lib.makeScope newScope (self: {
 
   blink-emoji = vimUtils.buildVimPlugin {
     pname = "blink-emoji";
-    version = "0-unstable-2025-05-24";
+    version = "0-unstable-2025-10-22";
 
     src = fetchFromGitHub {
       owner = "moyiz";
       repo = "blink-emoji.nvim";
-      rev = "f22ce8cac02a6ece05368220f1e38bd34fe376f9";
-      hash = "sha256-pPHESNsByHg2liNUYkUEVR1wP1MZcil1sKTqrNI53e4=";
+      rev = "066013e4c98a9318408ee3f1ca2dbcb6fa3e4c06";
+      hash = "sha256-kQcyvZbgH878HFHcmxBw7CA2HzdxtSoWqJxKqVFf/8M=";
     };
 
     doCheck = false;
@@ -189,13 +189,13 @@ lib.makeScope newScope (self: {
 
   blink-cmp-dictionary = vimUtils.buildVimPlugin {
     pname = "blink-cmp-dictionary";
-    version = "2.0.0-unstable-2025-06-20";
+    version = "2.0.0-unstable-2025-10-23";
 
     src = fetchFromGitHub {
       owner = "Kaiser-Yang";
       repo = "blink-cmp-dictionary";
-      rev = "43b701fe9728a704bc63e4667c5d8b398bf129b2";
-      hash = "sha256-szCNbYLWkJTAVGWz9iRFh7NfQfM5t5jcQHdQeKzBx30=";
+      rev = "944b3b215b01303672d4213758db7c5c5a1e3c92";
+      hash = "sha256-e8ucufhLdNnE8fBjSLaTJngEj1valYE9upH78y+wj4I=";
     };
 
     doCheck = false;
