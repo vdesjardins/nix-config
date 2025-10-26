@@ -91,7 +91,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       home-assistant = {
-        image = "ghcr.io/home-assistant/home-assistant:2025.10.0";
+        image = "ghcr.io/home-assistant/home-assistant:stable";
 
         environment.TZ = config.time.timeZone;
 
@@ -110,6 +110,21 @@ in {
           "${advancedCameraCardComponent}/advanced-camera-card/:/hassfiles/advanced-camera-card"
         ];
       };
+    };
+  };
+
+  systemd.timers.restart-home-assistant = {
+    timerConfig = {
+      Unit = "restart-home-assistant.service";
+      OnCalendar = "Mon 02:30";
+    };
+    wantedBy = ["timers.target"];
+  };
+
+  systemd.services.restart-home-assistant = {
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl try-restart podman-home-assistant.service";
     };
   };
 

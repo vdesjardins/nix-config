@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   services.nginx = {
     enable = true;
 
@@ -22,6 +22,21 @@
           "9000:80"
         ];
       };
+    };
+  };
+
+  systemd.timers.restart-it-tools = {
+    timerConfig = {
+      Unit = "restart-it-tools.service";
+      OnCalendar = "Mon 02:30";
+    };
+    wantedBy = ["timers.target"];
+  };
+
+  systemd.services.restart-it-tools = {
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl try-restart podman-it-tools.service";
     };
   };
 }

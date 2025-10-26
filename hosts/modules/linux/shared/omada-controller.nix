@@ -20,7 +20,7 @@
   virtualisation.oci-containers = {
     containers = {
       omada = {
-        image = "mbentley/omada-controller:5.15";
+        image = "mbentley/omada-controller:5";
         volumes = [
           "/data/omada/data:/opt/tplink/EAPController/data"
           "/data/omada/logs:/opt/tplink/EAPController/logs"
@@ -62,6 +62,21 @@
           TZ = "Etc/UTC";
         };
       };
+    };
+  };
+
+  systemd.timers.restart-omada = {
+    timerConfig = {
+      Unit = "restart-omada.service";
+      OnCalendar = "Mon 03:00";
+    };
+    wantedBy = ["timers.target"];
+  };
+
+  systemd.services.restart-omada = {
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl try-restart podman-omada.service";
     };
   };
 

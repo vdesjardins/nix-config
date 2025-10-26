@@ -258,7 +258,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       frigate = {
-        image = "ghcr.io/blakeblackshear/frigate:0.16.1-rocm";
+        image = "ghcr.io/blakeblackshear/frigate:stable-rocm";
         volumes = [
           "/etc/localtime:/etc/localtime:ro"
           "/var/lib/frigate:/config"
@@ -304,6 +304,21 @@ in {
 
         environmentFiles = ["/var/services/frigate/env"];
       };
+    };
+  };
+
+  systemd.timers.restart-frigate = {
+    timerConfig = {
+      Unit = "restart-frigate.service";
+      OnCalendar = "Mon 02:30";
+    };
+    wantedBy = ["timers.target"];
+  };
+
+  systemd.services.restart-frigate = {
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl try-restart podman-frigate.service";
     };
   };
 
