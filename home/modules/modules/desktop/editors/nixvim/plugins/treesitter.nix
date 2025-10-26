@@ -23,10 +23,12 @@
 
       treesitter-refactor = {
         enable = true;
-        highlightDefinitions = {
-          enable = true;
-          # Set to false if you have an `updatetime` of ~100.
-          clearOnCursorMove = false;
+        settings = {
+          highlight_definitions = {
+            enable = true;
+            # Set to false if you have an `updatetime` of ~100.
+            clear_on_cursor_move = false;
+          };
         };
       };
 
@@ -36,102 +38,104 @@
 
       treesitter-textobjects = {
         enable = true;
-        select = {
-          enable = true;
-          lookahead = true;
-          keymaps = {
-            "af" = {
-              query = "@function.outer";
-              desc = "Select outer part of function";
-            };
-            "if" = {
-              query = "@function.inner";
-              desc = "Select inner part of function";
-            };
-            "ac" = {
-              query = "@class.outer";
-              desc = "Select outer part of class";
-            };
-            "ic" = {
-              query = "@class.inner";
-              desc = "Select inner part of class";
+        settings = {
+          select = {
+            enable = true;
+            lookahead = true;
+            keymaps = {
+              "af" = {
+                query = "@function.outer";
+                desc = "Select outer part of function";
+              };
+              "if" = {
+                query = "@function.inner";
+                desc = "Select inner part of function";
+              };
+              "ac" = {
+                query = "@class.outer";
+                desc = "Select outer part of class";
+              };
+              "ic" = {
+                query = "@class.inner";
+                desc = "Select inner part of class";
+              };
             };
           };
-        };
 
-        swap = {
-          enable = true;
-          swapNext = {
-            "<leader>ln" = {
-              query = "@parameter.inner";
-              desc = "Swap with next parameter";
+          swap = {
+            enable = true;
+            swap_next = {
+              "<leader>ln" = {
+                query = "@parameter.inner";
+                desc = "Swap with next parameter";
+              };
+            };
+            swap_previous = {
+              "<leader>lp" = {
+                query = "@parameter.inner";
+                desc = "Swap with previous parameter";
+              };
             };
           };
-          swapPrevious = {
-            "<leader>lp" = {
-              query = "@parameter.inner";
-              desc = "Swap with previous parameter";
-            };
-          };
-        };
 
-        move = {
-          enable = true;
-          setJumps = true; # whether to set jumps in the jumplist
-          gotoNextStart = {
-            "]m" = {
-              query = "@function.outer";
-              desc = "Goto Next Function Start";
+          move = {
+            enable = true;
+            set_jumps = true; # whether to set jumps in the jumplist
+            goto_next_start = {
+              "]m" = {
+                query = "@function.outer";
+                desc = "Goto Next Function Start";
+              };
+              "]]" = {
+                query = "@class.outer";
+                desc = "Goto Next Class Start";
+              };
             };
-            "]]" = {
-              query = "@class.outer";
-              desc = "Goto Next Class Start";
+            goto_next_end = {
+              "]M" = {
+                query = "@function.outer";
+                desc = "Goto Next Function End";
+              };
+              "][" = {
+                query = "@class.outer";
+                desc = "Goto Next Class End";
+              };
+            };
+            goto_previous_start = {
+              "[m" = {
+                query = "@function.outer";
+                desc = "Goto Previous Function Start";
+              };
+              "[[" = {
+                query = "@class.outer";
+                desc = "Goto Previous Class Start";
+              };
+            };
+            goto_previous_end = {
+              "[M" = {
+                query = "@function.outer";
+                desc = "Goto Previous Function End";
+              };
+              "[]" = {
+                query = "@class.outer";
+                desc = "Goto Previous Class End";
+              };
             };
           };
-          gotoNextEnd = {
-            "]M" = {
-              query = "@function.outer";
-              desc = "Goto Next Function End";
-            };
-            "][" = {
-              query = "@class.outer";
-              desc = "Goto Next Class End";
-            };
-          };
-          gotoPreviousStart = {
-            "[m" = {
-              query = "@function.outer";
-              desc = "Goto Previous Function Start";
-            };
-            "[[" = {
-              query = "@class.outer";
-              desc = "Goto Previous Class Start";
-            };
-          };
-          gotoPreviousEnd = {
-            "[M" = {
-              query = "@function.outer";
-              desc = "Goto Previous Function End";
-            };
-            "[]" = {
-              query = "@class.outer";
-              desc = "Goto Previous Class End";
-            };
-          };
-        };
 
-        lspInterop = {
-          enable = true;
-          border = "none";
+          lsp_interop = {
+            enable = true;
+            border = "none";
 
-          peekDefinitionCode = {
-            "<leader>ldf" = {
-              query = "@function.outer";
-              desc = "LSP Peek Function Definition";
-            };
-            "<leader>ldF" = {
-              query = "@class.outer";
-              desc = "LSP Peek Class Definition";
+            peek_definition_code = {
+              "<leader>ldf" = {
+                query = "@function.outer";
+                desc = "LSP Peek Function Definition";
+              };
+              "<leader>ldF" = {
+                query = "@class.outer";
+                desc = "LSP Peek Class Definition";
+              };
             };
           };
         };
