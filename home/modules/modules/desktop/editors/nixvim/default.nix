@@ -70,7 +70,10 @@ in {
 
       package = inputs.neovim-nightly.packages.${pkgs.system}.default;
 
-      nixpkgs.config.allowBroken = true;
+      nixpkgs.config = {
+        allowBroken = true;
+        allowUnfree = true;
+      };
 
       defaultEditor = true;
 
