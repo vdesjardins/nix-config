@@ -184,9 +184,9 @@
       };
     };
 
-    extraPlugins = with my-packages.vimPlugins; [
-      blink-emoji
-      blink-cmp-yanky
+    extraPlugins = [
+      my-packages.vimPlugins-blink-emoji
+      my-packages.vimPlugins-blink-cmp-yanky
     ];
 
     extraConfigLua = ''

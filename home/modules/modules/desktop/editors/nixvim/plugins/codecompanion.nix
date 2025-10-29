@@ -7,15 +7,15 @@
   cfg = config.modules.desktop.editors.nixvim;
 in {
   programs.nixvim = {
-    extraPlugins = with my-packages.vimPlugins; [
-      codecompanion-history
+    extraPlugins = [
+      my-packages.vimPlugins-codecompanion-history
     ];
 
     plugins = {
       codecompanion = {
         enable = true;
 
-        package = my-packages.vimPlugins.codecompanion;
+        package = my-packages.vimPlugins-codecompanion;
 
         settings = {
           extensions = {

@@ -30,10 +30,10 @@ def "main nix-update" [
 		"english-words", "kubectl-aliases", "lscolors", "tinted-fzf",
 		"mcp-proxy",
 		"gemini-cli", "git-mcp",
-		"vimPlugins.kcl", "vimPlugins.codecompanion-history",
-		"vimPlugins.blink-emoji", "vimPlugins.blink-copilot",
-		"vimPlugins.blink-cmp-dictionary", "vimPlugins.noice-nvim",
-		"vimPlugins.blink-cmp-yanky"]
+		"vimPlugins-kcl", "vimPlugins-codecompanion-history",
+		"vimPlugins-blink-emoji", "vimPlugins-blink-copilot",
+		"vimPlugins-blink-cmp-dictionary", "vimPlugins-noice-nvim",
+		"vimPlugins-blink-cmp-yanky"]
 
     let flake_path = pwd
 	let pkgs_to_update = if ($packages | length) > 0 {

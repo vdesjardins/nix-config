@@ -7,7 +7,7 @@
     plugins.blink-cmp-dictionary = {
       enable = true;
 
-      package = my-packages.vimPlugins.blink-cmp-dictionary;
+      package = my-packages.vimPlugins-blink-cmp-dictionary;
     };
 
     extraPackages = with pkgs; [
