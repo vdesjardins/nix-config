@@ -1,7 +1,8 @@
-{...}: {
+{my-packages, ...}: {
   programs.nixvim = {
     plugins.sidekick = {
       enable = true;
+      package = my-packages.vimPlugins.sidekick-nvim;
     };
 
     keymaps = [
