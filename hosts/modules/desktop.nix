@@ -8,7 +8,7 @@
     maple-mono.NF
     maple-mono.variable
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 in {
   fonts.packages = fonts;
