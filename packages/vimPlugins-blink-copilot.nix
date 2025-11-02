@@ -4,13 +4,13 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "blink-copilot";
-  version = "1.4.1-unstable-2025-09-30";
+  version = "1.4.1-unstable-2025-10-29";
 
   src = fetchFromGitHub {
     owner = "fang2hou";
     repo = "blink-copilot";
-    rev = "5d35fd07fcc148be20442da1bdd2407e03263d7d";
-    hash = "sha256-s57/vIMvWoumP/Sp+3JMv0bHOf4rq33aEWPMLJdsBpk=";
+    rev = "7ad8209b2f880a2840c94cdcd80ab4dc511d4f39";
+    hash = "sha256-cDvbUmnFZbPmU/HPISNV8zJV8WsH3COl3nGqgT5CbVQ=";
   };
 
   doCheck = false;

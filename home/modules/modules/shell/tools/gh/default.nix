@@ -22,8 +22,6 @@ in {
     programs.gh = {
       inherit (cfg) enable;
 
-      package = pkgs.gitAndTools.gh;
-
       settings = {
         git_protocol = "ssh";
 

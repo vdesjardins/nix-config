@@ -35,7 +35,7 @@ in {
         # kail
         kind
         kube-capacity
-        kube3d
+        k3d
         kubectl-images
         # kubectl-trace
         kubectl-tree
@@ -64,7 +64,7 @@ in {
         kubectl-explore # better explain
         kubecolor
         kubectl-neat
-        cosign
+        # cosign
         crane # tool to manage container images
         fluxcd
         kubeconform

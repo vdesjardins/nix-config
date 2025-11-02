@@ -19,7 +19,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs.gitAndTools; [
+    home.packages = with pkgs; [
       commitizen
       gita
       git-absorb

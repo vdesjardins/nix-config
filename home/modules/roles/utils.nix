@@ -73,7 +73,7 @@ in {
         coreutils
         curl
         deploy-rs
-        du-dust # fancy du
+        dust # fancy du
         duf # df alternative
         file
         findutils

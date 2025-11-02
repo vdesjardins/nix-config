@@ -8,7 +8,7 @@
 }:
 with pkgs; let
   os =
-    if hostPlatform.isLinux
+    if stdenv.hostPlatform.isLinux
     then "linux"
     else "darwin";
 

@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable (mkMerge [
-    (mkIf pkgs.hostPlatform.isLinux {
+    (mkIf pkgs.stdenv.hostPlatform.isLinux {
       home.packages = with pkgs; [gnupg gcr];
 
       services.gpg-agent = {
@@ -47,7 +47,7 @@ in {
       };
     })
 
-    (mkIf pkgs.hostPlatform.isDarwin {
+    (mkIf pkgs.stdenv.hostPlatform.isDarwin {
       home = {
         packages = with pkgs; [gnupg pinentry_mac];
 

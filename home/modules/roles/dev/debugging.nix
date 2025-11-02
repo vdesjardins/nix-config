@@ -30,7 +30,7 @@ in {
         gdbgui
         cgdb
         uftrace # Function graph tracer for C/C++/Rust
-        rr-unstable
+        rr
       ];
   };
 }
