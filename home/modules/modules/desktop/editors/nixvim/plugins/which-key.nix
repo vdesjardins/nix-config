@@ -31,6 +31,10 @@
           group = "SCM";
         }
         {
+          __unkeyed-4 = "<leader>G";
+          group = "Github";
+        }
+        {
           __unkeyed-5 = "<leader>t";
           group = "Terminal";
         }

@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{
+  my-packages,
+  pkgs,
+  ...
+}: {
   programs.nixvim = {
     plugins = {
       snacks = {
         enable = true;
 
-        package = pkgs.vimPlugins.snacks-nvim;
+        package = my-packages.vimPlugins-snacks-nvim;
 
         settings = {
           scope.enable = true;
@@ -15,6 +19,7 @@
           notifier.enable = true;
           lazygit.enable = true;
           gitbrowse.enable = true;
+          gh.enable = true;
           git.enable = true;
           scratch.enable = true;
           debug.enable = true;
@@ -384,6 +389,32 @@
         key = "<leader>ss";
         action.__raw = "Snacks.picker.git_status";
         options.desc = "Git Status (Snacks)";
+      }
+
+      # gh
+      {
+        mode = "n";
+        key = "<leader>Gi";
+        action.__raw = ''function() Snacks.picker.gh_issue() end'';
+        options.desc = "GitHub Issues (open)";
+      }
+      {
+        mode = "n";
+        key = "<leader>GI";
+        action.__raw = ''function() Snacks.picker.gh_issue({ state = "all" }) end'';
+        options.desc = "GitHub Issues (all)";
+      }
+      {
+        mode = "n";
+        key = "<leader>Gp";
+        action.__raw = ''function() Snacks.picker.gh_pr() end'';
+        options.desc = "GitHub Pull Requests (open)";
+      }
+      {
+        mode = "n";
+        key = "<leader>GP";
+        action.__raw = ''function() Snacks.picker.gh_pr({ state = "all" }) end'';
+        options.desc = "GitHub Pull Requests (all)";
       }
 
       # make targets
