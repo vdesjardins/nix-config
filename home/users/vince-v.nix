@@ -37,6 +37,7 @@
 
   roles.ai.ollama.enable = true;
   roles.ai.gemini-cli.enable = true;
+  roles.ai.opencode.enable = true;
   roles.ai.mcp.context7.enable = true;
   roles.ai.mcp.desktop-commander.enable = true;
   roles.ai.mcp.fetch.enable = true;

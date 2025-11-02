@@ -18,5 +18,10 @@ in {
     modules.desktop.editors.nixvim.ai.mcpServers.desktop-commander = {
       command = getExe cfg.package;
     };
+    programs.opencode.settings.mcp."desktop-commander" = {
+      enabled = true;
+      type = "local";
+      command = [(getExe cfg.package)];
+    };
   };
 }

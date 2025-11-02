@@ -72,6 +72,11 @@
         action.__raw = ''function() require("sidekick.cli").toggle({ name = "copilot", focus = true }) end'';
         options.desc = "Sidekick Toggle Copilot";
       }
+      {
+        key = "<leader>ao";
+        action.__raw = ''function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end'';
+        options.desc = "Sidekick Toggle Opencode";
+      }
     ];
   };
 }

@@ -18,5 +18,10 @@ in {
     modules.desktop.editors.nixvim.ai.mcpServers.sequential-thinking = {
       command = getExe cfg.package;
     };
+    programs.opencode.settings.mcp.sequential-thinking = {
+      enabled = true;
+      type = "local";
+      command = [(getExe cfg.package)];
+    };
   };
 }

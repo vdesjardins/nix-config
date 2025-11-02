@@ -18,5 +18,10 @@ in {
     modules.desktop.editors.nixvim.ai.mcpServers.context7 = {
       command = getExe cfg.package;
     };
+    programs.opencode.settings.mcp.context7 = {
+      enabled = true;
+      type = "local";
+      command = [(getExe cfg.package)];
+    };
   };
 }
