@@ -43,7 +43,7 @@ in {
           };
           ghostty = {
             inherit font font-italic font-bold font-bold-italic;
-            theme = "tokyonight_night";
+            theme = "TokyoNight Night";
           };
         };
 
