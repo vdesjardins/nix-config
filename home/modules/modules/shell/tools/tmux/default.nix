@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  stdenv,
   ...
 }: let
   inherit (lib) mkIf;
@@ -12,6 +11,12 @@
 in {
   options.modules.shell.tools.tmux = {
     enable = mkEnableOption "tmux";
+
+    prefix = lib.mkOption {
+      type = lib.types.str;
+      default = "C-Space";
+      description = "The tmux prefix key.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,7 +26,7 @@ in {
       tmux = {
         inherit (cfg) enable;
 
-        prefix = "C-_";
+        prefix = cfg.prefix;
         baseIndex = 1;
         clock24 = true;
         historyLimit = 100000;

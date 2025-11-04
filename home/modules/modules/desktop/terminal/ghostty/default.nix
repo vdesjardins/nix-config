@@ -38,51 +38,8 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
-    home.packages =
-      if isLinux
-      then with pkgs; [ghostty]
-      else [];
-
-    xdg.configFile."ghostty/config".text = ''
-      font-size = 13.3
-      font-thicken = true
-      font-family = "${cfg.font}"
-      font-family-italic = "${cfg.font-italic}"
-      font-family-bold = "${cfg.font-bold}"
-      font-family-bold-italic = "${cfg.font-bold-italic}"
-      font-feature = ss01
-      font-feature = ss02
-      font-feature = ss03
-      font-feature = ss04
-      font-feature = ss05
-      font-feature = ss06
-      font-feature = ss07
-      font-feature = ss08
-      font-feature = ss09
-      font-feature = calt
-      font-feature = dlig
-      font-feature = liga
-
-      theme = "${cfg.theme}"
-
-      bold-is-bright = true
-
-      gtk-tabs-location = bottom
-
-      shell-integration = zsh
-
-      copy-on-select = clipboard
-      focus-follows-mouse = true
-
-      quick-terminal-position = bottom
-      quick-terminal-autohide = true
-      keybind = global:cmd+/=toggle_quick_terminal
-
-      macos-option-as-alt = true
-
-      desktop-notifications = true
-
+  config = mkIf cfg.enable (let
+    keybindsStandalone = ''
       # splits
       keybind = ctrl+space>v=new_split:right
       keybind = ctrl+space>s=new_split:down
@@ -134,12 +91,6 @@ in {
       keybind = ctrl+shift+j=write_scrollback_file:paste
       keybind = ctrl+alt+shift+j=write_scrollback_file:open
 
-      # font sizing
-      keybind = ctrl+plus=increase_font_size:1
-      keybind = ctrl+equal=increase_font_size:1
-      keybind = ctrl+minus=decrease_font_size:1
-      keybind = ctrl+zero=reset_font_size
-
       # window
       keybind = ctrl+shift+n=new_window
       keybind = ctrl+enter=toggle_fullscreen
@@ -152,6 +103,59 @@ in {
       keybind = shift+page_down=scroll_page_down
       keybind = ctrl+shift+page_down=jump_to_prompt:1
       keybind = ctrl+shift+page_up=jump_to_prompt:-1
+    '';
+
+    keybindsTmux = '''';
+  in {
+    home.packages =
+      if isLinux
+      then with pkgs; [ghostty]
+      else [];
+
+    xdg.configFile."ghostty/config".text = ''
+      font-size = 13.3
+      font-thicken = true
+      font-family = "${cfg.font}"
+      font-family-italic = "${cfg.font-italic}"
+      font-family-bold = "${cfg.font-bold}"
+      font-family-bold-italic = "${cfg.font-bold-italic}"
+      font-feature = ss01
+      font-feature = ss02
+      font-feature = ss03
+      font-feature = ss04
+      font-feature = ss05
+      font-feature = ss06
+      font-feature = ss07
+      font-feature = ss08
+      font-feature = ss09
+      font-feature = calt
+      font-feature = dlig
+      font-feature = liga
+
+      theme = "${cfg.theme}"
+
+      bold-is-bright = true
+
+      gtk-tabs-location = bottom
+
+      shell-integration = zsh
+
+      copy-on-select = clipboard
+      focus-follows-mouse = true
+
+      quick-terminal-position = bottom
+      quick-terminal-autohide = true
+      keybind = global:cmd+/=toggle_quick_terminal
+
+      macos-option-as-alt = true
+
+      desktop-notifications = true
+
+      # font sizing
+      keybind = ctrl+plus=increase_font_size:1
+      keybind = ctrl+equal=increase_font_size:1
+      keybind = ctrl+minus=decrease_font_size:1
+      keybind = ctrl+zero=reset_font_size
 
       # misc
       keybind = ctrl+shift+w=close_surface
@@ -162,6 +166,11 @@ in {
       keybind = ctrl+shift+comma=reload_config
       keybind = ctrl+shift+i=inspector:toggle
 
+      ${
+        if cfg.useTmux
+        then keybindsTmux
+        else keybindsStandalone
+      }
     '';
-  };
+  });
 }

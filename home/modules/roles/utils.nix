@@ -46,6 +46,7 @@ in {
         timewarrior.enable = true;
         yazi.enable = true;
         fzf.enable = true;
+        tmux.enable = true;
       };
     };
 
@@ -54,6 +55,7 @@ in {
         wezterm.enable = true;
         alacritty.enable = true;
         ghostty.enable = true;
+        ghostty.useTmux = true;
       };
 
       editors.nixvim = {
