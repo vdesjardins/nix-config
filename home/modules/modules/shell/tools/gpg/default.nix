@@ -17,7 +17,7 @@ in {
     programs.gpg = {
       # ref: https://github.com/NixOS/nixpkgs/issues/155629
       scdaemonSettings =
-        if pkgs.hostPlatform.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then {
           disable-ccid = true;
         }

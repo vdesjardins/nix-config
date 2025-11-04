@@ -1,5 +1,4 @@
 {
-  pkgs,
   font,
   font-italic,
   color-scheme,

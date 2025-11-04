@@ -24,7 +24,7 @@ in {
         };
       }
 
-      (mkIf pkgs.hostPlatform.isLinux {
+      (mkIf pkgs.stdenv.hostPlatform.isLinux {
         home.packages = with pkgs; [yubikey-agent pinentry-gtk2];
 
         systemd.user.services.yubikey-agent = {
@@ -57,7 +57,7 @@ in {
         };
       })
 
-      (mkIf pkgs.hostPlatform.isDarwin {
+      (mkIf pkgs.stdenv.hostPlatform.isDarwin {
         home.packages = with pkgs; [yubikey-agent pinentry_mac];
 
         launchd.agents.yubikey-agent = {
