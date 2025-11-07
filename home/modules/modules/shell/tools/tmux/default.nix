@@ -38,10 +38,22 @@ in {
         extraConfig = pkgs.callPackage ./tmux.nix {inherit my-packages;};
 
         plugins = with pkgs.tmuxPlugins; [
-          # [theme]
-          tokyo-night
           tmux-fzf
-          fingers
+          {
+            plugin = fingers;
+            extraConfig = ''
+              set -g @fingers-key Space
+              set -g @fingers-hint-style 'fg=red,bold,underscore'
+            '';
+          }
+
+          {
+            # [theme]
+            plugin = tokyo-night;
+            extraConfig = ''
+              set -g @tokyo-night-tmux_theme 'storm'
+            '';
+          }
         ];
 
         tmuxp.enable = true;

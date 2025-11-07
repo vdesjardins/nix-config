@@ -118,6 +118,8 @@ in ''
   # join a pane to the current window.
   bind-key -N "Join a pane to current window" J command-prompt -p "Window to join to this one:" "join-pane -s %%"
 
+  set -g pane-border-lines double
+
   # session
   bind-key -N "Choose session" S choose-session
   bind-key -N "Create and name new session" u command-prompt -p "Name your new session:" "new-session -s %%"
@@ -156,10 +158,4 @@ in ''
 
   # to display image from yazi
   set -g allow-passthrough on
-
-  # [theme]
-  set -g @theme_variation 'storm'
-
-  # [fingers]
-  set -g @fingers-key Space
 ''
