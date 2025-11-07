@@ -1,9 +1,18 @@
-{pkgs, ...}: ''
+{
+  pkgs,
+  my-packages,
+  ...
+}: let
+  clip-copy =
+    if pkgs.stdenv.isDarwin
+    then "pbcopy"
+    else "${pkgs.wl-clipboard}/bin/wl-copy -n";
+in ''
   # extra
 
   # force a reload of the config file
   unbind-key r
-  bind-key -N "Reload config file" r source-file ~/.config/tmux/tmux.conf \; display-message "~/.tmux.conf reloaded"
+  bind-key -N "Reload config file" r source-file ~/.config/tmux/tmux.conf \; run-shell "sleep 0.1" \; refresh-client -S
 
   # Setup 'v' to begin selection as in Vim
   bind-key -T edit-mode-vi Up send-keys -X history-up
@@ -39,8 +48,9 @@
   set-option -g   pane-active-border-style bg=default,fg=red
   set-option -g   pane-border-style bg=default,fg=cyan
   set-option -g   repeat-time 500
-  set-option -g   visual-activity on
+  set-option -g   visual-activity off
   set-option -g   visual-bell off
+  set-option -g   visual-silence on
   set-option -g   set-titles on
   set-option -g   set-titles-string ' #I-#W '
   set-option -g   display-time 1500
@@ -75,7 +85,7 @@
   bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
   bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
   bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
-  bind-key -n 'C-p' if-shell "$is_vim" 'send-keys C-p  'select-pane -l'
+  bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\\' 'select-pane -l'
 
   bind-key -n M-h if-shell "$is_vim" 'send-keys M-h' 'resize-pane -L 3'
   bind-key -n M-j if-shell "$is_vim" 'send-keys M-j' 'resize-pane -D 3'
@@ -86,7 +96,7 @@
   bind-key -T copy-mode-vi 'C-j' select-pane -D
   bind-key -T copy-mode-vi 'C-k' select-pane -U
   bind-key -T copy-mode-vi 'C-l' select-pane -R
-  bind-key -T copy-mode-vi 'C-p' select-pane -l
+  bind-key -T copy-mode-vi 'C-\' select-pane -l
 
   # clear screen and history
   bind-key -N "Clear screen and history" BSpace "send-keys -R C-l \; clear-history"
@@ -138,8 +148,7 @@
     display 'Mouse: OFF'
 
   # copy to system keyboard
-  if-shell 'test "$(uname -s)" = "Darwin"' 'bind-key y run-shell "tmux show-buffer | pbcopy" \; display-message "Copied tmux buffer to system clipboard"'
-  if-shell 'test "$(uname -s)" = "Linux"' 'bind-key y run-shell "tmux show-buffer | xclip -sel clip -i" \; display-message "Copied tmux buffer to system clipboard"'
+  # bind-key S-y run-shell "tmux show-buffer | ${clip-copy}" \; display-message "Copied tmux buffer to system clipboard"
 
   # automatic window renaming
   set-option -g status-interval 5
@@ -153,7 +162,7 @@
   set -g status-right-length "100"
   set -g status-left-length "100"
   # disable right status to get more tab space
-  set -g status-right ""
+  # set -g status-right ""
 
   # to display image from yazi
   set -g allow-passthrough on
@@ -161,5 +170,8 @@
   set -ga update-environment TERM_PROGRAM
 
   # [theme]
-  set -g @theme_variation 'storm'
+  run-shell ${my-packages.colorscheme-tokyonight}/share/themes/tokyonight/extras/tmux/tokyonight_storm.tmux
+
+  # [fingers]
+  set -g @fingers-key Space
 ''

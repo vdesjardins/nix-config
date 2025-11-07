@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  my-packages,
   lib,
   ...
 }: let
@@ -34,13 +35,11 @@ in {
         keyMode = "vi";
         shell = "${pkgs.zsh}/bin/zsh";
 
-        extraConfig = pkgs.callPackage ./tmux.nix {};
+        extraConfig = pkgs.callPackage ./tmux.nix {inherit my-packages;};
 
         plugins = with pkgs.tmuxPlugins; [
-          # [theme]
-          tokyo-night
           tmux-fzf
-          tmux-thumbs
+          fingers
         ];
 
         tmuxp.enable = true;
