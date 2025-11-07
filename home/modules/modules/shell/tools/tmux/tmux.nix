@@ -43,10 +43,6 @@ in ''
 
   # All kind of nice options
   set-option -g   bell-action any
-  set-option -g   display-panes-colour red
-  set-option -g   message-style bg=red,fg=white
-  set-option -g   pane-active-border-style bg=default,fg=red
-  set-option -g   pane-border-style bg=default,fg=cyan
   set-option -g   repeat-time 500
   set-option -g   visual-activity off
   set-option -g   visual-bell off
@@ -155,22 +151,14 @@ in ''
   set-option -g automatic-rename on
   set-option -g automatic-rename-format "#{b:pane_current_path}"
 
-  # Undercurl
-  set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
-  set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
-  set -g status-right-length "100"
-  set -g status-left-length "100"
-  # disable right status to get more tab space
-  # set -g status-right ""
+  set-option -ga terminal-overrides ",xterm-256color:Tc"
+  set-option -ga terminal-overrides ",tmux-256color:Tc"
 
   # to display image from yazi
   set -g allow-passthrough on
-  set -ga update-environment TERM
-  set -ga update-environment TERM_PROGRAM
 
   # [theme]
-  run-shell ${my-packages.colorscheme-tokyonight}/share/themes/tokyonight/extras/tmux/tokyonight_storm.tmux
+  set -g @theme_variation 'storm'
 
   # [fingers]
   set -g @fingers-key Space

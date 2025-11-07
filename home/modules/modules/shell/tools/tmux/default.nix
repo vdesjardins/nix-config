@@ -38,6 +38,8 @@ in {
         extraConfig = pkgs.callPackage ./tmux.nix {inherit my-packages;};
 
         plugins = with pkgs.tmuxPlugins; [
+          # [theme]
+          tokyo-night
           tmux-fzf
           fingers
         ];
