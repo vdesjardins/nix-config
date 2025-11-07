@@ -426,9 +426,8 @@
             M = {}
 
             function M.make_targets(opts, ctx)
-              return require("snacks.picker.source.proc").proc({
-                opts,
-                {
+              return require("snacks.picker.source.proc").proc(
+                ctx:opts({
                   cmd = "sed",
                   args = { "-n", "s/^##//p", "Makefile" },
                   ---@param item snacks.picker.finder.Item
@@ -441,8 +440,8 @@
                       return false
                     end
                   end,
-                },
-              }, ctx)
+                }),
+              ctx)
             end
 
             ---@param item snacks.picker.Item
