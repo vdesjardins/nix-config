@@ -119,6 +119,7 @@ in ''
   bind-key -N "Join a pane to current window" J command-prompt -p "Window to join to this one:" "join-pane -s %%"
 
   set -g pane-border-lines double
+  set -g pane-border-indicators both
 
   # session
   bind-key -N "Choose session" S choose-session
