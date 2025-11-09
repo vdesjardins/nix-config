@@ -1,8 +1,4 @@
-{
-  pkgs,
-  my-packages,
-  ...
-}: let
+{pkgs, ...}: let
   clip-copy =
     if pkgs.stdenv.isDarwin
     then "pbcopy"
@@ -25,17 +21,6 @@ in ''
 
   # update environment variables
   set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
-
-  # color and italics
-  ${
-    if pkgs.stdenv.isDarwin
-    then ''
-      set-option -g default-terminal "xterm-256color"
-    ''
-    else ''
-      set-option -g default-terminal "tmux-256color"
-    ''
-  }
 
   # quick view of processes
   bind -N "Exec htop" '~' split-window "exec htop"
@@ -156,6 +141,7 @@ in ''
 
   set-option -ga terminal-overrides ",xterm-256color:Tc"
   set-option -ga terminal-overrides ",tmux-256color:Tc"
+  set-option -ga terminal-overrides ",ghostty:Tc"
 
   # to display image from yazi
   set -g allow-passthrough on

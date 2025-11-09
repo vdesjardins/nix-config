@@ -18,6 +18,12 @@ in {
       default = "C-Space";
       description = "The tmux prefix key.";
     };
+
+    terminal = lib.mkOption {
+      type = lib.types.str;
+      default = "ghostty";
+      description = "The terminal emulator to use.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -25,7 +31,7 @@ in {
 
     programs = {
       tmux = {
-        inherit (cfg) enable;
+        inherit (cfg) enable terminal;
 
         prefix = cfg.prefix;
         baseIndex = 1;

@@ -18,14 +18,14 @@ $all"""
 right_format = """
 ${cmd_duration}
 ${memory_usage}
-${nix_shell}
 """
 
 [nix_shell]
 impure_msg = '[!](bold red)'
 pure_msg = '[p](bold green)'
 unknown_msg = '[unknown](bold yellow)'
-format = '[ ❄️ $state( \($name\))](bold blue)'
+symbol = "❄️ "
+format = '[$symbol$state(\($name\))]($style) '
 
 [os]
 disabled = false
