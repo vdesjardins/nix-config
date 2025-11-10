@@ -147,7 +147,8 @@ in {
       quick-terminal-autohide = true
       keybind = global:cmd+/=toggle_quick_terminal
 
-      macos-option-as-alt = true
+      # we keep alt-right as a alt-graph key for typing special characters
+      macos-option-as-alt = left
 
       desktop-notifications = true
 
