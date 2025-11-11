@@ -18,10 +18,8 @@ in
 
     npmDepsHash = "sha256-2tGVhEDgBMPVm21DYeZ0WuXGpEpCj/1ULK81AzwI7eg=";
 
-    nativeBuildInputs = [jq];
-
     postPatch = ''
-      jq '
+      ${lib.getExe jq} '
         .dependencies += (.peerDependencies // {}) |
         . as $all | .devDependencies |= with_entries(
           select(.key as $k | ($all.dependencies | has($k) | not))
