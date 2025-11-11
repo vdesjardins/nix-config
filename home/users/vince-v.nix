@@ -38,6 +38,9 @@
   roles.ai.ollama.enable = true;
   roles.ai.gemini-cli.enable = true;
   roles.ai.opencode.enable = true;
+  roles.ai.claude.enable = true;
+  roles.ai.codex.enable = true;
+  roles.ai.github-copilot-cli.enable = true;
   roles.ai.mcp.context7.enable = true;
   roles.ai.mcp.desktop-commander.enable = true;
   roles.ai.mcp.fetch.enable = true;

@@ -31,6 +31,9 @@
   roles.ops.networking.enable = true;
   roles.ops.vault.enable = true;
 
+  roles.ai.opencode.enable = true;
+  roles.ai.codex.enable = true;
+  roles.ai.github-copilot-cli.enable = true;
   roles.ai.mcp.context7.enable = true;
   roles.ai.mcp.desktop-commander.enable = true;
   roles.ai.mcp.fetch.enable = true;
