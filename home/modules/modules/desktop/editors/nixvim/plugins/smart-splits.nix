@@ -1,4 +1,6 @@
-{
+{pkgs, ...}: {
+  programs.tmux.extraConfig = "run-shell ${pkgs.vimPlugins.smart-splits-nvim}/smart-splits.tmux";
+
   programs.nixvim = {
     plugins.smart-splits = {
       enable = true;
