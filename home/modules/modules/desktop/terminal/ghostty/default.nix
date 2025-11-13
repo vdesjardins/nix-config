@@ -161,6 +161,7 @@ in {
       # misc
       keybind = ctrl+shift+w=close_surface
       keybind = ctrl+shift+q=quit
+      keybind = ctrl+shift+v=paste_from_clipboard
 
       # config / debugging
       keybind = ctrl+comma=open_config
