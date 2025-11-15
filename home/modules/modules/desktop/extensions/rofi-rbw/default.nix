@@ -20,7 +20,7 @@ in {
 
     wayland.windowManager.hyprland = {
       settings.bind = [
-          "$mod SHIFT, P, exec, ${pkgs.rofi-rbw}/bin/rofi-rbw"
+        "$mod SHIFT, P, exec, ${pkgs.rofi-rbw}/bin/rofi-rbw"
       ];
     };
 

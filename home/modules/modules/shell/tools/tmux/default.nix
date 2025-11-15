@@ -33,7 +33,7 @@ in {
       tmux = {
         inherit (cfg) enable terminal;
 
-        prefix = cfg.prefix;
+        inherit (cfg) prefix;
         baseIndex = 1;
         clock24 = true;
         historyLimit = 100000;

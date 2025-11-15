@@ -38,7 +38,7 @@ in {
       pkgs.rofi-power-menu
       pkgs.rofimoji
       (pkgs.rofi-calc.override {
-        rofi-unwrapped = pkgs.rofi-unwrapped;
+        inherit (pkgs) rofi-unwrapped;
       })
     ];
   in {

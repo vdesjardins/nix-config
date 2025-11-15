@@ -31,10 +31,12 @@ in {
         gaps = {
           inner.horizontal = 8;
           inner.vertical = 8;
-          outer.left = 8;
-          outer.bottom = 8;
-          outer.top = 8;
-          outer.right = 8;
+          outer = {
+            left = 8;
+            bottom = 8;
+            top = 8;
+            right = 8;
+          };
         };
 
         on-focused-monitor-changed = [];

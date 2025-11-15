@@ -38,9 +38,9 @@ in {
 
       settings = {
         "org/gnome/desktop/interface" = {
-          gtk-theme = cfg.gtk-theme;
-          color-scheme = cfg.color-scheme;
-          icon-theme = cfg.icon-theme;
+          inherit (cfg) gtk-theme;
+          inherit (cfg) color-scheme;
+          inherit (cfg) icon-theme;
         };
       };
     };

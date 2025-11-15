@@ -111,7 +111,7 @@
     lib = inputs.nixpkgs.lib.extend (final: prev: {
       my = import ./lib {
         inherit pkgs inputs;
-        system = pkgs.system;
+        inherit (pkgs) system;
         lib = final;
         my-packages = self.packages;
       };
@@ -131,7 +131,7 @@
       default = {
         imports = self.lib.mapModulesRecursive' ./home/modules (f: f);
       };
-      nixvim = inputs.nixvim.homeModules.nixvim;
+      inherit (inputs.nixvim.homeModules) nixvim;
     };
 
     packages =
@@ -165,6 +165,7 @@
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
+            actionlint.enable = true;
             alejandra.enable = true;
             statix.enable = true;
             stylua.enable = true;

@@ -1,65 +1,78 @@
-{lib, ...}: {
+{...}: {
   home = {
     username = "vince";
     homeDirectory = "/home/vince";
     stateVersion = "24.11";
   };
 
-  roles.common.enable = true;
-  roles.vaults.enable = true;
-  roles.utils.enable = true;
-  roles.nixpkgs.enable = true;
-  roles.sync.enable = true;
-  roles.security.enable = true;
-  roles.multimedia.enable = true;
+  roles = {
+    common.enable = true;
+    vaults.enable = true;
+    utils.enable = true;
+    nixpkgs.enable = true;
+    sync.enable = true;
+    security.enable = true;
+    multimedia.enable = true;
 
-  roles.dev.bash.enable = true;
-  roles.dev.cue.enable = true;
-  roles.dev.kcl.enable = true;
-  roles.dev.debugging.enable = true;
-  roles.dev.go.enable = true;
-  roles.dev.js.enable = true;
-  roles.dev.json.enable = true;
-  roles.dev.lua.enable = true;
-  roles.dev.make.enable = true;
-  roles.dev.markdown.enable = true;
-  roles.dev.nix.enable = true;
-  roles.dev.python.enable = true;
-  roles.dev.rust.enable = true;
-  roles.dev.terraform.enable = true;
-  roles.dev.yaml.enable = true;
-  roles.dev.zig.enable = true;
-  roles.ops.aws.enable = true;
-  roles.ops.container.enable = true;
-  roles.ops.k8s.enable = true;
-  roles.ops.networking.enable = true;
-  roles.ops.bpf.enable = true;
+    dev = {
+      bash.enable = true;
+      cue.enable = true;
+      kcl.enable = true;
+      debugging.enable = true;
+      go.enable = true;
+      js.enable = true;
+      json.enable = true;
+      lua.enable = true;
+      make.enable = true;
+      markdown.enable = true;
+      nix.enable = true;
+      python.enable = true;
+      rust.enable = true;
+      terraform.enable = true;
+      yaml.enable = true;
+      zig.enable = true;
+    };
 
-  roles.ai.ollama.enable = true;
-  roles.ai.gemini-cli.enable = true;
-  roles.ai.opencode.enable = true;
-  roles.ai.claude.enable = true;
-  roles.ai.codex.enable = true;
-  roles.ai.github-copilot-cli.enable = true;
-  roles.ai.mcp.context7.enable = true;
-  roles.ai.mcp.desktop-commander.enable = true;
-  roles.ai.mcp.fetch.enable = true;
-  roles.ai.mcp.git.enable = true;
-  roles.ai.mcp.github.enable = true;
-  roles.ai.mcp.sequential-thinking.enable = true;
-  roles.ai.mcp.kubernetes.enable = true;
+    ops = {
+      aws.enable = true;
+      container.enable = true;
+      k8s.enable = true;
+      networking.enable = true;
+      bpf.enable = true;
+    };
 
-  roles.desktop.wallpapers.enable = true;
-  roles.desktop.browsers.enable = true;
-  roles.desktop.viewers.enable = true;
-  roles.desktop.security.enable = true;
-  roles.desktop.extensions.enable = true;
-  roles.desktop.hyprland.enable = true;
-  roles.desktop.gaming.enable = true;
-  roles.desktop.productivity.enable = true;
-  roles.desktop.wifi.enable = true;
-  roles.desktop.diagnostic.enable = true;
-  roles.desktop.graphics.enable = true;
-  roles.desktop.videos.enable = true;
-  roles.desktop.messaging.enable = true;
+    ai = {
+      ollama.enable = true;
+      gemini-cli.enable = true;
+      opencode.enable = true;
+      claude.enable = true;
+      codex.enable = true;
+      github-copilot-cli.enable = true;
+      mcp = {
+        context7.enable = true;
+        desktop-commander.enable = true;
+        fetch.enable = true;
+        git.enable = true;
+        github.enable = true;
+        sequential-thinking.enable = true;
+        kubernetes.enable = true;
+      };
+    };
+
+    desktop = {
+      wallpapers.enable = true;
+      browsers.enable = true;
+      viewers.enable = true;
+      security.enable = true;
+      extensions.enable = true;
+      hyprland.enable = true;
+      gaming.enable = true;
+      productivity.enable = true;
+      wifi.enable = true;
+      diagnostic.enable = true;
+      graphics.enable = true;
+      videos.enable = true;
+      messaging.enable = true;
+    };
+  };
 }

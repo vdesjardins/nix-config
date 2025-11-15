@@ -219,38 +219,40 @@ in {
       enableACME = true;
       acmeRoot = null;
 
-      locations."/" = {
-        proxyPass = "https://localhost:8971";
-        extraConfig = ''
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-        '';
-      };
+      locations = {
+        "/" = {
+          proxyPass = "https://localhost:8971";
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+        };
 
-      locations."/ws" = {
-        proxyPass = "https://localhost:8971/ws";
-        extraConfig = ''
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "Upgrade";
-        '';
-      };
+        "/ws" = {
+          proxyPass = "https://localhost:8971/ws";
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+          '';
+        };
 
-      locations."/live" = {
-        proxyPass = "https://localhost:8971/live";
-        extraConfig = ''
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "Upgrade";
-        '';
+        "/live" = {
+          proxyPass = "https://localhost:8971/live";
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+          '';
+        };
       };
     };
   };

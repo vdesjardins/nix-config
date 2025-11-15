@@ -111,7 +111,7 @@ in {
           };
 
           strategies = {
-            agent = cfg.ai.agent;
+            inherit (cfg.ai) agent;
             chat =
               cfg.ai.chat
               // {
@@ -142,7 +142,7 @@ in {
                   };
                 };
               };
-            inline = cfg.ai.inline;
+            inherit (cfg.ai) inline;
           };
 
           display = {

@@ -16,14 +16,14 @@
         region_check_events = "CursorHold";
         delete_check_events = "InsertLeave";
         ext_opts.__raw = ''
-        {
-          [require('luasnip.util.types').choiceNode] = {
-            active = {
-              virt_text = { { 'choice <c-c>', 'Comment' } },
-              hl_mode = 'combine',
+          {
+            [require('luasnip.util.types').choiceNode] = {
+              active = {
+                virt_text = { { 'choice <c-c>', 'Comment' } },
+                hl_mode = 'combine',
+              },
             },
-          },
-        }
+          }
         '';
       };
     };

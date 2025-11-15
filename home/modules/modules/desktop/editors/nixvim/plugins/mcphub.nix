@@ -58,7 +58,7 @@ in {
           };
         };
 
-        mcpServers = cfg.ai.mcpServers;
+        inherit (cfg.ai) mcpServers;
       };
     };
   };

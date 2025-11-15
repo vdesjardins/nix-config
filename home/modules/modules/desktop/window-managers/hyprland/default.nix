@@ -90,38 +90,40 @@ in {
       })
     ];
 
-    services.hyprpolkitagent.enable = true;
-    services.wpaperd = {
-      enable = true;
-      settings = {
-        default = {
-          path = cfg.wallpapersPath;
-          sorting = "random";
-          duration = "10m";
-          mode = "center";
+    services = {
+      hyprpolkitagent.enable = true;
+      wpaperd = {
+        enable = true;
+        settings = {
+          default = {
+            path = cfg.wallpapersPath;
+            sorting = "random";
+            duration = "10m";
+            mode = "center";
+          };
         };
       };
-    };
-    services.hypridle = {
-      enable = true;
-      settings = {
-        general = {
-          lock_cmd = "pidof ${getExe pkgs.hyprlock} || ${getExe pkgs.hyprlock}"; # avoid starting multiple hyprlock instances.
-          before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-          after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
-        };
+      hypridle = {
+        enable = true;
+        settings = {
+          general = {
+            lock_cmd = "pidof ${getExe pkgs.hyprlock} || ${getExe pkgs.hyprlock}"; # avoid starting multiple hyprlock instances.
+            before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
+            after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+          };
 
-        listener = [
-          {
-            timeout = 300; # 5min
-            on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
-          }
-          {
-            timeout = 330; # 5.5min
-            on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-            on-resume = "hyprctl dispatch dpms on && ${getExe pkgs.brightnessctl} -r"; # screen on when activity is detected
-          }
-        ];
+          listener = [
+            {
+              timeout = 300; # 5min
+              on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
+            }
+            {
+              timeout = 330; # 5.5min
+              on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+              on-resume = "hyprctl dispatch dpms on && ${getExe pkgs.brightnessctl} -r"; # screen on when activity is detected
+            }
+          ];
+        };
       };
     };
 

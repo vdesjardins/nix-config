@@ -5,45 +5,57 @@
     stateVersion = "23.11";
   };
 
-  roles.common.enable = true;
-  roles.darwin.enable = true;
-  roles.security.enable = true;
-  roles.nixpkgs.enable = true;
-  roles.utils.enable = true;
+  roles = {
+    common.enable = true;
+    darwin.enable = true;
+    security.enable = true;
+    nixpkgs.enable = true;
+    utils.enable = true;
 
-  roles.dev.bash.enable = true;
-  roles.dev.go.enable = true;
-  roles.dev.json.enable = true;
-  roles.dev.lua.enable = true;
-  roles.dev.make.enable = true;
-  roles.dev.markdown.enable = true;
-  roles.dev.nix.enable = true;
-  roles.dev.python.enable = true;
-  roles.dev.rego.enable = true;
-  roles.dev.rust.enable = true;
-  roles.dev.terraform.enable = true;
-  roles.dev.yaml.enable = true;
+    dev = {
+      bash.enable = true;
+      go.enable = true;
+      json.enable = true;
+      lua.enable = true;
+      make.enable = true;
+      markdown.enable = true;
+      nix.enable = true;
+      python.enable = true;
+      rego.enable = true;
+      rust.enable = true;
+      terraform.enable = true;
+      yaml.enable = true;
+    };
 
-  roles.ops.aws.enable = true;
-  roles.ops.gcloud.enable = true;
-  roles.ops.container.enable = true;
-  roles.ops.k8s.enable = true;
-  roles.ops.networking.enable = true;
-  roles.ops.vault.enable = true;
+    ops = {
+      aws.enable = true;
+      gcloud.enable = true;
+      container.enable = true;
+      k8s.enable = true;
+      networking.enable = true;
+      vault.enable = true;
+    };
 
-  roles.ai.opencode.enable = true;
-  roles.ai.codex.enable = true;
-  roles.ai.github-copilot-cli.enable = true;
-  roles.ai.mcp.context7.enable = true;
-  roles.ai.mcp.desktop-commander.enable = true;
-  roles.ai.mcp.fetch.enable = true;
-  roles.ai.mcp.git.enable = true;
-  roles.ai.mcp.github.enable = true;
-  roles.ai.mcp.sequential-thinking.enable = true;
-  roles.ai.mcp.kubernetes.enable = true;
+    ai = {
+      opencode.enable = true;
+      codex.enable = true;
+      github-copilot-cli.enable = true;
+      mcp = {
+        context7.enable = true;
+        desktop-commander.enable = true;
+        fetch.enable = true;
+        git.enable = true;
+        github.enable = true;
+        sequential-thinking.enable = true;
+        kubernetes.enable = true;
+      };
+    };
 
-  roles.desktop.darwin.enable = true;
-  roles.desktop.browsers.enable = true;
+    desktop = {
+      darwin.enable = true;
+      browsers.enable = true;
+    };
+  };
 
   modules.desktop.editors.nixvim = {
     ai = {

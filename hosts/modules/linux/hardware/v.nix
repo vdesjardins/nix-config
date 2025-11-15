@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -12,39 +11,43 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "thunderbolt" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
-    fsType = "btrfs";
-    options = ["subvol=root"];
+  boot = {
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "thunderbolt" "usb_storage" "usbhid" "sd_mod"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
-    fsType = "btrfs";
-    options = ["subvol=home"];
-  };
+  filesystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
+      fsType = "btrfs";
+      options = ["subvol=root"];
+    };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
-    fsType = "btrfs";
-    options = ["subvol=nix"];
-  };
+    "/home" = {
+      device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
+      fsType = "btrfs";
+      options = ["subvol=home"];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7BF9-007D";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
+      fsType = "btrfs";
+      options = ["subvol=nix"];
+    };
 
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
-    fsType = "btrfs";
-    options = ["subvol=swap"];
+    "/boot" = {
+      device = "/dev/disk/by-uuid/7BF9-007D";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
+
+    "/swap" = {
+      device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
+      fsType = "btrfs";
+      options = ["subvol=swap"];
+    };
   };
 
   swapDevices = [];
