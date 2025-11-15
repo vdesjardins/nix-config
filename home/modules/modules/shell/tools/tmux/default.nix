@@ -55,7 +55,7 @@ in {
 
           {
             # [theme]
-            plugin = tokyo-night;
+            plugin = tokyo-night-tmux;
             extraConfig = ''
               set -g @tokyo-night-tmux_theme 'storm'
             '';
