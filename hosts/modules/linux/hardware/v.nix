@@ -18,7 +18,7 @@
     extraModulePackages = [];
   };
 
-  filesystems = {
+  fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/af646889-d4b5-41f5-9bca-d4236d27410b";
       fsType = "btrfs";
