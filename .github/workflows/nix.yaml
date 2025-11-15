@@ -31,17 +31,17 @@ jobs:
       matrix:
         include:
           - arch: x86_64
-            nix-command: build .#homeConfigurations.vince@falcon.activationPackage
+            nix-command: build .#homeConfigurations.v@falcon.activationPackage
             user: vince
-            hostname: falcon
+            hostname: v
+          - arch: x86_64
+            nix-command: build .#nixosConfigurations.v.config.system.build.toplevel
+            user: vince
+            hostname: v
           - arch: x86_64
             nix-command: build .#nixosConfigurations.falcon.config.system.build.toplevel
-            user: vince
-            hostname: falcon
-          - arch: aarch64
-            nix-command: build .#nixosConfigurations.home-server.config.system.build.toplevel
             user: admin
-            hostname: home-server
+            hostname: falcon
 
     steps:
       - name: Checkout repository
