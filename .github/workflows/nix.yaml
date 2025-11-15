@@ -31,7 +31,7 @@ jobs:
       matrix:
         include:
           - arch: x86_64
-            nix-command: build .#homeConfigurations.v@falcon.activationPackage
+            nix-command: build .#homeConfigurations.vince@v.activationPackage
             user: vince
             hostname: v
           - arch: x86_64
