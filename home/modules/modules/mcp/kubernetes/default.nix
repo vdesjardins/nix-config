@@ -18,10 +18,16 @@ in {
     modules.desktop.editors.nixvim.ai.mcpServers.kubernetes = {
       command = getExe cfg.package;
     };
+
     programs.opencode.settings.mcp.kubernetes = {
       enabled = true;
       type = "local";
       command = [(getExe cfg.package)];
+    };
+
+    programs.codex.settings.mcp_servers.kubernetes = {
+      enabled = true;
+      command = getExe cfg.package;
     };
   };
 }

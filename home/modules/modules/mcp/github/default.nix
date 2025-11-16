@@ -32,7 +32,14 @@ in {
     programs.opencode.settings.mcp.github = {
       enabled = true;
       type = "local";
-      command = [(getExe cfg.package)];
+      command = [(getExe cfg.package) "stdio"];
+    };
+
+    programs.codex.settings.mcp_servers.github = {
+      enabled = true;
+      command = getExe cfg.package;
+      args = ["stdio"];
+      envs = ["GITHUB_PERSONAL_ACCESS_TOKEN"];
     };
 
     programs.zsh.initContent = ''

@@ -18,10 +18,16 @@ in {
     modules.desktop.editors.nixvim.ai.mcpServers.git = {
       command = getExe cfg.package;
     };
+
     programs.opencode.settings.mcp.git = {
       enabled = true;
       type = "local";
       command = [(getExe cfg.package)];
+    };
+
+    programs.codex.settings.mcp_servers.git = {
+      enabled = true;
+      command = getExe cfg.package;
     };
   };
 }

@@ -23,5 +23,10 @@ in {
       type = "local";
       command = [(getExe cfg.package)];
     };
+
+    programs.codex.settings.mcp_servers.context7 = {
+      enabled = true;
+      command = getExe cfg.package;
+    };
   };
 }
