@@ -3,6 +3,27 @@
     plugins.sidekick = {
       enable = true;
       package = my-packages.vimPlugins-sidekick-nvim;
+
+      settings = {
+        cli = {
+          win = {
+            keys = {
+              buffers = {
+                __unkeyed-1 = "<C-b>";
+                __unkeyed-2 = "buffers";
+                mode = "t";
+                desc = "open buffer picker";
+              };
+              files = {
+                __unkeyed-1 = "<C-f>";
+                __unkeyed-2 = "files";
+                mode = "t";
+                desc = "open file picker";
+              };
+            };
+          };
+        };
+      };
     };
 
     keymaps = [
