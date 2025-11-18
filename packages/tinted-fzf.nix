@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation {
   pname = "tinted-fzf";
-  version = "0-unstable-2025-09-14";
+  version = "0-unstable-2025-11-09";
 
   src = fetchFromGitHub {
     owner = "tinted-theming";
     repo = "tinted-fzf";
-    rev = "1831ad684d0d6c834c2be1446f10105199a23af0";
-    hash = "sha256-OXy55PL/OjHAsUINVNdPUZPZyQIGtblP6mC7xXjxCCw=";
+    rev = "32087179591b483cd5f65bdc09192ca5d5c2e722";
+    hash = "sha256-Pcpu9Idv5e9jwWcFP9r7MKFa9HaMizWnAvIHVQLX2T4=";
   };
 
   phases = ["unpackPhase" "installPhase"];

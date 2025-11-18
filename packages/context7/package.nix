@@ -5,16 +5,16 @@
 }:
 buildNpmPackage rec {
   pname = "context7";
-  version = "1.0.26";
+  version = "1.0.29";
 
   src = fetchFromGitHub {
     owner = "upstash";
     repo = "context7";
     rev = "v${version}";
-    hash = "sha256-sOyZwYB9WlPfzbrQW+krf2QDoWzei+wMJvohGi+C6B0=";
+    hash = "sha256-u39/GqKX/atrOc55satb5mMShD9LQZ5+JOwRlUy5LYo=";
   };
 
-  npmDepsHash = "sha256-FNfDmjaZywowyqy1YVzkTrEZvsvZQpUugXeR6uCnSRU=";
+  npmDepsHash = "sha256-mmjauqD+badoF2spcoHyLNpPQPcPlQbnggcqwdS5NrY=";
 
   packageLock = ./package-lock.json;
 
