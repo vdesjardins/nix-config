@@ -1,6 +1,11 @@
 # AGENTS.md
 
 ## Build, Lint, and Apply Commands
+All commands should be executed inside a Nix shell.  Start a shell with:
+```zsh
+nix develop
+```
+Once inside the shell, you can run the make targets shown below.
 - Build/apply user config: `make hm/apply`
 - Build/apply system config: `make host/apply`
 - Build only: `make hm/generate` or `make host/generate`
