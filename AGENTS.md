@@ -10,7 +10,7 @@ Once inside the shell, you can run the make targets shown below.
 - Build/apply system config: `make host/apply`
 - Build only: `make hm/generate` or `make host/generate`
 - Update flake inputs: `make flake-update`
-- Lint (all): Run pre-commit hooks or use `nix flake check`
+- Lint (all): Run `pre-commit run -a` or use `nix flake check`
 
 ## Code Style Guidelines
 - **Lua**: 4-space indents (stylua), 100 column width, Unix line endings, double quotes preferred
@@ -23,4 +23,25 @@ Once inside the shell, you can run the make targets shown below.
 - **Imports**: Use idiomatic import/include patterns for Lua and Nix
 - **No Cursor or Copilot rules present**
 
-Keep this file up to date as conventions evolve.
+
+## Project Structure
+
+- Root: repository contains configuration, modules, hosts, packages, overlays.
+- **home/** – Home-manager specific NixOS modules.
+- **hosts/** – NixOS host-specific configurations.
+- **lib/** – Shared Nix helpers and nixos definitions.
+- **overlays/** – Nixpkgs overlays for custom packages.
+- **packages/** – Nix packages
+- **.github/** – GitHub Actions workflows.
+- **.envrc** – Environment variables for the Nix shell.
+- **Makefile** – Build targets.
+- **flake.nix** – Flake definition.
+- **default.nix** – Default NixOS configuration.
+- **infra.nu** – Build helpers for dependency management
+
+## PR checklist
+
+- title: `feat(scope): short description`
+- lint, type check, unit tests - all green before commit
+- diff is small and focused. include a brief summary of what changed and why
+- remove any excessive logs or comments before sending a PR
