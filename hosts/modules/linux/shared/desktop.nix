@@ -19,7 +19,10 @@
 
   hardware.graphics = {
     enable = true;
-    enable32Bit = true;
+    enable32Bit =
+      if pkgs.stdenv.isx86_64
+      then true
+      else false;
   };
 
   services.blueman.enable = config.hardware.bluetooth.enable;
