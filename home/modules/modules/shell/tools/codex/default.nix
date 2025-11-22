@@ -15,6 +15,24 @@ in {
   config = mkIf cfg.enable {
     programs.codex = {
       enable = true;
+
+      settings = {
+        profile = "llamacpp";
+
+        model_providers = {
+          llamacpp = {
+            name = "llamacpp";
+            base_url = "http://localhost:11450/v1";
+          };
+        };
+
+        profiles = {
+          llamacpp = {
+            model = "llamacpp";
+            model_provider = "llamacpp";
+          };
+        };
+      };
     };
   };
 }
