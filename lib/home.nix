@@ -12,6 +12,7 @@
   inherit (inputs.nixvim.homeModules) nixvim;
   inherit (lib.attrsets) filterAttrs;
   inherit (self.modules) mapModulesRecursive';
+  try = inputs.try.homeModules.default;
 
   mkHomeConfiguration = path: attrs @ {system, ...}:
     homeManagerConfiguration {
@@ -29,6 +30,7 @@
           (import path)
           nix-index
           nixvim
+          try
         ]
         ++ mapModulesRecursive' ../home/modules import;
     };

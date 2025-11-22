@@ -47,6 +47,7 @@ in {
         yazi.enable = true;
         fzf.enable = true;
         tmux.enable = true;
+        try.enable = true;
       };
     };
 

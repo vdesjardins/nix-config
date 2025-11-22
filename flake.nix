@@ -34,6 +34,9 @@
 
     nixvim.url = "github:nix-community/nixvim";
 
+    try.url = "github:tobi/try";
+    try.inputs.nixpkgs.follows = "nixpkgs";
+
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
 
