@@ -8,9 +8,11 @@ nix develop
 Once inside the shell, you can run the make targets shown below.
 - Build/apply user config: `make hm/apply`
 - Build/apply system config: `make host/apply`
-- Build only: `make hm/generate` or `make host/generate`
-- Update flake inputs: `make flake-update`
+- Build only user config: `make hm/generate`
+- Build only system config: `make host/generate`
+- Update flake inputs: `nix flake update`
 - Lint (all): Run `pre-commit run -a` or use `nix flake check`
+- Update packages: Run `./infra.nu nix-update`
 
 ## Code Style Guidelines
 - **Lua**: 4-space indents (stylua), 100 column width, Unix line endings, double quotes preferred
@@ -22,7 +24,6 @@ Once inside the shell, you can run the make targets shown below.
 - **Error Handling**: Use idiomatic error handling for each language
 - **Imports**: Use idiomatic import/include patterns for Lua and Nix
 - **No Cursor or Copilot rules present**
-
 
 ## Project Structure
 
