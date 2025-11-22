@@ -42,7 +42,6 @@
     };
 
     ai = {
-      ollama.enable = true;
       gemini-cli.enable = true;
       opencode.enable = true;
       claude.enable = true;

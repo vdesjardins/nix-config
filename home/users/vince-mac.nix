@@ -12,7 +12,6 @@
     vaults.enable = true;
     utils.enable = true;
     nixpkgs.enable = true;
-    ai.ollama.enable = true;
     sync.enable = true;
 
     dev = {

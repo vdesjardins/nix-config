@@ -12,7 +12,6 @@
     utils.enable = true;
     nixpkgs.enable = true;
     sync.enable = true;
-    ai.ollama.enable = true;
     multimedia.enable = true;
 
     dev = {
