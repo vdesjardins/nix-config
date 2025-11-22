@@ -4,6 +4,7 @@
 All commands should be executed inside a Nix shell.  Start a shell with:
 ```zsh
 nix develop
+
 ```
 Once inside the shell, you can run the make targets shown below.
 - Build/apply user config: `make hm/apply`
@@ -15,6 +16,7 @@ Once inside the shell, you can run the make targets shown below.
 - Update packages: Run `./infra.nu nix-update`
 
 ## Code Style Guidelines
+
 - **Lua**: 4-space indents (stylua), 100 column width, Unix line endings, double quotes preferred
 - **Nix**: 2-space indents, UTF-8, final newlines (see .editorconfig)
 - **General**: Use spaces, not tabs; always end files with a newline
@@ -40,9 +42,15 @@ Once inside the shell, you can run the make targets shown below.
 - **default.nix** – Default NixOS configuration.
 - **infra.nu** – Build helpers for dependency management
 
-## PR checklist
+## Commit Style Guide
 
-- title: `feat(scope): short description`
-- lint, type check, unit tests - all green before commit
-- diff is small and focused. include a brief summary of what changed and why
-- remove any excessive logs or comments before sending a PR
+We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) style for our commit messages.
+
+Here are some examples:
+- `feat(scope): add new program module`
+- `fix(scope): resolve issue with data fetching.`
+- `docs(scope): update README with installation instructions`
+- `style(scope): format code with tools`
+- `refactor(scope): improve code reuse`
+- `test(scope): add unit tests for a module`
+- `chore(scope): update dependencies and flake inputs`
