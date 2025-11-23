@@ -14,15 +14,15 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.shell.tools.podman.enable = true;
+
     home.packages = with pkgs;
       [
         buildkit
         dive
         docker
         grype # vulnerability scanner
-        podman
         skopeo
-        colima
         # unstable.colima
         lazydocker
       ]
