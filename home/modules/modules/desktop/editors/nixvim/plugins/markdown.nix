@@ -1,9 +1,8 @@
-{pkgs, ...}: {
-  # TODO: see if those are still needed
-  # glow
-  # markdown-preview
-  # vim-markdown-toc
-  # vim-render-markdown
+{
+  my-packages,
+  pkgs,
+  ...
+}: {
   programs.nixvim = {
     plugins = {
       markview = {
@@ -36,6 +35,10 @@
           end
         '';
       }
+    ];
+
+    extraPlugins = [
+      my-packages.vimPlugins-markdown-toc-nvim
     ];
   };
 }
