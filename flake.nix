@@ -33,9 +33,13 @@
     ghostty.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     try.url = "github:tobi/try";
     try.inputs.nixpkgs.follows = "nixpkgs";
+
+    opencode.url = "github:sst/opencode";
+    opencode.inputs.nixpkgs.follows = "nixpkgs";
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";

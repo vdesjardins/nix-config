@@ -2,6 +2,8 @@
   config,
   lib,
   my-packages,
+  inputs,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -16,6 +18,9 @@ in {
   config = mkIf cfg.enable {
     programs.opencode = {
       enable = true;
+
+      package = inputs.opencode.packages.${pkgs.system}.default;
+
       settings = {
         provider = {
           local = {

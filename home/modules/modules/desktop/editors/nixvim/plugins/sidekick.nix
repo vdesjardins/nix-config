@@ -1,7 +1,15 @@
-{my-packages, ...}: {
+{
+  my-packages,
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.nixvim = {
+    dependencies.opencode.package = inputs.opencode.packages.${pkgs.system}.default;
+
     plugins.sidekick = {
       enable = true;
+
       package = my-packages.vimPlugins-sidekick-nvim;
 
       settings = {
