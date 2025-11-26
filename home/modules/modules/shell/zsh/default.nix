@@ -94,7 +94,7 @@ in {
             source ~/.zshrc.local
           fi
 
-          GLOBALIAS_FILTER_VALUES=(ls ll cd)
+          GLOBALIAS_FILTER_VALUES=(ls ll cd grep)
 
           export PATH=$HOME/.nix-profile/bin:$PATH
         '')
