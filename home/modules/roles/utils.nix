@@ -53,7 +53,6 @@ in {
 
     modules.desktop = {
       terminal = {
-        wezterm.enable = true;
         alacritty.enable = true;
         ghostty.enable = true;
         ghostty.useTmux = true;
