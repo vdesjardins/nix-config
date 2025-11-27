@@ -14,6 +14,11 @@
 
       settings = {
         cli = {
+          mux = {
+            enable = true;
+            backend = "tmux";
+          };
+
           win = {
             keys = {
               buffers = {
@@ -112,5 +117,30 @@
         options.desc = "Sidekick Toggle Opencode";
       }
     ];
+
+    plugins.snacks = {
+      settings = {
+        picker = {
+          actions = {
+            sidekick_send.__raw = ''
+              function(...)
+                return require("sidekick.cli.picker.snacks").send(...)
+              end
+            '';
+          };
+          win = {
+            input = {
+              keys = {
+                "<a-a>" = {
+                  __unkeyed_1 = "sidekick_send";
+                  desc = "sidekick_send";
+                  mode = ["n" "i"];
+                };
+              };
+            };
+          };
+        };
+      };
+    };
   };
 }
