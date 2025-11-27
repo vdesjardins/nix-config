@@ -40,7 +40,7 @@ in {
         enabled = true;
         command = getExe cfg.package;
         args = ["stdio"];
-        envs = ["GITHUB_PERSONAL_ACCESS_TOKEN"];
+        env_vars = ["GITHUB_PERSONAL_ACCESS_TOKEN"];
       };
 
       zsh.initContent = ''
