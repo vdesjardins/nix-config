@@ -17,12 +17,18 @@ in {
       enable = true;
 
       settings = {
-        profile = "llamacpp";
+        profile = "gpt-oss-20b";
+
+        model_context_window = 32768;
 
         model_providers = {
           llamacpp = {
             name = "llamacpp";
             base_url = "http://localhost:11450/v1";
+          };
+          ollama = {
+            name = "ollama";
+            base_url = "http://localhost:11434/v1";
           };
         };
 
@@ -30,6 +36,10 @@ in {
           llamacpp = {
             model = "llamacpp";
             model_provider = "llamacpp";
+          };
+          gpt-oss-20b = {
+            model = "gpt-oss:20b";
+            model_provider = "ollama";
           };
         };
       };

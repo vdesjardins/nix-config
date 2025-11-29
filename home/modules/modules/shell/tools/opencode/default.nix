@@ -23,19 +23,27 @@ in {
 
       settings = {
         provider = {
-          local = {
+          llamacpp = {
             npm = "@ai-sdk/openai-compatible";
-            name = "local";
+            name = "llamacpp";
             options = {
               baseURL = "http://localhost:11450/v1";
             };
             models = {
-              llamacpp = {
-                name = "LlamaCPP";
-                limit = {
-                  context = 32768;
-                  output = 32768;
-                };
+              gpt-oss-20b = {
+                tools = true;
+              };
+            };
+          };
+          ollama = {
+            npm = "@ai-sdk/openai-compatible";
+            name = "ollama";
+            options = {
+              baseURL = "http://localhost:11434/v1";
+            };
+            models = {
+              "gpt-oss:20b" = {
+                tools = true;
               };
             };
           };
