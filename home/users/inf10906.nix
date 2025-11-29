@@ -48,6 +48,7 @@
         github.enable = true;
         sequential-thinking.enable = true;
         kubernetes.enable = true;
+        universal-skills.enable = true;
       };
     };
 
