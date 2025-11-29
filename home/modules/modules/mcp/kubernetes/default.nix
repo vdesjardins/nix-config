@@ -29,5 +29,12 @@ in {
       enabled = true;
       command = getExe cfg.package;
     };
+
+    modules.shell.tools.github-copilot-cli.settings.mcpServers.kubernetes = {
+      type = "local";
+      command = getExe cfg.package;
+      tools = ["*"];
+      args = [];
+    };
   };
 }

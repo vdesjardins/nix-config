@@ -28,5 +28,12 @@ in {
       enabled = true;
       command = getExe cfg.package;
     };
+
+    modules.shell.tools.github-copilot-cli.settings.mcpServers.desktop-commander = {
+      type = "local";
+      command = getExe cfg.package;
+      tools = ["*"];
+      args = [];
+    };
   };
 }
