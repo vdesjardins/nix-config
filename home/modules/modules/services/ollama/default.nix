@@ -4,73 +4,80 @@
   pkgs,
   ...
 }: let
-  inherit (lib) types;
+  inherit (lib) types mkOption;
 
   cfg = config.modules.services.ollama;
-  ollamaPackage = cfg.package.override {
-    inherit (cfg) acceleration;
-  };
 in {
   options.modules.services.ollama = {
     enable = lib.mkEnableOption "Server for local large language models";
 
-    listenAddress = lib.mkOption {
+    host = mkOption {
       type = types.str;
-      default = "127.0.0.1:11434";
+      default = "127.0.0.1";
       description = ''
-        Specifies the bind address on which the ollama server HTTP interface listens.
+        The host address which the ollama server HTTP interface listens to.
       '';
     };
 
-    acceleration = lib.mkOption {
-      type = types.nullOr (types.enum ["rocm" "cuda"]);
+    port = mkOption {
+      type = types.port;
+      default = 11434;
+      description = ''
+        Which port the ollama server listens to.
+      '';
+    };
+
+    acceleration = mkOption {
+      type = types.nullOr (
+        types.enum [
+          false
+          "rocm"
+          "cuda"
+        ]
+      );
       default = null;
       example = "rocm";
       description = ''
-        Specifies the interface to use for hardware acceleration.
+        What interface to use for hardware acceleration.
 
-        - `rocm`: supported by modern AMD GPUs
-        - `cuda`: supported by modern NVIDIA GPUs
+        - `null`: default behavior
+          - if `nixpkgs.config.rocmSupport` is enabled, uses `"rocm"`
+          - if `nixpkgs.config.cudaSupport` is enabled, uses `"cuda"`
+          - otherwise defaults to `false`
+        - `false`: disable GPU, only use CPU
+        - `"rocm"`: supported by most modern AMD GPUs
+          - may require overriding gpu type with `services.ollama.rocmOverrideGfx`
+            if rocm doesn't detect your AMD gpu
+        - `"cuda"`: supported by most modern NVIDIA GPUs
+      '';
+    };
+
+    environmentVariables = mkOption {
+      type = types.attrsOf types.str;
+      default = {};
+      example = {
+        OLLAMA_LLM_LIBRARY = "cpu";
+        HIP_VISIBLE_DEVICES = "0,1";
+      };
+      description = ''
+        Set arbitrary environment variables for the ollama service.
+
+        Be aware that these are only seen by the ollama server (systemd service),
+        not normal invocations like `ollama run`.
+        Since `ollama run` is mostly a shell around the ollama server, this is usually sufficient.
       '';
     };
 
     package = lib.mkPackageOption pkgs "ollama" {};
   };
 
-  config = lib.mkIf cfg.enable (lib.mkMerge [
+  config =
+    lib.mkIf cfg.enable
     {
-      home.packages = [ollamaPackage];
-    }
-    (lib.mkIf pkgs.stdenv.isLinux {
-      systemd.user.services.ollama = {
-        Unit = {
-          Description = "Server for local large language models";
-          After = ["network.target"];
-        };
-
-        Service = {
-          ExecStart = "${lib.getExe ollamaPackage} serve";
-          Environment = [
-            "OLLAMA_HOST=${cfg.listenAddress}"
-          ];
-        };
-
-        Install = {WantedBy = ["default.target"];};
-      };
-    })
-
-    (lib.mkIf pkgs.stdenv.isDarwin {
-      launchd.agents.ollama = {
+      services.ollama = {
         enable = true;
-        config = {
-          ProgramArguments = ["${lib.getExe ollamaPackage}" "serve"];
-          EnvironmentVariables.OLLAMA_HOST = "${cfg.listenAddress}";
-          ProcessType = "Adaptive";
-          RunAtLoad = true;
-          StandardOutPath = "${config.xdg.stateHome}/ollama/ollama.log";
-          StandardErrorPath = "${config.xdg.stateHome}/ollama/ollama.log";
-        };
+
+        inherit (cfg) host port acceleration package environmentVariables;
       };
-    })
-  ]);
+    };
 }

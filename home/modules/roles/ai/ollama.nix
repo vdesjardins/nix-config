@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
@@ -17,7 +16,6 @@ in {
       default = {
         enable = true;
         acceleration = "rocm"; # "rocm" or "cuda"
-        package = pkgs.ollama;
       };
       description = ''
         Configuration for the Ollama service, which provides a server for local large language models.
@@ -27,8 +25,5 @@ in {
 
   config = mkIf cfg.enable {
     modules.services.ollama = cfg.settings;
-
-    # needed until support is added for gfx1103
-    home.sessionVariables.HSA_OVERRIDE_GFX_VERSION = "gfx1102";
   };
 }
