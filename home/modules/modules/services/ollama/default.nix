@@ -30,9 +30,11 @@ in {
     acceleration = mkOption {
       type = types.nullOr (
         types.enum [
+          null
           false
           "rocm"
           "cuda"
+          "vulkan"
         ]
       );
       default = null;
@@ -49,6 +51,7 @@ in {
           - may require overriding gpu type with `services.ollama.rocmOverrideGfx`
             if rocm doesn't detect your AMD gpu
         - `"cuda"`: supported by most modern NVIDIA GPUs
+        - `"vulkan"`: supported by older GPUs
       '';
     };
 

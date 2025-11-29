@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -15,7 +16,9 @@ in {
       type = lib.types.attrs;
       default = {
         enable = true;
-        acceleration = "rocm"; # "rocm" or "cuda"
+        # TODO: not yet supported by home-manager module
+        # acceleration = "vulkan";
+        package = pkgs.ollama-vulkan;
       };
       description = ''
         Configuration for the Ollama service, which provides a server for local large language models.
