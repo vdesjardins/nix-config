@@ -82,5 +82,7 @@ in {
 
         inherit (cfg) host port acceleration package environmentVariables;
       };
+
+      home.packages = with pkgs; [gollama];
     };
 }
