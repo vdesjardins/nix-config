@@ -16,7 +16,8 @@ in {
 
   config = mkIf cfg.enable {
     modules.desktop.editors.nixvim.ai.mcpServers.universal-skills = {
-      command = "${getExe cfg.package} mcp";
+      command = getExe cfg.package;
+      args = ["mcp"];
     };
 
     programs.opencode.settings.mcp.universal-skills = {
@@ -27,14 +28,15 @@ in {
 
     programs.codex.settings.mcp_servers.universal-skills = {
       enabled = true;
-      command = "${getExe cfg.package} mcp";
+      command = getExe cfg.package;
+      args = ["mcp"];
     };
 
     modules.shell.tools.github-copilot-cli.settings.mcpServers.universal-skills = {
       type = "local";
-      command = "${getExe cfg.package} mcp";
+      command = getExe cfg.package;
       tools = ["*"];
-      args = [];
+      args = ["mcp"];
     };
   };
 }
