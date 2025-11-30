@@ -57,6 +57,7 @@
         sequential-thinking.enable = true;
         kubernetes.enable = true;
         universal-skills.enable = true;
+        playright.enable = true;
       };
     };
 
