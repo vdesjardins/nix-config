@@ -22,6 +22,30 @@ in {
       package = inputs.opencode.packages.${pkgs.system}.default;
 
       settings = {
+        instructions = [
+          ".instructions.md"
+          "CONTRIBUTING.md"
+          ".github/*.md"
+        ];
+
+        keybinds = {
+          messages_half_page_up = "ctrl+u";
+          messages_half_page_down = "ctrl+d";
+        };
+
+        permission = {
+          bash = {
+            "*" = "ask";
+            "git status" = "allow";
+            "git diff" = "allow";
+            "git add" = "allow";
+            "git commit" = "allow";
+            "git checkout" = "allow";
+            "git stash" = "allow";
+            "ls" = "allow";
+          };
+        };
+
         provider = {
           llamacpp = {
             npm = "@ai-sdk/openai-compatible";
