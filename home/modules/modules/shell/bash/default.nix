@@ -44,8 +44,6 @@ in {
         if [ -f $HOME/.bashrc-$(uname)-$(hostname) ]; then
           . $HOME/.bashrc-$(uname)-$(hostname)
         fi
-
-        set -o emacs
       '';
     };
   };
