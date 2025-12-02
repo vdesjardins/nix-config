@@ -20,12 +20,6 @@ in {
       args = ["mcp"];
     };
 
-    programs.opencode.settings.mcp.universal-skills = {
-      enabled = true;
-      type = "local";
-      command = [(getExe cfg.package) "mcp"];
-    };
-
     programs.codex.settings.mcp_servers.universal-skills = {
       enabled = true;
       command = getExe cfg.package;
