@@ -50,6 +50,7 @@ in {
             extraConfig = ''
               set -g @fingers-key Space
               set -g @fingers-hint-style 'fg=red,bold,underscore'
+              set -g @fingers-pattern-0 'sha(256|512)-[a-zA-Z0-9+/]+=+'
             '';
           }
 
