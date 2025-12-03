@@ -1,0 +1,131 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":disableRateLimiting",
+    ":enableVulnerabilityAlerts"
+  ],
+  "schedule": [
+    "before 3am on Monday"
+  ],
+  "timezone": "UTC",
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "commitMessageLowerCase": "auto",
+  "ignoreDeps": [],
+  "labels": [
+    "renovate",
+    "dependencies"
+  ],
+  "assignees": [
+    "@me"
+  ],
+  "reviewers": [
+    "@me"
+  ],
+  "nix": {
+    "enabled": true
+  },
+  "docker": {
+    "enabled": true
+  },
+  "dockerfile": {
+    "enabled": true
+  },
+  "github-actions": {
+    "enabled": true,
+    "pinDigests": false
+  },
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ],
+    "assignees": [
+      "@me"
+    ],
+    "reviewers": [
+      "@me"
+    ]
+  },
+  "packageRules": [
+    {
+      "description": "Automatically merge minor updates",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchDatasources": [
+        "github-releases",
+        "github-tags"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "Group nixpkgs updates",
+      "groupName": "nixpkgs",
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "nixos/nixpkgs"
+      ],
+      "schedule": [
+        "before 3am on Monday"
+      ]
+    },
+    {
+      "description": "Group nix flake inputs",
+      "groupName": "nix-flake-inputs",
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "schedule": [
+        "before 3am on Monday"
+      ]
+    },
+    {
+      "description": "Docker image updates",
+      "groupName": "docker-images",
+      "matchDatasources": [
+        "docker"
+      ],
+      "schedule": [
+        "before 3am on Monday"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "GitHub Actions updates",
+      "groupName": "github-actions",
+      "matchDatasources": [
+        "github-actions"
+      ],
+      "schedule": [
+        "before 3am on Monday"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "Renovate self-updates",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchDepNames": [
+        "renovatebot/renovate"
+      ],
+      "schedule": [
+        "before 3am on Monday"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    }
+  ]
+}
