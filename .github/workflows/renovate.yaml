@@ -37,6 +37,6 @@ jobs:
           configurationFile: .github/renovate.json
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          RENOVATE_REPOSITORIES: ${{ github.repositories }}
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_DRY_RUN: ${{ github.event.inputs.dryRun }}
           RENOVATE_REBASE_WHEN_MODIFIED: ${{ github.event.inputs.rebase }}
