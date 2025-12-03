@@ -6,16 +6,16 @@
 }:
 buildNpmPackage rec {
   pname = "opencode-skills";
-  version = "0.1.0";
+  version = "0.1.1";
 
   src = fetchFromGitHub {
     owner = "malhashemi";
     repo = "opencode-skills";
     rev = "v${version}";
-    hash = "sha256-36KVZ4kVpUnUld6eWNxWTS+L0LIapiACYmNBdAbvzgQ=";
+    hash = "sha256-VWDtrGuedZLvr9HXVrZbjFQOcRKw3jN6i5+3XUe4TMs=";
   };
 
-  npmDepsHash = "sha256-2tGVhEDgBMPVm21DYeZ0WuXGpEpCj/1ULK81AzwI7eg=";
+  npmDepsHash = "sha256-FlIf4TiEK2QhN+Cyv/7p7BEZa5rGgppVYPwsdgWV2jc=";
 
   postPatch = ''
     ${lib.getExe jq} '
