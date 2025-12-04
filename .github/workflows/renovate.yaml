@@ -11,6 +11,10 @@ on:
         description: "Dry run"
         required: false
         default: "false"
+      logLevel:
+        description: "Log level"
+        required: false
+        default: ""
       rebase:
         description: "Rebase existing PRs"
         required: false
@@ -26,6 +30,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      issues: write
 
     steps:
       - name: Checkout
@@ -35,8 +40,9 @@ jobs:
         uses: renovatebot/github-action@v44.0.5
         with:
           configurationFile: .github/renovate.json
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_DRY_RUN: ${{ github.event.inputs.dryRun }}
           RENOVATE_REBASE_WHEN_MODIFIED: ${{ github.event.inputs.rebase }}
+          LOG_LEVEL: ${{ github.event.inputs.logLevel }}

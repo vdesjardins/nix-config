@@ -18,11 +18,13 @@
   };
 in {
   virtualisation.oci-containers.containers.mosquitto = {
+    # renovate: datasource=docker depName=docker.io/eclipse-mosquitto
+    image = "docker.io/eclipse-mosquitto:2.0.22";
+
     ports = [
       "1883:1883"
       "9001:9001"
     ];
-    image = "docker.io/eclipse-mosquitto:2.0.22";
     volumes = [
       "${configFile}:/mosquitto/config/mosquitto.conf"
       "${pwFile}:/mosquitto/config/pwfile"

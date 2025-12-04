@@ -91,6 +91,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       home-assistant = {
+        # renovate: datasource=docker depName=home-assistant/home-assistant
         image = "ghcr.io/home-assistant/home-assistant:stable";
 
         environment.TZ = config.time.timeZone;

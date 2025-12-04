@@ -1,13 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    ":disableRateLimiting",
-    ":enableVulnerabilityAlerts"
+    "config:recommended",
+    "customManagers:dockerfileVersions"
   ],
-  "schedule": [
-    "before 3am on Monday"
-  ],
+  "branchPrefix": "renovate/",
+  "onboarding": false,
+  "platform": "github",
   "timezone": "UTC",
   "semanticCommits": "enabled",
   "semanticCommitType": "chore",
@@ -18,16 +17,7 @@
     "renovate",
     "dependencies"
   ],
-  "assignees": [
-    "@me"
-  ],
-  "reviewers": [
-    "@me"
-  ],
   "nix": {
-    "enabled": true
-  },
-  "docker": {
     "enabled": true
   },
   "dockerfile": {
@@ -50,6 +40,12 @@
   },
   "packageRules": [
     {
+      "matchCategories": [
+        "docker"
+      ],
+      "enabled": true
+    },
+    {
       "description": "Automatically merge minor updates",
       "matchUpdateTypes": [
         "minor",
@@ -64,36 +60,10 @@
       "automergeStrategy": "squash"
     },
     {
-      "description": "Group nixpkgs updates",
-      "groupName": "nixpkgs",
-      "matchDatasources": [
-        "github-releases"
-      ],
-      "matchDepNames": [
-        "nixos/nixpkgs"
-      ],
-      "schedule": [
-        "before 3am on Monday"
-      ]
-    },
-    {
-      "description": "Group nix flake inputs",
-      "groupName": "nix-flake-inputs",
-      "matchDatasources": [
-        "github-releases"
-      ],
-      "schedule": [
-        "before 3am on Monday"
-      ]
-    },
-    {
       "description": "Docker image updates",
       "groupName": "docker-images",
       "matchDatasources": [
         "docker"
-      ],
-      "schedule": [
-        "before 3am on Monday"
       ],
       "automerge": true,
       "automergeType": "pr",
@@ -104,9 +74,6 @@
       "groupName": "github-actions",
       "matchDatasources": [
         "github-actions"
-      ],
-      "schedule": [
-        "before 3am on Monday"
       ],
       "automerge": true,
       "automergeType": "pr",
@@ -120,12 +87,21 @@
       "matchDepNames": [
         "renovatebot/renovate"
       ],
-      "schedule": [
-        "before 3am on Monday"
-      ],
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "docker",
+      "managerFilePatterns": [
+        "/.+\\.nix$/"
+      ],
+      "matchStrings": [
+        "\\s+image\\s+=\\s+\"(?<depName>.*?):(?<currentValue>.*?)\""
+      ]
     }
   ]
 }
