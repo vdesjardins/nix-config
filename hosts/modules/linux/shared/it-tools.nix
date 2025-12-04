@@ -16,6 +16,7 @@
   virtualisation.oci-containers = {
     containers = {
       it-tools = {
+        # renovate: datasource=docker depName=corentinth/it-tools
         image = "ghcr.io/corentinth/it-tools:latest";
 
         ports = [

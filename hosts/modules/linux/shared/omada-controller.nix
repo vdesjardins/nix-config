@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   ...
 }: {
@@ -20,6 +19,7 @@
   virtualisation.oci-containers = {
     containers = {
       omada = {
+        # renovate: datasource=docker depName=mbentley/omada-controller
         image = "mbentley/omada-controller:5";
         volumes = [
           "/data/omada/data:/opt/tplink/EAPController/data"

@@ -260,6 +260,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       frigate = {
+        # renovate: datasource=docker depName=blakeblackshear/frigate
         image = "ghcr.io/blakeblackshear/frigate:stable-rocm";
         volumes = [
           "/etc/localtime:/etc/localtime:ro"
