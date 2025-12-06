@@ -20,7 +20,7 @@
     containers = {
       omada = {
         # renovate: datasource=docker depName=mbentley/omada-controller
-        image = "mbentley/omada-controller:5";
+        image = "mbentley/omada-controller:6";
         volumes = [
           "/data/omada/data:/opt/tplink/EAPController/data"
           "/data/omada/logs:/opt/tplink/EAPController/logs"
