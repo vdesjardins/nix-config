@@ -20,7 +20,7 @@
     containers = {
       omada = {
         # renovate: datasource=docker depName=mbentley/omada-controller
-        image = "mbentley/omada-controller:5";
+        image = "mbentley/omada-controller:6.0.0.25";
         volumes = [
           "/data/omada/data:/opt/tplink/EAPController/data"
           "/data/omada/logs:/opt/tplink/EAPController/logs"
@@ -53,6 +53,7 @@
           PORT_MANAGER_V2 = "29814";
           PORT_TRANSFER_V2 = "29815";
           PORT_RTTY = "29816";
+          PORT_DEVICE_MONITOR = "29817";
           PORT_UPGRADE_V1 = "29813";
           PUID = "508";
           SHOW_SERVER_LOGS = "true";
