@@ -6,8 +6,6 @@
     ":enableVulnerabilityAlerts"
   ],
   "branchPrefix": "renovate/",
-  "onboarding": false,
-  "platform": "github",
   "timezone": "UTC",
   "semanticCommits": "enabled",
   "semanticCommitType": "chore",
