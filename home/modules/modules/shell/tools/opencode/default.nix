@@ -22,6 +22,8 @@ in {
       package = inputs.opencode.packages.${pkgs.system}.default;
 
       settings = {
+        theme = "tokyonight";
+
         instructions = [
           ".instructions.md"
           "CONTRIBUTING.md"
