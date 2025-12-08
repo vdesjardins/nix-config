@@ -16,6 +16,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       glow # renders markdown on command line
+      rumdl # markdown linter
     ];
   };
 }

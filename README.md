@@ -60,7 +60,8 @@ sudo mkfs.vfat -F32 /dev/disk/by-partlabel/boot
 ### Set up encrypted volume
 
 ```sh
-sudo cryptsetup --type luks2 --cipher serpent-xts-plain64 --key-size 512 --hash sha512 luksFormat /dev/disk/by-partlabel/root
+sudo cryptsetup --type luks2 --cipher serpent-xts-plain64 \
+  --key-size 512 --hash sha512 luksFormat /dev/disk/by-partlabel/root
 sudo cryptsetup luksOpen /dev/disk/by-partlabel/root root
 ```
 
@@ -72,7 +73,8 @@ sudo vgcreate main /dev/mapper/root
 
 sudo lvcreate --size 40G --name nix-store main
 sudo lvcreate --size 20G --name root main
-sudo lvcreate --size "$(cat /proc/meminfo | grep MemTotal | cut -d':' -f2 | sed 's/ //g')" --name swap main
+sudo lvcreate --size "$(cat /proc/meminfo | grep MemTotal | \
+  cut -d':' -f2 | sed 's/ //g')" --name swap main
 sudo lvcreate --extends 60%FREE --name home main
 
 sudo vgchange --available y
