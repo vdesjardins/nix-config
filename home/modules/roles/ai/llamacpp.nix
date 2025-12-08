@@ -26,6 +26,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ cfg.settings.package ];
+    home.packages = [cfg.settings.package];
   };
 }

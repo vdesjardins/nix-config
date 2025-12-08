@@ -17,6 +17,7 @@
 
     # Others
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     utils.url = "github:numtide/flake-utils";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     tmux-tokyo-night.url = "github:/fabioluciano/tmux-tokyo-night";
     tmux-tokyo-night.flake = false;
 
@@ -46,9 +48,11 @@
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     # neovim plugins
     blink-cmp.url = "github:Saghen/blink.cmp";
+    blink-cmp.inputs.nixpkgs.follows = "nixpkgs";
     mcp-hub.url = "github:ravitemer/mcp-hub";
     mcp-hub-nvim.url = "github:ravitemer/mcphub.nvim";
   };
@@ -182,6 +186,7 @@
             shellcheck.enable = true;
             shfmt.enable = true;
             commitizen.enable = true;
+            rumdl.enable = true;
           };
         };
       }

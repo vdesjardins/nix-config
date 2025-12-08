@@ -48,9 +48,7 @@ in {
             diff-editor = ":builtin";
           };
 
-          git = {
-            auto-local-bookmark = true;
-          };
+          remotes.origin.auto-track-bookmarks = "glob:*";
 
           revset-aliases = {
             "user()" = ''user("${cfg.email}")'';
