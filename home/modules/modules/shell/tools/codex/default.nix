@@ -19,7 +19,11 @@ in {
       settings = {
         profile = "llamacpp";
 
-        model_context_window = 32768;
+        features = {
+          unified_exec = true;
+          web_search_request = true;
+          skills = true;
+        };
 
         model_providers = {
           llamacpp = {
