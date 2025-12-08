@@ -54,7 +54,7 @@ in {
               baseURL = "http://localhost:11450/v1";
             };
             models = {
-              gpt-oss-20b = {
+              "gpt-oss:20b" = {
                 tools = true;
               };
             };

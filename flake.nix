@@ -41,6 +41,9 @@
     opencode.url = "github:sst/opencode";
     opencode.inputs.nixpkgs.follows = "nixpkgs";
 
+    llamacpp.url = "github:ggml-org/llama.cpp";
+    llamacpp.inputs.nixpkgs.follows = "nixpkgs";
+
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
 

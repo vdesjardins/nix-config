@@ -43,6 +43,7 @@
 
     ai = {
       ollama.enable = true;
+      llamacpp.enable = true;
       gemini-cli.enable = true;
       opencode.enable = true;
       claude.enable = true;

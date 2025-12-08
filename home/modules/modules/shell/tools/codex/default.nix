@@ -17,7 +17,7 @@ in {
       enable = true;
 
       settings = {
-        profile = "gpt-oss-20b";
+        profile = "llamacpp";
 
         model_context_window = 32768;
 

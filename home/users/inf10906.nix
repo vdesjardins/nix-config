@@ -37,6 +37,7 @@
     };
 
     ai = {
+      llamacpp.enable = true;
       opencode.enable = true;
       codex.enable = true;
       github-copilot-cli.enable = true;
@@ -49,6 +50,7 @@
         sequential-thinking.enable = true;
         kubernetes.enable = true;
         universal-skills.enable = true;
+        playright.enable = true;
       };
     };
 
