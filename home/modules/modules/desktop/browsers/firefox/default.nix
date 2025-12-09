@@ -11,7 +11,7 @@
   inherit (lib.lists) concatMap;
   inherit (lib.types) listOf attrs;
 
-  defaultExtensions = with inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons; [
+  defaultExtensions = with inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system}.repos.rycee.firefox-addons; [
     {
       package = darkreader;
       area = "navbar";

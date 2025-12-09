@@ -5,7 +5,7 @@
   ...
 }: {
   programs.nixvim = {
-    dependencies.opencode.package = inputs.opencode.packages.${pkgs.system}.default;
+    dependencies.opencode.package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     plugins.sidekick = {
       enable = true;

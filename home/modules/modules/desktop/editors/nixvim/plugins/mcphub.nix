@@ -10,12 +10,12 @@
 in {
   config = {
     home.packages = [
-      inputs.mcp-hub.packages.${pkgs.system}.default
+      inputs.mcp-hub.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     programs.nixvim = {
       extraPlugins = [
-        inputs.mcp-hub-nvim.packages.${pkgs.system}.default
+        inputs.mcp-hub-nvim.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       extraConfigLua = ''

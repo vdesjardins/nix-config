@@ -17,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     programs.granted.enable = true;
 
-    modules.desktop.browsers.firefox.extensions = with inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons; [
+    modules.desktop.browsers.firefox.extensions = with inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system}.repos.rycee.firefox-addons; [
       {package = granted;}
     ];
   };

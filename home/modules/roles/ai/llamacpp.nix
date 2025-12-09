@@ -17,7 +17,7 @@ in {
       type = lib.types.attrs;
       default = {
         enable = true;
-        package = inputs.llamacpp.packages.${pkgs.system}.vulkan;
+        package = inputs.llamacpp.packages.${pkgs.stdenv.hostPlatform.system}.vulkan;
       };
       description = ''
         Configuration for the llamacpp service
