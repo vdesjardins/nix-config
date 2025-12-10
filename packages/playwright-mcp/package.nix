@@ -5,16 +5,16 @@
 }:
 buildNpmPackage rec {
   pname = "playwright-mcp";
-  version = "0.0.49";
+  version = "0.0.51";
 
   src = fetchFromGitHub {
     owner = "microsoft";
     repo = "playwright-mcp";
     rev = "v${version}";
-    hash = "sha256-t0QnQtWduy1eIzwQsakpEG38rD/MZ0c+AxMVr5sDj0A=";
+    hash = "sha256-uw/9KIBnvBX1uQpCHEG8o7YgraThGOuOSJLUUSTQs2A=";
   };
 
-  npmDepsHash = "sha256-oHY94OIfuvtBRFRELvxjaIoidemxzUUipm287PIHUcw=";
+  npmDepsHash = "sha256-jTIBeKQm7oEb09TVo7+mWQFQ+ODZHCTZ1Qreh5sAiWk=";
 
   dontNpmBuild = true;
 
