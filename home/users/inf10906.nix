@@ -32,14 +32,24 @@
         claude.enable = false;
         ollama.enable = false;
         llamacpp.enable = false;
+        opencode.enable = true;
+        github-copilot-cli.enable = true;
         mcp = {
           nixos.enable = false;
-          fetch.enable = false;
-          git.enable = false;
+          context7.enable = true;
+          desktop-commander.enable = true;
+          fetch.enable = true;
+          git.enable = true;
+          github.enable = true;
           grafana.enable = false;
           tree-sitter.enable = false;
+          sequential-thinking.enable = true;
+          kubernetes.enable = true;
+          playright.enable = true;
         };
-        skill.dev-browser.enable = false;
+        skill = {
+          dev-browser.enable = false;
+        };
       };
     };
 

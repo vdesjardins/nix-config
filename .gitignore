@@ -2,3 +2,5 @@ result
 .luacheckcache
 .pre-commit-config.yaml
 **/__pycache__/
+nixos.qcow2
+keys

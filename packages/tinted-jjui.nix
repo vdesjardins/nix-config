@@ -11,7 +11,7 @@ stdenv.mkDerivation {
     owner = "vic";
     repo = "tinted-jjui";
     rev = "main";
-    hash = "sha256-MGk9d795AsXmjaIfCuGCNRig0ISTYA2PN2ySfRwdzRI=";
+    hash = "sha256-ZBCDTJyBUMcaHr834HPqxnz/6BS5B1kZAhL+IkNCnys=";
   };
 
   phases = ["unpackPhase" "installPhase"];
