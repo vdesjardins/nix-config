@@ -61,7 +61,8 @@ in {
             gp = ["git" "push"];
             gpc = ["git" "push" "-c" "@"];
             gf = ["git" "fetch"];
-            a = ["abandon"];
+            a = ["absorb"];
+            ab = ["abandon"];
             r = ["restore"];
             m = ["describe" "-m"];
             bl = ["bookmark" "list"];
@@ -71,9 +72,9 @@ in {
             bsm = ["bookmark" "set" "main" "-r" "@-" "--allow-backwards"];
             ol = ["op" "log"];
             e = ["edit"];
+            n = ["new"];
             ne = ["next" "--edit"];
-            nb = ["new" "--insert-before"];
-            n = ["new" "--insert-before=@" "--no-edit"];
+            nb = ["new" "--insert-before=@" "--no-edit"];
             na = ["new" "--insert-after=@"];
             mp = ["describe" "@-" "-m"];
             sh = ["show"];
@@ -93,7 +94,8 @@ in {
         jgp = "jj git push";
         jgpc = "jj git push -c @";
         jgf = "jj git fetch";
-        ja = "jj abandon";
+        ja = "jj absorb";
+        jab = "jj abandon";
         jr = "jj restore";
         jm = "jj describe -m";
         jbl = "jj bookmark list";
@@ -103,9 +105,9 @@ in {
         jbsm = "jj bookmark set main -r @- --allow-backwards";
         jl = "jj op log";
         je = "jj edit";
+        jn = "jj new";
         jne = "jj next --edit";
-        jnb = "jj new --insert-before";
-        jn = "jj new --insert-before=@ --no-edit";
+        jnb = "jj new --insert-before=@ --no-edit";
         jna = "jj new --insert-after=@";
         jmp = "jj describe @- -m";
         jsh = "jj show";

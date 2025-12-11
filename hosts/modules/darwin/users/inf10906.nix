@@ -7,4 +7,9 @@
     createHome = true;
     shell = "${pkgs.zsh}/bin/zsh";
   };
+
+  security.pki.certificateFiles = [
+    ../../../../misc/certs/zscaler-from-office.pem
+    ../../../../misc/certs/zscaler-root-cert.pem
+  ];
 }
