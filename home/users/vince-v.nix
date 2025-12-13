@@ -16,8 +16,6 @@
 
     dev = {
       bash.enable = true;
-      cue.enable = true;
-      kcl.enable = true;
       debugging.enable = true;
       go.enable = true;
       js.enable = true;
