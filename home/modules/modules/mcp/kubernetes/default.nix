@@ -20,13 +20,13 @@ in {
     };
 
     programs.opencode.settings.mcp.kubernetes = {
-      enabled = true;
+      enabled = false;
       type = "local";
       command = [(getExe cfg.package)];
     };
 
     programs.codex.settings.mcp_servers.kubernetes = {
-      enabled = true;
+      enabled = false;
       command = getExe cfg.package;
     };
 

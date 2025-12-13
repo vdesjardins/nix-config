@@ -24,7 +24,7 @@ in {
     };
 
     programs.opencode.settings.mcp.fluxcd = {
-      enabled = true;
+      enabled = false;
       type = "local";
       command = [(getExe cfg.package) "serve"];
       environment = {
@@ -33,7 +33,7 @@ in {
     };
 
     programs.codex.settings.mcp_servers.fluxcd = {
-      enabled = true;
+      enabled = false;
       command = getExe cfg.package;
       args = ["serve"];
       env_vars = ["KUBECONFIG"];

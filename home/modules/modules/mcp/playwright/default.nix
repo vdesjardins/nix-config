@@ -33,7 +33,7 @@ in {
     };
 
     programs.opencode.settings.mcp.playwright = {
-      enabled = true;
+      enabled = false;
       type = "local";
       command = [
         (getExe cfg.package)
@@ -43,7 +43,7 @@ in {
     };
 
     programs.codex.settings.mcp_servers.playwright = {
-      enabled = true;
+      enabled = false;
       command = getExe cfg.package;
       args = [
         "--executable-path"

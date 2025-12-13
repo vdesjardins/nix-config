@@ -43,8 +43,6 @@
       github-copilot-cli.enable = true;
       mcp = {
         context7.enable = true;
-        desktop-commander.enable = true;
-        fetch.enable = true;
         fluxcd.enable = true;
         nixos.enable = true;
         git.enable = true;

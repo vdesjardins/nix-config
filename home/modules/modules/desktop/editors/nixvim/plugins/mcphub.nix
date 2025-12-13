@@ -22,6 +22,7 @@ in {
         require("mcphub").setup({
           auto_approve = true,
           mcp_request_timeout = 120000,
+          auto_toggle_mcp_servers = true,
         })
       '';
 

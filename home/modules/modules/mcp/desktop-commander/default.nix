@@ -19,13 +19,13 @@ in {
       command = getExe cfg.package;
     };
     programs.opencode.settings.mcp."desktop-commander" = {
-      enabled = true;
+      enabled = false;
       type = "local";
       command = [(getExe cfg.package)];
     };
 
     programs.codex.settings.mcp_servers."desktop-commander" = {
-      enabled = true;
+      enabled = false;
       command = getExe cfg.package;
     };
 
