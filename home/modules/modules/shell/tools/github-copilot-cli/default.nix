@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }: let
@@ -25,7 +26,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = [
-      pkgs.github-copilot-cli
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.copilot-cli
     ];
 
     xdg.configFile = {

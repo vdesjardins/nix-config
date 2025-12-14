@@ -1,6 +1,8 @@
 {
   config,
   lib,
+  inputs,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -15,6 +17,8 @@ in {
   config = mkIf cfg.enable {
     programs.codex = {
       enable = true;
+
+      package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex;
 
       settings = {
         profile = "llamacpp";
