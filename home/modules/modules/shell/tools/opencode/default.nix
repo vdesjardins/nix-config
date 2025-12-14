@@ -56,7 +56,7 @@ in {
               baseURL = "http://localhost:11450/v1";
             };
             models = {
-              "gpt-oss:20b" = {
+              "ggml-org/gpt-oss-20b-GGUF" = {
                 tools = true;
               };
             };

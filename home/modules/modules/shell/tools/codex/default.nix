@@ -21,7 +21,7 @@ in {
       package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex;
 
       settings = {
-        profile = "llamacpp";
+        profile = "llamacpp-gpt-oss-20b";
 
         features = {
           unified_exec = true;
@@ -41,11 +41,11 @@ in {
         };
 
         profiles = {
-          llamacpp = {
-            model = "llamacpp";
+          llamacpp-gpt-oss-20b = {
+            model ="ggml-org/gpt-oss-20b-GGUF";
             model_provider = "llamacpp";
           };
-          gpt-oss-20b = {
+          ollama-gpt-oss-20b = {
             model = "gpt-oss:20b";
             model_provider = "ollama";
           };
