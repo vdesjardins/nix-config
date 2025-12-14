@@ -9,6 +9,33 @@
   inherit (lib.options) mkEnableOption;
 
   cfg = config.modules.shell.tools.kubectl;
+
+  kubercFile = (pkgs.formats.yaml {}).generate "kuberc" kuberc;
+
+  kuberc = {
+    apiVersion = "kubectl.config.k8s.io/v1beta1";
+    kind = "Preference";
+    defaults = [
+      {
+        command = "apply";
+        options = [
+          {
+            name = "server-isde";
+            default = true;
+          }
+        ];
+      }
+      {
+        command = "delete";
+        options = [
+          {
+            name = "interactive";
+            default = true;
+          }
+        ];
+      }
+    ];
+  };
 in {
   options.modules.shell.tools.kubectl = {
     enable = mkEnableOption "kubectl";
@@ -143,5 +170,7 @@ in {
 
       "zsh/conf.d/kubectl_aliases".source = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
     };
+
+    home.file.".kube/kuberc".source = kubercFile;
   };
 }
