@@ -58,6 +58,11 @@ in ''
   bind-key k select-pane -U
   bind-key l select-pane -R
 
+  bind-key -n C-M-k select-pane -U \; swap-pane -s '!' # Swap the active pane with the pane above
+  bind-key -n C-M-j select-pane -D \; swap-pane -s '!' # Swap the active pane with the pane below
+  bind-key -n C-M-h select-pane -L \; swap-pane -s '!' # Swap the active pane with the pane left
+  bind-key -n C-M-l select-pane -R \; swap-pane -s '!' # Swap the active pane with the pane right
+
   # clear screen and history
   bind-key -N "Clear screen and history" BSpace "send-keys -R C-l \; clear-history"
 
