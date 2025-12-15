@@ -139,14 +139,14 @@ command = '''
 jj log -r@ -n1 --ignore-working-copy --no-graph --color always  -T '
   separate(" ",
     bookmarks.map(|x| if(
-        x.name().substr(0, 10).starts_with(x.name()),
-        x.name().substr(0, 10),
-        x.name().substr(0, 9) ++ "…")
+        x.name().substr(0, 30).starts_with(x.name()),
+        x.name().substr(0, 30),
+        x.name().substr(0, 29) ++ "…")
       ).join(" "),
     tags.map(|x| if(
-        x.name().substr(0, 10).starts_with(x.name()),
-        x.name().substr(0, 10),
-        x.name().substr(0, 9) ++ "…")
+        x.name().substr(0, 30).starts_with(x.name()),
+        x.name().substr(0, 30),
+        x.name().substr(0, 29) ++ "…")
       ).join(" "),
     surround("\"","\"",
       if(
