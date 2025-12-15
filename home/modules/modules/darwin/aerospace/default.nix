@@ -17,8 +17,9 @@ in {
     programs.aerospace = {
       inherit (cfg) enable;
 
-      userSettings = {
-        start-at-login = true;
+      launchd.enable = true;
+
+      settings = {
         accordion-padding = 30;
         default-root-container-layout = "tiles";
         default-root-container-orientation = "auto";
