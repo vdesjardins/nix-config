@@ -81,6 +81,8 @@ in {
             sh = ["show"];
             sq = ["squash"];
             sqi = ["squash"];
+            sp = ["split"];
+            spi = ["split" "-i"];
             s = ["status"];
             lg = ["log" "-r" "all()"];
             lm = ["log" "-r" "user()"];
@@ -124,6 +126,8 @@ in {
         jsh = "jj show";
         jsq = "jj squash";
         jsqi = "jj squash -i";
+        jsp = "jj split";
+        jspi = "jj split -i";
         js = "jj status";
       };
     };
