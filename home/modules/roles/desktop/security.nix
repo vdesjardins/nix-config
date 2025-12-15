@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -14,5 +15,6 @@ in {
 
   config = mkIf cfg.enable {
     modules.desktop.extensions.rofi-rbw.enable = true;
+    home.packages = with pkgs; [bitwarden-desktop];
   };
 }
