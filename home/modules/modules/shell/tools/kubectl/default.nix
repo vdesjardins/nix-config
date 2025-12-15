@@ -21,7 +21,7 @@
         options = [
           {
             name = "server-isde";
-            default = true;
+            default = "true";
           }
         ];
       }
@@ -30,7 +30,7 @@
         options = [
           {
             name = "interactive";
-            default = true;
+            default = "true";
           }
         ];
       }
