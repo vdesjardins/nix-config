@@ -299,6 +299,10 @@ in {
 
           # resize windows
           "$mod, R, submap, resize"
+          "$mod ALT, h, resizeactive, -50 0"
+          "$mod ALT, j, resizeactive, 0 50"
+          "$mod ALT, k, resizeactive, 0 -50"
+          "$mod ALT, l, resizeactive, 50 0"
         ];
 
         bindm = [
