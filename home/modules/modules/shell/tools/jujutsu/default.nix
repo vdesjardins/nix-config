@@ -40,6 +40,7 @@ in {
             inherit (cfg) email;
             name = cfg.username;
           };
+
           ui = {
             default-command = "log";
             pager = "delta";
@@ -83,6 +84,16 @@ in {
             s = ["status"];
             lg = ["log" "-r" "all()"];
             lm = ["log" "-r" "user()"];
+          };
+
+          templates = {
+            draft_commit_description = ''
+              concat(
+                builtin_draft_commit_description,
+                "\nJJ: ignore-rest\n",
+                diff.git(),
+              )
+            '';
           };
         };
       };
