@@ -19,5 +19,8 @@ in {
       enable = true;
       inherit wallpapersPath;
     };
+    modules.desktop.tools.fcitx5 = {
+      enable = true;
+    };
   };
 }

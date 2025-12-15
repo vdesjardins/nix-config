@@ -325,7 +325,6 @@ in {
         ];
 
         exec-once = [
-          "${getExe pkgs.fcitx5}"
           "${getExe pkgs.wl-clip-persist} --clipboard regular & ${getExe pkgs.clipse} -listen"
           "${getExe pkgs.hyprland-monitor-attached} ${monitor-attached}"
         ];
