@@ -19,7 +19,8 @@ in {
     programs.opencode = {
       enable = true;
 
-      package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
+      package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
 
       settings = {
         theme = "tokyonight";
@@ -74,10 +75,6 @@ in {
             };
           };
         };
-
-        plugin = [
-          "${my-packages.opencode-skills}/lib/node_modules/opencode-skills/dist/index.js"
-        ];
       };
     };
   };
