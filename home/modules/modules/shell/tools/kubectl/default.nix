@@ -60,6 +60,8 @@ in {
         KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code"
 
         compdef kubecolor=kubectl
+
+        export KUBECTL_KYAML=true
       '';
 
       oh-my-zsh.plugins = ["kubectl"];
@@ -69,7 +71,9 @@ in {
         OJ = "-ojson";
         OJB = "-ojson |& bat -ljson";
         OY = "-oyaml";
+        OK = "-okyaml";
         OYB = "-oyaml |& bat -lyaml";
+        OKB = "-okyaml |& bat -lyaml";
         OW = "-owide";
       };
 
