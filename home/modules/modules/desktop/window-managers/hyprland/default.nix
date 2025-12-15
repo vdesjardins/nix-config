@@ -220,6 +220,9 @@ in {
         gesture = "3, horizontal, workspace";
 
         bind = [
+          # ghostty terminal shortcuts
+          "$mod, slash, global, :LOGO+slash"
+
           # Focus
           "$mod, h, movefocus, l"
           "$mod, j, movefocus, d"
@@ -282,7 +285,7 @@ in {
           "$mod SHIFT, D, exec, $terminal -e lazydocker"
           "$mod, G, exec, $messenger"
           "$mod, O, exec, logseq"
-          "$mod, slash, exec, $passwordManager"
+          "$mod SHIFT, V, exec, $passwordManager"
           "$mod, E, exec, $webapp calendar.google.com"
 
           # fullscreen
