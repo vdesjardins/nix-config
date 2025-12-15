@@ -6,13 +6,13 @@
 }:
 buildNpmPackage rec {
   pname = "DesktopCommanderMCP";
-  version = "0.2.23";
+  version = "0.2.24";
 
   src = fetchFromGitHub {
     owner = "wonderwhy-er";
     repo = "DesktopCommanderMCP";
     rev = "v${version}";
-    hash = "sha256-RJE7nLYVzZuy5i0uO5rRewa0VYiYJpmNQ5i3ta+cguY=";
+    hash = "sha256-8uExFQlWef1T+Ar0rNG3raYBtGWzcjahcOqi2SCCXfY=";
   };
 
   npmDepsHash = "sha256-DDQ/z1GHB09pP1Wfr58JN8CXPqKL/p8eYy6WN5v3Qxc=";
