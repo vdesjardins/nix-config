@@ -46,7 +46,6 @@ falcon/apply:
 hm/install:
 	sh <(curl -L https://nixos.org/nix/install) --daemon
 	PATH=$$PATH:/nix/var/nix/profiles/default/bin nix-env -iA nixpkgs.nixFlakes
-	cachix use vdesjardins
 	@echo "TODO: need to source /nix/var/nix/profiles/default/etc/profile.d/nix.sh"
 
 .PHONY: darwin/install
