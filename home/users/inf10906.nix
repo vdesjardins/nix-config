@@ -37,7 +37,6 @@
     };
 
     ai = {
-      llamacpp.enable = true;
       opencode.enable = true;
       codex.enable = true;
       github-copilot-cli.enable = true;

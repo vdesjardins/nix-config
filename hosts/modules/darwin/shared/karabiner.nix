@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  services.karabiner-elements.enable = true;
+  services.karabiner-elements.enable = false;
 
   environment.systemPackages = with pkgs; [
     karabiner-elements

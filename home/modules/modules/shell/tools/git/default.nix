@@ -30,7 +30,6 @@ in {
       lab
       pre-commit
       tig
-      gitui
     ];
 
     programs = {
