@@ -20,7 +20,10 @@ in {
     #   user: vdesjardins
     #   oauth_token: <REDACTED>
     programs.gh = {
-      inherit (cfg) enable;
+      inherit
+        (cfg)
+        enable
+        ;
 
       settings = {
         git_protocol = "ssh";
@@ -59,29 +62,49 @@ in {
       ];
     };
 
-    programs.zsh = {
+    programs.zsh = let
+      jjBookmarkLast = "$(jj bookmark l --revisions @ --template=name)";
+      clipCopy =
+        if pkgs.stdenv.isDarwin
+        then "pbcopy"
+        else "wl-copy";
+    in {
       shellAliases = {
-        # TODO: support linux
-        ghpc = "gh pu | jq '.url' -Mr | pbcopy";
-        ghrc = "gh ru | pbcopy";
+        ghpc = "gh pu | jq '.url' -Mr | ${clipCopy}";
+        ghrc = "gh ru | ${clipCopy}";
         ghfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
         ghfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+
+        # jujutsu
+        ghjc = "gh pr create --head ${jjBookmarkLast}";
+        ghjcf = "gh pr create -f --head ${jjBookmarkLast}";
+        ghjm = "gh pr merge -r -d ${jjBookmarkLast}";
+        ghjs = "gh pr status";
+        ghjch = "gh pr checks -i 2 --watch ${jjBookmarkLast}";
+        ghjpc = "gh pr view -c ${jjBookmarkLast}";
+        ghjpw = "gh pr view --web ${jjBookmarkLast}";
+        ghjpu = "gh pr view --json url ${jjBookmarkLast}";
+        ghjpd = "gh pr diff ${jjBookmarkLast}";
+        ghjrw = "gh repo view --web";
+        ghjru = "gh repo view --json url -q .url";
+        ghjrl = "gh run list";
+        ghjrv = "gh run view";
+        ghjpco = "ghjpu | jq '.url' -Mr | ${clipCopy}";
+        ghjrc = "ghjru | ${clipCopy}";
+        ghjfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+        ghjfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
       };
 
-      initContent =
-        /*
-        bash
-        */
-        ''
-          function ghhc() {
-            branch=$(gh repo view --json defaultBranchRef | jq '.defaultBranchRef.name' -Mr)
-            url=$(gh pu)
-            git_root=$(git rev-parse --show-toplevel)
-            current_dir=$(pwd)
-            subdir=''${current_dir #"$git_root"/}
-            echo "$url$branch/$subdir" | pbcopy
-          }
-        '';
+      initContent = ''
+        function ghhc() {
+          branch=$(gh repo view --json defaultBranchRef | jq '.defaultBranchRef.name' -Mr)
+          url=$(gh pu)
+          git_root=$(git rev-parse --show-toplevel)
+          current_dir=$(pwd)
+          subdir=''${current_dir #"$git_root"/}
+          echo "$url$branch/$subdir" | ${clipCopy}
+        }
+      '';
     };
   };
 }

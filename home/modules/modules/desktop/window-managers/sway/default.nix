@@ -39,7 +39,7 @@ in {
 
   config = mkIf cfg.enable {
     programs.zsh.shellGlobalAliases = {
-      CL = "|& wl-copy";
+      CL = "wl-copy";
     };
 
     home.packages = with pkgs; [
