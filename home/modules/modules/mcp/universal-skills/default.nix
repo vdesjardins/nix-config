@@ -19,12 +19,5 @@ in {
       command = getExe cfg.package;
       args = ["mcp"];
     };
-
-    modules.shell.tools.github-copilot-cli.settings.mcpServers.universal-skills = {
-      type = "local";
-      command = getExe cfg.package;
-      tools = ["*"];
-      args = ["mcp"];
-    };
   };
 }

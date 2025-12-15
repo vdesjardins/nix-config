@@ -20,13 +20,13 @@ in {
     };
 
     programs.opencode.settings.mcp.sequential-thinking = {
-      enabled = false;
+      enabled = true;
       type = "local";
       command = [(getExe cfg.package)];
     };
 
     programs.codex.settings.mcp_servers.sequential-thinking = {
-      enabled = false;
+      enabled = true;
       command = getExe cfg.package;
     };
 
