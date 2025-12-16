@@ -64,7 +64,7 @@ in {
             a = ["abandon"];
             r = ["restore"];
             m = ["describe" "-m"];
-            br = ["bookmark" "list"];
+            bl = ["bookmark" "list"];
             bc = ["bookmark" "create"];
             bd = ["bookmark" "delete"];
             bs = ["bookmark" "set"];
@@ -96,7 +96,7 @@ in {
         ja = "jj abandon";
         jr = "jj restore";
         jm = "jj describe -m";
-        jbr = "jj bookmark list";
+        jbl = "jj bookmark list";
         jbc = "jj bookmark create";
         jbd = "jj bookmark delete";
         jbs = "jj bookmark set";
