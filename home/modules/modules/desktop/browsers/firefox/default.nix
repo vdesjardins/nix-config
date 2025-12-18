@@ -257,6 +257,7 @@ in {
             "browser.contentblocking.category" = "strict";
             "browser.tabs.warnOnClose" = false;
             "browser.tabs.bookmarks.visibility" = "newtab";
+            "browser.tabs.splitView.enabled" = true;
             "browser.warnOnQuit" = false;
             "extensions.pocket.enabled" = false;
             "identity.fxaccounts.toolbar.enabled" = false;
