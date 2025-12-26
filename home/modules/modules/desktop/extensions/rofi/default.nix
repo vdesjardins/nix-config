@@ -17,7 +17,7 @@ in {
 
     terminal = mkOption {
       type = str;
-      default = "${config.modules.desktop.terminal.wezterm.package}/bin/wezterm";
+      default = "${config.modules.desktop.terminal.ghostty.package}/bin/ghostty";
     };
 
     package = mkOption {
