@@ -17,6 +17,11 @@ in {
     ../shared/frigate.nix
     ../shared/home-assistant.nix
     ../shared/mosquitto.nix
+    ../shared/victoriametrics.nix
+    ../shared/grafana
+    ../shared/victorialogs.nix
+    ../shared/alloy
+    ../shared/cadvisor.nix
     ../users/admin.nix
     (../users + "/${username}.nix")
   ];

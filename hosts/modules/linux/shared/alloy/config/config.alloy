@@ -1,0 +1,312 @@
+logging {
+  level  = "info"
+  format = "logfmt"
+}
+
+loki.source.syslog "receiver" {
+  listener {
+    address = "0.0.0.0:10514"
+    protocol = "udp"
+    syslog_format = "rfc5424"
+    labels = {
+      component = "loki.source.syslog",
+      job = "syslog",
+    }
+  }
+  listener {
+    address = "0.0.0.0:10514"
+    protocol = "tcp"
+    syslog_format = "rfc5424"
+    labels = {
+      component = "loki.source.syslog",
+      job = "syslog",
+    }
+  }
+
+  relabel_rules = loki.relabel.syslog.rules
+  forward_to = [loki.process.syslog.receiver]
+}
+
+loki.source.syslog "receiver_ids" {
+  listener {
+    address = "0.0.0.0:10515"
+    protocol = "udp"
+    syslog_format = "rfc5424"
+    labels = {
+      component = "loki.source.syslog",
+      job = "syslog-ids",
+    }
+  }
+  listener {
+    address = "0.0.0.0:10515"
+    protocol = "tcp"
+    syslog_format = "rfc5424"
+    labels = {
+      component = "loki.source.syslog",
+      job = "syslog-ids",
+    }
+  }
+
+  relabel_rules = loki.relabel.syslog.rules
+  forward_to = [loki.process.syslog.receiver]
+}
+
+loki.relabel "syslog" {
+  forward_to = []
+
+  rule {
+    source_labels = ["__syslog_message_hostname"]
+    target_label  = "host"
+  }
+
+  rule {
+    source_labels = ["__syslog_message_severity"]
+    target_label  = "level"
+  }
+
+  rule {
+    source_labels = ["__syslog_message_app_name"]
+    target_label  = "syslog_app"
+  }
+
+  rule {
+    source_labels = ["__syslog_message_facility"]
+    target_label  = "facility"
+  }
+
+  rule {
+    source_labels = ["__syslog_message_proc_id"]
+    target_label  = "proc_id"
+  }
+
+  rule {
+    source_labels = ["__syslog_message_msg_id"]
+    target_label  = "msg_id"
+  }
+}
+
+loki.process "syslog" {
+  forward_to = [loki.write.victoriametrics.receiver]
+
+  stage.match {
+    selector = "{job=\"syslog-ids\"}"
+    pipeline_name = "ids_parsing"
+
+    stage.json {
+      expressions = {
+        alert = "",
+        flow = "",
+      }
+    }
+    stage.json {
+      source = "alert"
+      expressions = {
+        alert_signature = "signature",
+      }
+    }
+    stage.json {
+      source = "flow"
+      expressions = {
+        flow_src_ip = "src_ip",
+        flow_dest_ip = "dest_ip",
+      }
+    }
+    stage.labels {
+      values = {
+        _msg = "alert_signature",
+      }
+    }
+
+    stage.geoip {
+      db = "/var/lib/GeoIP/GeoLite2-City.mmdb"
+      db_type = "city"
+      source = "flow_src_ip"
+    }
+    stage.labels {
+      values = {
+        source_country = "geoip_country_name",
+        source_country_latitude = "geoip_location_latitude",
+        source_country_longitude = "geoip_location_longitude",
+      }
+    }
+
+    stage.geoip {
+      db = "/var/lib/GeoIP/GeoLite2-City.mmdb"
+      db_type = "city"
+      source = "flow_dest_ip"
+    }
+    stage.labels {
+      values = {
+        dest_country = "geoip_country_name",
+        dest_country_latitude = "geoip_location_latitude",
+        dest_country_longitude = "geoip_location_longitude",
+      }
+    }
+  }
+
+  stage.match {
+    selector = "{syslog_app=\"filterlog\"}"
+    pipeline_name = "filterlog_parsing"
+
+    stage.regex {
+      expression = string.join(
+        [
+          "^(?P<rule>[^,]*)",
+          "(?P<subrule>[^,]*)",
+          "(?P<anchor>[^,]*)",
+          "(?P<tracker>[^,]*)",
+          "(?P<interface>[^,]*)",
+          "(?P<reason>[^,]*)",
+          "(?P<action>[^,]*)",
+          "(?P<direction>[^,]*)",
+          "(?P<ip_version>[^,]*)",
+          "(?P<remainder>.*)$",
+        ], ",",
+      )
+    }
+
+    stage.labels {
+      values = {
+        ip_version = "",
+      }
+    }
+  }
+
+  stage.match {
+    selector = "{ip_version=\"4\"}"
+    pipeline_name = "filterlog_ipv4_parsing"
+
+    stage.regex {
+      source = "remainder"
+      expression = string.join(
+        [
+          "^(?P<tos>[^,]*)",
+          "(?P<ecn>[^,]*)",
+          "(?P<ttl>[^,]*)",
+          "(?P<id>[^,]*)",
+          "(?P<offset>[^,]*)",
+          "(?P<flags>[^,]*)",
+          "(?P<proto_id>[^,]*)",
+          "(?P<proto>[^,]*)",
+          "(?P<length>[^,]*)",
+          "(?P<source_ip>[^,]*)",
+          "(?P<dest_ip>[^,]*)",
+          "(?P<ip_remainder>.*)$",
+        ], ",",
+      )
+    }
+
+    stage.labels {
+      values = {
+        proto_id = "",
+      }
+    }
+  }
+
+  stage.match {
+    selector = "{ip_version=\"6\"}"
+    pipeline_name = "filterlog_ipv6_parsing"
+
+    stage.regex {
+      source = "remainder"
+      expression = string.join(
+        [
+          "^(?P<class>[^,]*)",
+          "(?P<flow_label>[^,]*)",
+          "(?P<hop_limit>[^,]*)",
+          "(?P<proto>[^,]*)",
+          "(?P<proto_id>[^,]*)",
+          "(?P<length>[^,]*)",
+          "(?P<source_ip>[^,]*)",
+          "(?P<dest_ip>[^,]*)",
+          "(?P<ip_remainder>.*)$",
+        ], ",",
+      )
+    }
+
+    stage.labels {
+      values = {
+        proto_id = "",
+      }
+    }
+  }
+
+  stage.match {
+    selector = "{proto_id=~\"6|17\"}"
+    pipeline_name = "filterlog_port_parsing"
+
+    stage.regex {
+      source = "ip_remainder"
+      expression = "^(?P<source_port>[^,]*),(?P<dest_port>[^,]*),"
+    }
+  }
+
+  stage.label_drop {
+    values = ["proto_id"]
+  }
+
+  stage.match {
+    selector = "{source_ip=~\".*\"}"
+    pipeline_name = "source_ip_geo"
+
+    stage.geoip {
+      db = "/var/lib/GeoIP/GeoLite2-City.mmdb"
+      db_type = "city"
+      source = "source_ip"
+    }
+    stage.labels {
+      values = {
+        source_country = "geoip_country_name",
+        source_country_longitude = "geoip_location_longitude",
+        source_country_latitude = "geoip_location_latitude",
+      }
+    }
+  }
+
+  stage.match {
+    selector = "{dest_ip=~\".*\"}"
+    pipeline_name = "dest_ip_geo"
+
+    stage.geoip {
+      db = "/var/lib/GeoIP/GeoLite2-City.mmdb"
+      db_type = "city"
+      source = "dest_ip"
+    }
+    stage.labels {
+      values = {
+        dest_country = "geoip_country_name",
+        dest_country_longitude = "geoip_location_longitude",
+        dest_country_latitude = "geoip_location_latitude",
+      }
+    }
+  }
+
+  stage.structured_metadata {
+    values = {
+      proc_id   = "",
+      msg_id    = "",
+      facility  = "",
+      action    = "",
+      direction = "",
+      interface = "",
+      reason    = "",
+      proto     = "",
+      source_ip = "",
+      dest_ip   = "",
+      source_port = "",
+      dest_port   = "",
+      source_country = "",
+      source_country_latitude = "",
+      source_country_longitude = "",
+      dest_country = "",
+      dest_country_latitude = "",
+      dest_country_longitude = "",
+    }
+  }
+}
+
+loki.write "victoriametrics" {
+  endpoint {
+    url = "http://localhost:9428/insert/loki/api/v1/push"
+  }
+}
