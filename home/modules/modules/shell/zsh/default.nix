@@ -22,6 +22,8 @@ in {
     programs.zsh = {
       inherit (cfg) enable;
 
+      dotDir = "${config.xdg.configHome}/zsh";
+
       autocd = true;
       enableCompletion = true;
       autosuggestion.enable = true;
