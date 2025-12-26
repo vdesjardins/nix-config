@@ -32,6 +32,15 @@ in {
     home.enableNixpkgsReleaseCheck = false;
 
     # fonts and colors
+    roles.desktop.gtk = {
+      inherit font;
+      themePackage = pkgs.tokyonight-gtk-theme;
+      themeName = "Tokyonight-Dark";
+      colorScheme = "dark";
+      iconPackage = pkgs.papirus-icon-theme;
+      iconName = "Papirus-Dark";
+    };
+
     modules = {
       desktop = {
         terminal = {
@@ -62,12 +71,6 @@ in {
         };
 
         extensions = {
-          dconf = {
-            inherit font;
-            gtk-theme = "Tokyonight-Night-B";
-            color-scheme = "prefer-dark";
-            icon-theme = "Papirus-Dark";
-          };
           rofi.font = "${font} 12";
           dunst = {
             inherit font;
@@ -122,13 +125,6 @@ in {
             line-numbers-zero-style = "#3b4261";
           };
         };
-      };
-    };
-
-    gtk = {
-      theme = {
-        name = "Tokyonight-Night-B";
-        package = pkgs.tokyonight-gtk-theme;
       };
     };
   };
