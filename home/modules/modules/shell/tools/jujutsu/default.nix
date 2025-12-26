@@ -64,7 +64,6 @@ in {
             gf = ["git" "fetch"];
             a = ["absorb"];
             ab = ["abandon"];
-            r = ["restore"];
             m = ["describe" "-m"];
             bl = ["bookmark" "list"];
             bc = ["bookmark" "create"];
@@ -78,6 +77,8 @@ in {
             nb = ["new" "--insert-before=@" "--no-edit"];
             na = ["new" "--insert-after=@"];
             mp = ["describe" "@-" "-m"];
+            r = ["restore"];
+            rm = ["rebase" "-d" "main"];
             sh = ["show"];
             sq = ["squash"];
             sqi = ["squash"];
@@ -109,7 +110,6 @@ in {
         jgf = "jj git fetch";
         ja = "jj absorb";
         jab = "jj abandon";
-        jr = "jj restore";
         jm = "jj describe -m";
         jbl = "jj bookmark list";
         jbc = "jj bookmark create";
@@ -123,6 +123,8 @@ in {
         jnb = "jj new --insert-before=@ --no-edit";
         jna = "jj new --insert-after=@";
         jmp = "jj describe @- -m";
+        jr = "jj restore";
+        jrm = "jj rebase -d main";
         jsh = "jj show";
         jsq = "jj squash";
         jsqi = "jj squash -i";
