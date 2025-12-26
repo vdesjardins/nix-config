@@ -98,7 +98,7 @@ in {
           default = {
             path = cfg.wallpapersPath;
             sorting = "random";
-            duration = "10m";
+            duration = "1h";
             mode = "center";
           };
         };
