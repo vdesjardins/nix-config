@@ -23,6 +23,20 @@ in {
       };
     };
 
+    modules.mcp.utcp-code-mode = {
+      mcpServers.fluxcd = {
+        transport = "stdio";
+        command = getExe cfg.package;
+        args = [
+          "serve"
+        ];
+        env = {
+          KUBECONFIG = "\${KUBECONFIG}";
+        };
+      };
+      sessionVariables.KUBECONFIG = "${config.home.homeDirectory}/.kube/config";
+    };
+
     programs.opencode.settings.mcp.fluxcd = {
       enabled = false;
       type = "local";

@@ -18,6 +18,12 @@ in {
     modules.desktop.editors.nixvim.ai.mcpServers.desktop-commander = {
       command = getExe cfg.package;
     };
+
+    modules.mcp.utcp-code-mode.mcpServers.desktop-commander = {
+      transport = "stdio";
+      command = getExe cfg.package;
+    };
+
     programs.opencode.settings.mcp."desktop-commander" = {
       enabled = false;
       type = "local";

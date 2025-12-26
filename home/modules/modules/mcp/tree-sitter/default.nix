@@ -1,0 +1,45 @@
+{
+  config,
+  lib,
+  my-packages,
+  ...
+}: let
+  inherit (lib) mkEnableOption mkPackageOption mkIf getExe;
+
+  cfg = config.modules.mcp.tree-sitter;
+in {
+  options.modules.mcp.tree-sitter = {
+    enable = mkEnableOption "tree-sitter mcp server";
+
+    package = mkPackageOption my-packages "mcp-server-tree-sitter" {};
+  };
+
+  config = mkIf cfg.enable {
+    modules.desktop.editors.nixvim.ai.mcpServers.tree_sitter = {
+      command = getExe cfg.package;
+    };
+
+    modules.mcp.utcp-code-mode.mcpServers.tree_sitter = {
+      transport = "stdio";
+      command = getExe cfg.package;
+    };
+
+    programs.opencode.settings.mcp.tree_sitter = {
+      enabled = true;
+      type = "local";
+      command = [(getExe cfg.package)];
+    };
+
+    programs.codex.settings.mcp_servers.tree_sitter = {
+      enabled = true;
+      command = getExe cfg.package;
+    };
+
+    modules.shell.tools.github-copilot-cli.settings.mcpServers.tree_sitter = {
+      type = "local";
+      command = getExe cfg.package;
+      tools = ["*"];
+      args = [];
+    };
+  };
+}

@@ -19,6 +19,11 @@ in {
       command = getExe cfg.package;
     };
 
+    modules.mcp.utcp-code-mode.mcpServers.fetch = {
+      transport = "stdio";
+      command = getExe cfg.package;
+    };
+
     programs.opencode.settings.mcp.fetch = {
       enabled = false;
       type = "local";

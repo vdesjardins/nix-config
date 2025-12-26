@@ -50,13 +50,16 @@
       mcp = {
         context7.enable = true;
         fluxcd.enable = true;
-        nixos.enable = true;
         git.enable = true;
         github.enable = true;
-        sequential-thinking.enable = true;
+        grafana.enable = true;
+        grafana.grafanaUrl = "https://grafana.kube-stack.org";
         kubernetes.enable = true;
-        universal-skills.enable = true;
+        nixos.enable = true;
         playright.enable = true;
+        sequential-thinking.enable = true;
+        tree-sitter.enable = true;
+        utcp-code-mode.enable = true;
       };
     };
 

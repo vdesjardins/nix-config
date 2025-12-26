@@ -18,14 +18,20 @@ in {
     modules.desktop.editors.nixvim.ai.mcpServers.context7 = {
       command = getExe cfg.package;
     };
+
+    modules.mcp.utcp-code-mode.mcpServers.context7 = {
+      transport = "stdio";
+      command = getExe cfg.package;
+    };
+
     programs.opencode.settings.mcp.context7 = {
-      enabled = true;
+      enabled = false;
       type = "local";
       command = [(getExe cfg.package)];
     };
 
     programs.codex.settings.mcp_servers.context7 = {
-      enabled = true;
+      enabled = false;
       command = getExe cfg.package;
     };
 

@@ -19,14 +19,19 @@ in {
       command = getExe cfg.package;
     };
 
+    modules.mcp.utcp-code-mode.mcpServers.nixos = {
+      transport = "stdio";
+      command = getExe cfg.package;
+    };
+
     programs.opencode.settings.mcp.nixos = {
-      enabled = true;
+      enabled = false;
       type = "local";
       command = [(getExe cfg.package)];
     };
 
     programs.codex.settings.mcp_servers.nixos = {
-      enabled = true;
+      enabled = false;
       command = getExe cfg.package;
     };
 

@@ -32,6 +32,15 @@ in {
       ];
     };
 
+    modules.mcp.utcp-code-mode.mcpServers.playwright = {
+      transport = "stdio";
+      command = getExe cfg.package;
+      args = [
+        "--executable-path"
+        cfg.executable
+      ];
+    };
+
     programs.opencode.settings.mcp.playwright = {
       enabled = false;
       type = "local";

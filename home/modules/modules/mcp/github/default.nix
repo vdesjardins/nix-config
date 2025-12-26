@@ -13,6 +13,12 @@ in {
     enable = mkEnableOption "github mcp server";
 
     package = mkPackageOption my-packages "github-mcp-server" {};
+
+    personalAccessToken = lib.mkOption {
+      type = lib.types.str;
+      default = "$(${pkgs.passage}/bin/passage apis/github/${config.home.username}/default 2>/dev/null || echo 'not-set')";
+      description = "GitHub Personal Access Token for GitHub MCP server";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -29,15 +35,29 @@ in {
       };
     };
 
+    modules.mcp.utcp-code-mode = {
+      mcpServers.github = {
+        transport = "stdio";
+        command = getExe cfg.package;
+        args = [
+          "stdio"
+        ];
+        env = {
+          GITHUB_PERSONAL_ACCESS_TOKEN = "\${GITHUB_PERSONAL_ACCESS_TOKEN}";
+        };
+      };
+      sessionVariables.GITHUB_PERSONAL_ACCESS_TOKEN = "\${GITHUB_PERSONAL_ACCESS_TOKEN}";
+    };
+
     programs = {
       opencode.settings.mcp.github = {
-        enabled = true;
+        enabled = false;
         type = "local";
         command = [(getExe cfg.package) "stdio"];
       };
 
       codex.settings.mcp_servers.github = {
-        enabled = true;
+        enabled = false;
         command = getExe cfg.package;
         args = ["stdio"];
         env_vars = ["GITHUB_PERSONAL_ACCESS_TOKEN"];
@@ -45,8 +65,8 @@ in {
 
       zsh.initContent = ''
         mkdir -p ~/.local/share/github-cmp-server/
-        export GITHUB_PERSONAL_ACCESS_TOKEN="$(${pkgs.passage}/bin/passage apis/github/${config.home.username}/default 2>/dev/null || echo 'not-set')"
       '';
     };
+    home.sessionVariables.GITHUB_PERSONAL_ACCESS_TOKEN = cfg.personalAccessToken;
   };
 }
