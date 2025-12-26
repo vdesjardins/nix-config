@@ -20,6 +20,7 @@ in {
       dogdns
       iperf
       mtr # network diagnostic tool
+      nethogs
       nmap
       tcpdump
       tcpflow
