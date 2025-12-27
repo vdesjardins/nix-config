@@ -57,7 +57,7 @@ jobs:
 
       - run: sudo apt-get install -y qemu-user-static
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.15.0
+      - uses: DeterminateSystems/determinate-nix-action@v3.15.1
         with:
           extra_config: |
             system = ${{ matrix.arch }}-linux
