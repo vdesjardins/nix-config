@@ -46,6 +46,9 @@ in {
             "git checkout" = "allow";
             "git stash" = "allow";
             "ls" = "allow";
+            "grep" = "allow";
+            "find" = "allow";
+            "xargs" = "allow";
           };
         };
 
@@ -76,6 +79,11 @@ in {
           };
         };
       };
+
+      rules = ''
+        After applying each change, create a file called INTENTS-[YYYY-MM-DD-HH-mm].md
+        that includes the prompt used to make this change. Do not call any scm tools for this operation.
+      '';
     };
   };
 }

@@ -101,6 +101,30 @@ in {
         };
       };
 
+      opencode = {
+        commands = {
+          jj-commit = ''
+            ---
+            description: Generate and set commit message using jujutsu
+            subtask: true
+            ---
+
+            Generate a conventional commit message from INTENTS-* files.
+            - To check for `INTENTS-*` files, You MUST run `jj status`.
+            - Do not check for other INTENTS files other than those reported by `jj status`.
+            - If no such files exist from the `jj status` command, generate from the diff with the command `jj diff`.
+            - If $1 begins by `refs:`, use the corresponding refs as commit footer.
+            - To set the commit message, run `jj describe -m "<message>"`.
+        '';
+        };
+
+        settings.permission.bash = {
+          "jj describe" = "allow";
+          "jj diff" = "allow";
+          "jj status" = "allow";
+        };
+      };
+
       zsh.shellAliases = {
         j = "jj";
         jd = "jj diff";
