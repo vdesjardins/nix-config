@@ -106,16 +106,49 @@ in {
         commands = {
           jj-describe = ''
             ---
-            description: Generate and set commit message using jujutsu
+            description: Create well-formatted conventional commit messages using jujutsu.
+            agent: build
             subtask: true
             ---
 
-            Generate a conventional commit message from INTENTS-* files.
-            - To check for `INTENTS-*` files, You MUST run `jj status`.
-            - Do not check for other INTENTS files other than those reported by `jj status`.
-            - If no such files exist from the `jj status` command, generate from the diff with the command `jj diff`.
-            - If $1 begins by `refs:`, use the corresponding refs as commit footer.
+            ## Features:
+            - Runs pre-commit checks by default (lint, build, generate docs)
+            - Uses conventional commit format with descriptive emojis
+
+            ## Usage:
+            - `jj-describe [refs:<ref>]` - Standard with pre-commit checks
+            - `jj-describe [refs:<ref>] --no-verify` - Skip pre-commit checks
+
+            ## Commit Types:
+            - ✨ feat: New features
+            - 🐛 fix: Bug fixes
+            - 📝 docs: Documentation changes
+            - ♻️ refactor: Code restructuring without changing functionality
+            - 🎨 style: Code formatting, missing semicolons, etc.
+            - ⚡️ perf: Performance improvements
+            - ✅ test: Adding or correcting tests
+            - 🧑‍💻 chore: Tooling, configuration, maintenance
+            - 🚧 wip: Work in progress
+            - 🔥 remove: Removing code or files
+            - 🚑 hotfix: Critical fixes
+            - 🔒 security: Security improvements
+
+            ## Process
+            - DO NOT use any `git` commands. only `jj` commands are allowed.
+            - Run pre-commit checks (unless --no-verify)
+            - Analyze the changes in the working copy
+              - Check for `INTENTS-*` files, You MUST run `jj status`.
+              - Do not check for other INTENTS files other than those reported by `jj status`.
+              - If no such files exist from the `jj status` command, generate from the diff with the command `jj diff`.
+            - If `refs:`, use the corresponding refs as commit footer.
+            - Include a scope if applicable: `type(scope): description`
+            - Add a body for complex changes. Explain why.
             - To set the commit message, run `jj describe -m "<message>"`.
+
+            ## Best Practices
+            - Write in imperative mood.
+            - Explain the WHY, not the WHAT.
+            - Reference issues/PRs when relevant.
         '';
         };
 
