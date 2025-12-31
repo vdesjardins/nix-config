@@ -1,0 +1,433 @@
+;; Miryoku layout – Kanata configuration
+;; -------------------------------------------------
+;; 1. defsrc – the set of keys that will be captured
+;; 2. deflayer – one layer per Miryoku definition
+;; 3. defalias – helper for layer switching (tap‑hold on space)
+;; -------------------------------------------------
+
+(defsrc
+  ;; row 1
+  bspc 1 2 3 4 5 6 7 8 9 0 - = 
+  ;; row 2
+  tab q w e r t y u i o p [ ] \
+  ;; row 3
+  caps a s d f g h j k l ; ' enter
+  ;; row 4
+  lsft z x c v b n m , . / rsft
+  ;; row 5
+  lctl lmet lalt spc ralt rmet rctl
+)
+
+;; ------------------------------------------------------------------
+;; Base layer – the standard Miryoku “Base” layout
+;; ------------------------------------------------------------------
+(deflayer miryoku-base
+  ;; row 1
+  f u
+  ;; row 2
+  w p l y
+  ;; row 3
+  b j
+  ;; row 4
+  q
+  ;; row 5
+  s ctrl
+  ;; row 6
+  r alt
+  t shift
+  n shift
+  i alt
+  ;; row 7
+  g m
+  ;; row 8
+  a super
+  o super
+  ;; row 9
+  c
+  ;; row 10
+  < ,
+  ;; row 11
+  x d h
+  ;; row 12
+  > .
+  ;; row 13
+  v k
+  ;; row 14
+  z button
+  ? /
+  ;; row 15
+  esc media
+  ;; row 16
+  fun
+  ;; row 17
+  spc nav
+  ;; row 18
+  mouse
+  ;; row 19
+  sym
+  ;; row 20
+  num
+  ;; row 21
+  super
+  ;; row 22
+  copy
+  ;; row 23
+  copy
+)
+
+;; ------------------------------------------------------------------
+;; Button layer – copy/cut/paste, etc.
+;; ------------------------------------------------------------------
+(deflayer miryoku-button
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Features layer – modifiers, media keys, etc.
+;; ------------------------------------------------------------------
+(deflayer miryoku-features
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Fun layer – fun keys
+;; ------------------------------------------------------------------
+(deflayer miryoku-fun
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Media layer – volume, media controls, etc.
+;; ------------------------------------------------------------------
+(deflayer miryoku-media
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Mouse layer – arrow keys, mouse buttons
+;; ------------------------------------------------------------------
+(deflayer miryoku-mouse
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Navigation layer – arrow keys, numpad, etc.
+;; ------------------------------------------------------------------
+(deflayer miryoku-nav
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Numpad layer – numpad keys
+;; ------------------------------------------------------------------
+(deflayer miryoku-num
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Symbol layer – punctuation, brackets, etc.
+;; ------------------------------------------------------------------
+(deflayer miryoku-sym
+  ;; row 1
+  copy copy
+  ;; row 2
+  cut paste
+  paste cut
+  ;; row 3
+  redo redo
+  ;; row 4
+  undo undo
+  ;; row 5
+  ctrl ctrl
+  ;; row 6
+  alt shift
+  shift alt
+  ;; row 7
+  super super
+  ;; row 8
+  copy copy
+  ;; row 9
+  cut paste
+  paste cut
+  ;; row 10
+  redo redo
+  ;; row 11
+  undo undo
+  ;; row 12
+  middle middle
+  ;; row 13
+  miryoku
+  ;; row 14
+  left
+  ;; row 15
+  right
+  ;; row 16
+  right
+  ;; row 17
+  left
+)
+
+;; ------------------------------------------------------------------
+;; Layer switching helper – tap space for normal space, hold to switch to nav
+;; ------------------------------------------------------------------
+(defalias
+  ;; tap-hold: tap = space, hold = layer-switch nav
+  spc (tap-hold 200 200 spc (layer-switch nav))
+)
+
+;; ------------------------------------------------------------------
+;; Optional: set the default layer to miryoku-base
+;; ------------------------------------------------------------------
+(layer-switch miryoku-base)
