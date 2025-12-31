@@ -103,7 +103,7 @@ in {
 
       opencode = {
         commands = {
-          jj-commit = ''
+          jj-describe = ''
             ---
             description: Generate and set commit message using jujutsu
             subtask: true
