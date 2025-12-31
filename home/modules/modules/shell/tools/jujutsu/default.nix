@@ -64,7 +64,6 @@ in {
             gf = ["git" "fetch"];
             a = ["absorb"];
             ab = ["abandon"];
-            m = ["describe" "-m"];
             bl = ["bookmark" "list"];
             bc = ["bookmark" "create"];
             bd = ["bookmark" "delete"];
@@ -76,9 +75,11 @@ in {
             ne = ["next" "--edit"];
             nb = ["new" "--insert-before=@" "--no-edit"];
             na = ["new" "--insert-after=@"];
+            m = ["describe" "-m"];
             mp = ["describe" "@-" "-m"];
             r = ["restore"];
-            rm = ["rebase" "-d" "main"];
+            re = ["rebase"];
+            rem = ["rebase" "-d" "main"];
             sh = ["show"];
             sq = ["squash"];
             sqi = ["squash"];
@@ -148,7 +149,8 @@ in {
         jna = "jj new --insert-after=@";
         jmp = "jj describe @- -m";
         jr = "jj restore";
-        jrm = "jj rebase -d main";
+        jre = "jj rebase";
+        jrem = "jj rebase -d main";
         jsh = "jj show";
         jsq = "jj squash";
         jsqi = "jj squash -i";
