@@ -104,7 +104,7 @@ in {
 
       opencode = {
         commands = {
-          jj-describe = ''
+          "jj:describe" = ''
             ---
             description: Create well-formatted conventional commit messages using jujutsu.
             agent: build
