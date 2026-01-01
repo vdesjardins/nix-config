@@ -18,7 +18,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.kanata-with-cmd ];
+    home.packages = [pkgs.kanata-with-cmd];
 
     xdg.configFile."kanata/kanata.kbd".source = ./kanata.kbd;
   };

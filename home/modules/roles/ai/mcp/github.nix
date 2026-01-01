@@ -23,7 +23,7 @@ in {
   config = mkIf cfg.enable {
     modules.mcp.github = {
       enable = true;
-      personalAccessToken = cfg.personalAccessToken;
+      inherit (cfg) personalAccessToken;
     };
   };
 }

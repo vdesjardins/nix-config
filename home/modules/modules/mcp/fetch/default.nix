@@ -15,13 +15,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.editors.nixvim.ai.mcpServers.fetch = {
-      command = getExe cfg.package;
-    };
+    modules = {
+      desktop.editors.nixvim.ai.mcpServers.fetch = {
+        command = getExe cfg.package;
+      };
 
-    modules.mcp.utcp-code-mode.mcpServers.fetch = {
-      transport = "stdio";
-      command = getExe cfg.package;
+      mcp.utcp-code-mode.mcpServers.fetch = {
+        transport = "stdio";
+        command = getExe cfg.package;
+      };
+
+      shell.tools.github-copilot-cli.settings.mcpServers.fetch = {
+        type = "local";
+        command = getExe cfg.package;
+        tools = ["*"];
+        args = [];
+      };
     };
 
     programs.opencode.settings.mcp.fetch = {
@@ -33,13 +42,6 @@ in {
     programs.codex.settings.mcp_servers.fetch = {
       enabled = false;
       command = getExe cfg.package;
-    };
-
-    modules.shell.tools.github-copilot-cli.settings.mcpServers.fetch = {
-      type = "local";
-      command = getExe cfg.package;
-      tools = ["*"];
-      args = [];
     };
   };
 }

@@ -37,7 +37,7 @@
       name = "mcp";
       call_template_type = "mcp";
       config = {
-        mcpServers = cfg.mcpServers;
+        inherit (cfg) mcpServers;
       };
     }
     {

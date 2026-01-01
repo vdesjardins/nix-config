@@ -138,11 +138,7 @@
           inherit name;
           inherit (dashCfg) url sha256;
         }
-      else if dashCfg ? path
-      then
-        dashCfg.path
-      else
-        builtins.throw "Dashboard ${name} must have either 'id', 'url', or 'path'";
+      else dashCfg.path or (builtins.throw "Dashboard ${name} must have either 'id', 'url', or 'path'");
   in
     dashLib.dashboardEntry {
       inherit name;

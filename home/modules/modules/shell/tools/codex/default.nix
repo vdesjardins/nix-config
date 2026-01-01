@@ -42,7 +42,7 @@ in {
 
         profiles = {
           llamacpp-gpt-oss-20b = {
-            model ="ggml-org/gpt-oss-20b-GGUF";
+            model = "ggml-org/gpt-oss-20b-GGUF";
             model_provider = "llamacpp";
           };
           ollama-gpt-oss-20b = {

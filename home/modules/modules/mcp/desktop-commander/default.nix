@@ -15,13 +15,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.editors.nixvim.ai.mcpServers.desktop-commander = {
-      command = getExe cfg.package;
-    };
+    modules = {
+      desktop.editors.nixvim.ai.mcpServers.desktop-commander = {
+        command = getExe cfg.package;
+      };
 
-    modules.mcp.utcp-code-mode.mcpServers.desktop-commander = {
-      transport = "stdio";
-      command = getExe cfg.package;
+      mcp.utcp-code-mode.mcpServers.desktop-commander = {
+        transport = "stdio";
+        command = getExe cfg.package;
+      };
+
+      shell.tools.github-copilot-cli.settings.mcpServers.desktop-commander = {
+        type = "local";
+        command = getExe cfg.package;
+        tools = ["*"];
+        args = [];
+      };
     };
 
     programs.opencode.settings.mcp."desktop-commander" = {
@@ -33,13 +42,6 @@ in {
     programs.codex.settings.mcp_servers."desktop-commander" = {
       enabled = false;
       command = getExe cfg.package;
-    };
-
-    modules.shell.tools.github-copilot-cli.settings.mcpServers.desktop-commander = {
-      type = "local";
-      command = getExe cfg.package;
-      tools = ["*"];
-      args = [];
     };
   };
 }

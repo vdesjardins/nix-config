@@ -15,13 +15,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.editors.nixvim.ai.mcpServers.tree_sitter = {
-      command = getExe cfg.package;
-    };
+    modules = {
+      desktop.editors.nixvim.ai.mcpServers.tree_sitter = {
+        command = getExe cfg.package;
+      };
 
-    modules.mcp.utcp-code-mode.mcpServers.tree_sitter = {
-      transport = "stdio";
-      command = getExe cfg.package;
+      mcp.utcp-code-mode.mcpServers.tree_sitter = {
+        transport = "stdio";
+        command = getExe cfg.package;
+      };
+
+      shell.tools.github-copilot-cli.settings.mcpServers.tree_sitter = {
+        type = "local";
+        command = getExe cfg.package;
+        tools = ["*"];
+        args = [];
+      };
     };
 
     programs.opencode.settings.mcp.tree_sitter = {
@@ -33,13 +42,6 @@ in {
     programs.codex.settings.mcp_servers.tree_sitter = {
       enabled = true;
       command = getExe cfg.package;
-    };
-
-    modules.shell.tools.github-copilot-cli.settings.mcpServers.tree_sitter = {
-      type = "local";
-      command = getExe cfg.package;
-      tools = ["*"];
-      args = [];
     };
   };
 }

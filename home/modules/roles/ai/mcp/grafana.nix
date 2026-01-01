@@ -36,7 +36,7 @@ in {
   config = mkIf cfg.enable {
     modules.mcp.grafana = {
       enable = true;
-      grafanaUrl = cfg.grafanaUrl;
+      inherit (cfg) grafanaUrl;
     };
   };
 }

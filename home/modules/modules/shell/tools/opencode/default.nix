@@ -65,11 +65,11 @@ in {
                 name = "gpt-oss-20b";
                 tools = true;
               };
-              "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q2_K_XL"= {
-                name= "Qwen3-Coder: a3b-30b";
-                limit= {
-                  context= 262144;
-                  output= 65536;
+              "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q2_K_XL" = {
+                name = "Qwen3-Coder: a3b-30b";
+                limit = {
+                  context = 262144;
+                  output = 65536;
                 };
               };
             };

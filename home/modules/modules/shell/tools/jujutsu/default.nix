@@ -149,7 +149,7 @@ in {
             - Write in imperative mood.
             - Explain the WHY, not the WHAT.
             - Reference issues/PRs when relevant.
-        '';
+          '';
         };
 
         settings.permission.bash = {

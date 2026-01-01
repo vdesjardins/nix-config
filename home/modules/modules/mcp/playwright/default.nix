@@ -24,21 +24,33 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.editors.nixvim.ai.mcpServers.playwright = {
-      command = getExe cfg.package;
-      args = [
-        "--executable-path"
-        cfg.executable
-      ];
-    };
+    modules = {
+      desktop.editors.nixvim.ai.mcpServers.playwright = {
+        command = getExe cfg.package;
+        args = [
+          "--executable-path"
+          cfg.executable
+        ];
+      };
 
-    modules.mcp.utcp-code-mode.mcpServers.playwright = {
-      transport = "stdio";
-      command = getExe cfg.package;
-      args = [
-        "--executable-path"
-        cfg.executable
-      ];
+      mcp.utcp-code-mode.mcpServers.playwright = {
+        transport = "stdio";
+        command = getExe cfg.package;
+        args = [
+          "--executable-path"
+          cfg.executable
+        ];
+      };
+
+      shell.tools.github-copilot-cli.settings.mcpServers.playwright = {
+        type = "local";
+        command = getExe cfg.package;
+        tools = ["*"];
+        args = [
+          "--executable-path"
+          cfg.executable
+        ];
+      };
     };
 
     programs.opencode.settings.mcp.playwright = {
@@ -54,16 +66,6 @@ in {
     programs.codex.settings.mcp_servers.playwright = {
       enabled = false;
       command = getExe cfg.package;
-      args = [
-        "--executable-path"
-        cfg.executable
-      ];
-    };
-
-    modules.shell.tools.github-copilot-cli.settings.mcpServers.playwright = {
-      type = "local";
-      command = getExe cfg.package;
-      tools = ["*"];
       args = [
         "--executable-path"
         cfg.executable

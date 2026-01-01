@@ -36,32 +36,47 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.editors.nixvim.ai.mcpServers.grafana = {
-      command = getExe cfg.package;
-      env = {
-        GRAFANA_URL = "";
-        GRAFANA_SERVICE_ACCOUNT_TOKEN = "";
-        GRAFANA_USERNAME = "";
-        GRAFANA_PASSWORD = "";
-      };
-    };
-
-    modules.mcp.utcp-code-mode = {
-      mcpServers.grafana = {
-        transport = "stdio";
+    modules = {
+      desktop.editors.nixvim.ai.mcpServers.grafana = {
         command = getExe cfg.package;
         env = {
+          GRAFANA_URL = "";
+          GRAFANA_SERVICE_ACCOUNT_TOKEN = "";
+          GRAFANA_USERNAME = "";
+          GRAFANA_PASSWORD = "";
+        };
+      };
+
+      mcp.utcp-code-mode = {
+        mcpServers.grafana = {
+          transport = "stdio";
+          command = getExe cfg.package;
+          env = {
+            GRAFANA_URL = "\${GRAFANA_URL}";
+            GRAFANA_SERVICE_ACCOUNT_TOKEN = "\${GRAFANA_SERVICE_ACCOUNT_TOKEN}";
+            GRAFANA_USERNAME = "\${GRAFANA_USERNAME}";
+            GRAFANA_PASSWORD = "\${GRAFANA_PASSWORD}";
+          };
+        };
+        sessionVariables = {
           GRAFANA_URL = "\${GRAFANA_URL}";
           GRAFANA_SERVICE_ACCOUNT_TOKEN = "\${GRAFANA_SERVICE_ACCOUNT_TOKEN}";
           GRAFANA_USERNAME = "\${GRAFANA_USERNAME}";
           GRAFANA_PASSWORD = "\${GRAFANA_PASSWORD}";
         };
       };
-      sessionVariables = {
-        GRAFANA_URL = "\${GRAFANA_URL}";
-        GRAFANA_SERVICE_ACCOUNT_TOKEN = "\${GRAFANA_SERVICE_ACCOUNT_TOKEN}";
-        GRAFANA_USERNAME = "\${GRAFANA_USERNAME}";
-        GRAFANA_PASSWORD = "\${GRAFANA_PASSWORD}";
+
+      shell.tools.github-copilot-cli.settings.mcpServers.grafana = {
+        type = "local";
+        command = getExe cfg.package;
+        tools = ["*"];
+        args = [];
+        environment = {
+          GRAFANA_URL = "";
+          GRAFANA_SERVICE_ACCOUNT_TOKEN = "";
+          GRAFANA_USERNAME = "";
+          GRAFANA_PASSWORD = "";
+        };
       };
     };
 
@@ -88,22 +103,11 @@ in {
       ];
     };
 
-    modules.shell.tools.github-copilot-cli.settings.mcpServers.grafana = {
-      type = "local";
-      command = getExe cfg.package;
-      tools = ["*"];
-      args = [];
-      environment = {
-        GRAFANA_URL = "";
-        GRAFANA_SERVICE_ACCOUNT_TOKEN = "";
-        GRAFANA_USERNAME = "";
-        GRAFANA_PASSWORD = "";
-      };
+    home.sessionVariables = {
+      GRAFANA_URL = cfg.grafanaUrl;
+      GRAFANA_SERVICE_ACCOUNT_TOKEN = cfg.grafanaServiceAccountToken;
+      GRAFANA_USERNAME = cfg.grafanaUsername;
+      GRAFANA_PASSWORD = cfg.grafanaPassword;
     };
-
-    home.sessionVariables.GRAFANA_URL = cfg.grafanaUrl;
-    home.sessionVariables.GRAFANA_SERVICE_ACCOUNT_TOKEN = cfg.grafanaServiceAccountToken;
-    home.sessionVariables.GRAFANA_USERNAME = cfg.grafanaUsername;
-    home.sessionVariables.GRAFANA_PASSWORD = cfg.grafanaPassword;
   };
 }
