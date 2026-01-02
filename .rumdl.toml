@@ -29,6 +29,7 @@ exclude = [
     "CHANGELOG.md",
     "LICENSE.md",
     "AGENTS.md",
+    "INTENTS-*",
 ]
 
 # Respect .gitignore files when scanning directories (default: true)
