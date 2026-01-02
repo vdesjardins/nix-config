@@ -341,12 +341,6 @@ in {
           "stayfocused, class:(clipse)"
         ];
 
-        # Workaround for wrong wpaperd texture on vertical screen
-        # https://github.com/hyprwm/Hyprland/issues/9408#issuecomment-2661608482
-        render = {
-          expand_undersized_textures = false;
-        };
-
         general = {
           gaps_in = 5;
           gaps_out = 10;
