@@ -276,6 +276,12 @@
       }
       {
         mode = "n";
+        key = "<leader>fd";
+        action.__raw = "Snacks.picker.git_diff";
+        options.desc = "File Diffs (Snacks)";
+      }
+      {
+        mode = "n";
         key = "<leader>fH";
         action.__raw = "Snacks.picker.help";
         options.desc = "Help (Snacks)";
