@@ -111,6 +111,18 @@ in {
             subtask: true
             ---
 
+            ## CRITICAL - DO NOT CREATE SCRIPTS OR TOOLS
+
+            You are NOT meant to create shell scripts, executables, or tools to implement this workflow.
+            You are ONLY meant to:
+            1. Follow the process steps below to generate a commit message
+            2. Use `jj describe -m` to set that message
+            3. Nothing else.
+
+            If you find yourself creating a script, file, or tool implementation, STOP immediately - you are misunderstanding the instructions.
+
+            ---
+
             Create well-formatted conventional commit messages using jujutsu
             that follows the following guidelines:
 
@@ -133,9 +145,9 @@ in {
             - 🔒 security: Security improvements
 
             ## Process
-            - Run pre-commit checks (unless --no-verify)
-            - DO NOT use any `git` commands. Only `jj` commands are allowed.
-            - DO NOT use shell inspection commands like `ls`, `find` to locate files.
+            - **ALWAYS run pre-commit checks first** with `pre-commit run -a`
+            - **ONLY use `jj` commands.** No other commands are allowed (no bash, ls, find, cat, echo, grep, etc.)
+            - **DO NOT use any other tools or commands** to inspect files, run scripts, or perform any operations.
             - To create the message, check for changes in the working copy:
               1. Run `jj status` to get the working copy status
               2. Check the output of `jj status` to see if any `INTENTS-*` files are listed
@@ -161,6 +173,7 @@ in {
           "jj describe" = "allow";
           "jj diff" = "allow";
           "jj status" = "allow";
+          "pre-commit run" = "allow";
         };
       };
 
