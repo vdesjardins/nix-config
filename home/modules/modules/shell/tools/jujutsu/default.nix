@@ -111,13 +111,12 @@ in {
             subtask: true
             ---
 
+            Create well-formatted conventional commit messages using jujutsu
+            that follows the following guidelines:
+
             ## Features:
             - Runs pre-commit checks by default (lint, build, generate docs)
             - Uses conventional commit format with descriptive emojis
-
-            ## Usage:
-            - `jj-describe [refs:<ref>]` - Standard with pre-commit checks
-            - `jj-describe [refs:<ref>] --no-verify` - Skip pre-commit checks
 
             ## Commit Types:
             - ✨ feat: New features
@@ -134,13 +133,19 @@ in {
             - 🔒 security: Security improvements
 
             ## Process
-            - DO NOT use any `git` commands. only `jj` commands are allowed.
             - Run pre-commit checks (unless --no-verify)
-            - Analyze the changes in the working copy
-              - Check for `INTENTS-*` files, You MUST run `jj status`.
-              - Do not check for other INTENTS files other than those reported by `jj status`.
-              - If no such files exist from the `jj status` command, generate from the diff with the command `jj diff`.
-            - If `refs:`, use the corresponding refs as commit footer.
+            - DO NOT use any `git` commands. Only `jj` commands are allowed.
+            - DO NOT use shell inspection commands like `ls`, `find` to locate files.
+            - To create the message, check for changes in the working copy:
+              1. Run `jj status` to get the working copy status
+              2. Check the output of `jj status` to see if any `INTENTS-*` files are listed
+              3. If `INTENTS-*` files exist in the status output:
+                 - Read the INTENTS file from disk to get the original prompt
+                 - Use the content to generate the commit message based on the changes
+              4. If NO `INTENTS-*` files are listed in the `jj status` output:
+                 - Run `jj diff` to analyze the changes
+                 - Generate the commit message from the diff output
+            - If `refs:` is specified, use the corresponding refs as commit footer.
             - Include a scope if applicable: `type(scope): description`
             - Add a body for complex changes. Explain why.
             - To set the commit message, run `jj describe -m "<message>"`.
