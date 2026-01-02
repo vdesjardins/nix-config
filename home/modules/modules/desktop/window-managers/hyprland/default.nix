@@ -92,16 +92,8 @@ in {
 
     services = {
       hyprpolkitagent.enable = true;
-      wpaperd = {
+      swww = {
         enable = true;
-        settings = {
-          default = {
-            path = cfg.wallpapersPath;
-            sorting = "random";
-            duration = "1h";
-            mode = "center";
-          };
-        };
       };
       hypridle = {
         enable = true;
@@ -327,6 +319,7 @@ in {
         exec-once = [
           "${getExe pkgs.wl-clip-persist} --clipboard regular & ${getExe pkgs.clipse} -listen"
           "${getExe pkgs.hyprland-monitor-attached} ${monitor-attached}"
+          "${getExe pkgs.swww} img $(find ${cfg.wallpapersPath} -maxdepth 1 -type f | shuf -n 1)"
         ];
 
         workspace = [
