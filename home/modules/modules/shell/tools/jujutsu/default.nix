@@ -157,9 +157,14 @@ in {
               4. If NO `INTENTS-*` files are listed in the `jj status` output:
                  - Run `jj diff` to analyze the changes
                  - Generate the commit message from the diff output
+            - **SELECT THE EMOJI (MANDATORY)**:
+              1. Identify the commit type from your changes (feat, fix, docs, refactor, style, perf, test, chore, wip, remove, hotfix, security)
+              2. Match it to the corresponding emoji from the "Commit Types" list above
+              3. **ALWAYS prepend the emoji to the message** - emoji comes FIRST, before the type
             - If `refs:` is specified, use the corresponding refs as commit footer.
-            - Include a scope if applicable: `type(scope): description`
+            - Include a scope if applicable: `<emoji> type(scope): description`
             - Add a body for complex changes. Explain why.
+            - **Message format**: `<emoji> <type>(<scope>): <description>`
             - To set the commit message, run `jj describe -m "<message>"`.
 
             ## Best Practices
