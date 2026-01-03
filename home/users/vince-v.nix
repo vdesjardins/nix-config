@@ -61,6 +61,9 @@
         tree-sitter.enable = true;
         utcp-code-mode.enable = true;
       };
+      skill = {
+        dev-browser.enable = true;
+      };
     };
 
     desktop = {
