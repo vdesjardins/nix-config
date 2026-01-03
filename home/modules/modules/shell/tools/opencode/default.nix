@@ -39,13 +39,9 @@ in {
         permission = {
           bash = {
             "*" = "ask";
-            "git status" = "allow";
-            "git diff" = "allow";
-            "git add" = "allow";
-            "git commit" = "allow";
-            "git checkout" = "allow";
-            "git stash" = "allow";
             "ls" = "allow";
+            "rg" = "allow";
+            "fd" = "allow";
             "grep" = "allow";
             "find" = "allow";
             "xargs" = "allow";
