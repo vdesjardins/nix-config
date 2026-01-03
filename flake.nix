@@ -178,21 +178,43 @@
     });
 
     checks = forAllSupportedSystems (
-      system: {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            actionlint.enable = true;
-            alejandra.enable = true;
-            statix.enable = true;
-            stylua.enable = true;
-            shellcheck.enable = true;
-            shfmt.enable = true;
-            commitizen.enable = true;
-            rumdl.enable = true;
+      system: let
+        # Use only custom packages from ./packages directory
+        customPackages = myPackages pkgs.${system};
+
+        # Filter packages that have passthru.tests
+        packagesWithTests =
+          lib.filterAttrs
+          (name: pkg: pkg ? passthru.tests)
+          customPackages;
+
+        # Build a flat set of test checks
+        testsAttrs =
+          lib.concatMapAttrs
+          (
+            pkgName: pkg:
+              lib.mapAttrs'
+              (testName: testDrv: lib.nameValuePair "packages-${pkgName}-${testName}" testDrv)
+              pkg.passthru.tests
+          )
+          packagesWithTests;
+      in
+        {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              actionlint.enable = true;
+              alejandra.enable = true;
+              statix.enable = true;
+              stylua.enable = true;
+              shellcheck.enable = true;
+              shfmt.enable = true;
+              commitizen.enable = true;
+              rumdl.enable = true;
+            };
           };
-        };
-      }
+        }
+        // testsAttrs
     );
   };
 }
