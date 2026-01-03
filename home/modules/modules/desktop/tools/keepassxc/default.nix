@@ -69,6 +69,20 @@ in {
       };
       default = {};
     };
+
+    windowRules = mkOption {
+      description = "Hyprland window rules for KeePassXC";
+      type = types.submodule {
+        options = {
+          floating = mkOption {
+            type = types.bool;
+            default = true;
+            description = "Make KeePassXC windows floating in Hyprland";
+          };
+        };
+      };
+      default = {};
+    };
   };
 
   imports = [
@@ -133,6 +147,10 @@ in {
           LanguageOverride = "";
           MainWindowState = "";
           ShowTrayIcon = true;
+          MinimizeToTray = true;
+          MinimizeOnStartup = true;
+          MinimizeOnClose = true;
+          HideWindowOnOpen = false;
         };
 
         # Password generator defaults
@@ -155,5 +173,10 @@ in {
     home.activation.createKeepassxcDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
       mkdir -p "$HOME/.local/share/keepassxc"
     '';
+
+    # Configure KeePassXC window rules for Hyprland
+    wayland.windowManager.hyprland.settings.windowrulev2 = mkIf cfg.windowRules.floating [
+      "float, class:(org.keepassxc.KeePassXC)"
+    ];
   };
 }
