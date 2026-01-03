@@ -17,7 +17,7 @@ in {
     home.packages = with pkgs; [
       dig
       dnspeep # look at host dns queries
-      dogdns
+      doggo
       iperf
       mtr # network diagnostic tool
       nethogs

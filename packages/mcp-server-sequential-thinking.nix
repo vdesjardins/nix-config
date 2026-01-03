@@ -2,7 +2,6 @@
   buildNpmPackage,
   fetchFromGitHub,
   typescript,
-  writeScriptBin,
 }:
 buildNpmPackage rec {
   pname = "mcp-server-sequential-thinking";
@@ -17,11 +16,12 @@ buildNpmPackage rec {
 
   npmDepsHash = "sha256-wluSvNnZcIz2XyXqmmego+vYThT3EtzakJsamzhgb6g=";
 
+  dontNpmPrune = true;
+
   npmWorkspace = "src/sequentialthinking";
 
   nativeBuildInputs = [
     typescript
-    (writeScriptBin "shx" "")
   ];
 
   dontCheckForBrokenSymlinks = true;

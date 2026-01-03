@@ -55,7 +55,7 @@
         grafana.enable = true;
         grafana.grafanaUrl = "https://grafana.kube-stack.org";
         kubernetes.enable = true;
-        nixos.enable = true;
+        nixos.enable = false; # Disabled due to fastmcp/mcp version mismatch
         playright.enable = true;
         sequential-thinking.enable = true;
         tree-sitter.enable = true;
