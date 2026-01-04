@@ -1,11 +1,10 @@
 ---
-name: jujutsu-commits
-description: Create well-formatted conventional commit messages using
-  jujutsu (jj). Guides on proper jujutsu workflow, distinguishing it from
-  git, with step-by-step instructions for describing commits, rebasing,
-  managing history, and initializing jujutsu. Use jj describe, jj new, jj
-  status, and other jujutsu commands when working in jujutsu-enabled
-  repositories.
+name: jujutsu-workflow
+description: Comprehensive guide to jujutsu (jj) workflow, distinguishing it from
+  git, with step-by-step instructions for initializing repositories, describing
+  commits with conventional format, rebasing, managing history, and using
+  jujutsu safely. Use jj describe, jj new, jj status, and other jujutsu commands
+  when working in jujutsu-enabled repositories.
 license: Apache-2.0
 compatibility: Requires jujutsu (jj) command-line tool and git
   compatibility layer

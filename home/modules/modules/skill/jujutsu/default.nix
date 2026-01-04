@@ -12,9 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xdg.configFile."opencode/skill/jujutsu-commits" = {
-      source = ./SKILL.md;
-    };
+    xdg.configFile."opencode/skill/jujutsu-workflow/SKILL.md".source = ./SKILL.md;
 
     programs.opencode.settings.permission.bash = {
       "jj describe" = "allow";
