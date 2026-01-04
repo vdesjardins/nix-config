@@ -335,7 +335,7 @@ in {
           "10, monitor:DP-2, default:true, persistent:true"
         ];
 
-        windowrule = [
+        windowrulev2 = [
           "float, class:(clipse)"
           "size 622 652, class:(clipse)"
           "stayfocused, class:(clipse)"
