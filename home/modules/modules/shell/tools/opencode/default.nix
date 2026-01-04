@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  my-packages,
   inputs,
   pkgs,
   ...
@@ -39,13 +38,18 @@ in {
         permission = {
           bash = {
             "*" = "ask";
-            "ls" = "allow";
-            "rg" = "allow";
-            "fd" = "allow";
-            "grep" = "allow";
-            "find" = "allow";
-            "xargs" = "allow";
-            "date" = "allow";
+            "ls *" = "allow";
+            "rg *" = "allow";
+            "fd *" = "allow";
+            "grep *" = "allow";
+            "find *" = "allow";
+            "xargs *" = "allow";
+            "date *" = "allow";
+            "cat *" = "allow";
+            "echo *" = "allow";
+            "tail *" = "allow";
+            "head *" = "allow";
+            "sleep *" = "allow";
           };
         };
 

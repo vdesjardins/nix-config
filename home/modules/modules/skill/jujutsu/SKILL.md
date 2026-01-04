@@ -62,7 +62,7 @@ If a repository currently uses git and you want to enable jujutsu:
 
 ```bash
 # Initialize jujutsu in the current directory
-jj init
+jj git init
 
 # This creates a .jj directory and sets up jujutsu
 # Jujutsu can wrap the existing git repository, preserving all history
@@ -346,7 +346,6 @@ Jujutsu's most powerful feature: **you can safely undo anything**.
 
 ```bash
 jj undo                   # Undo the last jujutsu command
-jj undo -r <num>          # Undo multiple commands
 ```
 
 This makes experimentation and history rewriting completely safe.
@@ -401,7 +400,7 @@ jj op log
 Then undo to a specific operation:
 
 ```bash
-jj undo -r <operation-id>
+jj op revert <operation-id>
 ```
 
 ### Conflicts During Rebase?
