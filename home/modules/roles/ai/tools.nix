@@ -167,6 +167,11 @@ in {
         default = true;
         description = "Enable dev-browser skill";
       };
+      jujutsu.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable jujutsu-commits skill";
+      };
     };
   };
 
@@ -204,6 +209,7 @@ in {
       };
 
       skill.dev-browser.enable = cfg.skill.dev-browser.enable;
+      skill.jujutsu.enable = cfg.skill.jujutsu.enable;
     };
   };
 }

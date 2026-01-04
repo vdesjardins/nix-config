@@ -150,12 +150,15 @@ in {
             - **DO NOT use any other tools or commands** to inspect files, run scripts, or perform any operations.
             - To create the message, check for changes in the working copy:
               1. Run `jj status` to get the working copy status
-              2. Check the output of `jj status` to see if any `INTENTS-*` files are listed
-              3. If `INTENTS-*` files exist in the status output:
-                 - Read the INTENTS file from disk to get the original prompt
-                 - Use the content to generate the commit message based on the changes
-              4. If NO `INTENTS-*` files are listed in the `jj status` output:
-                 - Run `jj diff` to analyze the changes
+              2. Run `jj diff` to see all actual changes
+              3. Check the output of `jj status` to see if any `INTENTS-*` files are listed
+              4. If `INTENTS-*` files exist in the status output:
+                 - Read the INTENTS file from disk to get the original prompt/intent
+                 - Cross-reference with `jj diff`: INTENTS explains WHY, diff shows WHAT
+                 - Account for any manual edits not mentioned in INTENTS (they appear in the diff)
+                 - Generate the commit message that captures both the intent and all actual changes
+              5. If NO `INTENTS-*` files are listed in the `jj status` output:
+                 - Use only `jj diff` to analyze the changes
                  - Generate the commit message from the diff output
             - **SELECT THE EMOJI (MANDATORY)**:
               1. Identify the commit type from your changes (feat, fix, docs, refactor, style, perf, test, chore, wip, remove, hotfix, security)
@@ -172,13 +175,6 @@ in {
             - Explain the WHY, not the WHAT.
             - Reference issues/PRs when relevant.
           '';
-        };
-
-        settings.permission.bash = {
-          "jj describe" = "allow";
-          "jj diff" = "allow";
-          "jj status" = "allow";
-          "pre-commit run" = "allow";
         };
       };
 
