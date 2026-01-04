@@ -13,18 +13,8 @@
     utils.enable = true;
 
     dev = {
-      bash.enable = true;
-      go.enable = true;
-      json.enable = true;
-      lua.enable = true;
-      make.enable = true;
-      markdown.enable = true;
-      nix.enable = true;
-      python.enable = true;
-      rego.enable = true;
-      rust.enable = true;
-      terraform.enable = true;
-      yaml.enable = true;
+      languages.enable = true;
+      datatools.enable = true;
     };
 
     ops = {
@@ -37,21 +27,13 @@
     };
 
     ai = {
-      opencode.enable = true;
-      codex.enable = true;
-      github-copilot-cli.enable = true;
-      mcp = {
-        context7.enable = true;
-        fluxcd.enable = true;
-        git.enable = true;
-        github.enable = true;
-        grafana.enable = true;
-        kubernetes.enable = true;
-        nixos.enable = true;
-        playright.enable = true;
-        sequential-thinking.enable = true;
-        tree-sitter.enable = true;
-        utcp-code-mode.enable = true;
+      tools = {
+        enable = true;
+        claude.enable = false;
+        gemini-cli.enable = false;
+        ollama.enable = false;
+        llamacpp.enable = false;
+        mcp.nixos.enable = true;
       };
     };
 

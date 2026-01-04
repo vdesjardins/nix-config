@@ -15,27 +15,9 @@
     multimedia.enable = true;
 
     dev = {
-      bash.enable = true;
-      cue.enable = true;
-      kcl.enable = true;
+      languages.enable = true;
+      datatools.enable = true;
       debugging.enable = true;
-      go.enable = true;
-      go-template.enable = true;
-      js.enable = true;
-      json.enable = true;
-      jq.enable = true;
-      lua.enable = true;
-      make.enable = true;
-      markdown.enable = true;
-      enable = true;
-      nix.enable = true;
-      python.enable = true;
-      regex.enable = true;
-      rust.enable = true;
-      terraform.enable = true;
-      vimscript.enable = true;
-      yaml.enable = true;
-      zig.enable = true;
     };
 
     ops = {
@@ -49,19 +31,16 @@
     desktop = {
       wallpapers.enable = true;
       browsers.enable = true;
-      viewers.enable = true;
       security.enable = true;
       extensions.enable = true;
       sway.enable = true;
       hyprland.enable = true;
       gaming.enable = true;
       productivity.enable = true;
-      ai.enable = true;
       wifi.enable = true;
-      diagnostic.enable = true;
-      graphics.enable = true;
-      videos.enable = true;
       messaging.enable = true;
+      tools.enable = true;
+      media.enable = true;
     };
   };
 }

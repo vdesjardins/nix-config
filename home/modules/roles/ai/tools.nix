@@ -1,0 +1,209 @@
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf mkOption types;
+  inherit (lib.options) mkEnableOption;
+
+  cfg = config.roles.ai.tools;
+in {
+  options.roles.ai.tools = {
+    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, codex, opencode, github-copilot-cli, gemini-cli, mcp servers, skills)";
+
+    # CLI Tools
+    ollama = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Ollama";
+      };
+      settings = mkOption {
+        type = lib.types.attrs;
+        default = {
+          enable = true;
+          # TODO: not yet supported by home-manager module
+          # acceleration = "vulkan";
+          package = pkgs.ollama-vulkan;
+        };
+        description = ''
+          Configuration for the Ollama service, which provides a server for local large language models.
+        '';
+      };
+    };
+
+    llamacpp = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable llama.cpp";
+      };
+      settings = mkOption {
+        type = lib.types.attrs;
+        default = {
+          enable = true;
+          package = inputs.llamacpp.packages.${pkgs.stdenv.hostPlatform.system}.vulkan;
+        };
+        description = ''
+          Configuration for the llamacpp service
+        '';
+      };
+    };
+
+    claude.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable Claude CLI";
+    };
+
+    codex.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable Codex CLI";
+    };
+
+    opencode.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable OpenCode CLI";
+    };
+
+    github-copilot-cli.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable GitHub Copilot CLI";
+    };
+
+    gemini-cli.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable Gemini CLI";
+    };
+
+    # MCP Servers
+    mcp = {
+      enable = mkEnableOption "MCP servers (all)";
+      context7.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Context7 MCP server";
+      };
+      desktop-commander.enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable Desktop Commander MCP server - disabled by default due to npm dependencies hash mismatch";
+      };
+      fetch.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Fetch MCP server";
+      };
+      fluxcd.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable FluxCD MCP server";
+      };
+      git.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Git MCP server";
+      };
+      github.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable GitHub MCP server";
+      };
+      grafana = {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable Grafana MCP server";
+        };
+        grafanaUrl = mkOption {
+          type = types.str;
+          default = "";
+          description = "Grafana URL for MCP server";
+        };
+      };
+      kubernetes.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Kubernetes MCP server";
+      };
+      nixos.enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable NixOS MCP server (disabled by default due to fastmcp/mcp version mismatch)";
+      };
+      playright.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Playwright MCP server";
+      };
+      sequential-thinking.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Sequential Thinking MCP server";
+      };
+      tree-sitter.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Tree-Sitter MCP server";
+      };
+      utcp-code-mode.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable UTCP Code Mode MCP server";
+      };
+    };
+
+    # Skills
+    skill = {
+      enable = mkEnableOption "Skills (all)";
+      dev-browser.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable dev-browser skill";
+      };
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.packages =
+      (lib.optionals cfg.llamacpp.enable [cfg.llamacpp.settings.package])
+      ++ (lib.optionals cfg.gemini-cli.enable [pkgs.gemini-cli]);
+
+    modules = {
+      services.ollama = mkIf cfg.ollama.enable cfg.ollama.settings;
+
+      shell.tools = {
+        claude.enable = cfg.claude.enable;
+        codex.enable = cfg.codex.enable;
+        opencode.enable = cfg.opencode.enable;
+        github-copilot-cli.enable = cfg.github-copilot-cli.enable;
+      };
+
+      mcp = {
+        context7.enable = cfg.mcp.context7.enable;
+        desktop-commander.enable = cfg.mcp.desktop-commander.enable;
+        fetch.enable = cfg.mcp.fetch.enable;
+        fluxcd.enable = cfg.mcp.fluxcd.enable;
+        git.enable = cfg.mcp.git.enable;
+        github.enable = cfg.mcp.github.enable;
+        grafana = {
+          inherit (cfg.mcp.grafana) enable grafanaUrl;
+        };
+        kubernetes.enable = cfg.mcp.kubernetes.enable;
+        nixos.enable = cfg.mcp.nixos.enable;
+        playright.enable = cfg.mcp.playright.enable;
+        sequential-thinking.enable = cfg.mcp.sequential-thinking.enable;
+        tree-sitter.enable = cfg.mcp.tree-sitter.enable;
+        utcp-code-mode.enable = cfg.mcp.utcp-code-mode.enable;
+      };
+
+      skill.dev-browser.enable = cfg.skill.dev-browser.enable;
+    };
+  };
+}

@@ -15,20 +15,10 @@
     multimedia.enable = true;
 
     dev = {
-      bash.enable = true;
+      languages.enable = true;
+      datatools.enable = true;
       debugging.enable = true;
-      go.enable = true;
-      js.enable = true;
-      json.enable = true;
-      lua.enable = true;
-      make.enable = true;
-      markdown.enable = true;
-      nix.enable = true;
-      python.enable = true;
-      rust.enable = true;
-      terraform.enable = true;
-      yaml.enable = true;
-      zig.enable = true;
+      profiling.enable = true;
     };
 
     ops = {
@@ -40,46 +30,25 @@
     };
 
     ai = {
-      ollama.enable = true;
-      llamacpp.enable = true;
-      gemini-cli.enable = true;
-      opencode.enable = true;
-      claude.enable = true;
-      codex.enable = true;
-      github-copilot-cli.enable = true;
-      mcp = {
-        context7.enable = true;
-        fluxcd.enable = true;
-        git.enable = true;
-        github.enable = true;
-        grafana.enable = true;
-        grafana.grafanaUrl = "https://grafana.kube-stack.org";
-        kubernetes.enable = true;
-        nixos.enable = false; # Disabled due to fastmcp/mcp version mismatch
-        playright.enable = true;
-        sequential-thinking.enable = true;
-        tree-sitter.enable = true;
-        utcp-code-mode.enable = true;
-      };
-      skill = {
-        dev-browser.enable = true;
+      tools = {
+        enable = true;
+        mcp.grafana.grafanaUrl = "https://grafana.kube-stack.org";
+        mcp.nixos.enable = false; # Disabled due to fastmcp/mcp version mismatch
       };
     };
 
     desktop = {
       wallpapers.enable = true;
       browsers.enable = true;
-      viewers.enable = true;
       security.enable = true;
       extensions.enable = true;
       hyprland.enable = true;
       gaming.enable = true;
       productivity.enable = true;
       wifi.enable = true;
-      diagnostic.enable = true;
-      graphics.enable = true;
-      videos.enable = true;
       messaging.enable = true;
+      tools.enable = true;
+      media.enable = true;
     };
   };
 }

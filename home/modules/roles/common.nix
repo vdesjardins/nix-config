@@ -32,7 +32,7 @@ in {
     home.enableNixpkgsReleaseCheck = false;
 
     # fonts and colors
-    roles.desktop.gtk = {
+    roles.desktop.extensions.gtk = {
       inherit font;
       themePackage = pkgs.tokyonight-gtk-theme;
       themeName = "Tokyonight-Dark";
