@@ -88,6 +88,10 @@ in {
             spi = ["split" "-i"];
             sq = ["squash"];
             sqi = ["squash"];
+            wa = ["workspace" "add"];
+            wf = ["workspace" "forget"];
+            wl = ["workspace" "list"];
+            wr = ["workspace" "rename"];
           };
 
           templates = {
@@ -209,6 +213,10 @@ in {
         jspi = "jj split -i";
         jsq = "jj squash";
         jsqi = "jj squash -i";
+        jwa = "jj workspace add";
+        jwf = "jj workspace forget";
+        jwl = "jj workspace list";
+        jwr = "jj workspace rename";
       };
     };
   };
