@@ -50,6 +50,7 @@ in {
             "tail *" = "allow";
             "head *" = "allow";
             "sleep *" = "allow";
+            "pwd" = "allow";
           };
         };
 
