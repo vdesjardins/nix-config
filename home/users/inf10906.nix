@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   home = {
     username = "inf10906";
     homeDirectory = "/Users/inf10906";
@@ -45,6 +45,10 @@
       darwin.enable = true;
       browsers.enable = true;
     };
+  };
+
+  modules.desktop.browsers.firefox = {
+    enablePolicies = lib.mkForce false;
   };
 
   modules.desktop.editors.nixvim = {

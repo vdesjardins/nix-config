@@ -54,6 +54,8 @@ in {
       type = listOf attrs;
       default = [];
     };
+
+    enablePolicies = mkEnableOption "firefox browser policies";
   };
 
   config = mkIf cfg.enable (let
@@ -110,7 +112,7 @@ in {
             ];
           });
 
-      policies = {
+      policies = mkIf cfg.enablePolicies {
         ExtensionSettings =
           {
             "*" = {
@@ -426,7 +428,7 @@ in {
         ${pkgs.sqlite}/bin/sqlite3 ${db} < ${data} || true
       '';
 
-      darwinFirefoxPolicies = mkIf isDarwin (let
+      darwinFirefoxPolicies = mkIf (isDarwin && cfg.enablePolicies) (let
         policyFile = pkgs.writeText "policies.json" (builtins.toJSON {
           inherit (config.programs.firefox) policies;
         });

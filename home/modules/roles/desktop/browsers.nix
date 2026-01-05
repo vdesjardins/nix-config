@@ -16,7 +16,10 @@ in {
   config = mkIf cfg.enable {
     modules.desktop = {
       browsers = {
-        firefox.enable = true;
+        firefox = {
+          enable = true;
+          enablePolicies = true;
+        };
         tridactyl.enable = true;
         bitwarden.enable = true;
       };
