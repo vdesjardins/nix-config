@@ -14,20 +14,23 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      dig
-      dnspeep # look at host dns queries
-      doggo
-      iperf
-      mtr # network diagnostic tool
-      nethogs
-      nmap
-      tcpdump
-      tcpflow
-      tcptraceroute
-      termshark
-      unixtools.ping
-      wireshark-cli
-    ];
+    home.packages = with pkgs;
+      [
+        dig
+        dnspeep # look at host dns queries
+        doggo
+        iperf
+        mtr # network diagnostic tool
+        nmap
+        tcpdump
+        tcpflow
+        tcptraceroute
+        termshark
+        unixtools.ping
+        wireshark-cli
+      ]
+      ++ lib.optionals stdenv.isLinux [
+        nethogs
+      ];
   };
 }
