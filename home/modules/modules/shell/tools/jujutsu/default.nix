@@ -108,77 +108,18 @@ in {
 
       opencode = {
         commands = {
-          "jj:describe" = ''
-            ---
-            description: Create well-formatted conventional commit messages using jujutsu.
-            agent: build
-            subtask: true
-            ---
+           "jj:describe" = ''
+             ---
+             description: Create well-formatted conventional commit messages using jujutsu.
+             agent: build
+             subtask: true
+             ---
 
-            ## CRITICAL - DO NOT CREATE SCRIPTS OR TOOLS
-
-            You are NOT meant to create shell scripts, executables, or tools to implement this workflow.
-            You are ONLY meant to:
-            1. Follow the process steps below to generate a commit message
-            2. Use `jj describe -m` to set that message
-            3. Nothing else.
-
-            If you find yourself creating a script, file, or tool implementation, STOP immediately - you are misunderstanding the instructions.
-
-            ---
-
-            Create well-formatted conventional commit messages using jujutsu
-            that follows the following guidelines:
-
-            ## Features:
-            - Runs pre-commit checks by default (lint, build, generate docs)
-            - Uses conventional commit format with descriptive emojis
-
-            ## Commit Types:
-            - ✨ feat: New features
-            - 🐛 fix: Bug fixes
-            - 📝 docs: Documentation changes
-            - ♻️ refactor: Code restructuring without changing functionality
-            - 🎨 style: Code formatting, missing semicolons, etc.
-            - ⚡️ perf: Performance improvements
-            - ✅ test: Adding or correcting tests
-            - 🧑‍💻 chore: Tooling, configuration, maintenance
-            - 🚧 wip: Work in progress
-            - 🔥 remove: Removing code or files
-            - 🚑 hotfix: Critical fixes
-            - 🔒 security: Security improvements
-
-            ## Process
-            - **ALWAYS run pre-commit checks first** with `pre-commit run -a`
-            - **ONLY use `jj` commands.** No other commands are allowed (no bash, ls, find, cat, echo, grep, etc.)
-            - **DO NOT use any other tools or commands** to inspect files, run scripts, or perform any operations.
-            - To create the message, check for changes in the working copy:
-              1. Run `jj status` to get the working copy status
-              2. Run `jj diff` to see all actual changes
-              3. Check the output of `jj status` to see if any `INTENTS-*` files are listed
-              4. If `INTENTS-*` files exist in the status output:
-                 - Read the INTENTS file from disk to get the original prompt/intent
-                 - Cross-reference with `jj diff`: INTENTS explains WHY, diff shows WHAT
-                 - Account for any manual edits not mentioned in INTENTS (they appear in the diff)
-                 - Generate the commit message that captures both the intent and all actual changes
-              5. If NO `INTENTS-*` files are listed in the `jj status` output:
-                 - Use only `jj diff` to analyze the changes
-                 - Generate the commit message from the diff output
-            - **SELECT THE EMOJI (MANDATORY)**:
-              1. Identify the commit type from your changes (feat, fix, docs, refactor, style, perf, test, chore, wip, remove, hotfix, security)
-              2. Match it to the corresponding emoji from the "Commit Types" list above
-              3. **ALWAYS prepend the emoji to the message** - emoji comes FIRST, before the type
-            - If `refs:` is specified, use the corresponding refs as commit footer.
-            - Include a scope if applicable: `<emoji> type(scope): description`
-            - Add a body for complex changes. Explain why.
-            - **Message format**: `<emoji> <type>(<scope>): <description>`
-            - To set the commit message, run `jj describe -m "<message>"`.
-
-            ## Best Practices
-            - Write in imperative mood.
-            - Explain the WHY, not the WHAT.
-            - Reference issues/PRs when relevant.
-          '';
+             Load the jujutsu-workflow skill and follow its instructions to:
+             1. Analyze what changes are in the current commit
+             2. Craft an appropriate conventional commit message
+             3. Execute `jj describe -m "your message"` to set it on the current commit
+           '';
         };
       };
 
