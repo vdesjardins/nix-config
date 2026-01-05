@@ -108,18 +108,18 @@ in {
 
       opencode = {
         commands = {
-           "jj:describe" = ''
-             ---
-             description: Create well-formatted conventional commit messages using jujutsu.
-             agent: build
-             subtask: true
-             ---
+          "jj:describe" = ''
+            ---
+            description: Create well-formatted conventional commit messages using jujutsu.
+            agent: build
+            subtask: true
+            ---
 
-             Load the jujutsu-workflow skill and follow its instructions to:
-             1. Analyze what changes are in the current commit
-             2. Craft an appropriate conventional commit message
-             3. Execute `jj describe -m "your message"` to set it on the current commit
-           '';
+            Load the jujutsu-workflow skill and follow its instructions to:
+            1. Analyze what changes are in the current commit
+            2. Craft conventional commit message explaining WHY those changes were made
+            3. Execute `jj describe -m "your message"` to set it on the current commit
+          '';
         };
       };
 
