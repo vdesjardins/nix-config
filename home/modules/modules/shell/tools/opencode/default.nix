@@ -25,6 +25,8 @@ in {
       settings = {
         theme = "tokyonight";
 
+        share = "disabled";
+
         instructions = [
           ".instructions.md"
           "CONTRIBUTING.md"
