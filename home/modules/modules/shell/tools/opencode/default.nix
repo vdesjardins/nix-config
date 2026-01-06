@@ -3,6 +3,7 @@
   lib,
   inputs,
   pkgs,
+  my-packages,
   ...
 }: let
   inherit (lib) mkIf;
@@ -96,5 +97,11 @@ in {
         Use `date` to generate the timestamp for the filename.
       '';
     };
+
+    xdg.configFile."opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
+    home.packages = with pkgs;
+      lib.optionals stdenv.isLinux [
+        libnotify
+      ];
   };
 }
