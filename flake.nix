@@ -68,7 +68,7 @@
     utils,
     ...
   } @ inputs: let
-    inherit (lib.attrsets) genAttrs listToAttrs attrValues;
+    inherit (lib.attrsets) genAttrs;
     inherit (utils.lib.system) aarch64-darwin x86_64-linux aarch64-linux;
 
     linux64BitSystems = [
@@ -76,7 +76,7 @@
       aarch64-linux
     ];
 
-    forAllSupportedSystems = genAttrs supportedSystems.all;
+    forAllSupportedSystems = genAttrs supportedSystems.allSystems;
 
     pkgsConfig = {
       allowUnfree = true;
@@ -88,8 +88,8 @@
       ];
     };
 
-    mkOverlays = path: self.lib.mapModulesRecursive path (o: import o inputs);
-    mkOverlays' = path: attrValues (mkOverlays path);
+    mkOverlays = p: self.lib.mapModulesRecursive p (o: import o inputs);
+    mkOverlays' = p: lib.attrsets.attrValues (mkOverlays p);
     mkChildOverlays = name: final: _prev: {
       ${name} = import inputs.${name} {
         inherit (final) system;
@@ -113,17 +113,17 @@
     supportedSystems = rec {
       darwin = [aarch64-darwin];
       linux = [x86_64-linux aarch64-linux];
-      all = darwin ++ linux;
+      allSystems = darwin ++ linux;
     };
 
     mkPkgs = pkgs: system:
       import pkgs {
         inherit system;
-        overlays = attrValues myOverlays;
+        overlays = lib.attrsets.attrValues myOverlays;
         config = pkgsConfig;
       };
 
-    pkgs = genAttrs supportedSystems.all (mkPkgs nixpkgs);
+    pkgs = genAttrs supportedSystems.allSystems (mkPkgs nixpkgs);
 
     lib = inputs.nixpkgs.lib.extend (final: prev: {
       my = import ./lib {
@@ -158,8 +158,8 @@
       ];
 
     dockerImages =
-      listToAttrs
-      (builtins.map
+      lib.attrsets.listToAttrs
+      (map
         (system: {
           name = system;
           value = {
