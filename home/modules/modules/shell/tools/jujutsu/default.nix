@@ -65,9 +65,13 @@ in {
             bs = ["bookmark" "set"];
             bsm = ["bookmark" "set" "main" "-r" "@-" "--allow-backwards"];
             d = ["diff"];
-            de = ["describe" "-m"];
-            dep = ["describe" "@-" "-m"];
+            de = ["describe"];
+            dem = ["describe" "-m"];
+            dep = ["describe" "@-"];
+            depm = ["describe" "@-" "-m"];
             e = ["edit"];
+            en = ["jj" "edit" "@+"];
+            ep = ["jj" "edit" "@-"];
             g = ["git"];
             gf = ["git" "fetch"];
             gp = ["git" "push"];
@@ -121,6 +125,10 @@ in {
             3. Execute `jj describe -m "your message"` to set it on the current commit
           '';
         };
+
+        rules = ''
+          IMPORTANT: only use jujutsu (jj) for version control. DO NOT use git.
+        '';
       };
 
       zsh.shellAliases = {
@@ -133,9 +141,13 @@ in {
         jbs = "jj bookmark set";
         jbsm = "jj bookmark set main -r @- --allow-backwards";
         jd = "jj diff";
-        jde = "jj describe -m";
-        jdep = "jj describe @- -m";
+        jde = "jj describe";
+        jdem = "jj describe -m";
+        jdep = "jj describe @-";
+        jdepm = "jj describe @- -m";
         je = "jj edit";
+        jen = "jj edit @+";
+        jep = "jj edit @-";
         jg = "jj git";
         jgf = "jj git fetch";
         jgp = "jj git push";
