@@ -74,6 +74,7 @@ in {
             ep = ["jj" "edit" "@-"];
             g = ["git"];
             gf = ["git" "fetch"];
+            gi = ["git" "init"];
             gp = ["git" "push"];
             gpc = ["git" "push" "-c" "@"];
             lg = ["log" "-r" "all()"];
@@ -151,6 +152,7 @@ in {
         jep = "jj edit @-";
         jg = "jj git";
         jgf = "jj git fetch";
+        jgi = "jj git init";
         jgp = "jj git push";
         jgpc = "jj git push -c @";
         jl = "jj op log";
