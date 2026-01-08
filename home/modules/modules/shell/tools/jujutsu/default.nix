@@ -123,6 +123,7 @@ in {
             1. Analyze what changes are in the current commit
             2. Craft conventional commit message explaining WHY those changes were made
             3. Execute `jj describe -m "your message"` to set it on the current commit
+            4. Do not create INTENTS-*.md file for this command
           '';
         };
 
