@@ -172,6 +172,11 @@ in {
         default = true;
         description = "Enable jujutsu-commits skill";
       };
+      timewarrior.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable timewarrior-workflow skill";
+      };
     };
   };
 
@@ -210,6 +215,7 @@ in {
 
       skill.dev-browser.enable = cfg.skill.dev-browser.enable;
       skill.jujutsu.enable = cfg.skill.jujutsu.enable;
+      skill.timewarrior.enable = cfg.skill.timewarrior.enable;
     };
   };
 }

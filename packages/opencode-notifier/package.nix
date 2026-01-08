@@ -9,7 +9,7 @@ buildNpmPackage {
   pname = "opencode-notifier";
   version = "0-unstable-2026-01-04";
 
-  nativeBuildInputs = [ bun esbuild ];
+  nativeBuildInputs = [bun esbuild];
 
   src = fetchFromGitHub {
     owner = "mohak34";

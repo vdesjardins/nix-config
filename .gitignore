@@ -1,3 +1,4 @@
 result
 .luacheckcache
 .pre-commit-config.yaml
+**/__pycache__/
