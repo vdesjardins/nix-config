@@ -54,6 +54,9 @@ in {
             "head *" = "allow";
             "sleep *" = "allow";
             "pwd" = "allow";
+            "timeout *" = "allow";
+            "tee *" = "allow";
+            "nix build *" = "allow";
           };
         };
 
