@@ -113,7 +113,7 @@ in {
 
       opencode = {
         commands = {
-          "jj:describe" = ''
+          "jj:change:describe" = ''
             ---
             description: Create well-formatted conventional commit messages using jujutsu.
             agent: build
@@ -125,6 +125,26 @@ in {
             2. Craft conventional commit message explaining WHY those changes were made
             3. Execute `jj describe -m "your message"` to set it on the current commit
             4. Do not create INTENTS-*.md file for this command
+          '';
+
+          "jj:gh:pr:create" = ''
+            ---
+            description: Create a GitHub pull request for the current jujutsu branch.
+            agent: build
+            subtask: true
+            ---
+
+            Load the jujutsu-workflow skill and follow its instructions to:
+            1. Get the current branch name. Branch a are created as `push-*`
+               for example `push-mymvvskypsow`
+            2. If remote branch does not exist, create with `jj git push -c @`
+            3. Check for all commits that the bookmark contains and synthesize a
+               title and description for the PR. Include sections Summary,
+               Details (Changes Made and Why These Changes Are Important)
+               and Verification Steps
+            3. Create Github Pull Request using `jj pr create --head <branch> --title "<title>" --description "<description>"`
+            4. Watch for PR checks completion with `gh pr checks --watch <pr-number>`
+            5. Do not create INTENTS-*.md file for this command
           '';
         };
 

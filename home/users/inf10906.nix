@@ -36,6 +36,7 @@
         mcp.nixos.enable = false;
         mcp.fetch.enable = false;
         mcp.git.enable = false;
+        mcp.grafana.enable = false;
         mcp.tree-sitter.enable = false;
         skill.dev-browser.enable = false;
       };
