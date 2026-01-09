@@ -94,9 +94,7 @@ the message:
 | feat | ✨ | New features |
 | fix | 🐛 | Bug fixes |
 | docs | 📝 | Documentation changes |
-| refactor | ♻️ | Code restructuring without changing |
-
-  functionality |
+| refactor | ♻️ | Code restructuring without changing functionality|
 | style | 🎨 | Code formatting, missing semicolons, etc. |
 | perf | ⚡️ | Performance improvements |
 | test | ✅ | Adding or correcting tests |
@@ -105,6 +103,7 @@ the message:
 | remove | 🔥 | Removing code or files |
 | hotfix | 🚑 | Critical fixes |
 | security | 🔒 | Security improvements |
+
 
 ### Message Format
 

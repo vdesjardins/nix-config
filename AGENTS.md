@@ -22,7 +22,7 @@ Once inside the shell, you can run the make targets shown below.
 
 ## Code Style Guidelines
 
-- **Lua**: 4-space indents (stylua), 100 column width, Unix line endings, double quotes preferred
+- **Lua**: 2-space indents (stylua), 100 column width, Unix line endings, double quotes preferred
 - **Nix**: 2-space indents, UTF-8, final newlines (see .editorconfig)
 - **General**: Use spaces, not tabs; always end files with a newline
 - **Globals**: Lua allows `vim` as a global (see .luacheckrc)
@@ -34,9 +34,14 @@ Once inside the shell, you can run the make targets shown below.
 
 ## Project Structure
 
-- Root: repository contains configuration, modules, hosts, packages, overlays.
+- Root/ repository contains configuration, modules, hosts, packages, overlays.
 - **home/** – Home-manager specific NixOS modules.
+- **home/users** - Home-manager user configurations.
+- **home/modules/roles** – Home-manager roles grouping reusable modules.
+- **home/modules/modules** – Home-manager reusable modules.
 - **hosts/** – NixOS host-specific configurations.
+- **hosts/modules/** - NixOS reusable modules.
+- **hosts/systems**/ - NixOS hosts configurations.
 - **lib/** – Shared Nix helpers and nixos definitions.
 - **overlays/** – Nixpkgs overlays for custom packages.
 - **packages/** – Nix packages
@@ -50,12 +55,42 @@ Once inside the shell, you can run the make targets shown below.
 ## Commit Style Guide
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) style for our commit messages.
+Explain WHY not just the WHAT.
 
-Here are some examples:
-- `feat(scope): add new program module`
-- `fix(scope): resolve issue with data fetching.`
-- `docs(scope): update README with installation instructions`
-- `style(scope): format code with tools`
-- `refactor(scope): improve code reuse`
-- `test(scope): add unit tests for a module`
-- `chore(scope): update dependencies and flake inputs`
+### Commit Types
+
+Each commit type has a corresponding emoji that must appear at the start of
+the message:
+
+| Type | Emoji | Description |
+|------|-------|-------------|
+| feat | ✨ | New features |
+| fix | 🐛 | Bug fixes |
+| docs | 📝 | Documentation changes |
+| refactor | ♻️ | Code restructuring without changing functionality |
+| style | 🎨 | Code formatting, missing semicolons, etc. |
+| perf | ⚡️ | Performance improvements |
+| test | ✅ | Adding or correcting tests |
+| chore | 🧑‍💻 | Tooling, configuration, maintenance |
+| wip | 🚧 | Work in progress |
+| remove | 🔥 | Removing code or files |
+| hotfix | 🚑 | Critical fixes |
+| security | 🔒 | Security improvements |
+
+
+### Message Format
+
+```text
+<emoji> <type>(<scope>): <description>
+
+[optional body explaining why, not what]
+
+[optional footer with references]
+```
+
+**Examples:**
+
+- `✨ feat(auth): add two-factor authentication support`
+- `🐛 fix(api): resolve race condition in request handler`
+- `♻️ refactor(parser): simplify token parsing logic`
+- `📝 docs(readme): update installation instructions`
