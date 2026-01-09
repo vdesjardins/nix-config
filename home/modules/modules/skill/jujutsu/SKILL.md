@@ -104,7 +104,6 @@ the message:
 | hotfix | 🚑 | Critical fixes |
 | security | 🔒 | Security improvements |
 
-
 ### Message Format
 
 ```text

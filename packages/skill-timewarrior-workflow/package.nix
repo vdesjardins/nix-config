@@ -4,7 +4,7 @@
   python3,
   timewarrior,
 }: let
-  pytest = python3.pkgs.pytest;
+  inherit (python3.pkgs) pytest;
   skill-timewarrior-workflow = stdenv.mkDerivation {
     pname = "skill-timewarrior-workflow";
     version = "1.0.0";

@@ -110,6 +110,11 @@ in {
         default = true;
         description = "Enable Git MCP server";
       };
+      grep-app.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable grep-app MCP server";
+      };
       github.enable = mkOption {
         type = types.bool;
         default = true;
@@ -201,6 +206,7 @@ in {
         fetch.enable = cfg.mcp.fetch.enable;
         fluxcd.enable = cfg.mcp.fluxcd.enable;
         git.enable = cfg.mcp.git.enable;
+        grep-app.enable = cfg.mcp.grep-app.enable;
         github.enable = cfg.mcp.github.enable;
         grafana = {
           inherit (cfg.mcp.grafana) enable grafanaUrl;
@@ -213,9 +219,11 @@ in {
         utcp-code-mode.enable = cfg.mcp.utcp-code-mode.enable;
       };
 
-      skill.dev-browser.enable = cfg.skill.dev-browser.enable;
-      skill.jujutsu.enable = cfg.skill.jujutsu.enable;
-      skill.timewarrior.enable = cfg.skill.timewarrior.enable;
+      skill = {
+        dev-browser.enable = cfg.skill.dev-browser.enable;
+        jujutsu.enable = cfg.skill.jujutsu.enable;
+        timewarrior.enable = cfg.skill.timewarrior.enable;
+      };
     };
   };
 }

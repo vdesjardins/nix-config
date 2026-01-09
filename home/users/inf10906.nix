@@ -33,11 +33,13 @@
         gemini-cli.enable = false;
         ollama.enable = false;
         llamacpp.enable = false;
-        mcp.nixos.enable = false;
-        mcp.fetch.enable = false;
-        mcp.git.enable = false;
-        mcp.grafana.enable = false;
-        mcp.tree-sitter.enable = false;
+        mcp = {
+          nixos.enable = false;
+          fetch.enable = false;
+          git.enable = false;
+          grafana.enable = false;
+          tree-sitter.enable = false;
+        };
         skill.dev-browser.enable = false;
       };
     };
