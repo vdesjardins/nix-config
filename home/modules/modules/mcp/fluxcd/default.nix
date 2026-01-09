@@ -57,12 +57,5 @@ in {
         KUBECONFIG = "{env:KUBECONFIG}";
       };
     };
-
-    programs.codex.settings.mcp_servers.fluxcd = {
-      enabled = false;
-      command = getExe cfg.package;
-      args = ["serve"];
-      env_vars = ["KUBECONFIG"];
-    };
   };
 }

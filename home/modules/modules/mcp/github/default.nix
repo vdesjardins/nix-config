@@ -56,13 +56,6 @@ in {
         command = [(getExe cfg.package) "stdio"];
       };
 
-      codex.settings.mcp_servers.github = {
-        enabled = false;
-        command = getExe cfg.package;
-        args = ["stdio"];
-        env_vars = ["GITHUB_PERSONAL_ACCESS_TOKEN"];
-      };
-
       zsh.initContent = ''
         mkdir -p ~/.local/share/github-cmp-server/
       '';

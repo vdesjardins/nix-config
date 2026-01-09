@@ -11,7 +11,7 @@
   cfg = config.roles.ai.tools;
 in {
   options.roles.ai.tools = {
-    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, codex, opencode, github-copilot-cli, gemini-cli, mcp servers, skills)";
+    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, opencode, github-copilot-cli, gemini-cli, mcp servers, skills)";
 
     # CLI Tools
     ollama = {
@@ -56,12 +56,6 @@ in {
       type = types.bool;
       default = true;
       description = "Enable Claude CLI";
-    };
-
-    codex.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable Codex CLI";
     };
 
     opencode.enable = mkOption {
@@ -195,7 +189,6 @@ in {
 
       shell.tools = {
         claude.enable = cfg.claude.enable;
-        codex.enable = cfg.codex.enable;
         opencode.enable = cfg.opencode.enable;
         github-copilot-cli.enable = cfg.github-copilot-cli.enable;
       };

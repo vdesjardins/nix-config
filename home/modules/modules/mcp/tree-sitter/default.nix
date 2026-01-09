@@ -38,10 +38,5 @@ in {
       type = "local";
       command = [(getExe cfg.package)];
     };
-
-    programs.codex.settings.mcp_servers.tree_sitter = {
-      enabled = true;
-      command = getExe cfg.package;
-    };
   };
 }

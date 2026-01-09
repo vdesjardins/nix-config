@@ -62,14 +62,5 @@ in {
         cfg.executable
       ];
     };
-
-    programs.codex.settings.mcp_servers.playwright = {
-      enabled = false;
-      command = getExe cfg.package;
-      args = [
-        "--executable-path"
-        cfg.executable
-      ];
-    };
   };
 }

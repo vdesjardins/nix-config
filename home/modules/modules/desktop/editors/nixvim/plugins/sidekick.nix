@@ -97,11 +97,6 @@
         options.desc = "Sidekick Select Prompt";
       }
       {
-        key = "<leader>ac";
-        action.__raw = ''function() require("sidekick.cli").toggle({ name = "codex", focus = true }) end'';
-        options.desc = "Sidekick Toggle Codex";
-      }
-      {
         key = "<leader>aC";
         action.__raw = ''function() require("sidekick.cli").toggle({ name = "claud", focus = true }) end'';
         options.desc = "Sidekick Toggle Claude";

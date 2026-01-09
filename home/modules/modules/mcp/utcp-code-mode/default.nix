@@ -87,14 +87,6 @@ in {
       };
     };
 
-    programs.codex.settings.mcp_servers.utcp-code-mode = {
-      enabled = true;
-      command = getExe cfg.package;
-      env = {
-        UTCP_CONFIG_FILE = configFile;
-      };
-    };
-
     modules.shell.tools.github-copilot-cli.settings.mcpServers.utcp-code-mode = {
       type = "local";
       command = getExe cfg.package;

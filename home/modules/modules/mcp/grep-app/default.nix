@@ -34,10 +34,5 @@ in {
       type = "remote";
       url = "https://mcp.grep.app";
     };
-
-    programs.codex.settings.mcp_servers.grep-app = {
-      enabled = false;
-      url = "https://mcp.grep.app";
-    };
   };
 }

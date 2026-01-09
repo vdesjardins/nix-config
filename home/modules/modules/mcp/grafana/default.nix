@@ -92,17 +92,6 @@ in {
       };
     };
 
-    programs.codex.settings.mcp_servers.grafana = {
-      enabled = false;
-      command = getExe cfg.package;
-      env_vars = [
-        "GRAFANA_URL"
-        "GRAFANA_SERVICE_ACCOUNT_TOKEN"
-        "GRAFANA_USERNAME"
-        "GRAFANA_PASSWORD"
-      ];
-    };
-
     home.sessionVariables = {
       GRAFANA_URL = cfg.grafanaUrl;
       GRAFANA_SERVICE_ACCOUNT_TOKEN = cfg.grafanaServiceAccountToken;

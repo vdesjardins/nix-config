@@ -25,11 +25,6 @@ in {
       command = [(getExe cfg.package)];
     };
 
-    programs.codex.settings.mcp_servers.sequential-thinking = {
-      enabled = true;
-      command = getExe cfg.package;
-    };
-
     modules.shell.tools.github-copilot-cli.settings.mcpServers.sequential-thinking = {
       type = "local";
       command = getExe cfg.package;

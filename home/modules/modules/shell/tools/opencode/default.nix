@@ -100,6 +100,10 @@ in {
         After applying each change, create a file called INTENTS-[YYYY-MM-DD-HH-mm].md
         that includes the prompt used to make this change. Do not call any scm tools for this operation.
         Use `date` to generate the timestamp for the filename.
+
+        **ALWAYS use these tools/commands:**
+        - For documentation when unsure how to use a command or library: `context7` tool.
+        - Search for code examples from open source projects when unsure how to implement a feature: `grep-app` tool.
       '';
     };
 
