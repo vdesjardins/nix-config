@@ -64,8 +64,8 @@ in {
     };
     kcl.enable = mkOption {
       type = types.bool;
-      default = false;
-      description = "Enable KCL (kcl, kcl-language-server) - disabled by default due to serde_yaml compilation error";
+      default = true;
+      description = "Enable KCL (kcl-language-server) - now built from GitHub main branch with LSP using native vim.lsp.config API (neovim 0.11+)";
     };
     debugging.enable = mkOption {
       type = types.bool;

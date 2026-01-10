@@ -16,7 +16,6 @@
     ./treesitter.nix
 
     ./fugitive.nix
-    ./git-conflict.nix
     ./neogit.nix
 
     ./comment.nix
@@ -30,6 +29,7 @@
 
     ./guess-indent.nix
 
+    ./verbose-logging.nix
     ./noice.nix
     ./trouble.nix
     ./bqf.nix
@@ -73,7 +73,7 @@
     ./json.nix
     ./zig.nix
     ./toml.nix
-    ./kcl.nix
+    # ./kcl.nix (temporarily disabled for testing)
 
     # nav
     ./smart-splits.nix

@@ -14,10 +14,6 @@
 
         inlayHints = true;
 
-        preConfig = ''
-          vim.lsp.set_log_level('off')
-        '';
-
         postConfig = ''
           vim.lsp.protocol.CompletionItemKind = {
               "   (Text) ",
