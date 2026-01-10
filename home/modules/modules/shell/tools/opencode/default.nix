@@ -20,7 +20,6 @@ in {
       enable = true;
 
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      # package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
 
       settings = {
         theme = "tokyonight";
@@ -110,6 +109,15 @@ in {
     };
 
     xdg.configFile."opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
+
+    programs.zsh.shellAliases = {
+      oc = "opencode";
+      ocr = "opencode run";
+      oce = "opencode export";
+      oci = "opencode import";
+      ocs = "opencode session list";
+    };
+
     home.packages = with pkgs;
       lib.optionals stdenv.isLinux [
         libnotify
