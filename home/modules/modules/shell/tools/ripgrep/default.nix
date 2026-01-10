@@ -28,6 +28,7 @@ in {
         "--type-add=automake:*makefile.in*"
         "--glob=!git/*"
         "--glob=!.git/*"
+        "--glob=!.jj/*"
         "--ignore-case"
       ];
     };
