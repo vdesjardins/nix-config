@@ -31,7 +31,7 @@ in {
       "jj rebase*" = "allow";
       "jj restore*" = "allow";
       "jj abandon*" = "allow";
-      "jj bookmark *" = "allow";
+      "jj bookmark*" = "allow";
       "jj git fetch" = "allow";
       "jj git push*" = "allow";
       "jj git init" = "allow";

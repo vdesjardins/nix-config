@@ -41,22 +41,22 @@ in {
         permission = {
           bash = {
             "*" = "ask";
-            "ls *" = "allow";
-            "rg *" = "allow";
-            "fd *" = "allow";
-            "grep *" = "allow";
-            "find *" = "allow";
-            "xargs *" = "allow";
-            "date *" = "allow";
-            "cat *" = "allow";
-            "echo *" = "allow";
-            "tail *" = "allow";
-            "head *" = "allow";
-            "sleep *" = "allow";
+            "ls*" = "allow";
+            "rg*" = "allow";
+            "fd*" = "allow";
+            "grep*" = "allow";
+            "find*" = "allow";
+            "xargs*" = "allow";
+            "date*" = "allow";
+            "cat*" = "allow";
+            "echo*" = "allow";
+            "tail*" = "allow";
+            "head*" = "allow";
+            "sleep*" = "allow";
             "pwd" = "allow";
-            "timeout *" = "allow";
-            "tee *" = "allow";
-            "nix build *" = "allow";
+            "timeout*" = "allow";
+            "tee*" = "allow";
+            "nix build*" = "allow";
           };
         };
 
