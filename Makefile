@@ -25,21 +25,26 @@ host/apply: host/generate
 .PHONY: hm/generate
 ## hm/generate: build current user
 hm/generate:
-	nix build ./#homeConfigurations.$$USER@$$(uname --nodename).activationPackage
+	nix build ./#homeConfigurations.$$USER@$$(uname --nodename).activationPackage && nvd diff ~/.nix-profile ./result
 
 .PHONY: host/generate
 ## host/generate: build current system
 host/generate:
 	if [[ "$$(uname -o)" == "Darwin" ]] then
-		nix run nix-darwin -- build --flake .#$$(uname --nodename)
+		nix run nix-darwin -- build --flake .#$$(uname --nodename) && nvd diff /run/current-system ./result
 	else
-		sudo nixos-rebuild build --flake .#$$(uname --nodename)
+		sudo nixos-rebuild build --flake .#$$(uname --nodename) && nvd diff /run/current-system ./result
 	fi
 
 .PHONY: falcon/apply
 ## falcon/apply: apply configuration to falcon server
 falcon/apply:
 	nixos-rebuild --target-host admin@10.0.0.50 --sudo --flake '.#falcon' switch
+
+.PHONY: falcon/generate
+## falcon/generate: build falcon current system
+falcon/generate:
+	nixos-rebuild build --flake '.#falcon' && nvd diff /run/current-system ./result
 
 .PHONY: hm/install
 ## hm/install: install nix for home-manager

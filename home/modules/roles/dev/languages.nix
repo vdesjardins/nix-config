@@ -107,6 +107,7 @@ in {
       ++ (optionals cfg.nix.enable [
         nixpkgs-fmt
         nix-bisect
+        nix-diff
         nix-init
         nix-inspect
         nix-tree
