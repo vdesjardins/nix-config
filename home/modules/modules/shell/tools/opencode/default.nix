@@ -56,6 +56,8 @@ in {
             "pwd" = "allow";
             "timeout*" = "allow";
             "tee*" = "allow";
+            "wc*" = "allow";
+            "true" = "allow";
             "nix build*" = "allow";
           };
         };
