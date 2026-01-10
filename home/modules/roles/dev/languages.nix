@@ -2,10 +2,9 @@
   config,
   pkgs,
   lib,
-  stdenv,
   ...
 }: let
-  inherit (lib) mkIf mkOption types optionals optional;
+  inherit (lib) mkIf mkOption types optionals;
   inherit (lib.options) mkEnableOption;
 
   cfg = config.roles.dev.languages;

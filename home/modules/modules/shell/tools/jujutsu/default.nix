@@ -127,6 +127,15 @@ in {
             4. Do not create INTENTS-*.md file for this command
           '';
 
+          "jj:change:new" = ''
+            ---
+            description: Prepare a new jujutsu change (commit) for development.
+            agent: build
+            ---
+
+            Insert a new change after the current change using `jj new -A @`
+          '';
+
           "jj:gh:pr:create" = ''
             ---
             description: Create a GitHub pull request for the current jujutsu branch.
@@ -150,6 +159,9 @@ in {
 
         rules = ''
           IMPORTANT: only use jujutsu (jj) for version control. DO NOT use git.
+          ** Jujutsu Cheat Sheet **
+          - When asked to create a new change - run: `jj new -A @`
+          - For other commands refer to the jujutsu skill
         '';
       };
 

@@ -9,7 +9,6 @@ tools to resolve library id and get library docs without me having to explicitly
 All commands should be executed inside a Nix shell.  Start a shell with:
 ```zsh
 nix develop
-
 ```
 Once inside the shell, you can run the make targets shown below.
 - Build/apply user config: `make hm/apply`
@@ -25,8 +24,8 @@ Once inside the shell, you can run the make targets shown below.
 After making any code changes:
 1. **Always run `pre-commit run -a`** to check for linting and formatting issues
 2. **Fix any errors** that pre-commit auto-fixes (alejandra formatting, etc.)
-3. **Include formatting fixes** in the original commit (use `jj squash` if needed)
-4. **Do not create INTENTS-*.md files** for pre-commit formatting fixes (they're part of the original change)
+3. **Do not create INTENTS-*.md files** for pre-commit formatting fixes (they're part of the original change)
+4. Do not commit except if explicitly told to do so
 
 ## Code Style Guidelines
 
@@ -51,20 +50,23 @@ All code formatting is enforced by `.editorconfig` and pre-commit hooks. See `.e
 - Use appropriate error handling patterns for each language
 - Use idiomatic import/include patterns for each language
 - Lua globals: Only `vim` is allowed (see .luacheckrc)
+- When adding a new file in the automatically discovered paths you need to
+to a `git add <file>` for nix flake to see it.
 
 ## Project Structure
 
 - Root/ repository contains configuration, modules, hosts, packages, overlays.
 - **home/** – Home-manager specific NixOS modules.
 - **home/users** - Home-manager user configurations.
+- **home/modules** - Home-managers modules and roles - automatically discovered by flake.nix.
 - **home/modules/roles** – Home-manager roles grouping reusable modules.
 - **home/modules/modules** – Home-manager reusable modules.
 - **hosts/** – NixOS host-specific configurations.
 - **hosts/modules/** - NixOS reusable modules.
 - **hosts/systems**/ - NixOS hosts configurations.
 - **lib/** – Shared Nix helpers and nixos definitions.
-- **overlays/** – Nixpkgs overlays for custom packages.
-- **packages/** – Nix packages
+- **overlays/** – Nixpkgs overlays for custom packages - automatically discovered by flake.nix.
+- **packages/** – Nix packages - automatically discovered by flake.nix.
 - **.github/** – GitHub Actions workflows.
 - **.envrc** – Environment variables for the Nix shell.
 - **Makefile** – Build targets.
