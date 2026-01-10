@@ -30,7 +30,6 @@
       tools = {
         enable = true;
         claude.enable = false;
-        gemini-cli.enable = false;
         ollama.enable = false;
         llamacpp.enable = false;
         mcp = {

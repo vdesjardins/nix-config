@@ -11,7 +11,7 @@
   cfg = config.roles.ai.tools;
 in {
   options.roles.ai.tools = {
-    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, opencode, github-copilot-cli, gemini-cli, mcp servers, skills)";
+    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, opencode, github-copilot-cli, mcp servers, skills)";
 
     # CLI Tools
     ollama = {
@@ -68,12 +68,6 @@ in {
       type = types.bool;
       default = true;
       description = "Enable GitHub Copilot CLI";
-    };
-
-    gemini-cli.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable Gemini CLI";
     };
 
     # MCP Servers
@@ -181,8 +175,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages =
-      (lib.optionals cfg.llamacpp.enable [cfg.llamacpp.settings.package])
-      ++ (lib.optionals cfg.gemini-cli.enable [pkgs.gemini-cli]);
+      lib.optionals cfg.llamacpp.enable [cfg.llamacpp.settings.package];
 
     modules = {
       services.ollama = mkIf cfg.ollama.enable cfg.ollama.settings;

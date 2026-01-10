@@ -29,7 +29,7 @@ def "main nix-update" [
 	let pkgs_latest = [
 		"english-words", "kubectl-aliases", "lscolors", "tinted-fzf",
 		"mcp-proxy",
-		"gemini-cli", "git-mcp",
+		"git-mcp",
 		"opencode-notifier",
 		"vimPlugins-kcl", "vimPlugins-codecompanion-history",
 		"vimPlugins-blink-emoji", "vimPlugins-blink-copilot",
