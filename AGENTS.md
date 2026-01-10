@@ -20,17 +20,37 @@ Once inside the shell, you can run the make targets shown below.
 - Lint (all): Run `pre-commit run -a` or use `nix flake check`
 - Update packages: Run `./infra.nu nix-update`
 
+## Post-Change Quality Assurance
+
+After making any code changes:
+1. **Always run `pre-commit run -a`** to check for linting and formatting issues
+2. **Fix any errors** that pre-commit auto-fixes (alejandra formatting, etc.)
+3. **Include formatting fixes** in the original commit (use `jj squash` if needed)
+4. **Do not create INTENTS-*.md files** for pre-commit formatting fixes (they're part of the original change)
+
 ## Code Style Guidelines
 
-- **Lua**: 2-space indents (stylua), 100 column width, Unix line endings, double quotes preferred
-- **Nix**: 2-space indents, UTF-8, final newlines (see .editorconfig)
-- **General**: Use spaces, not tabs; always end files with a newline
-- **Globals**: Lua allows `vim` as a global (see .luacheckrc)
-- **Linting**: Use alejandra, statix, stylua, shellcheck, shfmt, commitizen (see flake.nix)
-- **Naming**: Follow idiomatic Lua/Nix conventions
-- **Error Handling**: Use idiomatic error handling for each language
-- **Imports**: Use idiomatic import/include patterns for Lua and Nix
-- **No Cursor or Copilot rules present**
+All code formatting is enforced by `.editorconfig` and pre-commit hooks. See `.editorconfig` for base formatting rules.
+
+### Language-Specific Tools
+- **Nix files**: Formatted by `alejandra` (enforced via pre-commit)
+- **Lua files**: Formatted by `stylua` with 100 column width, double quotes preferred (see .luacheckrc for globals)
+- **Shell files**: Formatted by `shfmt` (enforced via pre-commit)
+- **Markdown**: Keep readable; checked by `rumdl`
+
+### Linting Tools (run automatically via `pre-commit run -a`)
+- `alejandra` - Nix code formatter
+- `statix` - Nix linter
+- `stylua` - Lua code formatter
+- `shellcheck` - Shell script linter
+- `shfmt` - Shell script formatter
+- `commitizen` - Commit message validator
+
+### Additional Guidelines
+- Follow idiomatic conventions for each language
+- Use appropriate error handling patterns for each language
+- Use idiomatic import/include patterns for each language
+- Lua globals: Only `vim` is allowed (see .luacheckrc)
 
 ## Project Structure
 
