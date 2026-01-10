@@ -92,7 +92,7 @@ in {
     containers = {
       home-assistant = {
         # renovate: datasource=docker depName=home-assistant/home-assistant
-        image = "ghcr.io/home-assistant/home-assistant:2025.12.5";
+        image = "ghcr.io/home-assistant/home-assistant:2026.1.0";
 
         environment.TZ = config.time.timeZone;
 
