@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }: let
@@ -23,10 +24,19 @@ in {
 
       initContent = ''
         # Nix profile named directories
-        hash -d nix-hm="''${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles/profile"
+        hash -d nix-hm="''${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles"
         hash -d nix-now=/run/current-system
         hash -d nix-boot=/nix/var/nix/profiles/system
       '';
     };
+
+    home.packages = with pkgs; [
+      nix-prefetch
+      nix-prefetch-git
+      nurl
+      nvd
+      nix-tree
+      nix-output-monitor
+    ];
   };
 }

@@ -110,12 +110,6 @@ in {
         nix-diff
         nix-init
         nix-inspect
-        nix-tree
-        nix-prefetch
-        nix-prefetch-git
-        nix-output-monitor
-        nurl
-        nvd
       ])
       ++ (optionals cfg.rust.enable [crate2nix cargo rustc])
       ++ (optionals cfg.terraform.enable [
