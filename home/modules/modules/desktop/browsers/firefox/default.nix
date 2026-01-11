@@ -8,7 +8,6 @@
   inherit (builtins) hasAttr;
   inherit (lib) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.lists) concatMap;
   inherit (lib.types) listOf attrs;
 
   defaultExtensions = with inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system}.repos.rycee.firefox-addons; [
@@ -92,7 +91,7 @@ in {
       })
       extensions);
 
-    nativeMessagingHosts = concatMap (e:
+    nativeMessagingHosts = lib.lists.concatMap (e:
       if hasAttr "nativeMessagingHost" e
       then [e.nativeMessagingHost]
       else [])
@@ -134,6 +133,87 @@ in {
             order = ["ddg" "google"];
 
             engines = {
+              "arXiv" = {
+                urls = [
+                  {
+                    template = "https://arxiv.org/search?searchtype=all";
+                    params = [
+                      {
+                        name = "query";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "favicon.ico";
+                definedAliases = ["@a"];
+              };
+              "GMail" = {
+                urls = [
+                  {
+                    template = "https://mail.google.com/mail/u/0/#search/{searchTerms}";
+                  }
+                ];
+                icon = "favicon.ico";
+                definedAliases = ["@gm"];
+              };
+              "GDrive" = {
+                urls = [
+                  {
+                    template = "https://drive.google.com/drive/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "favicon.ico";
+                definedAliases = ["@gd"];
+              };
+              "Google Keep" = {
+                urls = [
+                  {
+                    template = "https://keep.google.com/u/0/#search/text%3D{searchTerms}";
+                  }
+                ];
+                icon = "favicon.ico";
+                definedAliases = ["@gk"];
+              };
+              "Google Maps" = {
+                urls = [
+                  {
+                    template = "https://www.google.com/maps/search/{searchTerms}?hl=en&source=opensearch";
+                  }
+                ];
+                icon = "favicon.ico";
+                definedAliases = ["@m"];
+              };
+              "Google Photos" = {
+                urls = [
+                  {
+                    template = "https://photos.google.com/search/{{searchTerms}}";
+                  }
+                ];
+                icon = "favicon.ico";
+                definedAliases = ["@gp"];
+              };
+              "Urban dictionary" = {
+                urls = [
+                  {
+                    template = "http://www.urbandictionary.com/define.php";
+                    params = [
+                      {
+                        name = "term";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "favicon.ico";
+                definedAliases = ["@ud"];
+              };
               "Nix Packages" = {
                 urls = [
                   {
@@ -181,8 +261,8 @@ in {
                 definedAliases = ["@no"];
               };
               "NixOS Wiki" = {
-                urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
-                icon = "https://nixos.wiki/favicon.png";
+                urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
+                icon = "https://wiki.nixos.org/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@nw"];
               };
@@ -250,11 +330,109 @@ in {
                 updateInterval = 24 * 60 * 60 * 1000;
                 definedAliases = ["@ghnh"];
               };
+              "Grep.app" = {
+                urls = [
+                  {
+                    template = "https://grep.app/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "https://grep.app/icon.png";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@ga"];
+              };
+              "Grep.app (Nix)" = {
+                urls = [
+                  {
+                    template = "https://grep.app/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                      {
+                        name = "f.lang";
+                        value = "Nix";
+                      }
+                    ];
+                  }
+                ];
+                icon = "https://grep.app/icon.png";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@gan"];
+              };
+              "Grep.app (Nixpkgs)" = {
+                urls = [
+                  {
+                    template = "https://grep.app/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                      {
+                        name = "f.lang";
+                        value = "Nix";
+                      }
+                      {
+                        name = "f.repo";
+                        value = "NixOS/nixpkgs";
+                      }
+                    ];
+                  }
+                ];
+                icon = "https://grep.app/icon.png";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@ganp"];
+              };
+              "Grep.app (home-manager)" = {
+                urls = [
+                  {
+                    template = "https://grep.app/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                      {
+                        name = "f.lang";
+                        value = "Nix";
+                      }
+                      {
+                        name = "f.repo";
+                        value = "nix-community/home-manager";
+                      }
+                    ];
+                  }
+                ];
+                icon = "https://grep.app/icon.png";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@ganh"];
+              };
+              "Amazon.ca" = {
+                urls = [
+                  {
+                    template = "https://www.amazon.ca/s";
+                    params = [
+                      {
+                        name = "k";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "https://www.amazon.ca/favicon.ico";
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@az"];
+              };
               "wikipedia".metaData.alias = "@w";
               "google".metaData.alias = "@g";
-              "Amazon.ca".metaData.alias = "@a";
               "bing".metaData.hidden = true;
-              "ebay".metaData.hidden = true;
             };
           };
 
@@ -382,10 +560,7 @@ in {
         '';
 
         data = let
-          inherit (builtins) replaceStrings concatMap map attrNames;
-          inherit (lib.strings) concatStringsSep;
-
-          escapeString = str: "'${replaceStrings ["'"] ["''"] str}'";
+          escapeString = str: "'${builtins.replaceStrings ["'"] ["''"] str}'";
           escapeInt = toString;
           permissionValue = {
             allow = 1;
@@ -401,8 +576,8 @@ in {
             WITH now(unix_ms) AS (SELECT CAST((julianday('now') - 2440587.5) * 86400000 AS INTEGER))
             INSERT INTO moz_perms(origin, type, permission, expireType, expireTime, modificationTime)
             VALUES
-            ${concatStringsSep ",\n"
-              (concatMap
+            ${lib.strings.concatStringsSep ",\n"
+              (builtins.concatMap
                 (origin: let
                   originPermissions = permissions.${origin};
                 in
@@ -410,8 +585,8 @@ in {
                   (type: let
                     permission = permissionValue.${originPermissions.${type}};
                   in "  (${escapeString origin}, ${escapeString type}, ${escapeInt permission}, 0, 0, (SELECT unix_ms FROM now))")
-                  (attrNames originPermissions))
-                (attrNames permissions))}
+                  (builtins.attrNames originPermissions))
+                (builtins.attrNames permissions))}
                 ON CONFLICT(origin, type) DO UPDATE SET
                   permission=excluded.permission,
                   expireType=excluded.expireType,
