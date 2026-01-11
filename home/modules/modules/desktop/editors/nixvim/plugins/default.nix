@@ -73,6 +73,7 @@
     ./json.nix
     ./zig.nix
     ./toml.nix
+    ./otter.nix
     # ./kcl.nix (temporarily disabled for testing)
 
     # nav

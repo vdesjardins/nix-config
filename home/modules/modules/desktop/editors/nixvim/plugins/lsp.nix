@@ -215,27 +215,31 @@
       {
         mode = "n";
         key = "<leader>lI";
-        action = "<cmd>LspInfo<cr>";
-        options.desc = "Show LSP Info";
+        action = "<cmd>checkhealth lsp<cr>";
+        options.desc = "Show LSP health";
       }
 
       # logging
       {
         mode = "n";
         key = "<leader>lxo";
-        action = "<cmd>LspLog<cr>";
+        action.__raw = ''
+          function()
+            local log_path = vim.lsp.get_log_path()
+            vim.cmd.split(log_path)
+          end'';
         options.desc = "Open LSP Log File";
       }
       {
         mode = "n";
         key = "<leader>lxe";
-        action.__raw = "function() vim.lsp.set_log_level('debug') end";
+        action.__raw = "function() vim.lsp.log.set_level(vim.lsp.log.levels.DEBUG) end";
         options.desc = "Enable LSP Logging";
       }
       {
         mode = "n";
         key = "<leader>lxd";
-        action.__raw = "function() vim.lsp.set_log_level('off') end";
+        action.__raw = "function() vim.lsp.log.set_level(vim.lsp.log.levels.OFF) end";
         options.desc = "Disable LSP Logging";
       }
       {
