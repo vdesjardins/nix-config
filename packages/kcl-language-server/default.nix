@@ -43,7 +43,7 @@ rustPlatform.buildRustPackage rec {
     description = "KCL Language Server - built from main branch with vendored Cargo.lock";
     homepage = "https://www.kcl-lang.io/";
     license = lib.licenses.asl20;
-    platforms = lib.platforms.linux;
+    platforms = lib.platforms.all;
     mainProgram = "kcl-language-server";
   };
 }
