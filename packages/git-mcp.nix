@@ -1,10 +1,11 @@
 {
   fetchFromGitHub,
+  fetchPnpmDeps,
   lib,
   makeBinaryWrapper,
   nodejs,
   npmHooks,
-  pnpm,
+  pnpmConfigHook,
   stdenv,
   wrangler,
   nix-update-script,
@@ -22,12 +23,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     nodejs
-    pnpm.configHook
+    pnpmConfigHook
     npmHooks.npmInstallHook
     makeBinaryWrapper
   ];
 
-  pnpmDeps = pnpm.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     fetcherVersion = 1;
     hash = "sha256-Hp2BlkbFYlwXG5mPNJvX4nj3bQ9eZxGxAgcbHDENUPQ=";
