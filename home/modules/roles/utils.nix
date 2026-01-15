@@ -36,6 +36,7 @@ in {
         mergiraf.enable = true;
         joshuto.enable = true;
         jujutsu.enable = true;
+        jjui.enable = true;
         lazygit.enable = true;
         ls.enable = true;
         lsd.enable = true;

@@ -108,6 +108,7 @@ in {
         btop.color-scheme = "tokio-night";
         fzf.color-scheme = "${my-packages.tinted-fzf}/share/tinted-fzf/bash/base16-tokyo-night-dark.config";
         bat.color-scheme = "${my-packages.colorscheme-tokyonight}/share/themes/tokyonight/extras/sublime/tokyonight_night.tmTheme";
+        jjui.settings.ui.theme = "base24-tokyo-night-dark";
         git = {
           delta = {
             # [theme] tokyonight-night
