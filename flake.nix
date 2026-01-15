@@ -212,6 +212,7 @@
               commitizen.enable = true;
               rumdl.enable = true;
             };
+            package = pkgs.${system}.prek;
           };
         }
         // testsAttrs
