@@ -4,7 +4,7 @@
 }:
 python3Packages.buildPythonApplication {
   pname = "mcp-server-tree-sitter";
-  version = "main";
+  version = "0.5.1";
 
   src = fetchFromGitHub {
     owner = "wrale";

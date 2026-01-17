@@ -5,7 +5,7 @@
 }:
 buildNpmPackage rec {
   pname = "utcp-code-mode-mcp";
-  version = "latest";
+  version = "1.0.6";
 
   src = fetchFromGitHub {
     owner = "universal-tool-calling-protocol";

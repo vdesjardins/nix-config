@@ -11,7 +11,7 @@
 in
   python3Packages.buildPythonApplication {
     pname = "mcp-server-fetch";
-    version = "2025.12.18";
+    version = "2026.1.14";
 
     inherit src;
 
