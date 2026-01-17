@@ -1,0 +1,5 @@
+{
+  "checkCommands": [
+    "nix flake check"
+  ]
+}

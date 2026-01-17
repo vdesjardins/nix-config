@@ -108,7 +108,11 @@ in {
       '';
     };
 
-    xdg.configFile."opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
+    xdg.configFile = {
+      "opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
+      "opencode/plugin/code-validator.js".source = ./plugins/code-validator.js;
+      "opencode/code-validator.json".source = ./code-validator.json;
+    };
 
     programs.zsh.shellAliases = {
       oc = "opencode";
