@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  my-packages,
   lib,
   ...
 }: let
@@ -123,7 +124,7 @@ in {
       ])
       ++ (optionals cfg.kcl.enable [
         kcl
-        kcl-language-server
+        my-packages.kcl-language-server
       ])
       ++ (optionals cfg.debugging.enable [
           binutils
