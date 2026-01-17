@@ -150,6 +150,11 @@ in {
         default = true;
         description = "Enable UTCP Code Mode MCP server";
       };
+      memory-service.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Memory Service MCP server";
+      };
     };
 
     # Skills
@@ -203,6 +208,7 @@ in {
         sequential-thinking.enable = cfg.mcp.sequential-thinking.enable;
         tree-sitter.enable = cfg.mcp.tree-sitter.enable;
         utcp-code-mode.enable = cfg.mcp.utcp-code-mode.enable;
+        memory-service.enable = cfg.mcp.memory-service.enable;
       };
 
       skill = {
