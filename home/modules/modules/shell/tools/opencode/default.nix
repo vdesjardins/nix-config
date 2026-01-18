@@ -37,7 +37,7 @@ in {
           messages_half_page_down = "ctrl+d";
         };
 
-        plugin = ["@tarquinen/opencode-dcp@latest"];
+        plugin = ["opencode-pty" "@tarquinen/opencode-dcp@latest"];
 
         permission = {
           bash = {
