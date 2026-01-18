@@ -155,6 +155,11 @@ in {
         default = true;
         description = "Enable Memory Service MCP server";
       };
+      tmux-mcp.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable tmux-mcp MCP server";
+      };
     };
 
     # Skills
@@ -209,6 +214,7 @@ in {
         tree-sitter.enable = cfg.mcp.tree-sitter.enable;
         utcp-code-mode.enable = cfg.mcp.utcp-code-mode.enable;
         memory-service.enable = cfg.mcp.memory-service.enable;
+        tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
       };
 
       skill = {
