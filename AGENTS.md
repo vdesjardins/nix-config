@@ -75,6 +75,33 @@ to a `git add <file>` for nix flake to see it.
 - **default.nix** – Default NixOS configuration.
 - **infra.nu** – Build helpers for dependency management
 
+## Adding Packages & Modules
+
+When extending the project with new Nix packages or Home-Manager modules, refer to these reusable bootstrap guides in the `docs/` directory:
+
+### Generic Guides (Works for Any Package/Module Type)
+- **[docs/NIX_PACKAGE_BOOTSTRAP.md](docs/NIX_PACKAGE_BOOTSTRAP.md)** – Step-by-step guide for creating any Nix package (NPM, Python, Rust, Go, etc.)
+  - Covers hash computation workflow using `nix build` errors
+  - Troubleshooting common issues
+  - Template and validation checklist
+  
+- **[docs/HM_MODULE_BOOTSTRAP.md](docs/HM_MODULE_BOOTSTRAP.md)** – Step-by-step guide for creating any Home-Manager module
+  - Prerequisite questions to guide your design
+  - Configuration option types reference
+  - Common patterns: conditional config, nested options, dependencies
+  - Template and validation checklist
+
+### MCP-Specific Reference
+- **[docs/MCP_BOOTSTRAP_GUIDE.md](docs/MCP_BOOTSTRAP_GUIDE.md)** – MCP server integration reference
+  - MCP-specific patterns and 4-agent configuration template
+  - Cross-references to generic package and module guides
+  - Use this when adding new MCP servers
+
+### Important Notes
+- **DO NOT run `nix flake update`** – unnecessary and introduces unrelated upstream changes
+- **DO NOT run `nix flake check` to compute hashes** – use `nix build` errors instead (see bootstrap guides)
+- **git add new files** – Nix flake requires explicit `git add` for auto-discovered paths
+
 ## Commit Style Guide
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) style for our commit messages.
