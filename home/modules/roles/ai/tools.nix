@@ -180,6 +180,11 @@ in {
         default = true;
         description = "Enable timewarrior-workflow skill";
       };
+      tmux.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable tmux skill";
+      };
     };
   };
 
@@ -221,6 +226,7 @@ in {
         dev-browser.enable = cfg.skill.dev-browser.enable;
         jujutsu.enable = cfg.skill.jujutsu.enable;
         timewarrior.enable = cfg.skill.timewarrior.enable;
+        tmux.enable = cfg.skill.tmux.enable;
       };
     };
   };
