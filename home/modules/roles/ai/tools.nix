@@ -170,6 +170,11 @@ in {
         default = true;
         description = "Enable dev-browser skill";
       };
+      jj.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable jujutsu skill";
+      };
       jujutsu.enable = mkOption {
         type = types.bool;
         default = true;
@@ -224,6 +229,7 @@ in {
 
       skill = {
         dev-browser.enable = cfg.skill.dev-browser.enable;
+        jj.enable = cfg.skill.jj.enable;
         jujutsu.enable = cfg.skill.jujutsu.enable;
         timewarrior.enable = cfg.skill.timewarrior.enable;
         tmux.enable = cfg.skill.tmux.enable;
