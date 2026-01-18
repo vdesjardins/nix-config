@@ -37,6 +37,8 @@ in {
           messages_half_page_down = "ctrl+d";
         };
 
+        plugin = ["@tarquinen/opencode-dcp@latest"];
+
         permission = {
           bash = {
             "*" = "ask";
@@ -112,6 +114,45 @@ in {
       "opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
       "opencode/plugin/code-validator.js".source = ./plugins/code-validator.js;
       "opencode/code-validator.json".source = ./code-validator.json;
+      "opencode/dcp.jsonc".text = builtins.toJSON {
+        "$schema" = "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json";
+        enabled = true;
+        debug = false;
+        pruneNotification = "detailed";
+        turnProtection = {
+          enabled = false;
+          turns = 4;
+        };
+        protectedFilePatterns = [];
+        tools = {
+          settings = {
+            nudgeEnabled = true;
+            nudgeFrequency = 10;
+            protectedTools = [];
+          };
+          discard = {
+            enabled = true;
+          };
+          extract = {
+            enabled = true;
+            showDistillation = false;
+          };
+        };
+        strategies = {
+          deduplication = {
+            enabled = true;
+            protectedTools = [];
+          };
+          supersedeWrites = {
+            enabled = false;
+          };
+          purgeErrors = {
+            enabled = true;
+            turns = 4;
+            protectedTools = [];
+          };
+        };
+      };
     };
 
     programs.zsh.shellAliases = {
