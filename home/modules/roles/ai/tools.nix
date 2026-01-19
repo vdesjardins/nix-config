@@ -165,6 +165,11 @@ in {
     # Skills
     skill = {
       enable = mkEnableOption "Skills (all)";
+      conventional-commits.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable conventional-commits skill";
+      };
       dev-browser.enable = mkOption {
         type = types.bool;
         default = true;
@@ -228,6 +233,7 @@ in {
       };
 
       skill = {
+        conventional-commits.enable = cfg.skill.conventional-commits.enable;
         dev-browser.enable = cfg.skill.dev-browser.enable;
         jj.enable = cfg.skill.jj.enable;
         jujutsu.enable = cfg.skill.jujutsu.enable;

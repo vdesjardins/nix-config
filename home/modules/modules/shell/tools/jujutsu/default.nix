@@ -117,13 +117,33 @@ in {
         commands = {
           "jj:change:describe" = ''
             ---
-            description: Create well-formatted conventional commit messages using jujutsu.
+            description: Create well-formatted conventional commit messages using jujutsu (jj).
             agent: build
             subtask: true
             ---
 
-            Load the jujutsu-workflow skill and follow its instructions to:
-            1. Analyze what changes are in the current commit
+            Load the jj and conventional-commits skills and follow its instructions to:
+            1. Analyze what changes are in the current commit. When you make
+               changes using OpenCode or other tools, they may create
+               `INTENTS-*.md` files that document the original intent behind the changes.
+               Combine INTENTS files with `jj diff` to capture both the reasoning and all
+               actual changes:
+                 1. Run `jj status` to check for `INTENTS-*.md` files
+                 2. If INTENTS files exist:
+                    - Read the file to understand the original prompt/intent
+                    - Run `jj diff` to see all actual changes in the working copy
+                    - Cross-reference: The INTENTS file explains WHY, the diff shows WHAT
+                      changed
+                    - Account for any manual edits not mentioned in INTENTS (they appear in
+                      the diff)
+                    - Write a commit message that captures both the original intent and any
+                      additional changes
+                    - Example: INTENTS says "refactor parser" but diff shows you also fixed
+                      a bug, so message should be: `🐛 fix(parser): refactor for performance
+                      and fix edge case handling`
+                 3. If no INTENTS files exist:
+                    - Run `jj diff` to see the actual changes
+                    - Determine the commit type and write a message based on what changed
             2. Craft conventional commit message explaining WHY those changes were made
             3. Execute `jj describe -m "your message"` to set it on the current commit
             4. Do not create INTENTS-*.md file for this command
@@ -131,7 +151,7 @@ in {
 
           "jj:change:new" = ''
             ---
-            description: Prepare a new jujutsu change (commit) for development.
+            description: Prepare a new jujutsu (jj) change (commit) for development.
             agent: build
             ---
 
@@ -140,12 +160,12 @@ in {
 
           "jj:gh:pr:create" = ''
             ---
-            description: Create a GitHub pull request for the current jujutsu branch.
+            description: Create a GitHub pull request for the current jujutsu (jj) branch.
             agent: build
             subtask: true
             ---
 
-            Load the jujutsu-workflow skill and follow its instructions to:
+            Load the jj skill and follow its instructions to:
             1. Get the current branch name. Branch a are created as `push-*`
                for example `push-mymvvskypsow`
             2. If remote branch does not exist, create with `jj git push -c @`
