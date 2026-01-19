@@ -170,6 +170,11 @@ in {
         default = true;
         description = "Enable conventional-commits skill";
       };
+      creator.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable skill-creator";
+      };
       dev-browser.enable = mkOption {
         type = types.bool;
         default = true;
@@ -234,6 +239,7 @@ in {
 
       skill = {
         conventional-commits.enable = cfg.skill.conventional-commits.enable;
+        creator.enable = cfg.skill.creator.enable;
         dev-browser.enable = cfg.skill.dev-browser.enable;
         jj.enable = cfg.skill.jj.enable;
         jujutsu.enable = cfg.skill.jujutsu.enable;
