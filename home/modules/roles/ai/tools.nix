@@ -170,10 +170,20 @@ in {
         default = true;
         description = "Enable conventional-commits skill";
       };
-      creator.enable = mkOption {
+      skill-creator.enable = mkOption {
         type = types.bool;
         default = true;
         description = "Enable skill-creator";
+      };
+      skill-reviewer.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable skill-reviewer";
+      };
+      writing-skills.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable writing-skills";
       };
       dev-browser.enable = mkOption {
         type = types.bool;
@@ -239,7 +249,9 @@ in {
 
       skill = {
         conventional-commits.enable = cfg.skill.conventional-commits.enable;
-        creator.enable = cfg.skill.creator.enable;
+        skill-creator.enable = cfg.skill.skill-creator.enable;
+        skill-reviewer.enable = cfg.skill.skill-reviewer.enable;
+        writing-skills.enable = cfg.skill.writing-skills.enable;
         dev-browser.enable = cfg.skill.dev-browser.enable;
         jj.enable = cfg.skill.jj.enable;
         jujutsu.enable = cfg.skill.jujutsu.enable;

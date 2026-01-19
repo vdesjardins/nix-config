@@ -18,8 +18,8 @@ stdenv.mkDerivation {
   dontBuild = true;
 
   installPhase = ''
-    mkdir -p ${placeholder "out"}/skills/creator
-    cp -r . ${placeholder "out"}/skills/creator/
+    mkdir -p ${placeholder "out"}/skills/skill-creator
+    cp -r . ${placeholder "out"}/skills/skill-creator/
   '';
 
   meta = {
