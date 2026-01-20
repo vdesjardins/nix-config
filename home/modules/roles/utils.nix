@@ -19,48 +19,50 @@ in {
       zoxide.enable = true;
     };
 
-    modules.shell = {
-      bash.enable = true;
-      zsh.enable = true;
-      nushell.enable = true;
+    modules = {
+      shell = {
+        bash.enable = true;
+        zsh.enable = true;
+        nushell.enable = true;
 
-      tools = {
-        btop.enable = true;
-        nix.enable = true;
-        any-nix-shell.enable = true;
-        bat.enable = true;
-        direnv.enable = true;
-        fd.enable = true;
-        gh.enable = true;
-        git.enable = true;
-        mergiraf.enable = true;
-        joshuto.enable = true;
-        jujutsu.enable = true;
-        jjui.enable = true;
-        lazygit.enable = true;
-        ls.enable = true;
-        lsd.enable = true;
-        nix-index.enable = true;
-        openssl.enable = true;
-        ripgrep.enable = true;
-        starship.enable = true;
-        timewarrior.enable = true;
-        yazi.enable = true;
-        fzf.enable = true;
-        tmux.enable = true;
-        try.enable = true;
-      };
-    };
-
-    modules.desktop = {
-      terminal = {
-        alacritty.enable = true;
-        ghostty.enable = true;
-        ghostty.useTmux = true;
+        tools = {
+          btop.enable = true;
+          nix.enable = true;
+          any-nix-shell.enable = true;
+          bat.enable = true;
+          direnv.enable = true;
+          fd.enable = true;
+          gh.enable = true;
+          git.enable = true;
+          mergiraf.enable = true;
+          joshuto.enable = true;
+          jujutsu.enable = true;
+          jjui.enable = true;
+          lazygit.enable = true;
+          ls.enable = true;
+          lsd.enable = true;
+          nix-index.enable = true;
+          openssl.enable = true;
+          ripgrep.enable = true;
+          starship.enable = true;
+          timewarrior.enable = true;
+          yazi.enable = true;
+          fzf.enable = true;
+          tmux.enable = true;
+          try.enable = true;
+        };
       };
 
-      editors.nixvim = {
-        enable = true;
+      desktop = {
+        terminal = {
+          alacritty.enable = true;
+          ghostty.enable = true;
+          ghostty.useTmux = true;
+        };
+
+        editors.nixvim = {
+          enable = true;
+        };
       };
     };
 
