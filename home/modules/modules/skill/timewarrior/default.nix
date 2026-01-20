@@ -11,11 +11,11 @@ in {
   options.modules.skill.timewarrior = {
     enable = mkEnableOption "timewarrior skill";
 
-    package = mkPackageOption my-packages "skill-timewarrior-workflow" {};
+    package = mkPackageOption my-packages "skill-timewarrior" {};
   };
 
   config = mkIf cfg.enable {
-    xdg.configFile."opencode/skill/timewarrior-workflow".source = "${cfg.package}/skills/timewarrior-workflow";
+    xdg.configFile."opencode/skill/timewarrior".source = "${cfg.package}/skills/timewarrior";
 
     programs.opencode.settings.permission.bash = {
       "timew --version" = "allow";

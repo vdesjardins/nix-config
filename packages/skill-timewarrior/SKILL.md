@@ -1,5 +1,5 @@
 ---
-name: timewarrior-workflow
+name: timewarrior
 description: Comprehensive guide to timewarrior time tracking with
   step-by-step instructions for adding entries, managing tags, filling gaps,
   and generating time reports. Use timewarrior commands for time tracking, tag

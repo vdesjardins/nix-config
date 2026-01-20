@@ -5,8 +5,8 @@
   timewarrior,
 }: let
   inherit (python3.pkgs) pytest;
-  skill-timewarrior-workflow = stdenv.mkDerivation {
-    pname = "skill-timewarrior-workflow";
+  skill-timewarrior = stdenv.mkDerivation {
+    pname = "skill-timewarrior";
     version = "1.0.0";
 
     # Use local files as source
@@ -23,20 +23,20 @@
 
     installPhase = ''
       # Create output directory structure
-      mkdir -p $out/skills/timewarrior-workflow
+      mkdir -p $out/skills/timewarrior
 
       # Copy SKILL.md
-      cp SKILL.md $out/skills/timewarrior-workflow/
+      cp SKILL.md $out/skills/timewarrior/
 
       # Copy scripts directory
-      cp -r scripts $out/skills/timewarrior-workflow/
+      cp -r scripts $out/skills/timewarrior/
 
       # Make scripts executable
-      chmod +x $out/skills/timewarrior-workflow/scripts/*.py
+      chmod +x $out/skills/timewarrior/scripts/*.py
 
       # Patch all shebangs in one go - patchShebangs auto-discovers python3
       # from nativeBuildInputs
-      patchShebangs $out/skills/timewarrior-workflow/scripts/
+      patchShebangs $out/skills/timewarrior/scripts/
     '';
 
     checkPhase = ''
@@ -60,4 +60,4 @@
     };
   };
 in
-  skill-timewarrior-workflow
+  skill-timewarrior

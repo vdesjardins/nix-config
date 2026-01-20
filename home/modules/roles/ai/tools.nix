@@ -203,7 +203,7 @@ in {
       timewarrior.enable = mkOption {
         type = types.bool;
         default = true;
-        description = "Enable timewarrior-workflow skill";
+        description = "Enable timewarrior skill";
       };
       tmux.enable = mkOption {
         type = types.bool;
