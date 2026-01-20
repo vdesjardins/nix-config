@@ -18,6 +18,7 @@ in {
     ../shared/pipewire.nix
     ../shared/gaming.nix
     ../shared/wifi.nix
+    ./services.nix
     (../users + "/${username}.nix")
   ];
 

@@ -269,9 +269,6 @@ in {
 
         startup = [
           {
-            command = "udiskie";
-          }
-          {
             command = "autotiling";
             always = true;
           }

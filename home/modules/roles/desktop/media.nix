@@ -33,5 +33,12 @@ in {
     };
 
     home.packages = with pkgs; optionals cfg.videos.enable [vlc];
+
+    services.udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+      tray = "auto";
+    };
   };
 }

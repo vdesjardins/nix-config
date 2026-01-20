@@ -51,7 +51,6 @@ in {
       playerctl
       pulseaudio
       slurp
-      udiskie
       wdisplays
       wev # event viewer
       wl-clipboard
