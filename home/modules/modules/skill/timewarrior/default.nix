@@ -11,12 +11,11 @@ in {
   options.modules.skill.timewarrior = {
     enable = mkEnableOption "timewarrior skill";
 
-    package = mkPackageOption my-packages "skill-timewarrior" {};
+    package = mkPackageOption my-packages "skill-timewarrior-efficient-entry" {};
   };
 
   config = mkIf cfg.enable {
-    xdg.configFile."opencode/skill/timewarrior".source = "${cfg.package}/skills/timewarrior";
-
+    xdg.configFile."opencode/skill/timewarrior-efficient-entry".source = "${cfg.package}/skills/timewarrior-efficient-entry";
     programs.opencode.settings.permission.bash = {
       "timew --version" = "allow";
       "timew start*" = "allow";

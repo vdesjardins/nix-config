@@ -23,20 +23,20 @@
 
     installPhase = ''
       # Create output directory structure
-      mkdir -p $out/skills/timewarrior
+      mkdir -p $out/skills/timewarrior-efficient-entry
 
       # Copy SKILL.md
-      cp SKILL.md $out/skills/timewarrior/
+      cp SKILL.md $out/skills/timewarrior-efficient-entry
 
       # Copy scripts directory
-      cp -r scripts $out/skills/timewarrior/
+      cp -r scripts $out/skills/timewarrior-efficient-entry
 
       # Make scripts executable
-      chmod +x $out/skills/timewarrior/scripts/*.py
+      chmod +x $out/skills/timewarrior-efficient-entry/scripts/*.py
 
       # Patch all shebangs in one go - patchShebangs auto-discovers python3
       # from nativeBuildInputs
-      patchShebangs $out/skills/timewarrior/scripts/
+      patchShebangs $out/skills/timewarrior-efficient-entry/scripts/
     '';
 
     checkPhase = ''
