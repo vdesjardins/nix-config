@@ -137,6 +137,7 @@ in {
       bold-is-bright = true
 
       gtk-tabs-location = bottom
+      gtk-single-instance = false
 
       shell-integration = zsh
 

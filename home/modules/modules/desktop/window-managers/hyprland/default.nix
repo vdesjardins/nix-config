@@ -173,7 +173,7 @@ in {
 
       settings = {
         "$terminal" = "ghostty";
-        "$fileManager" = "nautilus --new-window";
+        "$fileManager" = "ghostty --class=org.my.yazi -e yazi";
         "$browser" = "firefox";
         "$music" = "spotify";
         "$messenger" = "signal-desktop";
@@ -334,10 +334,10 @@ in {
           "10, monitor:DP-2, default:true, persistent:true"
         ];
 
-        windowrulev2 = [
-          "float, class:(clipse)"
-          "size 622 652, class:(clipse)"
-          "stayfocused, class:(clipse)"
+        windowrule = [
+          "match:tag password-manager, float on, size monitor_w*0.5 monitor_h*0.5"
+          "match:class ^(org.my.yazi)$, float on"
+          "match:class ^(org.my.yazi)$, size monitor_w*0.7 monitor_h*0.7"
         ];
 
         general = {

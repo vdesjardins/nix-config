@@ -483,15 +483,15 @@ in {
     };
 
     wayland.windowManager.hyprland.settings = {
-      windowrulev2 = [
-        "float, class:(firefox), title:(Picture-in-Picture)"
-        "size 1500 1000, class:(firefox), title:(Picture-in-Picture)"
-        "float, class:(firefox), title:^Extension:.*Bitwarden.*"
-        "size 400 600, class:(firefox), title:^Extension:.*Bitwarden.*"
-        "workspace 9, class:(firefox), title:(Gmail)"
-        "workspace 9, class:(firefox), title:(mail.proton.me)"
-        "workspace 7, class:(firefox), title:(dicord.com)"
-        "workspace 8, class:(firefox), title:.*Google Calendar.*"
+      windowrule = [
+        "match:class (firefox), match:title (Picture-in-Picture), float on"
+        "match:class (firefox), match:title (Picture-in-Picture), size 1500 1000"
+        "match:class (firefox), match:title ^Extension:.*Bitwarden.*, float on"
+        "match:class (firefox), match:title ^Extension:.*Bitwarden.*, size 400 600"
+        "match:class (firefox), match:title (Gmail), workspace 9"
+        "match:class (firefox), match:title (mail.proton.me), workspace 9"
+        "match:class (firefox), match:title (dicord.com), workspace 7"
+        "match:class (firefox), match:title .*Google Calendar.*, workspace 8"
       ];
     };
 

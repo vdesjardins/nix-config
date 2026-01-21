@@ -100,10 +100,12 @@ Expected Markdown format:
 # Bookmarks
 
 ## Development
+
 - [GitHub](https://github.com)
 - [Stack Overflow](https://stackoverflow.com)
 
 ## Reference
+
 - [Wikipedia](https://wikipedia.org)
 ```
 

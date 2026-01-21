@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  stdenv,
   ...
 }: let
   inherit (lib) mkIf;

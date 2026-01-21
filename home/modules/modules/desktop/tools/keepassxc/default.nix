@@ -175,8 +175,8 @@ in {
     '';
 
     # Configure KeePassXC window rules for Hyprland
-    wayland.windowManager.hyprland.settings.windowrulev2 = mkIf cfg.windowRules.floating [
-      "float, class:(org.keepassxc.KeePassXC)"
+    wayland.windowManager.hyprland.settings.windowrule = mkIf cfg.windowRules.floating [
+      "match:class (org.keepassxc.KeePassXC), tag +password-manager"
     ];
   };
 }
