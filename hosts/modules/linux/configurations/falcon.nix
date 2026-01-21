@@ -4,6 +4,7 @@
 in {
   imports = [
     ../../shared.nix
+    ../../nix.nix
     ../../tailscale.nix
     ../hardware/beelink.nix
     ../shared

@@ -4,6 +4,7 @@
 in {
   imports = [
     ../../shared.nix
+    ../../nix.nix
     ../../desktop.nix
     ../../tailscale.nix
     ../hardware/v.nix

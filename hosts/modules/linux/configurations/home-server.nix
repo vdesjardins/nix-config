@@ -11,6 +11,7 @@ in {
   imports = [
     nixos-hardware.nixosModules.raspberry-pi-4
     ../../shared.nix
+    ../../nix.nix
     ../../tailscale.nix
     ../shared
     ../shared/networking.nix
