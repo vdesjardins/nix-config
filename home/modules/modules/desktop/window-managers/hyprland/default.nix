@@ -9,23 +9,31 @@
 
   cfg = config.modules.desktop.window-managers.hyprland;
 
-  hyprland-help-keybinds = pkgs.writeShellScript "hyprland-help-keybinds" ''
-    HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
+  hyprland-help-keybinds = pkgs.writeShellScriptBin "hyprland-help-keybinds" ''
+    mapfile -t BINDINGS < <(hyprctl binds -j | jq -r '
+      def modstr:
+        (if (.modmask / 64 | floor) >= 1 then "SUPER + " else "" end) +
+        (if ((.modmask % 64) / 8 | floor) >= 1 then "ALT + " else "" end) +
+        (if ((.modmask % 8) / 4 | floor) >= 1 then "CTRL + " else "" end) +
+        (if (.modmask % 4) >= 1 then "SHIFT + " else "" end)
+      ;
+      def shorten: if startswith("/nix/store/") then (. | split("/") | last) else . end;
+      .[] |
+        ((modstr + .key) | . + (" " * (25 - length))) as $key |
+        ((.dispatcher + (if .arg and (.arg | length > 0) then " " + (.arg | shorten) else "" end)) | . + (" " * (30 - length))) as $desc |
+        "<b>\($key)</b>  <i>\($desc)</i> <span color=\"gray\">\(.dispatcher)\(if .arg and (.arg | length > 0) then " \(.arg)" else "" end)</span>"
+    ')
 
-    mapfile -t BINDINGS < <(grep '^bind=' "$HYPR_CONF" | \
-        sed -e 's/  */ /g' -e 's/bind=//g' -e 's/, /,/g' -e 's/ # /,/' | \
-        awk -F, -v q="'" '{cmd=""; for(i=3;i<NF;i++) cmd=cmd $(i) " ";print "<b>"$1 " + " $2 "</b>  <i>" $NF "</i> <span color=" q "gray" q ">" cmd "</span>"}')
+      CHOICE=$(printf '%s\n' "''${BINDINGS[@]}" | rofi -dmenu -i -markup-rows -p "Hyprland Keybinds:")
 
-    CHOICE=$(printf '%s\n' "''${BINDINGS[@]}" | rofi -dmenu -i -markup-rows -p "Hyprland Keybinds:")
+      CMD=$(echo "$CHOICE" | sed -n 's/.*<span color="gray">\(.*\)<\/span>.*/\1/p')
+      EXEC=$(echo "$CHOICE" | sed -n 's/.*<i>\(.*\)<\/i>.*/\1/p')
 
-    CMD=$(echo "$CHOICE" | sed -n 's/.*<span color='\'''gray'\'''>\(.*\)<\/span>.*/\1/p')
-    EXEC=$(echo "$CHOICE" | sed -n 's/.*<i>\(.*\)<\/i>.*/\1/p')
-
-    if [[ $CMD == exec* ]]; then
-        eval "$EXEC"
-    else
-        hyprctl dispatch "$CMD"
-    fi
+      if [[ $CMD == exec* ]]; then
+          eval "$EXEC"
+      else
+          hyprctl dispatch "$CMD"
+      fi
   '';
 
   monitor-attached = pkgs.writeShellScript "monitor-attached" ''
@@ -59,7 +67,6 @@ in {
       arandr
       clipse
       grim
-      nautilus
       papirus-icon-theme
       playerctl
       pulseaudio
@@ -73,6 +80,7 @@ in {
       xdg-utils
       xwayland
       ydotool
+      jq
       hyprland-monitor-attached
 
       (makeDesktopItem {
@@ -289,7 +297,7 @@ in {
           "$mod SHIFT, X, exec, ${getExe pkgs.hyprlock}"
 
           # shortcut help
-          "$mod SHIFT, Slash, exec, ${hyprland-help-keybinds}"
+          "$mod SHIFT, Slash, exec, ${getExe hyprland-help-keybinds}"
 
           # resize windows
           "$mod, R, submap, resize"
