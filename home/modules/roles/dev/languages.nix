@@ -26,6 +26,11 @@ in {
       default = true;
       description = "Enable Terraform";
     };
+    terragrunt.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable Terragrunt";
+    };
     debugging.enable = mkOption {
       type = types.bool;
       default = true;
@@ -41,11 +46,13 @@ in {
   config = mkIf cfg.enable {
     programs.bash.enable = cfg.bash.enable;
 
-    # Terraform module
-    modules.shell.tools.terraform.enable = cfg.terraform.enable;
-
-    # Debugging tools modules
-    modules.shell.tools.nix-function-calls.enable = cfg.debugging.enable;
+    modules = {
+      shell.tools = {
+        terraform.enable = cfg.terraform.enable;
+        terragrunt.enable = cfg.terragrunt.enable;
+        nix-function-calls.enable = cfg.debugging.enable;
+      };
+    };
 
     home.packages = with pkgs;
       (optionals cfg.nix.enable [

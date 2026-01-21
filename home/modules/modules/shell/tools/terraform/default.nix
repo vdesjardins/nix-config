@@ -27,6 +27,7 @@ in {
       tfi = "terraform init";
       tfiu = "terraform init -upgrade";
       tfsl = "terraform state list";
+      tfv = "terraform validate";
     };
   };
 }
