@@ -191,6 +191,49 @@
 
     extraConfigLua = ''
       vim.api.nvim_set_hl(0, 'BlinkCmpKindDict', { default = false, fg = '#a6e3a1' })
+
+      -- Add arrow key and Tab/Shift+Tab navigation for cmdline completions
+      local cmp = require('blink.cmp')
+
+      -- Up arrow: navigate menu or go to previous command
+      vim.keymap.set('c', '<Up>', function()
+        if cmp.is_visible() then
+          cmp.select_prev()
+          return
+        end
+        -- Let default behavior handle it (command history)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n', false)
+      end, { noremap = true })
+
+      -- Down arrow: navigate menu or go to next command
+      vim.keymap.set('c', '<Down>', function()
+        if cmp.is_visible() then
+          cmp.select_next()
+          return
+        end
+        -- Let default behavior handle it (command history)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n', false)
+      end, { noremap = true })
+
+      -- Tab: select next in menu
+      vim.keymap.set('c', '<Tab>', function()
+        if cmp.is_visible() then
+          cmp.select_next()
+        else
+          -- Default tab behavior
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, true, true), 'n', false)
+        end
+      end, { noremap = true })
+
+      -- Shift+Tab: select previous in menu
+      vim.keymap.set('c', '<S-Tab>', function()
+        if cmp.is_visible() then
+          cmp.select_prev()
+        else
+          -- Default shift+tab behavior
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<S-Tab>', true, true, true), 'n', false)
+        end
+      end, { noremap = true })
     '';
   };
 }
