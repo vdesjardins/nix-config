@@ -58,7 +58,7 @@
           scrape_interval = "15s";
           static_configs = [
             {
-              targets = ["localhost:${builtins.toString config.services.cadvisor.port}"];
+              targets = ["localhost:${toString config.services.cadvisor.port}"];
               labels.type = "container";
             }
           ];
@@ -70,9 +70,83 @@
             }
             {
               source_labels = ["instance"];
-              regex = "localhost:${builtins.toString config.services.cadvisor.port}";
+              regex = "localhost:${toString config.services.cadvisor.port}";
               target_label = "instance";
               replacement = "falcon";
+            }
+          ];
+        }
+        {
+          job_name = "snmp-exporter";
+          scrape_interval = "15s";
+          static_configs = [
+            {
+              targets = ["localhost:9116"];
+              labels = {
+                type = "snmp-exporter";
+              };
+            }
+          ];
+        }
+        {
+          job_name = "snmp";
+          scrape_interval = "15s";
+          static_configs = [
+            {
+              targets = ["10.0.0.2"];
+              labels = {
+                type = "network-switch";
+              };
+            }
+          ];
+          metrics_path = "/snmp";
+          params = {
+            auth = ["trendnet_switch_v2"];
+            module = ["if_mib"];
+          };
+          relabel_configs = [
+            {
+              source_labels = ["__address__"];
+              target_label = "__param_target";
+            }
+            {
+              source_labels = ["__param_target"];
+              target_label = "instance";
+            }
+            {
+              target_label = "__address__";
+              replacement = "127.0.0.1:9116";
+            }
+          ];
+        }
+        {
+          job_name = "snmp-eap";
+          scrape_interval = "15s";
+          static_configs = [
+            {
+              targets = ["10.0.0.104" "10.0.0.109"];
+              labels = {
+                type = "network-eap";
+              };
+            }
+          ];
+          metrics_path = "/snmp";
+          params = {
+            auth = ["omada_eap_v2"];
+            module = ["if_mib"];
+          };
+          relabel_configs = [
+            {
+              source_labels = ["__address__"];
+              target_label = "__param_target";
+            }
+            {
+              source_labels = ["__param_target"];
+              target_label = "instance";
+            }
+            {
+              target_label = "__address__";
+              replacement = "127.0.0.1:9116";
             }
           ];
         }

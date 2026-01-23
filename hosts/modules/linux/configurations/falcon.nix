@@ -22,6 +22,7 @@ in {
     ../shared/grafana
     ../shared/victorialogs.nix
     ../shared/alloy
+    ../shared/snmp-exporter.nix
     ../shared/cadvisor.nix
     ../users/admin.nix
     (../users + "/${username}.nix")

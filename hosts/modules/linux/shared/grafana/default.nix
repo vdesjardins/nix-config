@@ -46,6 +46,21 @@
           ])
         ];
     };
+    snmp = {
+      id = 11169;
+      version = 1;
+      sha256 = "sha256-jBu085fKbr5aamsG4NLfLsOdz34AHayv+JM2h+dIgTI=";
+      transform = dashboard:
+        lib.pipe dashboard [
+          (dashLib.setUid "snmp")
+          (dashLib.replaceDatasources [
+            {
+              key = "DS_PROMETHEUS";
+              value = "Prometheus";
+            }
+          ])
+        ];
+    };
     victoriametrics = {
       id = 10229;
       version = 46;
