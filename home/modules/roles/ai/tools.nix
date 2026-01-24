@@ -78,16 +78,6 @@ in {
         default = true;
         description = "Enable Context7 MCP server";
       };
-      desktop-commander.enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Enable Desktop Commander MCP server - disabled by default due to npm dependencies hash mismatch";
-      };
-      fetch.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable Fetch MCP server";
-      };
       fluxcd.enable = mkOption {
         type = types.bool;
         default = true;
@@ -130,7 +120,7 @@ in {
         default = false;
         description = "Enable NixOS MCP server (disabled by default due to fastmcp/mcp version mismatch)";
       };
-      playright.enable = mkOption {
+      playwright.enable = mkOption {
         type = types.bool;
         default = true;
         description = "Enable Playwright MCP server";
@@ -145,11 +135,6 @@ in {
         default = true;
         description = "Enable Tree-Sitter MCP server";
       };
-      utcp-code-mode.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable UTCP Code Mode MCP server";
-      };
       memory-service.enable = mkOption {
         type = types.bool;
         default = true;
@@ -163,7 +148,7 @@ in {
     };
 
     # Skills
-    skill = {
+    skills = {
       enable = mkEnableOption "Skills (all)";
       conventional-commits.enable = mkOption {
         type = types.bool;
@@ -194,11 +179,6 @@ in {
         type = types.bool;
         default = true;
         description = "Enable jujutsu skill";
-      };
-      jujutsu.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable jujutsu-commits skill";
       };
       timewarrior.enable = mkOption {
         type = types.bool;
@@ -231,38 +211,36 @@ in {
         github-copilot-cli.enable = cfg.github-copilot-cli.enable;
       };
 
-      mcp = {
-        context7.enable = cfg.mcp.context7.enable;
-        desktop-commander.enable = cfg.mcp.desktop-commander.enable;
-        fetch.enable = cfg.mcp.fetch.enable;
-        fluxcd.enable = cfg.mcp.fluxcd.enable;
-        git.enable = cfg.mcp.git.enable;
-        grep-app.enable = cfg.mcp.grep-app.enable;
-        github.enable = cfg.mcp.github.enable;
-        grafana = {
-          inherit (cfg.mcp.grafana) enable grafanaUrl;
+      ai = {
+        mcp = {
+          context7.enable = cfg.mcp.context7.enable;
+          fluxcd.enable = cfg.mcp.fluxcd.enable;
+          git.enable = cfg.mcp.git.enable;
+          grep-app.enable = cfg.mcp.grep-app.enable;
+          github.enable = cfg.mcp.github.enable;
+          grafana = {
+            inherit (cfg.mcp.grafana) enable grafanaUrl;
+          };
+          kubernetes.enable = cfg.mcp.kubernetes.enable;
+          nixos.enable = cfg.mcp.nixos.enable;
+          playwright.enable = cfg.mcp.playwright.enable;
+          sequential-thinking.enable = cfg.mcp.sequential-thinking.enable;
+          tree-sitter.enable = cfg.mcp.tree-sitter.enable;
+          memory-service.enable = cfg.mcp.memory-service.enable;
+          tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
         };
-        kubernetes.enable = cfg.mcp.kubernetes.enable;
-        nixos.enable = cfg.mcp.nixos.enable;
-        playright.enable = cfg.mcp.playright.enable;
-        sequential-thinking.enable = cfg.mcp.sequential-thinking.enable;
-        tree-sitter.enable = cfg.mcp.tree-sitter.enable;
-        utcp-code-mode.enable = cfg.mcp.utcp-code-mode.enable;
-        memory-service.enable = cfg.mcp.memory-service.enable;
-        tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
-      };
 
-      skill = {
-        conventional-commits.enable = cfg.skill.conventional-commits.enable;
-        skill-creator.enable = cfg.skill.skill-creator.enable;
-        skill-reviewer.enable = cfg.skill.skill-reviewer.enable;
-        writing-skills.enable = cfg.skill.writing-skills.enable;
-        dev-browser.enable = cfg.skill.dev-browser.enable;
-        jj.enable = cfg.skill.jj.enable;
-        jujutsu.enable = cfg.skill.jujutsu.enable;
-        timewarrior.enable = cfg.skill.timewarrior.enable;
-        tmux.enable = cfg.skill.tmux.enable;
-        buku.enable = cfg.skill.buku.enable;
+        skills = {
+          conventional-commits.enable = cfg.skills.conventional-commits.enable;
+          skill-creator.enable = cfg.skills.skill-creator.enable;
+          skill-reviewer.enable = cfg.skills.skill-reviewer.enable;
+          writing-skills.enable = cfg.skills.writing-skills.enable;
+          dev-browser.enable = cfg.skills.dev-browser.enable;
+          jj.enable = cfg.skills.jj.enable;
+          timewarrior.enable = cfg.skills.timewarrior.enable;
+          tmux.enable = cfg.skills.tmux.enable;
+          buku.enable = cfg.skills.buku.enable;
+        };
       };
     };
   };
