@@ -70,6 +70,15 @@ in {
       description = "Enable GitHub Copilot CLI";
     };
 
+    plugins = {
+      enable = mkEnableOption "plugins (all)";
+      beads.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable beads integration";
+      };
+    };
+
     # MCP Servers
     mcp = {
       enable = mkEnableOption "MCP servers (all)";
@@ -212,6 +221,10 @@ in {
       };
 
       ai = {
+        plugins = {
+          beads.enable = cfg.plugins.beads.enable;
+        };
+
         mcp = {
           context7.enable = cfg.mcp.context7.enable;
           fluxcd.enable = cfg.mcp.fluxcd.enable;
