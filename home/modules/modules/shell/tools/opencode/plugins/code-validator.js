@@ -21,7 +21,6 @@ const DEFAULT_CONFIG = {
 // Configuration will be loaded at plugin initialization
 let CONFIG = { ...DEFAULT_CONFIG };
 
-let lastResults = null;
 let filesEditedInSession = false;
 let currentSessionId = null;
 
@@ -174,6 +173,16 @@ function loadConfig(projectDirectory) {
  * Run validation checks
  */
 async function runChecks($, client, sessionId = null) {
+  // Reload configuration to ensure latest updates are applied
+  const projectDir = process.cwd();
+  try {
+    const result = loadConfig(projectDir);
+    CONFIG = result.config;
+    log(client, "Configuration reloaded", { sources: result.loadedSources.join(', ') || 'defaults' });
+  } catch (loadError) {
+    log(client, "Failed to reload config, using existing", { error: loadError.message });
+  }
+
   log(client, "Running validation checks", { count: CONFIG.checkCommands.length });
 
   const results = [];
@@ -236,8 +245,6 @@ async function runChecks($, client, sessionId = null) {
       });
     }
   }
-
-  lastResults = results;
 
   const passed = results.filter(r => r.success).length;
   const failed = results.filter(r => !r.success).length;
