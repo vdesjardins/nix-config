@@ -17,7 +17,12 @@ in {
 
     programs = {
       opencode = {
-        settings.plugin = ["opencode-beads"];
+        settings = {
+          plugin = ["opencode-beads"];
+          permission.bash = {
+            "bd *" = "allow";
+          };
+        };
       };
 
       jujutsu = {
