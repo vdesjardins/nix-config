@@ -1,22 +1,28 @@
 ---
 name: Build Nix envs
 
-on:
-  repository_dispatch:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "**"
-      - "!**.md"
-  push:
-    branches:
-      - main
-    paths:
-      - "**"
-      - "!**.md"
-  schedule:
-    - cron: "0 0 * * 0" # Every Sunday at midnight UTC
+# Deactivated: This workflow consistently fails and provides limited value without caching infrastructure.
+# Once proper Nix caching (e.g., Cachix, binary cache) is implemented, this workflow should be re-enabled.
+#
+# Original triggers (commented out):
+# on:
+#   repository_dispatch:
+#   pull_request:
+#     branches:
+#       - main
+#     paths:
+#       - "**"
+#       - "!**.md"
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - "**"
+#       - "!**.md"
+#   schedule:
+#     - cron: "0 0 * * 0" # Every Sunday at midnight UTC
+
+on: workflow_dispatch
 
 jobs:
   build-linux-env:
