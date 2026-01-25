@@ -1,5 +1,18 @@
 # AGENTS.md
 
+## Issue Tracking
+
+This project uses **bd (beads)** for issue tracking.
+Run `bd prime` for workflow context, or install hooks (`bd hooks install`) for auto-injection.
+
+**Quick reference:**
+- `bd ready` - Find unblocked work
+- `bd create "Title" --type task --priority 2` - Create issue
+- `bd close <id>` - Complete work
+- `bd sync` - Sync with git (run at session end)
+
+For full workflow details: `bd prime`
+
 ## Build, Lint, and Apply Commands
 
 Always use context7 when I need code generation, setup or configuration steps, or
@@ -84,7 +97,7 @@ When extending the project with new Nix packages or Home-Manager modules, refer 
   - Covers hash computation workflow using `nix build` errors
   - Troubleshooting common issues
   - Template and validation checklist
-  
+
 - **[docs/HM_MODULE_BOOTSTRAP.md](docs/HM_MODULE_BOOTSTRAP.md)** – Step-by-step guide for creating any Home-Manager module
   - Prerequisite questions to guide your design
   - Configuration option types reference
@@ -154,19 +167,4 @@ the message:
 1. **File issues for remaining work** - Create issues for anything that needs follow-up
 2. **Run quality gates** (if code changed) - Tests, linters, builds
 3. **Update issue status** - Close finished work, update in-progress items
-4. **PUSH TO REMOTE** - This is MANDATORY:
-   ```bash
-   git pull --rebase
-   bd sync
-   git push
-   git status  # MUST show "up to date with origin"
-   ```
-5. **Clean up** - Clear stashes, prune remote branches
-6. **Verify** - All changes committed AND pushed
-7. **Hand off** - Provide context for next session
-
-**CRITICAL RULES:**
-- Work is NOT complete until `git push` succeeds
-- NEVER stop before pushing - that leaves work stranded locally
-- NEVER say "ready to push when you are" - YOU must push
-- If push fails, resolve and retry until it succeeds
+4. **Hand off** - Provide context for next session

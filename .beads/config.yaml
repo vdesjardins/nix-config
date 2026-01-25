@@ -33,6 +33,8 @@
 
 # Auto-start daemon if not running (can also use BEADS_AUTO_START_DAEMON)
 # auto-start-daemon: true
+daemon.auto-push: true
+daemon.auto-commit: true
 
 # Debounce interval for auto-flush (can also use BEADS_FLUSH_DEBOUNCE)
 # flush-debounce: "5s"
@@ -43,7 +45,6 @@
 # Can also use BEADS_SYNC_BRANCH env var for local override.
 # If not set, bd sync will require you to run 'bd config set sync.branch <branch>'.
 sync-branch: "beads-sync"
-
 # Multi-repo configuration (experimental - bd-307)
 # Allows hydrating from multiple repositories and routing writes to the correct JSONL
 # repos:
