@@ -28,7 +28,6 @@ in {
       git-extras
       git-recent
       lab
-      pre-commit
       tig
     ];
 

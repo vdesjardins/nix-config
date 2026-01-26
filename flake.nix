@@ -174,7 +174,6 @@
     devShells = forAllSupportedSystems (system: {
       default = pkgs.${system}.mkShell {
         inherit (self.checks.${system}.pre-commit-check) shellHook;
-        buildInputs = [pkgs.${system}.pre-commit];
       };
     });
 

@@ -43,9 +43,10 @@
           tree-sitter.enable = false;
           sequential-thinking.enable = true;
           kubernetes.enable = true;
-          playwright.enable = true;
+          playwright.enable = false;
+          memory-service.enable = false;
         };
-        skill = {
+        skills = {
           dev-browser.enable = false;
         };
       };
