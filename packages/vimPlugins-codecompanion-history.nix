@@ -4,13 +4,13 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "codecompanion-history";
-  version = "0-unstable-2025-12-13";
+  version = "0-unstable-2026-01-22";
 
   src = fetchFromGitHub {
     owner = "ravitemer";
     repo = "codecompanion-history.nvim";
-    rev = "8c6ca9f998aeef89f3543343070f8562bf911fb4";
-    hash = "sha256-t76g49Teln5OXfplUaph++1vkvUPAtlWte71y1sebUs=";
+    rev = "bc1b4fe06eaaf0aa2399be742e843c22f7f1652a";
+    hash = "sha256-SnzpyXqrAf60Vs7JbwuHmAJ/TNON8wwqNyPN3EGc2Og=";
   };
 
   doCheck = false;

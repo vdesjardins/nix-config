@@ -4,3 +4,4 @@ result
 **/__pycache__/
 nixos.qcow2
 keys
+.beads/bd.sock

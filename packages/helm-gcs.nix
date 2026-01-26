@@ -5,13 +5,13 @@
 }:
 buildGoModule rec {
   pname = "helm-gcs";
-  version = "0.6.0";
+  version = "0.7.0";
 
   src = fetchFromGitHub {
     owner = "hayorov";
     repo = "helm-gcs";
     rev = "v${version}";
-    hash = "sha256-5/+atypEctnIz41N6jxkLMthMr5E62cEEVMs+y49/Io=";
+    hash = "sha256-87MAFv6krmCV9BzZqQj/oUEYUDJ4a4Ba6twez0RMios=";
   };
 
   vendorHash = "sha256-wapS6O3OO65DrQ18MbS2ILBNpNvPqpHi1iuEMgFTVNg=";

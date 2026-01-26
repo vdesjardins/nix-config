@@ -7,18 +7,18 @@
 }:
 buildNpmPackage {
   pname = "opencode-notifier";
-  version = "0.1.13-unstable-2026-01-14";
+  version = "0.1.15-unstable-2026-01-20";
 
   nativeBuildInputs = [bun esbuild];
 
   src = fetchFromGitHub {
     owner = "mohak34";
     repo = "opencode-notifier";
-    rev = "46838542008a4b03298bdfdfe75f152dacbb5a5b";
-    hash = "sha256-l9K2smgk+pKBOmomqKQpbF+TgHaErOnTYx+631aXaf8=";
+    rev = "1dd08a1cf820591ce3da8ee92d30512d2d178773";
+    hash = "sha256-TPbz3WAPqoD/tJ3fB6g/jvvsM+OjVbuIwpo6dHjJwYM=";
   };
 
-  npmDepsHash = "sha256-1sTcKljeigGqjoJ2sJe96pfJpDZO0dYEj/INtBD3d7c=";
+  npmDepsHash = "sha256-R+5ZBDSDZD7nR073EePOCumEwlUeXTiJhhcZ1qby5JA=";
 
   packageLock = ./package-lock.json;
 

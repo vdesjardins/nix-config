@@ -27,8 +27,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ncurses];
-
     programs = {
       tmux = {
         inherit (cfg) enable terminal;

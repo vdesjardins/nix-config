@@ -4,7 +4,7 @@
 }:
 stdenv.mkDerivation {
   pname = "skill-reviewer";
-  version = "1.0.0";
+  version = "0.9.0";
 
   src = fetchFromGitHub {
     owner = "dashed";
