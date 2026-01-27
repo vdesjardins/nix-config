@@ -154,22 +154,17 @@
     packages =
       builtins.foldl'
       (acc: value: (nixpkgs.lib.recursiveUpdate acc value)) {} [
-        (forAllSupportedSystems (system: myPackages pkgs.${system}))
+        (forAllSupportedSystems (
+          system:
+            (myPackages pkgs.${system})
+            // (lib.optionalAttrs (builtins.elem system linux64BitSystems) {
+              vmBuilderImage = import ./hosts/modules/linux/containers/vm-builder.nix {
+                inherit nixpkgs nix system;
+                crossSystem = system;
+              };
+            })
+        ))
       ];
-
-    dockerImages =
-      lib.attrsets.listToAttrs
-      (map
-        (system: {
-          name = system;
-          value = {
-            vm-builder = import ./hosts/modules/linux/containers/vm-builder.nix {
-              inherit nixpkgs nix system;
-              crossSystem = system;
-            };
-          };
-        })
-        linux64BitSystems);
 
     devShells = forAllSupportedSystems (system: {
       default = pkgs.${system}.mkShell {

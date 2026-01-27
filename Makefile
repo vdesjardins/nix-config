@@ -69,7 +69,7 @@ darwin-install-brew:
 .PHONY: docker/vm-builder
 ## docker/vm-builder: build docker image to build a vm dev instance from darwin
 docker/vm-builder:
-	docker image load < $$(nix build '.#dockerImage/vm-builder' --no-link --json | jq '.[].outputs.out' -Mr)
+	docker image load < $$(nix build '.#vmBuilderImage' --no-link --json | jq '.[].outputs.out' -Mr)
 
 .PHONY: build/dev-vm
 ## build/dev-vm: build vmware vm. param output_path, default pwd
