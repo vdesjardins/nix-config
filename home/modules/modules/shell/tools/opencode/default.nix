@@ -174,6 +174,7 @@ in {
     home.packages = with pkgs;
       lib.optionals stdenv.isLinux [
         libnotify
+        my-packages.opencode-sandbox
       ];
   };
 }
