@@ -31,7 +31,7 @@ Editor opens showing:
 
 ```text
 https://github.com
-Tags: 
+Tags:
 Title: [auto-fetched]
 
 [Add comments/notes here - optional]

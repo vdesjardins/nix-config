@@ -200,6 +200,7 @@
             hooks = {
               actionlint.enable = true;
               alejandra.enable = true;
+              editorconfig-checker.enable = true;
               statix.enable = true;
               stylua.enable = true;
               shellcheck.enable = true;

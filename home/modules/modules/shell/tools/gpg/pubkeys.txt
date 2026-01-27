@@ -1,5 +1,5 @@
 -----BEGIN PGP PUBLIC KEY BLOCK-----
-Comment: Hostname: 
+Comment: Hostname:
 Version: Hockeypuck 2.1.0-189-g15ebf24
 
 xsDNBFoiA9wBDADBR3LzlZMIret9eNW8eDxrAouP89VEHv9amCcEXpXYwossGxDy

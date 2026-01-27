@@ -69,7 +69,7 @@ function readJsonConfigFile(filePath) {
  */
 function tryLoadConfigWithExtensions(basePath) {
    const filePath = basePath + '.json';
-   
+
    try {
      if (fs.existsSync(filePath)) {
        return readJsonConfigFile(filePath);
@@ -77,7 +77,7 @@ function tryLoadConfigWithExtensions(basePath) {
    } catch (error) {
      // Error already logged by readJsonConfigFile
    }
-   
+
    // No file found
    return null;
 }
@@ -123,7 +123,7 @@ function deepMergeWithArrayConcat(target, source) {
  * 3. Project: .opencode/code-validator.json
  *
  * Configs are merged with arrays concatenated
- * 
+ *
  * Returns: { config, loadedSources, loadedFiles } object for debug output handling
  */
 function loadConfig(projectDirectory) {
@@ -210,9 +210,9 @@ async function runChecks($, client, sessionId = null) {
         const proc = exec(command, (error, stdout, stderr) => {
           if (timedOut) return;  // Already timed out, ignore callback
           clearTimeout(timeout);
-          
+
           const exitCode = error?.code || 0;
-          
+
           log(client, "Check completed", {
             command,
             exitCode,
@@ -376,15 +376,15 @@ Instructions: Apply fixes directly to files. Do NOT commit changes.`;
            }
          });
          log(client, "Error details appended to prompt");
-         
+
          // Add small delay to ensure prompt is rendered before submission
          await new Promise(resolve => setTimeout(resolve, 100));
-         
+
          // Submit the prompt to trigger agent response
          log(client, "Submitting prompt via tui.submitPrompt()");
          const submitResult = await client.tui.submitPrompt();
          log(client, "Prompt submitted", { submitResult });
-         
+
        } catch (err) {
          log(client, "Warning: Could not append to prompt or submit", {
            error: err.message
@@ -431,7 +431,7 @@ export const CodeValidatorPlugin = async ({ client, $ }) => {
      // Load configuration from hierarchical sources
      // Get the project directory (parent of .opencode directory)
      const projectDir = process.cwd();
-     
+
      let loadedSources = [];
      let loadedFiles = [];
      try {

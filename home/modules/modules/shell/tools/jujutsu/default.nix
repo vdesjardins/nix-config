@@ -123,30 +123,30 @@ in {
             ---
 
             Load the jj and conventional-commits skills and follow its instructions to:
-            1. Analyze what changes are in the current commit. When you make
-               changes using OpenCode or other tools, they may create
-               `INTENTS-*.md` files that document the original intent behind the changes.
-               Combine INTENTS files with `jj diff` to capture both the reasoning and all
-               actual changes:
-                 1. Run `jj status` to check for `INTENTS-*.md` files
-                 2. If INTENTS files exist:
-                    - Read the file to understand the original prompt/intent
-                    - Run `jj diff` to see all actual changes in the working copy
-                    - Cross-reference: The INTENTS file explains WHY, the diff shows WHAT
-                      changed
-                    - Account for any manual edits not mentioned in INTENTS (they appear in
-                      the diff)
-                    - Write a commit message that captures both the original intent and any
-                      additional changes
-                    - Example: INTENTS says "refactor parser" but diff shows you also fixed
-                      a bug, so message should be: `🐛 fix(parser): refactor for performance
-                      and fix edge case handling`
-                 3. If no INTENTS files exist:
-                    - Run `jj diff` to see the actual changes
-                    - Determine the commit type and write a message based on what changed
-            2. Craft conventional commit message explaining WHY those changes were made
-            3. Execute `jj describe -m "your message"` to set it on the current commit
-            4. Do not create INTENTS-*.md file for this command
+            1.  Analyze what changes are in the current commit. When you make
+                changes using OpenCode or other tools, they may create
+                `INTENTS-*.md` files that document the original intent behind the changes.
+                Combine INTENTS files with `jj diff` to capture both the reasoning and all
+                actual changes:
+                  1.  Run `jj status` to check for `INTENTS-*.md` files
+                  2.  If INTENTS files exist:
+                      - Read the file to understand the original prompt/intent
+                      - Run `jj diff` to see all actual changes in the working copy
+                      - Cross-reference: The INTENTS file explains WHY, the diff shows WHAT
+                        changed
+                      - Account for any manual edits not mentioned in INTENTS (they appear in
+                        the diff)
+                      - Write a commit message that captures both the original intent and any
+                        additional changes
+                      - Example: INTENTS says "refactor parser" but diff shows you also fixed
+                        a bug, so message should be: `🐛 fix(parser): refactor for performance
+                        and fix edge case handling`
+                  3.  If no INTENTS files exist:
+                      - Run `jj diff` to see the actual changes
+                      - Determine the commit type and write a message based on what changed
+            2.  Craft conventional commit message explaining WHY those changes were made
+            3.  Execute `jj describe -m "your message"` to set it on the current commit
+            4.  Do not create INTENTS-*.md file for this command
           '';
 
           "jj:change:new" = ''
@@ -166,16 +166,16 @@ in {
             ---
 
             Load the jj skill and follow its instructions to:
-            1. Get the current branch name. Branch a are created as `push-*`
-               for example `push-mymvvskypsow`
-            2. If remote branch does not exist, create with `jj git push -c @`
-            3. Check for all commits that the bookmark contains and synthesize a
-               title and description for the PR. Include sections Summary,
-               Details (Changes Made and Why These Changes Are Important)
-               and Verification Steps
-            3. Create Github Pull Request using `jj pr create --head <branch> --title "<title>" --description "<description>"`
-            4. Watch for PR checks completion with `gh pr checks --watch <pr-number>`
-            5. Do not create INTENTS-*.md file for this command
+            1.  Get the current branch name. Branch a are created as `push-*`
+                for example `push-mymvvskypsow`
+            2.  If remote branch does not exist, create with `jj git push -c @`
+            3.  Check for all commits that the bookmark contains and synthesize a
+                title and description for the PR. Include sections Summary,
+                Details (Changes Made and Why These Changes Are Important)
+                and Verification Steps
+            3.  Create Github Pull Request using `jj pr create --head <branch> --title "<title>" --description "<description>"`
+            4.  Watch for PR checks completion with `gh pr checks --watch <pr-number>`
+            5.  Do not create INTENTS-*.md file for this command
           '';
         };
 

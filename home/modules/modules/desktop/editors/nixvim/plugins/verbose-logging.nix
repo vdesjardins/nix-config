@@ -123,8 +123,8 @@
       end
       vim.schedule(deferred_wrap)
 
-       -- Store original error handler (if any)
-       _G._verbose_logging_errors_captured = {}
+      -- Store original error handler (if any)
+      _G._verbose_logging_errors_captured = {}
     '';
   };
 }

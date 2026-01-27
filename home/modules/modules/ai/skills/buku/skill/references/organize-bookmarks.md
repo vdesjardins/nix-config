@@ -36,7 +36,7 @@ Add tags to existing bookmarks without removing old tags:
 buku -u 3 --tag ">>learning"
 ```
 
-**Before**: `python,dev`  
+**Before**: `python,dev`
 **After**: `python,dev,learning`
 
 The `>>` preserves existing tags and adds new ones.
@@ -49,7 +49,7 @@ Replace all tags (remove old, set new):
 buku -u 3 --tag ">python,tutorial"
 ```
 
-**Before**: `python,dev,learning`  
+**Before**: `python,dev,learning`
 **After**: `python,tutorial`
 
 Use `>` when you want to completely replace the tag list.
@@ -62,7 +62,7 @@ Remove specific tags:
 buku -u 3 --tag "<<dev"
 ```
 
-**Before**: `python,dev,learning`  
+**Before**: `python,dev,learning`
 **After**: `python,learning`
 
 The `<<` operator removes only specified tags.
