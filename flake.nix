@@ -37,7 +37,7 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
-    try.url = "github:tobi/try/4cf1364a3f8859e1534c590971fc39933056138f";
+    try.url = "github:tobi/try/559279c2687ad720fd9586846dfd3027795ccb80";
     try.inputs.nixpkgs.follows = "nixpkgs";
 
     opencode.url = "github:sst/opencode";
