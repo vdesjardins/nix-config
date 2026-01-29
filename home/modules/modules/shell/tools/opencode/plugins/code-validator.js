@@ -49,18 +49,18 @@ function log(client, message, extra = {}) {
  * Returns { config, filePath } or null if file doesn't exist
  */
 function readJsonConfigFile(filePath) {
-   try {
-     if (!fs.existsSync(filePath)) {
-       return null;
-     }
+  try {
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
 
-     const content = fs.readFileSync(filePath, 'utf-8');
-     const parsed = JSON.parse(content);
-     return { config: parsed, filePath };
-   } catch (error) {
-     console.error(`[CodeValidator] Error reading config file ${filePath}: ${error.message}`);
-     throw new Error(`Invalid config file at ${filePath}: ${error.message}`);
-   }
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const parsed = JSON.parse(content);
+    return { config: parsed, filePath };
+  } catch (error) {
+    console.error(`[CodeValidator] Error reading config file ${filePath}: ${error.message}`);
+    throw new Error(`Invalid config file at ${filePath}: ${error.message}`);
+  }
 }
 
 /**
@@ -68,18 +68,18 @@ function readJsonConfigFile(filePath) {
  * Returns { config, filePath } or null if not found
  */
 function tryLoadConfigWithExtensions(basePath) {
-   const filePath = basePath + '.json';
+  const filePath = basePath + '.json';
 
-   try {
-     if (fs.existsSync(filePath)) {
-       return readJsonConfigFile(filePath);
-     }
-   } catch (error) {
-     // Error already logged by readJsonConfigFile
-   }
+  try {
+    if (fs.existsSync(filePath)) {
+      return readJsonConfigFile(filePath);
+    }
+  } catch (error) {
+    // Error already logged by readJsonConfigFile
+  }
 
-   // No file found
-   return null;
+  // No file found
+  return null;
 }
 
 /**
@@ -127,46 +127,46 @@ function deepMergeWithArrayConcat(target, source) {
  * Returns: { config, loadedSources, loadedFiles } object for debug output handling
  */
 function loadConfig(projectDirectory) {
-   let config = { ...DEFAULT_CONFIG };
-   const loadedSources = [];
-   const loadedFiles = [];
+  let config = { ...DEFAULT_CONFIG };
+  const loadedSources = [];
+  const loadedFiles = [];
 
-   // 1. Load global config (try all extensions)
-   const globalConfigBasePath = path.join(os.homedir(), '.config', 'opencode', 'code-validator');
-   const globalConfigResult = tryLoadConfigWithExtensions(globalConfigBasePath);
-   if (globalConfigResult) {
-     config = deepMergeWithArrayConcat(config, globalConfigResult.config);
-     loadedSources.push(`Global`);
-     loadedFiles.push(globalConfigResult.filePath);
-   }
+  // 1. Load global config (try all extensions)
+  const globalConfigBasePath = path.join(os.homedir(), '.config', 'opencode', 'code-validator');
+  const globalConfigResult = tryLoadConfigWithExtensions(globalConfigBasePath);
+  if (globalConfigResult) {
+    config = deepMergeWithArrayConcat(config, globalConfigResult.config);
+    loadedSources.push(`Global`);
+    loadedFiles.push(globalConfigResult.filePath);
+  }
 
-   // 2. Load custom config from OPENCODE_CONFIG_DIR if set (try all extensions)
-   const customConfigDir = process.env.OPENCODE_CONFIG_DIR;
-   if (customConfigDir) {
-     const customConfigBasePath = path.join(customConfigDir, 'code-validator');
-     const customConfigResult = tryLoadConfigWithExtensions(customConfigBasePath);
-     if (customConfigResult) {
-       config = deepMergeWithArrayConcat(config, customConfigResult.config);
-       loadedSources.push(`Custom ($OPENCODE_CONFIG_DIR)`);
-       loadedFiles.push(customConfigResult.filePath);
-     }
-   }
+  // 2. Load custom config from OPENCODE_CONFIG_DIR if set (try all extensions)
+  const customConfigDir = process.env.OPENCODE_CONFIG_DIR;
+  if (customConfigDir) {
+    const customConfigBasePath = path.join(customConfigDir, 'code-validator');
+    const customConfigResult = tryLoadConfigWithExtensions(customConfigBasePath);
+    if (customConfigResult) {
+      config = deepMergeWithArrayConcat(config, customConfigResult.config);
+      loadedSources.push(`Custom ($OPENCODE_CONFIG_DIR)`);
+      loadedFiles.push(customConfigResult.filePath);
+    }
+  }
 
-   // 3. Load project config (highest priority, try all extensions)
-   const projectConfigBasePath = path.join(projectDirectory, '.opencode', 'code-validator');
-   const projectConfigResult = tryLoadConfigWithExtensions(projectConfigBasePath);
-   if (projectConfigResult) {
-     config = deepMergeWithArrayConcat(config, projectConfigResult.config);
-     loadedSources.push(`Project`);
-     loadedFiles.push(projectConfigResult.filePath);
-   }
+  // 3. Load project config (highest priority, try all extensions)
+  const projectConfigBasePath = path.join(projectDirectory, '.opencode', 'code-validator');
+  const projectConfigResult = tryLoadConfigWithExtensions(projectConfigBasePath);
+  if (projectConfigResult) {
+    config = deepMergeWithArrayConcat(config, projectConfigResult.config);
+    loadedSources.push(`Project`);
+    loadedFiles.push(projectConfigResult.filePath);
+  }
 
-   // Return config and metadata (console logging deferred until debug flag is known)
-   return {
-     config,
-     loadedSources,
-     loadedFiles
-   };
+  // Return config and metadata (console logging deferred until debug flag is known)
+  return {
+    config,
+    loadedSources,
+    loadedFiles
+  };
 }
 
 /**
@@ -391,24 +391,24 @@ Instructions: Apply fixes directly to files. Do NOT commit changes.`;
          });
        }
 
-     // Show toast indicating action taken
-     try {
-       await client.tui.showToast({
-         body: {
-           message: "🔧 Validation errors sent to agent for fixing.",
-           variant: "info"
-         }
-       });
-     } catch (err) {
-       log(client, "Toast notification error", { error: err.message });
-     }
+       // Show toast indicating action taken
+       try {
+         await client.tui.showToast({
+           body: {
+             message: "🔧 Validation errors sent to agent for fixing.",
+             variant: "info"
+           }
+         });
+       } catch (err) {
+         log(client, "Toast notification error", { error: err.message });
+       }
 
-    return {
-      success: false,  // We're not actually fixing, just appending for agent to see
-      attempts: 1,
-      finalResults: failedResults,
-      note: "Errors appended to prompt for agent to review and fix"
-    };
+       return {
+         success: false,  // We're not actually fixing, just appending for agent to see
+         attempts: 1,
+         finalResults: failedResults,
+         note: "Errors appended to prompt for agent to review and fix"
+       };
 
   } catch (error) {
     log(client, "Error in agent workflow", {
@@ -427,35 +427,35 @@ Instructions: Apply fixes directly to files. Do NOT commit changes.`;
  * Main plugin export
  */
 export const CodeValidatorPlugin = async ({ client, $ }) => {
-   try {
-     // Load configuration from hierarchical sources
-     // Get the project directory (parent of .opencode directory)
-     const projectDir = process.cwd();
+  try {
+    // Load configuration from hierarchical sources
+    // Get the project directory (parent of .opencode directory)
+    const projectDir = process.cwd();
 
-     let loadedSources = [];
-     let loadedFiles = [];
-     try {
-       const result = loadConfig(projectDir);
-       CONFIG = result.config;
-       loadedSources = result.loadedSources;
-       loadedFiles = result.loadedFiles;
-     } catch (loadError) {
-       console.error("[CodeValidator] Failed to load config, using defaults:", loadError.message);
-       // Keep using DEFAULT_CONFIG if loading fails
-       CONFIG = { ...DEFAULT_CONFIG };
-     }
+    let loadedSources = [];
+    let loadedFiles = [];
+    try {
+      const result = loadConfig(projectDir);
+      CONFIG = result.config;
+      loadedSources = result.loadedSources;
+      loadedFiles = result.loadedFiles;
+    } catch (loadError) {
+      console.error("[CodeValidator] Failed to load config, using defaults:", loadError.message);
+      // Keep using DEFAULT_CONFIG if loading fails
+      CONFIG = { ...DEFAULT_CONFIG };
+    }
 
-     // Log config loading info via OpenCode logs (respects debug flag)
-     log(client, "Configuration loaded", {
-       sources: loadedSources.join(', ') || 'defaults',
-       files: loadedFiles
-     });
+    // Log config loading info via OpenCode logs (respects debug flag)
+    log(client, "Configuration loaded", {
+      sources: loadedSources.join(', ') || 'defaults',
+      files: loadedFiles
+    });
 
-     log(client, "Plugin initialized", {
-       projectDir,
-       checkCommands: CONFIG.checkCommands.length,
-       onFailure: CONFIG.onFailure
-     });
+    log(client, "Plugin initialized", {
+      projectDir,
+      checkCommands: CONFIG.checkCommands.length,
+      onFailure: CONFIG.onFailure
+    });
 
     return {
       /**
@@ -490,6 +490,14 @@ export const CodeValidatorPlugin = async ({ client, $ }) => {
             } else {
               log(client, "No edits detected during session, skipping validation");
             }
+          }
+
+          // Handle user rejections - reset filesEdited flag to cancel pending validation
+          if (event.type === "prompt.rejected" || event.type === "permission.denied") {
+            log(client, "User rejected prompt/permission, cancelling pending validation", {
+              eventType: event.type
+            });
+            filesEditedInSession = false;
           }
         } catch (err) {
           log(client, "Event handler error", { error: err.message });

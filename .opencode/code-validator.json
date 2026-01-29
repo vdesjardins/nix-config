@@ -1,5 +1,5 @@
 {
   "checkCommands": [
-    "nix flake check"
+    "prek run -a"
   ]
 }
