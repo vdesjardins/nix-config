@@ -6,6 +6,7 @@ set -euo pipefail
 
 # Global configuration
 DISABLE_NET=0
+YOLO_MODE=0
 EXTRA_BINDS=()
 EXTRA_RO_BINDS=()
 COMMAND_ARGS=()
@@ -25,6 +26,7 @@ USAGE:
   opencode-sandbox [OPTIONS] [COMMAND...]
 
 OPTIONS:
+  --yolo                Yolo mode: skip confirmation prompts for external commands
   --no-net              Disable network access (default: network enabled)
   --bind SRC:DST        Bind mount read-write, can repeat
   --bind-ro SRC:DST     Bind mount read-only, can repeat
@@ -47,6 +49,9 @@ EXAMPLES:
 
    # Network-isolated mode (no network access)
    opencode-sandbox --no-net
+
+   # Yolo mode: skip confirmation prompts
+   opencode-sandbox --yolo
 
    # Mount extra directory
    opencode-sandbox --bind /data:/data python3 script.py
@@ -80,6 +85,10 @@ parse_args() {
     --version)
       show_version
       exit 0
+      ;;
+    --yolo)
+      YOLO_MODE=1
+      shift
       ;;
     --no-net)
       DISABLE_NET=1
@@ -214,12 +223,17 @@ run_sandbox() {
     bwrap_args+=(--ro-bind "$src" "$dst")
   done
 
-  # Pass all environment variables from host
-  bwrap_args+=(--clearenv)
-  while IFS='=' read -r key val; do
-    [[ -z "$key" ]] && continue
-    bwrap_args+=(--setenv "$key" "$val")
-  done < <(env)
+   # Pass all environment variables from host
+   bwrap_args+=(--clearenv)
+   while IFS='=' read -r key val; do
+     [[ -z "$key" ]] && continue
+     bwrap_args+=(--setenv "$key" "$val")
+   done < <(env)
+
+   # Set OPENCODE_YOLO environment variable if yolo mode is enabled
+   if [[ $YOLO_MODE -eq 1 ]]; then
+     bwrap_args+=(--setenv OPENCODE_YOLO "1")
+   fi
 
    # Default to launching opencode in interactive zsh shell if no command given
    if [[ ${#COMMAND_ARGS[@]} -eq 0 ]]; then

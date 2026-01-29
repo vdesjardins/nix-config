@@ -10,6 +10,37 @@
   inherit (lib.options) mkEnableOption;
 
   cfg = config.modules.shell.tools.opencode;
+
+  # When OPENCODE_YOLO env var is set, allow all commands. Otherwise ask for confirmation.
+  bashPermissions = {
+    "*" = "ask";
+    "ls *" = "allow";
+    "rg *" = "allow";
+    "fd *" = "allow";
+    "grep *" = "allow";
+    "find *" = "allow";
+    "xargs *" = "allow";
+    "date *" = "allow";
+    "cat *" = "allow";
+    "echo *" = "allow";
+    "tail *" = "allow";
+    "head *" = "allow";
+    "sleep *" = "allow";
+    "pwd" = "allow";
+    "timeout *" = "allow";
+    "tee *" = "allow";
+    "wc *" = "allow";
+    "true" = "allow";
+    "curl *" = "allow";
+    "sort *" = "allow";
+    "jq *" = "allow";
+    "which *" = "allow";
+    "file *" = "allow";
+    "readlink *" = "allow";
+    "gh pr check *" = "allow";
+    "gh pr view *" = "allow";
+    "nix build *" = "allow";
+  };
 in {
   options.modules.shell.tools.opencode = {
     enable = mkEnableOption "opencode";
@@ -40,35 +71,7 @@ in {
         plugin = ["opencode-pty" "@tarquinen/opencode-dcp@latest"];
 
         permission = {
-          bash = {
-            "*" = "ask";
-            "ls *" = "allow";
-            "rg *" = "allow";
-            "fd *" = "allow";
-            "grep *" = "allow";
-            "find *" = "allow";
-            "xargs *" = "allow";
-            "date *" = "allow";
-            "cat *" = "allow";
-            "echo *" = "allow";
-            "tail *" = "allow";
-            "head *" = "allow";
-            "sleep *" = "allow";
-            "pwd" = "allow";
-            "timeout *" = "allow";
-            "tee *" = "allow";
-            "wc *" = "allow";
-            "true" = "allow";
-            "curl *" = "allow";
-            "sort *" = "allow";
-            "jq *" = "allow";
-            "which *" = "allow";
-            "file *" = "allow";
-            "readlink *" = "allow";
-            "gh pr check *" = "allow";
-            "gh pr view *" = "allow";
-            "nix build *" = "allow";
-          };
+          bash = bashPermissions;
         };
 
         provider = {
@@ -121,6 +124,7 @@ in {
     xdg.configFile = {
       "opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
       "opencode/plugin/code-validator.js".source = ./plugins/code-validator.js;
+      "opencode/plugin/yolo-mode.js".source = ./plugins/yolo-mode.js;
       "opencode/code-validator.json".source = ./code-validator.json;
       "opencode/dcp.jsonc".text = builtins.toJSON {
         "$schema" = "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json";
