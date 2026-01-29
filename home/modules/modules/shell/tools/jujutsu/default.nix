@@ -181,8 +181,27 @@ in {
 
         rules = ''
           IMPORTANT: only use jujutsu (jj) for version control. DO NOT use git.
+
+          ** Before Starting Any Task **
+          1. Check if working copy has uncommitted changes: `jj status`
+          2. If there are changes, create a new clean change: `jj new -A @`
+          3. Now proceed with your work on the new change
+
+          ** After Creating INTENTS File **
+          After creating an INTENTS-[timestamp].md file (which documents the original intent):
+          1. Run `jj diff` to see all changes made to the codebase
+          2. Run `jj describe -m "..."` to create a well-formatted conventional commit message
+          3. Follow the conventional-commits skill to craft the message:
+            - Start with emoji and type (e.g., 🐛 fix, ✨ feat, ♻️ refactor)
+            - Include scope in parentheses
+            - Write concise description explaining WHY, not just WHAT
+            - Reference any related issues or decisions
+
           ** Jujutsu Cheat Sheet **
-          - When asked to create a new change - run: `jj new -A @`
+          - Create new change: `jj new -A @`
+          - View changes: `jj status` or `jj diff`
+          - Set commit message: `jj describe -m "message"` (or `jj de -m`)
+          - View history: `jj log`
           - For other commands refer to the jujutsu skill
         '';
       };
