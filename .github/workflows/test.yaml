@@ -19,4 +19,4 @@ jobs:
       - name: Run pre-commit hooks
         shell: bash
         run: |
-          nix develop --command pre-commit run -a
+          nix develop --command prek run -a
