@@ -9,12 +9,19 @@
   cfg = config.modules.ai.skills.dev-browser;
 in {
   options.modules.ai.skills.dev-browser = {
-    enable = mkEnableOption "dev-browser skill";
+    enable = mkEnableOption "dev-browser skill (now uses agent-browser)";
 
-    package = mkPackageOption my-packages "skill-dev-browser" {};
+    package = mkPackageOption my-packages "agent-browser" {};
   };
 
   config = mkIf cfg.enable {
-    xdg.configFile."opencode/skill/dev-browser".source = "${cfg.package}/skills/dev-browser";
+    home.packages = [cfg.package];
+
+    # Recursively link all skill files and documentation
+    # Dev-browser now uses agent-browser for backward compatibility
+    xdg.configFile."opencode/skill/dev-browser" = {
+      source = "${cfg.package}/skills/agent-browser";
+      recursive = true;
+    };
   };
 }
