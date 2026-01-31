@@ -5,16 +5,16 @@
 }:
 buildGoModule {
   pname = "beads_viewer";
-  version = "0.11.3";
+  version = "0.0.0-unstable-2025-01-31";
 
   src = fetchFromGitHub {
     owner = "Dicklesworthstone";
     repo = "beads_viewer";
-    rev = "v${version}";
-    hash = "sha256-xpXVcwTYXmyaCCiviqFijjj5yvVyeyXAWgTY1N/A1CU=";
+    rev = "1845695ca708cf7e23bcf99f7e0a02ac2590c7d3";
+    hash = "sha256-2by4QXFyAeHtX1h/uZSWUwt8dmrZOCDz1n6IdDTQfcs=";
   };
 
-  vendorHash = "sha256-rtIqTK6ez27kvPMbNjYSJKFLRbfUv88jq8bCfMkYjfs=";
+  vendorHash = null;
 
   doCheck = false;
 
