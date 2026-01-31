@@ -35,6 +35,9 @@ in {
   config = mkIf cfg.enable {
     programs.jjui = {
       inherit (cfg) enable settings;
+      # Explicitly set configDir to use XDG-compliant paths on all platforms
+      # (home-manager defaults to ~/Library/Application Support on macOS)
+      configDir = "${config.xdg.configHome}/jjui";
     };
 
     home.packages = mkIf cfg.withTintedThemes [my-packages.tinted-jjui];
