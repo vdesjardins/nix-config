@@ -184,6 +184,11 @@ in {
         default = true;
         description = "Enable dev-browser skill";
       };
+      agent-browser.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable agent-browser skill";
+      };
       jj.enable = mkOption {
         type = types.bool;
         default = true;
@@ -249,6 +254,7 @@ in {
           skill-reviewer.enable = cfg.skills.skill-reviewer.enable;
           writing-skills.enable = cfg.skills.writing-skills.enable;
           dev-browser.enable = cfg.skills.dev-browser.enable;
+          agent-browser.enable = cfg.skills.agent-browser.enable;
           jj.enable = cfg.skills.jj.enable;
           timewarrior.enable = cfg.skills.timewarrior.enable;
           tmux.enable = cfg.skills.tmux.enable;

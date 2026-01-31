@@ -15,6 +15,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = [cfg.package];
+
     # Recursively link all skill files and documentation
     xdg.configFile."opencode/skill/agent-browser" = {
       source = "${cfg.package}/skills/agent-browser";
