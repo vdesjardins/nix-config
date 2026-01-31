@@ -70,6 +70,12 @@ in {
       description = "Enable GitHub Copilot CLI";
     };
 
+    beads-viewer.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable beads_viewer - TUI for beads issue tracking";
+    };
+
     plugins = {
       enable = mkEnableOption "plugins (all)";
       beads.enable = mkOption {
@@ -223,6 +229,10 @@ in {
       ai = {
         plugins = {
           beads.enable = cfg.plugins.beads.enable;
+        };
+
+        tools = {
+          beads_viewer.enable = cfg.beads-viewer.enable;
         };
 
         mcp = {
