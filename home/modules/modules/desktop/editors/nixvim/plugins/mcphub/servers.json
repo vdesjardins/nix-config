@@ -1,16 +1,13 @@
 {
-    "mcpServers": {
-        "puppeteer": {
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-puppeteer"
-            ],
-            "command": "npx"
-        }
-    },
-    "nativeMCPServers": {
-        "neovim": {
-            "disabled_tools": []
-        }
+  "mcpServers": {
+    "puppeteer": {
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "command": "npx"
     }
+  },
+  "nativeMCPServers": {
+    "neovim": {
+      "disabled_tools": []
+    }
+  }
 }

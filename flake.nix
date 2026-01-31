@@ -201,6 +201,8 @@
               actionlint.enable = true;
               alejandra.enable = true;
               editorconfig-checker.enable = true;
+              eslint.enable = true;
+              prettier.enable = true;
               statix.enable = true;
               stylua.enable = true;
               shellcheck.enable = true;

@@ -12,10 +12,7 @@
   "semanticCommitScope": "deps",
   "commitMessageLowerCase": "auto",
   "ignoreDeps": [],
-  "labels": [
-    "renovate",
-    "dependencies"
-  ],
+  "labels": ["renovate", "dependencies"],
   "nix": {
     "enabled": true
   },
@@ -27,33 +24,19 @@
     "pinDigests": false
   },
   "vulnerabilityAlerts": {
-    "labels": [
-      "security"
-    ],
-    "assignees": [
-      "@me"
-    ],
-    "reviewers": [
-      "@me"
-    ]
+    "labels": ["security"],
+    "assignees": ["@me"],
+    "reviewers": ["@me"]
   },
   "packageRules": [
     {
-      "matchCategories": [
-        "docker"
-      ],
+      "matchCategories": ["docker"],
       "enabled": true
     },
     {
       "description": "Automatically merge minor updates",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "matchDatasources": [
-        "github-releases",
-        "github-tags"
-      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchDatasources": ["github-releases", "github-tags"],
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
@@ -61,9 +44,7 @@
     {
       "description": "Docker image updates",
       "groupName": "docker-images",
-      "matchDatasources": [
-        "docker"
-      ],
+      "matchDatasources": ["docker"],
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
@@ -71,21 +52,15 @@
     {
       "description": "GitHub Actions updates",
       "groupName": "github-actions",
-      "matchDatasources": [
-        "github-actions"
-      ],
+      "matchDatasources": ["github-actions"],
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
     },
     {
       "description": "Renovate self-updates",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchDepNames": [
-        "renovatebot/renovate"
-      ],
+      "matchDatasources": ["docker"],
+      "matchDepNames": ["renovatebot/renovate"],
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
@@ -95,12 +70,8 @@
     {
       "customType": "regex",
       "datasourceTemplate": "docker",
-      "managerFilePatterns": [
-        "/.+\\.nix$/"
-      ],
-      "matchStrings": [
-        "\\s+image\\s+=\\s+\"(?<depName>.*?):(?<currentValue>.*?)\""
-      ]
+      "managerFilePatterns": ["/.+\\.nix$/"],
+      "matchStrings": ["\\s+image\\s+=\\s+\"(?<depName>.*?):(?<currentValue>.*?)\""]
     }
   ]
 }

@@ -1,10 +1,5 @@
 {
-    "workspace.checkThirdParty": false,
-    "diagnostics.globals": [
-        "vim",
-        "s"
-    ],
-    "diagnostics.disable": [
-        "undefined-global"
-    ]
+  "workspace.checkThirdParty": false,
+  "diagnostics.globals": ["vim", "s"],
+  "diagnostics.disable": ["undefined-global"]
 }

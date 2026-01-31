@@ -14,7 +14,7 @@ import os from "os";
 const DEFAULT_CONFIG = {
   checkCommands: [],
   debug: true,
-  onFailure: "agent"        // "toast" | "agent" | "both"
+  onFailure: "agent", // "toast" | "agent" | "both"
   // agentType is not needed - OpenCode determines which agent to use
 };
 
@@ -36,7 +36,7 @@ function log(client, message, extra = {}) {
       level: "debug",
       message: message,
       timestamp: new Date().toISOString(),
-      ...(Object.keys(extra).length > 0 && { extra })
+      ...(Object.keys(extra).length > 0 && { extra }),
     });
   } catch (err) {
     console.error("[CodeValidator] Logging error:", err.message);
@@ -54,7 +54,7 @@ function readJsonConfigFile(filePath) {
       return null;
     }
 
-    const content = fs.readFileSync(filePath, 'utf-8');
+    const content = fs.readFileSync(filePath, "utf-8");
     const parsed = JSON.parse(content);
     return { config: parsed, filePath };
   } catch (error) {
@@ -68,13 +68,13 @@ function readJsonConfigFile(filePath) {
  * Returns { config, filePath } or null if not found
  */
 function tryLoadConfigWithExtensions(basePath) {
-  const filePath = basePath + '.json';
+  const filePath = basePath + ".json";
 
   try {
     if (fs.existsSync(filePath)) {
       return readJsonConfigFile(filePath);
     }
-  } catch (error) {
+  } catch (_error) {
     // Error already logged by readJsonConfigFile
   }
 
@@ -94,10 +94,10 @@ function deepMergeWithArrayConcat(target, source) {
 
     // Both are objects and not arrays: deep merge
     if (
-      typeof result[key] === 'object' &&
+      typeof result[key] === "object" &&
       result[key] !== null &&
       !Array.isArray(result[key]) &&
-      typeof source[key] === 'object' &&
+      typeof source[key] === "object" &&
       source[key] !== null &&
       !Array.isArray(source[key])
     ) {
@@ -132,32 +132,32 @@ function loadConfig(projectDirectory) {
   const loadedFiles = [];
 
   // 1. Load global config (try all extensions)
-  const globalConfigBasePath = path.join(os.homedir(), '.config', 'opencode', 'code-validator');
+  const globalConfigBasePath = path.join(os.homedir(), ".config", "opencode", "code-validator");
   const globalConfigResult = tryLoadConfigWithExtensions(globalConfigBasePath);
   if (globalConfigResult) {
     config = deepMergeWithArrayConcat(config, globalConfigResult.config);
-    loadedSources.push(`Global`);
+    loadedSources.push("Global");
     loadedFiles.push(globalConfigResult.filePath);
   }
 
   // 2. Load custom config from OPENCODE_CONFIG_DIR if set (try all extensions)
   const customConfigDir = process.env.OPENCODE_CONFIG_DIR;
   if (customConfigDir) {
-    const customConfigBasePath = path.join(customConfigDir, 'code-validator');
+    const customConfigBasePath = path.join(customConfigDir, "code-validator");
     const customConfigResult = tryLoadConfigWithExtensions(customConfigBasePath);
     if (customConfigResult) {
       config = deepMergeWithArrayConcat(config, customConfigResult.config);
-      loadedSources.push(`Custom ($OPENCODE_CONFIG_DIR)`);
+      loadedSources.push("Custom ($OPENCODE_CONFIG_DIR)");
       loadedFiles.push(customConfigResult.filePath);
     }
   }
 
   // 3. Load project config (highest priority, try all extensions)
-  const projectConfigBasePath = path.join(projectDirectory, '.opencode', 'code-validator');
+  const projectConfigBasePath = path.join(projectDirectory, ".opencode", "code-validator");
   const projectConfigResult = tryLoadConfigWithExtensions(projectConfigBasePath);
   if (projectConfigResult) {
     config = deepMergeWithArrayConcat(config, projectConfigResult.config);
-    loadedSources.push(`Project`);
+    loadedSources.push("Project");
     loadedFiles.push(projectConfigResult.filePath);
   }
 
@@ -165,7 +165,7 @@ function loadConfig(projectDirectory) {
   return {
     config,
     loadedSources,
-    loadedFiles
+    loadedFiles,
   };
 }
 
@@ -178,7 +178,9 @@ async function runChecks($, client, sessionId = null) {
   try {
     const result = loadConfig(projectDir);
     CONFIG = result.config;
-    log(client, "Configuration reloaded", { sources: result.loadedSources.join(', ') || 'defaults' });
+    log(client, "Configuration reloaded", {
+      sources: result.loadedSources.join(", ") || "defaults",
+    });
   } catch (loadError) {
     log(client, "Failed to reload config, using existing", { error: loadError.message });
   }
@@ -201,14 +203,14 @@ async function runChecks($, client, sessionId = null) {
           resolve({
             command,
             success: false,
-            exitCode: 124,  // Timeout exit code
+            exitCode: 124, // Timeout exit code
             output: "",
-            error: "Command execution timed out after 30 seconds"
+            error: "Command execution timed out after 30 seconds",
           });
         }, 30000);
 
-        const proc = exec(command, (error, stdout, stderr) => {
-          if (timedOut) return;  // Already timed out, ignore callback
+        const _proc = exec(command, (error, stdout, stderr) => {
+          if (timedOut) return; // Already timed out, ignore callback
           clearTimeout(timeout);
 
           const exitCode = error?.code || 0;
@@ -216,7 +218,7 @@ async function runChecks($, client, sessionId = null) {
           log(client, "Check completed", {
             command,
             exitCode,
-            success: exitCode === 0
+            success: exitCode === 0,
           });
 
           resolve({
@@ -224,7 +226,7 @@ async function runChecks($, client, sessionId = null) {
             success: exitCode === 0,
             exitCode,
             output: stdout || "",
-            error: stderr || error?.message || ""
+            error: stderr || error?.message || "",
           });
         });
       });
@@ -233,7 +235,7 @@ async function runChecks($, client, sessionId = null) {
     } catch (error) {
       log(client, "Check failed with error", {
         command,
-        error: error.message
+        error: error.message,
       });
 
       results.push({
@@ -241,18 +243,18 @@ async function runChecks($, client, sessionId = null) {
         success: false,
         exitCode: 1,
         output: "",
-        error: error.message
+        error: error.message,
       });
     }
   }
 
-  const passed = results.filter(r => r.success).length;
-  const failed = results.filter(r => !r.success).length;
+  const passed = results.filter((r) => r.success).length;
+  const failed = results.filter((r) => !r.success).length;
 
   log(client, "Validation complete", {
     total: results.length,
     passed,
-    failed
+    failed,
   });
 
   // Handle results based on configuration
@@ -262,8 +264,8 @@ async function runChecks($, client, sessionId = null) {
       await client.tui.showToast({
         body: {
           message: "✅ Validation Passed",
-          variant: "success"
-        }
+          variant: "success",
+        },
       });
       return results;
     }
@@ -275,8 +277,8 @@ async function runChecks($, client, sessionId = null) {
       await client.tui.showToast({
         body: {
           message: `❌ Validation Failed: ${failed} check(s) failed`,
-          variant: "error"
-        }
+          variant: "error",
+        },
       });
       return results;
     }
@@ -288,14 +290,14 @@ async function runChecks($, client, sessionId = null) {
         await client.tui.showToast({
           body: {
             message: `❌ Validation Failed: ${failed} check(s) failed`,
-            variant: "error"
-          }
+            variant: "error",
+          },
         });
       }
 
       // Try to fix with agent
       log(client, "Attempting to fix errors with agent", {
-        onFailure: CONFIG.onFailure
+        onFailure: CONFIG.onFailure,
       });
 
       const fixResult = await fixErrorsWithAgent(client, $, results, sessionId);
@@ -305,8 +307,8 @@ async function runChecks($, client, sessionId = null) {
         await client.tui.showToast({
           body: {
             message: "⚠️ Validation failed. Errors sent to agent for review.",
-            variant: "warning"
-          }
+            variant: "warning",
+          },
         });
       } catch (err) {
         log(client, "Toast notification error", { error: err.message });
@@ -320,11 +322,10 @@ async function runChecks($, client, sessionId = null) {
     await client.tui.showToast({
       body: {
         message: `❌ Validation Failed: ${failed} check(s) failed`,
-        variant: "error"
-      }
+        variant: "error",
+      },
     });
     return results;
-
   } catch (err) {
     log(client, "Toast notification or agent error", { error: err.message });
     return results;
@@ -335,18 +336,20 @@ async function runChecks($, client, sessionId = null) {
  * Fix validation errors using an agent
  * Appends error details to prompt for agent to see and fix
  */
-async function fixErrorsWithAgent(client, $, failedResults, sessionId) {
+async function fixErrorsWithAgent(client, $, failedResults, _sessionId) {
   log(client, "Starting agent-based error fixing", {
-    failedCount: failedResults.filter(r => !r.success).length,
-    agentType: CONFIG.agentType
+    failedCount: failedResults.filter((r) => !r.success).length,
+    agentType: CONFIG.agentType,
   });
 
   try {
     // Get failed checks
-    const failedChecks = failedResults.filter(r => !r.success);
+    const failedChecks = failedResults.filter((r) => !r.success);
 
     // Format error context (Option A: Raw output)
-    const errorContext = failedChecks.map(check => `
+    const errorContext = failedChecks
+      .map(
+        (check) => `
 Command: ${check.command}
 Exit code: ${check.exitCode}
 
@@ -355,7 +358,9 @@ ${check.error}
 
 Standard output:
 ${check.output}
-`).join('\n---\n');
+`
+      )
+      .join("\n---\n");
 
     // Create error summary to append to prompt
     const errorSummary = `Please fix these validation errors:
@@ -365,60 +370,58 @@ ${errorContext}
 Instructions: Apply fixes directly to files. Do NOT commit changes.`;
 
     log(client, "Appending error context to prompt", {
-      failedChecks: failedChecks.length
+      failedChecks: failedChecks.length,
     });
 
-       // Append error details to the prompt for user visibility
-       try {
-         await client.tui.appendPrompt({
-           body: {
-             text: errorSummary
-           }
-         });
-         log(client, "Error details appended to prompt");
+    // Append error details to the prompt for user visibility
+    try {
+      await client.tui.appendPrompt({
+        body: {
+          text: errorSummary,
+        },
+      });
+      log(client, "Error details appended to prompt");
 
-         // Add small delay to ensure prompt is rendered before submission
-         await new Promise(resolve => setTimeout(resolve, 100));
+      // Add small delay to ensure prompt is rendered before submission
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
-         // Submit the prompt to trigger agent response
-         log(client, "Submitting prompt via tui.submitPrompt()");
-         const submitResult = await client.tui.submitPrompt();
-         log(client, "Prompt submitted", { submitResult });
+      // Submit the prompt to trigger agent response
+      log(client, "Submitting prompt via tui.submitPrompt()");
+      const submitResult = await client.tui.submitPrompt();
+      log(client, "Prompt submitted", { submitResult });
+    } catch (err) {
+      log(client, "Warning: Could not append to prompt or submit", {
+        error: err.message,
+      });
+    }
 
-       } catch (err) {
-         log(client, "Warning: Could not append to prompt or submit", {
-           error: err.message
-         });
-       }
+    // Show toast indicating action taken
+    try {
+      await client.tui.showToast({
+        body: {
+          message: "🔧 Validation errors sent to agent for fixing.",
+          variant: "info",
+        },
+      });
+    } catch (err) {
+      log(client, "Toast notification error", { error: err.message });
+    }
 
-       // Show toast indicating action taken
-       try {
-         await client.tui.showToast({
-           body: {
-             message: "🔧 Validation errors sent to agent for fixing.",
-             variant: "info"
-           }
-         });
-       } catch (err) {
-         log(client, "Toast notification error", { error: err.message });
-       }
-
-       return {
-         success: false,  // We're not actually fixing, just appending for agent to see
-         attempts: 1,
-         finalResults: failedResults,
-         note: "Errors appended to prompt for agent to review and fix"
-       };
-
+    return {
+      success: false, // We're not actually fixing, just appending for agent to see
+      attempts: 1,
+      finalResults: failedResults,
+      note: "Errors appended to prompt for agent to review and fix",
+    };
   } catch (error) {
     log(client, "Error in agent workflow", {
-      error: error.message
+      error: error.message,
     });
 
     return {
       success: false,
       attempts: 0,
-      finalResults: failedResults
+      finalResults: failedResults,
     };
   }
 }
@@ -447,14 +450,14 @@ export const CodeValidatorPlugin = async ({ client, $ }) => {
 
     // Log config loading info via OpenCode logs (respects debug flag)
     log(client, "Configuration loaded", {
-      sources: loadedSources.join(', ') || 'defaults',
-      files: loadedFiles
+      sources: loadedSources.join(", ") || "defaults",
+      files: loadedFiles,
     });
 
     log(client, "Plugin initialized", {
       projectDir,
       checkCommands: CONFIG.checkCommands.length,
-      onFailure: CONFIG.onFailure
+      onFailure: CONFIG.onFailure,
     });
 
     return {
@@ -480,7 +483,7 @@ export const CodeValidatorPlugin = async ({ client, $ }) => {
           // Handle session idle
           if (event.type === "session.idle") {
             log(client, "Session idle event triggered", {
-              filesEdited: filesEditedInSession
+              filesEdited: filesEditedInSession,
             });
 
             if (filesEditedInSession) {
@@ -495,14 +498,14 @@ export const CodeValidatorPlugin = async ({ client, $ }) => {
           // Handle user rejections - reset filesEdited flag to cancel pending validation
           if (event.type === "prompt.rejected" || event.type === "permission.denied") {
             log(client, "User rejected prompt/permission, cancelling pending validation", {
-              eventType: event.type
+              eventType: event.type,
             });
             filesEditedInSession = false;
           }
         } catch (err) {
           log(client, "Event handler error", { error: err.message });
         }
-      }
+      },
     };
   } catch (err) {
     console.error("[CodeValidator] Plugin initialization error:", err);
