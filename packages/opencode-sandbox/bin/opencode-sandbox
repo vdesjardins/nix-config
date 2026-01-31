@@ -10,6 +10,7 @@ YOLO_MODE=0
 EXTRA_BINDS=()
 EXTRA_RO_BINDS=()
 COMMAND_ARGS=()
+OPENCODE_ARGS=()
 VERSION="0.1.0"
 
 # Color output
@@ -23,42 +24,51 @@ NC='\033[0m' # No Color
 show_help() {
   cat <<'EOF'
 USAGE:
-  opencode-sandbox [OPTIONS] [COMMAND...]
+  opencode-sandbox [OPTIONS] [COMMAND...] [-- OPENCODE_ARGS...]
 
 OPTIONS:
-  --yolo                Yolo mode: skip confirmation prompts for external commands
-  --no-net              Disable network access (default: network enabled)
-  --bind SRC:DST        Bind mount read-write, can repeat
-  --bind-ro SRC:DST     Bind mount read-only, can repeat
-  --help                Show this help message
-  --version             Show version
+   --yolo                Yolo mode: skip confirmation prompts for external commands
+   --no-net              Disable network access (default: network enabled)
+   --bind SRC:DST        Bind mount read-write, can repeat
+   --bind-ro SRC:DST     Bind mount read-only, can repeat
+   --help                Show this help message
+   --version             Show version
 
 COMMAND:
-   If omitted, launches opencode in an interactive shell
-   Otherwise executes COMMAND with args in sandbox
+    If omitted, launches opencode in an interactive shell
+    Otherwise executes COMMAND with args in sandbox
+
+OPENCODE_ARGS:
+    Arguments to pass directly to opencode after '--' delimiter
+    These are passed to the opencode command for additional configuration
 
 EXAMPLES:
-   # Launch opencode (default)
-   opencode-sandbox
+    # Launch opencode (default)
+    opencode-sandbox
 
-   # Run interactive shell
-   opencode-sandbox zsh
+    # Run interactive shell
+    opencode-sandbox zsh
 
-   # Run a one-off command
-   opencode-sandbox nix --version
+    # Run a one-off command
+    opencode-sandbox nix --version
 
-   # Network-isolated mode (no network access)
-   opencode-sandbox --no-net
+    # Network-isolated mode (no network access)
+    opencode-sandbox --no-net
 
-   # Yolo mode: skip confirmation prompts
-   opencode-sandbox --yolo
+    # Yolo mode: skip confirmation prompts
+    opencode-sandbox --yolo
 
-   # Mount extra directory
-   opencode-sandbox --bind /data:/data python3 script.py
+    # Mount extra directory
+    opencode-sandbox --bind /data:/data python3 script.py
 
-   # Nix operations in sandbox
-   opencode-sandbox nix build '.#myapp'
-   opencode-sandbox nix shell nixpkgs#python3 -- python3 script.py
+    # Nix operations in sandbox
+    opencode-sandbox nix build '.#myapp'
+    opencode-sandbox nix shell nixpkgs#python3 -- python3 script.py
+
+    # Pass parameters to opencode
+    opencode-sandbox -- --model claude-opus
+    opencode-sandbox --yolo opencode -- --timeout 300
+    opencode-sandbox nix -- --flake '.#custom'
 EOF
 }
 
@@ -108,12 +118,29 @@ parse_args() {
       EXTRA_RO_BINDS+=("$2")
       shift 2
       ;;
+    --)
+      # Everything after -- is for opencode
+      shift
+      OPENCODE_ARGS=("$@")
+      break
+      ;;
     --*)
       error "unknown option: $1"
       ;;
     *)
-      # Remaining args are the command
+      # Remaining args are the command, unless we hit --
       COMMAND_ARGS=("$@")
+      # Check if command contains -- delimiter
+      local cmd_index=0
+      for arg in "${COMMAND_ARGS[@]}"; do
+        if [[ "$arg" == "--" ]]; then
+          # Split COMMAND_ARGS at the -- delimiter
+          OPENCODE_ARGS=("${COMMAND_ARGS[@]:$((cmd_index + 1))}")
+          COMMAND_ARGS=("${COMMAND_ARGS[@]:0:cmd_index}")
+          break
+        fi
+        ((cmd_index++))
+      done
       break
       ;;
     esac
@@ -238,10 +265,18 @@ run_sandbox() {
      bwrap_args+=(--setenv OPENCODE_YOLO "1")
    fi
 
-   # Default to launching opencode in interactive zsh shell if no command given
-   if [[ ${#COMMAND_ARGS[@]} -eq 0 ]]; then
-     COMMAND_ARGS=("${SHELL:-/bin/bash}" -i -c "exec opencode")
-   fi
+    # Default to launching opencode in interactive zsh shell if no command given
+    if [[ ${#COMMAND_ARGS[@]} -eq 0 ]]; then
+      # If we have opencode args but no command, launch opencode with those args
+      if [[ ${#OPENCODE_ARGS[@]} -gt 0 ]]; then
+        COMMAND_ARGS=("opencode" "${OPENCODE_ARGS[@]}")
+      else
+        COMMAND_ARGS=("${SHELL:-/bin/bash}" -i -c "exec opencode")
+      fi
+    elif [[ ${#OPENCODE_ARGS[@]} -gt 0 ]]; then
+      # If we have both command and opencode args, append opencode args to command
+      COMMAND_ARGS+=("${OPENCODE_ARGS[@]}")
+    fi
 
   # Invoke bubblewrap with the sandbox configuration
   @bubblewrap@/bin/bwrap "${bwrap_args[@]}" "${COMMAND_ARGS[@]}"

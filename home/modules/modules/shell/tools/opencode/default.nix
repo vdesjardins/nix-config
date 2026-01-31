@@ -52,6 +52,10 @@ in {
 
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
+      web = {
+        enable = true;
+      };
+
       settings = {
         theme = "tokyonight";
 
@@ -171,6 +175,8 @@ in {
       oci = "opencode import";
       ocs = "opencode session list";
     };
+
+    home.sessionVariables.OPENCODE_SERVER_PASSWORD = "$(${pkgs.passage}/bin/passage services/${config.home.username}/opencode/server-password 2>/dev/null || echo 'not-set')";
 
     home.packages = with pkgs;
       lib.optionals stdenv.isLinux [
