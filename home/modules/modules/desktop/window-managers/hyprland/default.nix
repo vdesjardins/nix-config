@@ -190,6 +190,10 @@ in {
 
         "$mod" = "SUPER";
 
+        ecosystem = {
+          no_update_news = true;
+        };
+
         monitor = [
           "DP-2, 3840x2160, 0x0, 1, transform, 1"
           "DP-3, 3840x2160, 2160x529, 1"
