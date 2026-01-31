@@ -34,6 +34,20 @@ in {
           };
         };
       };
+
+      zsh = {
+        shellAliases = {
+          bl = "beads list";
+          blt = "beads list --tree";
+        };
+      };
+
+      nushell = {
+        shellAliases = {
+          "bl" = "bd list";
+          "blt" = "bd list --tree";
+        };
+      };
     };
 
     xdg.configFile."opencode/agent/beads" = {
