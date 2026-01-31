@@ -131,6 +131,9 @@ run_sandbox() {
    bwrap_args+=(--dev /dev)
    bwrap_args+=(--proc /proc)
 
+   # Shell access for subprocess spawning (needed by pre-commit, npm, etc.)
+   bwrap_args+=(--ro-bind /bin/sh /bin/sh)
+
    # System files for user/group resolution
    bwrap_args+=(--ro-bind /etc/passwd /etc/passwd)
    bwrap_args+=(--ro-bind /etc/group /etc/group)
