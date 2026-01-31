@@ -111,10 +111,6 @@ in {
       };
 
       rules = ''
-        After applying each change, create a file called INTENTS-[YYYY-MM-DD-HH-mm].md
-        that includes the prompt used to make this change. Do not call any scm tools for this operation.
-        Use `date` to generate the timestamp for the filename.
-
         IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any tasks.
 
         **ALWAYS use these tools/commands:**

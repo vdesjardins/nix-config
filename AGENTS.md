@@ -38,8 +38,7 @@ Once inside the shell, you can run the make targets shown below.
 After making any code changes:
 1. **Always run `pre-commit run -a`** to check for linting and formatting issues
 2. **Fix any errors** that pre-commit auto-fixes (alejandra formatting, etc.)
-3. **Do not create INTENTS-*.md files** for pre-commit formatting fixes (they're part of the original change)
-4. Do not commit except if explicitly told to do so
+3. Do not commit except if explicitly told to do so
 
 ## Code Style Guidelines
 

@@ -123,30 +123,12 @@ in {
             ---
 
             Load the jj and conventional-commits skills and follow its instructions to:
-            1.  Analyze what changes are in the current commit. When you make
-                changes using OpenCode or other tools, they may create
-                `INTENTS-*.md` files that document the original intent behind the changes.
-                Combine INTENTS files with `jj diff` to capture both the reasoning and all
-                actual changes:
-                  1.  Run `jj status` to check for `INTENTS-*.md` files
-                  2.  If INTENTS files exist:
-                      - Read the file to understand the original prompt/intent
-                      - Run `jj diff` to see all actual changes in the working copy
-                      - Cross-reference: The INTENTS file explains WHY, the diff shows WHAT
-                        changed
-                      - Account for any manual edits not mentioned in INTENTS (they appear in
-                        the diff)
-                      - Write a commit message that captures both the original intent and any
-                        additional changes
-                      - Example: INTENTS says "refactor parser" but diff shows you also fixed
-                        a bug, so message should be: `🐛 fix(parser): refactor for performance
-                        and fix edge case handling`
-                  3.  If no INTENTS files exist:
-                      - Run `jj diff` to see the actual changes
-                      - Determine the commit type and write a message based on what changed
+            1.  Analyze what changes are in the current commit.
+                Use `jj diff` to capture all actual changes:
+                  - Run `jj diff` to see the actual changes
+                  - Determine the commit type and write a message based on what changed
             2.  Craft conventional commit message explaining WHY those changes were made
             3.  Execute `jj describe -m "your message"` to set it on the current commit
-            4.  Do not create INTENTS-*.md file for this command
           '';
 
           "jj:change:new" = ''
@@ -175,7 +157,6 @@ in {
                 and Verification Steps
             3.  Create Github Pull Request using `jj pr create --head <branch> --title "<title>" --description "<description>"`
             4.  Watch for PR checks completion with `gh pr checks --watch <pr-number>`
-            5.  Do not create INTENTS-*.md file for this command
           '';
         };
 
@@ -187,8 +168,7 @@ in {
           2. If there are changes, create a new clean change: `jj new -A @`
           3. Now proceed with your work on the new change
 
-          ** After Creating INTENTS File **
-          After creating an INTENTS-[timestamp].md file (which documents the original intent):
+          ** After applying each change **
           1. Run `jj diff` to see all changes made to the codebase
           2. Run `jj describe -m "..."` to create a well-formatted conventional commit message
           3. Follow the conventional-commits skill to craft the message:
