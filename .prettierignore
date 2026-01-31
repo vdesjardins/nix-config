@@ -1,0 +1,14 @@
+.git/
+.direnv/
+.envrc
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+*.nix
+flake.lock
+Makefile
+*.md
+*.html
+home/modules/modules/desktop/gaming/lutris/config/games/

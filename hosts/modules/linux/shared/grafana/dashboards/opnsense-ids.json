@@ -78,9 +78,7 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -143,9 +141,7 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -215,23 +211,16 @@
       },
       "id": 21,
       "options": {
-        "displayLabels": [
-          "name"
-        ],
+        "displayLabels": ["name"],
         "legend": {
           "displayMode": "table",
           "placement": "right",
           "showLegend": false,
-          "values": [
-            "value",
-            "percent"
-          ]
+          "values": ["value", "percent"]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "fields": "",
           "values": true
         },
@@ -304,23 +293,16 @@
       },
       "id": 30,
       "options": {
-        "displayLabels": [
-          "name"
-        ],
+        "displayLabels": ["name"],
         "legend": {
           "displayMode": "table",
           "placement": "right",
           "showLegend": false,
-          "values": [
-            "value",
-            "percent"
-          ]
+          "values": ["value", "percent"]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "fields": "",
           "values": true
         },
@@ -394,24 +376,16 @@
       },
       "id": 31,
       "options": {
-        "displayLabels": [
-          "name",
-          "value"
-        ],
+        "displayLabels": ["name", "value"],
         "legend": {
           "displayMode": "table",
           "placement": "right",
           "showLegend": false,
-          "values": [
-            "value",
-            "percent"
-          ]
+          "values": ["value", "percent"]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "fields": "",
           "limit": 10,
           "values": true
@@ -491,9 +465,7 @@
       },
       "id": 24,
       "options": {
-        "displayLabels": [
-          "name"
-        ],
+        "displayLabels": ["name"],
         "legend": {
           "displayMode": "table",
           "placement": "right",
@@ -501,9 +473,7 @@
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": true
         },
@@ -553,10 +523,7 @@
           "id": "filterFieldsByName",
           "options": {
             "include": {
-              "names": [
-                "count",
-                "alert.severity"
-              ]
+              "names": ["count", "alert.severity"]
             }
           }
         }
@@ -598,15 +565,11 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": false,
-          "values": [
-            "value"
-          ]
+          "values": ["value"]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "fields": "",
           "limit": 5,
           "values": true
@@ -665,9 +628,7 @@
       },
       "id": 22,
       "options": {
-        "displayLabels": [
-          "name"
-        ],
+        "displayLabels": ["name"],
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
@@ -675,9 +636,7 @@
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "fields": "",
           "limit": 10,
           "values": true
@@ -1081,23 +1040,16 @@
       },
       "id": 32,
       "options": {
-        "displayLabels": [
-          "name"
-        ],
+        "displayLabels": ["name"],
         "legend": {
           "displayMode": "table",
           "placement": "right",
           "showLegend": false,
-          "values": [
-            "value",
-            "percent"
-          ]
+          "values": ["value", "percent"]
         },
         "pieType": "donut",
         "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
+          "calcs": ["sum"],
           "fields": "",
           "values": true
         },
@@ -1141,9 +1093,7 @@
               "type": "auto"
             },
             "footer": {
-              "reducers": [
-                "sum"
-              ]
+              "reducers": ["sum"]
             },
             "inspect": false
           },
@@ -1233,10 +1183,7 @@
           "id": "filterFieldsByName",
           "options": {
             "include": {
-              "names": [
-                "SourceIP",
-                "Connections"
-              ]
+              "names": ["SourceIP", "Connections"]
             }
           }
         },
@@ -1296,22 +1243,16 @@
       },
       "id": 5,
       "options": {
-        "displayLabels": [
-          "name"
-        ],
+        "displayLabels": ["name"],
         "legend": {
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
-          "values": [
-            "value"
-          ]
+          "values": ["value"]
         },
         "pieType": "donut",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": true
         },
@@ -1355,9 +1296,7 @@
               "type": "auto"
             },
             "footer": {
-              "reducers": [
-                "sum"
-              ]
+              "reducers": ["sum"]
             },
             "inspect": false,
             "styleField": "Priority"
@@ -1476,11 +1415,7 @@
           "id": "filterFieldsByName",
           "options": {
             "include": {
-              "names": [
-                "alert.severity",
-                "count",
-                "alert.category"
-              ]
+              "names": ["alert.severity", "count", "alert.category"]
             }
           }
         },
@@ -1882,9 +1817,7 @@
                   "type": "auto"
                 },
                 "footer": {
-                  "reducers": [
-                    "sum"
-                  ]
+                  "reducers": ["sum"]
                 },
                 "inspect": false,
                 "styleField": "Connections"
@@ -1975,10 +1908,7 @@
               "id": "filterFieldsByName",
               "options": {
                 "include": {
-                  "names": [
-                    "DestinationIP",
-                    "Connections"
-                  ]
+                  "names": ["DestinationIP", "Connections"]
                 }
               }
             },
@@ -2062,12 +1992,7 @@
   "preload": false,
   "refresh": "",
   "schemaVersion": 42,
-  "tags": [
-    "Security",
-    "Firewall",
-    "IDS/IPS",
-    "OPNsense"
-  ],
+  "tags": ["Security", "Firewall", "IDS/IPS", "OPNsense"],
   "templating": {
     "list": [
       {

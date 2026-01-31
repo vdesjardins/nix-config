@@ -1,5 +1,3 @@
 {
-  "checkCommands": [
-    "prek run -a"
-  ]
+  "checkCommands": ["prek run -a"]
 }

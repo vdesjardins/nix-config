@@ -12,7 +12,7 @@
 
 // Default configuration
 const DEFAULT_CONFIG = {
-  debug: true
+  debug: true,
 };
 
 let CONFIG = { ...DEFAULT_CONFIG };
@@ -29,19 +29,19 @@ function log(client, message, extra = {}) {
       level: "debug",
       message: message,
       timestamp: new Date().toISOString(),
-      ...(Object.keys(extra).length > 0 && { extra })
+      ...(Object.keys(extra).length > 0 && { extra }),
     });
-  } catch (err) {
+  } catch (_err) {
     // Silently fail if logging error
   }
 }
 
-export const YoloModePlugin = async ({ client, serverUrl, $ }) => {
+export const YoloModePlugin = async ({ client, _serverUrl, _$ }) => {
   const isYoloMode = process.env.OPENCODE_YOLO === "1";
 
   log(client, "Plugin initialized", {
     yoloMode: isYoloMode,
-    envValue: process.env.OPENCODE_YOLO
+    envValue: process.env.OPENCODE_YOLO,
   });
 
   return {
@@ -57,12 +57,12 @@ export const YoloModePlugin = async ({ client, serverUrl, $ }) => {
           return;
         }
 
-        const { id, permission, patterns, metadata, sessionID } = event.properties;
+        const { id, permission, patterns, _metadata, sessionID } = event.properties;
 
         log(client, "Permission request event received", {
           permissionId: id,
           type: permission,
-          patterns: patterns
+          patterns: patterns,
         });
 
         if (!isYoloMode) {
@@ -74,29 +74,29 @@ export const YoloModePlugin = async ({ client, serverUrl, $ }) => {
         if (permission === "bash" || permission === "shell") {
           log(client, "Auto-allowing permission", {
             type: permission,
-            patterns: patterns
+            patterns: patterns,
           });
 
           // Call OpenCode API to reply with 'always' to auto-allow this command
           try {
-            const response = await client.postSessionIdPermissionsPermissionId({
+            const _response = await client.postSessionIdPermissionsPermissionId({
               path: {
                 id: sessionID,
-                permissionID: id
+                permissionID: id,
               },
               body: {
-                response: "always"
-              }
+                response: "always",
+              },
             });
 
             log(client, "Permission reply sent", {
               permissionId: id,
-              response: "always"
+              response: "always",
             });
           } catch (err) {
             log(client, "Permission reply error", {
               permissionId: id,
-              errorMessage: err.message
+              errorMessage: err.message,
             });
           }
         } else {
@@ -105,7 +105,7 @@ export const YoloModePlugin = async ({ client, serverUrl, $ }) => {
       } catch (err) {
         log(client, "Event handler error", { error: err.message });
       }
-    }
+    },
   };
 };
 
