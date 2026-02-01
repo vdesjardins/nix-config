@@ -6,7 +6,7 @@
   my-packages,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkOption types;
   inherit (lib.options) mkEnableOption;
 
   cfg = config.modules.shell.tools.opencode;
@@ -43,6 +43,53 @@
 in {
   options.modules.shell.tools.opencode = {
     enable = mkEnableOption "opencode";
+
+    web = {
+      command = mkOption {
+        type = types.enum ["web" "serve"];
+        default = "serve";
+        description = ''
+          Command to run for the background service (web or serve).
+
+          Controls which OpenCode command is executed by the systemd/launchd background service.
+
+          - `web`: Run the OpenCode web interface (alternative)
+          - `serve`: Run the OpenCode serve command (default)
+
+          Environment variables and extraArgs are passed to whichever command is selected.
+        '';
+      };
+
+      environment = mkOption {
+        type = types.attrsOf types.str;
+        default = {};
+        description = ''
+          Environment variables to set in the OpenCode background service (systemd on Linux, launchd on macOS).
+
+          These are merged with any existing environment variables:
+          - On systemd: Appended to the Service Environment list
+          - On launchd: Merged into EnvironmentVariables (your values override existing ones)
+
+          Example usage:
+          ```nix
+          modules.shell.tools.opencode = {
+            enable = true;
+            web.command = "serve";
+            web.environment = {
+              OPENCODE_LOG_LEVEL = "debug";
+              OPENCODE_PORT = "3000";
+              OPENCODE_MAX_WORKERS = "4";
+            };
+          };
+          ```
+        '';
+        example = {
+          OPENCODE_LOG_LEVEL = "debug";
+          OPENCODE_PORT = "3000";
+          OPENCODE_DATABASE_URL = "postgresql://...";
+        };
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -120,6 +167,28 @@ in {
         **ALWAYS use these tools/commands:**
         - Search for code examples from open source projects when unsure how to implement a feature: `grep-app` tool.
       '';
+    };
+
+    systemd.user.services.opencode-web = mkIf config.programs.opencode.web.enable {
+      Service = {
+        Environment = lib.mapAttrsToList (k: v: "${k}=${v}") cfg.web.environment;
+        ExecStart =
+          lib.mkForce
+          "${lib.getExe config.programs.opencode.package} ${cfg.web.command} ${lib.escapeShellArgs config.programs.opencode.web.extraArgs}";
+      };
+    };
+
+    launchd.agents.opencode-web = mkIf config.programs.opencode.web.enable {
+      config = {
+        EnvironmentVariables =
+          (config.launchd.agents.opencode-web.config.EnvironmentVariables or {}) // cfg.web.environment;
+        ProgramArguments =
+          [
+            (lib.getExe config.programs.opencode.package)
+            cfg.web.command
+          ]
+          ++ config.programs.opencode.web.extraArgs;
+      };
     };
 
     xdg.configFile = {
