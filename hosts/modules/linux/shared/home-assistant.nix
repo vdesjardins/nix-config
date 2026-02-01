@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: let
+  inherit (config.networking) hostName;
   frigateComponent = pkgs.fetchFromGitHub {
     owner = "blakeblackshear";
     repo = "frigate-hass-integration";
@@ -164,11 +165,9 @@ in {
       chmod 700 /var/backups/home-assistant
 
       cat << EOF > /var/backups/home-assistant/env
-      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage hosts/home-server/backups/home-assistant/b2.key-id)"
-      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage hosts/home-server/backups/home-assistant/b2.key)"
-      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage hosts/home-server/backups/home-assistant/restic)"
+      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage hosts/${hostName}/backups/home-assistant/b2.key-id)"
+      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage hosts/${hostName}/backups/home-assistant/b2.key)"
+      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage hosts/${hostName}/backups/home-assistant/restic)"
       EOF
     '';
-
-  environment.systemPackages = with pkgs; [git age passage];
 }

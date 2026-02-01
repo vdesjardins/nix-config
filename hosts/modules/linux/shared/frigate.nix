@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.networking) hostName;
   frigateConfig = {
     mqtt = {
       enabled = true;
@@ -332,7 +337,7 @@ in {
       chmod 700 /var/services/frigate
 
       cat << EOF > /var/services/frigate/env
-      FRIGATE_MQTT_PASSWORD=$(${pkgs.passage}/bin/passage hosts/home-server/mosquitto/password)
+      FRIGATE_MQTT_PASSWORD=$(${pkgs.passage}/bin/passage hosts/${hostName}/mosquitto/password)
       FRIGATE_REOLINK_PASSWORD=$(${pkgs.passage}/bin/passage devices/cameras/doorbell/password)
       EOF
     '';

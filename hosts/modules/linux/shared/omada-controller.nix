@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.networking) hostName;
+in {
   services.nginx = {
     enable = true;
 
@@ -113,11 +119,9 @@
       chmod 700 /var/backups/omada
 
       cat << EOF > /var/backups/omada/env
-      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage hosts/home-server/backups/omada/b2.key-id)"
-      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage hosts/home-server/backups/omada/b2.key)"
-      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage hosts/home-server/backups/omada/restic)"
+      AWS_ACCESS_KEY_ID="$(${pkgs.passage}/bin/passage hosts/${hostName}/backups/omada/b2.key-id)"
+      AWS_SECRET_ACCESS_KEY="$(${pkgs.passage}/bin/passage hosts/${hostName}/backups/omada/b2.key)"
+      RESTIC_PASSWORD="$(${pkgs.passage}/bin/passage hosts/${hostName}/backups/omada/restic)"
       EOF
     '';
-
-  environment.systemPackages = with pkgs; [git age passage];
 }

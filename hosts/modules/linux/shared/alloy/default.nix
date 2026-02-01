@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.networking) hostName;
+in {
   services.alloy = {
     enable = true;
 
@@ -26,6 +32,6 @@
       mkdir -p /var/services/geoipupdate
       chmod 700 /var/services/geoipupdate
 
-      ${pkgs.passage}/bin/passage hosts/home-server/geoip/license > /var/services/geoipupdate/license-key
+      ${pkgs.passage}/bin/passage hosts/${hostName}/geoip/license > /var/services/geoipupdate/license-key
     '';
 }

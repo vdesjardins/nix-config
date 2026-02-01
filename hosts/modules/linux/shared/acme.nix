@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.networking) hostName;
   credsDir = "/var/acme/cloudflare";
 in {
   security.acme = {
@@ -20,8 +25,8 @@ in {
       chmod 700 ${credsDir}
 
       cat << EOF > ${credsDir}/env
-      CLOUDFLARE_EMAIL="$(${pkgs.passage}/bin/passage hosts/home-server/acme/cloudflare/email)"
-      CLOUDFLARE_DNS_API_TOKEN="$(${pkgs.passage}/bin/passage hosts/home-server/acme/cloudflare/api-key)"
+      CLOUDFLARE_EMAIL="$(${pkgs.passage}/bin/passage hosts/${hostName}/acme/cloudflare/email)"
+      CLOUDFLARE_DNS_API_TOKEN="$(${pkgs.passage}/bin/passage hosts/${hostName}/acme/cloudflare/api-key)"
       EOF
     '';
 }

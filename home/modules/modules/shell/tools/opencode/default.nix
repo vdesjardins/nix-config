@@ -54,6 +54,7 @@ in {
 
       web = {
         enable = true;
+        extraArgs = ["--port" "4096"];
       };
 
       settings = {
