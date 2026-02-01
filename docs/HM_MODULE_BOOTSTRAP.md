@@ -277,7 +277,7 @@ This allows users to control the module via: `roles.{role}.{name}.enable`
 ### 8. LINT & VALIDATE
 
 ```bash
-nix develop -c pre-commit run -a
+nix develop -c prek run -a
 nix flake check
 ```
 
@@ -344,7 +344,7 @@ config = mkIf cfg.enable {
 - [ ] All option types valid (str, bool, path, attrs, listOf, etc.)
 - [ ] Module uses `lib` functions from inherit statement
 - [ ] Syntax verified with `nix flake check`
-- [ ] Formatted with `pre-commit run -a`
+- [ ] Formatted with `prek run -a`
 - [ ] Staged in git: `git add home/modules/modules/{category}/{name}/`
 - [ ] Optional: Role aggregator updated
 - [ ] Optional: Documentation added to this module's purpose
