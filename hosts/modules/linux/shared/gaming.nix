@@ -28,6 +28,8 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [gamescope];
+
   security.pam.loginLimits = [
     {
       domain = "*";
