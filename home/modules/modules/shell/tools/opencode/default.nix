@@ -173,6 +173,8 @@ in {
       oce = "opencode export";
       oci = "opencode import";
       ocs = "opencode session list";
+      yoc = "export OPENCODE_PERMISSION='{\"*\": \"allow\"}' && opencode";
+      yocr = "export OPENCODE_PERMISSION='{\"*\": \"allow\"}' && opencode run";
     };
 
     home.sessionVariables.OPENCODE_SERVER_PASSWORD = "$(${pkgs.passage}/bin/passage services/${config.home.username}/opencode/server-password 2>/dev/null || echo 'not-set')";

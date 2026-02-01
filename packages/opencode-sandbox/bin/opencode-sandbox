@@ -154,71 +154,71 @@ parse_args() {
 run_sandbox() {
   local bwrap_args=()
 
-   # Core filesystem access
-   bwrap_args+=(--dev /dev)
-   bwrap_args+=(--proc /proc)
+  # Core filesystem access
+  bwrap_args+=(--dev /dev)
+  bwrap_args+=(--proc /proc)
 
-   # Shell access for subprocess spawning (needed by pre-commit, npm, etc.)
-   bwrap_args+=(--ro-bind /bin/sh /bin/sh)
+  # Shell access for subprocess spawning (needed by pre-commit, npm, etc.)
+  bwrap_args+=(--ro-bind /bin/sh /bin/sh)
 
-   # System files for user/group resolution
-   bwrap_args+=(--ro-bind /etc/passwd /etc/passwd)
-   bwrap_args+=(--ro-bind /etc/group /etc/group)
-   bwrap_args+=(--ro-bind /etc/hostname /etc/hostname)
+  # System files for user/group resolution
+  bwrap_args+=(--ro-bind /etc/passwd /etc/passwd)
+  bwrap_args+=(--ro-bind /etc/group /etc/group)
+  bwrap_args+=(--ro-bind /etc/hostname /etc/hostname)
 
-   # /nix/store - writable, shared with host (agent can install packages)
-   bwrap_args+=(--bind /nix/store /nix/store)
-   bwrap_args+=(--ro-bind /nix/var /nix/var)
+  # /nix/store - writable, shared with host (agent can install packages)
+  bwrap_args+=(--bind /nix/store /nix/store)
+  bwrap_args+=(--ro-bind /nix/var /nix/var)
 
-   # Ephemeral home directory with selective mounts
-   # Create a temporary home that's cleaned up after sandbox exits
-   local sandbox_home
-   sandbox_home=$(mktemp -d)
-   trap "rm -rf '$sandbox_home'" EXIT
+  # Ephemeral home directory with selective mounts
+  # Create a temporary home that's cleaned up after sandbox exits
+  local sandbox_home
+  sandbox_home=$(mktemp -d)
+  trap "rm -rf '$sandbox_home'" EXIT
 
-   # Mount ephemeral home as HOME
-   bwrap_args+=(--bind "$sandbox_home" "${HOME}")
+  # Mount ephemeral home as HOME
+  bwrap_args+=(--bind "$sandbox_home" "$HOME")
 
-   # Mount host directories over the ephemeral home
-   # .config - read-only configuration
-   if [[ -d "${HOME}/.config" ]]; then
-     mkdir -p "$sandbox_home/.config"
-     bwrap_args+=(--ro-bind "/${HOME#/}/.config" "${HOME}/.config")
-   fi
+  # Mount host directories over the ephemeral home
+  # .config - read-only configuration
+  if [[ -d "${HOME}/.config" ]]; then
+    mkdir -p "$sandbox_home/.config"
+    bwrap_args+=(--ro-bind "/${HOME#/}/.config" "${HOME}/.config")
+  fi
 
-   # .local/share/opencode - read-write opencode data
-   if [[ -d "${HOME}/.local/share/opencode" ]]; then
-     mkdir -p "$sandbox_home/.local/share/opencode"
-     bwrap_args+=(--bind "/${HOME#/}/.local/share/opencode" "${HOME}/.local/share/opencode")
-   fi
+  # .local/share/opencode - read-write opencode data
+  if [[ -d "${HOME}/.local/share/opencode" ]]; then
+    mkdir -p "$sandbox_home/.local/share/opencode"
+    bwrap_args+=(--bind "/${HOME#/}/.local/share/opencode" "${HOME}/.local/share/opencode")
+  fi
 
-   # .local/state/opencode - read-write opencode state
-   if [[ -d "${HOME}/.local/state/opencode" ]]; then
-     mkdir -p "$sandbox_home/.local/state/opencode"
-     bwrap_args+=(--bind "/${HOME#/}/.local/state/opencode" "${HOME}/.local/state/opencode")
-   fi
+  # .local/state/opencode - read-write opencode state
+  if [[ -d "${HOME}/.local/state/opencode" ]]; then
+    mkdir -p "$sandbox_home/.local/state/opencode"
+    bwrap_args+=(--bind "/${HOME#/}/.local/state/opencode" "${HOME}/.local/state/opencode")
+  fi
 
-   # .cache/opencode - read-write cache (models, node_modules for faster startup)
-   if [[ -d "${HOME}/.cache/opencode" ]]; then
-     mkdir -p "$sandbox_home/.cache/opencode"
-     bwrap_args+=(--bind "/${HOME#/}/.cache/opencode" "${HOME}/.cache/opencode")
-   fi
+  # .cache/opencode - read-write cache (models, node_modules for faster startup)
+  if [[ -d "${HOME}/.cache/opencode" ]]; then
+    mkdir -p "$sandbox_home/.cache/opencode"
+    bwrap_args+=(--bind "/${HOME#/}/.cache/opencode" "${HOME}/.cache/opencode")
+  fi
 
-   # .nix-profile - read-only installed packages
-   if [[ -e "${HOME}/.nix-profile" ]]; then
-     bwrap_args+=(--ro-bind "/${HOME#/}/.nix-profile" "${HOME}/.nix-profile")
-   fi
+  # .nix-profile - read-only installed packages
+  if [[ -e "${HOME}/.nix-profile" ]]; then
+    bwrap_args+=(--ro-bind "/${HOME#/}/.nix-profile" "${HOME}/.nix-profile")
+  fi
 
-   # Work directory - mounted at same path for convenience
-   local cwd
-   cwd=$(pwd)
-   bwrap_args+=(--bind "$cwd" "$cwd")
+  # Work directory - mounted at same path for convenience
+  local cwd
+  cwd=$PWD
+  bwrap_args+=(--bind "$cwd" "$cwd")
 
-   # dbus socket access for notifications
-   bwrap_args+=(--ro-bind /run/user/$UID /run/user/$UID)
+  # dbus socket access for notifications
+  bwrap_args+=(--ro-bind /run/user/"$UID" /run/user/"$UID")
 
-   # System profile for tools (nix, etc.)
-   bwrap_args+=(--ro-bind /run/current-system /run/current-system)
+  # System profile for tools (nix, etc.)
+  bwrap_args+=(--ro-bind /run/current-system /run/current-system)
 
   # Isolated temporary storage
   bwrap_args+=(--tmpfs /tmp)
@@ -253,30 +253,30 @@ run_sandbox() {
     bwrap_args+=(--ro-bind "$src" "$dst")
   done
 
-   # Pass all environment variables from host
-   bwrap_args+=(--clearenv)
-   while IFS='=' read -r key val; do
-     [[ -z "$key" ]] && continue
-     bwrap_args+=(--setenv "$key" "$val")
-   done < <(env)
+  # Pass all environment variables from host
+  bwrap_args+=(--clearenv)
+  while IFS='=' read -r key val; do
+    [[ -z "$key" ]] && continue
+    bwrap_args+=(--setenv "$key" "$val")
+  done < <(env)
 
-   # Set OPENCODE_YOLO environment variable if yolo mode is enabled
-   if [[ $YOLO_MODE -eq 1 ]]; then
-     bwrap_args+=(--setenv OPENCODE_YOLO "1")
-   fi
+  # Set OPENCODE_PERMISSION environment variable if yolo mode is enabled
+  if [[ $YOLO_MODE -eq 1 ]]; then
+    bwrap_args+=(--setenv OPENCODE_PERMISSION '{"*": "allow"}')
+  fi
 
-    # Default to launching opencode in interactive zsh shell if no command given
-    if [[ ${#COMMAND_ARGS[@]} -eq 0 ]]; then
-      # If we have opencode args but no command, launch opencode with those args
-      if [[ ${#OPENCODE_ARGS[@]} -gt 0 ]]; then
-        COMMAND_ARGS=("opencode" "${OPENCODE_ARGS[@]}")
-      else
-        COMMAND_ARGS=("${SHELL:-/bin/bash}" -i -c "exec opencode")
-      fi
-    elif [[ ${#OPENCODE_ARGS[@]} -gt 0 ]]; then
-      # If we have both command and opencode args, append opencode args to command
-      COMMAND_ARGS+=("${OPENCODE_ARGS[@]}")
+  # Default to launching opencode in interactive zsh shell if no command given
+  if [[ ${#COMMAND_ARGS[@]} -eq 0 ]]; then
+    # If we have opencode args but no command, launch opencode with those args
+    if [[ ${#OPENCODE_ARGS[@]} -gt 0 ]]; then
+      COMMAND_ARGS=("opencode" "${OPENCODE_ARGS[@]}")
+    else
+      COMMAND_ARGS=("${SHELL:-/bin/bash}" -i -c "exec opencode")
     fi
+  elif [[ ${#OPENCODE_ARGS[@]} -gt 0 ]]; then
+    # If we have both command and opencode args, append opencode args to command
+    COMMAND_ARGS+=("${OPENCODE_ARGS[@]}")
+  fi
 
   # Invoke bubblewrap with the sandbox configuration
   @bubblewrap@/bin/bwrap "${bwrap_args[@]}" "${COMMAND_ARGS[@]}"
