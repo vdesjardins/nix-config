@@ -175,7 +175,7 @@ git add home/modules/modules/mcp/{name}/
 
 ```bash
 # Format code with alejandra and other pre-commit hooks
-nix develop -c pre-commit run -a
+nix develop -c prek run -a
 
 # Validate nix evaluation (shows package in outputs)
 nix flake check
@@ -198,7 +198,7 @@ git status --short
 
 **All checks should pass:**
 
-- ✅ `pre-commit run -a` passes
+- ✅ `prek run -a` passes
 - ✅ `nix flake check` validates
 - ✅ 3 files staged in git
 
@@ -271,7 +271,7 @@ mkOption {type = types.attrs; ...}             # Nested config object
 - [ ] MCP module file created at `home/modules/modules/mcp/{name}/default.nix`
 - [ ] Role aggregator updated with option and config
 - [ ] `git add` run on package and module directories
-- [ ] `pre-commit run -a` passes (all formatting correct)
+- [ ] `prek run -a` passes (all formatting correct)
 - [ ] `nix flake check` shows package in outputs
 - [ ] 3 files staged in git
 - [ ] Ready to commit with `jj new -A @` or apply with `make hm/apply`
@@ -317,7 +317,7 @@ ls result/bin/  # Verify binary exists and is executable
 
 **Pre-commit formatting issues:**
 
-- Run `nix develop -c pre-commit run -a` to auto-fix
+- Run `nix develop -c prek run -a` to auto-fix
 - Check alejandra formatting for Nix files
 - Check stylua formatting for Lua files
 

@@ -30,13 +30,13 @@ Once inside the shell, you can run the make targets shown below.
 - Build only system config: `make host/generate`
 - Build a package: `nix build '.#<package>`
 - Update flake inputs: `nix flake update`
-- Lint (all): Run `pre-commit run -a` or use `nix flake check`
+- Lint (all): Run `prek run -a` or use `nix flake check`
 - Update packages: Run `./infra.nu nix-update`
 
 ## Post-Change Quality Assurance
 
 After making any code changes:
-1. **Always run `pre-commit run -a`** to check for linting and formatting issues
+1. **Always run `prek run -a`** to check for linting and formatting issues
 2. **Fix any errors** that pre-commit auto-fixes (alejandra formatting, etc.)
 3. Do not commit except if explicitly told to do so
 
@@ -50,7 +50,7 @@ All code formatting is enforced by `.editorconfig` and pre-commit hooks. See `.e
 - **Shell files**: Formatted by `shfmt` (enforced via pre-commit)
 - **Markdown**: Keep readable; checked by `rumdl`
 
-### Linting Tools (run automatically via `pre-commit run -a`)
+### Linting Tools (run automatically via `prek run -a`)
 - `alejandra` - Nix code formatter
 - `statix` - Nix linter
 - `stylua` - Lua code formatter

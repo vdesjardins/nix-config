@@ -114,7 +114,7 @@ result/bin/{binary-name} --help
 ### 5. LINT & FORMAT
 
 ```bash
-nix develop -c pre-commit run -a
+nix develop -c prek run -a
 ```
 
 This auto-formats your Nix code with `alejandra`.
