@@ -33,6 +33,12 @@ stdenv.mkDerivation {
       if [ -f "$script" ]; then
         scriptName=$(basename "$script")
         install -m 755 "$script" $out/bin/$scriptName
+
+        # Create symlink for .sh files without the extension (e.g., opencode-sandbox.sh -> opencode-sandbox)
+        if [[ "$scriptName" == *.sh ]]; then
+          baseName=''${scriptName%.sh}
+          ln -s "$scriptName" "$out/bin/$baseName"
+        fi
       fi
     done
   '';
