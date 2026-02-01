@@ -38,7 +38,7 @@ stdenv.mkDerivation {
   '';
 
   meta = {
-    description = "Minimal bubblewrap sandbox for AI agents in YOLO mode - supports arbitrary commands, network isolation, and custom mounts";
+    description = "Minimal bubblewrap sandbox for AI agents - supports arbitrary commands, network isolation, and custom mounts";
     license = lib.licenses.mit;
     platforms = lib.platforms.linux;
     mainProgram = "opencode-sandbox";

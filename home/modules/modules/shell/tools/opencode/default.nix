@@ -11,7 +11,6 @@
 
   cfg = config.modules.shell.tools.opencode;
 
-  # When OPENCODE_YOLO env var is set, allow all commands. Otherwise ask for confirmation.
   bashPermissions = {
     "*" = "ask";
     "ls *" = "allow";
@@ -126,7 +125,6 @@ in {
     xdg.configFile = {
       "opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
       "opencode/plugin/code-validator.js".source = ./plugins/code-validator.js;
-      "opencode/plugin/yolo-mode.js".source = ./plugins/yolo-mode.js;
       "opencode/code-validator.json".source = ./code-validator.json;
       "opencode/dcp.jsonc".text = builtins.toJSON {
         "$schema" = "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json";
