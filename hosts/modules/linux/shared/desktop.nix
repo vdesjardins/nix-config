@@ -42,7 +42,6 @@
 
   environment.systemPackages = with pkgs; [
     gnumake
-    git
     neovim
     clinfo
 

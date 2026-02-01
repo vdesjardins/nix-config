@@ -1,4 +1,12 @@
-{...}: {
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    git
+    age
+    age-plugin-yubikey
+    passage
+    rage
+  ];
+
   nix.gc.dates = "weekly";
 
   security = {
