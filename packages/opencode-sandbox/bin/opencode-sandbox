@@ -180,9 +180,23 @@ run_sandbox() {
   bwrap_args+=(--bind "$sandbox_home" "$HOME")
 
   # Mount host directories over the ephemeral home
-  # .config - read-only configuration
+  # .config - read-only configuration, but create writable cache for zsh/dircolors
   if [[ -d "${HOME}/.config" ]]; then
     mkdir -p "$sandbox_home/.config"
+
+    # Create writable zsh subdir for .zcompdump files (prevents read-only errors)
+    mkdir -p "$sandbox_home/.config/zsh"
+    bwrap_args+=(--bind "$sandbox_home/.config/zsh" "${HOME}/.config/zsh")
+
+    # Mount or create dircolors to prevent "No such file or directory" errors
+    if [[ -f "${HOME}/.config/dircolors" ]]; then
+      bwrap_args+=(--ro-bind "/${HOME#/}/.config/dircolors" "${HOME}/.config/dircolors")
+    else
+      touch "$sandbox_home/.config/dircolors"
+      bwrap_args+=(--bind "$sandbox_home/.config/dircolors" "${HOME}/.config/dircolors")
+    fi
+
+    # Now bind the rest of .config as read-only (after subdirs are mounted)
     bwrap_args+=(--ro-bind "/${HOME#/}/.config" "${HOME}/.config")
   fi
 
