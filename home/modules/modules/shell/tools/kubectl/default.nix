@@ -20,7 +20,7 @@
         command = "apply";
         options = [
           {
-            name = "server-isde";
+            name = "server-side";
             default = "true";
           }
         ];
