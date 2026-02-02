@@ -9,6 +9,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/skills/flux
-    cp -r . $out/skills/flux/
+    cp -r SKILL.md $out/skills/flux/
+    cp -r ./references $out/skills/flux/
   '';
 }
