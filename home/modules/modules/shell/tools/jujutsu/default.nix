@@ -45,7 +45,6 @@ in {
             default-command = "log";
             pager = "delta";
             diff-formatter = ":git";
-            merge-editor = "meld";
             diff-editor = ":builtin";
           };
 

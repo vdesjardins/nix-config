@@ -8,11 +8,11 @@
 }:
 stdenv.mkDerivation {
   pname = "agent-browser";
-  version = "0.8.5";
+  version = "0.8.6";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/agent-browser/-/agent-browser-0.8.5.tgz";
-    hash = "sha512-A9mHhju6J5bIALVYpq6eO82S0PurLIYMMLte4p4IxP7pj3/D35orp4Ulinv3BJu9iJ//camM4FHoSoXQeENXqw==";
+    hash = "sha256-D5VPaNMXcaTx8EDsakkXsfFznSP2884egCp+vLmxTNQ=";
   };
 
   nativeBuildInputs = [makeWrapper];

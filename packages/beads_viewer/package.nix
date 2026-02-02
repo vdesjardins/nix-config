@@ -5,7 +5,7 @@
 }:
 buildGoModule {
   pname = "beads_viewer";
-  version = "0.0.0-unstable-2025-01-31";
+  version = "0.14.0";
 
   src = fetchFromGitHub {
     owner = "Dicklesworthstone";
