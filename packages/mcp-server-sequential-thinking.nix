@@ -5,13 +5,13 @@
 }:
 buildNpmPackage rec {
   pname = "mcp-server-sequential-thinking";
-  version = "2026.1.14";
+  version = "2026.1.26";
 
   src = fetchFromGitHub {
     owner = "modelcontextprotocol";
     repo = "servers";
     rev = version;
-    hash = "sha256-KL2YmxcXAVvGFuaaWQUOrbBl1JoZMtiGbjcxnFnMV8c=";
+    hash = "sha256-uULXUEHFZpYm/fmF6PkOFCxS+B+0q3dMveLG+3JHrhk=";
   };
 
   npmDepsHash = "sha256-NgRIzWZbXhfQp+1e9XUdh5/OlziVCBHH39paTaiQOKg=";
