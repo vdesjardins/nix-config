@@ -1,0 +1,174 @@
+formula = "add-hm-module"
+description = "Creates a new home-manager module with proper structure and wiring"
+version = 1
+
+[vars.module]
+description = "Module name (e.g., 'starship', 'zoxide')"
+required = true
+
+[[steps]]
+id = "research"
+title = "Research {{module}} in home-manager"
+description = """
+Research the {{module}} module in home-manager:
+
+1. Visit https://github.com/nix-community/home-manager/tree/master/modules
+2. Search for {{module}} to determine:
+   - Does it exist in home-manager upstream?
+   - Is it a service or program?
+   - What broad category does it belong to? (e.g., shell/tools, desktop/editors, services, etc.)
+
+3. Check the existing structure under home/modules/modules to find the matching category.
+   Available categories: home, desktop, dev, shell, services, ai, darwin
+
+4. Take note of the category for the next steps.
+"""
+
+[[steps]]
+id = "search_package"
+title = "Search for {{module}} package in nixpkgs"
+needs = ["research"]
+description = """
+Search for an existing {{module}} package in nixpkgs:
+
+1. Check nixpkgs for an existing package:
+   ```bash
+   nix-env -qa | grep -i {{module}}
+   ```
+   or
+   ```bash
+   nix search nixpkgs {{module}}
+   ```
+
+3. If the package exists in nixpkgs, note the package name.
+   If it doesn't exist, proceed to the next step to create a new package.
+
+4. Note the result (exists/not found) for the next step.
+"""
+
+[[steps]]
+id = "create_package"
+title = "Create package for {{module}} if needed"
+needs = ["search_package"]
+description = """
+Create a new package under packages/ directory IF the package doesn't exist in nixpkgs:
+
+1. If package exists in nixpkgs, skip this step - move to create_module.
+
+2. If package doesn't exist:
+
+   a. Create directory: packages/{{module}}/
+
+   b. Create file: packages/{{module}}/package.nix
+
+   c. Use the appropriate template based on package type (NPM, Python, Rust, Go, etc.):
+      - Refer to docs/NIX_PACKAGE_BOOTSTRAP.md for detailed step-by-step guide
+
+   d. Compute hash using: `nix build .#{{module}}` and capture the error output
+
+   e. Update the hash in package.nix
+
+   f. Ensure the package builds: `nix build .#{{module}}`
+
+3. Once the package exists (or was already in nixpkgs), proceed to create_module.
+"""
+
+[[steps]]
+id = "create_module"
+title = "Create module file for {{module}}"
+needs = ["create_package"]
+description = """
+Create a new module file following the established pattern:
+
+1. Create directory: home/modules/modules/<category>/{{module}}/
+2. Create file: home/modules/modules/<category>/{{module}}/default.nix
+
+3. Use this template and adapt it:
+
+```nix
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (lib.options) mkEnableOption;
+
+  cfg = config.modules.<category>.{{module}};
+in {
+  options.modules.<category>.{{module}} = {
+    enable = mkEnableOption "{{module}} - brief description";
+    # Add additional options as needed
+  };
+
+  config = mkIf cfg.enable {
+    # Configure the module here
+    # Example:
+    # programs.{{module}} = {
+    #   inherit (cfg) enable;
+    #   # ... other settings
+    # };
+  };
+}
+```
+
+4. Reference home-manager's modules/programs or services documentation for the appropriate configuration options.
+5. Ensure enable option follows the pattern of existing modules.
+"""
+
+[[steps]]
+id = "wire_up_role"
+title = "Wire module into appropriate role"
+needs = ["create_module"]
+description = """
+Wire up the module in the appropriate role:
+
+1. Identify the correct role based on the category determined in research:
+   - shell/tools → roles/ or roles/ops/
+   - desktop/* → roles/desktop/
+   - services/* → roles/ops/
+   - dev/* → roles/dev/
+   - ai/* → roles/ai/
+
+2. Open the role file: home/modules/roles/<role>.nix
+
+3. Add the module configuration to the role's config section:
+   ```nix
+   modules.<category>.{{module}} = {
+     enable = true;
+     # Add any role-specific configuration
+   };
+   ```
+
+4. Place it in the appropriate section of the role file, grouped with similar modules.
+"""
+
+[[steps]]
+id = "validate"
+title = "Validate implementation"
+needs = ["wire_up_role"]
+description = """
+Validate the implementation and fix any errors:
+
+1. Run linting and formatting checks:
+   ```bash
+   nix develop
+   prek run -a
+   ```
+
+2. Fix any errors auto-fixed by linters (especially alejandra formatting).
+
+3. Build the home configuration:
+   ```bash
+   nix build './#homeConfigurations.$USER@$(uname --nodename).activationPackage'
+   ```
+
+4. Address any errors returned by the build. Common issues:
+   - Missing module options definition
+   - Incorrect path in config.modules
+   - Missing dependencies or packages
+   - Syntax errors in Nix
+
+5. Once build succeeds, the module is ready to use.
+"""
