@@ -20,7 +20,8 @@ in {
       awslogs
       eks-node-viewer
       eksctl
-      ssm-session-manager-plugin
+      # TODO: Re-enable ssm-session-manager-plugin once nixpkgs fixes vendor issues
+      # ssm-session-manager-plugin
     ];
 
     modules.shell.tools.awscli2.enable = true;
