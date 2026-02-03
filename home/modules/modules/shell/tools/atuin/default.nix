@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -64,6 +63,7 @@ in {
         show_preview = true;
         show_tabs = true;
         compact = false;
+        invert = true;
 
         theme.name = "tokyo-night";
 
