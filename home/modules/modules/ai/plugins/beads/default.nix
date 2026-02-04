@@ -37,15 +37,15 @@ in {
 
       zsh = {
         shellAliases = {
-          bl = "beads list";
-          blt = "beads list --tree";
+          bl = "bd list";
+          blt = "bd list --tree";
         };
       };
 
       nushell = {
         shellAliases = {
-          "bl" = "bd list";
-          "blt" = "bd list --tree";
+          bl = "bd list";
+          blt = "bd list --tree";
         };
       };
     };
