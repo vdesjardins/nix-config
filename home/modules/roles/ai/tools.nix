@@ -210,6 +210,11 @@ in {
         default = true;
         description = "Enable buku skill";
       };
+      flux.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable FluxCD skill";
+      };
     };
   };
 
@@ -263,6 +268,7 @@ in {
           timewarrior.enable = cfg.skills.timewarrior.enable;
           tmux.enable = cfg.skills.tmux.enable;
           buku.enable = cfg.skills.buku.enable;
+          flux.enable = cfg.skills.flux.enable;
         };
       };
     };
