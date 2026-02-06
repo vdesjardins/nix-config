@@ -76,6 +76,12 @@ in {
       description = "Enable beads_viewer - TUI for beads issue tracking";
     };
 
+    handy.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable handy - offline speech-to-text application";
+    };
+
     plugins = {
       enable = mkEnableOption "plugins (all)";
       beads.enable = mkOption {
@@ -229,6 +235,13 @@ in {
         claude.enable = cfg.claude.enable;
         opencode.enable = cfg.opencode.enable;
         github-copilot-cli.enable = cfg.github-copilot-cli.enable;
+        handy = {
+          inherit (cfg.handy) enable;
+          wayland = {
+            enable = true;
+            auto-start = true;
+          };
+        };
       };
 
       ai = {
