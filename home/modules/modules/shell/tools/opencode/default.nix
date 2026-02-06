@@ -200,6 +200,11 @@ in {
         enabled = true;
         debug = false;
         pruneNotification = "detailed";
+        pruneNotificationType = "chat";
+        commands = {
+          enabled = true;
+          protectedTools = [];
+        };
         turnProtection = {
           enabled = false;
           turns = 4;
@@ -209,14 +214,19 @@ in {
           settings = {
             nudgeEnabled = true;
             nudgeFrequency = 10;
+            contextLimit = 100000;
             protectedTools = [];
           };
-          discard = {
-            enabled = true;
-          };
-          extract = {
-            enabled = true;
+          distill = {
+            permission = "allow";
             showDistillation = false;
+          };
+          compress = {
+            permission = "ask";
+            showCompression = false;
+          };
+          prune = {
+            permission = "allow";
           };
         };
         strategies = {
@@ -225,7 +235,7 @@ in {
             protectedTools = [];
           };
           supersedeWrites = {
-            enabled = false;
+            enabled = true;
           };
           purgeErrors = {
             enabled = true;

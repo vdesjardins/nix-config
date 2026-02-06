@@ -32,6 +32,7 @@ python314Packages.buildPythonApplication {
     sqlite-vec
     build
     aiohttp
+    aiosqlite
     fastapi
     uvicorn
     python-multipart
