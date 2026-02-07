@@ -223,7 +223,7 @@ in {
             showDistillation = false;
           };
           compress = {
-            permission = "ask";
+            permission = "allow";
             showCompression = false;
           };
           prune = {
