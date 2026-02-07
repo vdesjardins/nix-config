@@ -1,25 +1,24 @@
 {
   config,
+  inputs,
   lib,
-  my-packages,
+  pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkPackageOption mkIf;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.modules.ai.skills.agent-browser;
 in {
   options.modules.ai.skills.agent-browser = {
     enable = mkEnableOption "agent-browser skill";
-
-    package = mkPackageOption my-packages "agent-browser" {};
   };
 
   config = mkIf cfg.enable {
-    home.packages = [cfg.package];
+    home.packages = [inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.agent-browser];
 
-    # Recursively link all skill files and documentation
+    # Link skill files from the npm package
     xdg.configFile."opencode/skill/agent-browser" = {
-      source = "${cfg.package}/skills/agent-browser";
+      source = "${inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.agent-browser}/etc/agent-browser/skills/agent-browser";
       recursive = true;
     };
   };
