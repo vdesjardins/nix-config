@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib.modules) mkIf;
@@ -10,6 +11,7 @@
   inherit (pkgs.stdenv) isLinux;
 
   cfg = config.modules.desktop.terminal.ghostty;
+  ghosttyPkg = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   options.modules.desktop.terminal.ghostty = {
     enable = mkEnableOption "ghostty";
@@ -34,7 +36,7 @@ in {
     };
     package = mkOption {
       type = package;
-      default = pkgs.ghostty;
+      default = ghosttyPkg;
     };
   };
 
@@ -109,7 +111,7 @@ in {
   in {
     home.packages =
       if isLinux
-      then with pkgs; [ghostty]
+      then [ghosttyPkg]
       else [];
 
     xdg.configFile."ghostty/config".text = ''
