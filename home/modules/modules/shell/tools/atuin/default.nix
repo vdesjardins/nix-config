@@ -64,6 +64,7 @@ in {
         show_tabs = true;
         compact = false;
         invert = true;
+        inline_height = 20;
 
         theme.name = "tokyo-night";
 
