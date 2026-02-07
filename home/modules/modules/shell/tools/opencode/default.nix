@@ -39,6 +39,7 @@
     "gh pr check *" = "allow";
     "gh pr view *" = "allow";
     "nix build *" = "allow";
+    "ccusage *" = "allow";
   };
 in {
   options.modules.shell.tools.opencode = {
@@ -260,6 +261,7 @@ in {
       lib.optionals stdenv.isLinux [
         libnotify
         my-packages.opencode-sandbox
+        inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.ccusage-opencode
       ];
   };
 }
