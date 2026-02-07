@@ -27,6 +27,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = [
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.copilot-cli
+      pkgs.bashInteractive
     ];
 
     xdg.configFile = {
