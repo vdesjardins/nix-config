@@ -162,12 +162,14 @@ in {
         rules = ''
           IMPORTANT: only use jujutsu (jj) for version control. DO NOT use git.
 
-          ** Before Starting Any Task **
+          ⚠️ MANDATORY WORKFLOW - MUST FOLLOW EVERY TIME ⚠️
+          Before starting ANY task:
           1. Check if working copy has uncommitted changes: `jj status`
           2. If there are changes, create a new clean change: `jj new -A @`
           3. Now proceed with your work on the new change
 
-          ** After applying each change **
+          ⚠️ MANDATORY AFTER EVERY CHANGE - DO NOT SKIP ⚠️
+          After applying each change:
           1. Run `jj diff` to see all changes made to the codebase
           2. Run `jj describe -m "..."` to create a well-formatted conventional commit message
           3. Follow the conventional-commits skill to craft the message:
