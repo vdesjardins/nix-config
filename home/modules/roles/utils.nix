@@ -46,6 +46,7 @@ in {
           ripgrep.enable = true;
           starship.enable = true;
           timewarrior.enable = true;
+          tuicr.enable = true;
           yazi.enable = true;
           fzf.enable = true;
           tmux.enable = true;
