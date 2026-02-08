@@ -1,37 +1,41 @@
 {
   lib,
-  buildGoModule,
+  buildGo126Module,
   fetchFromGitHub,
+  icu,
+  pkg-config,
 }:
-buildGoModule rec {
+buildGo126Module rec {
   pname = "beads";
-  version = "0.49.0";
+  version = "0.49.6";
 
   src = fetchFromGitHub {
     owner = "steveyegge";
     repo = "beads";
     rev = "v${version}";
-    hash = "sha256-m0gVLeWfFeaWZpARuXgP00npmZcO7XCm7mXWA52bqTc=";
+    hash = "sha256-zopOpBqaHC2t+tGYtrHyalOUsFDZai2NmZZOKJs2vfQ=";
   };
 
-  vendorHash = "sha256-YU+bRLVlWtHzJ1QPzcKJ70f+ynp8lMoIeFlm+29BNPE=";
+  vendorHash = "sha256-RyOxrW0C+2E+ULhGeF2RbUhaUFt58sux7neHPei5QJI=";
+
+  nativeBuildInputs = [pkg-config];
+  buildInputs = [icu];
 
   subPackages = ["cmd/bd"];
 
   doCheck = false;
-
   doInstallCheck = true;
 
   postInstall = ''
-    mkdir -p ${placeholder "out"}/share/fish/vendor_completions.d
-    mkdir -p ${placeholder "out"}/share/bash-completion/completions
-    mkdir -p ${placeholder "out"}/share/zsh/site-functions
+    mkdir -p ${lib.placeholder "out"}/share/fish/vendor_completions.d
+    mkdir -p ${lib.placeholder "out"}/share/bash-completion/completions
+    mkdir -p ${lib.placeholder "out"}/share/zsh/site-functions
 
-    ${placeholder "out"}/bin/bd completion fish > ${placeholder "out"}/share/fish/vendor_completions.d/bd.fish
-    ${placeholder "out"}/bin/bd completion bash > ${placeholder "out"}/share/bash-completion/completions/bd
-    ${placeholder "out"}/bin/bd completion zsh > ${placeholder "out"}/share/zsh/site-functions/_bd
+    ${lib.placeholder "out"}/bin/bd completion fish > ${lib.placeholder "out"}/share/fish/vendor_completions.d/bd.fish
+    ${lib.placeholder "out"}/bin/bd completion bash > ${lib.placeholder "out"}/share/bash-completion/completions/bd
+    ${lib.placeholder "out"}/bin/bd completion zsh > ${lib.placeholder "out"}/share/zsh/site-functions/_bd
 
-    cp -r ./claude-plugin ${placeholder "out"}/share/claude-plugin
+    cp -r ./claude-plugin ${lib.placeholder "out"}/share/claude-plugin
   '';
 
   meta = with lib; {
