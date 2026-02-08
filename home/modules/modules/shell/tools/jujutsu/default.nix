@@ -121,13 +121,15 @@ in {
             subtask: true
             ---
 
+            IMPORTANT: This command ONLY describes the current change. Never create a new change as part of this command.
             Load the jj and conventional-commits skills and follow its instructions to:
-            1.  Analyze what changes are in the current commit.
-                Use `jj diff` to capture all actual changes:
-                  - Run `jj diff` to see the actual changes
+            1.  Analyze what changes are in the CURRENT change (`@`) only.
+                Use `jj diff` (no revset) to capture all actual changes:
+                  - Run `jj diff` to see the actual changes in `@`
                   - Determine the commit type and write a message based on what changed
-            2.  Craft conventional commit message explaining WHY those changes were made
-            3.  Execute `jj describe -m "your message"` to set it on the current commit
+                  - Do NOT create, insert, or move changes (`jj new`, `jj edit`, `jj absorb`, etc.)
+            2.  Craft conventional commit message explaining WHY the changes were made
+            3.  Execute `jj describe -m "your message"` to set it on the CURRENT change (`@`)
           '';
 
           "jj:change:new" = ''
