@@ -76,6 +76,12 @@ in {
       description = "Enable beads_viewer - TUI for beads issue tracking";
     };
 
+    coding-agent-search.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable coding-agent-search - code search tool for LLM agents";
+    };
+
     handy.enable = mkOption {
       type = types.bool;
       default = true;
@@ -251,6 +257,7 @@ in {
 
         tools = {
           beads_viewer.enable = cfg.beads-viewer.enable;
+          coding-agent-search.enable = cfg.coding-agent-search.enable;
         };
 
         mcp = {
