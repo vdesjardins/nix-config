@@ -167,8 +167,9 @@ in {
           ⚠️ MANDATORY WORKFLOW - MUST FOLLOW EVERY TIME ⚠️
           Before starting ANY task:
           1. Check if working copy has uncommitted changes: `jj status`
-          2. If there are changes, create a new clean change: `jj new -A @`
-          3. Now proceed with your work on the new change
+          2. If there are changes AND the current change is not empty, create a new clean change: `jj new -A @`
+          3. If the current change is empty, do NOT create a new change; proceed on `@`
+          4. Now proceed with your work
 
           ⚠️ MANDATORY AFTER EVERY CHANGE - DO NOT SKIP ⚠️
           After applying each change:
