@@ -6,6 +6,13 @@ version = 1
 description = "Module name (e.g., 'starship', 'zoxide')"
 required = true
 
+[vars.title]
+description = "Epic title"
+required = true
+
+[vars.repository]
+description = "Repository reference (optional)"
+
 [[steps]]
 id = "research"
 title = "Research {{module}} in home-manager"
