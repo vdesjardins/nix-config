@@ -138,7 +138,9 @@ in {
             agent: build
             ---
 
-            Insert a new change after the current change using `jj new -A @`
+            Check the current change is non-empty with `jj status`.
+            If it is empty, do NOT create a new change; continue on `@`.
+            If it contains changes, insert a new change after the current change using `jj new -A @`.
           '';
 
           "jj:gh:pr:create" = ''
