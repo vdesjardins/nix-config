@@ -163,6 +163,8 @@ in {
       };
 
       rules = ''
+        V owns this. Start: say hi + 1 motivating line. Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
+
         IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any tasks.
 
         **ALWAYS use these tools/commands:**
