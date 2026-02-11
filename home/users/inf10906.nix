@@ -32,7 +32,10 @@
         claude.enable = false;
         ollama.enable = false;
         llamacpp.enable = false;
-        opencode.enable = true;
+        opencode = {
+          enable = true;
+          daemon.enable = false;
+        };
         github-copilot-cli.enable = true;
         mcp = {
           nixos.enable = false;

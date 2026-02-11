@@ -58,10 +58,19 @@ in {
       description = "Enable Claude CLI";
     };
 
-    opencode.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable OpenCode CLI";
+    opencode = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable OpenCode CLI";
+      };
+      daemon = {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable OpenCode daemon service (systemd/launchd background service)";
+        };
+      };
     };
 
     github-copilot-cli.enable = mkOption {
@@ -239,7 +248,10 @@ in {
 
       shell.tools = {
         claude.enable = cfg.claude.enable;
-        opencode.enable = cfg.opencode.enable;
+        opencode = {
+          inherit (cfg.opencode) enable;
+          daemon.enable = cfg.opencode.daemon.enable;
+        };
         github-copilot-cli.enable = cfg.github-copilot-cli.enable;
         handy = {
           inherit (cfg.handy) enable;
