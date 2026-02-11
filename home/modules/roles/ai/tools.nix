@@ -176,6 +176,11 @@ in {
         default = true;
         description = "Enable Memory Service MCP server";
       };
+      mcporter.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable mcporter - MCP server CLI/runtime";
+      };
       tmux-mcp.enable = mkOption {
         type = types.bool;
         default = true;
@@ -287,6 +292,7 @@ in {
           sequential-thinking.enable = cfg.mcp.sequential-thinking.enable;
           tree-sitter.enable = cfg.mcp.tree-sitter.enable;
           memory-service.enable = cfg.mcp.memory-service.enable;
+          mcporter.enable = cfg.mcp.mcporter.enable;
           tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
         };
 
