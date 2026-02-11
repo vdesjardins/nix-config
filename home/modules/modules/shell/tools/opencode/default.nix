@@ -45,6 +45,19 @@ in {
   options.modules.shell.tools.opencode = {
     enable = mkEnableOption "opencode";
 
+    daemon = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = ''
+          Enable OpenCode daemon service (systemd on Linux, launchd on macOS).
+
+          When enabled, the background service will start automatically and handle
+          the OpenCode web interface or serve commands as configured.
+        '';
+      };
+    };
+
     web = {
       command = mkOption {
         type = types.enum ["web" "serve"];
@@ -98,11 +111,6 @@ in {
       enable = true;
 
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
-
-      web = {
-        enable = true;
-        extraArgs = ["--port" "4096"];
-      };
 
       settings = {
         theme = "tokyonight";
@@ -192,7 +200,7 @@ in {
       '';
     };
 
-    systemd.user.services.opencode-web = mkIf config.programs.opencode.web.enable {
+    systemd.user.services.opencode-web = mkIf (config.programs.opencode.web.enable && cfg.daemon.enable) {
       Service = {
         Environment = lib.mapAttrsToList (k: v: "${k}=${v}") cfg.web.environment;
         ExecStart =
@@ -201,7 +209,7 @@ in {
       };
     };
 
-    launchd.agents.opencode-web = mkIf config.programs.opencode.web.enable {
+    launchd.agents.opencode-web = mkIf (config.programs.opencode.web.enable && cfg.daemon.enable) {
       config = {
         EnvironmentVariables =
           (config.launchd.agents.opencode-web.config.EnvironmentVariables or {}) // cfg.web.environment;
