@@ -91,6 +91,12 @@ in {
       description = "Enable coding-agent-search - code search tool for LLM agents";
     };
 
+    sec-skills-audit.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable sec-skills-audit - security auditor for OpenCode skill files";
+    };
+
     handy.enable = mkOption {
       type = types.bool;
       default = true;
@@ -275,6 +281,7 @@ in {
         tools = {
           beads_viewer.enable = cfg.beads-viewer.enable;
           coding-agent-search.enable = cfg.coding-agent-search.enable;
+          sec-skills-audit.enable = cfg.sec-skills-audit.enable;
         };
 
         mcp = {
