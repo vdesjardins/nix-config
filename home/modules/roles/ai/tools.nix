@@ -194,6 +194,16 @@ in {
       };
     };
 
+    # Instructions
+    instructions = {
+      enable = mkEnableOption "Instructions (all)";
+      karpathy.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Karpathy AI coding guidelines";
+      };
+    };
+
     # Skills
     skills = {
       enable = mkEnableOption "Skills (all)";
@@ -301,6 +311,10 @@ in {
           memory-service.enable = cfg.mcp.memory-service.enable;
           mcporter.enable = cfg.mcp.mcporter.enable;
           tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
+        };
+
+        instructions = {
+          karpathy.enable = cfg.instructions.karpathy.enable;
         };
 
         skills = {
