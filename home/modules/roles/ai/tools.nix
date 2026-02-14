@@ -197,6 +197,11 @@ in {
     # Instructions
     instructions = {
       enable = mkEnableOption "Instructions (all)";
+      common.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable common AI instructions";
+      };
       karpathy.enable = mkOption {
         type = types.bool;
         default = true;
@@ -314,6 +319,7 @@ in {
         };
 
         instructions = {
+          common.enable = cfg.instructions.common.enable;
           karpathy.enable = cfg.instructions.karpathy.enable;
         };
 
