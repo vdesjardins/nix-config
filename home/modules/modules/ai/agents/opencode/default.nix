@@ -103,6 +103,27 @@ in {
           OPENCODE_DATABASE_URL = "postgresql://...";
         };
       };
+
+      extraArgs = mkOption {
+        type = types.listOf types.str;
+        default = [];
+        description = ''
+          Extra arguments to pass to the OpenCode command.
+
+          These arguments are appended to the command line when starting
+          the background service.
+
+          Example usage:
+          ```nix
+          modules.ai.agents.opencode = {
+            enable = true;
+            web.command = "serve";
+            web.extraArgs = ["--port" "3000" "--verbose"];
+          };
+          ```
+        '';
+        example = ["--port" "3000" "--verbose"];
+      };
     };
   };
 
@@ -169,21 +190,18 @@ in {
           };
         };
       };
-
-      # Rules moved to modules.ai.instructions.common
-      # Wired via roles.ai.tools.instructions.common.enable
     };
 
-    systemd.user.services.opencode-web = mkIf (config.programs.opencode.web.enable && cfg.daemon.enable) {
+    systemd.user.services.opencode-web = mkIf cfg.daemon.enable {
       Service = {
         Environment = lib.mapAttrsToList (k: v: "${k}=${v}") cfg.web.environment;
         ExecStart =
           lib.mkForce
-          "${lib.getExe config.programs.opencode.package} ${cfg.web.command} ${lib.escapeShellArgs config.programs.opencode.web.extraArgs}";
+          "${lib.getExe config.programs.opencode.package} ${cfg.web.command} ${lib.escapeShellArgs cfg.web.extraArgs}";
       };
     };
 
-    launchd.agents.opencode-web = mkIf (config.programs.opencode.web.enable && cfg.daemon.enable) {
+    launchd.agents.opencode-web = mkIf cfg.daemon.enable {
       config = {
         EnvironmentVariables =
           (config.launchd.agents.opencode-web.config.EnvironmentVariables or {}) // cfg.web.environment;
@@ -192,7 +210,7 @@ in {
             (lib.getExe config.programs.opencode.package)
             cfg.web.command
           ]
-          ++ config.programs.opencode.web.extraArgs;
+          ++ cfg.web.extraArgs;
       };
     };
 
