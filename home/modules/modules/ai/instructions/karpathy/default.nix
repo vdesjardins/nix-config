@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkAfter;
+  inherit (lib) mkEnableOption mkIf mkBefore;
   cfg = config.modules.ai.instructions.karpathy;
 
   # Fetch Karpathy's AI coding guidelines from GitHub
@@ -18,6 +18,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.opencode.rules = mkAfter (builtins.readFile karpathyInstructions);
+    programs.opencode.rules = mkBefore (builtins.readFile karpathyInstructions);
   };
 }
