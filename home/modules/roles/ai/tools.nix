@@ -103,6 +103,12 @@ in {
       description = "Enable handy - offline speech-to-text application";
     };
 
+    sandbox-runtime.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable sandbox-runtime - AI agent execution environments";
+    };
+
     plugins = {
       enable = mkEnableOption "plugins (all)";
       beads.enable = mkOption {
@@ -300,6 +306,7 @@ in {
           beads_viewer.enable = cfg.beads-viewer.enable;
           coding-agent-search.enable = cfg.coding-agent-search.enable;
           sec-skills-audit.enable = cfg.sec-skills-audit.enable;
+          sandbox-runtime.enable = cfg.sandbox-runtime.enable;
         };
 
         mcp = {
