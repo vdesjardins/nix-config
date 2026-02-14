@@ -257,6 +257,7 @@ in {
       oce = "opencode export";
       oci = "opencode import";
       ocs = "opencode session list";
+      soc = "srt opencode";
       yoc = "export OPENCODE_PERMISSION='{\"*\": \"allow\"}' && opencode";
       yocr = "export OPENCODE_PERMISSION='{\"*\": \"allow\"}' && opencode run";
     };
@@ -264,7 +265,6 @@ in {
     home.packages = with pkgs;
       lib.optionals stdenv.isLinux [
         libnotify
-        my-packages.opencode-sandbox
         inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.ccusage-opencode
       ];
   };
