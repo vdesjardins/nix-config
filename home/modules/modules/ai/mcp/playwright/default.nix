@@ -33,7 +33,7 @@ in {
         ];
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.playwright = {
+      ai.agents.github-copilot-cli.settings.mcpServers.playwright = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

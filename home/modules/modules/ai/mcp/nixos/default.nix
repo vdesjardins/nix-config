@@ -20,7 +20,7 @@ in {
         command = getExe cfg.package;
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.nixos = {
+      ai.agents.github-copilot-cli.settings.mcpServers.nixos = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

@@ -21,7 +21,7 @@ in {
         args = ["server"];
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.memory_service = {
+      ai.agents.github-copilot-cli.settings.mcpServers.memory_service = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

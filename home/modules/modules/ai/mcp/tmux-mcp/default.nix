@@ -30,7 +30,7 @@ in {
         ];
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.tmux-mcp = {
+      ai.agents.github-copilot-cli.settings.mcpServers.tmux-mcp = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

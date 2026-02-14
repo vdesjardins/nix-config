@@ -20,7 +20,7 @@ in {
         command = getExe cfg.package;
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.tree_sitter = {
+      ai.agents.github-copilot-cli.settings.mcpServers.tree_sitter = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

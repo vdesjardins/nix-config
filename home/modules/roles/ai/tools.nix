@@ -274,11 +274,6 @@ in {
 
       shell.tools = {
         claude.enable = cfg.claude.enable;
-        opencode = {
-          inherit (cfg.opencode) enable;
-          daemon.enable = cfg.opencode.daemon.enable;
-        };
-        github-copilot-cli.enable = cfg.github-copilot-cli.enable;
         handy = {
           inherit (cfg.handy) enable;
           wayland = {
@@ -289,6 +284,14 @@ in {
       };
 
       ai = {
+        agents = {
+          opencode = {
+            inherit (cfg.opencode) enable;
+            daemon.enable = cfg.opencode.daemon.enable;
+          };
+          github-copilot-cli.enable = cfg.github-copilot-cli.enable;
+        };
+
         plugins = {
           beads.enable = cfg.plugins.beads.enable;
         };

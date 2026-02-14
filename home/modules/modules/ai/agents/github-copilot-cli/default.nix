@@ -12,9 +12,9 @@
 
   jsonFormat = pkgs.formats.json {};
 
-  cfg = config.modules.shell.tools.github-copilot-cli;
+  cfg = config.modules.ai.agents.github-copilot-cli;
 in {
-  options.modules.shell.tools.github-copilot-cli = {
+  options.modules.ai.agents.github-copilot-cli = {
     enable = mkEnableOption "github-copilot-cli";
 
     settings = mkOption {
