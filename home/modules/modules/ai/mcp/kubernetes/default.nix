@@ -20,7 +20,7 @@ in {
         command = getExe cfg.package;
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.kubernetes = {
+      ai.agents.github-copilot-cli.settings.mcpServers.kubernetes = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

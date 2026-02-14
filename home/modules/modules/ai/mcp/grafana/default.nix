@@ -47,7 +47,7 @@ in {
         };
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.grafana = {
+      ai.agents.github-copilot-cli.settings.mcpServers.grafana = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

@@ -24,7 +24,7 @@ in {
         };
       };
 
-      shell.tools.github-copilot-cli.settings.mcpServers.fluxcd = {
+      ai.agents.github-copilot-cli.settings.mcpServers.fluxcd = {
         type = "local";
         command = getExe cfg.package;
         tools = ["*"];

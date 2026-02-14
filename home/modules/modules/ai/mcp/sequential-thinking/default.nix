@@ -25,7 +25,7 @@ in {
       command = [(getExe cfg.package)];
     };
 
-    modules.shell.tools.github-copilot-cli.settings.mcpServers.sequential-thinking = {
+    modules.ai.agents.github-copilot-cli.settings.mcpServers.sequential-thinking = {
       type = "local";
       command = getExe cfg.package;
       tools = ["*"];

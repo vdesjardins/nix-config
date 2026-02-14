@@ -9,7 +9,7 @@
   inherit (lib) mkIf mkOption types;
   inherit (lib.options) mkEnableOption;
 
-  cfg = config.modules.shell.tools.opencode;
+  cfg = config.modules.ai.agents.opencode;
 
   bashPermissions = {
     "*" = "ask";
@@ -42,7 +42,7 @@
     "ccusage *" = "allow";
   };
 in {
-  options.modules.shell.tools.opencode = {
+  options.modules.ai.agents.opencode = {
     enable = mkEnableOption "opencode";
 
     daemon = {
@@ -86,7 +86,7 @@ in {
 
           Example usage:
           ```nix
-          modules.shell.tools.opencode = {
+          modules.ai.agents.opencode = {
             enable = true;
             web.command = "serve";
             web.environment = {
