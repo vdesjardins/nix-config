@@ -92,6 +92,8 @@ in {
             spi = ["split" "-i"];
             sq = ["squash"];
             sqi = ["squash"];
+            tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@"];
+            tug- = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
             un = ["undo"];
             wa = ["workspace" "add"];
             wf = ["workspace" "forget"];
@@ -118,7 +120,6 @@ in {
             ---
             description: Create well-formatted conventional commit messages using jujutsu (jj).
             agent: build
-            subtask: true
             ---
 
             IMPORTANT: This command ONLY describes the current change. Never create a new change as part of this command.
@@ -147,7 +148,6 @@ in {
             ---
             description: Create a GitHub pull request for the current jujutsu (jj) branch.
             agent: build
-            subtask: true
             ---
 
             Load the jj skill and follow its instructions to:
@@ -168,7 +168,7 @@ in {
 
           ⚠️ MANDATORY WORKFLOW - MUST FOLLOW EVERY TIME ⚠️
           Before starting ANY task:
-          1. Check if working copy has uncommitted changes: `jj status`
+          1. Check if working copy has no changes (empty): `jj status`
           2. If there are changes AND the current change is not empty, create a new clean change: `jj new -A @`
           3. If the current change is empty, do NOT create a new change; proceed on `@`
           4. Now proceed with your work
@@ -178,7 +178,6 @@ in {
           1. Run `jj diff` to see all changes made to the codebase
           2. Run `jj describe -m "..."` to create a well-formatted conventional commit message
           3. Follow the conventional-commits skill to craft the message:
-            - Start with emoji and type (e.g., 🐛 fix, ✨ feat, ♻️ refactor)
             - Include scope in parentheses
             - Write concise description explaining WHY, not just WHAT
             - Reference any related issues or decisions
@@ -228,6 +227,8 @@ in {
         jspi = "jj split -i";
         jsq = "jj squash";
         jsqi = "jj squash -i";
+        jtug = "bookmark move --from heads(::@- & bookmarks()) --to @";
+        jtug- = "bookmark move --from heads(::@- & bookmarks()) --to @-";
         jun = "jj undo";
         jwa = "jj workspace add";
         jwf = "jj workspace forget";
