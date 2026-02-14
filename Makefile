@@ -25,11 +25,25 @@ host/apply: host/generate
 .PHONY: hm/generate
 ## hm/generate: build current user
 hm/generate:
+	nix build ./#homeConfigurations.$$USER@$$(uname --nodename).activationPackage
+
+.PHONY: hm/generate-diff
+## hm/generate-diff: build current user and show diff
+hm/generate-diff:
 	nix build ./#homeConfigurations.$$USER@$$(uname --nodename).activationPackage && nvd diff ~/.nix-profile ./result
 
 .PHONY: host/generate
 ## host/generate: build current system
 host/generate:
+	if [[ "$$(uname -o)" == "Darwin" ]] then
+		nix run nix-darwin -- build --flake .#$$(uname --nodename)
+	else
+		sudo nixos-rebuild build --flake .#$$(uname --nodename)
+	fi
+
+.PHONY: host/generate-diff
+## host/generate-diff: build current system and show diff
+host/generate-diff:
 	if [[ "$$(uname -o)" == "Darwin" ]] then
 		nix run nix-darwin -- build --flake .#$$(uname --nodename) && nvd diff /run/current-system ./result
 	else
@@ -44,6 +58,11 @@ falcon/apply:
 .PHONY: falcon/generate
 ## falcon/generate: build falcon current system
 falcon/generate:
+	nixos-rebuild build --flake '.#falcon'
+
+.PHONY: falcon/generate-diff
+## falcon/generate-diff: build falcon current system and show diff
+falcon/generate-diff:
 	nixos-rebuild build --flake '.#falcon' && nvd diff /run/current-system ./result
 
 .PHONY: hm/install
