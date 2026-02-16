@@ -41,7 +41,6 @@
     try.inputs.nixpkgs.follows = "nixpkgs";
 
     opencode.url = "github:sst/opencode";
-    opencode.inputs.nixpkgs.follows = "nixpkgs";
 
     llamacpp.url = "github:ggml-org/llama.cpp";
     llamacpp.inputs.nixpkgs.follows = "nixpkgs";
