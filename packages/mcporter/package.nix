@@ -2,6 +2,7 @@
   lib,
   buildNpmPackage,
   fetchFromGitHub,
+  fetchPnpmDeps,
   pnpm_10,
   pnpmConfigHook,
   makeWrapper,
@@ -18,7 +19,7 @@ buildNpmPackage rec {
     hash = "sha256-f8M1rDbQcUatupVe47LQVgsohZQX066MHeWNflsksCo=";
   };
 
-  pnpmDeps = pnpm_10.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit pname version src;
     hash = "sha256-0nc+jYANd95/R+BrkGRHcdqw9/RqMja88qkVvHtj1W4=";
     fetcherVersion = 2;

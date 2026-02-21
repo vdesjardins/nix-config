@@ -153,7 +153,7 @@
           inherit name;
           inherit (dashCfg) url sha256;
         }
-      else dashCfg.path or (builtins.throw "Dashboard ${name} must have either 'id', 'url', or 'path'");
+      else dashCfg.path or (throw "Dashboard ${name} must have either 'id', 'url', or 'path'");
   in
     dashLib.dashboardEntry {
       inherit name;
@@ -187,6 +187,10 @@ in {
         domain = "grafana.kube-stack.org";
         http_port = 3000;
         http_addr = "127.0.0.1";
+      };
+      security = {
+        # TODO: configure secret key
+        secret_key = "";
       };
     };
 

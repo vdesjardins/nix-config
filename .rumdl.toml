@@ -30,6 +30,7 @@ exclude = [
     "LICENSE.md",
     "AGENTS.md",
     "INTENTS-*",
+    ".beads/README.md",
 ]
 
 # Respect .gitignore files when scanning directories (default: true)

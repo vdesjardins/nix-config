@@ -17,6 +17,8 @@ in {
     programs.yazi = {
       inherit (cfg) enable;
 
+      shellWrapperName = "y";
+
       enableZshIntegration = true;
       enableNushellIntegration = true;
 
