@@ -42,6 +42,8 @@
     "ccusage *" = "allow";
   };
 in {
+  imports = [./kiro.nix];
+
   options.modules.ai.agents.opencode = {
     enable = mkEnableOption "opencode";
 

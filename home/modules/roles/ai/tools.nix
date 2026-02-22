@@ -71,6 +71,13 @@ in {
           description = "Enable OpenCode daemon service (systemd/launchd background service)";
         };
       };
+      kiro = {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable OpenCode Kiro provider integration";
+        };
+      };
     };
 
     github-copilot-cli.enable = mkOption {
@@ -294,6 +301,7 @@ in {
           opencode = {
             inherit (cfg.opencode) enable;
             daemon.enable = cfg.opencode.daemon.enable;
+            kiro.enable = cfg.opencode.kiro.enable;
           };
           github-copilot-cli.enable = cfg.github-copilot-cli.enable;
         };
