@@ -86,6 +86,12 @@ in {
       description = "Enable GitHub Copilot CLI";
     };
 
+    kiro.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable Kiro CLI";
+    };
+
     beads-viewer.enable = mkOption {
       type = types.bool;
       default = true;
@@ -304,6 +310,7 @@ in {
             kiro.enable = cfg.opencode.kiro.enable;
           };
           github-copilot-cli.enable = cfg.github-copilot-cli.enable;
+          kiro.enable = cfg.kiro.enable;
         };
 
         plugins = {

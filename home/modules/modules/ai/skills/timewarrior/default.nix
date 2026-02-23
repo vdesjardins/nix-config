@@ -15,7 +15,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.resources = [
+      "skill://${config.home.homeDirectory}/.kiro/skills/timewarrior-efficient-entry"
+    ];
+
+    home.file.".kiro/skills/timewarrior-efficient-entry".source = "${cfg.package}/skills/timewarrior-efficient-entry";
     xdg.configFile."opencode/skill/timewarrior-efficient-entry".source = "${cfg.package}/skills/timewarrior-efficient-entry";
+
     programs.opencode.settings.permission.bash = {
       "timew --version" = "allow";
       "timew start*" = "allow";

@@ -18,6 +18,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.prompts = [
+      (builtins.readFile karpathyInstructions)
+    ];
+
     programs.opencode.rules = mkBefore (builtins.readFile karpathyInstructions);
   };
 }

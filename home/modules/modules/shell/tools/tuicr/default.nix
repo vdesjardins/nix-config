@@ -23,7 +23,16 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.resources = [
+      "skill://${config.home.homeDirectory}/.kiro/skills/tuicr"
+    ];
+
     home.packages = [inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.tuicr];
+
+    home.file.".kiro/skills/tuicr" = {
+      source = "${tuicrSkill}/.claude/skill";
+      recursive = true;
+    };
 
     xdg.configFile."opencode/skill/tuicr" = {
       source = "${tuicrSkill}/.claude/skill";

@@ -17,11 +17,17 @@ in {
         url = "https://mcp.grep.app";
       };
 
-      ai.agents.github-copilot-cli.settings.mcpServers.grep-app = {
-        type = "http";
-        url = "https://mcp.grep.app";
-        tools = ["*"];
-        args = [];
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.grep-app = {
+          type = "http";
+          url = "https://mcp.grep.app";
+          tools = ["*"];
+          args = [];
+        };
+
+        kiro.settings.mcpServers.grep-app = {
+          url = "https://mcp.grep.app";
+        };
       };
     };
 

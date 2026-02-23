@@ -47,16 +47,30 @@ in {
         };
       };
 
-      ai.agents.github-copilot-cli.settings.mcpServers.grafana = {
-        type = "local";
-        command = getExe cfg.package;
-        tools = ["*"];
-        args = [];
-        environment = {
-          GRAFANA_URL = "";
-          GRAFANA_SERVICE_ACCOUNT_TOKEN = "";
-          GRAFANA_USERNAME = "";
-          GRAFANA_PASSWORD = "";
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.grafana = {
+          type = "local";
+          command = getExe cfg.package;
+          tools = ["*"];
+          args = [];
+          environment = {
+            GRAFANA_URL = "";
+            GRAFANA_SERVICE_ACCOUNT_TOKEN = "";
+            GRAFANA_USERNAME = "";
+            GRAFANA_PASSWORD = "";
+          };
+        };
+
+        kiro.settings.mcpServers.grafana = {
+          command = getExe cfg.package;
+          args = [];
+          env = {
+            GRAFANA_URL = "";
+            GRAFANA_SERVICE_ACCOUNT_TOKEN = "";
+            GRAFANA_USERNAME = "";
+            GRAFANA_PASSWORD = "";
+          };
+          disabled = true;
         };
       };
     };

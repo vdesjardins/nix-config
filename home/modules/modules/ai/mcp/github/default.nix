@@ -22,16 +22,26 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.editors.nixvim.ai.mcpServers.github = {
-      command = getExe cfg.package;
-      args = [
-        "stdio"
-        # "--enable-command-logging"
-        # "--log-file=${config.home.homeDirectory}/.local/share/github-cmp-server/command.log"
-      ];
-      env = {
-        # passthrough GITHUB_PERSONAL_ACCESS_TOKEN from passage
-        GITHUB_PERSONAL_ACCESS_TOKEN = "";
+    modules = {
+      desktop.editors.nixvim.ai.mcpServers.github = {
+        command = getExe cfg.package;
+        args = [
+          "stdio"
+          # "--enable-command-logging"
+          # "--log-file=${config.home.homeDirectory}/.local/share/github-cmp-server/command.log"
+        ];
+        env = {
+          # passthrough GITHUB_PERSONAL_ACCESS_TOKEN from passage
+          GITHUB_PERSONAL_ACCESS_TOKEN = "";
+        };
+      };
+
+      ai.agents.kiro.settings.mcpServers.github = {
+        command = getExe cfg.package;
+        args = ["stdio"];
+        env = {
+          GITHUB_PERSONAL_ACCESS_TOKEN = "";
+        };
       };
     };
 

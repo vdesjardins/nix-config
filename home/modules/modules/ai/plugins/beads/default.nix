@@ -13,6 +13,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.resources = [
+      "skill://${config.home.homeDirectory}/.kiro/skills/beads"
+    ];
+
     home.packages = [my-packages.beads];
 
     programs = {
@@ -48,6 +52,11 @@ in {
           blt = "bd list --tree";
         };
       };
+    };
+
+    home.file.".kiro/skills/beads" = {
+      source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+      recursive = true;
     };
 
     xdg.configFile."opencode/agent/beads" = {

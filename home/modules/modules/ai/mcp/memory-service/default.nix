@@ -21,11 +21,18 @@ in {
         args = ["server"];
       };
 
-      ai.agents.github-copilot-cli.settings.mcpServers.memory_service = {
-        type = "local";
-        command = getExe cfg.package;
-        tools = ["*"];
-        args = ["server"];
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.memory_service = {
+          type = "local";
+          command = getExe cfg.package;
+          tools = ["*"];
+          args = ["server"];
+        };
+
+        kiro.settings.mcpServers.memory_service = {
+          command = getExe cfg.package;
+          args = ["server"];
+        };
       };
     };
 

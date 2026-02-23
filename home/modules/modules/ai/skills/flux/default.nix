@@ -13,6 +13,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.resources = [
+      "skill://${config.home.homeDirectory}/.kiro/skills/flux"
+    ];
+
     programs.opencode = {
       settings.permission.bash = {
         "flux --version" = "allow";
@@ -43,6 +47,7 @@ in {
       };
     };
 
+    home.file.".kiro/skills/flux".source = "${cfg.package}/skills/flux";
     xdg.configFile."opencode/skill/flux".source = "${cfg.package}/skills/flux";
   };
 }

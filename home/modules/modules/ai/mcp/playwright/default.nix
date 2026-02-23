@@ -33,14 +33,25 @@ in {
         ];
       };
 
-      ai.agents.github-copilot-cli.settings.mcpServers.playwright = {
-        type = "local";
-        command = getExe cfg.package;
-        tools = ["*"];
-        args = [
-          "--executable-path"
-          cfg.executable
-        ];
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.playwright = {
+          type = "local";
+          command = getExe cfg.package;
+          tools = ["*"];
+          args = [
+            "--executable-path"
+            cfg.executable
+          ];
+        };
+
+        kiro.settings.mcpServers.playwright = {
+          command = getExe cfg.package;
+          args = [
+            "--executable-path"
+            cfg.executable
+          ];
+          disabled = true;
+        };
       };
     };
 

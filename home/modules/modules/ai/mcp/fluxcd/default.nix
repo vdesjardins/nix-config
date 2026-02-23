@@ -24,13 +24,24 @@ in {
         };
       };
 
-      ai.agents.github-copilot-cli.settings.mcpServers.fluxcd = {
-        type = "local";
-        command = getExe cfg.package;
-        tools = ["*"];
-        args = ["serve"];
-        environment = {
-          KUBECONFIG = "";
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.fluxcd = {
+          type = "local";
+          command = getExe cfg.package;
+          tools = ["*"];
+          args = ["serve"];
+          environment = {
+            KUBECONFIG = "";
+          };
+        };
+
+        kiro.settings.mcpServers.fluxcd = {
+          command = getExe cfg.package;
+          args = ["serve"];
+          env = {
+            KUBECONFIG = "";
+          };
+          disabled = true;
         };
       };
     };

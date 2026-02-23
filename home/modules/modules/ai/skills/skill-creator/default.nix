@@ -18,6 +18,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.resources = [
+      "skill://${config.home.homeDirectory}/.kiro/skills/skill-creator"
+    ];
+
+    home.file.".kiro/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
     xdg.configFile."opencode/skill/skill-creator".source = "${cfg.package}/skills/skill-creator";
   };
 }

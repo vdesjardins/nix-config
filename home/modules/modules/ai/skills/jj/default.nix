@@ -13,6 +13,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.resources = [
+      "skill://${config.home.homeDirectory}/.kiro/skills/jj"
+    ];
+
     programs.opencode = {
       settings.permission.bash = {
         "jj --version" = "allow";
@@ -43,6 +47,7 @@ in {
       };
     };
 
+    home.file.".kiro/skills/jj".source = "${cfg.package}/skills/jj";
     xdg.configFile."opencode/skill/jj".source = "${cfg.package}/skills/jj";
   };
 }

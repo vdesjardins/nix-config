@@ -20,11 +20,19 @@ in {
         command = getExe cfg.package;
       };
 
-      ai.agents.github-copilot-cli.settings.mcpServers.kubernetes = {
-        type = "local";
-        command = getExe cfg.package;
-        tools = ["*"];
-        args = [];
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.kubernetes = {
+          type = "local";
+          command = getExe cfg.package;
+          tools = ["*"];
+          args = [];
+        };
+
+        kiro.settings.mcpServers.kubernetes = {
+          command = getExe cfg.package;
+          args = [];
+          disabled = true;
+        };
       };
     };
 

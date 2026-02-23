@@ -13,8 +13,15 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.kiro.settings.resources = [
+      "skill://${config.home.homeDirectory}/.kiro/skills/buku"
+    ];
+
     # Install buku package
     home.packages = [pkgs.buku];
+
+    # Copy skill files for Kiro
+    home.file.".kiro/skills/buku".source = ./skill;
 
     # Register skill with OpenCode
     programs.opencode = {

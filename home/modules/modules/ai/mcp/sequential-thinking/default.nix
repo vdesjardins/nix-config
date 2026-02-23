@@ -15,21 +15,30 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.editors.nixvim.ai.mcpServers.sequential-thinking = {
-      command = getExe cfg.package;
+    modules = {
+      desktop.editors.nixvim.ai.mcpServers.sequential-thinking = {
+        command = getExe cfg.package;
+      };
+
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.sequential-thinking = {
+          type = "local";
+          command = getExe cfg.package;
+          tools = ["*"];
+          args = [];
+        };
+
+        kiro.settings.mcpServers.sequential-thinking = {
+          command = getExe cfg.package;
+          args = [];
+        };
+      };
     };
 
     programs.opencode.settings.mcp.sequential-thinking = {
       enabled = true;
       type = "local";
       command = [(getExe cfg.package)];
-    };
-
-    modules.ai.agents.github-copilot-cli.settings.mcpServers.sequential-thinking = {
-      type = "local";
-      command = getExe cfg.package;
-      tools = ["*"];
-      args = [];
     };
   };
 }

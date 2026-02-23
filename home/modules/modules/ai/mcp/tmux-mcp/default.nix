@@ -30,14 +30,25 @@ in {
         ];
       };
 
-      ai.agents.github-copilot-cli.settings.mcpServers.tmux-mcp = {
-        type = "local";
-        command = getExe cfg.package;
-        tools = ["*"];
-        args = [
-          "--shell-type"
-          cfg.shellType
-        ];
+      ai.agents = {
+        github-copilot-cli.settings.mcpServers.tmux-mcp = {
+          type = "local";
+          command = getExe cfg.package;
+          tools = ["*"];
+          args = [
+            "--shell-type"
+            cfg.shellType
+          ];
+        };
+
+        kiro.settings.mcpServers.tmux-mcp = {
+          command = getExe cfg.package;
+          args = [
+            "--shell-type"
+            cfg.shellType
+          ];
+          disabled = true;
+        };
       };
     };
 
