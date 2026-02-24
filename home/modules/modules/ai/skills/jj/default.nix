@@ -13,9 +13,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/jj"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/jj"
+      ];
+
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/jj"
+      ];
+    };
 
     programs.opencode = {
       settings.permission.bash = {
@@ -47,7 +53,14 @@ in {
       };
     };
 
-    home.file.".kiro/skills/jj".source = "${cfg.package}/skills/jj";
-    xdg.configFile."opencode/skill/jj".source = "${cfg.package}/skills/jj";
+    home.file = {
+      ".kiro/skills/jj".source = "${cfg.package}/skills/jj";
+      ".copilot/skills/jj".source = "${cfg.package}/skills/jj";
+    };
+
+    xdg.configFile = {
+      "opencode/skill/jj".source = "${cfg.package}/skills/jj";
+      ".copilot/skills/jj".source = "${cfg.package}/skills/jj";
+    };
   };
 }

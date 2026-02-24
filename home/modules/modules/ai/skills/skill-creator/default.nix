@@ -18,11 +18,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/skill-creator"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/skill-creator"
+      ];
 
-    home.file.".kiro/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
-    xdg.configFile."opencode/skill/skill-creator".source = "${cfg.package}/skills/skill-creator";
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/skill-creator"
+      ];
+    };
+
+    home.file = {
+      ".kiro/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
+      ".copilot/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
+    };
+
+    xdg.configFile = {
+      "opencode/skill/skill-creator".source = "${cfg.package}/skills/skill-creator";
+      ".copilot/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
+    };
   };
 }

@@ -18,11 +18,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/skill-reviewer"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/skill-reviewer"
+      ];
 
-    home.file.".kiro/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
-    xdg.configFile."opencode/skill/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/skill-reviewer"
+      ];
+    };
+
+    home.file = {
+      ".kiro/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
+      ".copilot/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
+    };
+
+    xdg.configFile = {
+      "opencode/skill/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
+      ".copilot/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
+    };
   };
 }

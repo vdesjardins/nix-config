@@ -13,11 +13,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/tmux"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/tmux"
+      ];
 
-    home.file.".kiro/skills/tmux".source = "${cfg.package}/skills/tmux";
-    xdg.configFile."opencode/skill/tmux".source = "${cfg.package}/skills/tmux";
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/tmux"
+      ];
+    };
+
+    home.file = {
+      ".kiro/skills/tmux".source = "${cfg.package}/skills/tmux";
+      ".copilot/skills/tmux".source = "${cfg.package}/skills/tmux";
+    };
+
+    xdg.configFile = {
+      "opencode/skill/tmux".source = "${cfg.package}/skills/tmux";
+      ".copilot/skills/tmux".source = "${cfg.package}/skills/tmux";
+    };
   };
 }

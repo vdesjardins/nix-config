@@ -13,17 +13,26 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/buku"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/buku"
+      ];
+
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/buku"
+      ];
+    };
 
     # Install buku package
     home.packages = [pkgs.buku];
 
-    # Copy skill files for Kiro
-    home.file.".kiro/skills/buku".source = ./skill;
+    # Copy skill files for Kiro and Copilot CLI
+    home.file = {
+      ".kiro/skills/buku".source = ./skill;
+      ".copilot/skills/buku".source = ./skill;
+    };
 
-    # Register skill with OpenCode
+    # Register skill with OpenCode and Copilot CLI
     programs.opencode = {
       skills.buku = ./skill;
 
@@ -31,6 +40,11 @@ in {
       settings.permission.bash = {
         "buku *" = "allow";
       };
+    };
+
+    xdg.configFile.".copilot/skills/buku" = {
+      source = ./skill;
+      recursive = true;
     };
   };
 }

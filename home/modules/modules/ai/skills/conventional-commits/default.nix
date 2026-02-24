@@ -13,24 +13,50 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/conventional-commits"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/conventional-commits"
+      ];
 
-    home.file.".kiro/skills/conventional-commits" = {
-      source = builtins.path {
-        path = ./.;
-        name = "skill-conventional-commits";
-      };
-      recursive = true;
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/conventional-commits"
+      ];
     };
 
-    xdg.configFile."opencode/skill/conventional-commits" = {
-      source = builtins.path {
-        path = ./.;
-        name = "skill-conventional-commits";
+    home.file = {
+      ".kiro/skills/conventional-commits" = {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
       };
-      recursive = true;
+
+      ".copilot/skills/conventional-commits" = {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
+      };
+    };
+
+    xdg.configFile = {
+      "opencode/skill/conventional-commits" = {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
+      };
+
+      ".copilot/skills/conventional-commits" = {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
+      };
     };
   };
 }

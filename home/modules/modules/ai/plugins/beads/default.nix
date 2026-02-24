@@ -13,9 +13,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/beads"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/beads"
+      ];
+
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/beads"
+      ];
+    };
 
     home.packages = [my-packages.beads];
 
@@ -54,19 +60,33 @@ in {
       };
     };
 
-    home.file.".kiro/skills/beads" = {
-      source = "${my-packages.beads}/share/claude-plugin/skills/beads";
-      recursive = true;
+    home.file = {
+      ".kiro/skills/beads" = {
+        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        recursive = true;
+      };
+
+      ".copilot/skills/beads" = {
+        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        recursive = true;
+      };
     };
 
-    xdg.configFile."opencode/agent/beads" = {
-      source = "${my-packages.beads}/share/claude-plugin/agents";
-      recursive = true;
-    };
+    xdg.configFile = {
+      "opencode/agent/beads" = {
+        source = "${my-packages.beads}/share/claude-plugin/agents";
+        recursive = true;
+      };
 
-    xdg.configFile."opencode/skill/beads" = {
-      source = "${my-packages.beads}/share/claude-plugin/skills/beads";
-      recursive = true;
+      "opencode/skill/beads" = {
+        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        recursive = true;
+      };
+
+      ".copilot/skills/beads" = {
+        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        recursive = true;
+      };
     };
   };
 }

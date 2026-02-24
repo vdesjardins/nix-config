@@ -13,9 +13,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.kiro.settings.resources = [
-      "skill://${config.home.homeDirectory}/.kiro/skills/flux"
-    ];
+    modules.ai.agents = {
+      kiro.settings.resources = [
+        "skill://${config.home.homeDirectory}/.kiro/skills/flux"
+      ];
+
+      github-copilot-cli.settings.resources = [
+        "skill://${config.home.homeDirectory}/.copilot/skills/flux"
+      ];
+    };
 
     programs.opencode = {
       settings.permission.bash = {
@@ -47,7 +53,14 @@ in {
       };
     };
 
-    home.file.".kiro/skills/flux".source = "${cfg.package}/skills/flux";
-    xdg.configFile."opencode/skill/flux".source = "${cfg.package}/skills/flux";
+    home.file = {
+      ".kiro/skills/flux".source = "${cfg.package}/skills/flux";
+      ".copilot/skills/flux".source = "${cfg.package}/skills/flux";
+    };
+
+    xdg.configFile = {
+      "opencode/skill/flux".source = "${cfg.package}/skills/flux";
+      ".copilot/skills/flux".source = "${cfg.package}/skills/flux";
+    };
   };
 }

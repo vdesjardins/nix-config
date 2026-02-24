@@ -21,6 +21,9 @@ in {
     modules.ai.agents.kiro.settings.prompts = [
       (builtins.readFile karpathyInstructions)
     ];
+    modules.ai.agents.github-copilot-cli.settings.prompts = [
+      (builtins.readFile karpathyInstructions)
+    ];
 
     programs.opencode.rules = mkBefore (builtins.readFile karpathyInstructions);
   };
