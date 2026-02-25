@@ -69,7 +69,7 @@ jobs:
             system = ${{ matrix.arch }}-linux
             system-features = nixos-test benchmark big-parallel kvm
 
-      - uses: DeterminateSystems/flakehub-cache-action@v3.15.2
+      - uses: DeterminateSystems/flakehub-cache-action@v3.16.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@v13
 
