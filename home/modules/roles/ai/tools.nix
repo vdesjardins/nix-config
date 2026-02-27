@@ -281,6 +281,11 @@ in {
         default = true;
         description = "Enable FluxCD skill";
       };
+      coding-agent-search.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable coding-agent-search skill";
+      };
     };
   };
 
@@ -359,6 +364,7 @@ in {
           tmux.enable = cfg.skills.tmux.enable;
           buku.enable = cfg.skills.buku.enable;
           flux.enable = cfg.skills.flux.enable;
+          coding-agent-search.enable = cfg.skills.coding-agent-search.enable;
         };
       };
     };
