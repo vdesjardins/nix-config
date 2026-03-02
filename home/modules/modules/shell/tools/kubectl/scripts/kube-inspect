@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Run interactive debug container in kubernetes
+
+set -euo pipefail
+
+kubectl run -i -t --rm debug-"$(date +%s)" --image=gcr.io/google-containers/toolbox --restart=Never -- "$@"

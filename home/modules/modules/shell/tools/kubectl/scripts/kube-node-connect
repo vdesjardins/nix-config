@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Connect to kubernetes node via SSH/SSM
+
+set -euo pipefail
+
+node_name="${1:?Node name required}"
+
+# Get providerID from node
+provider_id=$(kubectl get node "$node_name" -o json | jq -r '.spec.providerID')
+
+if [[ "$provider_id" =~ ^aws:/// ]]; then
+  # AWS node - use SSM
+  region=$(echo "$provider_id" | awk -F'/' '{print $4}')
+  instance_id=$(echo "$provider_id" | awk -F'/' '{print $5}')
+
+  echo "Connecting to AWS instance $instance_id in region $region"
+  aws ssm start-session --target "$instance_id" --region "$region"
+
+elif [[ "$provider_id" =~ ^gce:// ]]; then
+  # GCE node - use gcloud
+  zone=$(echo "$provider_id" | awk -F'/' '{print $5}')
+  host=$(echo "$provider_id" | awk -F'/' '{print $6}')
+
+  echo "Connecting to GCE instance $host in zone $zone"
+  gcloud compute ssh "$host" --zone="$zone"
+
+else
+  echo "Unsupported provider: $provider_id"
+  exit 1
+fi

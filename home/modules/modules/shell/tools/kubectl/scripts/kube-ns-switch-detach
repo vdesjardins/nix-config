@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Switch namespace with isolated kubeconfig
+
+set -euo pipefail
+
+namespace="${1:-}"
+
+if [[ -z "$namespace" ]]; then
+  namespace=$(kubectl get namespaces -o jsonpath='{.items[*].metadata.name}' | tr ' ' '\n' | fzf --prompt="Select namespace: ")
+fi
+
+if [[ -n "$namespace" ]]; then
+  # Create isolated kubeconfig
+  temp_config=$(mktemp)
+  cp "${KUBECONFIG:-$HOME/.kube/config}" "$temp_config"
+
+  export KUBECONFIG="$temp_config"
+
+  context=$(kubectl config current-context)
+  kubectl config set-context "$context" --namespace="$namespace"
+  echo -e "\033[32mNamespace switched to: $namespace (isolated config: $temp_config)\033[0m"
+
+  # Start new shell with isolated config
+  exec $SHELL
+fi

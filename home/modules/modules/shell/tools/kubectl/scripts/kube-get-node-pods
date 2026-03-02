@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Get all pods running on a specific node
+
+set -euo pipefail
+
+node_name="${1:?Node name required}"
+
+kubectl get pods --all-namespaces -o json | \
+  jq -r --arg node "$node_name" \
+  '.items[] | select(.spec.nodeName == $node) | "\(.metadata.namespace)\t\(.metadata.name)"'

@@ -52,26 +52,13 @@ in {
         bat
         gnugrep
         kubecolor
+        my-packages.kubectl-helpers
       ];
       sessionVariables = {
         KUBECTL_EXTERNAL_DIFF = "dyff between --omit-header --set-exit-code";
         KUBECTL_KYAML = "true";
       };
       file = {
-        "zsh/functions/kube-ctx-switch".source =
-          ./zsh/functions/kube-ctx-switch;
-        "zsh/functions/kube-ctx-switch-current".source =
-          ./zsh/functions/kube-ctx-switch-current;
-        "zsh/functions/kube-ctx-switch-detach".source =
-          ./zsh/functions/kube-ctx-switch-detach;
-        "zsh/functions/kube-ns-switch".source =
-          ./zsh/functions/kube-ns-switch;
-        "zsh/functions/kube-ns-switch-detach".source =
-          ./zsh/functions/kube-ns-switch-detach;
-        "zsh/functions/kube-get-node-pods".source =
-          ./zsh/functions/kube-get-node-pods;
-        "zsh/functions/kube-node-connect".source =
-          ./zsh/functions/kube-node-connect;
         "zsh/conf.d/kubectl_aliases".source = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
         ".kube/kuberc".source = kubercFile;
       };
