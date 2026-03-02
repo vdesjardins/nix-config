@@ -33,11 +33,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.jjui = {
-      inherit (cfg) enable settings;
-      # Explicitly set configDir to use XDG-compliant paths on all platforms
-      # (home-manager defaults to ~/Library/Application Support on macOS)
-      configDir = "${config.xdg.configHome}/jjui";
+    programs = {
+      jjui = {
+        inherit (cfg) enable settings;
+        # Explicitly set configDir to use XDG-compliant paths on all platforms
+        # (home-manager defaults to ~/Library/Application Support on macOS)
+        configDir = "${config.xdg.configHome}/jjui";
+      };
+
+      zsh.shellAliases = {
+        jui = "jjui";
+      };
+
+      nushell.shellAliases = {
+        jui = "jjui";
+      };
     };
 
     home.packages = mkIf cfg.withTintedThemes [my-packages.tinted-jjui];
@@ -47,10 +57,6 @@ in {
         source = "${my-packages.tinted-jjui}/share/jjui/themes";
         recursive = true;
       };
-    };
-
-    programs.zsh.shellAliases = {
-      jui = "jjui";
     };
   };
 }

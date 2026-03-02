@@ -233,8 +233,46 @@ in {
         gow = ''fd -H '^\.git$' ~/projects/ | sed -e 's/\.git\/$//g' | fzf | xargs -L1 bash -c 'cd "$0" && git config remote.origin.url' | sed -re 's,^git@(.*):(.*)(\.git)?$,https://\1/\2,' | xargs open'';
       };
 
-      zsh.shellGlobalAliases = {
-        GR = "$(git rev-parse --show-toplevel)";
+      nushell = {
+        shellAliases = {
+          g = "git";
+        };
+        extraConfig = ''
+          # Git root directory - keep same name as zsh global alias
+          def GR [] {
+            git rev-parse --show-toplevel | str trim
+          }
+
+          # Git worktree opener - opens remote URL in browser
+          def gow [] {
+            let repos = (
+              fd -H '^\.git$' ~/projects/
+              | lines
+              | each { |line| $line | str replace '/.git' ''' }
+            )
+
+            let selected = ($repos | str join "\n" | fzf)
+
+            if ($selected | is-empty) {
+              return
+            }
+
+            let url = (
+              cd $selected;
+              git config remote.origin.url
+              | str trim
+              | str replace --regex '^git@(.*):(.*)(\.git)?$' 'https://$1/$2'
+            )
+
+            open $url
+          }
+        '';
+      };
+
+      zsh = {
+        shellGlobalAliases = {
+          GR = "$(git rev-parse --show-toplevel)";
+        };
       };
     };
   };

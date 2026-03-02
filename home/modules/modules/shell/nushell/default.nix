@@ -77,6 +77,12 @@ in {
               | str trim)
           }
 
+          # Create directory and cd into it (equivalent to zsh take function)
+          def take [dir: path] {
+            mkdir $dir
+            cd $dir
+          }
+
           $env.config = {
             keybindings: [{
               name: fuzzy_history
@@ -101,9 +107,8 @@ in {
         '';
 
       shellAliases = {
-        "lltr" = "ls | sort-by modified";
-        "ll" = "ls";
-        "lla" = "ls --all";
+        ll = "ls";
+        lla = "ls --all";
       };
     };
   };

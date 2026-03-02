@@ -23,5 +23,11 @@ in {
       pps = "podman ps";
       pimg = "podman images";
     };
+
+    programs.nushell.shellAliases = {
+      p = "podman";
+      pps = "podman ps";
+      pimg = "podman images";
+    };
   };
 }

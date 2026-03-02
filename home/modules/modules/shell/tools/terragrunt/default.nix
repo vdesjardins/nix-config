@@ -29,5 +29,17 @@ in {
       tgsl = "terragrunt state list";
       tgv = "terragrunt validate";
     };
+
+    programs.nushell.shellAliases = {
+      tg = "terragrunt";
+      tga = "terragrunt apply";
+      tgat = "terragrunt apply -target=";
+      tgp = "terragrunt plan -lock=false";
+      tgpt = "terragrunt plan -lock=false -target=";
+      tgi = "terragrunt init";
+      tgiu = "terragrunt init -upgrade";
+      tgsl = "terragrunt state list";
+      tgv = "terragrunt validate";
+    };
   };
 }

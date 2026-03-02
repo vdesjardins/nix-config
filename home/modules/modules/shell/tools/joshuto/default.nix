@@ -16,5 +16,9 @@ in {
     programs.zsh.shellAliases = {
       jo = "joshuto";
     };
+
+    programs.nushell.shellAliases = {
+      jo = "joshuto";
+    };
   };
 }

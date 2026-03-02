@@ -13,12 +13,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.lsd = {
-      inherit (cfg) enable;
-    };
+    programs = {
+      lsd.enable = true;
 
-    programs.zsh.shellAliases = {
-      lltr = "lsd -ltr";
+      zsh.shellAliases = {
+        lltr = "lsd -ltr";
+      };
+
+      nushell.shellAliases = {
+        lltr = "lsd -ltr";
+      };
     };
   };
 }
