@@ -19,6 +19,7 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/share/kubectl-aliases
     cp .kubectl_aliases $out/share/kubectl-aliases/kubectl_aliases
+    cp .kubectl_aliases.nu $out/share/kubectl-aliases/kubectl_aliases.nu
   '';
 
   meta = with lib; {

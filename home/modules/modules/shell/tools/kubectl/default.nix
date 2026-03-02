@@ -233,6 +233,9 @@ in {
       };
 
       extraConfig = ''
+        # Source kubectl aliases
+        source ${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases.nu
+
         # Create a new tmux session with dedicated kubeconfig
         def kube-ctx-switch [context_name?: string] {
                   $env.KUBECONFIG = $"($env.HOME)/.kube/config"
