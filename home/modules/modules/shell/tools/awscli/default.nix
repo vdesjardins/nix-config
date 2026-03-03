@@ -46,11 +46,20 @@ in {
 
     programs.nushell = {
       shellAliases = {
-        aws-creds = "eval $(aws configure export-credentials --format env)";
         ap = "aws-profile";
         al = "aws sso login --profile login";
       };
       extraConfig = ''
+
+        # Export AWS credentials as environment variables
+        def aws-creds [] {
+          aws configure export-credentials --format env | lines | each { |line|
+            let parts = ($line | split row '=')
+            if ($parts | length) == 2 {
+              load-env {($parts.0): ($parts.1)}
+            }
+          }
+        }
 
         # Set AWS profile, optionally using fzf to select from available profiles
         def aws-profile [profile?: string] {
