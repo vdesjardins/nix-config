@@ -147,7 +147,7 @@ in {
             let url = (gh pu | from json | get url)
             let git_root = (git rev-parse --show-toplevel | str trim)
             let current_dir = (pwd | path expand)
-            let subdir = ($current_dir | str replace $git_root "" | str trim-left -c "/")
+            let subdir = ($current_dir | str replace $git_root "" | str trim --left --char "/")
             $"($url)($branch)/($subdir)" | ${clipCopy}
           }
         '';
