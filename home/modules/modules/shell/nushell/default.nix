@@ -83,19 +83,115 @@ in {
             cd $dir
           }
 
+          # Fish-like abbreviations
+          let abbreviations = {
+            gst: "git status"
+            gco: "git checkout"
+            gp: "git push"
+            gl: "git pull"
+            gd: "git diff"
+            ga: "git add"
+            gc: "git commit"
+            gcm: "git commit -m"
+            glog: "git log --oneline --graph"
+            k: "kubectl"
+            kgp: "kubectl get pods"
+            kgs: "kubectl get services"
+            kgd: "kubectl get deployments"
+            d: "docker"
+            dc: "docker-compose"
+            tf: "terraform"
+            tg: "terragrunt"
+          }
+
           $env.config = {
-            keybindings: [{
-              name: fuzzy_history
-              modifier: control
-              keycode: char_r
-              mode: [emacs, vi_normal, vi_insert]
-              event: [
+            keybindings: [
               {
-                send: ExecuteHostCommand
-                cmd: "history_search"
+                name: fuzzy_history
+                modifier: control
+                keycode: char_r
+                mode: [emacs, vi_normal, vi_insert]
+                event: [
+                {
+                  send: ExecuteHostCommand
+                  cmd: "history_search"
+                }
+                ]
               }
-              ]
-            }]
+              {
+                name: abbr_menu
+                modifier: none
+                keycode: enter
+                mode: [emacs, vi_normal, vi_insert]
+                event: [
+                    { send: menu name: abbr_menu }
+                    { send: enter }
+                ]
+              }
+              {
+                name: accept_abbr
+                modifier: control
+                keycode: char_y
+                mode: [emacs, vi_normal, vi_insert]
+                event: [
+                  { send: HistoryHintComplete }]
+              }
+              {
+                name: abbr_menu
+                modifier: none
+                keycode: space
+                mode: [emacs, vi_normal, vi_insert]
+                event: [
+                    { send: menu name: abbr_menu }
+                    { edit: insertchar value: ' '}
+                ]
+              }
+            ]
+
+            cursor_shape: {
+              vi_insert: line
+              vi_normal: block
+              emacs: line
+            }
+
+            menus: [
+              {
+                name: abbr_menu
+                only_buffer_difference: false
+                marker: none
+                type: {
+                  layout: columnar
+                  columns: 1
+                  col_width: 20
+                  col_padding: 2
+                }
+                style: {
+                  text: green
+                  selected_text: green_reverse
+                  description_text: yellow
+                }
+                source: { |buffer, position|
+                  let before_cursor = (''$buffer | str substring 0..''$position)
+                  let current_word = (''$before_cursor | split row ' ' | last)
+
+                  let match = ''$abbreviations | columns | where ''$it == ''$current_word
+                  if (''$match | is-empty) {
+                    { value: ''$buffer }
+                  } else {
+                    let replacement = (''$abbreviations | get ''$match.0)
+                    let word_len = (''$current_word | str length | into int)
+                    let before_word_end = (''$position - ''$word_len)
+                    let before_word = if ''$before_word_end > 0 {
+                      (''$buffer | str substring 0..<''$before_word_end)
+                    } else {
+                      '''
+                    }
+                    let after_cursor = (''$buffer | str substring ''$position..)
+                    { value: (''$before_word ++ ''$replacement ++ ''$after_cursor) }
+                  }
+                }
+              }
+            ]
 
             completions: {
               external: {
