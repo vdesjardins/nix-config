@@ -102,6 +102,21 @@ in {
             dc: "docker-compose"
             tf: "terraform"
             tg: "terragrunt"
+            # Global aliases (kubectl)
+            SL: "--show-labels"
+            OJ: "-ojson"
+            OJB: "-ojson |& bat -ljson"
+            OY: "-oyaml"
+            OK: "-okyaml"
+            OYB: "-oyaml |& bat -lyaml"
+            OKB: "-okyaml |& bat -lyaml"
+            OW: "-owide"
+            # Global aliases (git)
+            GR: "$(git rev-parse --show-toplevel)"
+            # Global aliases (bat)
+            BJ: "|& bat -ljson"
+            BY: "|& bat -lyaml"
+            BT: "|& bat"
           }
 
           $env.config = {
