@@ -137,7 +137,7 @@ in {
         # nodes
         kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
         kgnot = "kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints";
-        kgno-gke = "kubectl get nodes -o=\"custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\.kubernetes\\.io/instance-type,SPOT:.metadata.labels.cloud\\.google\\.com/gke-spot,PREEMP:.metadata.labels.cloud\\.google\\.com/gke-preemptible\"";
+        kgno-gke = "kubectl get nodes -o=\"custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\\\.kubernetes\\\\.io/instance-type,SPOT:.metadata.labels.cloud\\\\.google\\\\.com/gke-spot,PREEMP:.metadata.labels.cloud\\\\.google\\\\.com/gke-preemptible\"";
 
         # all objects
         kgaobj = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
@@ -202,7 +202,7 @@ in {
         # nodes
         kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
         kgnot = "kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints";
-        kgno-gke = "kubectl get nodes -o=\"custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\.kubernetes\\.io/instance-type,SPOT:.metadata.labels.cloud\\.google\\.com/gke-spot,PREEMP:.metadata.labels.cloud\\.google\\.com/gke-preemptible\"";
+        kgno-gke = "kubectl get nodes -o=\"custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\\\.kubernetes\\\\.io/instance-type,SPOT:.metadata.labels.cloud\\\\.google\\\\.com/gke-spot,PREEMP:.metadata.labels.cloud\\\\.google\\\\.com/gke-preemptible\"";
 
         # all objects
         kgaobj = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
