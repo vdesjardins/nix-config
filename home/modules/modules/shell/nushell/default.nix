@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  my-packages,
   ...
 }: let
   inherit (lib) mkIf;
@@ -84,7 +85,27 @@ in {
           }
 
           # Fish-like abbreviations
-          let abbreviations = {
+          # Parse kubectl aliases from kubectl_aliases.nu and merge with custom abbreviations
+          let kubectl_aliases_file = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases.nu"
+          let kubectl_abbrs = if (''$kubectl_aliases_file | path exists) {
+            open ''$kubectl_aliases_file
+              | lines
+              | where (''$it | str starts-with "alias ")
+              | each { |line|
+                  let parts = (''$line | str replace "alias " "" | split row " = ")
+                  if (''$parts | length) == 2 {
+                    {key: (''$parts.0 | str trim), value: (''$parts.1 | str trim)}
+                  }
+                }
+              | where (''$it | is-not-empty)
+              | reduce -f {} { |it, acc| ''$acc | merge {(''$it.key): (''$it.value)} }
+          } else {
+            {}
+          }
+
+          let abbreviations = ''$kubectl_abbrs | merge {
+
+          let abbreviations = $kubectl_abbrs | merge {
             gst: "git status"
             gco: "git checkout"
             gp: "git push"
