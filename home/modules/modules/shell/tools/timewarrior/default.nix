@@ -24,5 +24,12 @@ in {
       tws = "timew summary :week :ids";
       twta = "timew tags";
     };
+
+    modules.shell.nushell.globalAliases = {
+      tw = "timew";
+      twt = "timew track";
+      tws = "timew summary :week :ids";
+      twta = "timew tags";
+    };
   };
 }

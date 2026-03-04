@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Switch kubectl context
+
+set -euo pipefail
+
+context_name="${1:-}"
+
+if [[ -z "$context_name" ]]; then
+  context_name=$(kubectl config get-contexts -o name | fzf --prompt="Select context: ")
+fi
+
+if [[ -n "$context_name" ]]; then
+  kubectl config use-context "$context_name"
+fi

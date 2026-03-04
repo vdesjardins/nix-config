@@ -20,30 +20,44 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [unixtools.col];
 
-    programs.bat = {
-      inherit (cfg) enable;
+    programs = {
+      bat = {
+        inherit (cfg) enable;
 
-      config = {
-        # [theme]
-        theme = "custom";
-        paging = "never";
-      };
+        config = {
+          # [theme]
+          theme = "custom";
+          paging = "never";
+        };
 
-      themes = {
-        custom = {
-          src = cfg.color-scheme;
+        themes = {
+          custom = {
+            src = cfg.color-scheme;
+          };
         };
       };
-    };
 
-    programs.zsh = {
-      shellAliases = {cat = "bat";};
-      shellGlobalAliases = {
-        BJ = "|& bat -ljson";
-        BY = "|& bat -lyaml";
-        BT = "|& bat";
-        "-- -h" = "-h 2>&1 | bat --language=help --paging=auto --style=plain";
-        "-- --help" = "--help 2>&1 | bat --language=help --paging=auto --style=plain";
+      zsh = {
+        shellAliases = {cat = "bat";};
+        shellGlobalAliases = {
+          BJ = "|& bat -ljson";
+          BY = "|& bat -lyaml";
+          BT = "|& bat";
+          "-- -h" = "-h 2>&1 | bat --language=help --paging=auto --style=plain";
+          "-- --help" = "--help 2>&1 | bat --language=help --paging=auto --style=plain";
+        };
+      };
+
+      nushell = {
+        shellAliases = {
+          cat = "bat";
+        };
+        extraConfig = ''
+          # Pipeline helpers - keep same names as zsh global aliases
+          def BJ [] { bat -ljson }
+          def BY [] { bat -lyaml }
+          def BT [] { bat }
+        '';
       };
     };
 

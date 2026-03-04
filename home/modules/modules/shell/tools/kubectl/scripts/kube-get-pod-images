@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Show container images used by pods
+
+set -euo pipefail
+
+pod_name="${1:-}"
+
+if [[ -z "$pod_name" ]]; then
+  # List all pods with their images
+  kubectl get pods -o json | jq -r '.items[] | "\(.metadata.name)\t\(.spec.containers[].image)"'
+else
+  # List images for specific pod
+  kubectl get pod "$pod_name" -o json | jq -r '.spec.containers[].image'
+fi

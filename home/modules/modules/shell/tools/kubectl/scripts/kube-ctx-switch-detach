@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Switch context with isolated kubeconfig
+
+set -euo pipefail
+
+context_name="${1:-}"
+
+if [[ -z "$context_name" ]]; then
+  context_name=$(kubectl config get-contexts -o name | fzf --prompt="Select context: ")
+fi
+
+if [[ -z "$context_name" ]]; then
+  echo "No context selected"
+  exit 1
+fi
+
+# Handle EKS contexts
+if [[ "$context_name" =~ ^arn:aws:eks ]]; then
+  # Extract AWS account ID from cluster ARN
+  account_id=$(echo "$context_name" | awk -F':' '{print $5}')
+
+  # Find matching AWS profile
+  profile=$(jc --ini < ~/.aws/config | jq -r --arg account_id "$account_id" '
+    .[] | select(.role_arn? // "" | contains($account_id)) | .["__name__"] | sub("^profile "; "")
+  ' | fzf --prompt="Select AWS profile: ")
+
+  if [[ -n "$profile" ]]; then
+    export AWS_PROFILE="$profile"
+    echo "Using AWS profile: $profile"
+  fi
+fi
+
+# Handle GKE contexts - shorten name
+if [[ "$context_name" =~ ^gke_ ]]; then
+  context_name=$(echo "$context_name" | awk -F'_' '{print $NF}')
+fi
+
+# Create isolated kubeconfig
+temp_config=$(mktemp)
+cp ~/.kube/config "$temp_config"
+
+export KUBECONFIG="$temp_config"
+
+kubectl config use-context "$context_name"
+echo -e "\033[32mContext switched to: $context_name (isolated config: $temp_config)\033[0m"
+
+# Start new shell with isolated config
+exec $SHELL

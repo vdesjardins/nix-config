@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Update kubeconfig for all EKS clusters across AWS profiles
+
+set -euo pipefail
+
+user="${1:-}"
+
+while IFS= read -r profile; do
+  echo "Processing profile: $profile"
+
+  while IFS= read -r cluster; do
+    echo "  Updating cluster: $cluster"
+    AWS_PROFILE="$profile" kube-updateconfig-aws "$cluster" "$user"
+  done < <(AWS_PROFILE="$profile" aws eks list-clusters --output json | jq -r '.clusters[]')
+done < <(aws configure list-profiles | grep 'AWSAdministratorAccess')

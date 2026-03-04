@@ -23,5 +23,11 @@ in {
       pps = "podman ps";
       pimg = "podman images";
     };
+
+    modules.shell.nushell.globalAliases = {
+      p = "podman";
+      pps = "podman ps";
+      pimg = "podman images";
+    };
   };
 }

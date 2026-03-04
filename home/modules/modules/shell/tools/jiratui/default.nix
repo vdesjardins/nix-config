@@ -20,6 +20,6 @@ in {
     programs.zsh.shellAliases.jtui = "jiratui ui --theme tokyo-night";
 
     # Add nushell alias with tokyo-night theme
-    programs.nushell.shellAliases.jtui = "jiratui ui --theme tokyo-night";
+    modules.shell.nushell.globalAliases.jtui = "jiratui ui --theme tokyo-night";
   };
 }

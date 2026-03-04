@@ -19,92 +19,139 @@ in {
     # github.com:
     #   user: vdesjardins
     #   oauth_token: <REDACTED>
-    programs.gh = {
-      inherit
-        (cfg)
-        enable
-        ;
+    programs = {
+      gh = {
+        inherit
+          (cfg)
+          enable
+          ;
 
-      settings = {
-        git_protocol = "ssh";
+        settings = {
+          git_protocol = "ssh";
 
-        aliases = {
-          co = "pr checkout";
-          c = "pr create";
-          cf = "pr create -f";
-          m = "pr merge -r -d";
-          s = "pr status";
-          ch = "pr checks -i 2 --watch";
-          pw = "pr view --web";
-          pv = "pr view -c";
-          pu = "pr view --json url";
-          pd = "pr diff";
-          rw = "repo view --web";
-          ru = "repo view --json url -q .url";
-          rl = "run list";
-          rv = "run view";
+          aliases = {
+            co = "pr checkout";
+            c = "pr create";
+            cf = "pr create -f";
+            m = "pr merge -r -d";
+            s = "pr status";
+            ch = "pr checks -i 2 --watch";
+            pw = "pr view --web";
+            pv = "pr view -c";
+            pu = "pr view --json url";
+            pd = "pr diff";
+            rw = "repo view --web";
+            ru = "repo view --json url -q .url";
+            rl = "run list";
+            rv = "run view";
+          };
         };
+
+        extensions = with pkgs; [
+          gh-dash
+          gh-eco
+          gh-markdown-preview
+          # gh-f
+          # gh-get-asset
+          # gh-look
+          # gh-ls
+          # gh-notify
+          # gh-profile
+          # gh-pulls
+          # gh-s
+          # gh-sql
+        ];
       };
 
-      extensions = with pkgs; [
-        gh-dash
-        gh-eco
-        gh-markdown-preview
-        # gh-f
-        # gh-get-asset
-        # gh-look
-        # gh-ls
-        # gh-notify
-        # gh-profile
-        # gh-pulls
-        # gh-s
-        # gh-sql
-      ];
-    };
+      zsh = let
+        jjBookmarkLast = "$(jj bookmark l --revisions @ --template=name)";
+        clipCopy =
+          if pkgs.stdenv.isDarwin
+          then "pbcopy"
+          else "wl-copy";
+      in {
+        shellAliases = {
+          ghpc = "gh pu | jq '.url' -Mr | ${clipCopy}";
+          ghrc = "gh ru | ${clipCopy}";
+          ghfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+          ghfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
 
-    programs.zsh = let
-      jjBookmarkLast = "$(jj bookmark l --revisions @ --template=name)";
-      clipCopy =
-        if pkgs.stdenv.isDarwin
-        then "pbcopy"
-        else "wl-copy";
-    in {
-      shellAliases = {
-        ghpc = "gh pu | jq '.url' -Mr | ${clipCopy}";
-        ghrc = "gh ru | ${clipCopy}";
-        ghfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
-        ghfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+          # jujutsu
+          ghjc = "gh pr create --head ${jjBookmarkLast}";
+          ghjcf = "gh pr create -f --head ${jjBookmarkLast}";
+          ghjm = "gh pr merge -r -d ${jjBookmarkLast}";
+          ghjs = "gh pr status";
+          ghjch = "gh pr checks -i 2 --watch ${jjBookmarkLast}";
+          ghjpc = "gh pr view -c ${jjBookmarkLast}";
+          ghjpw = "gh pr view --web ${jjBookmarkLast}";
+          ghjpu = "gh pr view --json url ${jjBookmarkLast}";
+          ghjpd = "gh pr diff ${jjBookmarkLast}";
+          ghjrw = "gh repo view --web";
+          ghjru = "gh repo view --json url -q .url";
+          ghjrl = "gh run list";
+          ghjrv = "gh run view";
+          ghjpco = "ghjpu | jq '.url' -Mr | ${clipCopy}";
+          ghjrc = "ghjru | ${clipCopy}";
+          ghjfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+          ghjfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+        };
 
-        # jujutsu
-        ghjc = "gh pr create --head ${jjBookmarkLast}";
-        ghjcf = "gh pr create -f --head ${jjBookmarkLast}";
-        ghjm = "gh pr merge -r -d ${jjBookmarkLast}";
-        ghjs = "gh pr status";
-        ghjch = "gh pr checks -i 2 --watch ${jjBookmarkLast}";
-        ghjpc = "gh pr view -c ${jjBookmarkLast}";
-        ghjpw = "gh pr view --web ${jjBookmarkLast}";
-        ghjpu = "gh pr view --json url ${jjBookmarkLast}";
-        ghjpd = "gh pr diff ${jjBookmarkLast}";
-        ghjrw = "gh repo view --web";
-        ghjru = "gh repo view --json url -q .url";
-        ghjrl = "gh run list";
-        ghjrv = "gh run view";
-        ghjpco = "ghjpu | jq '.url' -Mr | ${clipCopy}";
-        ghjrc = "ghjru | ${clipCopy}";
-        ghjfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
-        ghjfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+        initContent = ''
+          function ghhc() {
+            branch=$(gh repo view --json defaultBranchRef | jq '.defaultBranchRef.name' -Mr)
+            url=$(gh pu)
+            git_root=$(git rev-parse --show-toplevel)
+            current_dir=$(pwd)
+            subdir=''${current_dir #"$git_root"/}
+            echo "$url$branch/$subdir" | ${clipCopy}
+          }
+        '';
       };
 
-      initContent = ''
-        function ghhc() {
-          branch=$(gh repo view --json defaultBranchRef | jq '.defaultBranchRef.name' -Mr)
-          url=$(gh pu)
-          git_root=$(git rev-parse --show-toplevel)
-          current_dir=$(pwd)
-          subdir=''${current_dir #"$git_root"/}
-          echo "$url$branch/$subdir" | ${clipCopy}
-        }
-      '';
+      nushell = let
+        jjBookmarkLast = "(jj bookmark l --revisions @ --template=name)";
+        clipCopy =
+          if pkgs.stdenv.isDarwin
+          then "pbcopy"
+          else "wl-copy";
+      in {
+        shellAliases = {
+          ghpc = "gh pu | jq '.url' -Mr | ${clipCopy}";
+          ghrc = "gh ru | ${clipCopy}";
+          ghfrl = "gh run view --log (gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+          ghfr = "gh run view (gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+
+          # jujutsu
+          ghjc = "gh pr create --head ${jjBookmarkLast}";
+          ghjcf = "gh pr create -f --head ${jjBookmarkLast}";
+          ghjm = "gh pr merge -r -d ${jjBookmarkLast}";
+          ghjs = "gh pr status";
+          ghjch = "gh pr checks -i 2 --watch ${jjBookmarkLast}";
+          ghjpc = "gh pr view -c ${jjBookmarkLast}";
+          ghjpw = "gh pr view --web ${jjBookmarkLast}";
+          ghjpu = "gh pr view --json url ${jjBookmarkLast}";
+          ghjpd = "gh pr diff ${jjBookmarkLast}";
+          ghjrw = "gh repo view --web";
+          ghjru = "gh repo view --json url -q .url";
+          ghjrl = "gh run list";
+          ghjrv = "gh run view";
+          ghjpco = "ghjpu | jq '.url' -Mr | ${clipCopy}";
+          ghjrc = "ghjru | ${clipCopy}";
+          ghjfrl = "gh run view --log (gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+          ghjfr = "gh run view (gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+        };
+        extraConfig = ''
+          # Copy GitHub URL with branch and subdir to clipboard
+          def ghhc [] {
+            let branch = (gh repo view --json defaultBranchRef | from json | get defaultBranchRef.name)
+            let url = (gh pu | from json | get url)
+            let git_root = (git rev-parse --show-toplevel | str trim)
+            let current_dir = (pwd | path expand)
+            let subdir = ($current_dir | str replace $git_root "" | str trim --left --char "/")
+            $"($url)($branch)/($subdir)" | ${clipCopy}
+          }
+        '';
+      };
     };
   };
 }

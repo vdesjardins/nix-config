@@ -5,6 +5,7 @@ result
 nixos.qcow2
 keys
 .beads/bd.sock
+debug.log
 
 # bv (beads viewer) local config and caches
 .bv/

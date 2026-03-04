@@ -29,5 +29,17 @@ in {
       tfsl = "terraform state list";
       tfv = "terraform validate";
     };
+
+    modules.shell.nushell.globalAliases = {
+      tf = "terraform";
+      tfa = "terraform apply";
+      tfat = "terraform apply -target=";
+      tfp = "terraform plan -lock=false";
+      tfpt = "terraform plan -lock=false -target=";
+      tfi = "terraform init";
+      tfiu = "terraform init -upgrade";
+      tfsl = "terraform state list";
+      tfv = "terraform validate";
+    };
   };
 }

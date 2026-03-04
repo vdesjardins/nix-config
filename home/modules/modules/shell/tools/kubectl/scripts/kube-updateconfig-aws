@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Update kubeconfig for single EKS cluster
+
+set -euo pipefail
+
+cluster_name="${1:?Cluster name required}"
+user="${2:-}"
+
+(
+  export KUBECONFIG="${KUBECONFIG:-$HOME/.kube/config}"
+  aws eks update-kubeconfig --name "$cluster_name" --alias "EKS:$cluster_name"
+
+  if [[ -n "$user" ]]; then
+    kubectl config set-context "EKS:$cluster_name" --user="$user"
+  fi
+)
