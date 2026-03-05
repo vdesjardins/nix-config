@@ -111,7 +111,7 @@ in {
         bat.color-scheme = "${my-packages.colorscheme-tokyonight}/share/themes/tokyonight/extras/sublime/tokyonight_night.tmTheme";
         jjui.settings.ui.theme = "base24-tokyo-night-dark";
         jira-cli.enable = true;
-        jiratui.enable = true;
+        # jiratui.enable = true; # Disabled: broken after flake update (missing uv_build dependency)
         slackcli.enable = true;
         git = {
           delta = {

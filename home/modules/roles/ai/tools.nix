@@ -100,8 +100,8 @@ in {
 
     coding-agent-search.enable = mkOption {
       type = types.bool;
-      default = true;
-      description = "Enable coding-agent-search - code search tool for LLM agents";
+      default = false;
+      description = "Enable coding-agent-search - code search tool for LLM agents (disabled: package removed from upstream)";
     };
 
     sec-skills-audit.enable = mkOption {
@@ -283,8 +283,8 @@ in {
       };
       coding-agent-search.enable = mkOption {
         type = types.bool;
-        default = true;
-        description = "Enable coding-agent-search skill";
+        default = false;
+        description = "Enable coding-agent-search skill (disabled: package removed from upstream)";
       };
     };
   };
