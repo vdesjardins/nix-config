@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   home = {
     username = "vince";
     homeDirectory = "/home/vince";
@@ -8,7 +8,10 @@
   roles = {
     common.enable = true;
     vaults.enable = true;
-    utils.enable = true;
+    utils = {
+      enable = true;
+      tmux.shell = pkgs.nushell;
+    };
     nixpkgs.enable = true;
     sync.enable = true;
     security.enable = true;

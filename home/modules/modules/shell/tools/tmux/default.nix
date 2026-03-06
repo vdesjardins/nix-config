@@ -24,6 +24,12 @@ in {
       default = "ghostty";
       description = "The terminal emulator to use.";
     };
+
+    shell = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.zsh;
+      description = "The shell to use as tmux default shell.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -37,7 +43,7 @@ in {
         historyLimit = 100000;
         escapeTime = 0;
         keyMode = "vi";
-        shell = "${pkgs.zsh}/bin/zsh";
+        shell = lib.getExe cfg.shell;
 
         extraConfig = pkgs.callPackage ./tmux.nix {inherit my-packages;};
 

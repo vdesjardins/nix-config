@@ -11,6 +11,14 @@
 in {
   options.roles.utils = {
     enable = mkEnableOption "utils";
+
+    tmux = {
+      shell = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.zsh;
+        description = "Default shell for tmux sessions.";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -49,7 +57,10 @@ in {
           tuicr.enable = true;
           yazi.enable = true;
           fzf.enable = true;
-          tmux.enable = true;
+          tmux = {
+            enable = true;
+            inherit (cfg.tmux) shell;
+          };
           try.enable = true;
         };
       };
