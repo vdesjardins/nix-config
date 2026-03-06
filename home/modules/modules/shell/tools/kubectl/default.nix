@@ -59,9 +59,12 @@ in {
         KUBECTL_KYAML = "true";
       };
       file = {
-        "zsh/conf.d/kubectl_aliases".source = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
         ".kube/kuberc".source = kubercFile;
       };
+    };
+
+    xdg.configFile = {
+      "zsh/conf.d/kubectl_aliases".source = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
     };
 
     programs.zsh = {
