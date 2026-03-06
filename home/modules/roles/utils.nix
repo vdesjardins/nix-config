@@ -16,7 +16,6 @@ in {
   config = mkIf cfg.enable {
     programs = {
       broot.enable = true;
-      zoxide.enable = true;
     };
 
     modules = {
@@ -24,6 +23,7 @@ in {
         bash.enable = true;
         zsh.enable = true;
         nushell.enable = true;
+        zoxide.enable = true;
 
         tools = {
           btop.enable = true;
