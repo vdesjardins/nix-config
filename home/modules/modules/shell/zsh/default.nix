@@ -61,18 +61,7 @@ in {
         plugins = ["globalias"];
       };
 
-      plugins = [
-        {
-          name = "enhancd";
-          file = "init.sh";
-          src = pkgs.fetchFromGitHub {
-            owner = "babarot";
-            repo = "enhancd";
-            rev = "8b1f00ef9f55f5820f789375db90f3774514f0cc";
-            sha256 = "sha256-WDBCUgeMx8P6mgvy4CxpIKZYym4vq+aKtG9GUiKxyFU=";
-          };
-        }
-      ];
+      plugins = [];
 
       initContent = mkMerge [
         (mkOrder 550 ''
@@ -81,9 +70,6 @@ in {
         '')
         (mkOrder 1000 ''
           source ${config.home.homeDirectory}/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-          export ENHANCD_FILTER="fzf --preview 'lsd --git -al --tree --depth=1 --group-directories-first --header --color=always --icon=always --blocks git,name {}' \
-            --preview-window right,50% --height 35% --reverse --ansi"
 
           function take() {
             mkdir -p $1
