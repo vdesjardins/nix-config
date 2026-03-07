@@ -15,9 +15,8 @@
 
     record = {
       enabled = true;
-      retain = {
+      motion = {
         days = 7;
-        mode = "motion";
       };
       alerts = {
         retain = {
