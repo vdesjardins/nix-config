@@ -22,6 +22,10 @@ in {
       b = "buku --suggest";
     };
 
+    modules.shell.nushell.globalAliases = {
+      b = "buku --suggest";
+    };
+
     xdg.dataFile.buku.source =
       mkOutOfStoreSymlink "${configDirectory}/desktop/tools/buku/share";
   };
