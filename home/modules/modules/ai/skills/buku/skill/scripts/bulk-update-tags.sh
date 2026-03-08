@@ -141,9 +141,9 @@ get_bookmark_ids() {
 			exit 1
 		fi
 	elif [[ -n $SEARCH_TAG ]]; then
-		ids=$(buku -t "$SEARCH_TAG" -p 2>/dev/null | grep "^[0-9]" | cut -d. -f1 || echo "")
+		ids=$(buku --nostdin -t "$SEARCH_TAG" -p 2>/dev/null | grep "^[0-9]" | cut -d. -f1 || echo "")
 	elif [[ -n $SEARCH_KEYWORD ]]; then
-		ids=$(buku -s "$SEARCH_KEYWORD" -p 2>/dev/null | grep "^[0-9]" | cut -d. -f1 || echo "")
+		ids=$(buku --nostdin -s "$SEARCH_KEYWORD" -p 2>/dev/null | grep "^[0-9]" | cut -d. -f1 || echo "")
 	fi
 
 	echo "$ids"
@@ -186,7 +186,7 @@ main() {
 	log_info "Preview of bookmarks to update:"
 
 	for id in $bookmark_ids; do
-		buku -p "$id" 2>/dev/null | head -1 || log_warning "Bookmark #$id not found"
+		buku --nostdin -p "$id" 2>/dev/null | head -1 || log_warning "Bookmark #$id not found"
 	done
 
 	echo ""
@@ -224,7 +224,7 @@ main() {
 	local failed=0
 
 	for id in $bookmark_ids; do
-		if eval "buku -u $id $tag_cmd" 2>/dev/null; then
+		if eval "buku --nostdin -u $id $tag_cmd" 2>/dev/null; then
 			((updated++))
 			log_success "Updated bookmark #$id"
 		else
@@ -245,7 +245,7 @@ main() {
 	echo ""
 	log_info "Verifying changes:"
 	for id in $(echo "$bookmark_ids" | head -3); do
-		buku -p "$id" 2>/dev/null | head -2 || true
+		buku --nostdin -p "$id" 2>/dev/null | head -2 || true
 		echo ""
 	done
 

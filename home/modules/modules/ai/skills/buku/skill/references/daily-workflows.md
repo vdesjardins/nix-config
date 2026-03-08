@@ -338,3 +338,115 @@ b github
 ```
 
 This opens an interactive suggestion mode where you can select from matching bookmarks.
+
+## Non-Interactive Usage
+
+When using buku in scripts, automation, or from AI agents, add the `--nostdin`
+flag to prevent stdin warnings and ensure clean, non-interactive execution.
+
+### Why Use `--nostdin`?
+
+Without `--nostdin`, buku may display warnings like:
+
+```text
+buku: waiting for input (unexpected? try --nostdin)
+```
+
+These warnings don't prevent operation but create noise in logs. Using
+`--nostdin` ensures clean output in automated contexts.
+
+### Common Operations with `--nostdin`
+
+#### Adding Bookmarks
+
+```bash
+# Simple add
+buku --nostdin --add https://github.com
+
+# Add with title and tags
+buku --nostdin --add https://github.com --title "GitHub" --tag "dev,code"
+
+# Add from pipe
+echo "https://example.com" | buku --nostdin --add -
+```
+
+#### Searching and Listing
+
+```bash
+# Search
+buku --nostdin --sany python
+
+# List all
+buku --nostdin --print
+
+# List by tag
+buku --nostdin --stag dev --print
+```
+
+#### Updating Bookmarks
+
+```bash
+# Append tag
+buku --nostdin --update 3 --tag ">>important"
+
+# Replace tags
+buku --nostdin --update 3 --tag ">work,urgent"
+
+# Remove tag
+buku --nostdin --update 3 --tag "<<old"
+
+# Update title
+buku --nostdin --update 3 --title "New Title"
+```
+
+#### Importing and Exporting
+
+```bash
+# Import from HTML
+buku --nostdin --import bookmarks.html
+
+# Export to HTML
+buku --nostdin --export backup.html --format html
+
+# Export to Markdown
+buku --nostdin --export bookmarks.md --format markdown
+```
+
+#### Deleting Bookmarks
+
+```bash
+# Delete single bookmark (requires confirmation)
+buku --nostdin --delete 3
+
+# Delete multiple
+buku --nostdin --delete 1 2 3
+
+# Delete range
+buku --nostdin --delete 5-10
+```
+
+### When to Use Interactive Mode
+
+For manual, day-to-day bookmark management, **omit `--nostdin`** to allow
+normal interactive behavior:
+
+- Opening bookmarks in browser (`buku -o`)
+- Editing with your text editor (`buku -w`)
+- Interactive search with suggestions (`buku --suggest`)
+- Confirmation prompts for deletions
+
+### Script Example
+
+```bash
+#!/usr/bin/env bash
+# Backup bookmarks daily
+
+BACKUP_DIR="$HOME/backups"
+TIMESTAMP=$(date +%Y%m%d)
+
+# Export with --nostdin for clean automation
+buku --nostdin --export "$BACKUP_DIR/bookmarks-$TIMESTAMP.html" --format html
+buku --nostdin --export "$BACKUP_DIR/bookmarks-$TIMESTAMP.md" --format markdown
+
+echo "Backup completed: $BACKUP_DIR/bookmarks-$TIMESTAMP.*"
+```

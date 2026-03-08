@@ -104,6 +104,18 @@ buku -a https://github.com
 
 Buku automatically fetches the title from the webpage.
 
+### Non-Interactive Mode
+
+When using buku in scripts or automation, add the `--nostdin` flag to prevent
+stdin warnings:
+
+```bash
+buku --nostdin -a https://github.com "GitHub" "dev,code"
+```
+
+This ensures clean, non-interactive execution. For more details on automation,
+see `references/daily-workflows.md`.
+
 ## Viewing Your Bookmarks
 
 ### View All Bookmarks

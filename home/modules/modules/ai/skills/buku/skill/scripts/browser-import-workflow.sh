@@ -261,7 +261,7 @@ perform_import() {
 		return 0
 	fi
 
-	if buku -i "$import_file" 2>&1 | tee /tmp/buku-import.log; then
+	if buku --nostdin -i "$import_file" 2>&1 | tee /tmp/buku-import.log; then
 		log_success "Import completed"
 		return 0
 	else
@@ -282,7 +282,7 @@ tag_imported() {
 
 	# Get the highest bookmark ID to tag only new imports
 	# This is a simplified approach; production might use database queries
-	buku -t "" -u 1-99999 --tag ">>$tag" 2>/dev/null || log_warning "Tagging partially failed"
+	buku --nostdin -t "" -u 1-99999 --tag ">>$tag" 2>/dev/null || log_warning "Tagging partially failed"
 
 	log_success "Tagging completed"
 }
@@ -290,10 +290,10 @@ tag_imported() {
 # Verify import
 verify_import() {
 	local count
-	count=$(buku -p 2>/dev/null | wc -l || echo "0")
+	count=$(buku --nostdin -p 2>/dev/null | wc -l || echo "0")
 
 	log_info "Database statistics:"
-	echo "  Total bookmarks: $(buku -p 2>/dev/null | grep "^[0-9]" | wc -l || echo "0")"
+	echo "  Total bookmarks: $(buku --nostdin -p 2>/dev/null | grep "^[0-9]" | wc -l || echo "0")"
 
 	log_success "Verification complete"
 }

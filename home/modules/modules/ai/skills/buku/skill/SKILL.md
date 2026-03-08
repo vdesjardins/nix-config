@@ -97,6 +97,66 @@ Buku is designed for safe bookmark management with built-in protections:
    For detailed editor setup and other troubleshooting:
    See `references/troubleshooting.md`
 
+## Automation & Non-Interactive Usage
+
+When using buku in scripts, automation, or from AI agents, use the `--nostdin`
+flag to prevent stdin-related warnings and ensure clean, non-interactive
+execution.
+
+### When to Use `--nostdin`
+
+- **Scripts and automation**: Shell scripts, cron jobs, CI/CD pipelines
+- **AI agents**: When AI assistants run buku commands programmatically
+- **Batch operations**: Processing multiple bookmarks without user interaction
+- **Piped commands**: When chaining buku with other command-line tools
+
+### Common Commands with `--nostdin`
+
+**Add a bookmark:**
+
+```bash
+buku --nostdin --add https://example.com --tag "dev,tools" --title "Example"
+```
+
+**Update bookmark tags:**
+
+```bash
+buku --nostdin --update 5 --tag ">>important"
+```
+
+**Import bookmarks:**
+
+```bash
+buku --nostdin --import bookmarks.html
+```
+
+**Export bookmarks:**
+
+```bash
+buku --nostdin --export backup.html --format html
+```
+
+**Search and list:**
+
+```bash
+buku --nostdin --sany python
+buku --nostdin --print
+```
+
+### Why `--nostdin` Matters
+
+Without `--nostdin`, buku may display warnings like:
+
+```text
+buku: waiting for input (unexpected? try --nostdin)
+```
+
+These warnings don't prevent operation but create noise in logs and output.
+Using `--nostdin` ensures clean, predictable behavior in automated contexts.
+
+For interactive usage (manual command-line work), omit `--nostdin` to allow
+normal stdin behavior. See `references/daily-workflows.md` for more examples.
+
 ## Documentation Guide
 
 Choose the reference that matches your need:

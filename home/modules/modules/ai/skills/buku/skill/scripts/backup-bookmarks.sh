@@ -117,7 +117,7 @@ backup_html() {
 
 	log_info "Exporting to HTML..."
 
-	if buku -e "$backup_file" -f html 2>/dev/null; then
+	if buku --nostdin -e "$backup_file" -f html 2>/dev/null; then
 		local size
 		size=$(du -h "$backup_file" | cut -f1)
 		log_success "HTML export: $backup_file ($size)"
@@ -134,7 +134,7 @@ backup_markdown() {
 
 	log_info "Exporting to Markdown..."
 
-	if buku -e "$backup_file" -f markdown 2>/dev/null; then
+	if buku --nostdin -e "$backup_file" -f markdown 2>/dev/null; then
 		local size
 		size=$(du -h "$backup_file" | cut -f1)
 		log_success "Markdown export: $backup_file ($size)"
@@ -151,7 +151,7 @@ backup_xbel() {
 
 	log_info "Exporting to XBEL..."
 
-	if buku -e "$backup_file" -f xbel 2>/dev/null; then
+	if buku --nostdin -e "$backup_file" -f xbel 2>/dev/null; then
 		local size
 		size=$(du -h "$backup_file" | cut -f1)
 		log_success "XBEL export: $backup_file ($size)"
@@ -180,7 +180,7 @@ create_manifest() {
 - XBEL: $BACKUP_PREFIX.xbel
 
 ## Statistics
-- Total bookmarks: $(buku -p 2>/dev/null | grep "^[0-9]" | wc -l || echo "unknown")
+- Total bookmarks: $(buku --nostdin -p 2>/dev/null | grep "^[0-9]" | wc -l || echo "unknown")
 - Backup directory: $BACKUP_DIR
 - Backup timestamp: $TIMESTAMP
 
@@ -188,13 +188,13 @@ create_manifest() {
 
 ### Restore from database backup
 cp $BACKUP_PREFIX.db ~/.local/share/buku/bookmarks.db
-buku -p
+buku --nostdin -p
 
 ### Restore from HTML backup
-buku -i $BACKUP_PREFIX.html
+buku --nostdin -i $BACKUP_PREFIX.html
 
 ### Restore from Markdown backup
-buku -i $BACKUP_PREFIX.md
+buku --nostdin -i $BACKUP_PREFIX.md
 
 EOF
 
