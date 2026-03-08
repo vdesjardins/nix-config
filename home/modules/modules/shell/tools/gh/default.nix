@@ -48,7 +48,6 @@ in {
         };
 
         extensions = with pkgs; [
-          gh-dash
           gh-eco
           gh-markdown-preview
           # gh-f
@@ -61,6 +60,21 @@ in {
           # gh-s
           # gh-sql
         ];
+      };
+
+      gh-dash = {
+        enable = true;
+        settings = {
+          defaults = {
+            preview = {
+              open = false;
+              width = 70;
+            };
+          };
+          pager = {
+            diff = lib.getExe pkgs.diffnav;
+          };
+        };
       };
 
       zsh = let
