@@ -6,16 +6,16 @@
 }:
 buildNpmPackage rec {
   pname = "slackcli";
-  version = "0.2.0";
+  version = "0.2.4";
 
   src = fetchFromGitHub {
     owner = "shaharia-lab";
     repo = "slackcli";
     rev = "v${version}";
-    sha256 = "sha256-5knfuqIE0O4yNVDfZiaaFOw93AYl3bVa6bRiMV0Gv/s=";
+    sha256 = "sha256-J5Yg62vGlnKWww0aE/jAm0RVHeYFPkElCX3l93UI4ww=";
   };
 
-  npmDepsHash = "sha256-l+pR3ohEyinTjiNDETiIKRPXO5n4/pnFNzC9rr7CJ9I=";
+  npmDepsHash = "sha256-+QaSd55XtRSsLSC3qJzdxqxCyE1HHR2dGgBf1vbNy7U=";
 
   packageLock = ./package-lock.json;
 

@@ -5,16 +5,16 @@
 }:
 buildGoModule rec {
   pname = "github-mcp-server";
-  version = "0.30.2";
+  version = "0.32.0";
 
   src = fetchFromGitHub {
     owner = "github";
     repo = "github-mcp-server";
     rev = "v${version}";
-    hash = "sha256-o3EGmImAjiTQTd/iwCiDArj4fPfS+8aArEF7KQNZK8I=";
+    hash = "sha256-BD/t3UBAvrzJpRI7b06FjE8c+vzdQiXsj6eiUGQX6uA=";
   };
 
-  vendorHash = "sha256-rv7mZQ2/j4R9s3p+Psq5E2I99zFtnieGc3eaMT3ykqQ=";
+  vendorHash = "sha256-q21hnMnWOzfg7BGDl4KM1I3v0wwS5sSxzLA++L6jO4s=";
 
   meta = with lib; {
     description = "GitHub's official MCP Server";

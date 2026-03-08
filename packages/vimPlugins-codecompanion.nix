@@ -4,13 +4,13 @@
 }:
 vimUtils.buildVimPlugin rec {
   pname = "codecompanion.nvim";
-  version = "18.5.1";
+  version = "19.2.0";
 
   src = fetchFromGitHub {
     owner = "olimorris";
     repo = "codecompanion.nvim";
     rev = "v${version}";
-    hash = "sha256-NEgSYj+ja0EQTwPGur8D7PcECSdZ85z+w61vf1ES14s=";
+    hash = "sha256-vW2cLPZtv60I4JqX6W6Fqg1mo9iMNVWgejG7WNLGkKE=";
   };
 
   doCheck = false;

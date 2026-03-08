@@ -12,12 +12,12 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "git-mcp";
-  version = "0-unstable-2025-08-22";
+  version = "0-unstable-2026-03-03";
 
   src = fetchFromGitHub {
     owner = "idosal";
     repo = "git-mcp";
-    rev = "d1808ca6a66a3c9b7c3f9cd554ee61e7ae3984ef";
+    rev = "4ba2abbcb0232c373849550f3a4eb388f1e4bb9d";
     hash = "sha256-GUtKg5Q8B6FNU309WIx828xsN8fc+eIhwJosfNEZBO8=";
   };
 

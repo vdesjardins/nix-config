@@ -5,16 +5,16 @@
 }:
 buildGoModule rec {
   pname = "kubectl-blame";
-  version = "0.0.12";
+  version = "0.1.1";
 
   src = fetchFromGitHub {
     owner = "knight42";
     repo = "kubectl-blame";
     rev = "v${version}";
-    hash = "sha256-JZNOzR1G6rDzKR/aw059aiEuFVsGGmyjCY41Bvua+so=";
+    hash = "sha256-kFyJSLmXbG72zZtM6Dr+U2C2+xoJP0jynz8YPUMMgDM=";
   };
 
-  vendorHash = "sha256-Nbj2L3qaQ8HAtr4k+JwZcLJf+0WXQQ8Z+vGQQ5YoOl8=";
+  vendorHash = "sha256-F8EzHP7GyUkDTDB5NaC+aNT0Y/Rsi83lIfekuqh51oI=";
 
   ldflags = ["-s" "-w"];
 
