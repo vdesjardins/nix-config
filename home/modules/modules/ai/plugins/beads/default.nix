@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   my-packages,
@@ -23,7 +24,7 @@ in {
       ];
     };
 
-    home.packages = [my-packages.beads];
+    home.packages = [my-packages.beads pkgs.dolt];
 
     programs = {
       opencode = {
