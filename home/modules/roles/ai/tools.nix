@@ -213,6 +213,16 @@ in {
       };
     };
 
+    # Commands
+    commands = {
+      enable = mkEnableOption "Commands (all)";
+      common.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable common AI commands";
+      };
+    };
+
     # Instructions
     instructions = {
       enable = mkEnableOption "Instructions (all)";
@@ -346,6 +356,10 @@ in {
           memory-service.enable = cfg.mcp.memory-service.enable;
           mcporter.enable = cfg.mcp.mcporter.enable;
           tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
+        };
+
+        commands = {
+          common.enable = cfg.commands.common.enable;
         };
 
         instructions = {
