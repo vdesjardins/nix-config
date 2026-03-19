@@ -230,11 +230,19 @@ in {
     systemd.user.services.opencode-web = mkIf cfg.daemon.enable {
       Service = {
         Environment = lib.mapAttrsToList (k: v: "${k}=${v}") cfg.web.environment;
+        EnvironmentFile = ["%h/.local/share/opencode/server-password"];
         ExecStart =
           lib.mkForce
           "${lib.getExe config.programs.opencode.package} ${cfg.web.command} ${lib.escapeShellArgs cfg.web.extraArgs}";
       };
     };
+
+    home.activation.opencode-server-password = lib.mkIf cfg.daemon.enable (lib.hm.dag.entryAfter ["writeBoundary"] ''
+      mkdir -p "$HOME/.local/share/opencode"
+      PASSWORD="$(PASSAGE_AGE=${pkgs.rage}/bin/rage ${pkgs.passage}/bin/passage services/opencode/credentials 2>/dev/null || true)"
+      printf 'OPENCODE_SERVER_PASSWORD=%s\n' "$PASSWORD" > "$HOME/.local/share/opencode/server-password"
+      chmod 600 "$HOME/.local/share/opencode/server-password"
+    '');
 
     launchd.agents.opencode-web = mkIf cfg.daemon.enable {
       config = {
