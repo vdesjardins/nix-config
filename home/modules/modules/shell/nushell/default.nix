@@ -30,7 +30,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [carapace fish];
+    home.packages = with pkgs; [carapace];
 
     programs.nushell = let
       # Build abbreviations from globalAliases
@@ -48,44 +48,30 @@ in {
       extraConfig =
         # nu
         ''
-                    let fish_completer = {|spans|
-                        fish --command $'complete "--do-complete=($spans | str join " ")"'
-                        | from tsv --flexible --noheaders --no-infer
-                        | rename value description
-                    }
-
                     let zoxide_completer = {|spans|
                         $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
                     }
 
-                    let carapace_completer = {|spans: list<string>|
+                    let carapace_completer = {|spans|
+                        load-env {
+                            CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq | str join "\n")
+                            CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq | str join "\n")
+                        }
+                        let expanded_alias = (scope aliases | where name == $spans.0 | $in.0?.expansion?)
+                        let spans = (if $expanded_alias != null {
+                            $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+                        } else {
+                            $spans | skip 1 | prepend ($spans.0)
+                        })
                         carapace $spans.0 nushell ...$spans
                         | from json
-                        | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
                     }
 
-                    # This completer will use carapace by default
+                    # Route to the appropriate completer based on command
                     let external_completer = {|spans|
-                        let expanded_alias = scope aliases
-                        | where name == $spans.0
-                        | get -o 0.expansion
-
-                        let spans = if $expanded_alias != null {
-                            $spans
-                            | skip 1
-                            | prepend ($expanded_alias | split row ' ' | take 1)
-                        } else {
-                            $spans
-                        }
-
                         match $spans.0 {
-                            # carapace completions are incorrect for nu
-                            # nu => $fish_completer
-                            # fish completes commits and branch names in a nicer way
-                            # git => $fish_completer
-                            # use zoxide completions for zoxide commands
                             __zoxide_z | __zoxide_zi => $zoxide_completer
-                            _ => $fish_completer
+                            _ => $carapace_completer
                         } | do $in $spans
                     }
 
@@ -239,6 +225,10 @@ in {
       shellAliases = {
         ll = "ls";
         lla = "ls --all";
+      };
+
+      environmentVariables = {
+        CARAPACE_BRIDGES = "'zsh,fish,bash,inshellisense'";
       };
     }; # end programs.nushell let binding
   };
