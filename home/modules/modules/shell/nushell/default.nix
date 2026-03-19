@@ -223,6 +223,7 @@ in {
         '';
 
       shellAliases = {
+        cat = "bat";
         ll = "ls";
         lla = "ls --all";
       };
