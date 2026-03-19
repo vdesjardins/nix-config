@@ -16,6 +16,8 @@ in {
     programs = {
       mergiraf = {
         inherit (cfg) enable;
+        enableGitIntegration = true;
+        enableJujutsuIntegration = true;
       };
     };
   };
