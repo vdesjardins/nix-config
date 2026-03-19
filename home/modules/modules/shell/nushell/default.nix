@@ -228,7 +228,7 @@ in {
       };
 
       environmentVariables = {
-        CARAPACE_BRIDGES = "'zsh,fish,bash,inshellisense'";
+        CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense";
       };
     }; # end programs.nushell let binding
   };
