@@ -62,6 +62,7 @@
     ./nix.nix
     ./lazydev.nix
     ./markdown.nix
+    ./peek.nix
     ./terraform.nix
     ./bash.nix
     ./go.nix
