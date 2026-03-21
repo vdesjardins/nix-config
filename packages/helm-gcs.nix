@@ -5,7 +5,7 @@
 }:
 buildGoModule rec {
   pname = "helm-gcs";
-  version = "0.6.3";
+  version = "0.7.0";
 
   src = fetchFromGitHub {
     owner = "hayorov";

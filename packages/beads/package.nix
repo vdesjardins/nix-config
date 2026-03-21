@@ -7,16 +7,16 @@
 }:
 buildGo126Module rec {
   pname = "beads";
-  version = "0.59.0";
+  version = "0.61.0";
 
   src = fetchFromGitHub {
     owner = "steveyegge";
     repo = "beads";
     rev = "v${version}";
-    hash = "sha256-IyO0RWP98NQ8GHVsolhu80FS06aqrZjg0JprDiFdyCk=";
+    hash = "sha256-3V0FrqJ/ajDlMyquAZo1jUmYXF4TneBoh3VTsjvwyq0=";
   };
 
-  vendorHash = "sha256-ygZPi56fVEHaEShGVGpObFkrLs1DHrM8i2Y4BktMmpA=";
+  vendorHash = "sha256-wcFAvGoDR9IYckWRMqPqCgPSUKmoYYyYg0dfNGDI6Go=";
 
   nativeBuildInputs = [pkg-config];
   buildInputs = [icu];

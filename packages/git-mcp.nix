@@ -5,6 +5,7 @@
   makeBinaryWrapper,
   nodejs,
   npmHooks,
+  pnpm,
   pnpmConfigHook,
   stdenv,
   wrangler,
@@ -12,17 +13,18 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "git-mcp";
-  version = "0-unstable-2026-03-03";
+  version = "0-unstable-2026-03-13";
 
   src = fetchFromGitHub {
     owner = "idosal";
     repo = "git-mcp";
-    rev = "4ba2abbcb0232c373849550f3a4eb388f1e4bb9d";
-    hash = "sha256-GUtKg5Q8B6FNU309WIx828xsN8fc+eIhwJosfNEZBO8=";
+    rev = "ed56be437f10d5b083a8ff106a55411f0dc4f352";
+    hash = "sha256-JwdHxLUtf/VStimKi7AVlaIxIBclWjKErlylobNW3QQ=";
   };
 
   nativeBuildInputs = [
     nodejs
+    pnpm
     pnpmConfigHook
     npmHooks.npmInstallHook
     makeBinaryWrapper

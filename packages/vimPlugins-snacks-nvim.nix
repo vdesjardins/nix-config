@@ -4,13 +4,13 @@
 }:
 vimUtils.buildVimPlugin rec {
   pname = "snacks.nvim";
-  version = "2.30.0";
+  version = "2.31.0";
 
   src = fetchFromGitHub {
     owner = "folke";
     repo = "snacks.nvim";
     rev = "v${version}";
-    hash = "sha256-5m65Gvc6DTE9v7noOfm0+iQjDrqnrXYYV9QPnmr1JGY=";
+    hash = "sha256-NSoZQajyYFGIUCLD1m6FRPgKRsyJSM0IWygg1ofZZBs=";
   };
 
   doCheck = false;
