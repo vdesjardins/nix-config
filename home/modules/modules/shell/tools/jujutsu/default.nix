@@ -162,6 +162,26 @@ in {
             3.  Create Github Pull Request using `jj pr create --head <branch> --title "<title>" --description "<description>"`
             4.  Watch for PR checks completion with `gh pr checks --watch <pr-number>`
           '';
+
+          "jj:remote:rebase" = ''
+            ---
+            description: Fetch from remote and rebase current change onto main.
+            agent: build
+            ---
+
+            Load the jj skill and follow its instructions to:
+            1.  Fetch latest changes from remote with `jj git fetch`
+            2.  Rebase the current change onto main with `jj rebase -d main`
+            3.  Run `jj resolve --list` to check for conflicts
+            4.  If conflicts are found:
+                a.  Run `jj new <conflicted-change-id>` to create a child commit on
+                    top of the conflicted change
+                b.  For each conflicted file, read the file content (it will contain
+                    conflict markers) and edit it directly to produce the correct
+                    merged result
+                c.  Run `jj squash` to fold the resolutions into the conflicted change
+                d.  Verify no conflicts remain with `jj log` (no × markers)
+          '';
         };
 
         rules = ''
