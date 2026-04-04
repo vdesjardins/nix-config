@@ -70,10 +70,10 @@ in {
 
       package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-      nixpkgs.config = {
-        allowBroken = true;
-        allowUnfree = true;
-      };
+      # Use the host's pkgs (with overlays) so nixvim doesn't create its own
+      # pkgs instance that lacks our overlays (e.g. claude-code 2.1.92).
+      # allowBroken/allowUnfree are already set in the flake's global pkgsConfig.
+      nixpkgs.useGlobalPackages = true;
 
       defaultEditor = true;
 

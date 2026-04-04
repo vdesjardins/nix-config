@@ -5,13 +5,13 @@
 }:
 python314Packages.buildPythonApplication {
   pname = "mcp-memory-service";
-  version = "10.26.5";
+  version = "10.31.2";
 
   src = fetchFromGitHub {
     owner = "doobidoo";
     repo = "mcp-memory-service";
-    rev = "v10.26.5";
-    hash = "sha256-hmrmnrj1y4dhM/I62b3tfa6S52zAsIWLQEA9gQXMJB8=";
+    rev = "v10.31.2";
+    hash = "sha256-YkE4681c7LySwFn4FYlmW5jjK5fH8mi+8hJe9expIbw=";
   };
 
   postPatch = ''
@@ -40,7 +40,7 @@ python314Packages.buildPythonApplication {
     aiofiles
     psutil
     zeroconf
-    pypdf2
+    pypdf
     chardet
     click
     httpx

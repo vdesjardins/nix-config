@@ -41,6 +41,10 @@ in {
           enable = true;
         };
 
+        signing = {
+          format = "openpgp";
+        };
+
         ignores = [".DS_Store"];
 
         includes = [{path = "~/.gitconfig.local";}];

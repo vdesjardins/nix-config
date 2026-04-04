@@ -18,6 +18,6 @@
     shellcheck
     shellharden
     shfmt
-    nodePackages.bash-language-server
+    bash-language-server
   ];
 }

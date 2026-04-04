@@ -99,7 +99,7 @@ in {
 
     services = {
       hyprpolkitagent.enable = true;
-      swww = {
+      awww = {
         enable = true;
       };
       hypridle = {
@@ -330,7 +330,7 @@ in {
         exec-once = [
           "${getExe pkgs.wl-clip-persist} --clipboard regular & ${getExe pkgs.clipse} -listen"
           "${getExe pkgs.hyprland-monitor-attached} ${monitor-attached}"
-          "${getExe pkgs.swww} img $(find ${cfg.wallpapersPath} -maxdepth 1 -type f | shuf -n 1)"
+          "${getExe pkgs.awww} img $(find ${cfg.wallpapersPath} -maxdepth 1 -type f | shuf -n 1)"
         ];
 
         workspace = [

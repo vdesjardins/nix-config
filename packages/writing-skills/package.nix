@@ -4,13 +4,13 @@
 }:
 stdenv.mkDerivation {
   pname = "writing-skills";
-  version = "5.0.5";
+  version = "5.0.7";
 
   src = fetchFromGitHub {
     owner = "obra";
     repo = "superpowers";
     rev = "main";
-    sha256 = "sha256-wmOArGgOahJK/mqzYJZW6qcUNaOB6yL57RQMe56S1uw=";
+    sha256 = "sha256-hGEMwmSojy3cNtUQvB5djExlD39O2dwcnLOMUNaVIHg=";
   };
 
   sourceRoot = "source/skills/writing-skills";

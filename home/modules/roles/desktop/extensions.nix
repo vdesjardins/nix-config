@@ -63,6 +63,11 @@ in {
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
+
+      gtk4.theme = {
+        package = cfg.gtk.themePackage;
+        name = cfg.gtk.themeName;
+      };
     };
 
     # QT configuration (from qt.nix)

@@ -35,7 +35,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs;
-      (lib.optional cfg.json.enable nodePackages.fixjson)
+      (lib.optional cfg.json.enable fixjson)
       ++ (lib.optional cfg.json.enable jiq)
       ++ (lib.optional cfg.json.enable jq)
       ++ (lib.optional cfg.json.enable gron)

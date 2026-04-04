@@ -5,7 +5,7 @@
 }:
 buildNpmPackage rec {
   pname = "context7";
-  version = "ctx7@0.3.6";
+  version = "1.0.30";
 
   src = fetchFromGitHub {
     owner = "upstash";
@@ -14,7 +14,7 @@ buildNpmPackage rec {
     hash = "sha256-cNm/NROFHy+3cOozzvC1WUhGb7bwccvOIiMt30lAN3E=";
   };
 
-  npmDepsHash = "sha256-vStoOJJpvt3lqjooGazvj9wodVS7yNbj9XumACJARI4=";
+  npmDepsHash = "sha256-vL2Ws3YM3gdf+7vtPINZWKYA80nXnyN6BSpAtjswIkU=";
 
   packageLock = ./package-lock.json;
 
