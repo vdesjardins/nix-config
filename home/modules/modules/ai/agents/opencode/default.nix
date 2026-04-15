@@ -137,8 +137,6 @@ in {
         package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
         settings = {
-          theme = "tokyonight";
-
           share = "disabled";
 
           instructions = [
@@ -146,11 +144,6 @@ in {
             "CONTRIBUTING.md"
             ".github/*.md"
           ];
-
-          keybinds = {
-            messages_half_page_up = "ctrl+u";
-            messages_half_page_down = "ctrl+d";
-          };
 
           plugin = ["opencode-pty" "@tarquinen/opencode-dcp@latest"];
 
@@ -194,7 +187,7 @@ in {
           };
         };
 
-        rules = ''
+        context = ''
           ## AI Contributor Attribution
 
           Add Assisted-by or Co-authored-by trailers to commit messages IF explicitly asked to:
@@ -258,6 +251,14 @@ in {
     };
 
     xdg.configFile = {
+      "opencode/tui.json".text = builtins.toJSON {
+        "$schema" = "https://opencode.ai/tui.json";
+        theme = "tokyonight";
+        keybinds = {
+          messages_half_page_up = "ctrl+u";
+          messages_half_page_down = "ctrl+d";
+        };
+      };
       "opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
       "opencode/plugin/code-validator.js".source = ./plugins/code-validator.js;
       "opencode/code-validator.json".source = ./code-validator.json;
@@ -276,32 +277,17 @@ in {
           turns = 4;
         };
         protectedFilePatterns = [];
-        tools = {
-          settings = {
-            nudgeEnabled = true;
-            nudgeFrequency = 10;
-            contextLimit = 100000;
-            protectedTools = [];
-          };
-          distill = {
-            permission = "allow";
-            showDistillation = false;
-          };
-          compress = {
-            permission = "allow";
-            showCompression = false;
-          };
-          prune = {
-            permission = "allow";
-          };
+        compress = {
+          permission = "allow";
+          showCompression = false;
+          maxContextLimit = 100000;
+          nudgeFrequency = 10;
+          protectedTools = [];
         };
         strategies = {
           deduplication = {
             enabled = true;
             protectedTools = [];
-          };
-          supersedeWrites = {
-            enabled = true;
           };
           purgeErrors = {
             enabled = true;

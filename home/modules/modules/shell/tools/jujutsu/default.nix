@@ -184,7 +184,7 @@ in {
           '';
         };
 
-        rules = ''
+        context = ''
           IMPORTANT: only use jujutsu (jj) for version control. DO NOT use git.
 
           ⚠️ MANDATORY WORKFLOW - MUST FOLLOW EVERY TIME ⚠️

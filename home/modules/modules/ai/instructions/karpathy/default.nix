@@ -25,6 +25,6 @@ in {
       (builtins.readFile karpathyInstructions)
     ];
 
-    programs.opencode.rules = mkBefore (builtins.readFile karpathyInstructions);
+    programs.opencode.context = mkBefore (builtins.readFile karpathyInstructions);
   };
 }

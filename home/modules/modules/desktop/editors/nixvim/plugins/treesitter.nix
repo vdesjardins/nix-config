@@ -40,7 +40,26 @@
         };
       };
 
-      hmts.enable = true;
+      hmts = {
+        enable = true;
+        # Patch hmts.nvim for nvim 0.13+ nightly: match tables now map
+        # capture names to lists of nodes, not single nodes. Both handlers
+        # must extract [1] from the list before calling node methods.
+        package = pkgs.vimPlugins.hmts-nvim.overrideAttrs (old: {
+          postPatch =
+            (old.postPatch or "")
+            + ''
+              substituteInPlace plugin/hmts.lua \
+                --replace-fail \
+                'local node = match[predicate[2]]:parent()' \
+                'local _caps = match[predicate[2]]; local _cap = _caps and _caps[1]; if not _cap then return false end; local node = _cap:parent(); if not node then return false end'
+              substituteInPlace plugin/hmts.lua \
+                --replace-fail \
+                'local path_node = match[predicate[2]]' \
+                'local _pn = match[predicate[2]]; local path_node = _pn and _pn[1]; if not path_node then return end'
+            '';
+        });
+      };
 
       treesitter-context = {
         enable = true;

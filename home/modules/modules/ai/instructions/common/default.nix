@@ -25,6 +25,6 @@ in {
     modules.ai.agents.kiro.settings.prompts = [instructionsText];
     modules.ai.agents.github-copilot-cli.settings.prompts = [instructionsText];
 
-    programs.opencode.rules = instructionsText;
+    programs.opencode.context = instructionsText;
   };
 }
