@@ -390,7 +390,7 @@ for markdown line wrapping.
 Before committing, verify:
 
 - [ ] Type is one of: feat, fix, docs, style, refactor, perf,
-      test, build, ci, chore, revert
+  test, build, ci, chore, revert
 - [ ] Type (and scope if used) is lowercase
 - [ ] Scope is meaningful and project-consistent
 - [ ] Description is under 50 characters

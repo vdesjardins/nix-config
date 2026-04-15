@@ -68,7 +68,19 @@ in {
 
       inherit (cfg) colorschemes;
 
-      package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default
+        .overrideAttrs (old: {
+        # Neovim nightly renamed nvim.desktop -> org.neovim.nvim.desktop,
+        # but nixpkgs wrapNeovimUnstable still unconditionally removes
+        # nvim.desktop. Add a compat symlink on the unwrapped package so
+        # the wrapper's rm succeeds.
+        postInstall =
+          (old.postInstall or "")
+          + ''
+            ln -sf $out/share/applications/org.neovim.nvim.desktop \
+              $out/share/applications/nvim.desktop
+          '';
+      });
 
       # Use the host's pkgs (with overlays) so nixvim doesn't create its own
       # pkgs instance that lacks our overlays (e.g. claude-code 2.1.92).

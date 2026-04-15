@@ -18,7 +18,7 @@ This is the primary resource for implementing credential management with:
 - **Syncthing Sync**: Cross-machine synchronization of your KeePassXC database
 - **Auto-Lock**: Automatic locking on screen lock or 5-minute idle timeout
 - **Fluffychat Integration**: Matrix client credential auto-fill from
-   KeePassXC
+  KeePassXC
 
 **Status**: Ready for deployment
 **Implementation Date**: January 2, 2026
