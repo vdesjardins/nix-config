@@ -2,8 +2,6 @@
   imports = [
     ./img-clip.nix
 
-    ./auto-session.nix
-
     # moves
     ./flash.nix
     ./which-key.nix

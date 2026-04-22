@@ -27,10 +27,10 @@
         enable = true;
 
         settings = {
-          highlight_definitions = {
-            enable = true;
-            clear_on_cursor_move = true;
-          };
+          # highlight_definitions = {
+          #   enable = true;
+          #   clear_on_cursor_move = true;
+          # };
           smart_rename = {
             enable = true;
           };
