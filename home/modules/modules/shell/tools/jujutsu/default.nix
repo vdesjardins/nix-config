@@ -50,14 +50,20 @@ in {
 
           remotes.origin.auto-track-bookmarks = "glob:*";
 
+          revsets = {
+            bookmark-advance-to = "closest_pushable(@)";
+          };
+
           revset-aliases = {
             "user()" = ''user("${cfg.email}")'';
             "user(x)" = "author(x) | committer(x)";
+            "closest_pushable(to)" = ''heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'';
           };
 
           aliases = {
             a = ["absorb"];
             ab = ["abandon"];
+            ba = ["bookmark" "advance"];
             bc = ["bookmark" "create"];
             bd = ["bookmark" "delete"];
             bl = ["bookmark" "list"];
@@ -264,6 +270,7 @@ in {
       j = "jj";
       ja = "jj absorb";
       jab = "jj abandon";
+      jba = "jj bookmark advance";
       jbc = "jj bookmark create";
       jbd = "jj bookmark delete";
       jbl = "jj bookmark list";
