@@ -14,7 +14,7 @@ in {
 
   config = mkIf cfg.enable {
     modules.desktop.gaming = {
-      lutris.enable = true;
+      # lutris.enable = true;
       steam.enable = true;
       wine.enable = true;
       dolphin.enable = false;
