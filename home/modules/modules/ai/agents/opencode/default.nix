@@ -150,6 +150,8 @@ in {
         settings = {
           share = "disabled";
 
+          default_agent = "plan";
+
           instructions = [
             ".instructions.md"
             "CONTRIBUTING.md"
