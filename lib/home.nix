@@ -13,6 +13,7 @@
   inherit (lib.attrsets) filterAttrs;
   inherit (self.modules) mapModulesRecursive';
   try = inputs.try.homeModules.default;
+  inherit (inputs.hunk.homeManagerModules) hunk;
 
   mkHomeConfiguration = path: attrs @ {system, ...}:
     homeManagerConfiguration {
@@ -31,6 +32,7 @@
           nix-index
           nixvim
           try
+          hunk
         ]
         ++ mapModulesRecursive' ../home/modules import;
     };

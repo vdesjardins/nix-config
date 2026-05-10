@@ -129,6 +129,12 @@ in {
         default = true;
         description = "Enable beads integration";
       };
+
+      hunk.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable hunk terminal diff viewer with AI review skill";
+      };
     };
 
     # MCP Servers
@@ -330,6 +336,7 @@ in {
 
         plugins = {
           beads.enable = cfg.plugins.beads.enable;
+          hunk.enable = cfg.plugins.hunk.enable;
         };
 
         tools = {

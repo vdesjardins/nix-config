@@ -42,6 +42,9 @@
 
     opencode.url = "github:sst/opencode";
 
+    hunk.url = "github:modem-dev/hunk";
+    hunk.inputs.nixpkgs.follows = "nixpkgs";
+
     llamacpp.url = "github:ggml-org/llama.cpp";
     llamacpp.inputs.nixpkgs.follows = "nixpkgs";
 
