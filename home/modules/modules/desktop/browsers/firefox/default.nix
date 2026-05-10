@@ -100,6 +100,8 @@ in {
     programs.firefox = {
       inherit (cfg) enable;
 
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+
       package =
         if pkgs.stdenv.isDarwin
         then null # unable to compile on M1. Relying on brew for now

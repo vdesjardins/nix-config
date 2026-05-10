@@ -896,11 +896,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1778026172,
-        "narHash": "sha256-ndVnOKDiHVT+UgcUr2SblISs6/XlrStUddj9+dBOb2c=",
+        "lastModified": 1778457791,
+        "narHash": "sha256-QpHZ7m5ASAcTA8xtnxhAFYCj41e+pVq/xNoTwuPBcS4=",
         "owner": "sst",
         "repo": "opencode",
-        "rev": "f5c3d352a1532ef55bce09cacc054f79388dcd68",
+        "rev": "128d10d9e97e60c1bf326357f071e59e90ac6c6c",
         "type": "github"
       },
       "original": {
