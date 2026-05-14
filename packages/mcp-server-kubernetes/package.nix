@@ -5,16 +5,16 @@
 }:
 buildNpmPackage rec {
   pname = "mcp-server-kubernetes";
-  version = "3.4.0";
+  version = "3.6.2";
 
   src = fetchFromGitHub {
     owner = "Flux159";
     repo = "mcp-server-kubernetes";
     rev = "v${version}";
-    hash = "sha256-NZnAnBdYI72rNvnJRgXjt9eNm8l2qRyy0ZGZQqFM6AM=";
+    hash = "sha256-yWou0/OYJPZPVFflMChCFhMMy8MVU11+iGQHMGs8UfQ=";
   };
 
-  npmDepsHash = "sha256-QF0WqjCqKy9pkG1d4Z9riT0MZ2CUwFX04dnc4+Hkv/E=";
+  npmDepsHash = "sha256-x6joNM7LPrm2TjQ1S7LB03lbaofq1u1XvR/LT6Klfyw=";
 
   packageLock = ./package-lock.json;
 

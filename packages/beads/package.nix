@@ -7,16 +7,16 @@
 }:
 buildGo126Module rec {
   pname = "beads";
-  version = "1.0.0";
+  version = "1.0.4";
 
   src = fetchFromGitHub {
     owner = "steveyegge";
     repo = "beads";
     rev = "v${version}";
-    hash = "sha256-D2jShGpkOWKx9aRmRvV5bmV8t0/Y2eAE8q0m54QrRN0=";
+    hash = "sha256-a356lk3dWJg2VzXmvBL0xVYUMgICDY/6s6A5km8cjBU=";
   };
 
-  vendorHash = "sha256-7DJgqJX2HDa9gcGD8fLNHLIXvGAEivYeDYx3snCUyCE=";
+  vendorHash = "sha256-gTOYABrdQ9T5uxW5QEE8hRWH6AnCPFE/hbB2t1OJTrY=";
 
   nativeBuildInputs = [pkg-config];
   buildInputs = [icu];
@@ -35,7 +35,8 @@ buildGo126Module rec {
     ${lib.placeholder "out"}/bin/bd completion bash > ${lib.placeholder "out"}/share/bash-completion/completions/bd
     ${lib.placeholder "out"}/bin/bd completion zsh > ${lib.placeholder "out"}/share/zsh/site-functions/_bd
 
-    cp -r ./claude-plugin ${lib.placeholder "out"}/share/claude-plugin
+    cp -r ./integrations/claude-code ${lib.placeholder "out"}/share/claude-plugin
+    cp -r ./plugins/beads ${lib.placeholder "out"}/share/beads-plugin
   '';
 
   meta = with lib; {

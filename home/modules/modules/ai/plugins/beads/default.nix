@@ -63,29 +63,29 @@ in {
 
     home.file = {
       ".kiro/skills/beads" = {
-        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        source = "${my-packages.beads}/share/beads-plugin/skills/beads";
         recursive = true;
       };
 
       ".copilot/skills/beads" = {
-        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        source = "${my-packages.beads}/share/beads-plugin/skills/beads";
         recursive = true;
       };
     };
 
     xdg.configFile = {
       "opencode/agent/beads" = {
-        source = "${my-packages.beads}/share/claude-plugin/agents";
+        source = "${my-packages.beads}/share/beads-plugin/agents";
         recursive = true;
       };
 
       "opencode/skill/beads" = {
-        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        source = "${my-packages.beads}/share/beads-plugin/skills/beads";
         recursive = true;
       };
 
       ".copilot/skills/beads" = {
-        source = "${my-packages.beads}/share/claude-plugin/skills/beads";
+        source = "${my-packages.beads}/share/beads-plugin/skills/beads";
         recursive = true;
       };
     };

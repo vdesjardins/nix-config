@@ -13,13 +13,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "git-mcp";
-  version = "0-unstable-2026-03-13";
+  version = "0-unstable-2026-05-08";
 
   src = fetchFromGitHub {
     owner = "idosal";
     repo = "git-mcp";
-    rev = "ed56be437f10d5b083a8ff106a55411f0dc4f352";
-    hash = "sha256-JwdHxLUtf/VStimKi7AVlaIxIBclWjKErlylobNW3QQ=";
+    rev = "c487a29895dcfcb5b672247e646426a56e2051c1";
+    hash = "sha256-VnfE65M9xBtaThYt36FBXklWhFI4BdvjX2Jy4hG/cuQ=";
   };
 
   nativeBuildInputs = [

@@ -4,7 +4,7 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "blink-copilot";
-  version = "1.4.1-unstable-2025-10-29";
+  version = "0-unstable-2025-10-29";
 
   src = fetchFromGitHub {
     owner = "fang2hou";

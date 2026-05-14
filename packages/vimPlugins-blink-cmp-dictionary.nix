@@ -4,13 +4,13 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "blink-cmp-dictionary";
-  version = "3.0.1-unstable-2026-02-26";
+  version = "0-unstable-2026-05-11";
 
   src = fetchFromGitHub {
     owner = "Kaiser-Yang";
     repo = "blink-cmp-dictionary";
-    rev = "35142bba869b869715e91a99d2f46bcf93fca4ae";
-    hash = "sha256-idDHERqdqKB8/we00oVEo1sTDqrwPRTsuWmmG0ISeoE=";
+    rev = "17ea03ba5c296310b9f74587b52fde1b04d84c1a";
+    hash = "sha256-DfUXUKYNnnY0at1ayU/uRRGGGf4bmuuWvQar1XEUa5Q=";
   };
 
   doCheck = false;

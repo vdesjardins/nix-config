@@ -4,13 +4,13 @@
 }:
 stdenv.mkDerivation {
   pname = "skill-jj";
-  version = "0.9.0";
+  version = "0.10.0";
 
   src = fetchFromGitHub {
     owner = "dashed";
     repo = "claude-marketplace";
     rev = "master";
-    sha256 = "sha256-BemrhS9llh13m8/oY7b31+zXv3uPFIPkoU+/kEcq3Lo=";
+    sha256 = "sha256-msfrrNvOKtB45WSNTGfMrJ6ACW40AYSeJmE3rsWVQe0=";
   };
 
   sourceRoot = "source/plugins/jj";
