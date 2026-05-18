@@ -11,6 +11,9 @@
 
   cfg = config.modules.ai.agents.pi;
 
+  # Collect piEnv attrs from all pi packages that declare them
+  piEnvVars = lib.foldl' lib.mergeAttrs {} (map (p: p.passthru.piEnv or {}) cfg.packages);
+
   # Convert Nix packages to their store path strings for settings.json
   packagePaths = map (p: "${p}") cfg.packages;
 
@@ -108,7 +111,11 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = [cfg.package];
+      packages =
+        [cfg.package]
+        ++ lib.concatMap (p: p.propagatedBuildInputs or []) cfg.packages;
+
+      sessionVariables = piEnvVars;
 
       # Merge Nix-managed config into a writable settings.json so pi can still
       # write to it interactively (pi install, /settings, etc.).
@@ -170,6 +177,14 @@ in {
         )
         cfg.prompts;
     };
+
+    # Inject piEnv vars into Hyprland env directives when Hyprland is enabled.
+    # greetd launches Hyprland directly (no login shell), so sessionVariables
+    # are never sourced — Hyprland's own `env` directive is the only reliable path.
+    wayland.windowManager.hyprland.settings.env =
+      mkIf
+      (config.wayland.windowManager.hyprland.enable or false)
+      (lib.mapAttrsToList (k: v: "${k},${v}") piEnvVars);
 
     programs.zsh.shellAliases = {
       pii = "pi";

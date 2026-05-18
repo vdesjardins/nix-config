@@ -45,6 +45,7 @@
           packages = [
             my-packages.pi-files-widget
             my-packages.pi-tokyo-night-storm
+            my-packages.pi-markdown-preview
           ];
           settings.theme = "tokyo-night-storm";
           keybindings = {
