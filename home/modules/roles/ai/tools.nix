@@ -92,10 +92,30 @@ in {
       description = "Enable Kiro CLI";
     };
 
-    pi.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable pi coding agent";
+    pi = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable pi coding agent";
+      };
+
+      packages = mkOption {
+        type = types.listOf types.package;
+        default = [];
+        description = "Pi packages built by Nix, referenced as local store paths";
+      };
+
+      keybindings = mkOption {
+        type = types.attrsOf (types.either types.str (types.listOf types.str));
+        default = {};
+        description = "Custom keybindings for pi, written to ~/.pi/agent/keybindings.json";
+      };
+
+      settings = mkOption {
+        type = types.attrsOf types.anything;
+        default = {};
+        description = "Additional keys merged into ~/.pi/agent/settings.json (Nix wins for defined keys)";
+      };
     };
 
     beads-viewer.enable = mkOption {
@@ -344,7 +364,9 @@ in {
           };
           github-copilot-cli.enable = cfg.github-copilot-cli.enable;
           kiro.enable = cfg.kiro.enable;
-          pi.enable = cfg.pi.enable;
+          pi = {
+            inherit (cfg.pi) enable packages keybindings settings;
+          };
         };
 
         plugins = {

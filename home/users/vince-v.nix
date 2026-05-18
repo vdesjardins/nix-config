@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  my-packages,
+  ...
+}: {
   home = {
     username = "vince";
     homeDirectory = "/home/vince";
@@ -37,6 +41,17 @@
         enable = true;
         mcp.grafana.grafanaUrl = "https://grafana.kube-stack.org";
         mcp.nixos.enable = false; # Disabled due to fastmcp/mcp version mismatch
+        pi = {
+          packages = [
+            my-packages.pi-files-widget
+            my-packages.pi-tokyo-night-storm
+          ];
+          settings.theme = "tokyo-night-storm";
+          keybindings = {
+            "app.tree.foldOrUp" = ["left" "ctrl+left" "alt+left"];
+            "app.tree.unfoldOrDown" = ["right" "ctrl+right" "alt+right"];
+          };
+        };
       };
     };
 
