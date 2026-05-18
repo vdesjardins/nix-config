@@ -9,6 +9,73 @@
   inherit (lib.types) str;
 
   cfg = config.modules.shell.tools.jujutsu;
+
+  jjChangeDescribe = ''
+    ---
+    description: Create well-formatted conventional commit messages using jujutsu (jj).
+    agent: build
+    ---
+
+    IMPORTANT: This command ONLY describes the current change. Never create a new change as part of this command.
+    Load the jj and conventional-commits skills and follow its instructions to:
+    1.  Analyze what changes are in the CURRENT change (`@`) only.
+        Use `jj diff` (no revset) to capture all actual changes:
+          - Run `jj diff` to see the actual changes in `@`
+          - Determine the commit type and write a message based on what changed
+          - Do NOT create, insert, or move changes (`jj new`, `jj edit`, `jj absorb`, etc.)
+    2.  Craft conventional commit message explaining WHY the changes were made
+    3.  Add AI attribution trailer following the "AI Contributor Attribution" section in common AI instructions
+    4.  Execute `jj describe -m "your message"` to set it on the CURRENT change (`@`)
+  '';
+
+  jjChangeNew = ''
+    ---
+    description: Prepare a new jujutsu (jj) change (commit) for development.
+    agent: build
+    ---
+
+    Check the current change is non-empty with `jj status`.
+    If it is empty, do NOT create a new change; continue on `@`.
+    If it contains changes, insert a new change after the current change using `jj new -A @`.
+  '';
+
+  jjGhPrCreate = ''
+    ---
+    description: Create a GitHub pull request for the current jujutsu (jj) branch.
+    agent: build
+    ---
+
+    Load the jj skill and follow its instructions to:
+    1.  Get the current branch name. Branch a are created as `push-*`
+        for example `push-mymvvskypsow`
+    2.  If remote branch does not exist, create with `jj git push -c @`
+    3.  Check for all commits that the bookmark contains and synthesize a
+        title and description for the PR. Include sections Summary,
+        Details (Changes Made and Why These Changes Are Important)
+        and Verification Steps
+    3.  Create Github Pull Request using `jj pr create --head <branch> --title "<title>" --description "<description>"`
+    4.  Watch for PR checks completion with `gh pr checks --watch <pr-number>`
+  '';
+
+  jjRemoteRebase = ''
+    ---
+    description: Fetch from remote and rebase current change onto main.
+    agent: build
+    ---
+
+    Load the jj skill and follow its instructions to:
+    1.  Fetch latest changes from remote with `jj git fetch`
+    2.  Rebase the current change onto main with `jj rebase -d main`
+    3.  Run `jj resolve --list` to check for conflicts
+    4.  If conflicts are found:
+        a.  Run `jj new <conflicted-change-id>` to create a child commit on
+            top of the conflicted change
+        b.  For each conflicted file, read the file content (it will contain
+            conflict markers) and edit it directly to produce the correct
+            merged result
+        c.  Run `jj squash` to fold the resolutions into the conflicted change
+        d.  Verify no conflicts remain with `jj log` (no × markers)
+  '';
 in {
   options.modules.shell.tools.jujutsu = {
     enable = mkEnableOption "jujutsu scm";
@@ -122,72 +189,10 @@ in {
 
       opencode = {
         commands = {
-          "jj:change:describe" = ''
-            ---
-            description: Create well-formatted conventional commit messages using jujutsu (jj).
-            agent: build
-            ---
-
-            IMPORTANT: This command ONLY describes the current change. Never create a new change as part of this command.
-            Load the jj and conventional-commits skills and follow its instructions to:
-            1.  Analyze what changes are in the CURRENT change (`@`) only.
-                Use `jj diff` (no revset) to capture all actual changes:
-                  - Run `jj diff` to see the actual changes in `@`
-                  - Determine the commit type and write a message based on what changed
-                  - Do NOT create, insert, or move changes (`jj new`, `jj edit`, `jj absorb`, etc.)
-            2.  Craft conventional commit message explaining WHY the changes were made
-            3.  Add AI attribution trailer following the "AI Contributor Attribution" section in common AI instructions
-            4.  Execute `jj describe -m "your message"` to set it on the CURRENT change (`@`)
-          '';
-
-          "jj:change:new" = ''
-            ---
-            description: Prepare a new jujutsu (jj) change (commit) for development.
-            agent: build
-            ---
-
-            Check the current change is non-empty with `jj status`.
-            If it is empty, do NOT create a new change; continue on `@`.
-            If it contains changes, insert a new change after the current change using `jj new -A @`.
-          '';
-
-          "jj:gh:pr:create" = ''
-            ---
-            description: Create a GitHub pull request for the current jujutsu (jj) branch.
-            agent: build
-            ---
-
-            Load the jj skill and follow its instructions to:
-            1.  Get the current branch name. Branch a are created as `push-*`
-                for example `push-mymvvskypsow`
-            2.  If remote branch does not exist, create with `jj git push -c @`
-            3.  Check for all commits that the bookmark contains and synthesize a
-                title and description for the PR. Include sections Summary,
-                Details (Changes Made and Why These Changes Are Important)
-                and Verification Steps
-            3.  Create Github Pull Request using `jj pr create --head <branch> --title "<title>" --description "<description>"`
-            4.  Watch for PR checks completion with `gh pr checks --watch <pr-number>`
-          '';
-
-          "jj:remote:rebase" = ''
-            ---
-            description: Fetch from remote and rebase current change onto main.
-            agent: build
-            ---
-
-            Load the jj skill and follow its instructions to:
-            1.  Fetch latest changes from remote with `jj git fetch`
-            2.  Rebase the current change onto main with `jj rebase -d main`
-            3.  Run `jj resolve --list` to check for conflicts
-            4.  If conflicts are found:
-                a.  Run `jj new <conflicted-change-id>` to create a child commit on
-                    top of the conflicted change
-                b.  For each conflicted file, read the file content (it will contain
-                    conflict markers) and edit it directly to produce the correct
-                    merged result
-                c.  Run `jj squash` to fold the resolutions into the conflicted change
-                d.  Verify no conflicts remain with `jj log` (no × markers)
-          '';
+          "jj:change:describe" = jjChangeDescribe;
+          "jj:change:new" = jjChangeNew;
+          "jj:gh:pr:create" = jjGhPrCreate;
+          "jj:remote:rebase" = jjRemoteRebase;
         };
 
         context = ''
@@ -264,6 +269,13 @@ in {
         jwr = "jj workspace rename";
         jwus = "jj workspace update-stale";
       };
+    };
+
+    modules.ai.agents.pi.prompts = {
+      "jj:change:describe" = jjChangeDescribe;
+      "jj:change:new" = jjChangeNew;
+      "jj:gh:pr:create" = jjGhPrCreate;
+      "jj:remote:rebase" = jjRemoteRebase;
     };
 
     modules.shell.nushell.globalAliases = {

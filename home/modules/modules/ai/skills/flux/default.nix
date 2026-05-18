@@ -56,6 +56,7 @@ in {
     home.file = {
       ".kiro/skills/flux".source = "${cfg.package}/skills/flux";
       ".copilot/skills/flux".source = "${cfg.package}/skills/flux";
+      ".pi/agent/skills/flux".source = "${cfg.package}/skills/flux";
     };
 
     xdg.configFile = {

@@ -31,6 +31,7 @@ in {
     home.file = {
       ".kiro/skills/agent-browser".source = "${cfg.package}/skills/agent-browser";
       ".copilot/skills/agent-browser".source = "${cfg.package}/skills/agent-browser";
+      ".pi/agent/skills/agent-browser".source = "${cfg.package}/skills/agent-browser";
     };
 
     xdg.configFile = {

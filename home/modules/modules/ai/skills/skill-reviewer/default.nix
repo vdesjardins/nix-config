@@ -31,6 +31,7 @@ in {
     home.file = {
       ".kiro/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
       ".copilot/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
+      ".pi/agent/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
     };
 
     xdg.configFile = {

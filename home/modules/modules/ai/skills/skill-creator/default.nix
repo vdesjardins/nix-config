@@ -31,6 +31,7 @@ in {
     home.file = {
       ".kiro/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
       ".copilot/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
+      ".pi/agent/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
     };
 
     xdg.configFile = {

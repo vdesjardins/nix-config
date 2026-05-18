@@ -26,10 +26,11 @@ in {
     # Install buku package
     home.packages = [pkgs.buku];
 
-    # Copy skill files for Kiro and Copilot CLI
+    # Copy skill files for Kiro, Copilot CLI, and pi
     home.file = {
       ".kiro/skills/buku".source = ./skill;
       ".copilot/skills/buku".source = ./skill;
+      ".pi/agent/skills/buku".source = ./skill;
     };
 
     # Register skill with OpenCode and Copilot CLI

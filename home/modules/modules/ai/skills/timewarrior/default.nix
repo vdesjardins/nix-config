@@ -28,6 +28,7 @@ in {
     home.file = {
       ".kiro/skills/timewarrior-efficient-entry".source = "${cfg.package}/skills/timewarrior-efficient-entry";
       ".copilot/skills/timewarrior-efficient-entry".source = "${cfg.package}/skills/timewarrior-efficient-entry";
+      ".pi/agent/skills/timewarrior-efficient-entry".source = "${cfg.package}/skills/timewarrior-efficient-entry";
     };
 
     xdg.configFile = {

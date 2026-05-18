@@ -322,10 +322,6 @@ in {
       yocr = "with-env { OPENCODE_PERMISSION: '{\\\"*\\\": \\\"allow\\\"}' } { opencode run }";
     };
 
-    home.packages = with pkgs;
-      lib.optionals stdenv.isLinux [
-        libnotify
-        inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.ccusage-opencode
-      ];
+    home.packages = lib.optionals pkgs.stdenv.isLinux [pkgs.libnotify];
   };
 }

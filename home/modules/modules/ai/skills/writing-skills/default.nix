@@ -31,6 +31,7 @@ in {
     home.file = {
       ".kiro/skills/writing-skills".source = "${cfg.package}/skills/writing-skills";
       ".copilot/skills/writing-skills".source = "${cfg.package}/skills/writing-skills";
+      ".pi/agent/skills/writing-skills".source = "${cfg.package}/skills/writing-skills";
     };
 
     xdg.configFile = {

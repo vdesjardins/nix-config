@@ -92,6 +92,12 @@ in {
       description = "Enable Kiro CLI";
     };
 
+    pi.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable pi coding agent";
+    };
+
     beads-viewer.enable = mkOption {
       type = types.bool;
       default = true;
@@ -108,6 +114,12 @@ in {
       type = types.bool;
       default = true;
       description = "Enable sec-skills-audit - security auditor for OpenCode skill files";
+    };
+
+    ccusage.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable ccusage - analyze coding agent CLI token usage and costs";
     };
 
     handy.enable = mkOption {
@@ -332,6 +344,7 @@ in {
           };
           github-copilot-cli.enable = cfg.github-copilot-cli.enable;
           kiro.enable = cfg.kiro.enable;
+          pi.enable = cfg.pi.enable;
         };
 
         plugins = {
@@ -343,6 +356,7 @@ in {
           beads_viewer.enable = cfg.beads-viewer.enable;
           coding-agent-search.enable = cfg.coding-agent-search.enable;
           sec-skills-audit.enable = cfg.sec-skills-audit.enable;
+          ccusage.enable = cfg.ccusage.enable;
           sandbox-runtime.enable = cfg.sandbox-runtime.enable;
         };
 

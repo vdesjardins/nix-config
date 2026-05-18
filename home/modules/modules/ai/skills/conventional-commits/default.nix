@@ -39,6 +39,14 @@ in {
         };
         recursive = true;
       };
+
+      ".pi/agent/skills/conventional-commits" = {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
+      };
     };
 
     xdg.configFile = {

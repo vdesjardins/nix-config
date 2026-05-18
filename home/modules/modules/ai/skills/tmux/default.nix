@@ -26,6 +26,7 @@ in {
     home.file = {
       ".kiro/skills/tmux".source = "${cfg.package}/skills/tmux";
       ".copilot/skills/tmux".source = "${cfg.package}/skills/tmux";
+      ".pi/agent/skills/tmux".source = "${cfg.package}/skills/tmux";
     };
 
     xdg.configFile = {
