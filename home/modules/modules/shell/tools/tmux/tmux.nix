@@ -104,6 +104,10 @@ in ''
   # focus events
   set-option -g focus-events on
 
+  # extended keys (required for modified Enter keys in tools like pi)
+  set -g extended-keys on
+  set -g extended-keys-format csi-u
+
   # toggle mouse
   unbind m
   bind-key -N "Mouse ON" m \
