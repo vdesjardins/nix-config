@@ -46,6 +46,7 @@
             my-packages.pi-files-widget
             my-packages.pi-tokyo-night-storm
             my-packages.pi-markdown-preview
+            my-packages.pi-telegram
           ];
           settings.theme = "tokyo-night-storm";
           keybindings = {
