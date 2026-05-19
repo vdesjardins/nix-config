@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  my-packages,
   pkgs,
   ...
 }: let
@@ -101,13 +102,24 @@ in {
 
       packages = mkOption {
         type = types.listOf types.package;
-        default = [];
+        default = with my-packages; [
+          pi-files-widget
+          pi-tokyo-night-storm
+          pi-markdown-preview
+          pi-telegram
+        ];
         description = "Pi packages built by Nix, referenced as local store paths";
       };
 
       keybindings = mkOption {
         type = types.attrsOf (types.either types.str (types.listOf types.str));
-        default = {};
+        default = {
+          "app.tree.foldOrUp" = ["left" "ctrl+left" "alt+left"];
+          "app.tree.unfoldOrDown" = ["right" "ctrl+right" "alt+right"];
+          "tui.editor.cursorUp" = ["up" "ctrl+p"];
+          "tui.editor.cursorDown" = ["down" "ctrl+n"];
+          "app.model.cycleForward" = [];
+        };
         description = "Custom keybindings for pi, written to ~/.pi/agent/keybindings.json";
       };
 
