@@ -100,7 +100,10 @@ in {
     programs.firefox = {
       inherit (cfg) enable;
 
-      configPath = "${config.xdg.configHome}/mozilla/firefox";
+      configPath =
+        if isDarwin
+        then "Library/Application Support/Firefox"
+        else ".mozilla/firefox";
 
       package =
         if pkgs.stdenv.isDarwin
