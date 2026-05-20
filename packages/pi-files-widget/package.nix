@@ -5,7 +5,7 @@
 }:
 stdenv.mkDerivation {
   pname = "pi-files-widget";
-  version = "0.1.21";
+  version = "usage-extension/v0.3.1";
 
   src = fetchFromGitHub {
     owner = "tmustier";

@@ -25,12 +25,12 @@ in {
         Include = "local/*_config";
       };
 
-      matchBlocks."*" = {
-        controlMaster = "auto";
-        controlPersist = "5m";
-        controlPath = "~/.ssh/controlmasters/%r@%h:%p";
+      settings."*" = {
+        ControlMaster = "auto";
+        ControlPersist = "5m";
+        ControlPath = "~/.ssh/controlmasters/%r@%h:%p";
 
-        userKnownHostsFile =
+        UserKnownHostsFile =
           builtins.toString (mkOutOfStoreSymlink "${configDirectory}/shell/tools/ssh/config/known_hosts");
       };
     };

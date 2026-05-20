@@ -21,8 +21,9 @@ buildNpmPackage rec {
 
   pnpmDeps = fetchPnpmDeps {
     inherit pname version src;
-    hash = "sha256-0nc+jYANd95/R+BrkGRHcdqw9/RqMja88qkVvHtj1W4=";
-    fetcherVersion = 2;
+    pnpm = pnpm_10;
+    hash = "sha256-KAF6zUNNfzc+xhIES5gS4ZXiP83rMP/j6esiv4tmqeo=";
+    fetcherVersion = 3;
   };
 
   npmDeps = pnpmDeps;

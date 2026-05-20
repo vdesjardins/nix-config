@@ -144,6 +144,8 @@ in {
                 --replace-fail 'const prettier = await import("prettier")' 'const prettier: any = { format: async (s: string) => s }' \
                 --replace-fail 'const babel = await import("prettier/plugins/babel")' 'const babel = {}' \
                 --replace-fail 'const estree = await import("prettier/plugins/estree")' 'const estree = {}'
+              substituteInPlace packages/script/src/index.ts \
+                --replace-fail 'if (!semver.satisfies(process.versions.bun, expectedBunVersionRange))' 'if (false)'
             '';
         });
 
