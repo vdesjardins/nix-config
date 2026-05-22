@@ -14,8 +14,8 @@
   tuicrSkill = pkgs.fetchFromGitHub {
     owner = "agavra";
     repo = "tuicr";
-    rev = "main";
-    hash = "sha256-seyQoEf+0KepXLJil83Wdb0fSIaifXRTyiBul9RaBOg=";
+    rev = "35ecbe2863d7a0a5321612bf6bb955006fab24c2";
+    hash = "sha256-WkPMecljTG/cEg2+AAgCk92ta8Gs2UhY32n2u6h7eU0=";
   };
 in {
   options.modules.shell.tools.tuicr = {
@@ -37,24 +37,29 @@ in {
 
     home.file = {
       ".kiro/skills/tuicr" = {
-        source = "${tuicrSkill}/.claude/skill";
+        source = "${tuicrSkill}/skills/tuicr";
         recursive = true;
       };
 
       ".copilot/skills/tuicr" = {
-        source = "${tuicrSkill}/.claude/skill";
+        source = "${tuicrSkill}/skills/tuicr";
+        recursive = true;
+      };
+
+      ".pi/agent/skills/tuicr" = {
+        source = "${tuicrSkill}/skills/tuicr";
         recursive = true;
       };
     };
 
     xdg.configFile = {
       "opencode/skill/tuicr" = {
-        source = "${tuicrSkill}/.claude/skill";
+        source = "${tuicrSkill}/skills/tuicr";
         recursive = true;
       };
 
       ".copilot/skills/tuicr" = {
-        source = "${tuicrSkill}/.claude/skill";
+        source = "${tuicrSkill}/skills/tuicr";
         recursive = true;
       };
     };

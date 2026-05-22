@@ -39,6 +39,7 @@ in {
     home.file = {
       ".kiro/skills/hunk-review".source = "${cfg.package}/skills/hunk-review";
       ".copilot/skills/hunk-review".source = "${cfg.package}/skills/hunk-review";
+      ".pi/agent/skills/hunk-review".source = "${cfg.package}/skills/hunk-review";
     };
 
     xdg.configFile = {
