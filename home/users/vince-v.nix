@@ -39,6 +39,7 @@
         mcp.nixos.enable = false; # Disabled due to fastmcp/mcp version mismatch
         pi = {
           settings.theme = "tokyo-night-storm";
+          voice.stt.enable = true;
         };
       };
     };
