@@ -24,8 +24,7 @@
           - Determine the commit type and write a message based on what changed
           - Do NOT create, insert, or move changes (`jj new`, `jj edit`, `jj absorb`, etc.)
     2.  Craft conventional commit message explaining WHY the changes were made
-    3.  Add AI attribution trailer following the "AI Contributor Attribution" section in common AI instructions
-    4.  Execute `jj describe -m "your message"` to set it on the CURRENT change (`@`)
+    3.  Execute `jj describe -m "your message"` to set it on the CURRENT change (`@`)
   '';
 
   jjChangeNew = ''
@@ -213,7 +212,6 @@ in {
             - Include scope in parentheses
             - Write concise description explaining WHY, not just WHAT
             - Reference any related issues or decisions
-            - Add AI attribution trailer following the "AI Contributor Attribution" section in common AI instructions
 
           ** Jujutsu Cheat Sheet **
           - Create new change: `jj new -A @`
