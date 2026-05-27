@@ -130,8 +130,7 @@ in {
       enable = true;
       settings = {
         general = {
-          disable_loading_bar = true;
-          no_fade_in = false;
+          hide_cursor = true;
         };
 
         background = {
@@ -155,11 +154,9 @@ in {
           outline_thickness = 4;
 
           font_family = "CaskaydiaMono Nerd Font";
-          font_size = 32;
           font_color = "rgba(205,214,244,1.0)";
 
-          placeholder_color = "rgba(205,214,244,0.6)";
-          placeholder_text = "Enter Password 󰈷 ";
+          placeholder_text = "Enter Password 󰈷 ";
           check_color = "rgba(68, 157, 171, 1.0)";
           fail_text = "Wrong";
 
