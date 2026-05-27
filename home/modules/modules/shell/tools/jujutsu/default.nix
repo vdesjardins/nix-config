@@ -226,6 +226,7 @@ in {
         j = "jj";
         ja = "jj absorb";
         jab = "jj abandon";
+        jba = "jj bookmark advance";
         jbc = "jj bookmark create";
         jbd = "jj bookmark delete";
         jbl = "jj bookmark list";
