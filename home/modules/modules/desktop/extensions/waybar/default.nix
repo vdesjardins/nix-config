@@ -22,6 +22,11 @@ in {
     programs.waybar = {
       inherit (cfg) enable;
 
+      systemd = {
+        enable = true;
+        targets = ["hyprland-session.target"];
+      };
+
       settings = {
         mainBar = {
           ipc = true;
@@ -159,12 +164,9 @@ in {
       style = ./style.css;
     };
 
-    wayland.windowManager.hyprland = {
-      settings = {
-        exec-once = [
-          "${lib.getExe pkgs.waybar}"
-        ];
-      };
+    systemd.user.services.waybar = {
+      Service.Restart = "on-failure";
+      Service.RestartSec = "2s";
     };
 
     wayland.windowManager.sway = {
