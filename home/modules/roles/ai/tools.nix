@@ -173,6 +173,12 @@ in {
       description = "Enable sandbox-runtime - AI agent execution environments";
     };
 
+    graphify.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable graphify - Claude Code skill to turn code/docs into queryable knowledge graph";
+    };
+
     plugins = {
       enable = mkEnableOption "plugins (all)";
       beads.enable = mkOption {
@@ -400,6 +406,7 @@ in {
           sec-skills-audit.enable = cfg.sec-skills-audit.enable;
           ccusage.enable = cfg.ccusage.enable;
           sandbox-runtime.enable = cfg.sandbox-runtime.enable;
+          graphify.enable = cfg.graphify.enable;
         };
 
         mcp = {
