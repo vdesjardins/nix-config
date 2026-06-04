@@ -274,6 +274,11 @@ in {
         default = true;
         description = "Enable tmux-mcp MCP server";
       };
+      exa.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable exa MCP server";
+      };
     };
 
     # Commands
@@ -426,6 +431,7 @@ in {
           memory-service.enable = cfg.mcp.memory-service.enable;
           mcporter.enable = cfg.mcp.mcporter.enable;
           tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
+          exa.enable = cfg.mcp.exa.enable;
         };
 
         commands = {
