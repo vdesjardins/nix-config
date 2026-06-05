@@ -12,7 +12,7 @@
   cfg = config.roles.ai.tools;
 in {
   options.roles.ai.tools = {
-    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, opencode, github-copilot-cli, mcp servers, skills)";
+    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, opencode, github-copilot-cli, parallel, mcp servers, skills)";
 
     # CLI Tools
     ollama = {
@@ -177,6 +177,19 @@ in {
       type = types.bool;
       default = true;
       description = "Enable graphify - Claude Code skill to turn code/docs into queryable knowledge graph";
+    };
+
+    parallel = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Parallel CLI and agent skills";
+      };
+      skills.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Parallel Agent Skills";
+      };
     };
 
     plugins = {
@@ -412,6 +425,10 @@ in {
           ccusage.enable = cfg.ccusage.enable;
           sandbox-runtime.enable = cfg.sandbox-runtime.enable;
           graphify.enable = cfg.graphify.enable;
+          parallel = {
+            enable = cfg.parallel.enable;
+            skills.enable = cfg.parallel.skills.enable;
+          };
         };
 
         mcp = {
