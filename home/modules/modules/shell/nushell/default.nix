@@ -17,8 +17,8 @@ in {
       type = types.attrsOf types.str;
       default = {};
       description = ''
-        Expandable aliases that will be added to nushell's abbreviations dictionary.
-        These aliases expand inline when you press space or enter.
+        Expandable aliases added to Nushell's fish-style abbreviations.
+        These expand inline when you press space or enter.
 
         Example:
           modules.shell.nushell.globalAliases = {
@@ -33,9 +33,8 @@ in {
     home.packages = with pkgs; [carapace];
 
     programs.nushell = let
-      # Build abbreviations from globalAliases
-      globalAliasesStr = lib.concatStringsSep "\n" (
-        lib.mapAttrsToList (name: value: "            ${name}: \"${value}\"")
+      globalAliasesRecord = lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (name: value: "          ${builtins.toJSON name}: ${builtins.toJSON value}")
         cfg.globalAliases
       );
     in {
@@ -91,8 +90,7 @@ in {
                       cd $dir
                     }
 
-                    # Fish-like abbreviations
-                    # Load all defined aliases from scope and merge with custom abbreviations
+                    # Fish-style abbreviations expand on space or enter.
                     let kubectl_aliases_file = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases.nu"
                     let kubectl_abbrs = if (''$kubectl_aliases_file | path exists) {
                       open ''$kubectl_aliases_file
@@ -110,116 +108,49 @@ in {
                       {}
                     }
 
-                    let abbreviations = ''$kubectl_abbrs | merge {
-          ${globalAliasesStr}
-                    }
+                    let abbreviations = {
+          ${globalAliasesRecord}
+                    } | merge ''$kubectl_abbrs
 
-                    $env.config = {
-                      keybindings: [
-                        {
-                          name: fuzzy_history
-                          modifier: control
-                          keycode: char_r
-                          mode: [emacs, vi_normal, vi_insert]
-                          event: [
+                    $env.config = (
+                      $env.config
+                      | upsert keybindings [
                           {
-                            send: ExecuteHostCommand
-                            cmd: "history_search"
-                          }
-                          ]
-                        }
-                        {
-                          name: abbr_menu
-                          modifier: none
-                          keycode: enter
-                          mode: [emacs, vi_normal, vi_insert]
-                          event: [
-                              { send: menu name: abbr_menu }
-                              { send: enter }
-                          ]
-                        }
-                        {
-                          name: accept_abbr
-                          modifier: control
-                          keycode: char_y
-                          mode: [emacs, vi_normal, vi_insert]
-                          event: [
-                            { send: HistoryHintComplete }]
-                        }
-                        {
-                          name: abbr_menu
-                          modifier: none
-                          keycode: space
-                          mode: [emacs, vi_normal, vi_insert]
-                          event: [
-                              { send: menu name: abbr_menu }
-                              { edit: insertchar value: ' '}
-                          ]
-                        }
-                        {
-                          name: insert_last_token
-                          modifier: alt
-                          keycode: char_.
-                          mode: emacs
-                          event: [
-                            { edit: InsertString, value: "!$" }
-                            { send: Enter }
-                          ]
-                        }
-                      ]
-
-                      cursor_shape: {
-                        vi_insert: line
-                        vi_normal: block
-                        emacs: line
-                      }
-
-                      menus: [
-                        {
-                          name: abbr_menu
-                          only_buffer_difference: false
-                          marker: none
-                          type: {
-                            layout: columnar
-                            columns: 1
-                            col_width: 20
-                            col_padding: 2
-                          }
-                          style: {
-                            text: green
-                            selected_text: green_reverse
-                            description_text: yellow
-                          }
-                          source: { |buffer, position|
-                            let before_cursor = (''$buffer | str substring 0..''$position)
-                            let current_word = (''$before_cursor | split row ' ' | last)
-
-                            let match = ''$abbreviations | columns | where ''$it == ''$current_word
-                            if (''$match | is-empty) {
-                              { value: ''$buffer }
-                            } else {
-                              let replacement = (''$abbreviations | get ''$match.0)
-                              let word_len = (''$current_word | str length | into int)
-                              let before_word_end = (''$position - ''$word_len)
-                              let before_word = if ''$before_word_end > 0 {
-                                (''$buffer | str substring 0..<''$before_word_end)
-                              } else {
-                                '''
+                            name: fuzzy_history
+                            modifier: control
+                            keycode: char_r
+                            mode: [emacs, vi_normal, vi_insert]
+                            event: [
+                              {
+                                send: ExecuteHostCommand
+                                cmd: "history_search"
                               }
-                              let after_cursor = (''$buffer | str substring ''$position..)
-                              { value: (''$before_word ++ ''$replacement ++ ''$after_cursor) }
-                            }
+                            ]
+                          }
+                          {
+                            name: insert_last_token
+                            modifier: alt
+                            keycode: char_.
+                            mode: emacs
+                            event: [
+                              { edit: InsertString, value: "!$" }
+                              { send: Enter }
+                            ]
+                          }
+                        ]
+                      | upsert cursor_shape {
+                          vi_insert: line
+                          vi_normal: block
+                          emacs: line
+                        }
+                      | upsert completions {
+                          external: {
+                            enable: true
+                            completer: $external_completer
                           }
                         }
-                      ]
-
-                      completions: {
-                        external: {
-                          enable: true
-                          completer: $external_completer
-                        }
-                      }
-                    }
+                      | upsert abbreviations $abbreviations
+                    )
         '';
 
       shellAliases = {
