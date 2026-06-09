@@ -5,16 +5,16 @@
 }:
 buildGoModule rec {
   pname = "kubectl-rbac-tool";
-  version = "1.20.0";
+  version = "1.14.3";
 
   src = fetchFromGitHub {
     owner = "alcideio";
     repo = "rbac-tool";
     rev = "v${version}";
-    hash = "sha256-JnGodkPGWpAC2ksMnXjVTHn+UmgAkG63m9rbhcoLA1E=";
+    hash = "sha256-4/i80ZMfGTEs4SVTenNiFsR1QAKbYAc2ZFTSev4zSvc=";
   };
 
-  vendorHash = "sha256-nCWK3bdSsx1O+hUyFozZfolZQtAQC27kO04DY+c8SmY=";
+  vendorHash = "sha256-ICyDzKbp6qYu5Ib5nsoP3cCL/9J/7KrS6cTpDmwoh3E=";
 
   ldflags = [
     "-s"

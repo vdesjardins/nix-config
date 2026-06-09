@@ -5,21 +5,16 @@
 }:
 python312Packages.buildPythonPackage rec {
   pname = "graphifyy";
-  version = "0.8.28";
+  version = "0.8.36";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-OvHhzevZmxeypy7viIPLFBTFQoBdQ/ygfIML01ODFyo=";
+    hash = "sha256-xceKqASjB/UnIuXQmEo6R2iZzHCbcTdd7GU5+6I/a6Q=";
   };
 
-  # Remove deps that cannot be satisfied from nixpkgs:
-  #   datasketch → cassandra-driver → … → sphinx-9 (broken even on python3.12)
-  #   rapidfuzz  → scikit-build-core → … → sphinx-9 (broken even on python3.12)
-  # All "tree-sitter-<lang>" bindings are stripped here and satisfied instead
-  # by the full python312Packages.tree-sitter-grammars scope below, whose
-  # Python wrapper packages carry different distribution names and would fail
-  # the runtime dep name check if left declared.
+  # Strip tree-sitter bindings from pyproject.toml and satisfy them from the
+  # full python312Packages.tree-sitter-grammars scope below.
   postPatch = ''
     sed -i \
       -e '/"datasketch",/d' \
@@ -32,7 +27,9 @@ python312Packages.buildPythonPackage rec {
 
   propagatedBuildInputs =
     (with python312Packages; [
+      datasketch
       networkx
+      rapidfuzz
       tree-sitter
     ])
     ++ (builtins.attrValues (

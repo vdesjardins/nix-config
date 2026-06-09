@@ -5,7 +5,7 @@
   makeBinaryWrapper,
   nodejs,
   npmHooks,
-  pnpm,
+  pnpm_10,
   pnpmConfigHook,
   stdenv,
   wrangler,
@@ -24,7 +24,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     nodejs
-    pnpm
+    pnpm_10
     pnpmConfigHook
     npmHooks.npmInstallHook
     makeBinaryWrapper
@@ -32,8 +32,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
-    fetcherVersion = 1;
-    hash = "sha256-tiX2kyjAfzQr7YTWE5cRTeDJWZ8VHM9I1vErsY8rkvY=";
+    pnpm = pnpm_10;
+    fetcherVersion = 3;
+    hash = "sha256-ZV6IQS+ZBt/hre6ZoFjHtRa3I6J2VID7BhUdSnvEjTg=";
   };
 
   postPatch = ''
