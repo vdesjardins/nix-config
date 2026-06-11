@@ -16,6 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     modules.shell.tools = {
+      flux9s.enable = true;
       k9s.enable = true;
       istioctl.enable = true;
       kubectl.enable = true;
