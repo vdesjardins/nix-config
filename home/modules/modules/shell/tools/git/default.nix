@@ -256,7 +256,7 @@ in {
       gcm = "git commit -m";
       glog = "git log --oneline --graph";
       gr = "cd (git rev-parse --show-toplevel)";
-      GR = "(git rev-parse --show-toplevel)";
+      GR = "git rev-parse --show-toplevel";
     };
 
     programs = {

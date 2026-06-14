@@ -17,8 +17,7 @@ in {
       type = types.attrsOf types.str;
       default = {};
       description = ''
-        Expandable aliases added to Nushell's fish-style abbreviations.
-        These expand inline when you press space or enter.
+        Shell aliases added to Nushell.
 
         Example:
           modules.shell.nushell.globalAliases = {
@@ -85,59 +84,104 @@ in {
                     }
 
                     # Create directory and cd into it (equivalent to zsh take function)
-                    def take [dir: path] {
+                    def mkcd [dir: path] {
                       mkdir $dir
                       cd $dir
                     }
 
-                    # Fish-style abbreviations expand on space or enter.
-                    let kubectl_aliases_file = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases.nu"
-                    let kubectl_abbrs = if (''$kubectl_aliases_file | path exists) {
-                      open ''$kubectl_aliases_file
-                        | lines
-                        | where (''$it | str starts-with "alias ")
-                        | each { |line|
-                            let parts = (''$line | str replace "alias " "" | split row " = ")
-                            if (''$parts | length) == 2 {
-                              {key: (''$parts.0 | str trim), value: (''$parts.1 | str trim)}
-                            }
-                          }
-                        | where (''$it | is-not-empty)
-                        | reduce -f {} { |it, acc| ''$acc | merge {(''$it.key): (''$it.value)} }
-                    } else {
-                      {}
-                    }
-
                     let abbreviations = {
           ${globalAliasesRecord}
-                    } | merge ''$kubectl_abbrs
+                    }
+
+                    def __expand_abbreviation [accept: bool] {
+                      let line = (commandline)
+                      let words = ($line | split row " " | where {|it| $it != "" })
+
+                      if ($words | is-empty) {
+                        if $accept {
+                          commandline edit --accept $line
+                        } else {
+                          commandline edit --insert " "
+                        }
+                      } else {
+                        let last = ($words | last)
+                        let has_abbreviation = not (($abbreviations | columns | where {|it| $it == $last} | is-empty))
+
+                        if $has_abbreviation {
+                          let prefix_count = (($words | length) - 1)
+                          let prefix = ($words | first $prefix_count | str join " ")
+                          let replacement = ($abbreviations | get $last)
+                          let new_line = if ($prefix | is-empty) {
+                            $replacement
+                          } else {
+                            $"($prefix) ($replacement)"
+                          }
+
+                          if $accept {
+                            commandline edit --replace --accept $new_line
+                          } else {
+                            commandline edit --replace $"($new_line) "
+                          }
+                        } else if $accept {
+                          commandline edit --accept $line
+                        } else {
+                          commandline edit --insert " "
+                        }
+                      }
+                    }
+
+                    let keybindings = [
+                      {
+                        name: fuzzy_history
+                        modifier: control
+                        keycode: char_r
+                        mode: [emacs, vi_normal, vi_insert]
+                        event: [
+                          {
+                            send: ExecuteHostCommand
+                            cmd: "history_search"
+                          }
+                        ]
+                      }
+                      {
+                        name: insert_last_token
+                        modifier: alt
+                        keycode: char_.
+                        mode: emacs
+                        event: [
+                          { edit: InsertString, value: "!$" }
+                          { send: Enter }
+                        ]
+                      }
+                    ]
+
+                    let keybindings = ($keybindings | append {
+                      name: expand_abbreviation_space
+                      modifier: none
+                      keycode: space
+                      mode: [emacs, vi_insert]
+                      event: [
+                        {
+                          send: ExecuteHostCommand
+                          cmd: "__expand_abbreviation false"
+                        }
+                      ]
+                    } | append {
+                      name: expand_abbreviation_enter
+                      modifier: none
+                      keycode: enter
+                      mode: [emacs, vi_insert]
+                      event: [
+                        {
+                          send: ExecuteHostCommand
+                          cmd: "__expand_abbreviation true"
+                        }
+                      ]
+                    })
 
                     $env.config = (
                       $env.config
-                      | upsert keybindings [
-                          {
-                            name: fuzzy_history
-                            modifier: control
-                            keycode: char_r
-                            mode: [emacs, vi_normal, vi_insert]
-                            event: [
-                              {
-                                send: ExecuteHostCommand
-                                cmd: "history_search"
-                              }
-                            ]
-                          }
-                          {
-                            name: insert_last_token
-                            modifier: alt
-                            keycode: char_.
-                            mode: emacs
-                            event: [
-                              { edit: InsertString, value: "!$" }
-                              { send: Enter }
-                            ]
-                          }
-                        ]
+                      | upsert keybindings $keybindings
                       | upsert cursor_shape {
                           vi_insert: line
                           vi_normal: block
@@ -149,19 +193,20 @@ in {
                             completer: $external_completer
                           }
                         }
-                      | upsert abbreviations $abbreviations
                     )
         '';
 
-      shellAliases = {
-        cat = "bat";
-        ll = "ls";
-        lla = "ls --all";
-      };
+      shellAliases =
+        {
+          cat = "bat";
+          ll = "ls";
+          lla = "ls --all";
+        }
+        // cfg.globalAliases;
 
       environmentVariables = {
         CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense";
       };
-    }; # end programs.nushell let binding
+    };
   };
 }

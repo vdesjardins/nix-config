@@ -120,6 +120,7 @@ in {
           "tui.editor.cursorUp" = ["up" "ctrl+p"];
           "tui.editor.cursorDown" = ["down" "ctrl+n"];
           "app.model.cycleForward" = [];
+          "app.model.select" = [];
         };
         description = "Custom keybindings for pi, written to ~/.pi/agent/keybindings.json";
       };
