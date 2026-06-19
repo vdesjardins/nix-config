@@ -87,6 +87,12 @@ in {
       description = "Enable GitHub Copilot CLI";
     };
 
+    officecli.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable OfficeCLI";
+    };
+
     kiro.enable = mkOption {
       type = types.bool;
       default = true;
@@ -373,6 +379,11 @@ in {
         default = true;
         description = "Enable FluxCD skill";
       };
+      officecli.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable OfficeCLI skill bundle";
+      };
       coding-agent-search.enable = mkOption {
         type = types.bool;
         default = false;
@@ -426,6 +437,10 @@ in {
           ccusage.enable = cfg.ccusage.enable;
           sandbox-runtime.enable = cfg.sandbox-runtime.enable;
           graphify.enable = cfg.graphify.enable;
+          officecli = {
+            enable = cfg.officecli.enable;
+            skills.enable = cfg.skills.officecli.enable;
+          };
           parallel = {
             enable = cfg.parallel.enable;
             skills.enable = cfg.parallel.skills.enable;
