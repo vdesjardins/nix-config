@@ -262,7 +262,7 @@ in {
           "$mod SHIFT, 0, movetoworkspacesilent, 10"
 
           # Control tiling
-          "$mod, S, togglesplit, # dwindle"
+          "$mod, S, layoutmsg, togglesplit"
           "$mod, P, pseudo, # dwindle"
           "$mod, V, togglefloating,"
 
@@ -425,8 +425,7 @@ in {
 
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         dwindle = {
-          pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = true; # You probably want this
+          preserve_split = true; # Needed for togglesplit to work
           force_split = 2; # Always split on the right
         };
 
