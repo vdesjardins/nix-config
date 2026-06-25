@@ -2,7 +2,7 @@
   services.greetd = {
     enable = true;
     settings = {
-      default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd hyprland";
+      default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd ${pkgs.hyprland}/bin/start-hyprland";
     };
   };
 }
