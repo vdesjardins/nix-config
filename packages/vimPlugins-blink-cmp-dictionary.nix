@@ -4,7 +4,7 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "blink-cmp-dictionary";
-  version = "0-unstable-2026-06-01";
+  version = "3.1.0-unstable-2026-06-01";
 
   src = fetchFromGitHub {
     owner = "Kaiser-Yang";

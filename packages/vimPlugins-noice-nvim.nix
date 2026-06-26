@@ -4,7 +4,7 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "noice.nvim";
-  version = "0-unstable-2025-11-03";
+  version = "stable-unstable-2025-11-03";
 
   src = fetchFromGitHub {
     owner = "folke";
