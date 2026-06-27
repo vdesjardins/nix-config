@@ -12,7 +12,7 @@
   cfg = config.roles.ai.tools;
 in {
   options.roles.ai.tools = {
-    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, opencode, github-copilot-cli, parallel, mcp servers, skills)";
+    enable = mkEnableOption "AI tools bundle (ollama, llamacpp, claude, opencode, github-copilot-cli, herdr, parallel, mcp servers, skills)";
 
     # CLI Tools
     ollama = {
@@ -85,6 +85,12 @@ in {
       type = types.bool;
       default = true;
       description = "Enable GitHub Copilot CLI";
+    };
+
+    herdr.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable Herdr";
     };
 
     officecli.enable = mkOption {
@@ -411,6 +417,7 @@ in {
             kiro.enable = cfg.opencode.kiro.enable;
           };
           github-copilot-cli.enable = cfg.github-copilot-cli.enable;
+          herdr.enable = cfg.herdr.enable;
           kiro.enable = cfg.kiro.enable;
           pi = {
             inherit (cfg.pi) enable packages keybindings settings;
