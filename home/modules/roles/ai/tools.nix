@@ -112,7 +112,6 @@ in {
           pi-files-widget
           pi-tokyo-night-storm
           pi-markdown-preview
-          pi-telegram
           pi-tau
         ];
         description = "Pi packages built by Nix, referenced as local store paths";
@@ -135,12 +134,6 @@ in {
         type = types.attrsOf types.anything;
         default = {};
         description = "Additional keys merged into ~/.pi/agent/settings.json (Nix wins for defined keys)";
-      };
-
-      voice.stt.enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Enable local whisper-cpp STT for pi-telegram voice messages";
       };
     };
 
@@ -421,7 +414,6 @@ in {
           kiro.enable = cfg.kiro.enable;
           pi = {
             inherit (cfg.pi) enable packages keybindings settings;
-            voice.stt.enable = cfg.pi.voice.stt.enable;
           };
         };
 

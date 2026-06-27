@@ -88,23 +88,6 @@ in {
       };
     };
 
-    voice = {
-      stt = {
-        enable = mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = ''
-            Enable local speech-to-text for pi-telegram voice messages.
-            Installs a whisper-cpp + ffmpeg wrapper at ~/.local/bin/pi-stt and
-            merges an audio/* inbound handler into ~/.pi/agent/telegram.json so
-            Telegram voice notes are automatically transcribed before reaching
-            the agent.
-            The whisper base.en model (~142 MB) is downloaded on first use.
-          '';
-        };
-      };
-    };
-
     keybindings = mkOption {
       type = attrsOf (either str (listOf str));
       description = ''
@@ -145,25 +128,6 @@ in {
       #   packages — union of user-added and Nix-managed; removals from Nix are
       #              tracked via ~/.pi/agent/.nix-packages.prev and propagated
       #   other keys — Nix wins for keys it defines; unrelated user keys preserved
-
-      # Merge audio/* inbound handler into telegram.json so pi-telegram
-      # transcribes voice messages via pi-stt. Idempotent: only adds the
-      # handler if no audio/* entry is already present.
-      activation.piTelegramVoice = mkIf cfg.voice.stt.enable (lib.hm.dag.entryAfter ["writeBoundary"] ''
-        _tg_file="$HOME/.pi/agent/telegram.json"
-        _jq="${lib.getExe pkgs.jq}"
-        _stt_cmd="$HOME/.local/bin/pi-stt"
-
-        if [ -f "$_tg_file" ]; then
-          "$_jq" --arg cmd "$_stt_cmd" '
-            (.inboundHandlers // []) as $h |
-            if ($h | map(select(.mime == "audio/*")) | length) > 0
-            then .  # audio/* handler already present, leave unchanged
-            else .inboundHandlers = ($h + [{"mime": "audio/*", "template": [$cmd, "{file}"]}])
-            end
-          ' "$_tg_file" > "$_tg_file.tmp" && mv "$_tg_file.tmp" "$_tg_file"
-        fi
-      '');
 
       activation.piSettings = mkIf hasNixConfig (lib.hm.dag.entryAfter ["writeBoundary"] ''
         _pi_dir="$HOME/.pi/agent"
@@ -207,44 +171,9 @@ in {
         printf '%s' "$_nix_pkgs" > "$_prev_pkgs_file"
       '');
 
-      # pi-stt: whisper-cpp STT wrapper for pi-telegram voice transcription.
-      # Installed when voice.stt.enable = true; telegram.json handler merged
-      # via the piTelegramVoice activation script.
       # Prompts are standalone files — no conflict with interactive pi usage.
       file =
-        lib.optionalAttrs cfg.voice.stt.enable {
-          ".local/bin/pi-stt" = {
-            executable = true;
-            text = ''
-              #!/usr/bin/env bash
-              set -euo pipefail
-
-              MODEL_DIR="''${XDG_DATA_HOME:-$HOME/.local/share}/whisper-cpp/models"
-              MODEL="$MODEL_DIR/ggml-base.en.bin"
-              FILE="''${1:?Usage: pi-stt <audio-file>}"
-
-              # Download model on first use (~142 MB)
-              if [ ! -f "$MODEL" ]; then
-                mkdir -p "$MODEL_DIR"
-                ${pkgs.whisper-cpp}/bin/whisper-cpp-download-ggml-model base.en "$MODEL_DIR" >&2
-              fi
-
-              # whisper-cpp requires WAV; convert OGG Opus (Telegram format) via ffmpeg
-              WAV=$(mktemp --suffix=.wav)
-              trap 'rm -f "$WAV"' EXIT
-              ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$FILE" -ar 16000 -ac 1 -c:a pcm_s16le "$WAV" 2>/dev/null
-
-              # Transcribe and strip timestamp markers from output
-              ${pkgs.whisper-cpp}/bin/whisper-cli \
-                --model "$MODEL" \
-                --no-prints \
-                --language auto \
-                "$WAV" 2>/dev/null \
-                | sed 's/^\s*\[.*-->.*\]\s*//'
-            '';
-          };
-        }
-        // lib.optionalAttrs (cfg.keybindings != {}) {
+        lib.optionalAttrs (cfg.keybindings != {}) {
           ".pi/agent/keybindings.json".text = builtins.toJSON cfg.keybindings;
         }
         // lib.mapAttrs' (
