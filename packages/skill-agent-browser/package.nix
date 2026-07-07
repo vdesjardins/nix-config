@@ -5,12 +5,12 @@
 }:
 stdenv.mkDerivation {
   pname = "skill-agent-browser";
-  version = "0.27.1";
+  version = "0.31.1";
 
   src = fetchFromGitHub {
     owner = "vercel-labs";
     repo = "agent-browser";
-    rev = "v0.27.1";
+    rev = "v0.31.1";
     hash = "sha256-eLtN4ErLaSetEDb/6RMqILDnVua8QnEN6r1VgbwTQBw=";
   };
 
