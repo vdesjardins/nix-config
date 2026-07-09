@@ -25,11 +25,18 @@ in {
 
       defaultCommand = "fd --type f";
       defaultOptions = ["--height 60%" "--border"];
-      fileWidgetCommand = "fd --type f";
-      fileWidgetOptions = ["--preview 'bat --color=always {}'"];
-      changeDirWidgetCommand = "fd --type d";
-      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
-      historyWidgetOptions = ["--layout=reverse" "--sort" "--exact" "--height=60%" "--preview='echo {..}'" "--preview-window='bottom:3:wrap'"];
+      fileWidget = {
+        command = "fd --type f";
+        options = ["--preview 'bat --color=always {}'"];
+      };
+      changeDirWidget = {
+        command = "fd --type d";
+        options = ["--preview 'tree -C {} | head -200'"];
+      };
+      historyWidget = {
+        command = "";
+        options = ["--layout=reverse" "--sort" "--exact" "--height=60%" "--preview='echo {..}'" "--preview-window='bottom:3:wrap'"];
+      };
 
       enableZshIntegration = true;
     };

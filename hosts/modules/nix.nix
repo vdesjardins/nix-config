@@ -29,10 +29,10 @@
       options = "--delete-older-than +5";
     };
 
-    package = pkgs.nixVersions.nix_2_28;
+    package = pkgs.nixVersions.nix_2_31;
   };
 
   environment.systemPackages = with pkgs; [
-    nixVersions.nix_2_28
+    nixVersions.nix_2_31
   ];
 }
