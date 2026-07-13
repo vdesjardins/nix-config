@@ -5,12 +5,12 @@
 }:
 python312Packages.buildPythonPackage rec {
   pname = "graphifyy";
-  version = "0.9.9";
+  version = "0.9.14";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-Fdv5v7Aaa3jXiLLNUW6IhJyRYeC8IH4vG3OjLYgCev0=";
+    hash = "sha256-bo9tJVm1y12yxakY7tVrhBu3kf26WUr8q4+LIxShL78=";
   };
 
   # Strip tree-sitter bindings from pyproject.toml and satisfy them from the
@@ -38,12 +38,15 @@ python312Packages.buildPythonPackage rec {
         # Packages with test failures in nixpkgs (not marked broken upstream)
         "tree-sitter-agda"
         "tree-sitter-fstar"
+        "tree-sitter-dtd"
         "tree-sitter-go-template-helm"
         "tree-sitter-gren"
+        "tree-sitter-ocaml-interface"
         "tree-sitter-opam"
         "tree-sitter-quint"
         "tree-sitter-strace"
         "tree-sitter-tact"
+        "tree-sitter-tsx"
         "tree-sitter-vue"
       ]
     ));

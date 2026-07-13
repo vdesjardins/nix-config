@@ -11,7 +11,7 @@
 in
   python3Packages.buildPythonApplication {
     pname = "mcp-server-git";
-    version = "2026.7.4";
+    version = "2026.7.10";
 
     inherit src;
 

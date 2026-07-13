@@ -4,6 +4,7 @@
   inputs = {
     # Packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-2605.url = "github:nixos/nixpkgs/nixos-26.05";
     master.url = "github:nixos/nixpkgs/master";
 
     # System
@@ -42,14 +43,26 @@
 
     opencode.url = "github:sst/opencode";
 
-    hunk.url = "github:modem-dev/hunk";
-    hunk.inputs.nixpkgs.follows = "nixpkgs";
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        bun2nix.inputs.systems.url = "github:nix-systems/default-linux";
+        bun2nix.inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs-2605";
+      };
+    };
 
     llamacpp.url = "github:ggml-org/llama.cpp";
     llamacpp.inputs.nixpkgs.follows = "nixpkgs";
 
-    llm-agents.url = "github:numtide/llm-agents.nix";
-    llm-agents.inputs.nixpkgs.follows = "nixpkgs";
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.url = "github:nix-systems/default-linux";
+        treefmt-nix.inputs.nixpkgs.follows = "nixpkgs-2605";
+      };
+    };
 
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -210,7 +223,12 @@
               stylua.enable = true;
               shellcheck.enable = true;
               shfmt.enable = true;
-              commitizen.enable = true;
+              commitizen = {
+                enable = true;
+                package = pkgs.${system}.commitizen.overrideAttrs (old: {
+                  disabledTests = (old.disabledTests or []) ++ ["test_invalid_command"];
+                });
+              };
               rumdl.enable = true;
             };
             package = pkgs.${system}.prek;

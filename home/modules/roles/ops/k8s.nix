@@ -56,7 +56,13 @@ in {
         kubetail
         kubeval
         kubeshark
-        minikube
+        (minikube.overrideAttrs (old: {
+          postFixup =
+            (old.postFixup or "")
+            + ''
+              rm -f $out/bin/kubectl
+            '';
+        }))
         skaffold
         starboard # security tools
         trivy
