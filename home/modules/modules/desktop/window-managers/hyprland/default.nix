@@ -329,7 +329,8 @@ in {
         exec-once = [
           "${getExe pkgs.wl-clip-persist} --clipboard regular & ${getExe pkgs.clipse} -listen"
           "${getExe pkgs.hyprland-monitor-attached} ${monitor-attached}"
-          "${getExe pkgs.awww} img $(find ${cfg.wallpapersPath} -maxdepth 1 -type f | shuf -n 1)"
+          # Home Manager installs wallpapers as symlinks; follow them when selecting one.
+          "${getExe pkgs.awww} img $(find -L ${cfg.wallpapersPath} -maxdepth 1 -type f | shuf -n 1)"
         ];
 
         workspace = [
