@@ -7,30 +7,6 @@
   dashLib = import ./lib {inherit pkgs lib;};
 
   dashboardConfigs = {
-    opnsense = {
-      id = 22248;
-      version = 1;
-      sha256 = "sha256:1sy6k1bcprldgnzq8z86c5ilv4pb2yiz0jn7xpma2rcfvpkaw9al";
-      transform = dashboard:
-        lib.pipe dashboard [
-          (dashLib.setUid "opnsense")
-          (dashLib.replaceDatasources [
-            {
-              key = "DS_PROMETHEUS";
-              value = "Prometheus";
-            }
-          ])
-          dashLib.removeTimeOverrides
-          dashLib.fixProcessesPanel
-        ];
-    };
-    opnsense-ids = {
-      path = ./dashboards/opnsense-ids.json;
-      transform = dashboard:
-        lib.pipe dashboard [
-          (dashLib.setUid "opnsense-ids")
-        ];
-    };
     omada-gateway = {
       path = ./dashboards/omada-gateway.json;
       transform = dashboard:

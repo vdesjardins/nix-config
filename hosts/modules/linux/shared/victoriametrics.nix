@@ -26,16 +26,6 @@
     prometheusConfig = {
       scrape_configs = [
         {
-          job_name = "opnsense-exporter";
-          scrape_interval = "15s";
-          static_configs = [
-            {
-              targets = ["10.0.0.1:9100"];
-              labels.type = "network";
-            }
-          ];
-        }
-        {
           job_name = "victorialogs";
           scrape_interval = "15s";
           static_configs = [

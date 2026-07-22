@@ -10,12 +10,6 @@
     tag = "v5.9.4";
     hash = "sha256-LzrIvHJMB6mFAEfKoMIs0wL+xbEjoBIx48pSEcCHmg4=";
   };
-  opnsenseComponent = pkgs.fetchFromGitHub {
-    owner = "travisghansen";
-    repo = "hass-opnsense";
-    tag = "v0.4.8";
-    hash = "sha256-5oWIFdOcLSul1debsnE34DWqEC1dEXN7vZYR2gLlI7A=";
-  };
   advancedCameraCardComponent = pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     pname = "advanced-camera-card";
     version = "7.3.6";
@@ -108,7 +102,6 @@ in {
           "/data/home-assistant/config:/config"
           # "${configFile}:/config/configuration.yaml:ro"
           "${frigateComponent}/custom_components/frigate:/config/custom_components/frigate"
-          "${opnsenseComponent}/custom_components/opnsense:/config/custom_components/opnsense"
           "${advancedCameraCardComponent}/advanced-camera-card/:/hassfiles/advanced-camera-card"
         ];
       };
