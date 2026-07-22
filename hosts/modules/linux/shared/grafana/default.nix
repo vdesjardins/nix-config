@@ -31,6 +31,13 @@
           (dashLib.setUid "opnsense-ids")
         ];
     };
+    omada-gateway = {
+      path = ./dashboards/omada-gateway.json;
+      transform = dashboard:
+        lib.pipe dashboard [
+          (dashLib.setUid "omada-gateway")
+        ];
+    };
     cadvisor = {
       id = 14282;
       version = 1;

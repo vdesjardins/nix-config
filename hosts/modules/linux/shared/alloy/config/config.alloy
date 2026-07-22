@@ -27,6 +27,37 @@ loki.source.syslog "receiver" {
   forward_to = [loki.process.syslog.receiver]
 }
 
+// Omada Controller uses legacy/BSD-style syslog framing without the RFC 5424
+// VERSION field. A dedicated port gives these logs a stable job label without
+// relying on firmware-dependent hostname/app-name values.
+loki.source.syslog "receiver_omada" {
+  listener {
+    address = "0.0.0.0:10516"
+    protocol = "udp"
+    syslog_format = "rfc3164"
+    labels = {
+      component = "loki.source.syslog",
+      job = "syslog-omada",
+      vendor = "tp-link",
+      product = "omada",
+    }
+  }
+  listener {
+    address = "0.0.0.0:10516"
+    protocol = "tcp"
+    syslog_format = "rfc3164"
+    labels = {
+      component = "loki.source.syslog",
+      job = "syslog-omada",
+      vendor = "tp-link",
+      product = "omada",
+    }
+  }
+
+  relabel_rules = loki.relabel.syslog.rules
+  forward_to = [loki.process.syslog.receiver]
+}
+
 loki.source.syslog "receiver_ids" {
   listener {
     address = "0.0.0.0:10515"
@@ -140,6 +171,32 @@ loki.process "syslog" {
         dest_country = "geoip_country_name",
         dest_country_latitude = "geoip_location_latitude",
         dest_country_longitude = "geoip_location_longitude",
+      }
+    }
+  }
+
+  stage.match {
+    selector = "{job=\"syslog-omada\"}"
+    pipeline_name = "omada_parsing"
+
+    // Omada event text commonly identifies the subject as [gateway:MAC],
+    // [ap:MAC], [switch:MAC], or [client:MAC]. Keep identifiers as metadata,
+    // not labels, to avoid unbounded VictoriaLogs stream cardinality.
+    stage.regex {
+      expression = "\\[(?P<omada_entity_type>gateway|ap|switch|client):(?P<omada_entity_id>[^\\]]+)\\]"
+    }
+
+    // Capture common interface references (WAN, WAN/LAN, LAN, and numbered
+    // variants) used by gateway link and failover events.
+    stage.regex {
+      expression = "(?i)\\b(?P<omada_interface>(?:WAN(?:/LAN)?|LAN)[0-9]*)\\b"
+    }
+
+    stage.structured_metadata {
+      values = {
+        omada_entity_type = "",
+        omada_entity_id   = "",
+        omada_interface   = "",
       }
     }
   }
