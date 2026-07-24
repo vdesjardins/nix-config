@@ -71,7 +71,7 @@ jobs:
 
       - uses: DeterminateSystems/flakehub-cache-action@v3.21.7
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v13
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
 
       - name: If scheduled, update inputs
         if: ${{ github.event_name == 'schedule' && success() }}
