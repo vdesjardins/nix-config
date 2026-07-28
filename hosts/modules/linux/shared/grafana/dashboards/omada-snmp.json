@@ -1,0 +1,1420 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "ER707-M2 SNMP health, uptime, interface traffic, errors, and scrape continuity for investigating gateway hangs.",
+  "editable": true,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [
+    {
+      "title": "Omada syslog troubleshooting",
+      "type": "link",
+      "url": "/d/omada-gateway/omada-gateway-troubleshooting?${__url_time_range}"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "A value of zero means VictoriaMetrics could not complete the SNMP scrape. During a hard gateway hang this normally drops before any recovery or reboot event appears in syslog.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "text": "UNREACHABLE"
+                },
+                "1": {
+                  "color": "green",
+                  "text": "REACHABLE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "up{job=\"snmp-omada-gateway\", instance=~\"$instance\"}",
+          "instant": true,
+          "legendFormat": "{{device}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "SNMP reachability",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Time since the gateway SNMP management subsystem last initialized. A sudden decrease indicates a gateway or SNMP-agent restart.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sysUpTime{job=\"snmp-omada-gateway\", instance=~\"$instance\"} / 100",
+          "instant": true,
+          "legendFormat": "Uptime",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Gateway uptime",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Interfaces that are administratively enabled but operationally down.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "count((ifAdminStatus{job=\"snmp-omada-gateway\", instance=~\"$instance\"} == 1) and (ifOperStatus{job=\"snmp-omada-gateway\", instance=~\"$instance\"} != 1)) or vector(0)",
+          "instant": true,
+          "legendFormat": "Down interfaces",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Unexpected interfaces down",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Interface errors and discarded packets observed during the selected time range.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(increase(ifInErrors{job=\"snmp-omada-gateway\", instance=~\"$instance\"}[$__range]) + increase(ifOutErrors{job=\"snmp-omada-gateway\", instance=~\"$instance\"}[$__range]) + increase(ifInDiscards{job=\"snmp-omada-gateway\", instance=~\"$instance\"}[$__range]) + increase(ifOutDiscards{job=\"snmp-omada-gateway\", instance=~\"$instance\"}[$__range])) or vector(0)",
+          "instant": true,
+          "legendFormat": "Errors and discards",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Errors and discards",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Average one-minute processor load across the two ER707-M2 CPU cores.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "avg(hrProcessorLoad{job=\"snmp-omada-gateway\", instance=~\"$instance\"})",
+          "instant": false,
+          "legendFormat": "CPU",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CPU utilization",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Physical memory allocated according to HOST-RESOURCES-MIB. Cache and buffers are included in the gateway's reported usage.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "100 * hrStorageUsed{job=\"snmp-omada-gateway\", instance=~\"$instance\", hrStorageDescr=\"Physical memory\"} / hrStorageSize{job=\"snmp-omada-gateway\", instance=~\"$instance\", hrStorageDescr=\"Physical memory\"}",
+          "instant": false,
+          "legendFormat": "Memory",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Physical memory utilization",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Gateway health timeline",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Continuous reachability and uptime history. Look for missing scrapes followed by uptime resetting to identify a hang and reboot.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Reachable"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bool"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "up{job=\"snmp-omada-gateway\", instance=~\"$instance\"}",
+          "legendFormat": "Reachable",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "sysUpTime{job=\"snmp-omada-gateway\", instance=~\"$instance\"} / 100",
+          "legendFormat": "Uptime",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Reachability and uptime",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "CPU and physical memory pressure before a loss of SNMP reachability or gateway restart.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "max": 100,
+          "min": 0,
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "avg(hrProcessorLoad{job=\"snmp-omada-gateway\", instance=~\"$instance\"})",
+          "instant": false,
+          "legendFormat": "CPU",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "100 * hrStorageUsed{job=\"snmp-omada-gateway\", instance=~\"$instance\", hrStorageDescr=\"Physical memory\"} / hrStorageSize{job=\"snmp-omada-gateway\", instance=~\"$instance\", hrStorageDescr=\"Physical memory\"}",
+          "instant": false,
+          "legendFormat": "Memory",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "CPU and memory utilization",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Per-interface traffic rate. Select the physical WAN interface after SNMP data reveals the ER707-M2 interface names.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 16,
+        "x": 0,
+        "y": 25
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "rate(ifHCInOctets{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval]) * 8",
+          "legendFormat": "{{ifName}} received",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "rate(ifHCOutOctets{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval]) * 8",
+          "legendFormat": "{{ifName}} transmitted",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Interface traffic",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Rates of interface errors and drops. Sustained increases can indicate a physical link or congestion problem before connectivity is lost.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            }
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 25
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull"],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "rate(ifInErrors{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval]) + rate(ifOutErrors{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} errors",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "rate(ifInDiscards{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval]) + rate(ifOutDiscards{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} discards",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Interface errors and discards",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "SNMP request latency. Rising scrape duration can be an early indication that the gateway management plane is becoming unresponsive.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "scrape_duration_seconds{job=\"snmp-omada-gateway\", instance=~\"$instance\"}",
+          "legendFormat": "Scrape duration",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SNMP response time",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 41
+      },
+      "id": 13,
+      "panels": [],
+      "title": "Packet-loss and resource diagnostics",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Packets intentionally dropped despite no detected packet error. Compare ingress with egress and beware that eth1, VLAN, and pe-wan1_poe can represent layers of the same WAN path.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 42
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "rate(ifInDiscards{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} ingress",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "rate(ifOutDiscards{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} egress",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Ingress and egress discards by interface",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Malformed or physically invalid packets. Errors suggest a link/driver issue more strongly than discards, which can also be caused by queue pressure.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 42
+      },
+      "id": 15,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "rate(ifInErrors{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} ingress",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "rate(ifOutErrors{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} egress",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Ingress and egress errors by interface",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Unicast, multicast, and broadcast packet rates provide context for discard spikes and expose broadcast or multicast storms.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 51
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "rate(ifHCInUcastPkts{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} unicast",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "rate(ifHCInMulticastPkts{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} multicast",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "editorMode": "code",
+          "expr": "rate(ifHCInBroadcastPkts{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval])",
+          "legendFormat": "{{ifName}} broadcast",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Ingress packet composition",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Traffic as a percentage of the advertised link speed. Interfaces with no reported speed, including some internal pseudo-interfaces, are omitted.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 60
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "100 * 8 * rate(ifHCInOctets{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval]) / (ifHighSpeed{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"} * 1000000)",
+          "legendFormat": "{{ifName}} receive",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "100 * 8 * rate(ifHCOutOctets{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"}[$__rate_interval]) / (ifHighSpeed{job=\"snmp-omada-gateway\", instance=~\"$instance\", ifName=~\"$interface\"} * 1000000)",
+          "legendFormat": "{{ifName}} transmit",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Physical interface utilization",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Percentage of successful 15-second polls over a rolling five-minute window. Drops indicate management-plane stalls even when the gateway still forwards some traffic.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 60
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "100 * avg_over_time(up{job=\"snmp-omada-gateway\", instance=~\"$instance\"}[5m])",
+          "legendFormat": "5-minute availability",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SNMP scrape availability",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "User/kernel CPU percentages and normalized Linux load averages. loadIndex 1, 2, and 3 represent 1, 5, and 15 minutes.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "percent",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 68
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "omadaCpuUserPercent{job=\"snmp-omada-gateway\", instance=~\"$instance\"}",
+          "legendFormat": "CPU user",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "omadaCpuSystemPercent{job=\"snmp-omada-gateway\", instance=~\"$instance\"}",
+          "legendFormat": "CPU system",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "editorMode": "code",
+          "expr": "omadaLoadAverage{job=\"snmp-omada-gateway\", instance=~\"$instance\"} / 2",
+          "legendFormat": "Load {{loadIndex}}",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "CPU modes and load average",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Raw memory components reported by UCD-SNMP. Available memory falling persistently toward zero is more significant than cache growth.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 68
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "omadaMemoryAvailableKiB{job=\"snmp-omada-gateway\", instance=~\"$instance\"} * 1024",
+          "legendFormat": "Available",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "omadaMemoryCachedKiB{job=\"snmp-omada-gateway\", instance=~\"$instance\"} * 1024",
+          "legendFormat": "Cache",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "editorMode": "code",
+          "expr": "omadaMemoryBufferKiB{job=\"snmp-omada-gateway\", instance=~\"$instance\"} * 1024",
+          "legendFormat": "Buffers",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Memory availability, cache, and buffers",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "description": "Interrupt and context-switch rates can reveal packet-processing pressure that is not obvious from average CPU utilization alone.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "unit": "ops"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 76
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull", "max"],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "omadaInterruptsPerSecond{job=\"snmp-omada-gateway\", instance=~\"$instance\"}",
+          "legendFormat": "Interrupts/s",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "omadaContextSwitchesPerSecond{job=\"snmp-omada-gateway\", instance=~\"$instance\"}",
+          "legendFormat": "Context switches/s",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Kernel scheduling activity",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 41,
+  "tags": ["omada", "ER707-M2", "snmp", "gateway"],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "10.0.0.1",
+          "value": "10.0.0.1"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "Prometheus"
+        },
+        "definition": "label_values(up{job=\"snmp-omada-gateway\"}, instance)",
+        "includeAll": false,
+        "label": "Gateway",
+        "name": "instance",
+        "options": [],
+        "query": {
+          "query": "label_values(up{job=\"snmp-omada-gateway\"}, instance)",
+          "refId": "PrometheusVariableQueryEditor-Instance"
+        },
+        "refresh": 1,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "Prometheus"
+        },
+        "definition": "label_values(ifOperStatus{job=\"snmp-omada-gateway\", instance=~\"$instance\"}, ifName)",
+        "includeAll": true,
+        "label": "Interface",
+        "multi": true,
+        "name": "interface",
+        "options": [],
+        "query": {
+          "query": "label_values(ifOperStatus{job=\"snmp-omada-gateway\", instance=~\"$instance\"}, ifName)",
+          "refId": "PrometheusVariableQueryEditor-Interface"
+        },
+        "refresh": 1,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": ["15s", "30s", "1m", "5m"]
+  },
+  "timezone": "browser",
+  "title": "Omada Gateway SNMP Troubleshooting",
+  "uid": "omada-snmp",
+  "version": 1,
+  "weekStart": ""
+}

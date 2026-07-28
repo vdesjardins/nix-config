@@ -28,7 +28,14 @@
                 "value": null
               }
             ]
-          }
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Show all events",
+              "url": "/d/omada-gateway/omada-gateway-troubleshooting?${__url_time_range}&${host:queryparam}&var-severity=.%2A&var-searchword=.%2A"
+            }
+          ]
         },
         "overrides": []
       },
@@ -94,7 +101,14 @@
                 "value": 5
               }
             ]
-          }
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Focus outage signals",
+              "url": "/d/omada-gateway/omada-gateway-troubleshooting?${__url_time_range}&${host:queryparam}&var-severity=.%2A&var-searchword=%28%3Fi%29%28internet%7Cwan%7Cgateway%7Clink%7Cheartbeat%29.%2A%28down%7Clost%7Cdisconnect%7Cfailed%7Ctimeout%7Coffline%7Chang%29%7Creboot%7Crestart"
+            }
+          ]
         },
         "overrides": []
       },
@@ -160,7 +174,14 @@
                 "value": 10
               }
             ]
-          }
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Focus warnings and errors",
+              "url": "/d/omada-gateway/omada-gateway-troubleshooting?${__url_time_range}&${host:queryparam}&var-severity=warning%7Cerror%7Ccritical%7Calert%7Cemergency&var-searchword=.%2A"
+            }
+          ]
         },
         "overrides": []
       },
@@ -222,7 +243,14 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Focus lifecycle events",
+              "url": "/d/omada-gateway/omada-gateway-troubleshooting?${__url_time_range}&${host:queryparam}&var-severity=.%2A&var-searchword=%28%3Fi%29%28reboot%7Crestart%7Cadopt%7Cprovision%7Cfirmware%29"
+            }
+          ]
         },
         "overrides": []
       },
@@ -332,7 +360,7 @@
             "uid": "VictoriaLogs"
           },
           "editorMode": "code",
-          "expr": "{job=\"syslog-omada\", host=~\"$host\"} ~\"$searchword\" | stats by (_time:1m) count() as events",
+          "expr": "{job=\"syslog-omada\", host=~\"$host\", level=~\"$severity\"} ~\"$searchword\" | stats by (_time:1m) count() as events",
           "legendFormat": "All events",
           "queryType": "statsRange",
           "refId": "A"
@@ -343,7 +371,7 @@
             "uid": "VictoriaLogs"
           },
           "editorMode": "code",
-          "expr": "{job=\"syslog-omada\", host=~\"$host\"} _msg:~\"(?i)(internet|wan|gateway|link|heartbeat).*(down|lost|disconnect|failed|timeout|offline|hang)|reboot|restart\" | stats by (_time:1m) count() as events",
+          "expr": "{job=\"syslog-omada\", host=~\"$host\", level=~\"$severity\"} _msg:~\"(?i)(internet|wan|gateway|link|heartbeat).*(down|lost|disconnect|failed|timeout|offline|hang)|reboot|restart\" ~\"$searchword\" | stats by (_time:1m) count() as events",
           "legendFormat": "Outage signals",
           "queryType": "statsRange",
           "refId": "B"
@@ -399,7 +427,7 @@
             "uid": "VictoriaLogs"
           },
           "editorMode": "code",
-          "expr": "{job=\"syslog-omada\", host=~\"$host\"} | stats by (level) count() as events | sort by (events) desc",
+          "expr": "{job=\"syslog-omada\", host=~\"$host\", level=~\"$severity\"} ~\"$searchword\" | stats by (level) count() as events | sort by (events) desc",
           "legendFormat": "{{level}}",
           "queryType": "stats",
           "refId": "A"
@@ -413,7 +441,7 @@
         "type": "victoriametrics-logs-datasource",
         "uid": "VictoriaLogs"
       },
-      "description": "WAN and gateway events most likely to explain loss of Internet connectivity.",
+      "description": "Warning and error severity events plus WAN and gateway messages associated with loss of Internet connectivity.",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -443,12 +471,12 @@
             "uid": "VictoriaLogs"
           },
           "editorMode": "code",
-          "expr": "{job=\"syslog-omada\", host=~\"$host\"} _msg:~\"(?i)(internet|wan|gateway|link|heartbeat|dhcp|dns|pppoe|reboot|restart|offline|disconnect|timeout|failed|error)\"",
+          "expr": "{job=\"syslog-omada\", host=~\"$host\", level=~\"$severity\"} (level:~\"warning|error|critical|alert|emergency\" OR _msg:~\"(?i)(internet|wan|gateway|link|heartbeat|dhcp|dns|pppoe|reboot|restart|offline|disconnect|timeout|failed|error)\") ~\"$searchword\"",
           "queryType": "logs",
           "refId": "A"
         }
       ],
-      "title": "Connectivity and gateway events",
+      "title": "Warnings, errors, and connectivity events",
       "type": "logs"
     },
     {
@@ -499,7 +527,7 @@
             "uid": "VictoriaLogs"
           },
           "editorMode": "code",
-          "expr": "{job=\"syslog-omada\", host=~\"$host\"} ~\"$searchword\"",
+          "expr": "{job=\"syslog-omada\", host=~\"$host\", level=~\"$severity\"} ~\"$searchword\"",
           "queryType": "logs",
           "refId": "A"
         }
@@ -542,10 +570,34 @@
       },
       {
         "current": {
+          "text": "All",
+          "value": ".*"
+        },
+        "description": "Syslog severity regular expression. Summary cards set this automatically.",
+        "hide": 0,
+        "label": "Severity",
+        "name": "severity",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": ".*"
+          },
+          {
+            "selected": false,
+            "text": "Warning and higher",
+            "value": "warning|error|critical|alert|emergency"
+          }
+        ],
+        "query": "All : .*, Warning and higher : warning|error|critical|alert|emergency",
+        "type": "custom"
+      },
+      {
+        "current": {
           "text": ".*",
           "value": ".*"
         },
-        "description": "Case-sensitive regular expression applied to all raw events.",
+        "description": "Message regular expression. Summary cards set this automatically; use .* to show all messages.",
         "label": "Search regex",
         "name": "searchword",
         "options": [

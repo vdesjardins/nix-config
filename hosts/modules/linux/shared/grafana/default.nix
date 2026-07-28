@@ -14,6 +14,13 @@
           (dashLib.setUid "omada-gateway")
         ];
     };
+    omada-snmp = {
+      path = ./dashboards/omada-snmp.json;
+      transform = dashboard:
+        lib.pipe dashboard [
+          (dashLib.setUid "omada-snmp")
+        ];
+    };
     cadvisor = {
       id = 14282;
       version = 1;

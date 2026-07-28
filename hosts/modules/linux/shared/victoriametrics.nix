@@ -110,6 +110,39 @@
           ];
         }
         {
+          job_name = "snmp-omada-gateway";
+          scrape_interval = "15s";
+          scrape_timeout = "10s";
+          static_configs = [
+            {
+              targets = ["10.0.0.1"];
+              labels = {
+                device = "ER707-M2";
+                type = "network-gateway";
+              };
+            }
+          ];
+          metrics_path = "/snmp";
+          params = {
+            auth = ["omada_eap_v2"];
+            module = ["if_mib,hrDevice,hrStorage,hrSystem,omada_system"];
+          };
+          relabel_configs = [
+            {
+              source_labels = ["__address__"];
+              target_label = "__param_target";
+            }
+            {
+              source_labels = ["__param_target"];
+              target_label = "instance";
+            }
+            {
+              target_label = "__address__";
+              replacement = "127.0.0.1:9116";
+            }
+          ];
+        }
+        {
           job_name = "snmp-eap";
           scrape_interval = "15s";
           static_configs = [
