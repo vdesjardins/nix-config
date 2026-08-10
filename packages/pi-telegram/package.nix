@@ -5,7 +5,7 @@
 }:
 stdenv.mkDerivation {
   pname = "pi-telegram";
-  version = "0.20.6";
+  version = "0.27.7";
 
   src = fetchFromGitHub {
     owner = "llblab";

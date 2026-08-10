@@ -5,12 +5,12 @@
 }:
 python312Packages.buildPythonPackage rec {
   pname = "graphifyy";
-  version = "0.9.14";
+  version = "0.9.38";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-bo9tJVm1y12yxakY7tVrhBu3kf26WUr8q4+LIxShL78=";
+    hash = "sha256-7C9e5JAVbCSfL9WvfqEdWslffugVWsWIn6eHCavYPDw=";
   };
 
   # Strip tree-sitter bindings from pyproject.toml and satisfy them from the
@@ -25,31 +25,48 @@ python312Packages.buildPythonPackage rec {
 
   nativeBuildInputs = with python312Packages; [setuptools];
 
-  propagatedBuildInputs =
+  propagatedBuildInputs = let
+    # Only ship the grammars Graphify declares as runtime dependencies. The full
+    # nixpkgs grammar scope includes hundreds of unrelated and broken packages.
+    grammar = name:
+      python312Packages.tree-sitter-grammars.${name}.overridePythonAttrs (_old: {
+        # Some generated grammar wheels do not include distribution metadata.
+        dontCheckPythonMetadata = true;
+      });
+  in
     (with python312Packages; [
       datasketch
       networkx
       rapidfuzz
       tree-sitter
     ])
-    ++ (builtins.attrValues (
-      builtins.removeAttrs python312Packages.tree-sitter-grammars [
-        "recurseForDerivations"
-        # Packages with test failures in nixpkgs (not marked broken upstream)
-        "tree-sitter-agda"
-        "tree-sitter-fstar"
-        "tree-sitter-dtd"
-        "tree-sitter-go-template-helm"
-        "tree-sitter-gren"
-        "tree-sitter-ocaml-interface"
-        "tree-sitter-opam"
-        "tree-sitter-quint"
-        "tree-sitter-strace"
-        "tree-sitter-tact"
-        "tree-sitter-tsx"
-        "tree-sitter-vue"
-      ]
-    ));
+    ++ (map grammar [
+      "tree-sitter-python"
+      "tree-sitter-javascript"
+      "tree-sitter-typescript"
+      "tree-sitter-go"
+      "tree-sitter-rust"
+      "tree-sitter-java"
+      "tree-sitter-groovy"
+      "tree-sitter-c"
+      "tree-sitter-cpp"
+      "tree-sitter-ruby"
+      "tree-sitter-c-sharp"
+      "tree-sitter-kotlin"
+      "tree-sitter-scala"
+      "tree-sitter-php"
+      "tree-sitter-swift"
+      "tree-sitter-lua"
+      "tree-sitter-zig"
+      "tree-sitter-powershell"
+      "tree-sitter-elixir"
+      "tree-sitter-objc"
+      "tree-sitter-julia"
+      "tree-sitter-verilog"
+      "tree-sitter-fortran"
+      "tree-sitter-bash"
+      "tree-sitter-json"
+    ]);
 
   doCheck = false;
 

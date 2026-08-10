@@ -34,8 +34,8 @@ in {
     # fonts and colors
     roles.desktop.extensions.gtk = {
       inherit font;
-      themePackage = pkgs.tokyonight-gtk-theme;
-      themeName = "Tokyonight-Dark";
+      themePackage = pkgs.adw-gtk3;
+      themeName = "adw-gtk3-dark";
       colorScheme = "dark";
       iconPackage = pkgs.papirus-icon-theme;
       iconName = "Papirus-Dark";

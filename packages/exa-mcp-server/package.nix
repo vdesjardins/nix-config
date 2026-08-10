@@ -6,11 +6,11 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "exa-mcp-server";
-  version = "3.2.1";
+  version = "3.4.0";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/exa-mcp-server/-/exa-mcp-server-${version}.tgz";
-    hash = "sha256-Z1aI3/zXRri7asfwd7ZLc4LEowX5SNRLpSbme+UDlt8=";
+    hash = "sha256-y8JFZwhnVs3gh+7o2PYXt8QjsXYeBo4rUuFnsBPmPxk=";
   };
 
   nativeBuildInputs = [nodejs];
@@ -23,8 +23,8 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin
-    # smithery/stdio/index.cjs is a self-contained bundled binary
-    cp smithery/stdio/index.cjs $out/bin/exa-mcp-server
+    # dist/stdio.cjs is the self-contained bundled binary from the npm release.
+    cp dist/stdio.cjs $out/bin/exa-mcp-server
     chmod +x $out/bin/exa-mcp-server
     patchShebangs $out/bin/exa-mcp-server
     runHook postInstall
