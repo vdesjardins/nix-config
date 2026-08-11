@@ -62,17 +62,13 @@ in {
 
     web = {
       command = mkOption {
-        type = types.enum ["web" "serve"];
+        type = types.enum ["serve"];
         default = "serve";
         description = ''
-          Command to run for the background service (web or serve).
+          OpenCode 2 command run by the systemd/launchd background service.
 
-          Controls which OpenCode command is executed by the systemd/launchd background service.
-
-          - `web`: Run the OpenCode web interface (alternative)
-          - `serve`: Run the OpenCode serve command (default)
-
-          Environment variables and extraArgs are passed to whichever command is selected.
+          OpenCode 2 no longer provides the `web` command. The `serve` command
+          starts its v2 API server in the foreground.
         '';
       };
 
@@ -134,20 +130,7 @@ in {
       opencode = {
         enable = true;
 
-        # Workaround for upstream issue sst/opencode#23256: prettier not vendored in Nix build.
-        # Remove once upstream adds prettier to package.json dependencies.
-        package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
-          preBuild =
-            (old.preBuild or "")
-            + ''
-              substituteInPlace packages/opencode/src/cli/cmd/generate.ts \
-                --replace-fail 'const prettier = await import("prettier")' 'const prettier: any = { format: async (s: string) => s }' \
-                --replace-fail 'const babel = await import("prettier/plugins/babel")' 'const babel = {}' \
-                --replace-fail 'const estree = await import("prettier/plugins/estree")' 'const estree = {}'
-              substituteInPlace packages/script/src/index.ts \
-                --replace-fail 'if (!semver.satisfies(process.versions.bun, expectedBunVersionRange))' 'if (false)'
-            '';
-        });
+        package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2;
 
         settings = {
           share = "disabled";
@@ -204,14 +187,14 @@ in {
       };
 
       zsh.shellAliases = {
-        oc = "opencode";
-        ocr = "opencode run";
-        oce = "opencode export";
-        oci = "opencode import";
-        ocs = "opencode session list";
-        soc = "srt opencode";
-        yoc = "export OPENCODE_PERMISSION='{\"*\": \"allow\"}' && opencode";
-        yocr = "export OPENCODE_PERMISSION='{\"*\": \"allow\"}' && opencode run";
+        oc = "opencode2";
+        ocr = "opencode2 run";
+        oce = "opencode2 export";
+        oci = "opencode2 import";
+        ocs = "opencode2 service status";
+        soc = "srt opencode2";
+        yoc = "opencode2 --auto";
+        yocr = "opencode2 run --auto";
       };
     };
 
@@ -246,14 +229,6 @@ in {
     };
 
     xdg.configFile = {
-      "opencode/tui.json".text = builtins.toJSON {
-        "$schema" = "https://opencode.ai/tui.json";
-        theme = "tokyonight";
-        keybinds = {
-          messages_half_page_up = "ctrl+u";
-          messages_half_page_down = "ctrl+d";
-        };
-      };
       "opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
       "opencode/plugin/code-validator.js".source = ./plugins/code-validator.js;
       "opencode/code-validator.json".source = ./code-validator.json;
@@ -294,14 +269,14 @@ in {
     };
 
     modules.shell.nushell.globalAliases = {
-      oc = "opencode";
-      ocr = "opencode run";
-      oce = "opencode export";
-      oci = "opencode import";
-      ocs = "opencode session list";
-      soc = "srt opencode";
-      yoc = "with-env { OPENCODE_PERMISSION: '{\\\"*\\\": \\\"allow\\\"}' } { opencode }";
-      yocr = "with-env { OPENCODE_PERMISSION: '{\\\"*\\\": \\\"allow\\\"}' } { opencode run }";
+      oc = "opencode2";
+      ocr = "opencode2 run";
+      oce = "opencode2 export";
+      oci = "opencode2 import";
+      ocs = "opencode2 service status";
+      soc = "srt opencode2";
+      yoc = "opencode2 --auto";
+      yocr = "opencode2 run --auto";
     };
 
     home.packages = lib.optionals pkgs.stdenv.isLinux [pkgs.libnotify];
