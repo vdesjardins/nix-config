@@ -5,39 +5,8 @@
         enable = true;
 
         nixvimInjections = true;
-
-        package = pkgs.vimPlugins.nvim-treesitter-legacy;
-
-        settings = {
-          highlight.enable = true;
-          indent.enable = true;
-          incremental_selection = {
-            enable = true;
-            keymaps = {
-              init_selection = false;
-              node_incremental = "v";
-              node_decremental = "V";
-              scope_incremental = "grc";
-            };
-          };
-        };
-      };
-
-      treesitter-refactor = {
-        enable = true;
-
-        settings = {
-          # highlight_definitions = {
-          #   enable = true;
-          #   clear_on_cursor_move = true;
-          # };
-          smart_rename = {
-            enable = true;
-          };
-          navigation = {
-            enable = true;
-          };
-        };
+        highlight.enable = true;
+        indent.enable = true;
       };
 
       hmts = {
@@ -72,114 +41,52 @@
         };
       };
 
-      treesitter-textobjects = {
-        enable = true;
-
-        package = pkgs.vimPlugins.nvim-treesitter-textobjects-legacy;
-
-        settings = {
-          select = {
-            enable = true;
-            lookahead = true;
-            keymaps = {
-              "af" = {
-                query = "@function.outer";
-                desc = "Select outer part of function";
-              };
-              "if" = {
-                query = "@function.inner";
-                desc = "Select inner part of function";
-              };
-              "ac" = {
-                query = "@class.outer";
-                desc = "Select outer part of class";
-              };
-              "ic" = {
-                query = "@class.inner";
-                desc = "Select inner part of class";
-              };
-            };
-          };
-
-          swap = {
-            enable = true;
-            swap_next = {
-              "<leader>ln" = {
-                query = "@parameter.inner";
-                desc = "Swap with next parameter";
-              };
-            };
-            swap_previous = {
-              "<leader>lp" = {
-                query = "@parameter.inner";
-                desc = "Swap with previous parameter";
-              };
-            };
-          };
-
-          move = {
-            enable = true;
-            set_jumps = true; # whether to set jumps in the jumplist
-            goto_next_start = {
-              "]m" = {
-                query = "@function.outer";
-                desc = "Goto Next Function Start";
-              };
-              "]]" = {
-                query = "@class.outer";
-                desc = "Goto Next Class Start";
-              };
-            };
-            goto_next_end = {
-              "]M" = {
-                query = "@function.outer";
-                desc = "Goto Next Function End";
-              };
-              "][" = {
-                query = "@class.outer";
-                desc = "Goto Next Class End";
-              };
-            };
-            goto_previous_start = {
-              "[m" = {
-                query = "@function.outer";
-                desc = "Goto Previous Function Start";
-              };
-              "[[" = {
-                query = "@class.outer";
-                desc = "Goto Previous Class Start";
-              };
-            };
-            goto_previous_end = {
-              "[M" = {
-                query = "@function.outer";
-                desc = "Goto Previous Function End";
-              };
-              "[]" = {
-                query = "@class.outer";
-                desc = "Goto Previous Class End";
-              };
-            };
-          };
-
-          lsp_interop = {
-            enable = true;
-            border = "none";
-
-            peek_definition_code = {
-              "<leader>ldf" = {
-                query = "@function.outer";
-                desc = "LSP Peek Function Definition";
-              };
-              "<leader>ldF" = {
-                query = "@class.outer";
-                desc = "LSP Peek Class Definition";
-              };
-            };
-          };
-        };
-      };
+      treesitter-textobjects.enable = true;
     };
+
+    extraConfigLua = ''
+      require("nvim-treesitter-textobjects").setup({
+        select = { lookahead = true },
+        move = { set_jumps = true },
+      })
+
+      local select = require("nvim-treesitter-textobjects.select")
+      local swap = require("nvim-treesitter-textobjects.swap")
+      local move = require("nvim-treesitter-textobjects.move")
+
+      local function map_select(key, query, description)
+        vim.keymap.set({ "x", "o" }, key, function()
+          select.select_textobject(query, "textobjects")
+        end, { desc = description })
+      end
+
+      map_select("af", "@function.outer", "Select outer part of function")
+      map_select("if", "@function.inner", "Select inner part of function")
+      map_select("ac", "@class.outer", "Select outer part of class")
+      map_select("ic", "@class.inner", "Select inner part of class")
+
+      vim.keymap.set("n", "<leader>ln", function()
+        swap.swap_next("@parameter.inner")
+      end, { desc = "Swap with next parameter" })
+      vim.keymap.set("n", "<leader>lp", function()
+        swap.swap_previous("@parameter.inner")
+      end, { desc = "Swap with previous parameter" })
+
+      local function map_move(key, method, query, description)
+        vim.keymap.set({ "n", "x", "o" }, key, function()
+          move[method](query, "textobjects")
+        end, { desc = description })
+      end
+
+      map_move("]m", "goto_next_start", "@function.outer", "Goto next function start")
+      map_move("]]", "goto_next_start", "@class.outer", "Goto next class start")
+      map_move("]M", "goto_next_end", "@function.outer", "Goto next function end")
+      map_move("][", "goto_next_end", "@class.outer", "Goto next class end")
+      map_move("[m", "goto_previous_start", "@function.outer", "Goto previous function start")
+      map_move("[[", "goto_previous_start", "@class.outer", "Goto previous class start")
+      map_move("[M", "goto_previous_end", "@function.outer", "Goto previous function end")
+      map_move("[]", "goto_previous_end", "@class.outer", "Goto previous class end")
+    '';
 
     keymaps = [
       {
