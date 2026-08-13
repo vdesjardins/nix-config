@@ -24,7 +24,7 @@ in {
 
       systemd = {
         enable = true;
-        targets = ["hyprland-session.target"];
+        targets = ["graphical-session.target"];
       };
 
       settings = {
@@ -33,7 +33,7 @@ in {
           layer = "top";
           position = "bottom";
           height = 40;
-          modules-left = ["sway/workspaces" "sway/mode" "hyprland/workspaces" "hyprland/mode"];
+          modules-left = ["sway/workspaces" "sway/mode" "hyprland/workspaces" "hyprland/mode" "niri/workspaces"];
           modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "gamemode" "tray"];
           modules-right = ["backlight" "network" "wireplumber" "battery" "custom/date" "clock" "custom/utc"];
 
@@ -54,6 +54,22 @@ in {
           };
 
           "hyprland/workspaces" = {
+            format = "{icon}";
+            format-icons = {
+              "1" = "󰋜";
+              "2" = "";
+              "3" = "";
+              "4" = "";
+              "5" = "";
+              "7" = "";
+              "8" = "";
+              "9" = "";
+              "10" = "";
+              default = "";
+            };
+          };
+
+          "niri/workspaces" = {
             format = "{icon}";
             format-icons = {
               "1" = "󰋜";

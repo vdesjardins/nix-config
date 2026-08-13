@@ -137,35 +137,62 @@ in {
       })
     ];
 
-    wayland.windowManager.hyprland = let
-      rofi = config.programs.rofi.finalPackage;
-    in {
-      settings.bind = [
-        "$mod, SPACE, exec, ${rofi}/bin/rofi -show drun -matching fuzzy"
-        "$mod, X, exec, ${rofi}/bin/rofi -show run -matching fuzzy"
-        "$mod, W, exec, ${rofi}/bin/rofi -show window -matching fuzzy"
-        "$mod, C, exec, ${rofi}/bin/rofi -show ssh -matching fuzzy"
-        "$mod, M, exec, ${rofi}/bin/rofi -show window -matching fuzzy"
-        "$mod SHIFT, O, exec, ${rofi}/bin/rofi -show combi"
-      ];
-    };
-
-    wayland.windowManager.sway = {
-      config = let
-        swayCfg = config.wayland.windowManager.sway.config;
+    wayland.windowManager = {
+      hyprland = let
         rofi = config.programs.rofi.finalPackage;
       in {
-        menu = "${rofi}/bin/rofi -show drun -matching fuzzy";
+        settings.bind = [
+          "$mod, SPACE, exec, ${rofi}/bin/rofi -show drun -matching fuzzy"
+          "$mod, X, exec, ${rofi}/bin/rofi -show run -matching fuzzy"
+          "$mod, W, exec, ${rofi}/bin/rofi -show window -matching fuzzy"
+          "$mod, C, exec, ${rofi}/bin/rofi -show ssh -matching fuzzy"
+          "$mod, M, exec, ${rofi}/bin/rofi -show window -matching fuzzy"
+          "$mod SHIFT, O, exec, ${rofi}/bin/rofi -show combi"
+        ];
+      };
 
-        keybindings = lib.mkOptionDefault {
-          "${swayCfg.modifier}+x" = "exec ${rofi}/bin/rofi -show run -matching fuzzy";
-          "${swayCfg.modifier}+w" = "exec ${rofi}/bin/rofi -show window -matching fuzzy";
-          "${swayCfg.modifier}+c" = "exec ${rofi}/bin/rofi -show ssh -matching fuzzy";
-          "${swayCfg.modifier}+m" = "exec ${rofi}/bin/rofi -show window -matching fuzzy";
-          "${swayCfg.modifier}+Shift+o" = "exec ${rofi}/bin/rofi -show combi";
+      niri.settings.binds = let
+        rofi = config.programs.rofi.finalPackage;
+      in {
+        "Mod+Space" = {
+          _props.hotkey-overlay-title = "Launch Application";
+          spawn = [
+            "${rofi}/bin/rofi"
+            "-show"
+            "drun"
+            "-matching"
+            "fuzzy"
+          ];
+        };
+        "Mod+W" = {
+          _props.hotkey-overlay-title = "Show Windows";
+          spawn = [
+            "${rofi}/bin/rofi"
+            "-show"
+            "window"
+            "-matching"
+            "fuzzy"
+          ];
+        };
+      };
 
-          "${swayCfg.modifier}+comma" = "exec echo \"\" | ${rofi}/bin/rofi -dmenu -p 'New workspace name' | xargs -r swaymsg rename workspace to";
-          "${swayCfg.modifier}+period" = "exec echo \"\" | ${rofi}/bin/rofi -dmenu -p 'New window name' | xargs -r swaymsg rename window to";
+      sway = {
+        config = let
+          swayCfg = config.wayland.windowManager.sway.config;
+          rofi = config.programs.rofi.finalPackage;
+        in {
+          menu = "${rofi}/bin/rofi -show drun -matching fuzzy";
+
+          keybindings = lib.mkOptionDefault {
+            "${swayCfg.modifier}+x" = "exec ${rofi}/bin/rofi -show run -matching fuzzy";
+            "${swayCfg.modifier}+w" = "exec ${rofi}/bin/rofi -show window -matching fuzzy";
+            "${swayCfg.modifier}+c" = "exec ${rofi}/bin/rofi -show ssh -matching fuzzy";
+            "${swayCfg.modifier}+m" = "exec ${rofi}/bin/rofi -show window -matching fuzzy";
+            "${swayCfg.modifier}+Shift+o" = "exec ${rofi}/bin/rofi -show combi";
+
+            "${swayCfg.modifier}+comma" = "exec echo \"\" | ${rofi}/bin/rofi -dmenu -p 'New workspace name' | xargs -r swaymsg rename workspace to";
+            "${swayCfg.modifier}+period" = "exec echo \"\" | ${rofi}/bin/rofi -dmenu -p 'New window name' | xargs -r swaymsg rename window to";
+          };
         };
       };
     };

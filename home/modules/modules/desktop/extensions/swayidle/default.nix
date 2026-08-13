@@ -31,23 +31,12 @@ in {
   };
 
   config = mkIf cfg.enable (let
-    wallpaperChooser = pkgs.writeShellScript "random-wallpaper" ''
-      ${pkgs.findutils}/bin/find -L ${cfg.wallpapersPath} -type f | ${pkgs.coreutils}/bin/shuf -n 1
-    '';
-
-    lockerCommand = pkgs.writeShellScript "lock-random-wallpaper" ''
-      ${config.programs.swaylock.package}/bin/swaylock -f --image `${wallpaperChooser}`
-    '';
+    lockerCommand = "${config.home.profileDirectory}/bin/lock-screen";
   in {
     services.swayidle = {
       inherit (cfg) enable;
 
-      events = [
-        {
-          event = "before-sleep";
-          command = "${lockerCommand}";
-        }
-      ];
+      events.before-sleep = "${lockerCommand}";
 
       timeouts = [
         {
@@ -71,15 +60,16 @@ in {
           command = builtins.toString (
             pkgs.writeShellScript "swayidle-timeout-command"
             ''
-              ${pkgs.sway}/bin/swaymsg "output * dpms off"
-              ${pkgs.hyprland}/bin/hyprctl dispatch dpms off
+              ${pkgs.sway}/bin/swaymsg "output * dpms off" || true
+              ${pkgs.hyprland}/bin/hyprctl dispatch dpms off || true
+              ${pkgs.niri}/bin/niri msg action power-off-monitors || true
             ''
           );
           resumeCommand = builtins.toString (
             pkgs.writeShellScript "swayidle-resume-command"
             ''
-              ${pkgs.sway}/bin/swaymsg "output * dpms on"
-              ${pkgs.hyprland}/bin/hyprctl dispatch dpms on
+              ${pkgs.sway}/bin/swaymsg "output * dpms on" || true
+              ${pkgs.hyprland}/bin/hyprctl dispatch dpms on || true
             ''
           );
         }

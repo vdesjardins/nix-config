@@ -49,6 +49,7 @@
       security.enable = true;
       extensions.enable = true;
       hyprland.enable = true;
+      niri.enable = true;
       gaming.enable = true;
       productivity.enable = true;
       wifi.enable = true;
