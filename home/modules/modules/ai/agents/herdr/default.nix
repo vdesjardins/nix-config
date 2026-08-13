@@ -26,6 +26,7 @@
       prefix = "ctrl+space";
       reload_config = "prefix+r";
       detach = "prefix+d";
+      new_workspace = "prefix+u";
       new_tab = "prefix+c";
       rename_tab = "prefix+comma";
       previous_tab = "prefix+p";
@@ -52,8 +53,8 @@
       ];
       cycle_pane_next = "prefix+ctrl+a";
       cycle_pane_previous = "prefix+shift+ctrl+a";
-      split_vertical = "prefix+s";
-      split_horizontal = "prefix+v";
+      split_vertical = "prefix+v";
+      split_horizontal = "prefix+s";
       resize_mode = "prefix+Z";
     };
     ui = {
