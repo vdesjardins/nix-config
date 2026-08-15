@@ -36,6 +36,17 @@
       fi
   '';
 
+  compositor-dpms = pkgs.writeShellScript "compositor-dpms" ''
+    case "''${XDG_CURRENT_DESKTOP:-}" in
+      niri)
+        ${getExe pkgs.niri} msg action "power-$1-monitors"
+        ;;
+      *)
+        ${pkgs.hyprland}/bin/hyprctl dispatch dpms "$1"
+        ;;
+    esac
+  '';
+
   monitor-attached = pkgs.writeShellScript "monitor-attached" ''
     hyprctl dispatch moveworkspacetomonitor 1 1
     hyprctl dispatch moveworkspacetomonitor 2 1
@@ -108,7 +119,7 @@ in {
           general = {
             lock_cmd = "pidof ${getExe pkgs.hyprlock} || ${getExe pkgs.hyprlock}"; # avoid starting multiple hyprlock instances.
             before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-            after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+            after_sleep_cmd = "${compositor-dpms} on"; # to avoid having to press a key twice to turn on the display.
           };
 
           listener = [
@@ -118,8 +129,8 @@ in {
             }
             {
               timeout = 330; # 5.5min
-              on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-              on-resume = "hyprctl dispatch dpms on && ${getExe pkgs.brightnessctl} -r"; # screen on when activity is detected
+              on-timeout = "${compositor-dpms} off"; # screen off when timeout has passed
+              on-resume = "${compositor-dpms} on && ${getExe pkgs.brightnessctl} -r"; # screen on when activity is detected
             }
           ];
         };
@@ -127,10 +138,7 @@ in {
     };
 
     systemd.user.services = {
-      hypridle.Unit.ConditionEnvironment = lib.mkForce [
-        "WAYLAND_DISPLAY"
-        "XDG_CURRENT_DESKTOP=Hyprland"
-      ];
+      hypridle.Unit.ConditionEnvironment = lib.mkForce "WAYLAND_DISPLAY";
       hyprpolkitagent.Unit.ConditionEnvironment = lib.mkForce [
         "WAYLAND_DISPLAY"
         "XDG_CURRENT_DESKTOP=Hyprland"

@@ -57,10 +57,6 @@ in {
         "WAYLAND_DISPLAY"
         "XDG_CURRENT_DESKTOP=niri"
       ];
-      swayidle.Unit.ConditionEnvironment = lib.mkForce [
-        "WAYLAND_DISPLAY"
-        "XDG_CURRENT_DESKTOP=niri"
-      ];
     };
 
     wayland.windowManager.niri = {
@@ -232,7 +228,7 @@ in {
 
           "Mod+Shift+X" = {
             _props.hotkey-overlay-title = "Lock Screen";
-            spawn = ["${config.home.profileDirectory}/bin/lock-screen"];
+            spawn = [(getExe pkgs.hyprlock)];
           };
           "Mod+Shift+Slash" = {
             _props.hotkey-overlay-title = "Show Shortcuts";
