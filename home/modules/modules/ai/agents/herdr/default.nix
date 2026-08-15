@@ -27,6 +27,7 @@
       reload_config = "prefix+r";
       detach = "prefix+d";
       new_workspace = "prefix+u";
+      goto = "prefix+shift+s";
       new_tab = "prefix+c";
       rename_tab = "prefix+comma";
       previous_tab = "prefix+p";
