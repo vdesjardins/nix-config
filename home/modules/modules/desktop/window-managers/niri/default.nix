@@ -84,6 +84,7 @@ in {
           };
 
           touchpad = {
+            tap = {};
             accel-profile = "adaptive";
             middle-emulation = {};
             natural-scroll = {};
