@@ -5,7 +5,7 @@
 }:
 stdenv.mkDerivation rec {
   pname = "parallel-agent-skills";
-  version = "0.7.1";
+  version = "0.9.0";
 
   src = fetchFromGitHub {
     owner = "parallel-web";

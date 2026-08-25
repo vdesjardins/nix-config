@@ -10,7 +10,7 @@
 }:
 buildNpmPackage rec {
   pname = "mcporter";
-  version = "0.13.3";
+  version = "0.13.7";
 
   src = fetchFromGitHub {
     owner = "steipete";

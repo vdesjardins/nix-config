@@ -9,7 +9,7 @@
 }:
 buildNpmPackage {
   pname = "pi-markdown-preview";
-  version = "0.12.0";
+  version = "0.14.1";
 
   src = fetchFromGitHub {
     owner = "omaclaren";

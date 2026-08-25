@@ -4,13 +4,13 @@
 }:
 stdenv.mkDerivation {
   pname = "skill-reviewer";
-  version = "0.47.0";
+  version = "0.52.0";
 
   src = fetchFromGitHub {
     owner = "dashed";
     repo = "claude-marketplace";
     rev = "master";
-    sha256 = "sha256-2G0O00l/PbUoZSkw0Ebe6HPZboje0L3XN5bgcJptFTs=";
+    sha256 = "sha256-0XK7yNA4lXrmRUvKcdT7Hc12v9j/cDmSwROX5EPCwO8=";
   };
 
   sourceRoot = "source/plugins/skill-reviewer";
