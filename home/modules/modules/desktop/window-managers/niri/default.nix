@@ -120,15 +120,39 @@ in {
         hotkey-overlay.skip-at-startup = {};
 
         binds = {
-          "Mod+H".focus-column-or-monitor-left = {};
-          "Mod+J".focus-window-or-monitor-down = {};
-          "Mod+K".focus-window-or-monitor-up = {};
-          "Mod+L".focus-column-or-monitor-right = {};
+          "Mod+H" = {
+            _props.hotkey-overlay-title = "Focus Left";
+            focus-column-or-monitor-left = {};
+          };
+          "Mod+J" = {
+            _props.hotkey-overlay-title = "Focus Down";
+            focus-window-or-monitor-down = {};
+          };
+          "Mod+K" = {
+            _props.hotkey-overlay-title = "Focus Up";
+            focus-window-or-monitor-up = {};
+          };
+          "Mod+L" = {
+            _props.hotkey-overlay-title = "Focus Right";
+            focus-column-or-monitor-right = {};
+          };
 
-          "Mod+Shift+H".move-column-left-or-to-monitor-left = {};
-          "Mod+Shift+J".move-window-down = {};
-          "Mod+Shift+K".move-window-up = {};
-          "Mod+Shift+L".move-column-right-or-to-monitor-right = {};
+          "Mod+Shift+H" = {
+            _props.hotkey-overlay-title = "Move Column Left";
+            move-column-left-or-to-monitor-left = {};
+          };
+          "Mod+Shift+J" = {
+            _props.hotkey-overlay-title = "Move Window Down";
+            move-window-down = {};
+          };
+          "Mod+Shift+K" = {
+            _props.hotkey-overlay-title = "Move Window Up";
+            move-window-up = {};
+          };
+          "Mod+Shift+L" = {
+            _props.hotkey-overlay-title = "Move Column Right";
+            move-column-right-or-to-monitor-right = {};
+          };
 
           "Mod+BracketLeft" = {
             _props.hotkey-overlay-title = "Consume or Expel Window Left";
@@ -147,27 +171,87 @@ in {
             expel-window-from-column = {};
           };
 
-          "Mod+1".focus-workspace = "1";
-          "Mod+2".focus-workspace = "2";
-          "Mod+3".focus-workspace = "3";
-          "Mod+4".focus-workspace = "4";
-          "Mod+5".focus-workspace = "5";
-          "Mod+6".focus-workspace = "6";
-          "Mod+7".focus-workspace = "7";
-          "Mod+8".focus-workspace = "8";
-          "Mod+9".focus-workspace = "9";
-          "Mod+0".focus-workspace = "10";
+          "Mod+1" = {
+            _props.hotkey-overlay-title = "Focus Workspace 1";
+            focus-workspace = "1";
+          };
+          "Mod+2" = {
+            _props.hotkey-overlay-title = "Focus Workspace 2";
+            focus-workspace = "2";
+          };
+          "Mod+3" = {
+            _props.hotkey-overlay-title = "Focus Workspace 3";
+            focus-workspace = "3";
+          };
+          "Mod+4" = {
+            _props.hotkey-overlay-title = "Focus Workspace 4";
+            focus-workspace = "4";
+          };
+          "Mod+5" = {
+            _props.hotkey-overlay-title = "Focus Workspace 5";
+            focus-workspace = "5";
+          };
+          "Mod+6" = {
+            _props.hotkey-overlay-title = "Focus Workspace 6";
+            focus-workspace = "6";
+          };
+          "Mod+7" = {
+            _props.hotkey-overlay-title = "Focus Workspace 7";
+            focus-workspace = "7";
+          };
+          "Mod+8" = {
+            _props.hotkey-overlay-title = "Focus Workspace 8";
+            focus-workspace = "8";
+          };
+          "Mod+9" = {
+            _props.hotkey-overlay-title = "Focus Workspace 9";
+            focus-workspace = "9";
+          };
+          "Mod+0" = {
+            _props.hotkey-overlay-title = "Focus Workspace 10";
+            focus-workspace = "10";
+          };
 
-          "Mod+Shift+1".move-column-to-workspace = "1";
-          "Mod+Shift+2".move-column-to-workspace = "2";
-          "Mod+Shift+3".move-column-to-workspace = "3";
-          "Mod+Shift+4".move-column-to-workspace = "4";
-          "Mod+Shift+5".move-column-to-workspace = "5";
-          "Mod+Shift+6".move-column-to-workspace = "6";
-          "Mod+Shift+7".move-column-to-workspace = "7";
-          "Mod+Shift+8".move-column-to-workspace = "8";
-          "Mod+Shift+9".move-column-to-workspace = "9";
-          "Mod+Shift+0".move-column-to-workspace = "10";
+          "Mod+Shift+1" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 1";
+            move-column-to-workspace = "1";
+          };
+          "Mod+Shift+2" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 2";
+            move-column-to-workspace = "2";
+          };
+          "Mod+Shift+3" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 3";
+            move-column-to-workspace = "3";
+          };
+          "Mod+Shift+4" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 4";
+            move-column-to-workspace = "4";
+          };
+          "Mod+Shift+5" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 5";
+            move-column-to-workspace = "5";
+          };
+          "Mod+Shift+6" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 6";
+            move-column-to-workspace = "6";
+          };
+          "Mod+Shift+7" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 7";
+            move-column-to-workspace = "7";
+          };
+          "Mod+Shift+8" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 8";
+            move-column-to-workspace = "8";
+          };
+          "Mod+Shift+9" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 9";
+            move-column-to-workspace = "9";
+          };
+          "Mod+Shift+0" = {
+            _props.hotkey-overlay-title = "Move Column to Workspace 10";
+            move-column-to-workspace = "10";
+          };
 
           "Mod+Return" = {
             _props.hotkey-overlay-title = "Open Terminal";
@@ -214,18 +298,42 @@ in {
             spawn = [browser "--new-window" "calendar.google.com"];
           };
 
-          "Mod+V".toggle-window-floating = {};
-          "Mod+F".fullscreen-window = {};
+          "Mod+V" = {
+            _props.hotkey-overlay-title = "Toggle Floating Window";
+            toggle-window-floating = {};
+          };
+          "Mod+F" = {
+            _props.hotkey-overlay-title = "Toggle Fullscreen";
+            fullscreen-window = {};
+          };
           "Mod+Z" = {
             _props.hotkey-overlay-title = "Zoom or Restore Column Stack";
             toggle-column-tabbed-display = {};
           };
-          "Mod+Shift+Q".close-window = {};
-          "Mod+R".switch-preset-column-width = {};
-          "Mod+Alt+H".set-column-width = "-50";
-          "Mod+Alt+L".set-column-width = "+50";
-          "Mod+Alt+J".set-window-height = "+50";
-          "Mod+Alt+K".set-window-height = "-50";
+          "Mod+Shift+Q" = {
+            _props.hotkey-overlay-title = "Close Window";
+            close-window = {};
+          };
+          "Mod+R" = {
+            _props.hotkey-overlay-title = "Cycle Column Width";
+            switch-preset-column-width = {};
+          };
+          "Mod+Alt+H" = {
+            _props.hotkey-overlay-title = "Decrease Column Width";
+            set-column-width = "-50";
+          };
+          "Mod+Alt+L" = {
+            _props.hotkey-overlay-title = "Increase Column Width";
+            set-column-width = "+50";
+          };
+          "Mod+Alt+J" = {
+            _props.hotkey-overlay-title = "Increase Window Height";
+            set-window-height = "+50";
+          };
+          "Mod+Alt+K" = {
+            _props.hotkey-overlay-title = "Decrease Window Height";
+            set-window-height = "-50";
+          };
 
           "Mod+Shift+X" = {
             _props.hotkey-overlay-title = "Lock Screen";
@@ -240,9 +348,18 @@ in {
             toggle-overview = {};
           };
 
-          "Print".screenshot = {};
-          "Shift+Print".screenshot-window = {};
-          "Ctrl+Print".screenshot-screen = {};
+          "Print" = {
+            _props.hotkey-overlay-title = "Screenshot Selection";
+            screenshot = {};
+          };
+          "Shift+Print" = {
+            _props.hotkey-overlay-title = "Screenshot Window";
+            screenshot-window = {};
+          };
+          "Ctrl+Print" = {
+            _props.hotkey-overlay-title = "Screenshot Screen";
+            screenshot-screen = {};
+          };
 
           "Mod+Shift+C" = {
             _props.hotkey-overlay-title = "Clipboard History";
@@ -250,27 +367,45 @@ in {
           };
 
           "XF86AudioRaiseVolume" = {
-            _props.allow-when-locked = true;
+            _props = {
+              allow-when-locked = true;
+              hotkey-overlay-title = "Raise Volume";
+            };
             spawn = [(getExe' pkgs.wireplumber "wpctl") "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+"];
           };
           "XF86AudioLowerVolume" = {
-            _props.allow-when-locked = true;
+            _props = {
+              allow-when-locked = true;
+              hotkey-overlay-title = "Lower Volume";
+            };
             spawn = [(getExe' pkgs.wireplumber "wpctl") "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"];
           };
           "XF86AudioMute" = {
-            _props.allow-when-locked = true;
+            _props = {
+              allow-when-locked = true;
+              hotkey-overlay-title = "Mute Audio";
+            };
             spawn = [(getExe' pkgs.wireplumber "wpctl") "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
           };
           "XF86AudioMicMute" = {
-            _props.allow-when-locked = true;
+            _props = {
+              allow-when-locked = true;
+              hotkey-overlay-title = "Mute Microphone";
+            };
             spawn = [(getExe' pkgs.wireplumber "wpctl") "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
           };
           "XF86MonBrightnessUp" = {
-            _props.allow-when-locked = true;
+            _props = {
+              allow-when-locked = true;
+              hotkey-overlay-title = "Increase Brightness";
+            };
             spawn = [(getExe pkgs.brightnessctl) "-e4" "-n2" "set" "5%+"];
           };
           "XF86MonBrightnessDown" = {
-            _props.allow-when-locked = true;
+            _props = {
+              allow-when-locked = true;
+              hotkey-overlay-title = "Decrease Brightness";
+            };
             spawn = [(getExe pkgs.brightnessctl) "-e4" "-n2" "set" "5%-"];
           };
         };
