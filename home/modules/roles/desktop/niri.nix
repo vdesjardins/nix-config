@@ -21,6 +21,11 @@ in {
         inherit wallpapersPath;
       };
 
+      extensions.swayidle = {
+        enable = true;
+        inherit wallpapersPath;
+      };
+
       tools.fcitx5.enable = true;
     };
   };
