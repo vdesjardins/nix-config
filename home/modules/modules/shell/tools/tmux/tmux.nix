@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   clip-copy =
-    if pkgs.stdenv.isDarwin
+    if pkgs.stdenv.hostPlatform.isDarwin
     then "pbcopy"
     else "${pkgs.wl-clipboard}/bin/wl-copy -n";
 in ''

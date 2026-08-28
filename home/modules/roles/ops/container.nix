@@ -26,7 +26,7 @@ in {
         # unstable.colima
         lazydocker
       ]
-      ++ lib.optionals stdenv.isLinux [
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
         cntr # container debugging tool
         nerdctl # docker compatible containerd cli
       ];

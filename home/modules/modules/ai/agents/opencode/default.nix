@@ -279,6 +279,6 @@ in {
       yocr = "opencode2 run --auto";
     };
 
-    home.packages = lib.optionals pkgs.stdenv.isLinux [pkgs.libnotify];
+    home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.libnotify];
   };
 }

@@ -69,7 +69,7 @@ in {
       [
         inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.handy
       ]
-      ++ (lib.optionals pkgs.stdenv.isLinux [
+      ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         # Text input tools for Linux - required for pasting transcribed text
         # wtype is preferred for Wayland, xdotool for X11, dotool for both
         pkgs.wtype
@@ -82,7 +82,7 @@ in {
       ]);
 
     # Hyprland integration for Wayland push-to-talk
-    wayland.windowManager.hyprland.settings = mkIf (cfg.wayland.enable && pkgs.stdenv.isLinux) {
+    wayland.windowManager.hyprland.settings = mkIf (cfg.wayland.enable && pkgs.stdenv.hostPlatform.isLinux) {
       # Auto-start handy daemon on Hyprland startup
       exec-once = lib.optionals cfg.wayland.auto-start ["handy"];
 

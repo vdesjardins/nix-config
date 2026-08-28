@@ -128,14 +128,14 @@ in {
         xh # tool to send http request
         yq
       ]
-      ++ lib.optionals stdenv.isLinux [
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
         iotop
         lshw # list hardware
         psmisc
         sysstat
         ueberzugpp
       ]
-      ++ lib.optionals stdenv.isDarwin [
+      ++ lib.optionals stdenv.hostPlatform.isDarwin [
         m-cli # controls apps from command line
         pngpaste
       ];

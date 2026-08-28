@@ -66,7 +66,7 @@ in {
           binutils
           xxd
         ]
-        ++ optionals pkgs.stdenv.isLinux [pkgs.gdbgui])
+        ++ optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.gdbgui])
       ++ (optionals cfg.profiling.enable [tracy]);
   };
 }

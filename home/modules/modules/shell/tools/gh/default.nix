@@ -80,7 +80,7 @@ in {
       zsh = let
         jjBookmarkLast = "$(jj bookmark l --revisions @ --template=name)";
         clipCopy =
-          if pkgs.stdenv.isDarwin
+          if pkgs.stdenv.hostPlatform.isDarwin
           then "pbcopy"
           else "wl-copy";
       in {
@@ -125,7 +125,7 @@ in {
       nushell = let
         jjBookmarkLast = "(jj bookmark l --revisions @ --template=name)";
         clipCopy =
-          if pkgs.stdenv.isDarwin
+          if pkgs.stdenv.hostPlatform.isDarwin
           then "pbcopy"
           else "wl-copy";
       in {

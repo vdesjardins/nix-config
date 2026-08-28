@@ -5,7 +5,7 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "officecli-skills";
-  version = "1.0.144";
+  version = "1.0.145";
 
   src = fetchFromGitHub {
     owner = "iOfficeAI";

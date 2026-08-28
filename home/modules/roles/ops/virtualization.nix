@@ -3,7 +3,7 @@
     [
       qemu
     ]
-    ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+    ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       OVMF
     ];
 }

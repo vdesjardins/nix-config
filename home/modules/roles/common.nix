@@ -27,7 +27,7 @@ in {
     programs.home-manager.enable = true;
 
     xdg.enable = true;
-    xdg.mimeApps.enable = pkgs.stdenv.isLinux;
+    xdg.mimeApps.enable = pkgs.stdenv.hostPlatform.isLinux;
 
     home.enableNixpkgsReleaseCheck = false;
 

@@ -8,7 +8,7 @@
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) bool package str;
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
 
   cfg = config.modules.desktop.terminal.ghostty;
   ghosttyPkg = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;

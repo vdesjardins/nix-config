@@ -27,7 +27,7 @@ in {
         buku.enable = true;
       };
       extensions = {
-        rofi-buku.enable = pkgs.stdenv.isLinux;
+        rofi-buku.enable = pkgs.stdenv.hostPlatform.isLinux;
       };
     };
   };

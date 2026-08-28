@@ -5,7 +5,7 @@
 }:
 buildNpmPackage rec {
   pname = "context7";
-  version = "ctx7@0.5.8";
+  version = "ctx7@0.5.9";
 
   src = fetchFromGitHub {
     owner = "upstash";

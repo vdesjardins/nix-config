@@ -93,7 +93,7 @@ in {
         kubectl-tap
         kubectl-who-can
       ])
-      ++ lib.optionals stdenv.isLinux [
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
         popeye # unable to build on darwin
         kubectl-node-shell
       ];

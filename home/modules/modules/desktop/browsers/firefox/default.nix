@@ -58,7 +58,7 @@ in {
   };
 
   config = mkIf cfg.enable (let
-    inherit (pkgs.stdenv) isDarwin;
+    inherit (pkgs.stdenv.hostPlatform) isDarwin;
     inherit (builtins) listToAttrs;
 
     extensions = defaultExtensions ++ cfg.extensions;
@@ -106,7 +106,7 @@ in {
         else ".mozilla/firefox";
 
       package =
-        if pkgs.stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then null # unable to compile on M1. Relying on brew for now
         else
           (pkgs.firefox.override {

@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.shell.tools.gdb.enable = pkgs.stdenv.isLinux;
+    modules.shell.tools.gdb.enable = pkgs.stdenv.hostPlatform.isLinux;
 
     modules.shell.tools.nix-function-calls.enable = true;
 
@@ -26,7 +26,7 @@ in {
         # mitmproxy2swagger
         xxd
       ]
-      ++ lib.optionals stdenv.isLinux [
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
         gdbgui
         cgdb
         uftrace # Function graph tracer for C/C++/Rust
