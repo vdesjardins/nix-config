@@ -5,12 +5,12 @@
 }:
 python312Packages.buildPythonPackage rec {
   pname = "graphifyy";
-  version = "0.9.50";
+  version = "0.9.62";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-F1j6lzqKbcJ8pScezz71X6YZ2nehEgv4v2hahl8gKD8=";
+    hash = "sha256-U67aSp0pQKfQZmKXfkGnaJXKQ6qA0bOebNI76FDa2dM=";
   };
 
   # Strip tree-sitter bindings from pyproject.toml and satisfy them from the

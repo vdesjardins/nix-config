@@ -8,13 +8,13 @@
 }:
 stdenv.mkDerivation {
   pname = "skill-tmux";
-  version = "0.52.0";
+  version = "0.56.0";
 
   src = fetchFromGitHub {
     owner = "dashed";
     repo = "claude-marketplace";
     rev = "master";
-    sha256 = "sha256-0XK7yNA4lXrmRUvKcdT7Hc12v9j/cDmSwROX5EPCwO8=";
+    sha256 = "sha256-HQQq9eilJnkXZg+/xUE+xYv/w+esOhIrLx8Gy39GVPA=";
   };
 
   sourceRoot = "source/plugins/tmux";

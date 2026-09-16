@@ -15,7 +15,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     (mkIf pkgs.stdenv.hostPlatform.isLinux {
-      home.packages = with pkgs; [gnupg gcr];
+      home.packages = with pkgs; [gnupg gcr_4];
 
       services.gpg-agent = {
         inherit (cfg) enable;

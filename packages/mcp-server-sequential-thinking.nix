@@ -18,6 +18,12 @@ buildNpmPackage rec {
 
   dontNpmPrune = true;
 
+  postPatch = ''
+    substituteInPlace tsconfig.json \
+      --replace-fail '"resolveJsonModule": true' \
+      '"resolveJsonModule": true, "types": ["node"]'
+  '';
+
   npmWorkspace = "src/sequentialthinking";
 
   nativeBuildInputs = [
