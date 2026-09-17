@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-2605.url = "github:nixos/nixpkgs/nixos-26.05";
     master.url = "github:nixos/nixpkgs/master";
+    supported-systems.url = "path:./systems";
 
     # System
     nix-darwin.url = "github:LnL7/nix-darwin";
@@ -47,7 +48,7 @@
       url = "github:modem-dev/hunk";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        bun2nix.inputs.systems.url = "github:nix-systems/default-linux";
+        bun2nix.inputs.systems.follows = "supported-systems";
         bun2nix.inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs-2605";
       };
     };
@@ -59,7 +60,7 @@
       url = "github:numtide/llm-agents.nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        systems.url = "github:nix-systems/default-linux";
+        systems.follows = "supported-systems";
         treefmt-nix.inputs.nixpkgs.follows = "nixpkgs-2605";
       };
     };
