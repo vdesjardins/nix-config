@@ -25,7 +25,7 @@ in {
       }
 
       (mkIf pkgs.stdenv.hostPlatform.isLinux {
-        home.packages = with pkgs; [yubikey-agent pinentry-gtk2];
+        home.packages = with pkgs; [yubikey-agent pinentry-gnome3];
 
         systemd.user.services.yubikey-agent = {
           Unit.Description = "Seamless ssh-agent for YubiKeys";
@@ -49,6 +49,7 @@ in {
             Environment = "PATH=/home/vince/.nix-profile/bin";
 
             ExecReload = ["${pkgs.util-linux}/bin/kill -HUP $MAINPID"];
+            ExecStartPre = ["${pkgs.coreutils}/bin/install -d -m 0700 ${config.xdg.configHome}/yubikey-agent"];
 
             ExecStart = ["${pkgs.yubikey-agent}/bin/yubikey-agent -l ${agentSockPath}"];
           };

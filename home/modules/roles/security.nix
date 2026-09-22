@@ -17,7 +17,7 @@ in {
     modules.shell.tools = {
       ssh.enable = true;
       gpg.enable = true;
-      gpg-agent.enable = true;
+      yubikey-agent.enable = true;
       oauth.enable = true;
     };
 
