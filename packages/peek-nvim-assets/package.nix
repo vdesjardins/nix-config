@@ -77,9 +77,11 @@
 
     nativeBuildInputs = [deno];
 
-    outputHash = "sha256-O3x/80DeARjcTviw5ZJAWjOII1bP0t649TTH/NVFMnQ=";
+    __structuredAttrs = true;
+    outputHash = "sha256-nvReWWc6BW7yEX8Fp/O+AtPRnL0JfOt10X+rFtNqmGE=";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
+    unsafeDiscardReferences.out = true;
 
     postPatch = patchSources + installBuildScript;
 

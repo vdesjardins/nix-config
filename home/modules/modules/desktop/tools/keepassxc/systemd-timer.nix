@@ -39,17 +39,13 @@
     fi
     log "In git repository"
 
-    # Prevent concurrent commits with a lock file
-    if [[ -f "$LOCK_FILE" ]]; then
-      log "Lock file exists, another instance is running, exiting"
+    # Prevent concurrent commits without leaving stale locks after a crash.
+    exec 9>"$LOCK_FILE"
+    if ! ${pkgs.util-linux}/bin/flock -n 9; then
+      log "Another instance is running, exiting"
       exit 0
     fi
-    log "No lock file, proceeding"
-
-    # Create lock file
-    touch "$LOCK_FILE"
-    log "Created lock file"
-    trap "log 'Removing lock file'; rm -f $LOCK_FILE" EXIT
+    log "Acquired commit lock"
 
     # Get the current modification time
     CURRENT_MTIME=$(stat -c %Y "$DB_PATH" 2>/dev/null || echo 0)
@@ -105,8 +101,6 @@ in {
         Path = {
           # Monitor the database file for modifications
           PathModified = cfg.databasePath;
-          # Only trigger service if directory is not empty
-          DirectoryNotEmpty = cfg.databaseDir;
           # Unit to trigger on path change
           Unit = "keepassxc-auto-commit.service";
           # Trigger at most once every 60 seconds (debounce window)
@@ -123,6 +117,8 @@ in {
           Description = "Auto-commit KeePassXC database to git";
           After = "keepassxc.service";
           PartOf = "keepassxc.service";
+          StartLimitIntervalSec = 600;
+          StartLimitBurst = 10;
         };
 
         Service = {
@@ -133,9 +129,6 @@ in {
           StandardInput = "null";
           # Don't restart this service, it's triggered by path unit or timer
           RemainAfterExit = false;
-          # Allow higher rate limits for path-triggered service
-          StartLimitIntervalSec = 600;
-          StartLimitBurst = 10;
           # Set environment to ensure git works
           Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin:/home/vince/.nix-profile/bin";
           # Ensure git config works
