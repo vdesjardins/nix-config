@@ -14,6 +14,7 @@
   fileManager = "ghostty --class=org.my.yazi -e yazi";
   browser = "firefox";
   passwordManager = "bitwarden-desktop";
+  lockScreen = "${config.home.profileDirectory}/bin/lock-screen";
 in {
   options.modules.desktop.window-managers.niri = {
     enable = mkEnableOption "niri wm";
@@ -337,7 +338,7 @@ in {
 
           "Mod+Shift+X" = {
             _props.hotkey-overlay-title = "Lock Screen";
-            spawn = [(getExe pkgs.hyprlock)];
+            spawn = [lockScreen];
           };
           "Mod+Shift+Slash" = {
             _props.hotkey-overlay-title = "Show Shortcuts";
