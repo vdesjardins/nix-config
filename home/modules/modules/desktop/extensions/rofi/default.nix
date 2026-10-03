@@ -43,14 +43,16 @@ in {
     ];
   in {
     programs.rofi = {
-      inherit (cfg) enable font package terminal;
+      inherit (cfg) enable package;
       inherit plugins;
 
       theme = import ./theme.nix {
         inherit (config.lib.formats.rasi) mkLiteral;
       };
 
-      extraConfig = {
+      settings = {
+        inherit (cfg) font terminal;
+
         async-pre-read = "50";
         click-to-exit = true;
         combi-modi = "drun,ssh,run,window";
@@ -95,7 +97,6 @@ in {
         scroll-method = 1;
         show-icons = true;
         sort = true;
-        terminal = "${cfg.terminal}";
         tokenize = true;
         window-format = "'  {c}    {t}'";
       };
