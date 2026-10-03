@@ -5,12 +5,4 @@ result-*
 **/__pycache__/
 nixos.qcow2
 keys
-.beads/bd.sock
 debug.log
-
-# bv (beads viewer) local config and caches
-.bv/
-
-# Dolt database files (added by bd init)
-.dolt/
-*.db

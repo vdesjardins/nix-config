@@ -48,7 +48,6 @@
         };
         github-copilot-cli.enable = true;
         kiro.enable = false;
-        beads-viewer.enable = false;
         coding-agent-search.enable = false;
         handy.enable = false;
         sandbox-runtime.enable = false;

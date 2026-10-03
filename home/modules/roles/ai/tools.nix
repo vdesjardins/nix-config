@@ -143,12 +143,6 @@ in {
       };
     };
 
-    beads-viewer.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable beads_viewer - TUI for beads issue tracking";
-    };
-
     coding-agent-search.enable = mkOption {
       type = types.bool;
       default = false;
@@ -200,12 +194,6 @@ in {
 
     plugins = {
       enable = mkEnableOption "plugins (all)";
-      beads.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable beads integration";
-      };
-
       hunk.enable = mkOption {
         type = types.bool;
         default = true;
@@ -430,12 +418,10 @@ in {
         };
 
         plugins = {
-          beads.enable = cfg.plugins.beads.enable;
           hunk.enable = cfg.plugins.hunk.enable;
         };
 
         tools = {
-          beads_viewer.enable = cfg.beads-viewer.enable;
           coding-agent-search.enable = cfg.coding-agent-search.enable;
           sec-skills-audit.enable = cfg.sec-skills-audit.enable;
           ccusage.enable = cfg.ccusage.enable;
