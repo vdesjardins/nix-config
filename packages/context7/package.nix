@@ -5,7 +5,7 @@
 }:
 buildNpmPackage rec {
   pname = "context7";
-  version = "@upstash/context7-tools-ai-sdk@1.0.1";
+  version = "ctx7@0.5.12";
 
   src = fetchFromGitHub {
     owner = "upstash";
