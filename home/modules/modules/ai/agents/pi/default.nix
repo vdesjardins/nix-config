@@ -11,6 +11,37 @@
 
   cfg = config.modules.ai.agents.pi;
 
+  # Reuse the shared MCP definitions already collected by OpenCode.
+  # Pi expects a single executable, separate args, and ${VAR} placeholders.
+  piInterpolation = builtins.replaceStrings ["{env:"] ["\${"];
+  opencodeMcpServers = lib.filterAttrs (
+    _: server:
+      builtins.isAttrs server
+      && builtins.elem (server.type or "") ["local" "remote"]
+  ) (config.programs.opencode.settings.mcp or {});
+  piMcpServers =
+    lib.mapAttrs (
+      _: server:
+        {enabled = server.enabled or true;}
+        // lib.optionalAttrs (server ? timeout) {
+          # OpenCode uses milliseconds; Pi uses seconds.
+          timeout = server.timeout / 1000.0;
+        }
+        // (
+          if server.type == "local"
+          then {
+            command = piInterpolation (builtins.head server.command);
+            args = map piInterpolation (builtins.tail server.command);
+            env = lib.mapAttrs (_: piInterpolation) (server.environment or {});
+          }
+          else {
+            url = piInterpolation server.url;
+            headers = lib.mapAttrs (_: piInterpolation) (server.headers or {});
+          }
+        )
+    )
+    opencodeMcpServers;
+
   # Collect piEnv attrs from all pi packages that declare them
   piEnvVars = lib.foldl' lib.mergeAttrs {} (map (p: p.passthru.piEnv or {}) cfg.packages);
 
@@ -64,6 +95,18 @@ in {
         defaultThinkingLevel = "medium";
         theme = "dark";
       };
+    };
+
+    mcpServers = mkOption {
+      type = attrsOf (attrsOf anything);
+      default = piMcpServers;
+      description = ''
+        Native Pi MCP servers written to ~/.pi/agent/mcp.json.
+        Defaults to the OpenCode MCP definitions, preserving enabled states
+        and converting commands, environment placeholders, and timeouts.
+        Override this option to configure Pi servers independently.
+        This file is Nix-managed; change servers here rather than via /mcp.
+      '';
     };
 
     prompts = mkOption {
@@ -173,7 +216,10 @@ in {
 
       # Prompts are standalone files — no conflict with interactive pi usage.
       file =
-        lib.optionalAttrs (cfg.keybindings != {}) {
+        lib.optionalAttrs (cfg.mcpServers != {}) {
+          ".pi/agent/mcp.json".text = builtins.toJSON {inherit (cfg) mcpServers;};
+        }
+        // lib.optionalAttrs (cfg.keybindings != {}) {
           ".pi/agent/keybindings.json".text = builtins.toJSON cfg.keybindings;
         }
         // lib.mapAttrs' (

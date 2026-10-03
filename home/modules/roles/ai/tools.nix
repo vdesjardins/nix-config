@@ -261,11 +261,6 @@ in {
         default = true;
         description = "Enable Sequential Thinking MCP server";
       };
-      strava.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable Strava MCP server";
-      };
       tree-sitter.enable = mkOption {
         type = types.bool;
         default = true;
@@ -450,7 +445,6 @@ in {
           nixos.enable = cfg.mcp.nixos.enable;
           playwright.enable = cfg.mcp.playwright.enable;
           sequential-thinking.enable = cfg.mcp.sequential-thinking.enable;
-          strava.enable = cfg.mcp.strava.enable;
           tree-sitter.enable = cfg.mcp.tree-sitter.enable;
           memory-service.enable = cfg.mcp.memory-service.enable;
           mcporter.enable = cfg.mcp.mcporter.enable;
