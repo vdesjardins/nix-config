@@ -9,18 +9,19 @@
   inherit (lib.types) str;
 
   cfg = config.modules.desktop.extensions.swaylock;
+  swaylock = pkgs.swaylock-effects;
 
   lockScreen = pkgs.writeShellScriptBin "lock-screen" ''
     wallpaper="$(${pkgs.findutils}/bin/find -L ${config.home.homeDirectory}/Pictures/Wallpapers -maxdepth 1 -type f | ${pkgs.coreutils}/bin/shuf -n 1)"
 
     if [[ -z "$wallpaper" ]]; then
-      exec ${pkgs.swaylock}/bin/swaylock -f
+      exec ${swaylock}/bin/swaylock -f
     fi
 
     dimmed="$(${pkgs.coreutils}/bin/mktemp --suffix=.png)"
     trap '${pkgs.coreutils}/bin/rm -f "$dimmed"' EXIT
     ${pkgs.imagemagick}/bin/magick "$wallpaper" -fill "#1a1b26" -colorize 55 "$dimmed"
-    ${pkgs.swaylock}/bin/swaylock -f --image "$dimmed"
+    ${swaylock}/bin/swaylock -f --image "$dimmed"
   '';
 in {
   options.modules.desktop.extensions.swaylock = {
@@ -37,7 +38,7 @@ in {
     programs.swaylock = {
       inherit (cfg) enable;
 
-      package = pkgs.swaylock;
+      package = swaylock;
 
       settings = {
         inherit (cfg) font;
