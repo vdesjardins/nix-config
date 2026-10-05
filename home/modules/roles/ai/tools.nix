@@ -112,6 +112,12 @@ in {
         description = "Enable pi coding agent";
       };
 
+      radius.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Radius MCP for Pi only, authenticated via /login radius";
+      };
+
       packages = mkOption {
         type = types.listOf types.package;
         default = with my-packages; [
@@ -409,6 +415,7 @@ in {
           kiro.enable = cfg.kiro.enable;
           pi = {
             inherit (cfg.pi) enable packages keybindings settings;
+            radius.enable = cfg.pi.radius.enable;
           };
         };
 

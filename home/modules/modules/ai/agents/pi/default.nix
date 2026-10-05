@@ -97,13 +97,23 @@ in {
       };
     };
 
+    radius.enable = mkEnableOption "Radius MCP for Pi, authenticated via /login radius";
+
     mcpServers = mkOption {
       type = attrsOf (attrsOf anything);
-      default = piMcpServers;
+      default =
+        piMcpServers
+        // lib.optionalAttrs cfg.radius.enable {
+          radius = {
+            url = "https://radius.pi.dev/mcp";
+            auth.provider = "radius";
+          };
+        };
       description = ''
         Native Pi MCP servers written to ~/.pi/agent/mcp.json.
         Defaults to the OpenCode MCP definitions, preserving enabled states
         and converting commands, environment placeholders, and timeouts.
+        Includes Radius for Pi only when radius.enable is set.
         Override this option to configure Pi servers independently.
         This file is Nix-managed; change servers here rather than via /mcp.
       '';
