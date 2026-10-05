@@ -10,6 +10,25 @@
   inherit (builtins) toString;
 
   cfg = config.modules.desktop.extensions.swayidle;
+
+  monitorPower = pkgs.writeShellScriptBin "monitor-power" ''
+    set -eu
+    case "$1" in
+      on|off) ;;
+      *) echo "Usage: monitor-power on|off" >&2; exit 2 ;;
+    esac
+
+    if [[ -n "''${NIRI_SOCKET:-}" ]]; then
+      exec ${pkgs.niri}/bin/niri msg action "power-$1-monitors"
+    elif [[ -n "''${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+      exec ${pkgs.hyprland}/bin/hyprctl dispatch dpms "$1"
+    elif [[ -n "''${SWAYSOCK:-}" ]]; then
+      exec ${pkgs.sway}/bin/swaymsg "output * power $1"
+    else
+      echo "No supported Wayland compositor found" >&2
+      exit 1
+    fi
+  '';
 in {
   options.modules.desktop.extensions.swayidle = {
     enable = mkEnableOption "swayidle";
@@ -33,6 +52,8 @@ in {
   config = mkIf cfg.enable (let
     lockerCommand = "${config.home.profileDirectory}/bin/lock-screen";
   in {
+    home.packages = [monitorPower];
+
     services.swayidle = {
       inherit (cfg) enable;
 
@@ -57,21 +78,8 @@ in {
         }
         {
           timeout = cfg.dpmsTimeout;
-          command = builtins.toString (
-            pkgs.writeShellScript "swayidle-timeout-command"
-            ''
-              ${pkgs.sway}/bin/swaymsg "output * dpms off" || true
-              ${pkgs.hyprland}/bin/hyprctl dispatch dpms off || true
-              ${pkgs.niri}/bin/niri msg action power-off-monitors || true
-            ''
-          );
-          resumeCommand = builtins.toString (
-            pkgs.writeShellScript "swayidle-resume-command"
-            ''
-              ${pkgs.sway}/bin/swaymsg "output * dpms on" || true
-              ${pkgs.hyprland}/bin/hyprctl dispatch dpms on || true
-            ''
-          );
+          command = "${monitorPower}/bin/monitor-power off";
+          resumeCommand = "${monitorPower}/bin/monitor-power on";
         }
       ];
     };

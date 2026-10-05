@@ -15,13 +15,13 @@
     wallpaper="$(${pkgs.findutils}/bin/find -L ${config.home.homeDirectory}/Pictures/Wallpapers -maxdepth 1 -type f | ${pkgs.coreutils}/bin/shuf -n 1)"
 
     if [[ -z "$wallpaper" ]]; then
-      exec ${swaylock}/bin/swaylock -f
+      ${swaylock}/bin/swaylock -f || exit $?
+    else
+      dimmed="$(${pkgs.coreutils}/bin/mktemp --suffix=.png)"
+      trap '${pkgs.coreutils}/bin/rm -f "$dimmed"' EXIT
+      ${pkgs.imagemagick}/bin/magick "$wallpaper" -fill "#1a1b26" -colorize 55 "$dimmed"
+      ${swaylock}/bin/swaylock -f --image "$dimmed" || exit $?
     fi
-
-    dimmed="$(${pkgs.coreutils}/bin/mktemp --suffix=.png)"
-    trap '${pkgs.coreutils}/bin/rm -f "$dimmed"' EXIT
-    ${pkgs.imagemagick}/bin/magick "$wallpaper" -fill "#1a1b26" -colorize 55 "$dimmed"
-    ${swaylock}/bin/swaylock -f --image "$dimmed"
   '';
 in {
   options.modules.desktop.extensions.swaylock = {
