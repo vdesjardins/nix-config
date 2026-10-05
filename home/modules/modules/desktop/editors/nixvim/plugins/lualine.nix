@@ -40,27 +40,6 @@
           }
           {__unkeyed-1 = "diff";}
           {
-            __unkeyed-1.__raw = ''
-              function()
-                return " "
-              end
-            '';
-            color.__raw = ''
-              function()
-                local status = require("sidekick.status").get()
-                if status then
-                  return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
-                end
-              end
-            '';
-            cond.__raw = ''
-              function()
-                local status = require("sidekick.status")
-                return status.get() ~= nil
-              end
-            '';
-          }
-          {
             __unkeyed-1 = "diagnostics";
             sources = {__unkeyed-1 = "nvim_diagnostic";};
             symbols = {
@@ -103,24 +82,6 @@
           }
         ];
         lualine_x = [
-          {
-            __unkeyed-1.__raw = ''
-              function()
-                local status = require("sidekick.status").cli()
-                return " " .. (#status > 1 and #status or "")
-              end
-            '';
-            cond.__raw = ''
-              function()
-                return #require("sidekick.status").cli() > 0
-              end
-            '';
-            color.__raw = ''
-              function()
-                return "Special"
-              end
-            '';
-          }
           {
             __unkeyed-1.__raw = ''require ("noice").api.status.message.get_hl'';
             cond.__raw = ''require("noice").api.status.message.has'';

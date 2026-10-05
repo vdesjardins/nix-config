@@ -21,9 +21,6 @@
             "<Tab>".__raw = ''
               {
                 "snippet_forward",
-                function() -- sidekick next edit suggestion
-                  return require("sidekick").nes_jump_or_apply()
-                end,
                 function() -- if you are using Neovim's native inline completions
                   return vim.lsp.inline_completion.get()
                 end,
@@ -48,28 +45,12 @@
               "buffer"
               "omni"
               "cmp_yanky"
-              "copilot"
               "emoji"
               "lazydev"
               "dictionary"
             ];
 
-            per_filetype = {
-              codecompanion = ["codecompanion"];
-            };
-
             providers = {
-              copilot = {
-                name = "Copilot";
-                async = true;
-                module = "blink-copilot";
-                score_offset = 15;
-                opts = {
-                  max_completions = 2;
-                  max_attemps = 3;
-                };
-              };
-
               cmp_yanky = {
                 async = true;
                 name = "cmp_yanky";

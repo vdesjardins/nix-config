@@ -22,7 +22,5 @@
         };
       };
     };
-
-    dap-go.enable = true;
   };
 }

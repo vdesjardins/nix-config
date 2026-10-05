@@ -53,14 +53,12 @@
     ./lsp.nix
     ./lsp-signature.nix
     ./none-ls.nix
-    ./dap.nix
     ./blink-dictionary.nix
 
     # languages
     ./nix.nix
     ./lazydev.nix
     ./markdown.nix
-    ./peek.nix
     ./terraform.nix
     ./bash.nix
     ./go.nix
@@ -79,13 +77,6 @@
 
     # terminal
     ./terminal.nix
-    ./rest.nix
-
-    # AI
-    ./copilot.nix
-    ./codecompanion.nix
-    ./mcphub.nix
-    ./sidekick.nix
   ];
 
   programs.nixvim = {

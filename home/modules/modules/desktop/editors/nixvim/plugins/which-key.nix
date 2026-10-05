@@ -11,10 +11,6 @@
 
       spec = [
         {
-          __unkeyed-1 = "<leader>a";
-          group = "Sidekick";
-        }
-        {
           __unkeyed-1 = "<leader>B";
           group = "Buffers";
         }
@@ -43,18 +39,6 @@
           group = "Todos";
         }
         {
-          __unkeyed-7 = "<leader>d";
-          group = "Debug";
-        }
-        {
-          __unkeyed-8 = "<leader>dl";
-          group = "Logging";
-        }
-        {
-          __unkeyed-9 = "<leader>dd";
-          group = "Debugger";
-        }
-        {
           __unkeyed-10 = "<leader>h";
           group = "Help";
         }
@@ -74,11 +58,6 @@
           mode = ["n" "v"];
         }
         {
-          __unkeyed-14 = "<leader>c";
-          group = "Chat / AI";
-          mode = ["n" "v"];
-        }
-        {
           __unkeyed-15 = "<leader><space>";
           group = "Execute";
           mode = ["n" "v"];
@@ -94,10 +73,6 @@
         {
           __unkeyed-18 = "<leader>m";
           group = "Misc";
-        }
-        {
-          __unkeyed-19 = "<leader>r";
-          group = "Requests";
         }
       ];
     };

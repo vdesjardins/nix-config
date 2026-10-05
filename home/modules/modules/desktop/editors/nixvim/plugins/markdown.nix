@@ -12,7 +12,7 @@
 
         settings = {
           preview = {
-            filetypes = ["markdown" "codecompanion"];
+            filetypes = ["markdown"];
             # when this field is set to an empty array, the field in lua is not generated
             ignore_buftypes = ["invalid-buftype"];
           };

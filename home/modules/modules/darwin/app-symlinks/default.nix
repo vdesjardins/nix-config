@@ -34,7 +34,13 @@ in {
               (
                 cd "$fromDir"
                 for app in *.app; do
-                  /usr/bin/osacompile -o "$toDir/$app" -e 'do shell script "open \"'$fromDir/$app'\""'
+                  [[ -d "$fromDir/$app" ]] || continue
+                  # Escape the AppleScript string, then let AppleScript quote the shell path.
+                  appPath="$fromDir/$app"
+                  appPath="''${appPath//\\/\\\\}"
+                  appPath="''${appPath//\"/\\\"}"
+                  /usr/bin/osacompile -o "$toDir/$app" \
+                    -e "do shell script \"open -- \" & quoted form of \"$appPath\""
                   icon="$(/usr/bin/plutil -extract CFBundleIconFile raw "$fromDir/$app/Contents/Info.plist")"
                   mkdir -p "$toDir/$app/Contents/Resources"
                   if [[ -f "$fromDir/$app/Contents/Resources/$icon" ]]; then
