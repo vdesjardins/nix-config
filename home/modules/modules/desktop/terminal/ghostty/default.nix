@@ -36,7 +36,11 @@ in {
     };
     package = mkOption {
       type = package;
-      default = ghosttyPkg;
+      # Prefer the packaged release on Linux over the development-tip build.
+      default =
+        if isLinux
+        then pkgs.ghostty
+        else ghosttyPkg;
     };
   };
 
@@ -111,7 +115,7 @@ in {
   in {
     home.packages =
       if isLinux
-      then [ghosttyPkg]
+      then [cfg.package]
       else [];
 
     xdg.configFile."ghostty/config".text = ''
