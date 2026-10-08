@@ -167,6 +167,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Keep codemode enabled alongside the selected startup tools.
+    modules.ai.agents.pi.settings.defaultTools = lib.mkAfter ["+codemode"];
+
     home = {
       packages =
         [cfg.package]
