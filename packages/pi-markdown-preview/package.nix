@@ -16,16 +16,21 @@
 in
   buildNpmPackage {
     pname = "pi-markdown-preview";
-    version = "0.19.2";
+    version = "0.22.1-unstable-2026-10-13";
 
     src = fetchFromGitHub {
       owner = "omaclaren";
       repo = "pi-markdown-preview";
-      rev = "0e7b5d7a50fbc75883e5ef4741b5afb85f3420b1";
-      hash = "sha256-QkHRMhVddwPe38Saj019VszFOozfXoShOZ3YzXDbv/w=";
+      rev = "5a0dd8aa6f61e91c67d90d79498c619a9deb9927";
+      hash = "sha256-Nfi2jxVtig6a+FTaCTb5/kQnAmlkDCfLs855rNI9Y9s=";
     };
 
-    npmDepsHash = "sha256-tkDFGQ6ho/YKLgglAMStxQP3U0ACnNJWNL+WI+CA8p8=";
+    npmDepsFetcherVersion = 2;
+    npmDepsHash = "sha256-YrRcmFgrDyWYt78TGWogRZVsYgVQb8Le4jDkR8Q/DYg=";
+    packageLock = ./package-lock.json;
+    postPatch = ''
+      cp ${./package-lock.json} package-lock.json
+    '';
     dontNpmBuild = true;
 
     propagatedBuildInputs = [

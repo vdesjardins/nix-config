@@ -66,7 +66,15 @@ in {
 
     package = mkOption {
       type = package;
-      default = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi;
+      default = inputs.pi.packages.${pkgs.stdenv.hostPlatform.system}.pi.overrideAttrs (old: {
+        # Pi 1.2.0 removed esbuild, but its flake still checks for it.
+        # Check the current extension loader instead; keep the other checks.
+        installCheckPhase =
+          builtins.replaceStrings
+          ["require('$out/lib/pi/node_modules/esbuild').transformSync('const value: number = 1', { loader: 'ts' })"]
+          ["require('$out/lib/pi/node_modules/jiti')"]
+          old.installCheckPhase;
+      });
       description = "pi coding agent package";
     };
 

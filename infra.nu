@@ -29,6 +29,11 @@ def "main nix-update" [
 	let pkgs_latest = [
 		"english-words", "kubectl-aliases", "lscolors", "tinted-fzf",
 		"mcp-proxy",
+		"pi-tau", "pi-tokyo-night-storm", "skill-creator",
+		"tinted-jjui", "tmux-mcp", "vimPlugins-markdown-toc-nvim",
+		"officecli-skills", "parallel-agent-skills", "pi-telegram", "pi-files-widget",
+		"pi-markdown-preview", "skill-jj", "skill-tmux", "skill-reviewer",
+		"mcp-server-git", "mcp-server-tree-sitter", "rofi-buku", "ketall", "writing-skills",
 		"git-mcp",
 		"opencode-notifier",
 		"vimPlugins-kcl", "vimPlugins-codecompanion-history",
@@ -49,10 +54,13 @@ def "main nix-update" [
 		builtins.toJSON \(builtins.attrNames \(flake.lib.flattenAttrs' flake.outputs.packages.${currentSystem}\)\)" --raw | from json
 	}
 
-	$pkgs_to_update | each { |package|
+	# These packages use local sources rather than upstream releases.
+	$pkgs_to_update | where { |package| $package not-in ["kubectl-helpers", "vmBuilderImage", "sec-skills-audit", "skill-flux", "skill-timewarrior-efficient-entry"] } | each { |package|
 		print $"Updating package: ($package)"
         try {
-          if $package in $pkgs_latest {
+          if $package in ["context7", "playwright-mcp"] {
+              nix-update --flake --generate-lockfile $package --version-regex '^v([0-9.]+)$'
+          } else if $package in $pkgs_latest {
               nix-update --flake --generate-lockfile $package --version=branch
           } else {
               nix-update --flake --generate-lockfile $package

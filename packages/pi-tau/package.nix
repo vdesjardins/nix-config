@@ -5,16 +5,16 @@
 }:
 buildNpmPackage {
   pname = "pi-tau";
-  version = "1.0.8";
+  version = "0-unstable-2026-09-30";
 
   src = fetchFromGitHub {
     owner = "deflating";
     repo = "tau";
-    rev = "fbee2f63e126d77fcae8fb5ea87cacd08b10ddf4";
-    hash = "sha256-r1c6MtUImU9fqy5bwRlBV7dIv3ELDLO9o4SSynAKyPU=";
+    rev = "f1bc1ac017f1e8bc60c70fea73797c1e29098b6f";
+    hash = "sha256-WpXWQNgsNiYPGgTZq8vWFAqzmS5mIfi00WhSgBJWoXg=";
   };
 
-  npmDepsHash = "sha256-LR1M+Q5sSJD6JhrC3I7W0TMbwinJe/v9+NZGKyz1pAk=";
+  npmDepsHash = "sha256-CMDnzG1JbEkg7Eu59Ya0AQUCmR0gMArUV8GfDruXX0Y=";
   dontNpmBuild = true;
 
   # Fix upstream bug: /api/instances handler missing body and closing brace,

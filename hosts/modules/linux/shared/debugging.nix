@@ -1,5 +1,5 @@
-{config, ...}: {
-  environment.systemPackages = [config.boot.kernelPackages.perf];
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.perf];
 
   boot.kernel.sysctl = {
     "kernel.ftrace_enabled" = true;

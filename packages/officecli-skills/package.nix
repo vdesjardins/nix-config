@@ -5,13 +5,13 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "officecli-skills";
-  version = "1.0.153";
+  version = "1.0.157-unstable-2026-10-13";
 
   src = fetchFromGitHub {
     owner = "iOfficeAI";
     repo = "OfficeCLI";
-    rev = "d2d9c60f44537004c3e1f46680c24ea38d9659c2";
-    hash = "sha256-/hdnLTvlZ8SuLMiKCgduUsjNu535e2PV4AnAAXvi82E=";
+    rev = "fb98e593612dee2cec36847666671dba502e60aa";
+    hash = "sha256-GyB+qhseHRQt3w0QxJvngXXQ/BONslDmWHlrex3ym4I=";
   };
 
   dontBuild = true;

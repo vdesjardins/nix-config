@@ -5,7 +5,7 @@
 }:
 stdenv.mkDerivation {
   pname = "pi-tokyo-night-storm";
-  version = "1.0.0";
+  version = "0-unstable-2026-03-28";
 
   src = fetchFromGitHub {
     owner = "sanathks";

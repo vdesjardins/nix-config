@@ -5,7 +5,7 @@
 }:
 buildNpmPackage {
   pname = "tmux-mcp";
-  version = "0.2.2";
+  version = "0-unstable-2025-08-24";
 
   src = fetchFromGitHub {
     owner = "nickgnd";

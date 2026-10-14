@@ -4,7 +4,7 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "markdown-toc-nvim";
-  version = "0-unstable-2024-09-11";
+  version = "0-unstable-2025-09-24";
 
   src = fetchFromGitHub {
     owner = "hedyhli";

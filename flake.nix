@@ -65,6 +65,11 @@
       };
     };
 
+    pi = {
+      url = "github:earendil-works/pi/v1.2.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";

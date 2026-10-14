@@ -4,13 +4,13 @@
 }:
 vimUtils.buildVimPlugin rec {
   pname = "markview.nvim";
-  version = "28.3.0";
+  version = "29.0.0";
 
   src = fetchFromGitHub {
     owner = "OXY2DEV";
     repo = "markview.nvim";
     rev = "v${version}";
-    hash = "sha256-rqzC3RiRoglRtJ/UbWDVvvr1wNhqYJxlOj2dIoE6WfU=";
+    hash = "sha256-E7CBnPP3VYo/jkylhg4IGXYHwdqDdCoNrWc059hbzZw=";
     fetchSubmodules = true;
   };
 

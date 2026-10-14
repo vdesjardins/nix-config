@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation {
   pname = "pi-telegram";
-  version = "0.51.6";
+  version = "0.56.1-unstable-2026-10-13";
 
   src = fetchFromGitHub {
     owner = "llblab";
     repo = "pi-telegram";
-    rev = "f3be17d3bc75b1cc54aa05aec0cb72976b1beec0";
-    hash = "sha256-mEKDxwt0aXxt7ySi7iD4FIFBcCv88hmtDZOvA/WWc6s=";
+    rev = "e0a893c88d80d4eac3ba34e6b3b5bf302be6fe2d";
+    hash = "sha256-hZr0RvahjfmuQp9SHp3XBDs3PkRfxAZAAy/jxuxfHUc=";
   };
 
   dontBuild = true;

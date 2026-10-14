@@ -8,7 +8,7 @@
 }:
 stdenv.mkDerivation {
   pname = "rofi-buku";
-  version = "0.1.1";
+  version = "0.1.1-unstable-2023-10-28";
 
   src = fetchFromGitHub {
     owner = "knatsakis";

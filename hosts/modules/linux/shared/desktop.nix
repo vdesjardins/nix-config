@@ -20,7 +20,7 @@
   hardware.graphics = {
     enable = true;
     enable32Bit =
-      if pkgs.stdenv.isx86_64
+      if pkgs.stdenv.hostPlatform.isx86_64
       then true
       else false;
   };

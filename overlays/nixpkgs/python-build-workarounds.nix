@@ -4,6 +4,14 @@ _inputs: _final: prev: {
   });
 
   python312Packages = prev.python312Packages.overrideScope (pyFinal: pyPrev: {
+    # AnyIO 4.14.2 has failing TLS and unraisable-exception tests on Python 3.12.
+    # Keep the rest of the test suite enabled.
+    anyio = pyPrev.anyio.overridePythonAttrs (old: {
+      disabledTests =
+        (old.disabledTests or [])
+        ++ ["test_tls_connectable" "test_strict_incomplete_iterable" "test_invalid_n"];
+    });
+
     inline-snapshot = pyPrev.inline-snapshot.overridePythonAttrs (_old: {
       doCheck = false;
     });

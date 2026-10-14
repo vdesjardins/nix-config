@@ -7,13 +7,13 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "kcl-language-server";
-  version = "0.13.0";
+  version = "0.13.1";
 
   src = fetchFromGitHub {
     owner = "kcl-lang";
     repo = "kcl";
     rev = "main";
-    hash = "sha256-WEoUXqHI2ECPhRWG9zZtOry5CrUBkpq67PYsuHIUSuc=";
+    hash = "sha256-oHyKefFXEU0x68dFvYohyIbe/ocWPKirPeuokHwKGqs=";
   };
 
   # Set the sourceRoot to the repository root so Cargo.lock is found
