@@ -17,22 +17,6 @@ buildNpmPackage {
   npmDepsHash = "sha256-CMDnzG1JbEkg7Eu59Ya0AQUCmR0gMArUV8GfDruXX0Y=";
   dontNpmBuild = true;
 
-  # Fix upstream bug: /api/instances handler missing body and closing brace,
-  # causing a syntax error that prevents jiti from loading the extension.
-  # See: https://github.com/deflating/tau/blob/fbee2f63/extensions/mirror-server.ts#L930
-  postPatch = ''
-        substituteInPlace extensions/mirror-server.ts \
-          --replace-fail \
-            'if (urlPath === "/api/instances") {
-    ' \
-            'if (urlPath === "/api/instances") {
-          res.writeHead(200, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(getRunningInstances()));
-          return;
-        }
-    '
-  '';
-
   installPhase = ''
     runHook preInstall
     mkdir -p $out
