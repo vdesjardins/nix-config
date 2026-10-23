@@ -66,7 +66,7 @@
     };
 
     pi = {
-      url = "github:earendil-works/pi/v1.3.0";
+      url = "github:earendil-works/pi/v1.4.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
