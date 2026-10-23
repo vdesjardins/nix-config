@@ -175,8 +175,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Keep codemode enabled alongside the selected startup tools.
-    modules.ai.agents.pi.settings.defaultTools = lib.mkAfter ["+codemode"];
+    # Keep codemode enabled alongside the selected startup tools and load the
+    # Home Manager Bash aliases for !/!! commands.
+    modules.ai.agents.pi.settings = {
+      defaultTools = lib.mkAfter ["+codemode"];
+      shellCommandPrefix = lib.mkDefault ''
+        shopt -s expand_aliases
+        [ ! -f ~/.bash_aliases ] || source ~/.bash_aliases
+      '';
+    };
 
     home = {
       packages =
@@ -258,10 +265,17 @@ in {
       (config.wayland.windowManager.hyprland.enable or false)
       (lib.mapAttrsToList (k: v: "${k},${v}") piEnvVars);
 
-    programs.zsh.shellAliases = {
-      pii = "pi";
-      pic = "pi -c";
-      pir = "pi --resume";
+    programs = {
+      bash.shellAliases = {
+        pii = "pi";
+        pic = "pi -c";
+        pir = "pi --resume";
+      };
+      zsh.shellAliases = {
+        pii = "pi";
+        pic = "pi -c";
+        pir = "pi --resume";
+      };
     };
 
     modules.shell.nushell.globalAliases = {

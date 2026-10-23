@@ -41,6 +41,10 @@ in {
         configDir = "${config.xdg.configHome}/jjui";
       };
 
+      bash.shellAliases = {
+        jui = "jjui";
+      };
+
       zsh.shellAliases = {
         jui = "jjui";
       };

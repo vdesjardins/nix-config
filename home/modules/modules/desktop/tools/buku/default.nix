@@ -18,8 +18,13 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [buku];
 
-    programs.zsh.shellAliases = {
-      b = "buku --suggest";
+    programs = {
+      bash.shellAliases = {
+        b = "buku --suggest";
+      };
+      zsh.shellAliases = {
+        b = "buku --suggest";
+      };
     };
 
     modules.shell.nushell.globalAliases = {

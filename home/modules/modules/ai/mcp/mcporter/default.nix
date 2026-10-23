@@ -23,7 +23,10 @@ in {
     home.packages = [cfg.package];
 
     # Add shell integration for mcporter command
-    programs.zsh.shellAliases.mcporter = getExe cfg.package;
+    programs = {
+      bash.shellAliases.mcporter = getExe cfg.package;
+      zsh.shellAliases.mcporter = getExe cfg.package;
+    };
     modules.shell.nushell.globalAliases.mcporter = getExe cfg.package;
   };
 }

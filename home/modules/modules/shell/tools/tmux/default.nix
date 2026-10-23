@@ -70,6 +70,7 @@ in {
         tmuxp.enable = true;
       };
 
+      bash.shellAliases = {t = "tmux attach -d";};
       zsh.shellAliases = {t = "tmux attach -d";};
 
       nushell = {

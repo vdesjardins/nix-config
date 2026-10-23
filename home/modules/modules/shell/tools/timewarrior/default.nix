@@ -18,11 +18,19 @@ in {
       timewarrior
     ];
 
-    programs.zsh.shellAliases = {
-      tw = "timew";
-      twt = "timew track";
-      tws = "timew summary :week :ids";
-      twta = "timew tags";
+    programs = {
+      bash.shellAliases = {
+        tw = "timew";
+        twt = "timew track";
+        tws = "timew summary :week :ids";
+        twta = "timew tags";
+      };
+      zsh.shellAliases = {
+        tw = "timew";
+        twt = "timew track";
+        tws = "timew summary :week :ids";
+        twta = "timew tags";
+      };
     };
 
     modules.shell.nushell.globalAliases = {

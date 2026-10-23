@@ -37,6 +37,8 @@ in {
         };
       };
 
+      bash.shellAliases = {cat = "bat";};
+
       zsh = {
         shellAliases = {cat = "bat";};
         shellGlobalAliases = {

@@ -77,6 +77,40 @@ in {
         };
       };
 
+      bash = let
+        jjBookmarkLast = "$(jj bookmark l --revisions @ --template=name)";
+        clipCopy =
+          if pkgs.stdenv.hostPlatform.isDarwin
+          then "pbcopy"
+          else "wl-copy";
+      in {
+        shellAliases = {
+          ghpc = "gh pu | jq '.url' -Mr | ${clipCopy}";
+          ghrc = "gh ru | ${clipCopy}";
+          ghfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+          ghfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+
+          # jujutsu
+          ghjc = "gh pr create --head ${jjBookmarkLast}";
+          ghjcf = "gh pr create -f --head ${jjBookmarkLast}";
+          ghjm = "gh pr merge -r -d ${jjBookmarkLast}";
+          ghjs = "gh pr status";
+          ghjch = "gh pr checks -i 2 --watch ${jjBookmarkLast}";
+          ghjpc = "gh pr view -c ${jjBookmarkLast}";
+          ghjpw = "gh pr view --web ${jjBookmarkLast}";
+          ghjpu = "gh pr view --json url ${jjBookmarkLast}";
+          ghjpd = "gh pr diff ${jjBookmarkLast}";
+          ghjrw = "gh repo view --web";
+          ghjru = "gh repo view --json url -q .url";
+          ghjrl = "gh run list";
+          ghjrv = "gh run view";
+          ghjpco = "ghjpu | jq '.url' -Mr | ${clipCopy}";
+          ghjrc = "ghjru | ${clipCopy}";
+          ghjfrl = "gh run view --log $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+          ghjfr = "gh run view $(gh run list --status failure --json 'databaseId,createdAt' --jq 'sort_by(.createdAt) | last | .databaseId')";
+        };
+      };
+
       zsh = let
         jjBookmarkLast = "$(jj bookmark l --revisions @ --template=name)";
         clipCopy =

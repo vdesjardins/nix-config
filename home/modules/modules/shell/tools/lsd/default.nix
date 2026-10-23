@@ -16,6 +16,10 @@ in {
     programs = {
       lsd.enable = true;
 
+      bash.shellAliases = {
+        lltr = "lsd -ltr";
+      };
+
       zsh.shellAliases = {
         lltr = "lsd -ltr";
       };

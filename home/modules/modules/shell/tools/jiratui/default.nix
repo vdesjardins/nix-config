@@ -16,8 +16,11 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [jiratui];
 
-    # Add zsh alias with tokyo-night theme
-    programs.zsh.shellAliases.jtui = "jiratui ui --theme tokyo-night";
+    # Add shell aliases with the tokyo-night theme
+    programs = {
+      bash.shellAliases.jtui = "jiratui ui --theme tokyo-night";
+      zsh.shellAliases.jtui = "jiratui ui --theme tokyo-night";
+    };
 
     # Add nushell alias with tokyo-night theme
     modules.shell.nushell.globalAliases.jtui = "jiratui ui --theme tokyo-night";

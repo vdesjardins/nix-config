@@ -46,5 +46,17 @@ in {
         fi
       '';
     };
+
+    # Non-interactive Bash returns from Home Manager's generated ~/.bashrc
+    # before reaching its alias declarations. Emit an alias-only file for
+    # consumers such as Pi's !/!! commands.
+    home.file.".bash_aliases".text =
+      lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (
+          name: value: "alias -- ${lib.escapeShellArg name}=${lib.escapeShellArg value}"
+        )
+        config.programs.bash.shellAliases
+      )
+      + "\n";
   };
 }

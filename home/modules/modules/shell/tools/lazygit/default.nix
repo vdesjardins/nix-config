@@ -32,6 +32,10 @@ in {
         };
       };
 
+      bash.shellAliases = {
+        lg = "lazygit";
+      };
+
       zsh.shellAliases = {
         lg = "lazygit";
       };

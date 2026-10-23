@@ -13,8 +13,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.zsh.shellAliases = {
-      jo = "joshuto";
+    programs = {
+      bash.shellAliases = {
+        jo = "joshuto";
+      };
+      zsh.shellAliases = {
+        jo = "joshuto";
+      };
     };
 
     modules.shell.nushell.globalAliases = {

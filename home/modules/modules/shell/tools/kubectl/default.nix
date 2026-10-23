@@ -67,94 +67,144 @@ in {
       "zsh/conf.d/kubectl_aliases".source = "${my-packages.kubectl-aliases}/share/kubectl-aliases/kubectl_aliases";
     };
 
-    programs.zsh = {
-      initContent = ''
-        source ${config.xdg.configHome}/zsh/conf.d/kubectl_aliases
+    programs = {
+      # Keep Bash aligned with the regular kubectl aliases declared below.
+      # Zsh global aliases remain zsh-only.
+      bash.shellAliases =
+        lib.filterAttrs (
+          name: _:
+            builtins.elem name [
+              "kubectl"
+              "kgnop"
+              "kgpp"
+              "kgsecd"
+              "kge"
+              "kges"
+              "kgc"
+              "kgimg"
+              "kgpsa"
+              "kgppending"
+              "krmpo-evicted"
+              "kgpons"
+              "kgpot"
+              "kgpoon"
+              "kgpo-errors"
+              "krrd"
+              "kgdimg"
+              "kns"
+              "knsd"
+              "kctx"
+              "kctxc"
+              "kctxd"
+              "ke"
+              "ktp"
+              "ktc"
+              "ktn"
+              "kube-get-certs"
+              "kgesw"
+              "kgno"
+              "kgnot"
+              "kgno-gke"
+              "kgaobj"
+              "kc"
+              "kcgu"
+              "kcgcl"
+              "kgpcapadd"
+              "kgpcapdrop"
+              "kgcrds"
+            ]
+        )
+        config.programs.zsh.shellAliases;
 
-        compdef kubecolor=kubectl
-      '';
+      zsh = {
+        initContent = ''
+          source ${config.xdg.configHome}/zsh/conf.d/kubectl_aliases
 
-      oh-my-zsh.plugins = ["kubectl"];
+          compdef kubecolor=kubectl
+        '';
 
-      shellGlobalAliases = {
-        SL = "--show-labels";
-        OJ = "-ojson";
-        OJB = "-ojson |& bat -ljson";
-        OY = "-oyaml";
-        OK = "-okyaml";
-        OYB = "-oyaml |& bat -lyaml";
-        OKB = "-okyaml |& bat -lyaml";
-        OW = "-owide";
-      };
+        oh-my-zsh.plugins = ["kubectl"];
 
-      shellAliases = {
-        kubectl = "kubecolor";
+        shellGlobalAliases = {
+          SL = "--show-labels";
+          OJ = "-ojson";
+          OJB = "-ojson |& bat -ljson";
+          OY = "-oyaml";
+          OK = "-okyaml";
+          OYB = "-oyaml |& bat -lyaml";
+          OKB = "-okyaml |& bat -lyaml";
+          OW = "-owide";
+        };
 
-        # Produce a period-delimited tree of all keys
-        kgnop = "kubectl get nodes -o json | jq -c 'path(..)|[.[]|tostring]|join(\".\")'";
-        kgpp = "kubectl get pods -o json | jq -c 'path(..)|[.[]|tostring]|join(\".\")'";
+        shellAliases = {
+          kubectl = "kubecolor";
 
-        # secret dump
-        kgsecd = "kubectl get secret -o go-template='{{range $k,$v := .data}}{{$k}}={{$v|base64decode}}{{\"\\n\"}}{{end}}'";
-        # events
-        kge = "kubectl get events";
-        kges = "kubectl get events --sort-by=.metadata.creationTimestamp";
+          # Produce a period-delimited tree of all keys
+          kgnop = "kubectl get nodes -o json | jq -c 'path(..)|[.[]|tostring]|join(\".\")'";
+          kgpp = "kubectl get pods -o json | jq -c 'path(..)|[.[]|tostring]|join(\".\")'";
 
-        # pods
-        kgc = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,CONTAINERS:.spec.containers[*].name,INIT:.spec.initContainers[*].name,EPHEMERAL:.spec.ephemeralContainers[*].name'";
-        kgimg = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,IMAGES:.spec.containers[*].image,INIT_IMAGES:.spec.template.spec.initContainers[*].image'";
-        kgpsa = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,SA:.spec.serviceAccountName'";
-        kgppending = "kubectl get pods --field-selector=status.phase=Pending";
-        krmpo-evicted = "kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains(\"Evicted\")) | \"kubectl delete pods \\\\(.metadata.name) -n \\\\(.metadata.namespace)\"' | xargs -n 1 bash -c";
+          # secret dump
+          kgsecd = "kubectl get secret -o go-template='{{range $k,$v := .data}}{{$k}}={{$v|base64decode}}{{\"\\n\"}}{{end}}'";
+          # events
+          kge = "kubectl get events";
+          kges = "kubectl get events --sort-by=.metadata.creationTimestamp";
 
-        kgpons = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeSelector'";
-        kgpot = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.tolerations'";
-        kgpoon = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,OWNER:.metadata.ownerReferences[*].kind,NODE:.spec.nodeName' | rg -vi 'daemonset|node'";
-        kgpo-errors = "kubectl get pods -A | rg -v 'Running|Completed'";
+          # pods
+          kgc = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,CONTAINERS:.spec.containers[*].name,INIT:.spec.initContainers[*].name,EPHEMERAL:.spec.ephemeralContainers[*].name'";
+          kgimg = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,IMAGES:.spec.containers[*].image,INIT_IMAGES:.spec.template.spec.initContainers[*].image'";
+          kgpsa = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,SA:.spec.serviceAccountName'";
+          kgppending = "kubectl get pods --field-selector=status.phase=Pending";
+          krmpo-evicted = "kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains(\"Evicted\")) | \"kubectl delete pods \\\\(.metadata.name) -n \\\\(.metadata.namespace)\"' | xargs -n 1 bash -c";
 
-        # deployment
-        krrd = "kubectl rollout restart deployment";
-        kgdimg = "kubectl get deployment -o=custom-columns='NAMESPACE:.metadata.namespace,DEPLOYMENT:.metadata.name,IMAGES:.spec.template.spec.containers[*].image,INIT_IMAGES:.spec.template.spec.initContainers[*].image'";
+          kgpons = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeSelector'";
+          kgpot = "kubectl get pods -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,NODE:.spec.tolerations'";
+          kgpoon = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,POD:.metadata.name,OWNER:.metadata.ownerReferences[*].kind,NODE:.spec.nodeName' | rg -vi 'daemonset|node'";
+          kgpo-errors = "kubectl get pods -A | rg -v 'Running|Completed'";
 
-        # context and ns switching
-        kns = "kube-ns-switch";
-        knsd = "kube-ns-switch-detach";
-        kctx = "kube-ctx-switch";
-        kctxc = "kube-ctx-switch-current";
-        kctxd = "kube-ctx-switch-detach";
+          # deployment
+          krrd = "kubectl rollout restart deployment";
+          kgdimg = "kubectl get deployment -o=custom-columns='NAMESPACE:.metadata.namespace,DEPLOYMENT:.metadata.name,IMAGES:.spec.template.spec.containers[*].image,INIT_IMAGES:.spec.template.spec.initContainers[*].image'";
 
-        # edit
-        ke = "kubectl edit";
+          # context and ns switching
+          kns = "kube-ns-switch";
+          knsd = "kube-ns-switch-detach";
+          kctx = "kube-ctx-switch";
+          kctxc = "kube-ctx-switch-current";
+          kctxd = "kube-ctx-switch-detach";
 
-        # top
-        ktp = "kubectl top pods";
-        ktc = "kubectl top pods --containers=true";
-        ktn = "kubectl top nodes";
+          # edit
+          ke = "kubectl edit";
 
-        # certs
-        kube-get-certs = ''kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{" "}' | sort'';
+          # top
+          ktp = "kubectl top pods";
+          ktc = "kubectl top pods --containers=true";
+          ktn = "kubectl top nodes";
 
-        # events
-        kgesw = "kubectl get events --field-selector type=Warning --sort-by='.lastTimestamp'";
+          # certs
+          kube-get-certs = ''kubectl get certificates --all-namespaces -o jsonpath='{range .items[?(@.spec.commonName!="")]}{.spec.commonName}{"  "}{.status.notAfter}{" "}' | sort'';
 
-        # nodes
-        kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
-        kgnot = "kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints";
-        kgno-gke = "kubectl get nodes -o=custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\\\.kubernetes\\\\.io/instance-type,SPOT:.metadata.labels.cloud\\\\.google\\\\.com/gke-spot,PREEMP:.metadata.labels.cloud\\\\.google\\\\.com/gke-preemptible";
+          # events
+          kgesw = "kubectl get events --field-selector type=Warning --sort-by='.lastTimestamp'";
 
-        # all objects
-        kgaobj = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
+          # nodes
+          kgno = "kubectl get nodes -o wide --label-columns topology.kubernetes.io/zone";
+          kgnot = "kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints";
+          kgno-gke = "kubectl get nodes -o=custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\\\.kubernetes\\\\.io/instance-type,SPOT:.metadata.labels.cloud\\\\.google\\\\.com/gke-spot,PREEMP:.metadata.labels.cloud\\\\.google\\\\.com/gke-preemptible";
 
-        # config
-        kc = "kubectl config";
-        kcgu = "kubectl config get-users";
-        kcgcl = "kubectl config get-clusters";
+          # all objects
+          kgaobj = "kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found";
 
-        kgpcapadd = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.add'";
-        kgpcapdrop = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.drop'";
+          # config
+          kc = "kubectl config";
+          kcgu = "kubectl config get-users";
+          kcgcl = "kubectl config get-clusters";
 
-        # CRDs
-        kgcrds = "kubectl get crd -o=custom-columns=NAME:.metadata.name,SCOPE:.spec.scope";
+          kgpcapadd = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.add'";
+          kgpcapdrop = "kubectl get pods -A -o=custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,CAPABILITIES:.spec.containers[].securityContext.capabilities.drop'";
+
+          # CRDs
+          kgcrds = "kubectl get crd -o=custom-columns=NAME:.metadata.name,SCOPE:.spec.scope";
+        };
       };
     };
 

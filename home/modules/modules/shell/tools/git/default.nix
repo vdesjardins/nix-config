@@ -231,6 +231,12 @@ in {
           // cfg.delta;
       };
 
+      bash.shellAliases = {
+        g = "git";
+        gr = "cd $(git rev-parse --show-toplevel)";
+        gow = ''fd -H '^\.git$' ~/projects/ | sed -e 's/\.git\/$//g' | fzf | xargs -L1 bash -c 'cd "$0" && git config remote.origin.url' | sed -re 's,^git@(.*):(.*)(\.git)?$,https://\1/\2,' | xargs open'';
+      };
+
       zsh = {
         shellAliases = {
           g = "git";

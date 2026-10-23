@@ -22,8 +22,11 @@ in {
       USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
     };
 
-    programs.zsh = {
-      shellAliases = {
+    programs = {
+      bash.shellAliases = {
+        gpl = "gcloud projects list";
+      };
+      zsh.shellAliases = {
         gpl = "gcloud projects list";
       };
     };

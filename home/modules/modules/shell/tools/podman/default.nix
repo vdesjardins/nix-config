@@ -18,10 +18,17 @@ in {
       podman
     ];
 
-    programs.zsh.shellAliases = {
-      p = "podman";
-      pps = "podman ps";
-      pimg = "podman images";
+    programs = {
+      bash.shellAliases = {
+        p = "podman";
+        pps = "podman ps";
+        pimg = "podman images";
+      };
+      zsh.shellAliases = {
+        p = "podman";
+        pps = "podman ps";
+        pimg = "podman images";
+      };
     };
 
     modules.shell.nushell.globalAliases = {
