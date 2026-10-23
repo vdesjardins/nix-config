@@ -27,6 +27,10 @@
       reload_config = "prefix+r";
       detach = "prefix+d";
       new_workspace = "prefix+u";
+      # Back-and-forth focus history, rather than workspace list order.
+      last_pane = "prefix+b";
+      workspace_picker = "prefix+w";
+      toggle_sidebar = "";
       goto = "prefix+shift+s";
       new_tab = "prefix+c";
       rename_tab = "prefix+comma";
