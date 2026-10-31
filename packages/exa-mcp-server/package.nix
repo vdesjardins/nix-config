@@ -6,11 +6,11 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "exa-mcp-server";
-  version = "3.4.2";
+  version = "3.4.3";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/exa-mcp-server/-/exa-mcp-server-${version}.tgz";
-    hash = "sha256-p9dkQqRdgJOT6ubsQ5rE67v6n4njB4kAgGn4xSNrP5c=";
+    hash = "sha256-tjZvyECXcyhHCW5I0hGIZDEHONOAqr9PN9MI8U9I+B8=";
   };
 
   nativeBuildInputs = [nodejs];

@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "parallel-agent-skills";
-  version = "0.9.0-unstable-2026-10-05";
+  version = "0.9.0-unstable-2026-11-03";
 
   src = fetchFromGitHub {
     owner = "parallel-web";
     repo = "parallel-agent-skills";
-    rev = "92694a248ce444fb74d9bc120a9b93e69316b9f8";
-    hash = "sha256-PwzWEzLfdz+lndID/HiLnZxNrPwT3ngC35sUQw3YgB4=";
+    rev = "0c04632b7ca4429651c405bf5f411c4dcb62f5f4";
+    hash = "sha256-YqU3xjylEHp9zhgJHPaw6y3+RcBFtOV5rk8oDnYh794=";
   };
 
   sourceRoot = "source/skills";

@@ -38,6 +38,7 @@ in {
       );
     in {
       inherit (cfg) enable;
+      loadSessionVariables = false;
 
       settings = {
         show_banner = false;

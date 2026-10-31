@@ -58,7 +58,7 @@ def "main nix-update" [
 	$pkgs_to_update | where { |package| $package not-in ["kubectl-helpers", "vmBuilderImage", "sec-skills-audit", "skill-flux", "skill-timewarrior-efficient-entry"] } | each { |package|
 		print $"Updating package: ($package)"
         try {
-          if $package in ["context7", "playwright-mcp"] {
+          if $package == "playwright-mcp" {
               nix-update --flake --generate-lockfile $package --version-regex '^v([0-9.]+)$'
           } else if $package in $pkgs_latest {
               nix-update --flake --generate-lockfile $package --version=branch

@@ -66,7 +66,7 @@
     };
 
     pi = {
-      url = "github:earendil-works/pi/v1.4.0";
+      url = "github:earendil-works/pi/v1.5.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -103,6 +103,9 @@
       allowUnfree = true;
       allowUnsupportedSystem = true;
       allowBroken = true;
+      # Home Manager still builds a GTK2 input-method cache for Fcitx5.
+      # Retain this legacy toolkit until that unconditional dependency is removed.
+      problems.handlers."gtk+".broken = "ignore";
       # contentAddressedByDefault = true;
 
       permittedInsecurePackages = [

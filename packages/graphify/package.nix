@@ -1,20 +1,20 @@
 {
   lib,
-  python312Packages,
+  python3Packages,
   fetchPypi,
 }:
-python312Packages.buildPythonPackage rec {
+python3Packages.buildPythonPackage rec {
   pname = "graphifyy";
-  version = "0.9.90";
+  version = "0.9.101";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-D5dFpGV4xv8u1Ue9ovqHoYVFh5BGgmNcOH9wAB5/wmY=";
+    hash = "sha256-jY+tlz8KSZQf8PBzBFMwPIu7Lq/Qc8x/bGxCEeI0O1U=";
   };
 
   # Strip tree-sitter bindings from pyproject.toml and satisfy them from the
-  # full python312Packages.tree-sitter-grammars scope below.
+  # full python3Packages.tree-sitter-grammars scope below.
   postPatch = ''
     sed -i \
       -e '/"datasketch",/d' \
@@ -23,20 +23,21 @@ python312Packages.buildPythonPackage rec {
       pyproject.toml
   '';
 
-  nativeBuildInputs = with python312Packages; [setuptools];
+  nativeBuildInputs = with python3Packages; [setuptools];
 
   propagatedBuildInputs = let
     # Only ship the grammars Graphify declares as runtime dependencies. The full
     # nixpkgs grammar scope includes hundreds of unrelated and broken packages.
     grammar = name:
-      python312Packages.tree-sitter-grammars.${name}.overridePythonAttrs (_old: {
+      python3Packages.tree-sitter-grammars.${name}.overridePythonAttrs (_old: {
         # Some generated grammar wheels do not include distribution metadata.
         dontCheckPythonMetadata = true;
       });
   in
-    (with python312Packages; [
+    (with python3Packages; [
       datasketch
       networkx
+      pyyaml
       rapidfuzz
       tree-sitter
     ])

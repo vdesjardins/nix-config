@@ -66,15 +66,27 @@ in {
 
     package = mkOption {
       type = package;
-      default = inputs.pi.packages.${pkgs.stdenv.hostPlatform.system}.pi.overrideAttrs (old: {
-        # Pi 1.2.0 removed esbuild, but its flake still checks for it.
-        # Check the current extension loader instead; keep the other checks.
-        installCheckPhase =
-          builtins.replaceStrings
-          ["require('$out/lib/pi/node_modules/esbuild').transformSync('const value: number = 1', { loader: 'ts' })"]
-          ["require('$out/lib/pi/node_modules/jiti')"]
-          old.installCheckPhase;
-      });
+      default = inputs.pi.packages.${pkgs.stdenv.hostPlatform.system}.pi.override {
+        # Pi 1.5.0 omits pi-schema from its workspace tarball overrides and
+        # publishes its install lock without registry integrity fields.
+        # Supply the verified release archive for that missing package.
+        importNpmLock =
+          pkgs.importNpmLock
+          // {
+            importNpmLock = args:
+              pkgs.importNpmLock (args
+                // {
+                  packageSourceOverrides =
+                    (args.packageSourceOverrides or {})
+                    // lib.optionalAttrs (args ? packageSourceOverrides) {
+                      "node_modules/@earendil-works/pi-schema" = pkgs.fetchurl {
+                        url = "https://registry.npmjs.org/@earendil-works/pi-schema/-/pi-schema-1.5.0.tgz";
+                        hash = "sha512-RW0MbT2tR65OY6xMsgB/yVBb7m/RTNwA+9hurSN1vVXfHZRVmVnXbruBPrx/PzbrQnW5yLVlMRWxErGDQtF1Hg==";
+                      };
+                    };
+                });
+          };
+      };
       description = "pi coding agent package";
     };
 

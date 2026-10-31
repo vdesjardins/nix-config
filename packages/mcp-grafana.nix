@@ -5,16 +5,18 @@
 }:
 buildGoModule rec {
   pname = "mcp-grafana";
-  version = "2.0.2";
+  version = "2.2.0";
 
   src = fetchFromGitHub {
     owner = "grafana";
     repo = "mcp-grafana";
     tag = "v${version}";
-    hash = "sha256-e05lKLThUsg9+IWr47GfX0Pf1cjE9tE6Nk6gcsfrSkY=";
+    hash = "sha256-0JwhO/CUewthPk5eAKOvQeweJFQ1A3zHIz8Wv8F/7vw=";
   };
 
-  vendorHash = "sha256-V3BA9sOYuiT4BYf/iJ5GSdCGEbPmuDo2fVFfLss2Gko=";
+  vendorHash = "sha256-szMCIObafZ0HpNuDbFTz5VhLk2DBx3vEm/UdLJU77v8=";
+
+  subPackages = ["cmd/mcp-grafana"];
 
   ldflags = [
     "-s"

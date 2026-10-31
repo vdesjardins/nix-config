@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation {
   pname = "pi-files-widget";
-  version = "usage-extension/v0.9.5-unstable-2026-09-22";
+  version = "usage-extension/v0.10.2-unstable-2026-11-03";
 
   src = fetchFromGitHub {
     owner = "tmustier";
     repo = "pi-extensions";
-    rev = "4a63a2ebd3683d86597e226c7ff778ea4837dd73";
-    hash = "sha256-CnU01tMeRf42wC5Rune0ANl9bv0mLM5iOCGUgX7W8D4=";
+    rev = "f2632e7da3cadc4f22fb8367e7c4454779ec1a05";
+    hash = "sha256-Ajz98wOTsQKzJZh04tK0EiDEPywMUFIucGdTDp/QVV8=";
   };
 
   sourceRoot = "source/files-widget";

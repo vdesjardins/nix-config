@@ -1,24 +1,28 @@
 {
   lib,
   buildNpmPackage,
-  fetchFromGitHub,
+  fetchurl,
+  jq,
 }:
 buildNpmPackage rec {
   pname = "context7";
-  version = "1.0.30";
+  version = "4.5.0";
 
-  src = fetchFromGitHub {
-    owner = "upstash";
-    repo = "context7";
-    rev = "v${version}";
-    hash = "sha256-cNm/NROFHy+3cOozzvC1WUhGb7bwccvOIiMt30lAN3E=";
+  # Upstream now releases from a pnpm monorepo. The npm archive includes
+  # the compiled MCP server, without requiring the workspace build tooling.
+  src = fetchurl {
+    url = "https://registry.npmjs.org/@upstash/context7-mcp/-/context7-mcp-${version}.tgz";
+    hash = "sha256-5oX/tfO6vm5ZyA50cusWWwbqLNkpEU5Pny75ncQb5Zw=";
   };
 
-  npmDepsHash = "sha256-M3kWEGslkjzV+TgSumkuepjWfJ5tgMwZ2uoX1GfasWo=";
+  npmDepsHash = "sha256-QebOWX0UabvjO2pUpBnPMLaYMQbAww31N8Do/RFOwcE=";
+  dontNpmBuild = true;
 
   packageLock = ./package-lock.json;
 
   postPatch = ''
+    ${lib.getExe jq} 'del(.devDependencies, .scripts)' package.json > package.json.tmp
+    mv package.json.tmp package.json
     cp ${./package-lock.json} ./package-lock.json
   '';
 

@@ -5,13 +5,13 @@
 }:
 python314Packages.buildPythonApplication {
   pname = "mcp-memory-service";
-  version = "12.0.0";
+  version = "12.4.0";
 
   src = fetchFromGitHub {
     owner = "doobidoo";
     repo = "mcp-memory-service";
-    rev = "v12.0.0";
-    hash = "sha256-r88AhzFIWF1aQick0myLOao2U4qTeK5QvOR3GO7rXCw=";
+    rev = "v12.4.0";
+    hash = "sha256-VCSGA/xPSJ8OicGEIz96oakU02O3V9bQk3soY5MoevM=";
   };
 
   postPatch = ''
