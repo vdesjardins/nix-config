@@ -11,6 +11,8 @@ in {
     defaults = {
       email = "vdesjardins@gmail.com";
       dnsProvider = "cloudflare";
+      # Validate public challenge records without the local split-DNS resolver.
+      dnsResolver = "1.1.1.1:53";
       environmentFile = "${credsDir}/env";
     };
   };
