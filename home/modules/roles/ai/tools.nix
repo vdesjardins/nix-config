@@ -179,6 +179,12 @@ in {
       description = "Enable sandbox-runtime - AI agent execution environments";
     };
 
+    openshell.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable OpenShell - safe, private runtime for autonomous AI agents";
+    };
+
     graphify.enable = mkOption {
       type = types.bool;
       default = true;
@@ -428,6 +434,7 @@ in {
           sec-skills-audit.enable = cfg.sec-skills-audit.enable;
           ccusage.enable = cfg.ccusage.enable;
           sandbox-runtime.enable = cfg.sandbox-runtime.enable;
+          openshell.enable = cfg.openshell.enable;
           graphify.enable = cfg.graphify.enable;
           officecli = {
             enable = cfg.officecli.enable;
