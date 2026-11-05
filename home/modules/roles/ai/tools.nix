@@ -167,6 +167,12 @@ in {
       description = "Enable ccusage - analyze coding agent CLI token usage and costs";
     };
 
+    tokscale.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable tokscale - track coding agent token usage and costs";
+    };
+
     handy.enable = mkOption {
       type = types.bool;
       default = true;
@@ -433,6 +439,7 @@ in {
           coding-agent-search.enable = cfg.coding-agent-search.enable;
           sec-skills-audit.enable = cfg.sec-skills-audit.enable;
           ccusage.enable = cfg.ccusage.enable;
+          tokscale.enable = cfg.tokscale.enable;
           sandbox-runtime.enable = cfg.sandbox-runtime.enable;
           openshell.enable = cfg.openshell.enable;
           graphify.enable = cfg.graphify.enable;
