@@ -9,7 +9,6 @@ in {
     ../../tailscale.nix
     ../hardware/v.nix
     ../shared
-    ../shared/acme.nix
     ../shared/boot.nix
     ../shared/networking.nix
     ../shared/debugging.nix
@@ -20,7 +19,6 @@ in {
     ../shared/pipewire.nix
     ../shared/gaming.nix
     ../shared/wifi.nix
-    ../shared/opencode.nix
     ./services.nix
     (../users + "/${username}.nix")
   ];

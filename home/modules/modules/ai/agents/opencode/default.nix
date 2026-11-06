@@ -61,6 +61,26 @@ in {
     };
 
     web = {
+      port = mkOption {
+        type = types.port;
+        default = 4096;
+        description = "Loopback port for the OpenCode server";
+      };
+
+      tailscale = {
+        enable = mkEnableOption "tailnet-only HTTPS through Tailscale Serve (Linux)";
+        serviceName = mkOption {
+          type = types.strMatching "[a-z0-9][a-z0-9-]*";
+          default = "opencode";
+          description = "Named Tailscale Service (requires a tagged and approved host)";
+        };
+        httpsPort = mkOption {
+          type = types.port;
+          default = 443;
+          description = "HTTPS port on the service's dedicated Tailscale virtual IP";
+        };
+      };
+
       command = mkOption {
         type = types.enum ["serve"];
         default = "serve";
@@ -199,13 +219,35 @@ in {
     };
 
     systemd.user.services.opencode-web = mkIf cfg.daemon.enable {
+      Unit.Description = "OpenCode server";
+      Install.WantedBy = ["default.target"];
       Service = {
+        Restart = "on-failure";
+        RestartSec = 5;
         Environment = lib.mapAttrsToList (k: v: "${k}=${v}") cfg.web.environment;
         EnvironmentFile = ["%h/.local/share/opencode/server-password"];
         ExecStart =
           lib.mkForce
-          "${lib.getExe config.programs.opencode.package} ${cfg.web.command} ${lib.escapeShellArgs cfg.web.extraArgs}";
+          "${lib.getExe config.programs.opencode.package} ${cfg.web.command} --hostname 127.0.0.1 --port ${toString cfg.web.port} ${lib.escapeShellArgs cfg.web.extraArgs}";
       };
+    };
+
+    systemd.user.services.opencode-tailscale = mkIf (cfg.daemon.enable && cfg.web.tailscale.enable && pkgs.stdenv.hostPlatform.isLinux) {
+      Unit = {
+        Description = "Tailnet-only HTTPS for OpenCode";
+        After = ["opencode-web.service"];
+        Requires = ["opencode-web.service"];
+        PartOf = ["opencode-web.service"];
+      };
+      Service = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "${lib.getExe pkgs.tailscale} serve --yes --bg --service=svc:${cfg.web.tailscale.serviceName} --https=${toString cfg.web.tailscale.httpsPort} http://127.0.0.1:${toString cfg.web.port}";
+        ExecStop = "${lib.getExe pkgs.tailscale} serve clear svc:${cfg.web.tailscale.serviceName}";
+        Restart = "on-failure";
+        RestartSec = 10;
+      };
+      Install.WantedBy = ["default.target"];
     };
 
     home.activation.opencode-server-password = lib.mkIf cfg.daemon.enable (lib.hm.dag.entryAfter ["writeBoundary"] ''

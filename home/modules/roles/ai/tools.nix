@@ -65,6 +65,11 @@ in {
         default = true;
         description = "Enable OpenCode CLI";
       };
+      tailscale.enable = mkOption {
+        type = types.bool;
+        default = pkgs.stdenv.hostPlatform.isLinux;
+        description = "Expose OpenCode through a named tailnet-only Tailscale Service on port 443";
+      };
       daemon = {
         enable = mkOption {
           type = types.bool;
@@ -78,6 +83,24 @@ in {
           default = true;
           description = "Enable OpenCode Kiro provider integration";
         };
+      };
+    };
+
+    openclaw = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable OpenClaw AI assistant";
+      };
+      gateway.enable = mkOption {
+        type = types.bool;
+        default = pkgs.stdenv.hostPlatform.isLinux;
+        description = "Enable the OpenClaw gateway user service";
+      };
+      gateway.tailscale.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Expose OpenClaw through a named tailnet-only Tailscale Service on port 443";
       };
     };
 
@@ -420,7 +443,15 @@ in {
           opencode = {
             inherit (cfg.opencode) enable;
             daemon.enable = cfg.opencode.daemon.enable;
+            web.tailscale.enable = cfg.opencode.tailscale.enable;
             kiro.enable = cfg.opencode.kiro.enable;
+          };
+          openclaw = {
+            inherit (cfg.openclaw) enable;
+            gateway = {
+              inherit (cfg.openclaw.gateway) enable;
+              tailscale.enable = cfg.openclaw.gateway.tailscale.enable;
+            };
           };
           github-copilot-cli.enable = cfg.github-copilot-cli.enable;
           herdr.enable = cfg.herdr.enable;
