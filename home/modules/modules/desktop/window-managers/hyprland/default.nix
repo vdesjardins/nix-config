@@ -224,7 +224,7 @@ in {
         input = {
           kb_layout = "us";
           kb_variant = "altgr-intl";
-          kb_options = "grp:alt_space_toggle,caps:ctrl_modifier";
+          kb_options = "caps:ctrl_modifier";
           kb_model = "pc104";
           repeat_delay = "200";
           repeat_rate = "35";

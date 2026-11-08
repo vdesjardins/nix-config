@@ -44,7 +44,7 @@ in {
           "type:keyboard" = {
             xkb_layout = "us";
             xkb_variant = "altgr-intl";
-            xkb_options = "grp:alt_space_toggle,caps:ctrl_modifier";
+            xkb_options = "caps:ctrl_modifier";
             xkb_model = "pc104";
             repeat_delay = "200";
             repeat_rate = "35";

@@ -65,6 +65,12 @@
       };
     };
 
+    hex = {
+      url = "github:anomalyco/hex";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     pi = {
       url = "github:earendil-works/pi/v1.5.0";
       inputs.nixpkgs.follows = "nixpkgs";

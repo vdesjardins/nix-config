@@ -196,9 +196,15 @@ in {
       description = "Enable tokscale - track coding agent token usage and costs";
     };
 
+    hex.enable = mkOption {
+      type = types.bool;
+      default = pkgs.stdenv.hostPlatform.isLinux;
+      description = "Enable Hex local voice dictation";
+    };
+
     handy.enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Enable handy - offline speech-to-text application";
     };
 
@@ -469,6 +475,10 @@ in {
         tools = {
           coding-agent-search.enable = cfg.coding-agent-search.enable;
           sec-skills-audit.enable = cfg.sec-skills-audit.enable;
+          hex = {
+            enable = cfg.hex.enable;
+            autostart = true;
+          };
           ccusage.enable = cfg.ccusage.enable;
           tokscale.enable = cfg.tokscale.enable;
           sandbox-runtime.enable = cfg.sandbox-runtime.enable;

@@ -72,7 +72,7 @@ in {
             xkb = {
               layout = "us";
               variant = "altgr-intl";
-              options = "grp:alt_space_toggle,caps:ctrl_modifier";
+              options = "caps:ctrl_modifier";
               model = "pc104";
             };
             repeat-delay = 200;
