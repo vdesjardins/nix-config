@@ -5,6 +5,11 @@
     stateVersion = "24.11";
   };
 
+  modules.services.google-drive = {
+    enable = true;
+    passage.enable = true;
+  };
+
   roles = {
     common.enable = true;
     vaults.enable = true;

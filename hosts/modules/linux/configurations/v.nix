@@ -27,6 +27,9 @@ in {
 
   networking.hostName = hostname;
 
+  # Permit private, unprivileged FUSE mounts (e.g. vince's Google Drive).
+  programs.fuse.enable = true;
+
   fileSystems = {
     "/".options = ["compress=zstd"];
     "/home".options = ["compress=zstd" "noatime"];
