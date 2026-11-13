@@ -16,16 +16,19 @@ File inspection and version-control commands do not require the development shel
 After code changes, run `prek run -a`, inspect any auto-fixes, and rerun until it
 passes. Report checks you cannot complete. Follow `.editorconfig` and the
 pre-commit configuration; these are authoritative for formatting and linting.
+Prefer targeted validation of affected packages and configurations. A build does
+not prove runtime integration works; report what was actually tested.
 
 ## Boundaries
 
 - Do not run apply targets unless requested.
-- Do not commit or push unless explicitly requested.
+- Do not describe, create, rearrange, or publish VCS changes unless requested.
+  Read-only VCS commands and automatic Jj snapshots are allowed.
 - Do not update flake inputs unless requested; prefer targeted updates to avoid
   unrelated upstream changes.
 - Compute package hashes using targeted `nix build` errors, not `nix flake check`.
-- Consult current upstream documentation when API behavior is uncertain; use
-  Context7 when available.
+- When API or CLI behavior is uncertain, verify it against authoritative upstream
+  documentation or source for the pinned version.
 
 ## Repository Conventions
 
@@ -35,11 +38,11 @@ pre-commit configuration; these are authoritative for formatting and linting.
   automatically discovered by `flake.nix`.
 - Ensure new files are visible to the flake source: stage them in Git repositories;
   in Jj repositories, verify they are tracked by the working change.
-- Lua globals: only `vim` is allowed; see `.luacheckrc`.
 
 ## Bootstrap Guides
 
-Read the applicable guide before adding a package, module, or MCP server:
+Consult the applicable guide and a similar existing implementation when adding
+a package, module, or MCP server:
 
 - [Nix packages](docs/NIX_PACKAGE_BOOTSTRAP.md)
 - [Home Manager modules](docs/HM_MODULE_BOOTSTRAP.md)
@@ -47,8 +50,8 @@ Read the applicable guide before adding a package, module, or MCP server:
 
 ## Commit Policy
 
-Use the conventional-commits skill when available. Messages must explain WHY,
-not just WHAT, and start with the repository's corresponding emoji:
+Use the conventional-commits skill when available. Explain WHY, not just WHAT.
+Repository-specific emoji prefixes:
 
 - `feat` ✨, `fix` 🐛, `docs` 📝, `refactor` ♻️, `style` 🎨
 - `perf` ⚡️, `test` ✅, `chore` 🧑‍💻, `wip` 🚧, `remove` 🔥
