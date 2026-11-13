@@ -106,6 +106,16 @@ in {
         window = {
           titlebar = false;
           border = 2;
+          commands = [
+            {
+              criteria.app_id = "^(blueman-manager|blueman-adapters|org.blueman.Manager|org.blueman.Adapters)$";
+              command = "floating enable";
+            }
+            {
+              criteria.class = "^(Blueman-manager|Blueman-adapters|blueman-manager|blueman-adapters)$";
+              command = "floating enable";
+            }
+          ];
         };
 
         keybindings = lib.mkOptionDefault {

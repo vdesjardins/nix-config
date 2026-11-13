@@ -369,6 +369,8 @@ in {
         ];
 
         windowrule = [
+          "match:class ^(org.twosheds.iwgtk|[Bb]lueman-manager|[Bb]lueman-adapters|org.blueman.Manager|org.blueman.Adapters)$, float on"
+          "match:class ^([Bb]lueman-manager|[Bb]lueman-adapters|org.blueman.Manager|org.blueman.Adapters)$, size 800 600"
           "match:tag password-manager, float on, size monitor_w*0.5 monitor_h*0.5"
           "match:class ^(org.my.yazi)$, float on"
           "match:class ^(org.my.yazi)$, size monitor_w*0.7 monitor_h*0.7"

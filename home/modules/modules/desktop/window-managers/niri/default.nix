@@ -442,6 +442,18 @@ in {
         spawn-sh-at-startup "${getExe pkgs.awww} img $(${pkgs.findutils}/bin/find -L ${cfg.wallpapersPath} -maxdepth 1 -type f | ${pkgs.coreutils}/bin/shuf -n 1)"
 
         window-rule {
+            match app-id="^org\\.twosheds\\.iwgtk$"
+            open-floating true
+        }
+
+        window-rule {
+            match app-id="^([Bb]lueman-manager|[Bb]lueman-adapters|org\\.blueman\\.(Manager|Adapters))$"
+            open-floating true
+            default-column-width { fixed 800; }
+            default-window-height { fixed 600; }
+        }
+
+        window-rule {
             match app-id="^org\\.my\\.yazi$"
             open-floating true
             default-column-width { proportion 0.7; }
