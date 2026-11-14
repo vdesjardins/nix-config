@@ -18,6 +18,7 @@ in {
     ../shared/wayland.nix
     ../shared/greetd.nix
     ../shared/pipewire.nix
+    ../shared/printing.nix
     ../shared/gaming.nix
     ../shared/wifi.nix
     ./services.nix

@@ -50,6 +50,7 @@ window#waybar {
 #battery,
 #wireplumber,
 #network,
+#custom-printer,
 #custom-date {
   color: #7dcfff;
   background-color: #24283b;
@@ -95,6 +96,19 @@ window#waybar {
 #network {
   color: #f7768e;
   border-radius: 5px 0px 0px 5px;
+}
+
+#custom-printer.printing {
+  color: #9ece6a;
+}
+
+#custom-printer.pending {
+  color: #e0af68;
+}
+
+#custom-printer.stopped,
+#custom-printer.unavailable {
+  color: #f7768e;
 }
 
 #wireplumber {

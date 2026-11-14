@@ -9,9 +9,22 @@
   inherit (lib.types) str;
 
   cfg = config.modules.desktop.extensions.waybar;
+  printerPython = pkgs.python3.withPackages (ps: [ps.pycups]);
+  printerStatus = pkgs.writeShellScript "waybar-printer-status" ''
+    exec ${lib.getExe printerPython} ${./printer-status.py} ${lib.escapeShellArg cfg.printer.name}
+  '';
 in {
   options.modules.desktop.extensions.waybar = {
     enable = mkEnableOption "waybar";
+
+    printer = {
+      enable = mkEnableOption "local CUPS printer status and queued documents";
+      name = mkOption {
+        type = str;
+        default = "";
+        description = "CUPS queue name; an empty string uses the default printer";
+      };
+    };
 
     font = mkOption {
       type = str;
@@ -35,7 +48,22 @@ in {
           height = 40;
           modules-left = ["sway/workspaces" "sway/mode" "hyprland/workspaces" "hyprland/mode" "niri/workspaces"];
           modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "gamemode" "tray"];
-          modules-right = ["backlight" "network" "wireplumber" "battery" "custom/date" "clock" "custom/utc"];
+          modules-right =
+            ["backlight" "network"]
+            ++ lib.optional cfg.printer.enable "custom/printer"
+            ++ ["wireplumber" "battery" "custom/date" "clock" "custom/utc"];
+
+          "custom/printer" = mkIf cfg.printer.enable {
+            exec = toString printerStatus;
+            return-type = "json";
+            format = " {}";
+            interval = 5;
+            tooltip = true;
+            on-click =
+              if config.programs.firefox.enable
+              then "${lib.getExe config.programs.firefox.finalPackage} --new-window http://localhost:631/jobs/"
+              else "${lib.getExe' pkgs.xdg-utils "xdg-open"} http://localhost:631/jobs/";
+          };
 
           "sway/workspaces" = {
             format = "{icon}";
