@@ -47,9 +47,9 @@ in {
           position = "bottom";
           height = 40;
           modules-left = ["sway/workspaces" "sway/mode" "hyprland/workspaces" "hyprland/mode" "niri/workspaces"];
-          modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "gamemode" "tray"];
+          modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "gamemode"];
           modules-right =
-            ["backlight" "network"]
+            ["backlight" "network" "tray"]
             ++ lib.optional cfg.printer.enable "custom/printer"
             ++ ["wireplumber" "battery" "custom/date" "clock" "custom/utc"];
 
