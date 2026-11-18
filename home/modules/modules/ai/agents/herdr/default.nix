@@ -10,6 +10,7 @@
   inherit (lib.types) anything attrsOf package;
 
   defaultSettings = {
+    onboarding = false;
     theme = {
       name = "tokyo-night";
     };
@@ -30,7 +31,7 @@
       # Back-and-forth focus history, rather than workspace list order.
       last_pane = "prefix+b";
       workspace_picker = "prefix+w";
-      toggle_sidebar = "";
+      toggle_sidebar = "prefix+t";
       goto = "prefix+shift+s";
       new_tab = "prefix+c";
       rename_tab = "prefix+comma";
