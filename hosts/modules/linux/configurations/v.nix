@@ -29,6 +29,9 @@ in {
 
   networking.hostName = hostname;
 
+  # Provide the Xfconf D-Bus service for Home Manager's Thunar settings.
+  programs.xfconf.enable = true;
+
   # Permit private, unprivileged FUSE mounts (e.g. vince's Google Drive).
   programs.fuse.enable = true;
 

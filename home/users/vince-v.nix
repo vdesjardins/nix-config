@@ -5,14 +5,16 @@
     stateVersion = "24.11";
   };
 
-  modules.desktop.extensions.waybar.printer = {
-    enable = true;
-    name = "Brother-HL-3170CDW";
-  };
-
-  modules.services.google-drive = {
-    enable = true;
-    passage.enable = true;
+  modules = {
+    desktop.tools.thunar.enable = true;
+    desktop.extensions.waybar.printer = {
+      enable = true;
+      name = "Brother-HL-3170CDW";
+    };
+    services.google-drive = {
+      enable = true;
+      passage.enable = true;
+    };
   };
 
   roles = {
