@@ -45,7 +45,11 @@ in {
         type = lib.types.attrs;
         default = {
           enable = true;
-          package = inputs.llamacpp.packages.${pkgs.stdenv.hostPlatform.system}.vulkan.override {useWebUi = false;};
+          # Upstream keeps webui as a derivation attribute even when disabled,
+          # which otherwise still adds it as a build dependency.
+          package = (inputs.llamacpp.packages.${pkgs.stdenv.hostPlatform.system}.vulkan.override {useWebUi = false;}).overrideAttrs {
+            webui = null;
+          };
         };
         description = ''
           Configuration for the llamacpp service

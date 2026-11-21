@@ -1,4 +1,5 @@
 {
+  aws-lc,
   cacert,
   coreutils,
   fetchFromGitHub,
@@ -7,6 +8,7 @@
   openssh,
   pkg-config,
   rustPlatform,
+  sqlite,
   stdenv,
   versionCheckHook,
   z3,
@@ -29,7 +31,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     rustPlatform.bindgenHook
   ];
 
-  buildInputs = [z3];
+  buildInputs = [
+    aws-lc
+    sqlite
+    z3
+  ];
 
   nativeCheckInputs = [
     cacert
