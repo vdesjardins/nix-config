@@ -63,6 +63,28 @@ in {
   config = mkIf cfg.enable {
     home.shellAliases.v = "nvim";
 
+    xdg.mimeApps = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+      enable = true;
+      defaultApplications."text/csv" = [
+        (
+          if config.modules.desktop.terminal.ghostty.enable
+          then "nvim-csv.desktop"
+          else "nvim.desktop"
+        )
+      ];
+    };
+
+    xdg.desktopEntries.nvim-csv = lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.modules.desktop.terminal.ghostty.enable) {
+      name = "Neovim (CSV)";
+      genericName = "Text Editor";
+      exec = "${lib.getExe config.modules.desktop.terminal.ghostty.package} -e nvim %F";
+      terminal = false;
+      icon = "nvim";
+      mimeType = ["text/csv"];
+      categories = ["Utility" "TextEditor"];
+      noDisplay = true;
+    };
+
     programs.nixvim = {
       enable = true;
 
