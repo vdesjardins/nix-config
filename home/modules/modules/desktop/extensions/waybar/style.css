@@ -93,6 +93,14 @@ window#waybar {
   border-radius: 5px 5px 5px 5px;
 }
 
+#backlight {
+  color: #b48ead;
+  background-color: #24283b;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
 #network {
   color: #f7768e;
   border-radius: 5px 0px 0px 5px;
@@ -141,6 +149,10 @@ window#waybar {
   padding: 5px 10px;
   border-radius: 5px;
   margin: 5px;
+}
+
+#tray {
+  color: #ffffff;
 }
 
 #idle_inhibitor {

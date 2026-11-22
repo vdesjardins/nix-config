@@ -46,6 +46,7 @@ in {
           layer = "top";
           position = "bottom";
           height = 40;
+          fixed-center = false;
           modules-left = ["sway/workspaces" "sway/mode" "hyprland/workspaces" "hyprland/mode" "niri/workspaces"];
           modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "gamemode"];
           modules-right =
