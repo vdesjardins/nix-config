@@ -33,7 +33,7 @@ def "main nix-update" [
 		"tinted-jjui", "tmux-mcp", "vimPlugins-markdown-toc-nvim",
 		"officecli-skills", "parallel-agent-skills", "pi-telegram", "pi-files-widget",
 		"pi-markdown-preview", "skill-jj", "skill-tmux", "skill-reviewer",
-		"mcp-server-git", "mcp-server-tree-sitter", "rofi-buku", "ketall", "writing-skills",
+		"mcp-server-git", "ketall", "writing-skills",
 		"git-mcp",
 		"opencode-notifier",
 		"vimPlugins-kcl", "vimPlugins-codecompanion-history",

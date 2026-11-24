@@ -312,11 +312,6 @@ in {
         default = true;
         description = "Enable Sequential Thinking MCP server";
       };
-      tree-sitter.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable Tree-Sitter MCP server";
-      };
       memory-service.enable = mkOption {
         type = types.bool;
         default = false;
@@ -406,11 +401,6 @@ in {
         type = types.bool;
         default = true;
         description = "Enable tmux skill";
-      };
-      buku.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable buku skill";
       };
       flux.enable = mkOption {
         type = types.bool;
@@ -511,7 +501,6 @@ in {
           nixos.enable = cfg.mcp.nixos.enable;
           playwright.enable = cfg.mcp.playwright.enable;
           sequential-thinking.enable = cfg.mcp.sequential-thinking.enable;
-          tree-sitter.enable = cfg.mcp.tree-sitter.enable;
           memory-service.enable = cfg.mcp.memory-service.enable;
           mcporter.enable = cfg.mcp.mcporter.enable;
           tmux-mcp.enable = cfg.mcp.tmux-mcp.enable;
@@ -536,7 +525,6 @@ in {
           jj.enable = cfg.skills.jj.enable;
           timewarrior.enable = cfg.skills.timewarrior.enable;
           tmux.enable = cfg.skills.tmux.enable;
-          buku.enable = cfg.skills.buku.enable;
           flux.enable = cfg.skills.flux.enable;
           coding-agent-search.enable = cfg.skills.coding-agent-search.enable;
         };

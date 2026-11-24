@@ -59,7 +59,6 @@
           git.enable = true;
           github.enable = true;
           grafana.enable = false;
-          tree-sitter.enable = false;
           sequential-thinking.enable = true;
           kubernetes.enable = true;
           playwright.enable = false;

@@ -59,7 +59,6 @@ jobs:
       - name: create untracked files
         run: |
           touch ./home/modules/modules/shell/tools/ssh/config/known_hosts
-          touch ./home/modules/modules/desktop/tools/buku/share/bookmarks.db
 
       - run: sudo apt-get install -y qemu-user-static
 
