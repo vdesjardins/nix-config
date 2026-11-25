@@ -39,6 +39,17 @@ not prove runtime integration works; report what was actually tested.
 - Ensure new files are visible to the flake source: stage them in Git repositories;
   in Jj repositories, verify they are tracked by the working change.
 
+## Module Independence
+
+- Keep reusable Nix modules independent. Each module owns its feature's
+  configuration and integrations, guarded by its enable option.
+- Do not use another feature's configuration or generated files as an implicit
+  source of truth. Put shared definitions in neutral helpers, and compose
+  features through roles or explicit interfaces.
+- Disabling a module must remove its owned contributions without breaking
+  unrelated modules. Validate disable behavior and independence when changing
+  cross-module integrations.
+
 ## Bootstrap Guides
 
 Consult the applicable guide and a similar existing implementation when adding
