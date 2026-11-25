@@ -15,6 +15,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.antigravity.mcpServers.fluxcd = {
+      command = getExe cfg.package;
+      args = ["serve"];
+      disabled = true;
+      # Credentials and other session variables are inherited at runtime.
+    };
+
     modules = {
       desktop.editors.nixvim.ai.mcpServers.fluxcd = {
         command = getExe cfg.package;

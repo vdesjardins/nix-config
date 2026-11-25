@@ -24,6 +24,13 @@ Choose the intended agents explicitly and follow a matching current module:
 | Kiro | `modules.ai.agents.kiro.settings.mcpServers.<name>` |
 | OpenCode | `programs.opencode.settings.mcp.<name>` |
 | Pi overrides | `modules.ai.agents.pi.mcpServers.<name>` |
+| Antigravity CLI | `modules.ai.agents.antigravity.mcpServers.<name>` |
+
+Antigravity definitions belong in each MCP module's enable guard, using its
+native `command`/`args` or `serverUrl` schema and explicit `disabled` defaults.
+Do not derive them from another agent's configuration. Likewise, skill modules
+own their Antigravity links under `~/.gemini/antigravity-cli/skills/`, guarded by
+the skill and agent enable options; do not link another agent's skill directory.
 
 Pi defaults are derived from OpenCode's local/remote MCP definitions by
 `home/modules/modules/ai/agents/pi/default.nix`. This includes enabled state,

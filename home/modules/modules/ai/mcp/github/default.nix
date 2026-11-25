@@ -22,6 +22,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.antigravity.mcpServers.github = {
+      command = getExe cfg.package;
+      args = ["stdio"];
+      disabled = true;
+      # Credentials and other session variables are inherited at runtime.
+    };
+
     modules = {
       desktop.editors.nixvim.ai.mcpServers.github = {
         command = getExe cfg.package;

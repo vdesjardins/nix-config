@@ -32,6 +32,9 @@ in {
       ".kiro/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
       ".copilot/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
       ".pi/agent/skills/skill-creator".source = "${cfg.package}/skills/skill-creator";
+      ".gemini/antigravity-cli/skills/skill-creator" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cfg.package}/skills/skill-creator";
+      };
     };
 
     xdg.configFile = {

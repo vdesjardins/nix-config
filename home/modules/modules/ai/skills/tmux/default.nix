@@ -27,6 +27,9 @@ in {
       ".kiro/skills/tmux".source = "${cfg.package}/skills/tmux";
       ".copilot/skills/tmux".source = "${cfg.package}/skills/tmux";
       ".pi/agent/skills/tmux".source = "${cfg.package}/skills/tmux";
+      ".gemini/antigravity-cli/skills/tmux" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cfg.package}/skills/tmux/skills/tmux";
+      };
     };
 
     xdg.configFile = {

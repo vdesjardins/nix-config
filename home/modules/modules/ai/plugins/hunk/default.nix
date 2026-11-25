@@ -40,6 +40,9 @@ in {
       ".kiro/skills/hunk-review".source = "${cfg.package}/skills/hunk-review";
       ".copilot/skills/hunk-review".source = "${cfg.package}/skills/hunk-review";
       ".pi/agent/skills/hunk-review".source = "${cfg.package}/skills/hunk-review";
+      ".gemini/antigravity-cli/skills/hunk-review" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cfg.package}/skills/hunk-review";
+      };
     };
 
     xdg.configFile = {

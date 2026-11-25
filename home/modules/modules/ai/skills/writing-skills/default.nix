@@ -32,6 +32,9 @@ in {
       ".kiro/skills/writing-skills".source = "${cfg.package}/skills/writing-skills";
       ".copilot/skills/writing-skills".source = "${cfg.package}/skills/writing-skills";
       ".pi/agent/skills/writing-skills".source = "${cfg.package}/skills/writing-skills";
+      ".gemini/antigravity-cli/skills/writing-skills" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cfg.package}/skills/writing-skills";
+      };
     };
 
     xdg.configFile = {

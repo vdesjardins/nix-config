@@ -21,6 +21,12 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.antigravity.mcpServers.tmux-mcp = {
+      command = getExe cfg.package;
+      args = ["--shell-type" cfg.shellType];
+      disabled = true;
+    };
+
     modules = {
       desktop.editors.nixvim.ai.mcpServers.tmux-mcp = {
         command = getExe cfg.package;

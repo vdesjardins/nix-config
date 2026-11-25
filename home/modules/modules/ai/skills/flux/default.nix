@@ -57,6 +57,9 @@ in {
       ".kiro/skills/flux".source = "${cfg.package}/skills/flux";
       ".copilot/skills/flux".source = "${cfg.package}/skills/flux";
       ".pi/agent/skills/flux".source = "${cfg.package}/skills/flux";
+      ".gemini/antigravity-cli/skills/flux" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cfg.package}/skills/flux";
+      };
     };
 
     xdg.configFile = {

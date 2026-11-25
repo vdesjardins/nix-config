@@ -15,6 +15,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.antigravity.mcpServers.memory_service = {
+      command = getExe cfg.package;
+      args = ["server"];
+    };
+
     modules = {
       desktop.editors.nixvim.ai.mcpServers.memory_service = {
         command = getExe cfg.package;

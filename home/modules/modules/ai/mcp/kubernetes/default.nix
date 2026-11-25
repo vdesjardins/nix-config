@@ -15,6 +15,12 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.ai.agents.antigravity.mcpServers.kubernetes = {
+      command = getExe cfg.package;
+      args = [];
+      disabled = true;
+    };
+
     modules = {
       desktop.editors.nixvim.ai.mcpServers.kubernetes = {
         command = getExe cfg.package;

@@ -40,6 +40,14 @@ in {
         recursive = true;
       };
 
+      ".gemini/antigravity-cli/skills/conventional-commits" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
+      };
+
       ".pi/agent/skills/conventional-commits" = {
         source = builtins.path {
           path = ./.;

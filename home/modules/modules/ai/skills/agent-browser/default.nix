@@ -32,6 +32,9 @@ in {
       ".kiro/skills/agent-browser".source = "${cfg.package}/skills/agent-browser";
       ".copilot/skills/agent-browser".source = "${cfg.package}/skills/agent-browser";
       ".pi/agent/skills/agent-browser".source = "${cfg.package}/skills/agent-browser";
+      ".gemini/antigravity-cli/skills/agent-browser" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cfg.package}/skills/agent-browser";
+      };
     };
 
     xdg.configFile = {

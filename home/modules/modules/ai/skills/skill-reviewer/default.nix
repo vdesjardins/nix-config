@@ -32,6 +32,9 @@ in {
       ".kiro/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
       ".copilot/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
       ".pi/agent/skills/skill-reviewer".source = "${cfg.package}/skills/skill-reviewer";
+      ".gemini/antigravity-cli/skills/skill-reviewer" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cfg.package}/skills/skill-reviewer/skills/skill-reviewer";
+      };
     };
 
     xdg.configFile = {

@@ -24,6 +24,9 @@ in {
       # Place skill.md for each agent that reads from a skills directory
       file = {
         ".pi/agent/skills/graphify/SKILL.md".source = skillMd;
+        ".gemini/antigravity-cli/skills/graphify/SKILL.md" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+          source = skillMd;
+        };
         ".kiro/skills/graphify/SKILL.md".source = skillMd;
         ".copilot/skills/graphify/SKILL.md".source = skillMd;
         ".claude/skills/graphify/SKILL.md".source = skillMd;

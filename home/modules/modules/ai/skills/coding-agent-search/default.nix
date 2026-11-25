@@ -42,6 +42,10 @@ in {
         source = "${cassSource}/SKILL.md";
       };
 
+      ".gemini/antigravity-cli/skills/coding-agent-search/SKILL.md" = lib.mkIf config.modules.ai.agents.antigravity.enable {
+        source = "${cassSource}/SKILL.md";
+      };
+
       ".pi/agent/skills/coding-agent-search/SKILL.md" = {
         source = "${cassSource}/SKILL.md";
       };
