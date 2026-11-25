@@ -11,6 +11,11 @@
       enable = true;
       name = "Brother-HL-3170CDW";
     };
+    services.sqlite-backups = {
+      enable = true;
+      passagePrefix = "hosts/v/backups";
+      repositoryPrefix = "s3:s3.ca-east-006.backblazeb2.com/kube-backups-v/backups";
+    };
     services.google-drive = {
       enable = true;
       passage.enable = true;

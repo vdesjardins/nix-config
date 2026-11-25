@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   users.users.vince = {
     isNormalUser = true;
+    linger = true; # Keep Home Manager backup timers running while logged out.
     home = "/home/vince";
     description = "Vincent Desjardins";
     createHome = true;
