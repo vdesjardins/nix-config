@@ -11,6 +11,7 @@ in {
     ../shared
     ../shared/boot.nix
     ../shared/bookmarks-backup.nix
+    ../shared/repwise-backup.nix
     ../shared/networking.nix
     ../shared/debugging.nix
     ../shared/desktop.nix
