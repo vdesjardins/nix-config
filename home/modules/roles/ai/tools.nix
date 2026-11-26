@@ -151,7 +151,6 @@ in {
           pi-files-widget
           pi-tokyo-night-storm
           pi-markdown-preview
-          pi-tau
         ];
         description = "Pi packages built by Nix, referenced as local store paths";
       };

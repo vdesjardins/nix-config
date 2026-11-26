@@ -15,16 +15,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "openshell";
-  version = "0.1.7";
+  version = "0.1.10";
 
   src = fetchFromGitHub {
     owner = "NVIDIA";
     repo = "OpenShell";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-mBciX4fPWUtaszWhV8gCpYjQmuAJxKxkhwT6oVKq6jY=";
+    hash = "sha256-BgrOjmHlsUjO4m22OMfq1c4Y6MTm+V4E6bNL3lo7m+g=";
   };
 
-  cargoHash = "sha256-4v3SuKRrEi97s4B1IDb0OCwo07/Ld4eKjgwYlXzYT+M=";
+  cargoHash = "sha256-HGM/ap24xukZWfbvf8V3mvYu0V4heLt8W/dXiMnGgYs=";
 
   nativeBuildInputs = [
     pkg-config
@@ -47,7 +47,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     substituteInPlace Cargo.toml \
       --replace-fail 'version = "0.0.0"' 'version = "${finalAttrs.version}"'
     substituteInPlace Cargo.toml \
-      --replace-fail 'members = ["crates/*"]' 'members = ["crates/openshell-cli"]'
+      --replace-fail 'members = ["crates/*", "tests/policy-conformance"]' 'members = ["crates/openshell-cli"]'
 
     # Tests create shell scripts with FHS paths that do not exist in the Nix
     # build sandbox.

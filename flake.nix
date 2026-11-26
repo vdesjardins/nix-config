@@ -72,7 +72,7 @@
     };
 
     pi = {
-      url = "github:earendil-works/pi/v1.5.2";
+      url = "github:earendil-works/pi/v1.6.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -123,7 +123,7 @@
     mkOverlays' = p: lib.attrsets.attrValues (mkOverlays p);
     mkChildOverlays = name: final: _prev: {
       ${name} = import inputs.${name} {
-        inherit (final) system;
+        system = final.stdenv.hostPlatform.system;
         config = pkgsConfig;
         overlays = mkOverlays' ./overlays/${name};
       };
@@ -200,6 +200,19 @@
     devShells = forAllSupportedSystems (system: {
       default = pkgs.${system}.mkShell {
         inherit (self.checks.${system}.pre-commit-check) shellHook;
+        packages = [
+          (pkgs.${system}.nix-update.overrideAttrs (old: {
+            # metadata may return a lazy source path that legacy evaluators
+            # cannot open. Archive the tree before nix-update reimports it.
+            postPatch =
+              (old.postPatch or "")
+              + ''
+                substituteInPlace nix_update/options.py \
+                  --replace-fail '["nix", "flake", "metadata", "--json"]' \
+                    '["nix", "flake", "archive", "--json"]'
+              '';
+          }))
+        ];
       };
     });
 

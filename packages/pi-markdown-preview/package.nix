@@ -16,17 +16,17 @@
 in
   buildNpmPackage {
     pname = "pi-markdown-preview";
-    version = "0.26.4-unstable-2026-11-03";
+    version = "0.28.0-unstable-2026-11-25";
 
     src = fetchFromGitHub {
       owner = "omaclaren";
       repo = "pi-markdown-preview";
-      rev = "94929cb8c049fd31a7fa46add5f0010ebebca1a3";
-      hash = "sha256-WEGzcPtuppwZ6Fei+fnnx3ygkB9svCALJtIG+8q5Aek=";
+      rev = "3433d6d965d525c39ba9a5730aedde481bd7de76";
+      hash = "sha256-kuarBFRIvgMI06KGUE1WSZtN53WplaVTttpBEI0EINs=";
     };
 
     npmDepsFetcherVersion = 2;
-    npmDepsHash = "sha256-x0UlSLLjp/0VtCiqKNJRRTRdPsKivorxX4C3vVGt9AY=";
+    npmDepsHash = "sha256-mQnmuWLwG0Ca/wgRwkudIk+UDozOgyQw1B9DpnYjx5s=";
     packageLock = ./package-lock.json;
     postPatch = ''
       cp ${./package-lock.json} package-lock.json

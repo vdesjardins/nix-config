@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation {
   pname = "tinted-jjui";
-  version = "1.0-2bf3c44c78af63d83958c63eee2845d5f2c3a526";
+  version = "0-unstable-2026-11-25";
 
   src = fetchFromGitHub {
     owner = "vic";
     repo = "tinted-jjui";
-    rev = "2bf3c44c78af63d83958c63eee2845d5f2c3a526";
-    hash = "sha256-V8ShPDJsTCsvIvOTUk4cfAQR7HQFbeN4Zqg65Si7RoE=";
+    rev = "0c3a2656082f7c18ee344fbdc9689f2d31a65ddf";
+    hash = "sha256-RRAoCxzNxp3WHqDTgsXEz63S9Xm4jzDQi0V0fvwrJCg=";
   };
 
   phases = ["unpackPhase" "installPhase"];

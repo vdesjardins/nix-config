@@ -29,7 +29,7 @@ def "main nix-update" [
 	let pkgs_latest = [
 		"english-words", "kubectl-aliases", "lscolors", "tinted-fzf",
 		"mcp-proxy",
-		"pi-tau", "pi-tokyo-night-storm", "skill-creator",
+		"pi-tokyo-night-storm", "skill-creator",
 		"tinted-jjui", "tmux-mcp", "vimPlugins-markdown-toc-nvim",
 		"officecli-skills", "parallel-agent-skills", "pi-telegram", "pi-files-widget",
 		"pi-markdown-preview", "skill-jj", "skill-tmux", "skill-reviewer",
@@ -54,18 +54,30 @@ def "main nix-update" [
 		builtins.toJSON \(builtins.attrNames \(flake.lib.flattenAttrs' flake.outputs.packages.${currentSystem}\)\)" --raw | from json
 	}
 
-	# These packages use local sources rather than upstream releases.
-	$pkgs_to_update | where { |package| $package not-in ["kubectl-helpers", "vmBuilderImage", "sec-skills-audit", "skill-flux", "skill-timewarrior-efficient-entry"] } | each { |package|
+	# Local-source packages do not have upstream releases.
+	let skipped = ["kubectl-helpers", "vmBuilderImage", "sec-skills-audit", "skill-flux", "skill-timewarrior-efficient-entry"]
+	let results = $pkgs_to_update | where { |package| $package not-in $skipped } | each { |package|
 		print $"Updating package: ($package)"
         try {
-          if $package == "playwright-mcp" {
+          let output = if $package == "playwright-mcp" {
               nix-update --flake --generate-lockfile $package --version-regex '^v([0-9.]+)$'
+          } else if $package == "openshell" {
+              nix-update --flake --generate-lockfile $package --use-github-releases
           } else if $package in $pkgs_latest {
               nix-update --flake --generate-lockfile $package --version=branch
           } else {
               nix-update --flake --generate-lockfile $package
           }
+          print $output
+          {package: $package, success: true}
+        } catch { |err|
+          print -e $"Failed to update ($package): ($err.msg)"
+          {package: $package, success: false}
         }
+	}
+	let failed = $results | where success == false | get package
+	if ($failed | is-not-empty) {
+		error make {msg: $"Package updates failed: ($failed | str join ', ')"}
 	}
 }
 

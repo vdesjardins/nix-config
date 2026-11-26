@@ -10,7 +10,7 @@
   cfg = config.modules.ai.tools.graphify;
 
   # skill.md is installed by setuptools into the package's site-packages
-  skillMd = "${my-packages.graphify}/lib/python3.12/site-packages/graphify/skill.md";
+  skillMd = "${my-packages.graphify}/${my-packages.graphify.pythonModule.sitePackages}/graphify/skill.md";
 in {
   options.modules.ai.tools.graphify = {
     enable = mkEnableOption "graphify - Claude Code skill to turn code/docs into queryable knowledge graph";

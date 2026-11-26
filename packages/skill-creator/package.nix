@@ -4,13 +4,13 @@
 }:
 stdenv.mkDerivation {
   pname = "skill-creator";
-  version = "0-unstable-2026-10-28";
+  version = "0-unstable-2026-11-16";
 
   src = fetchFromGitHub {
     owner = "anthropics";
     repo = "skills";
-    rev = "ca45fc496a3436251f191354091d557da31c15b5";
-    sha256 = "sha256-MkCOANBAqCc1WmNf7S8PsyAphGJAIzEXGyCm8RrCR9M=";
+    rev = "e4bb5d960d87126ff3b3a8af1a104b7db67560ba";
+    sha256 = "sha256-Gr9LatjawHHK9uKpoclWoiDHZ0NTpP3/4Pmeatl8p/Q=";
   };
 
   sourceRoot = "source/skills/skill-creator";

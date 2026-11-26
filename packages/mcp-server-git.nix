@@ -16,13 +16,13 @@
   src = fetchFromGitHub {
     owner = "modelcontextprotocol";
     repo = "servers";
-    rev = "194cc86e3ae6400958555bd4116849d822d69263";
-    hash = "sha256-9dXpm2MRye4a3lEt2oYP/SO4tJmZ94HWL5mf/zlC5z4=";
+    rev = "c799c8552b0f27b7a33a7b9233773da144dddcf5";
+    hash = "sha256-yYfNwuNwzgguvErZRzc+M7cDt/05pU7iZuiF1L3c4hE=";
   };
 in
   python3Packages.buildPythonApplication {
     pname = "mcp-server-git";
-    version = "2026.8.31-unstable-2026-10-28";
+    version = "2026.8.31-unstable-2026-11-18";
 
     inherit src;
 

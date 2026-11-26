@@ -6,16 +6,16 @@
 }:
 buildNpmPackage rec {
   pname = "context7";
-  version = "4.5.0";
+  version = "4.8.0";
 
   # Upstream now releases from a pnpm monorepo. The npm archive includes
   # the compiled MCP server, without requiring the workspace build tooling.
   src = fetchurl {
     url = "https://registry.npmjs.org/@upstash/context7-mcp/-/context7-mcp-${version}.tgz";
-    hash = "sha256-5oX/tfO6vm5ZyA50cusWWwbqLNkpEU5Pny75ncQb5Zw=";
+    hash = "sha256-qaWyiTLH3N+zlEwdEvdLEA4q3epyThmtYR4uxn45Lbc=";
   };
 
-  npmDepsHash = "sha256-QebOWX0UabvjO2pUpBnPMLaYMQbAww31N8Do/RFOwcE=";
+  npmDepsHash = "sha256-oQC9xq6SJNBfHmr8E18ZaqC9kfiq4bYxkm3f2dHn894=";
   dontNpmBuild = true;
 
   packageLock = ./package-lock.json;
