@@ -54,6 +54,13 @@ in {
         };
         recursive = true;
       };
+      ".claude/skills/conventional-commits" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
+      };
 
       ".pi/agent/skills/conventional-commits" = {
         source = builtins.path {

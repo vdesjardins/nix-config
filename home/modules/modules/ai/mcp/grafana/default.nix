@@ -62,6 +62,13 @@ in {
           env_vars = ["GRAFANA_URL" "GRAFANA_SERVICE_ACCOUNT_TOKEN" "GRAFANA_USERNAME" "GRAFANA_PASSWORD"];
         };
 
+        claude-code.mcpServers.grafana = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.grafana = {
           type = "local";
           command = getExe cfg.package;

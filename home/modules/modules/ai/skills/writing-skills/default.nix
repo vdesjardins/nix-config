@@ -38,6 +38,9 @@ in {
       ".agents/skills/writing-skills" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/writing-skills";
       };
+      ".claude/skills/writing-skills" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/writing-skills";
+      };
     };
 
     xdg.configFile = {

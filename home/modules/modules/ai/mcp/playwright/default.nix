@@ -46,6 +46,13 @@ in {
           enabled = false;
         };
 
+        claude-code.mcpServers.playwright = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = ["--executable-path" cfg.executable];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.playwright = {
           type = "local";
           command = getExe cfg.package;

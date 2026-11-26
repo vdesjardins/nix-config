@@ -33,6 +33,13 @@ in {
           enabled = false;
         };
 
+        claude-code.mcpServers.kubernetes = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.kubernetes = {
           type = "local";
           command = getExe cfg.package;

@@ -33,6 +33,9 @@ in {
       ".agents/skills/tmux" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/tmux/skills/tmux";
       };
+      ".claude/skills/tmux" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/tmux/skills/tmux";
+      };
     };
 
     xdg.configFile = {

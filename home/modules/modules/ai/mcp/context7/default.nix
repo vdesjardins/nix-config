@@ -33,6 +33,13 @@ in {
           enabled = false;
         };
 
+        claude-code.mcpServers.context7 = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.context7 = {
           type = "local";
           command = getExe cfg.package;

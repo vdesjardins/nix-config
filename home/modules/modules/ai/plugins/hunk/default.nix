@@ -46,6 +46,9 @@ in {
       ".agents/skills/hunk-review" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/hunk-review";
       };
+      ".claude/skills/hunk-review" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/hunk-review";
+      };
     };
 
     xdg.configFile = {

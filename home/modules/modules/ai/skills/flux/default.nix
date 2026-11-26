@@ -63,6 +63,9 @@ in {
       ".agents/skills/flux" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/flux";
       };
+      ".claude/skills/flux" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/flux";
+      };
     };
 
     xdg.configFile = {

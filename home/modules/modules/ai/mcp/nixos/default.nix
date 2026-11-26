@@ -33,6 +33,13 @@ in {
           enabled = false;
         };
 
+        claude-code.mcpServers.nixos = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.nixos = {
           type = "local";
           command = getExe cfg.package;

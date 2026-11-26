@@ -61,7 +61,7 @@ in {
       mkSkillFiles ".pi/agent/skills"
       // mkSkillFiles ".kiro/skills"
       // mkSkillFiles ".copilot/skills"
-      // mkSkillFiles ".claude/skills"
+      // lib.optionalAttrs config.modules.ai.agents.claude-code.enable (mkSkillFiles ".claude/skills")
       // lib.optionalAttrs config.modules.ai.agents.antigravity.enable (mkSkillFiles ".gemini/antigravity-cli/skills")
       // lib.optionalAttrs config.modules.ai.agents.codex.enable (mkSkillFiles ".agents/skills")
     );

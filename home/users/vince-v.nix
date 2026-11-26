@@ -6,8 +6,11 @@
   };
 
   modules = {
-    ai.agents.antigravity.enable = true;
-    ai.agents.codex.enable = true;
+    ai.agents = {
+      antigravity.enable = true;
+      codex.enable = true;
+      claude-code.enable = true;
+    };
     desktop.tools.thunar.enable = true;
     desktop.extensions.waybar.printer = {
       enable = true;

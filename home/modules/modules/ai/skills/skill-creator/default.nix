@@ -38,6 +38,9 @@ in {
       ".agents/skills/skill-creator" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/skill-creator";
       };
+      ".claude/skills/skill-creator" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/skill-creator";
+      };
     };
 
     xdg.configFile = {

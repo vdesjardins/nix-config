@@ -45,6 +45,13 @@ in {
           env_vars = ["EXA_API_KEY"];
         };
 
+        claude-code.mcpServers.exa = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.exa = {
           type = "local";
           command = getExe cfg.package;

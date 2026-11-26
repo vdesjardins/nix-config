@@ -51,6 +51,13 @@ in {
           env_vars = ["GITHUB_PERSONAL_ACCESS_TOKEN"];
         };
 
+        claude-code.mcpServers.github = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = ["stdio"];
+          enabled = false;
+        };
+
         kiro.settings.mcpServers.github = {
           command = getExe cfg.package;
           args = ["stdio"];

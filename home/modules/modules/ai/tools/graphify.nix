@@ -32,7 +32,9 @@ in {
         };
         ".kiro/skills/graphify/SKILL.md".source = skillMd;
         ".copilot/skills/graphify/SKILL.md".source = skillMd;
-        ".claude/skills/graphify/SKILL.md".source = skillMd;
+        ".claude/skills/graphify/SKILL.md" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+          source = skillMd;
+        };
       };
     };
 

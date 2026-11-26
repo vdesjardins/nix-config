@@ -63,6 +63,9 @@ in {
       ".agents/skills/jj" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/jj/skills/jj";
       };
+      ".claude/skills/jj" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/jj/skills/jj";
+      };
     };
 
     xdg.configFile = {

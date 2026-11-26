@@ -38,6 +38,9 @@ in {
       ".agents/skills/skill-reviewer" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/skill-reviewer/skills/skill-reviewer";
       };
+      ".claude/skills/skill-reviewer" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/skill-reviewer/skills/skill-reviewer";
+      };
     };
 
     xdg.configFile = {

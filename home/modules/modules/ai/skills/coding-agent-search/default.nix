@@ -48,6 +48,9 @@ in {
       ".agents/skills/coding-agent-search/SKILL.md" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cassSource}/SKILL.md";
       };
+      ".claude/skills/coding-agent-search/SKILL.md" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cassSource}/SKILL.md";
+      };
 
       ".pi/agent/skills/coding-agent-search/SKILL.md" = {
         source = "${cassSource}/SKILL.md";

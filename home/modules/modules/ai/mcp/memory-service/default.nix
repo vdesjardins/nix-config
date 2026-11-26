@@ -32,6 +32,12 @@ in {
           args = ["server"];
         };
 
+        claude-code.mcpServers.memory_service = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = ["server"];
+        };
+
         github-copilot-cli.settings.mcpServers.memory_service = {
           type = "local";
           command = getExe cfg.package;

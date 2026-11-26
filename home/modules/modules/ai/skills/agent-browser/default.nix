@@ -38,6 +38,9 @@ in {
       ".agents/skills/agent-browser" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/agent-browser";
       };
+      ".claude/skills/agent-browser" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/agent-browser";
+      };
     };
 
     xdg.configFile = {

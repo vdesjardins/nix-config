@@ -26,6 +26,11 @@ in {
           url = "https://mcp.grep.app";
         };
 
+        claude-code.mcpServers.grep-app = {
+          type = "http";
+          url = "https://mcp.grep.app";
+        };
+
         github-copilot-cli.settings.mcpServers.grep-app = {
           type = "http";
           url = "https://mcp.grep.app";

@@ -31,6 +31,12 @@ in {
           args = [];
         };
 
+        claude-code.mcpServers.sequential-thinking = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = [];
+        };
+
         github-copilot-cli.settings.mcpServers.sequential-thinking = {
           type = "local";
           command = getExe cfg.package;

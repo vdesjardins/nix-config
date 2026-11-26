@@ -35,6 +35,9 @@ in {
       ".agents/skills/timewarrior-efficient-entry" = lib.mkIf config.modules.ai.agents.codex.enable {
         source = "${cfg.package}/skills/timewarrior-efficient-entry";
       };
+      ".claude/skills/timewarrior-efficient-entry" = lib.mkIf config.modules.ai.agents.claude-code.enable {
+        source = "${cfg.package}/skills/timewarrior-efficient-entry";
+      };
     };
 
     xdg.configFile = {

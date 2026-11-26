@@ -39,6 +39,13 @@ in {
           env_vars = ["KUBECONFIG"];
         };
 
+        claude-code.mcpServers.fluxcd = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = ["serve"];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.fluxcd = {
           type = "local";
           command = getExe cfg.package;

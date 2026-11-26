@@ -43,6 +43,13 @@ in {
           enabled = false;
         };
 
+        claude-code.mcpServers.tmux-mcp = {
+          type = "stdio";
+          command = getExe cfg.package;
+          args = ["--shell-type" cfg.shellType];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.tmux-mcp = {
           type = "local";
           command = getExe cfg.package;

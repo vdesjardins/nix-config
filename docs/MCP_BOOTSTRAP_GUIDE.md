@@ -26,6 +26,7 @@ Choose the intended agents explicitly and follow a matching current module:
 | Pi overrides | `modules.ai.agents.pi.mcpServers.<name>` |
 | Antigravity CLI | `modules.ai.agents.antigravity.mcpServers.<name>` |
 | Codex CLI | `modules.ai.agents.codex.mcpServers.<name>` |
+| Claude Code | `modules.ai.agents.claude-code.mcpServers.<name>` |
 
 Antigravity definitions belong in each MCP module's enable guard, using its
 native `command`/`args` or `serverUrl` schema and explicit `disabled` defaults.
@@ -37,6 +38,12 @@ Codex follows the same ownership pattern, using native `command`/`args` or
 `url` entries, `enabled = false` for opt-in servers, and `env_vars` to forward
 runtime credentials. Skill modules install directly under `~/.agents/skills/`
 when Codex is enabled; do not link another agent's skill directory.
+
+Claude Code follows the same ownership pattern. Use native `type = "stdio"`
+with `command`/`args`, or `type = "http"` with `url`. Home Manager converts
+`enabled = false` to its disabled-server settings and installs a generated
+personal plugin, leaving `~/.claude.json` unmanaged. Skill modules own direct
+`~/.claude/skills/` links guarded by the skill and agent enable options.
 
 Pi defaults are derived from OpenCode's local/remote MCP definitions by
 `home/modules/modules/ai/agents/pi/default.nix`. This includes enabled state,
