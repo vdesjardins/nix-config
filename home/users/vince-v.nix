@@ -53,8 +53,11 @@
     ai = {
       tools = {
         enable = true;
-        mcp.grafana.grafanaUrl = "https://grafana.kube-stack.org";
-        mcp.nixos.enable = false; # Disabled due to fastmcp/mcp version mismatch
+        mcp = {
+          grafana.grafanaUrl = "https://grafana.kube-stack.org";
+          memory-service.enable = true;
+          nixos.enable = false; # Disabled due to fastmcp/mcp version mismatch
+        };
         pi = {
           settings.theme = "tokyo-night-storm";
         };

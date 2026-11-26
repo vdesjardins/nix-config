@@ -27,7 +27,7 @@ python314Packages.buildPythonApplication {
 
   dependencies = with python314Packages; [
     tokenizers
-    mcp
+    mcp_1 # Upstream requires mcp>=1.19.0,<2.0.0.
     python-dotenv
     sqlite-vec
     build
@@ -45,7 +45,7 @@ python314Packages.buildPythonApplication {
     click
     httpx
     authlib
-    python-jose
+    pyjwt
     sentence-transformers
     torch
     apscheduler
