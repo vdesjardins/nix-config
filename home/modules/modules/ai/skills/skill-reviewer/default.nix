@@ -35,6 +35,9 @@ in {
       ".gemini/antigravity-cli/skills/skill-reviewer" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/skill-reviewer/skills/skill-reviewer";
       };
+      ".agents/skills/skill-reviewer" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/skill-reviewer/skills/skill-reviewer";
+      };
     };
 
     xdg.configFile = {

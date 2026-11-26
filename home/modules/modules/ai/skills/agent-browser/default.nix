@@ -35,6 +35,9 @@ in {
       ".gemini/antigravity-cli/skills/agent-browser" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/agent-browser";
       };
+      ".agents/skills/agent-browser" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/agent-browser";
+      };
     };
 
     xdg.configFile = {

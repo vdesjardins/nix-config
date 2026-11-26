@@ -47,6 +47,13 @@ in {
         };
         recursive = true;
       };
+      ".agents/skills/conventional-commits" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = builtins.path {
+          path = ./.;
+          name = "skill-conventional-commits";
+        };
+        recursive = true;
+      };
 
       ".pi/agent/skills/conventional-commits" = {
         source = builtins.path {

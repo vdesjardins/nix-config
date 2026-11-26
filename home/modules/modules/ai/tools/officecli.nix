@@ -64,6 +64,7 @@ in {
       // (mkSkillFiles ".copilot/skills")
       // (mkSkillFiles ".pi/agent/skills")
       // lib.optionalAttrs config.modules.ai.agents.antigravity.enable (mkSkillFiles ".gemini/antigravity-cli/skills")
+      // lib.optionalAttrs config.modules.ai.agents.codex.enable (mkSkillFiles ".agents/skills")
     );
 
     xdg.configFile = mkIf cfg.skills.enable (mkSkillFiles "opencode/skill");

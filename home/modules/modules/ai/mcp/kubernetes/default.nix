@@ -15,18 +15,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.kubernetes = {
-      command = getExe cfg.package;
-      args = [];
-      disabled = true;
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.kubernetes = {
         command = getExe cfg.package;
       };
 
       ai.agents = {
+        antigravity.mcpServers.kubernetes = {
+          command = getExe cfg.package;
+          args = [];
+          disabled = true;
+        };
+
+        codex.mcpServers.kubernetes = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.kubernetes = {
           type = "local";
           command = getExe cfg.package;

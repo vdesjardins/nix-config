@@ -35,6 +35,9 @@ in {
       ".gemini/antigravity-cli/skills/writing-skills" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/writing-skills";
       };
+      ".agents/skills/writing-skills" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/writing-skills";
+      };
     };
 
     xdg.configFile = {

@@ -12,16 +12,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.grep-app = {
-      serverUrl = "https://mcp.grep.app";
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.grep-app = {
         url = "https://mcp.grep.app";
       };
 
       ai.agents = {
+        antigravity.mcpServers.grep-app = {
+          serverUrl = "https://mcp.grep.app";
+        };
+
+        codex.mcpServers.grep-app = {
+          url = "https://mcp.grep.app";
+        };
+
         github-copilot-cli.settings.mcpServers.grep-app = {
           type = "http";
           url = "https://mcp.grep.app";

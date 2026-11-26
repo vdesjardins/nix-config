@@ -15,13 +15,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.fluxcd = {
-      command = getExe cfg.package;
-      args = ["serve"];
-      disabled = true;
-      # Credentials and other session variables are inherited at runtime.
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.fluxcd = {
         command = getExe cfg.package;
@@ -32,6 +25,20 @@ in {
       };
 
       ai.agents = {
+        antigravity.mcpServers.fluxcd = {
+          command = getExe cfg.package;
+          args = ["serve"];
+          disabled = true;
+          # Credentials and other session variables are inherited at runtime.
+        };
+
+        codex.mcpServers.fluxcd = {
+          command = getExe cfg.package;
+          args = ["serve"];
+          enabled = false;
+          env_vars = ["KUBECONFIG"];
+        };
+
         github-copilot-cli.settings.mcpServers.fluxcd = {
           type = "local";
           command = getExe cfg.package;

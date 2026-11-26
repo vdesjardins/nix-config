@@ -35,6 +35,9 @@ in {
       ".gemini/antigravity-cli/skills/skill-creator" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/skill-creator";
       };
+      ".agents/skills/skill-creator" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/skill-creator";
+      };
     };
 
     xdg.configFile = {

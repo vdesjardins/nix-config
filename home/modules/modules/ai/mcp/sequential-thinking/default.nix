@@ -15,17 +15,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.sequential-thinking = {
-      command = getExe cfg.package;
-      args = [];
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.sequential-thinking = {
         command = getExe cfg.package;
       };
 
       ai.agents = {
+        antigravity.mcpServers.sequential-thinking = {
+          command = getExe cfg.package;
+          args = [];
+        };
+
+        codex.mcpServers.sequential-thinking = {
+          command = getExe cfg.package;
+          args = [];
+        };
+
         github-copilot-cli.settings.mcpServers.sequential-thinking = {
           type = "local";
           command = getExe cfg.package;

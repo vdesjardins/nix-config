@@ -22,13 +22,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.exa = {
-      command = getExe cfg.package;
-      args = [];
-      disabled = true;
-      # Credentials and other session variables are inherited at runtime.
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.exa = {
         command = getExe cfg.package;
@@ -38,6 +31,20 @@ in {
       };
 
       ai.agents = {
+        antigravity.mcpServers.exa = {
+          command = getExe cfg.package;
+          args = [];
+          disabled = true;
+          # Credentials and other session variables are inherited at runtime.
+        };
+
+        codex.mcpServers.exa = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+          env_vars = ["EXA_API_KEY"];
+        };
+
         github-copilot-cli.settings.mcpServers.exa = {
           type = "local";
           command = getExe cfg.package;

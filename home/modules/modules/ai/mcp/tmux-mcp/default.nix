@@ -21,12 +21,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.tmux-mcp = {
-      command = getExe cfg.package;
-      args = ["--shell-type" cfg.shellType];
-      disabled = true;
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.tmux-mcp = {
         command = getExe cfg.package;
@@ -37,6 +31,18 @@ in {
       };
 
       ai.agents = {
+        antigravity.mcpServers.tmux-mcp = {
+          command = getExe cfg.package;
+          args = ["--shell-type" cfg.shellType];
+          disabled = true;
+        };
+
+        codex.mcpServers.tmux-mcp = {
+          command = getExe cfg.package;
+          args = ["--shell-type" cfg.shellType];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.tmux-mcp = {
           type = "local";
           command = getExe cfg.package;

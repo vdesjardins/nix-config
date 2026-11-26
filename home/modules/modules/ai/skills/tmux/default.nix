@@ -30,6 +30,9 @@ in {
       ".gemini/antigravity-cli/skills/tmux" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/tmux/skills/tmux";
       };
+      ".agents/skills/tmux" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/tmux/skills/tmux";
+      };
     };
 
     xdg.configFile = {

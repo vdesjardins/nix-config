@@ -27,6 +27,9 @@ in {
         ".gemini/antigravity-cli/skills/graphify/SKILL.md" = lib.mkIf config.modules.ai.agents.antigravity.enable {
           source = skillMd;
         };
+        ".agents/skills/graphify/SKILL.md" = lib.mkIf config.modules.ai.agents.codex.enable {
+          source = skillMd;
+        };
         ".kiro/skills/graphify/SKILL.md".source = skillMd;
         ".copilot/skills/graphify/SKILL.md".source = skillMd;
         ".claude/skills/graphify/SKILL.md".source = skillMd;

@@ -32,6 +32,9 @@ in {
       ".gemini/antigravity-cli/skills/timewarrior-efficient-entry" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/timewarrior-efficient-entry";
       };
+      ".agents/skills/timewarrior-efficient-entry" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/timewarrior-efficient-entry";
+      };
     };
 
     xdg.configFile = {

@@ -60,6 +60,9 @@ in {
       ".gemini/antigravity-cli/skills/jj" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/jj/skills/jj";
       };
+      ".agents/skills/jj" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/jj/skills/jj";
+      };
     };
 
     xdg.configFile = {

@@ -24,12 +24,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.playwright = {
-      command = getExe cfg.package;
-      args = ["--executable-path" cfg.executable];
-      disabled = true;
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.playwright = {
         command = getExe cfg.package;
@@ -40,6 +34,18 @@ in {
       };
 
       ai.agents = {
+        antigravity.mcpServers.playwright = {
+          command = getExe cfg.package;
+          args = ["--executable-path" cfg.executable];
+          disabled = true;
+        };
+
+        codex.mcpServers.playwright = {
+          command = getExe cfg.package;
+          args = ["--executable-path" cfg.executable];
+          enabled = false;
+        };
+
         github-copilot-cli.settings.mcpServers.playwright = {
           type = "local";
           command = getExe cfg.package;

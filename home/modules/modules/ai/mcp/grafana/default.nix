@@ -36,13 +36,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.grafana = {
-      command = getExe cfg.package;
-      args = [];
-      disabled = true;
-      # Credentials and other session variables are inherited at runtime.
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.grafana = {
         command = getExe cfg.package;
@@ -55,6 +48,20 @@ in {
       };
 
       ai.agents = {
+        antigravity.mcpServers.grafana = {
+          command = getExe cfg.package;
+          args = [];
+          disabled = true;
+          # Credentials and other session variables are inherited at runtime.
+        };
+
+        codex.mcpServers.grafana = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+          env_vars = ["GRAFANA_URL" "GRAFANA_SERVICE_ACCOUNT_TOKEN" "GRAFANA_USERNAME" "GRAFANA_PASSWORD"];
+        };
+
         github-copilot-cli.settings.mcpServers.grafana = {
           type = "local";
           command = getExe cfg.package;

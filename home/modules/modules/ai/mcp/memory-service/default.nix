@@ -15,11 +15,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.memory_service = {
-      command = getExe cfg.package;
-      args = ["server"];
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.memory_service = {
         command = getExe cfg.package;
@@ -27,6 +22,16 @@ in {
       };
 
       ai.agents = {
+        antigravity.mcpServers.memory_service = {
+          command = getExe cfg.package;
+          args = ["server"];
+        };
+
+        codex.mcpServers.memory_service = {
+          command = getExe cfg.package;
+          args = ["server"];
+        };
+
         github-copilot-cli.settings.mcpServers.memory_service = {
           type = "local";
           command = getExe cfg.package;

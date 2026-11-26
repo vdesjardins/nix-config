@@ -7,6 +7,7 @@
 
   modules = {
     ai.agents.antigravity.enable = true;
+    ai.agents.codex.enable = true;
     desktop.tools.thunar.enable = true;
     desktop.extensions.waybar.printer = {
       enable = true;

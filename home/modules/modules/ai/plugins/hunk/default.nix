@@ -43,6 +43,9 @@ in {
       ".gemini/antigravity-cli/skills/hunk-review" = lib.mkIf config.modules.ai.agents.antigravity.enable {
         source = "${cfg.package}/skills/hunk-review";
       };
+      ".agents/skills/hunk-review" = lib.mkIf config.modules.ai.agents.codex.enable {
+        source = "${cfg.package}/skills/hunk-review";
+      };
     };
 
     xdg.configFile = {

@@ -25,12 +25,18 @@ Choose the intended agents explicitly and follow a matching current module:
 | OpenCode | `programs.opencode.settings.mcp.<name>` |
 | Pi overrides | `modules.ai.agents.pi.mcpServers.<name>` |
 | Antigravity CLI | `modules.ai.agents.antigravity.mcpServers.<name>` |
+| Codex CLI | `modules.ai.agents.codex.mcpServers.<name>` |
 
 Antigravity definitions belong in each MCP module's enable guard, using its
 native `command`/`args` or `serverUrl` schema and explicit `disabled` defaults.
 Do not derive them from another agent's configuration. Likewise, skill modules
 own their Antigravity links under `~/.gemini/antigravity-cli/skills/`, guarded by
 the skill and agent enable options; do not link another agent's skill directory.
+
+Codex follows the same ownership pattern, using native `command`/`args` or
+`url` entries, `enabled = false` for opt-in servers, and `env_vars` to forward
+runtime credentials. Skill modules install directly under `~/.agents/skills/`
+when Codex is enabled; do not link another agent's skill directory.
 
 Pi defaults are derived from OpenCode's local/remote MCP definitions by
 `home/modules/modules/ai/agents/pi/default.nix`. This includes enabled state,

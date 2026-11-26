@@ -22,13 +22,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.ai.agents.antigravity.mcpServers.github = {
-      command = getExe cfg.package;
-      args = ["stdio"];
-      disabled = true;
-      # Credentials and other session variables are inherited at runtime.
-    };
-
     modules = {
       desktop.editors.nixvim.ai.mcpServers.github = {
         command = getExe cfg.package;
@@ -43,11 +36,27 @@ in {
         };
       };
 
-      ai.agents.kiro.settings.mcpServers.github = {
-        command = getExe cfg.package;
-        args = ["stdio"];
-        env = {
-          GITHUB_PERSONAL_ACCESS_TOKEN = "";
+      ai.agents = {
+        antigravity.mcpServers.github = {
+          command = getExe cfg.package;
+          args = ["stdio"];
+          disabled = true;
+          # Credentials and other session variables are inherited at runtime.
+        };
+
+        codex.mcpServers.github = {
+          command = getExe cfg.package;
+          args = ["stdio"];
+          enabled = false;
+          env_vars = ["GITHUB_PERSONAL_ACCESS_TOKEN"];
+        };
+
+        kiro.settings.mcpServers.github = {
+          command = getExe cfg.package;
+          args = ["stdio"];
+          env = {
+            GITHUB_PERSONAL_ACCESS_TOKEN = "";
+          };
         };
       };
     };
