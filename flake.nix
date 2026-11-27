@@ -76,6 +76,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    fff = {
+      url = "github:dmtrKovalenko/fff";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "utils";
+        rust-overlay.follows = "rust-overlay";
+      };
+    };
+
     # languages
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";

@@ -141,6 +141,7 @@ in {
       packages = mkOption {
         type = types.listOf types.package;
         default = with my-packages; [
+          pi-fff
           pi-files-widget
           pi-tokyo-night-storm
           pi-markdown-preview
@@ -251,6 +252,11 @@ in {
         type = types.bool;
         default = true;
         description = "Enable Context7 MCP server";
+      };
+      fff.enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable FFF MCP server";
       };
       fluxcd.enable = mkOption {
         type = types.bool;
@@ -481,6 +487,7 @@ in {
 
         mcp = {
           context7.enable = cfg.mcp.context7.enable;
+          fff.enable = cfg.mcp.fff.enable;
           fluxcd.enable = cfg.mcp.fluxcd.enable;
           git.enable = cfg.mcp.git.enable;
           grep-app.enable = cfg.mcp.grep-app.enable;
