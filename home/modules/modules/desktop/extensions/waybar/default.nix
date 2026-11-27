@@ -9,6 +9,8 @@
   inherit (lib.types) str;
 
   cfg = config.modules.desktop.extensions.waybar;
+  wpctl = lib.getExe' pkgs.wireplumber "wpctl";
+  pwvucontrol = lib.getExe pkgs.pwvucontrol;
   printerPython = pkgs.python3.withPackages (ps: [ps.pycups]);
   printerStatus = pkgs.writeShellScript "waybar-printer-status" ''
     exec ${lib.getExe printerPython} ${./printer-status.py} ${lib.escapeShellArg cfg.printer.name}
@@ -48,9 +50,9 @@ in {
           height = 40;
           fixed-center = true;
           modules-left = ["sway/workspaces" "sway/mode" "hyprland/workspaces" "hyprland/mode" "niri/workspaces"];
-          modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "gamemode"];
+          modules-center = ["cpu" "memory" "disk" "temperature" "idle_inhibitor" "tray" "gamemode"];
           modules-right =
-            ["backlight" "network" "tray"]
+            ["backlight" "network"]
             ++ lib.optional cfg.printer.enable "custom/printer"
             ++ ["wireplumber" "battery" "custom/date" "clock" "custom/utc"];
 
@@ -202,6 +204,22 @@ in {
             format = "{volume}% {icon}";
             format-muted = "󰖁 Muted";
             format-icons = ["" "" ""];
+            max-volume = 100;
+            on-click = pwvucontrol;
+            on-click-middle = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            menu = "on-click-right";
+            menu-file = "${./wireplumber-menu.xml}";
+            menu-actions = {
+              mute-sink = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+              mute-source = "${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+              vol-up = "${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
+              vol-down = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+              vol-25 = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 25%";
+              vol-50 = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 50%";
+              vol-75 = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 75%";
+              vol-100 = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 100%";
+              mixer = pwvucontrol;
+            };
           };
         };
       };

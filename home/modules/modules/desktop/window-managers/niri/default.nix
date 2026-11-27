@@ -454,6 +454,13 @@ in {
         }
 
         window-rule {
+            match app-id="^com\\.saivert\\.pwvucontrol$"
+            open-floating true
+            default-column-width { fixed 800; }
+            default-window-height { fixed 600; }
+        }
+
+        window-rule {
             match app-id="^org\\.my\\.yazi$"
             open-floating true
             default-column-width { proportion 0.7; }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+      <object class="GtkMenuItem" id="mute-sink">
+        <property name="label">Mute / Unmute Output</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="mute-source">
+        <property name="label">Mute / Unmute Microphone</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="sep-1"/>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="vol-up">
+        <property name="label">Volume +5%</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="vol-down">
+        <property name="label">Volume -5%</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="sep-2"/>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="vol-25">
+        <property name="label">Volume 25%</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="vol-50">
+        <property name="label">Volume 50%</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="vol-75">
+        <property name="label">Volume 75%</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="vol-100">
+        <property name="label">Volume 100%</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="sep-3"/>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="mixer">
+        <property name="label">Open Audio Mixer</property>
+      </object>
+    </child>
+  </object>
+</interface>
