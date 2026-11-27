@@ -84,6 +84,7 @@ in {
         ast-grep # find code by syntax
         bandwhich # network utilization by process
         bottom # top with graphs
+        chafa # terminal image viewer
         circumflex # hackernews reader
         cloc # source code line counter
         coreutils
