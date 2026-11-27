@@ -64,6 +64,15 @@ in {
           };
           disabled = true;
         };
+
+        pi.mcpServers.fluxcd = {
+          command = getExe cfg.package;
+          args = ["serve"];
+          env = {
+            KUBECONFIG = "\${KUBECONFIG}";
+          };
+          enabled = false;
+        };
       };
     };
 

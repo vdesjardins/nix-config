@@ -70,6 +70,15 @@ in {
           };
           disabled = true;
         };
+
+        pi.mcpServers.exa = {
+          command = getExe cfg.package;
+          args = [];
+          env = {
+            EXA_API_KEY = "\${EXA_API_KEY}";
+          };
+          enabled = false;
+        };
       };
     };
 

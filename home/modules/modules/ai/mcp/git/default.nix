@@ -52,6 +52,12 @@ in {
           args = [];
           disabled = true;
         };
+
+        pi.mcpServers.git = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
       };
     };
 

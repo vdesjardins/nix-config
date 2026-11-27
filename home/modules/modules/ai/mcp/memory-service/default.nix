@@ -49,6 +49,12 @@ in {
           command = getExe cfg.package;
           args = ["server"];
         };
+
+        pi.mcpServers.memory_service = {
+          command = getExe cfg.package;
+          args = ["server"];
+          enabled = true;
+        };
       };
     };
 

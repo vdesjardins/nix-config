@@ -68,6 +68,12 @@ in {
           ];
           disabled = true;
         };
+
+        pi.mcpServers.tmux-mcp = {
+          command = getExe cfg.package;
+          args = ["--shell-type" cfg.shellType];
+          enabled = false;
+        };
       };
     };
 

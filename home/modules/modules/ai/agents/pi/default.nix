@@ -11,37 +11,6 @@
 
   cfg = config.modules.ai.agents.pi;
 
-  # Reuse the shared MCP definitions already collected by OpenCode.
-  # Pi expects a single executable, separate args, and ${VAR} placeholders.
-  piInterpolation = builtins.replaceStrings ["{env:"] ["\${"];
-  opencodeMcpServers = lib.filterAttrs (
-    _: server:
-      builtins.isAttrs server
-      && builtins.elem (server.type or "") ["local" "remote"]
-  ) (config.programs.opencode.settings.mcp or {});
-  piMcpServers =
-    lib.mapAttrs (
-      _: server:
-        {enabled = server.enabled or true;}
-        // lib.optionalAttrs (server ? timeout) {
-          # OpenCode uses milliseconds; Pi uses seconds.
-          timeout = server.timeout / 1000.0;
-        }
-        // (
-          if server.type == "local"
-          then {
-            command = piInterpolation (builtins.head server.command);
-            args = map piInterpolation (builtins.tail server.command);
-            env = lib.mapAttrs (_: piInterpolation) (server.environment or {});
-          }
-          else {
-            url = piInterpolation server.url;
-            headers = lib.mapAttrs (_: piInterpolation) (server.headers or {});
-          }
-        )
-    )
-    opencodeMcpServers;
-
   # Collect piEnv attrs from all pi packages that declare them
   piEnvVars = lib.foldl' lib.mergeAttrs {} (map (p: p.passthru.piEnv or {}) cfg.packages);
 
@@ -117,20 +86,11 @@ in {
 
     mcpServers = mkOption {
       type = attrsOf (attrsOf anything);
-      default =
-        piMcpServers
-        // lib.optionalAttrs cfg.radius.enable {
-          radius = {
-            url = "https://radius.pi.dev/mcp";
-            auth.provider = "radius";
-          };
-        };
+      default = {};
       description = ''
         Native Pi MCP servers written to ~/.pi/agent/mcp.json.
-        Defaults to the OpenCode MCP definitions, preserving enabled states
-        and converting commands, environment placeholders, and timeouts.
+        Each MCP module registers its own entry here when enabled.
         Includes Radius for Pi only when radius.enable is set.
-        Override this option to configure Pi servers independently.
         This file is Nix-managed; change servers here rather than via /mcp.
       '';
     };
@@ -185,12 +145,21 @@ in {
   config = mkIf cfg.enable {
     # Keep codemode enabled alongside the selected startup tools and load the
     # Home Manager Bash aliases for !/!! commands.
-    modules.ai.agents.pi.settings = {
-      defaultTools = lib.mkAfter ["+codemode"];
-      shellCommandPrefix = lib.mkDefault ''
-        shopt -s expand_aliases
-        [ ! -f ~/.bash_aliases ] || source ~/.bash_aliases
-      '';
+    modules.ai.agents.pi = {
+      mcpServers = mkIf cfg.radius.enable {
+        radius = {
+          url = "https://radius.pi.dev/mcp";
+          auth.provider = "radius";
+        };
+      };
+
+      settings = {
+        defaultTools = lib.mkAfter ["+codemode"];
+        shellCommandPrefix = lib.mkDefault ''
+          shopt -s expand_aliases
+          [ ! -f ~/.bash_aliases ] || source ~/.bash_aliases
+        '';
+      };
     };
 
     home = {

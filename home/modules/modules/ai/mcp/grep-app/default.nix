@@ -41,6 +41,11 @@ in {
         kiro.settings.mcpServers.grep-app = {
           url = "https://mcp.grep.app";
         };
+
+        pi.mcpServers.grep-app = {
+          url = "https://mcp.grep.app";
+          enabled = true;
+        };
       };
     };
 

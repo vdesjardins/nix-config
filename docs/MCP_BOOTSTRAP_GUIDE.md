@@ -23,7 +23,7 @@ Choose the intended agents explicitly and follow a matching current module:
 | GitHub Copilot CLI | `modules.ai.agents.github-copilot-cli.settings.mcpServers.<name>` |
 | Kiro | `modules.ai.agents.kiro.settings.mcpServers.<name>` |
 | OpenCode | `programs.opencode.settings.mcp.<name>` |
-| Pi overrides | `modules.ai.agents.pi.mcpServers.<name>` |
+| Pi | `modules.ai.agents.pi.mcpServers.<name>` |
 | Antigravity CLI | `modules.ai.agents.antigravity.mcpServers.<name>` |
 | Codex CLI | `modules.ai.agents.codex.mcpServers.<name>` |
 | Claude Code | `modules.ai.agents.claude-code.mcpServers.<name>` |
@@ -45,10 +45,12 @@ with `command`/`args`, or `type = "http"` with `url`. Home Manager converts
 personal plugin, leaving `~/.claude.json` unmanaged. Skill modules own direct
 `~/.claude/skills/` links guarded by the skill and agent enable options.
 
-Pi defaults are derived from OpenCode's local/remote MCP definitions by
-`home/modules/modules/ai/agents/pi/default.nix`. This includes enabled state,
-argument splitting, environment interpolation, and timeout conversion. Reuse
-that bridge unless Pi needs a deliberate override; do not duplicate entries.
+Pi follows the same standalone ownership pattern. Define each server directly
+under `modules.ai.agents.pi.mcpServers.<name>` using Pi's native schema:
+`command`/`args` (with optional `env` using `\${VAR}` interpolation and
+`timeout` in seconds) for stdio servers, or `url` (with optional `headers`) for
+remote servers, plus `enabled = false` for opt-in servers. Do not derive Pi
+entries from OpenCode or another agent's configuration.
 
 ## Transport and Defaults
 
@@ -57,9 +59,9 @@ that bridge unless Pi needs a deliberate override; do not duplicate entries.
   are lists containing executable plus arguments.
 - Remote transports and authentication differ by consumer. Verify the pinned
   version's API rather than copying one agent's configuration verbatim.
-- Decide role and per-agent enable states separately. Existing OpenCode entries
-  commonly use `enabled = false`, and Kiro uses `disabled = true`; preserve
-  intentional defaults. Pi inherits the OpenCode enabled state by default.
+- Decide role and per-agent enable states separately. Existing OpenCode, Codex,
+  Claude Code, and Pi entries commonly use `enabled = false`, and Kiro and
+  Antigravity use `disabled = true`; preserve intentional defaults.
 - Do not embed credentials in generated JSON or Nix expressions. Use the
   consumer's supported runtime environment or authentication mechanism, keeping
   secrets outside the Nix store.

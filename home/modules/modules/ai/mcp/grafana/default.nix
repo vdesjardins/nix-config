@@ -93,6 +93,18 @@ in {
           };
           disabled = true;
         };
+
+        pi.mcpServers.grafana = {
+          command = getExe cfg.package;
+          args = [];
+          env = {
+            GRAFANA_URL = "\${GRAFANA_URL}";
+            GRAFANA_SERVICE_ACCOUNT_TOKEN = "\${GRAFANA_SERVICE_ACCOUNT_TOKEN}";
+            GRAFANA_USERNAME = "\${GRAFANA_USERNAME}";
+            GRAFANA_PASSWORD = "\${GRAFANA_PASSWORD}";
+          };
+          enabled = false;
+        };
       };
     };
 

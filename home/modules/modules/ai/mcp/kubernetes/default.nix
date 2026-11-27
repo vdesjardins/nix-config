@@ -52,6 +52,12 @@ in {
           args = [];
           disabled = true;
         };
+
+        pi.mcpServers.kubernetes = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
       };
     };
 

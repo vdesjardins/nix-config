@@ -71,6 +71,12 @@ in {
           ];
           disabled = true;
         };
+
+        pi.mcpServers.playwright = {
+          command = getExe cfg.package;
+          args = ["--executable-path" cfg.executable];
+          enabled = false;
+        };
       };
     };
 

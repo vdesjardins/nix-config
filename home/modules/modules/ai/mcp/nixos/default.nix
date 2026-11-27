@@ -52,6 +52,12 @@ in {
           args = [];
           disabled = true;
         };
+
+        pi.mcpServers.nixos = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
       };
     };
 

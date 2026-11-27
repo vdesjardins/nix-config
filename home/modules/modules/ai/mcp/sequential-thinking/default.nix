@@ -48,6 +48,12 @@ in {
           command = getExe cfg.package;
           args = [];
         };
+
+        pi.mcpServers.sequential-thinking = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = true;
+        };
       };
     };
 

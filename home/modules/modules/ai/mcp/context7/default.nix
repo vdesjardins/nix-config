@@ -52,6 +52,12 @@ in {
           args = [];
           disabled = true;
         };
+
+        pi.mcpServers.context7 = {
+          command = getExe cfg.package;
+          args = [];
+          enabled = false;
+        };
       };
     };
 

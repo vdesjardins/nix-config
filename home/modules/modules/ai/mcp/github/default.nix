@@ -65,6 +65,12 @@ in {
             GITHUB_PERSONAL_ACCESS_TOKEN = "";
           };
         };
+
+        pi.mcpServers.github = {
+          command = getExe cfg.package;
+          args = ["stdio"];
+          enabled = false;
+        };
       };
     };
 
