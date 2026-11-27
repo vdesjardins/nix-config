@@ -35,7 +35,6 @@ def "main nix-update" [
 		"pi-markdown-preview", "skill-jj", "skill-tmux", "skill-reviewer",
 		"mcp-server-git", "ketall", "writing-skills",
 		"git-mcp",
-		"opencode-notifier",
 		"vimPlugins-kcl", "vimPlugins-codecompanion-history",
 		"vimPlugins-blink-emoji", "vimPlugins-blink-copilot",
 		"vimPlugins-blink-cmp-dictionary", "vimPlugins-noice-nvim",

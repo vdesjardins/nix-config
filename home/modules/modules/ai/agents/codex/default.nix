@@ -33,7 +33,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home = {
-      packages = [cfg.package];
+      packages = [cfg.package] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.bubblewrap];
       file.".codex/nix-config.toml".source = nixConfig;
       # Run before old Home Manager links are cleaned up so migration preserves
       # any existing config, atomically replacing its store symlink if necessary.

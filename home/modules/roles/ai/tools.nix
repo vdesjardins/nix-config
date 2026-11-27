@@ -81,13 +81,6 @@ in {
           description = "Enable OpenCode daemon service (systemd/launchd background service)";
         };
       };
-      kiro = {
-        enable = mkOption {
-          type = types.bool;
-          default = true;
-          description = "Enable OpenCode Kiro provider integration";
-        };
-      };
     };
 
     openclaw = {
@@ -443,7 +436,6 @@ in {
             inherit (cfg.opencode) enable;
             daemon.enable = cfg.opencode.daemon.enable;
             web.tailscale.enable = cfg.opencode.tailscale.enable;
-            kiro.enable = cfg.opencode.kiro.enable;
           };
           openclaw = {
             inherit (cfg.openclaw) enable;

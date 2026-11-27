@@ -3,7 +3,6 @@
   lib,
   inputs,
   pkgs,
-  my-packages,
   ...
 }: let
   inherit (lib) mkIf mkOption types;
@@ -42,8 +41,6 @@
     "ccusage *" = "allow";
   };
 in {
-  imports = [./kiro.nix];
-
   options.modules.ai.agents.opencode = {
     enable = mkEnableOption "opencode";
 
@@ -163,7 +160,7 @@ in {
             ".github/*.md"
           ];
 
-          plugin = ["opencode-pty" "@tarquinen/opencode-dcp@latest"];
+          plugin = ["@tarquinen/opencode-dcp@latest"];
 
           permission = {
             bash = bashPermissions;
@@ -271,9 +268,6 @@ in {
     };
 
     xdg.configFile = {
-      "opencode/plugin/opencode-notifier.js".source = "${my-packages.opencode-notifier}/opencode-notifier.js";
-      "opencode/plugin/code-validator.js".source = ./plugins/code-validator.js;
-      "opencode/code-validator.json".source = ./code-validator.json;
       "opencode/dcp.jsonc".text = builtins.toJSON {
         "$schema" = "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json";
         enabled = true;
