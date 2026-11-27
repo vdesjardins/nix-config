@@ -18,6 +18,11 @@ in {
     programs.hex = {
       enable = true;
       inherit (cfg) autostart;
+      # Upstream checkPhase fails because model.rs tests include_str! an iOS
+      # script omitted from the Nix package source.
+      package = inputs.hex.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs {
+        doCheck = false;
+      };
     };
 
     # Niri's portal backend does not implement GlobalShortcuts. Invoke Hex's
