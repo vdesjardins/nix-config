@@ -466,6 +466,20 @@ in {
             default-column-width { proportion 0.7; }
             default-window-height { proportion 0.7; }
         }
+
+        window-rule {
+            match app-id="^org\\.my\\.btop$"
+            open-floating true
+            default-column-width { proportion 0.9; }
+            default-window-height { proportion 0.9; }
+        }
+
+        window-rule {
+            match app-id="^[Tt]hunar$"
+            open-floating true
+            default-column-width { proportion 0.9; }
+            default-window-height { proportion 0.9; }
+        }
       '';
     };
   };

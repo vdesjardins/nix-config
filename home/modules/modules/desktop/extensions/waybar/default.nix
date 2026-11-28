@@ -11,6 +11,20 @@
   cfg = config.modules.desktop.extensions.waybar;
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
   pwvucontrol = lib.getExe pkgs.pwvucontrol;
+  mkBtopCommand = name: sortBy: let
+    launcher = pkgs.writeShellScript "waybar-btop-${name}" ''
+      tmpconf="$(mktemp)"
+      trap 'rm -f "$tmpconf"' EXIT
+      if [ -f "$HOME/.config/btop/btop.conf" ]; then
+        grep -vE '^[[:space:]]*(proc_sorting|proc_reversed)[[:space:]]*=' "$HOME/.config/btop/btop.conf" > "$tmpconf" || true
+      fi
+      printf 'proc_sorting = "%s"\nproc_reversed = False\n' ${lib.escapeShellArg sortBy} >> "$tmpconf"
+      exec ${lib.getExe pkgs.btop} -c "$tmpconf"
+    '';
+  in "${lib.getExe pkgs.ghostty} --class=org.my.btop -e ${launcher}";
+  btopCpuCommand = mkBtopCommand "cpu" "cpu lazy";
+  btopMemCommand = mkBtopCommand "memory" "memory";
+  thunar = lib.getExe pkgs.thunar;
   printerPython = pkgs.python3.withPackages (ps: [ps.pycups]);
   printerStatus = pkgs.writeShellScript "waybar-printer-status" ''
     exec ${lib.getExe printerPython} ${./printer-status.py} ${lib.escapeShellArg cfg.printer.name}
@@ -54,7 +68,7 @@ in {
           modules-right =
             ["backlight" "network"]
             ++ lib.optional cfg.printer.enable "custom/printer"
-            ++ ["wireplumber" "battery" "custom/date" "clock" "custom/utc"];
+            ++ ["wireplumber" "wireplumber#source" "battery" "custom/date" "clock" "custom/utc"];
 
           "custom/printer" = mkIf cfg.printer.enable {
             exec = toString printerStatus;
@@ -154,6 +168,7 @@ in {
           "cpu" = {
             format = "{usage}% ";
             tooltip = false;
+            on-click = btopCpuCommand;
           };
 
           "gamemode" = {
@@ -169,10 +184,12 @@ in {
 
           "memory" = {
             format = "{}% ";
+            on-click = btopMemCommand;
           };
 
           "disk" = {
             format = "{percentage_used}% ";
+            on-click = thunar;
           };
 
           "temperature" = {
@@ -205,8 +222,7 @@ in {
             format-muted = "󰖁 Muted";
             format-icons = ["" "" ""];
             max-volume = 100;
-            on-click = pwvucontrol;
-            on-click-middle = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
             menu = "on-click-right";
             menu-file = "${./wireplumber-menu.xml}";
             menu-actions = {
@@ -220,6 +236,16 @@ in {
               vol-100 = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 100%";
               mixer = pwvucontrol;
             };
+          };
+
+          "wireplumber#source" = {
+            node-type = "Audio/Source";
+            format = "";
+            format-muted = "";
+            tooltip-format = "Mic: {volume}% ({node_name})";
+            on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+            on-click-right = pwvucontrol;
+            scroll-step = 5;
           };
         };
       };

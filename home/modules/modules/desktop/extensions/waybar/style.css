@@ -123,6 +123,11 @@ window#waybar {
   color: #e0af68;
 }
 
+#wireplumber.muted,
+#wireplumber.source.muted {
+  color: #f7768e;
+}
+
 #cpu,
 #memory,
 #disk,
